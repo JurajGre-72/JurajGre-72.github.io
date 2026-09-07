@@ -1,0 +1,209 @@
+<title>Reelwright Terms of Service</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #f5f6f8;
+    --surface: #ffffff;
+    --ink: #1b2130;
+    --muted: #5b6472;
+    --line: #dde1e8;
+    --accent: #2f5de3;
+    --accent-ink: #ffffff;
+    --code-bg: #eef0f4;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e1116;
+      --surface: #151922;
+      --ink: #e7e9ee;
+      --muted: #9aa3b2;
+      --line: #262b36;
+      --accent: #6b8cff;
+      --accent-ink: #0e1116;
+      --code-bg: #1b2029;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #0e1116;
+    --surface: #151922;
+    --ink: #e7e9ee;
+    --muted: #9aa3b2;
+    --line: #262b36;
+    --accent: #6b8cff;
+    --accent-ink: #0e1116;
+    --code-bg: #1b2029;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Public Sans', system-ui, -apple-system, sans-serif;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 64px 28px 96px;
+  }
+
+  .doc-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 10px;
+  }
+
+  h1 {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 700;
+    font-size: clamp(32px, 5vw, 44px);
+    line-height: 1.12;
+    margin: 0 0 8px;
+    text-wrap: balance;
+  }
+
+  .subtitle {
+    color: var(--muted);
+    font-size: 16px;
+    margin: 0 0 8px;
+  }
+
+  section { margin-top: 44px; }
+
+  h2 {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 22px;
+    font-weight: 600;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin: 0 0 14px;
+  }
+
+  h2 .num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  p, li {
+    font-size: 16px;
+    color: var(--ink);
+    max-width: 62ch;
+  }
+
+  p { margin: 0 0 14px; }
+
+  ul {
+    margin: 0 0 14px;
+    padding-left: 22px;
+  }
+
+  li { margin-bottom: 8px; }
+
+  code {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.9em;
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  .callout {
+    border: 1px solid var(--line);
+    background: var(--surface);
+    border-left: 3px solid var(--accent);
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin: 20px 0;
+  }
+
+  .callout p:last-child { margin-bottom: 0; }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  footer a { color: var(--accent); }
+
+  @media (max-width: 480px) {
+    .wrap { padding: 40px 20px 72px; }
+  }
+</style>
+
+<div class="wrap">
+  <div class="doc-meta">
+    <span>Reelwright &middot; REW-TOS-1.0</span>
+    <span>Effective 2026-09-07</span>
+  </div>
+
+  <p class="kicker">Terms of Service</p>
+  <h1>Terms for using Reelwright</h1>
+  <p class="subtitle">Reelwright is operated by a single individual, for that individual's own TikTok account. These terms describe the operator's responsibilities, not a service offered to the public.</p>
+
+  <section>
+    <h2><span class="num">01</span>What Reelwright is</h2>
+    <p>Reelwright is a personal-use automation pipeline that generates short-form video and publishes it to the operator's own TikTok account through TikTok's Content Posting API. It is not distributed, sold, or made available to any other user or account.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">02</span>Acceptable use</h2>
+    <ul>
+      <li>Reelwright is used only to publish content the operator has the rights to create and distribute.</li>
+      <li>All published content must comply with TikTok's Community Guidelines and Terms of Service at the time of posting.</li>
+      <li>Reelwright connects to exactly one TikTok account: the operator's own.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="num">03</span>Account responsibility</h2>
+    <p>The operator is solely responsible for the TikTok account connected to Reelwright, for reviewing what it publishes, and for any consequence &mdash; including platform enforcement action &mdash; that results from content it posts.</p>
+    <div class="callout">
+      <p>Automated publishing does not remove the operator's responsibility for what goes out under their account. Content generated by Reelwright reflects the operator's own decisions about what to run.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">04</span>No warranty</h2>
+    <p>Reelwright is provided as-is, with no guarantee of uptime, successful posting, or approval by TikTok's platform review processes. Its behavior depends on TikTok's own API availability and policies, which can change without notice.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">05</span>Changes</h2>
+    <p>These terms are updated as Reelwright's functionality changes. The effective date at the top of this page reflects the most recent revision.</p>
+  </section>
+
+  <footer>
+    Questions about these terms can be sent to <a href="mailto:jurajgregus007@gmail.com">jurajgregus007@gmail.com</a>.
+  </footer>
+</div>
