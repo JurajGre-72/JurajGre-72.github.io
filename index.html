@@ -1,0 +1,319 @@
+<title>Reelwright</title>
+<link rel="icon" type="image/png" href="app_icon.png">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #f5f6f8;
+    --surface: #ffffff;
+    --ink: #1b2130;
+    --muted: #5b6472;
+    --line: #dde1e8;
+    --accent: #2f5de3;
+    --accent-ink: #ffffff;
+    --code-bg: #eef0f4;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e1116;
+      --surface: #151922;
+      --ink: #e7e9ee;
+      --muted: #9aa3b2;
+      --line: #262b36;
+      --accent: #6b8cff;
+      --accent-ink: #0e1116;
+      --code-bg: #1b2029;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #0e1116;
+    --surface: #151922;
+    --ink: #e7e9ee;
+    --muted: #9aa3b2;
+    --line: #262b36;
+    --accent: #6b8cff;
+    --accent-ink: #0e1116;
+    --code-bg: #1b2029;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Public Sans', system-ui, -apple-system, sans-serif;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+  }
+
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 64px 28px 96px;
+  }
+
+  header.top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 56px;
+  }
+
+  header.top img {
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    display: block;
+  }
+
+  header.top span {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  .kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 10px;
+  }
+
+  h1 {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 700;
+    font-size: clamp(32px, 5vw, 46px);
+    line-height: 1.12;
+    margin: 0 0 18px;
+    text-wrap: balance;
+  }
+
+  .subtitle {
+    color: var(--muted);
+    font-size: 18px;
+    max-width: 56ch;
+    margin: 0 0 8px;
+  }
+
+  section {
+    margin-top: 56px;
+  }
+
+  h2 {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 22px;
+    font-weight: 600;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin: 0 0 18px;
+  }
+
+  h2 .num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  p, li {
+    font-size: 16px;
+    color: var(--ink);
+    max-width: 62ch;
+  }
+
+  p { margin: 0 0 14px; }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-top: 8px;
+  }
+
+  .feature {
+    border: 1px solid var(--line);
+    background: var(--surface);
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+
+  .feature .label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  .feature p {
+    font-size: 14.5px;
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .video-frame {
+    border: 1px solid var(--line);
+    background: var(--surface);
+    border-radius: 14px;
+    padding: 14px;
+  }
+
+  video {
+    display: block;
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+    border-radius: 8px;
+    background: #000;
+  }
+
+  .video-caption {
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 12px;
+  }
+
+  .pipeline {
+    counter-reset: step;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .pipeline li {
+    position: relative;
+    padding-left: 34px;
+    margin-bottom: 16px;
+    max-width: 58ch;
+  }
+
+  .pipeline li::before {
+    counter-increment: step;
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--code-bg);
+    color: var(--accent);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .legal-links {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .legal-links a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 15px;
+    border-bottom: 1px solid transparent;
+  }
+
+  .legal-links a:hover {
+    border-bottom-color: var(--accent);
+  }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  footer a { color: var(--accent); }
+
+  @media (max-width: 560px) {
+    .wrap { padding: 40px 20px 72px; }
+    .feature-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <img src="app_icon.png" alt="Reelwright icon">
+    <span>Reelwright</span>
+  </header>
+
+  <p class="kicker">Automated short-form video</p>
+  <h1>Scripts in. Voiced, captioned, scored vertical video out.</h1>
+  <p class="subtitle">Reelwright is a content pipeline that turns short fact-based scripts into fully produced vertical videos &mdash; neural voiceover, word-synced kinetic captions, licensed background footage, and an original backing track &mdash; then publishes the result straight to TikTok through the official Content Posting API.</p>
+
+  <section>
+    <h2><span class="num">01</span>What it does</h2>
+    <div class="feature-grid">
+      <div class="feature">
+        <div class="label">Voiceover</div>
+        <p>Neural text-to-speech narration generated per script, with word-level timing extracted for caption sync.</p>
+      </div>
+      <div class="feature">
+        <div class="label">Captions</div>
+        <p>Word-by-word kinetic captions that highlight in sync with the voiceover, styled for vertical viewing.</p>
+      </div>
+      <div class="feature">
+        <div class="label">Background</div>
+        <p>Licensed stock footage, cropped and looped to length, composited behind the caption layer.</p>
+      </div>
+      <div class="feature">
+        <div class="label">Music</div>
+        <p>An original synthesized backing track mixed under the narration at a level that stays out of the way.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">02</span>Sample output</h2>
+    <div class="video-frame">
+      <video src="demo_video.mp4" controls playsinline preload="metadata"></video>
+      <p class="video-caption">demo_video.mp4 &mdash; end-to-end render, TikTok Login Kit + Content Posting API integration</p>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">03</span>How it connects to TikTok</h2>
+    <ol class="pipeline">
+      <li>The operator authorizes Reelwright once via TikTok's official OAuth login (Login Kit), scoped to their own account.</li>
+      <li>Reelwright renders the finished video locally from a script in its content queue.</li>
+      <li>The finished file is uploaded through TikTok's Content Posting API, landing in the connected account's inbox as a draft.</li>
+      <li>The operator reviews the draft in the TikTok app and posts it.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2><span class="num">04</span>Who operates it</h2>
+    <p>Reelwright is a single-operator tool: it renders and posts video for the one TikTok account of the person running it. It has no public sign-up, no other users, and no dashboard for third parties &mdash; see the Privacy Policy for exactly what data it touches and where it goes.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">05</span>Legal</h2>
+    <div class="legal-links">
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-of-service.html">Terms of Service</a>
+    </div>
+  </section>
+
+  <footer>
+    Questions: <a href="mailto:jurajgregus007@gmail.com">jurajgregus007@gmail.com</a>
+  </footer>
+</div>
+
