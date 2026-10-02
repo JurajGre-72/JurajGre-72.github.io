@@ -1,0 +1,7 @@
+{
+  "name": "reelwright-3d",
+  "version": "1.0.0",
+  "private": true,
+  "description": "3D animated story reels for Reelwright",
+  "dependencies": { "three": "^0.186.1" }
+}

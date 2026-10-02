@@ -1,0 +1,4 @@
+node_modules/
+out/preview/
+out/*.silent.mp4
+out/*.wav

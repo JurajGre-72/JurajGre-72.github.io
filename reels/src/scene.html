@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Reelwright — 3D Story Scene</title>
+<link rel="stylesheet" href="../vendor/story-fonts.css">
+<style>
+  html,body{margin:0;padding:0;background:#000;overflow:hidden}
+  #stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:#05060f}
+  #c{position:absolute;inset:0;width:1080px;height:1920px;display:block}
+  #vignette{position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(ellipse 72% 52% at 50% 44%,rgba(0,0,0,0) 38%,rgba(0,0,0,.20) 76%,rgba(0,0,0,.50) 100%)}
+  #grain{position:absolute;inset:0;pointer-events:none;opacity:.055;mix-blend-mode:overlay}
+  #title{position:absolute;left:0;right:0;top:11.5%;text-align:center;
+    font-family:'Baloo 2',sans-serif;font-weight:800;font-size:56px;letter-spacing:.012em;
+    color:#fff6dd;opacity:0;text-shadow:0 0 34px rgba(255,214,140,.55),0 3px 16px rgba(0,0,0,.6)}
+  #caption{position:absolute;left:0;right:0;bottom:19%;padding:0 88px;text-align:center;
+    font-family:'Baloo 2',sans-serif;font-weight:800;font-size:76px;line-height:1.26;
+    color:#fffaf0;opacity:0;white-space:pre-line;
+    text-shadow:0 4px 26px rgba(0,0,0,.78),0 0 56px rgba(90,70,160,.45)}
+</style>
+<script type="importmap">
+{"imports":{"three":"../vendor/three.module.js","three/addons/":"../vendor/addons/"}}
+</script>
+</head>
+<body>
+<div id="stage">
+  <canvas id="c"></canvas>
+  <div id="vignette"></div>
+  <canvas id="grain"></canvas>
+  <div id="title"></div>
+  <div id="caption"></div>
+</div>
+
+<script type="module">
+import * as THREE from 'three';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass }     from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass }from 'three/addons/postprocessing/UnrealBloomPass.js';
+import * as BGU           from 'three/addons/utils/BufferGeometryUtils.js';
+
+/* ---------- deterministic helpers ---------- */
+const mulberry32 = s => () => { s |= 0; s = s + 0x6D2B79F5 | 0;
+  let t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+  return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+const rnd = mulberry32(20260218);
+const clamp01 = v => v < 0 ? 0 : v > 1 ? 1 : v;
+const seg  = (t,a,b) => clamp01((t - a) / (b - a));
+const smoothstep = x => x * x * (3 - 2 * x);
+const inQuad     = x => x * x;
+const outCubic   = x => 1 - Math.pow(1 - x, 3);
+const inOutCubic = x => x < .5 ? 4*x*x*x : 1 - Math.pow(-2*x+2,3)/2;
+const lerp = (a,b,k) => a + (b-a)*k;
+
+/* ---------- config from query / story ---------- */
+const Q    = new URLSearchParams(location.search);
+const LANG = Q.get('lang') || 'en';
+let STORY = null;  // loaded over HTTP below, before __ready is set
+
+const P = {
+  skyTop:'#0a0b2e', skyMid:'#232a6b', skyLow:'#4a3b7a', horizon:'#6d4f82',
+  ground:'#1e2c4a', tree:'#234a7d', star:'#ffe9a8', firefly:'#9ef7c8', fog:'#131938'
+};
+
+/* ---------- renderer ---------- */
+const W = 1080, H = 1920;
+const canvas   = document.getElementById('c');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:false });
+renderer.setPixelRatio(1);
+renderer.setSize(W, H, false);
+renderer.outputColorSpace   = THREE.SRGBColorSpace;
+renderer.toneMapping        = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure= 1.00;
+
+const scene  = new THREE.Scene();
+scene.fog    = new THREE.FogExp2(new THREE.Color(P.fog), 0.019);
+const camera = new THREE.PerspectiveCamera(46, W/H, 0.1, 400);
+
+/* ---------- sky dome ---------- */
+const skyMat = new THREE.ShaderMaterial({
+  side: THREE.BackSide, depthWrite:false, fog:false,
+  uniforms:{
+    cTop:{value:new THREE.Color(P.skyTop)}, cMid:{value:new THREE.Color(P.skyMid)},
+    cLow:{value:new THREE.Color(P.skyLow)}, cHor:{value:new THREE.Color(P.horizon)},
+    uGlow:{value:0.0}
+  },
+  vertexShader:`varying vec3 vP; void main(){ vP = position;
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }`,
+  fragmentShader:`
+    uniform vec3 cTop,cMid,cLow,cHor; uniform float uGlow; varying vec3 vP;
+    void main(){
+      float h = clamp((normalize(vP).y + 0.22) / 1.12, 0.0, 1.0);
+      vec3 c = mix(cHor, cLow, smoothstep(0.0,0.26,h));
+      c = mix(c, cMid, smoothstep(0.18,0.56,h));
+      c = mix(c, cTop, smoothstep(0.5,1.0,h));
+      c += cHor * uGlow * (1.0 - h) * 0.5;
+      gl_FragColor = vec4(c,1.0);
+    }`
+});
+scene.add(new THREE.Mesh(new THREE.SphereGeometry(190, 48, 32), skyMat));
+
+/* ---------- starfield ---------- */
+const SF = 1500;
+const sfPos = new Float32Array(SF*3), sfSize = new Float32Array(SF), sfPh = new Float32Array(SF);
+for (let i=0;i<SF;i++){
+  const u = rnd()*Math.PI*2, v = Math.acos(lerp(-0.12, 1, rnd())), r = lerp(95, 170, rnd());
+  sfPos[i*3]   = Math.sin(v)*Math.cos(u)*r;
+  sfPos[i*3+1] = Math.cos(v)*r;
+  sfPos[i*3+2] = Math.sin(v)*Math.sin(u)*r;
+  sfSize[i] = lerp(0.5, 2.3, Math.pow(rnd(),2.2));
+  sfPh[i]   = rnd()*Math.PI*2;
+}
+const sfGeo = new THREE.BufferGeometry();
+sfGeo.setAttribute('position', new THREE.BufferAttribute(sfPos,3));
+sfGeo.setAttribute('aSize',    new THREE.BufferAttribute(sfSize,1));
+sfGeo.setAttribute('aPhase',   new THREE.BufferAttribute(sfPh,1));
+const sfMat = new THREE.ShaderMaterial({
+  transparent:true, depthWrite:false, fog:false, blending:THREE.AdditiveBlending,
+  uniforms:{ uT:{value:0}, uOp:{value:1} },
+  vertexShader:`attribute float aSize, aPhase; uniform float uT; varying float vTw;
+    void main(){ vTw = 0.62 + 0.38*sin(uT*1.5 + aPhase*5.0);
+      vec4 mv = modelViewMatrix * vec4(position,1.0);
+      gl_PointSize = aSize * 210.0 / max(-mv.z, 1.0) * (0.75 + vTw*0.5);
+      gl_Position = projectionMatrix * mv; }`,
+  fragmentShader:`varying float vTw; uniform float uOp;
+    void main(){ vec2 d = gl_PointCoord - 0.5; float r = length(d);
+      float a = smoothstep(0.5, 0.02, r);
+      gl_FragColor = vec4(vec3(0.86,0.90,1.0), a*vTw*uOp); }`
+});
+scene.add(new THREE.Points(sfGeo, sfMat));
+
+/* ---------- ground ---------- */
+const gGeo = new THREE.CircleGeometry(90, 96, 1);
+gGeo.rotateX(-Math.PI/2);
+{ const p = gGeo.attributes.position;
+  for (let i=0;i<p.count;i++){
+    const x=p.getX(i), z=p.getZ(i), d=Math.hypot(x,z);
+    const hill = Math.sin(x*0.09)*Math.cos(z*0.11)*1.5 + Math.sin(d*0.16)*0.7;
+    p.setY(i, hill * smoothstep(clamp01((d-5.5)/13)) );
+  }
+  gGeo.computeVertexNormals(); }
+scene.add(new THREE.Mesh(gGeo, new THREE.MeshStandardMaterial({
+  color:new THREE.Color(P.ground), roughness:0.96, metalness:0.0, flatShading:false })));
+
+/* ---------- forest (merged for speed) ---------- */
+{
+  const trunks=[], leaves=[];
+  const TRUNK = new THREE.CylinderGeometry(0.11,0.17,1.1,6);
+  for (let i=0;i<150;i++){
+    const a = rnd()*Math.PI*2, r = lerp(7.2, 40, Math.pow(rnd(),0.62));
+    const x = Math.cos(a)*r, z = Math.sin(a)*r;
+    if (Math.hypot(x,z) < 8.5) continue;
+    // keep the lens corridor clear: every camera position lives inside this sphere
+    if (Math.hypot(x, z - 9.0) < 9.0) continue;
+    const s = lerp(0.75, 1.9, rnd()), lean = (rnd()-0.5)*0.1;
+    const t = TRUNK.clone().scale(s,s,s).rotateZ(lean).translate(x, 0.55*s, z);
+    trunks.push(t);
+    const tiers = 3 + (rnd()>0.55?1:0);
+    for (let k=0;k<tiers;k++){
+      const f = 1 - k*0.23;
+      const cone = new THREE.ConeGeometry(0.95*f*s, 1.35*f*s, 7);
+      cone.rotateZ(lean);
+      cone.translate(x, (1.0 + k*0.72)*s, z);
+      leaves.push(cone);
+    }
+  }
+  scene.add(new THREE.Mesh(BGU.mergeGeometries(trunks),
+    new THREE.MeshStandardMaterial({color:0x121f38, roughness:1, flatShading:true})));
+  scene.add(new THREE.Mesh(BGU.mergeGeometries(leaves),
+    new THREE.MeshStandardMaterial({color:new THREE.Color(P.tree), roughness:0.92, flatShading:true})));
+}
+
+/* ---------- lights ---------- */
+scene.add(new THREE.HemisphereLight(0x5267b8, 0x121b31, 0.95));
+scene.add(new THREE.AmbientLight(0x2d3a6b, 0.35));
+const moon = new THREE.DirectionalLight(0xc3cfff, 0.95);
+moon.position.set(-14, 22, -10); scene.add(moon);
+const rim = new THREE.DirectionalLight(0x8fa6ff, 0.45);   // separates treetops from sky
+rim.position.set(9, 7, -20); scene.add(rim);
+const starLight = new THREE.PointLight(0xffd892, 0, 42, 1.7); scene.add(starLight);
+const ffLight   = new THREE.PointLight(0x8df3c0, 0, 20, 2.0); scene.add(ffLight);
+
+/* ---------- glow sprite texture ---------- */
+function glowTex(inner, outer){
+  const n=256, cv=document.createElement('canvas'); cv.width=cv.height=n;
+  const g=cv.getContext('2d'), rg=g.createRadialGradient(n/2,n/2,0,n/2,n/2,n/2);
+  rg.addColorStop(0,inner); rg.addColorStop(0.22,outer);
+  rg.addColorStop(0.55,'rgba(255,255,255,0.10)'); rg.addColorStop(1,'rgba(255,255,255,0)');
+  g.fillStyle=rg; g.fillRect(0,0,n,n);
+  const tx=new THREE.CanvasTexture(cv); tx.colorSpace=THREE.SRGBColorSpace; return tx;
+}
+const TEX_WARM = glowTex('rgba(255,255,245,1)','rgba(255,214,130,0.72)');
+const TEX_MINT = glowTex('rgba(240,255,250,1)','rgba(130,245,195,0.62)');
+
+/* ---------- the little star ---------- */
+function starShape(outer, inner, pts){
+  const s = new THREE.Shape();
+  for (let i=0;i<pts*2;i++){
+    const r = i%2===0 ? outer : inner, a = (i/(pts*2))*Math.PI*2 - Math.PI/2;
+    const x=Math.cos(a)*r, y=Math.sin(a)*r;
+    i===0 ? s.moveTo(x,y) : s.lineTo(x,y);
+  }
+  s.closePath(); return s;
+}
+const starGeo = new THREE.ExtrudeGeometry(starShape(0.60,0.25,5),
+  {depth:0.20, bevelEnabled:true, bevelThickness:0.07, bevelSize:0.07, bevelSegments:2});
+starGeo.center();
+const starMat = new THREE.MeshStandardMaterial({
+  color:0xffeec2, emissive:new THREE.Color(P.star), emissiveIntensity:2.2,
+  roughness:0.42, metalness:0.0 });
+const star = new THREE.Mesh(starGeo, starMat); scene.add(star);
+
+const starGlow = new THREE.Sprite(new THREE.SpriteMaterial({
+  map:TEX_WARM, blending:THREE.AdditiveBlending, depthWrite:false, depthTest:false,
+  transparent:true, fog:false }));
+scene.add(starGlow);
+
+/* trail */
+const TRAIL = 16, trail = [];
+for (let i=0;i<TRAIL;i++){
+  const sp = new THREE.Sprite(new THREE.SpriteMaterial({
+    map:TEX_WARM, blending:THREE.AdditiveBlending, depthWrite:false, depthTest:false,
+    transparent:true, opacity:0, fog:false }));
+  scene.add(sp); trail.push(sp);
+}
+
+/* landing shock ring */
+const ring = new THREE.Mesh(
+  new THREE.RingGeometry(0.4, 0.52, 64).rotateX(-Math.PI/2),
+  new THREE.MeshBasicMaterial({ color:0xffe6b0, transparent:true, opacity:0,
+    blending:THREE.AdditiveBlending, depthWrite:false, side:THREE.DoubleSide, fog:false }));
+scene.add(ring);
+
+/* ---------- fireflies ---------- */
+const NFF = 54, ff = [];
+for (let i=0;i<NFF;i++){
+  const a = rnd()*Math.PI*2, r = lerp(8.5, 19, rnd());
+  const sp = new THREE.Sprite(new THREE.SpriteMaterial({
+    map:TEX_MINT, blending:THREE.AdditiveBlending, depthWrite:false,
+    transparent:true, opacity:0, fog:false }));
+  sp.scale.setScalar(0.5); scene.add(sp);
+  ff.push({ sp,
+    home:new THREE.Vector3(Math.cos(a)*r, lerp(0.7,5.0,rnd()), Math.sin(a)*r),
+    orbR:lerp(1.0,2.9,rnd()), orbA:rnd()*Math.PI*2, orbY:lerp(-0.7,1.5,rnd()),
+    spd:lerp(0.55,1.5,rnd()), ph:rnd()*Math.PI*2, delay:rnd()*3.1, size:lerp(0.15,0.30,rnd()) });
+}
+
+/* ---------- bloom ---------- */
+const composer = new EffectComposer(renderer);
+composer.setSize(W,H);
+composer.addPass(new RenderPass(scene, camera));
+const bloom = new UnrealBloomPass(new THREE.Vector2(W,H), 0.30, 0.55, 0.86);
+composer.addPass(bloom);
+
+/* ---------- choreography ---------- */
+const SKY = new THREE.Vector3(1.5, 16.5, -5.0);
+const GND = new THREE.Vector3(0.0, 0.85, 0.0);
+const T_FALL0 = 11.4, T_FALL1 = 16.6, T_RISE0 = 36.4, T_RISE1 = 42.0;
+
+const _v = new THREE.Vector3();
+function starPos(t, out){
+  if (t < T_FALL0){
+    const w = t < 6.5 ? 0.14 : 0.14 + seg(t,6.5,T_FALL0)*0.62;
+    out.copy(SKY);
+    out.x += Math.sin(t*1.7)*w + Math.sin(t*0.61)*0.22;
+    out.y += Math.sin(t*2.3)*w*0.7;
+    out.z += Math.cos(t*1.31)*w*0.5;
+  } else if (t < T_FALL1){
+    const k = inQuad(seg(t,T_FALL0,T_FALL1));
+    out.lerpVectors(SKY, GND, k);
+    out.x += Math.sin(k*Math.PI)*2.1;
+    out.z += Math.sin(k*Math.PI*1.35)*1.0;
+  } else if (t < T_RISE0){
+    out.copy(GND); out.y += Math.sin(t*1.15)*0.05;
+  } else if (t < T_RISE1){
+    const k = inOutCubic(seg(t,T_RISE0,T_RISE1));
+    out.lerpVectors(GND, SKY, k);
+    out.x += Math.sin(k*Math.PI)*-1.3;
+    out.z += Math.sin(k*Math.PI)*0.6;
+  } else {
+    out.copy(SKY);
+    out.x += Math.sin(t*0.9)*0.12; out.y += Math.sin(t*1.4)*0.1;
+  }
+  return out;
+}
+
+/* brightness curve, keyed to the emotional beats */
+function brightness(t){
+  if (t < 11.4) return 1.00;
+  if (t < 16.6) return lerp(1.00, 1.75, seg(t,11.4,16.6));
+  if (t < 17.4) return lerp(2.60, 0.62, seg(t,16.6,17.4));      // landing flash
+  if (t < 24.0) return 0.62;
+  if (t < 29.5) return lerp(0.62, 0.07, smoothstep(seg(t,24.0,29.5)));
+  if (t < 36.0) return lerp(0.07, 0.52, smoothstep(seg(t,29.5,36.0)));
+  if (t < 41.5) return lerp(0.52, 2.30, smoothstep(seg(t,36.0,41.5)));
+  return lerp(2.30, 1.85, seg(t,41.5,45.0));
+}
+/* how far the fireflies have travelled from treeline to the star */
+const ffGather = t => smoothstep(clamp01(seg(t,29.5,37.2)))
+                     * (1 - 0.52*smoothstep(clamp01(seg(t,42.0,44.8))));
+const ffAlpha  = t => clamp01(seg(t,28.6,31.5)) * (1 - 0.45*clamp01(seg(t,42.4,45.0)));
+
+const CAM = [
+  { t:0.0,  p:[ 0.6, 2.4, 13.8], l:[ 1.1, 11.4, -5.0], fov:52 },
+  { t:3.4,  p:[ 0.5, 2.9, 12.6], l:[ 1.3, 13.2, -5.0], fov:48 },
+  { t:6.5,  p:[ 0.2, 3.8, 10.8], l:[ 1.5, 15.2, -5.0], fov:44 },
+  { t:11.4, p:[ 2.0, 6.6,  8.2], l:[ 1.5, 16.6, -5.0], fov:46 },
+  { t:14.0, p:[ 3.0, 7.5,  9.5], l:[ 0.9,  7.7, -1.0], fov:56 },
+  { t:16.6, p:[ 2.8, 3.2,  6.6], l:[ 0.2,  0.55, 0.0], fov:46 },
+  { t:24.0, p:[-2.3, 3.2,  5.0], l:[ 0.0,  0.55, 0.0], fov:40 },
+  { t:29.5, p:[-3.1, 2.9,  4.4], l:[ 0.0,  0.55, 0.0], fov:39 },
+  { t:36.4, p:[-4.6, 3.6,  8.0], l:[ 0.0,  1.40, 0.0], fov:45 },
+  { t:42.0, p:[-1.5, 4.0, 10.5], l:[ 1.2, 11.8, -5.0], fov:50 },
+  { t:45.0, p:[ 0.2, 4.6, 11.8], l:[ 1.3, 12.4, -5.0], fov:52 }
+];
+const _look = new THREE.Vector3(), _trk = new THREE.Vector3();
+function placeCamera(t){
+  let i = 0; while (i < CAM.length-2 && t >= CAM[i+1].t) i++;
+  const a = CAM[i], b = CAM[i+1];
+  const k = smoothstep(clamp01((t - a.t) / (b.t - a.t)));
+  camera.position.set(lerp(a.p[0],b.p[0],k), lerp(a.p[1],b.p[1],k), lerp(a.p[2],b.p[2],k));
+  _look.set(lerp(a.l[0],b.l[0],k), lerp(a.l[1],b.l[1],k), lerp(a.l[2],b.l[2],k));
+  // follow the star down so it never slides off the top of frame
+  const track = smoothstep(clamp01(Math.min(seg(t,11.0,12.6), 1 - seg(t,16.7,17.7))));
+  if (track > 0){
+    starPos(t, _trk);
+    _look.lerp(_trk.clone().setY(_trk.y - 2.4), track * 0.88);
+  }
+  // gentle handheld life
+  camera.position.x += Math.sin(t*0.47)*0.085;
+  camera.position.y += Math.sin(t*0.63+1.1)*0.065;
+  camera.fov = lerp(a.fov, b.fov, k);
+  camera.updateProjectionMatrix();
+  camera.lookAt(_look);
+}
+
+/* ---------- captions ---------- */
+const capEl = document.getElementById('caption');
+const ttlEl = document.getElementById('title');
+function updateText(t){
+  let shown = null, op = 0, dy = 18;
+  if (STORY){
+    for (const b of STORY.beats){
+      if (t >= b.start - 0.5 && t < b.end){
+        const fin  = clamp01((t - b.start)/0.46);
+        const fout = 1 - clamp01((t - (b.end - 0.42))/0.42);
+        const a = Math.min(outCubic(fin), fout);
+        if (a > op){ op = a; shown = (b.caption[LANG] || b.caption.en); dy = (1-outCubic(fin))*22; }
+      }
+    }
+  }
+  capEl.textContent = shown || '';
+  capEl.style.opacity = op.toFixed(3);
+  capEl.style.transform = `translateY(${dy.toFixed(2)}px)`;
+
+  const tOp = Math.min(clamp01(seg(t,0.6,1.9)), 1 - clamp01(seg(t,5.0,6.3)));
+  if (STORY && tOp > 0.001){ ttlEl.textContent = STORY.title[LANG] || STORY.title.en; }
+  else ttlEl.textContent = '';
+  ttlEl.style.opacity = tOp.toFixed(3);
+}
+
+/* ---------- grain ---------- */
+{
+  const g = document.getElementById('grain'); g.width = 270; g.height = 480;
+  const ctx = g.getContext('2d'), im = ctx.createImageData(270,480);
+  for (let i=0;i<im.data.length;i+=4){
+    const v = 120 + rnd()*135;
+    im.data[i]=im.data[i+1]=im.data[i+2]=v; im.data[i+3]=255;
+  }
+  ctx.putImageData(im,0,0);
+  g.style.width='1080px'; g.style.height='1920px';
+}
+
+/* ---------- the one deterministic entry point ---------- */
+const _sp = new THREE.Vector3(), _tp = new THREE.Vector3();
+function renderFrame(t){
+  placeCamera(t);
+  starPos(t, _sp);
+  const br = brightness(t);
+
+  star.position.copy(_sp);
+  star.lookAt(camera.position);                       // always presents its face
+  star.rotateZ(Math.sin(t*0.85)*0.15 +
+    (t > T_FALL0 && t < T_FALL1 ? seg(t,T_FALL0,T_FALL1)*6.5 : 0));   // tumble while falling
+  star.rotateY(Math.sin(t*0.50)*0.20);
+  star.rotateX(Math.sin(t*0.37)*0.14);
+  const sc = lerp(0.82, 1.14, clamp01(br/2.3));
+  star.scale.setScalar(sc);
+  starMat.emissiveIntensity = 0.18 + br*0.98;
+
+  starGlow.position.copy(_sp);
+  starGlow.scale.setScalar(lerp(0.72, 3.05, clamp01(br/2.3)));
+  starGlow.material.opacity = clamp01(0.10 + br*0.20);
+
+  starLight.position.copy(_sp).y += 0.3;
+  starLight.intensity = br * 32;
+
+  // trail
+  const falling = t > T_FALL0 && t < T_FALL1 + 0.5;
+  const rising  = t > T_RISE0 && t < T_RISE1;
+  for (let i=0;i<TRAIL;i++){
+    const sp = trail[i];
+    if (!falling && !rising){ sp.material.opacity = 0; continue; }
+    const lag = (i+1) * (falling ? 0.055 : 0.036);
+    starPos(Math.max(0, t - lag), _tp);
+    sp.position.copy(_tp);
+    const f = 1 - i/TRAIL;
+    sp.scale.setScalar(lerp(0.30, 2.15, f) * (falling?1:0.62));
+    sp.material.opacity = f*f * (falling ? 0.58 : 0.15);
+  }
+
+  // landing ring
+  if (t > T_FALL1 && t < T_FALL1 + 1.5){
+    const k = seg(t, T_FALL1, T_FALL1 + 1.5);
+    ring.position.set(_sp.x, 0.06, _sp.z);
+    ring.scale.setScalar(lerp(0.5, 11, outCubic(k)));
+    ring.material.opacity = (1-k)*(1-k)*0.75;
+  } else ring.material.opacity = 0;
+
+  // fireflies
+  const gather = ffGather(t), alpha = ffAlpha(t);
+  let lead = null;
+  for (let i=0;i<NFF;i++){
+    const f = ff[i];
+    const g = smoothstep(clamp01((gather*(NFF+12) - i*0.55) / 9));
+    const ang = f.orbA + t*f.spd*(0.8 + g*1.5);
+    const ox = Math.cos(ang)*f.orbR, oz = Math.sin(ang)*f.orbR;
+    const oy = f.orbY + Math.sin(t*1.5 + f.ph)*0.3;
+    const hx = f.home.x + Math.sin(t*0.6 + f.ph)*0.55;
+    const hy = f.home.y + Math.sin(t*0.9 + f.ph*1.7)*0.4;
+    const hz = f.home.z + Math.cos(t*0.52 + f.ph)*0.55;
+    f.sp.position.set(
+      lerp(hx, _sp.x + ox, g), lerp(hy, _sp.y + oy, g), lerp(hz, _sp.z + oz, g));
+    const tw = 0.55 + 0.45*Math.sin(t*3.1 + f.ph*3.3);
+    f.sp.material.opacity = alpha * clamp01(0.25 + g*0.75) * tw;
+    f.sp.scale.setScalar(f.size * (1 + g*0.85));
+    if (i === 0) lead = f.sp.position;
+  }
+  if (lead){ ffLight.position.copy(lead); ffLight.intensity = alpha * 11; }
+
+  // sky reacts to the star
+  skyMat.uniforms.uGlow.value = clamp01((br - 1.0) * 0.5);
+  sfMat.uniforms.uT.value  = t;
+  sfMat.uniforms.uOp.value = lerp(1.0, 0.72, clamp01((br-1.0)/1.3));
+
+  updateText(t);
+  composer.render();
+}
+
+window.renderFrame = renderFrame;
+
+/* load story + fonts, then declare ready so the capture loop can start */
+const storyId = Q.get('story') || 'little-star';
+fetch(`../stories/${storyId}.json`)
+  .then(r => { if (!r.ok) throw new Error('story ' + storyId + ': HTTP ' + r.status); return r.json(); })
+  .then(j => { STORY = j; return document.fonts.ready; })
+  .then(() => { renderFrame(0); window.__ready = true; })
+  .catch(e => { window.__error = String(e); });
+</script>
+</body>
+</html>

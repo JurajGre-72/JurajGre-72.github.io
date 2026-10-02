@@ -1,0 +1,85 @@
+{
+  "id": "little-star",
+  "title": {
+    "en": "The Little Star Who Fell",
+    "sk": "Hviezdička, ktorá spadla"
+  },
+  "fps": 30,
+  "duration": 45.0,
+  "width": 1080,
+  "height": 1920,
+  "beats": [
+    {
+      "id": "open",
+      "start": 0.0,
+      "end": 6.5,
+      "caption": {
+        "en": "High above the sleeping woods\nlived a very small star.",
+        "sk": "Vysoko nad spiacim lesom\nžila celkom malá hviezdička."
+      }
+    },
+    {
+      "id": "slip",
+      "start": 6.5,
+      "end": 12.0,
+      "caption": {
+        "en": "One night, she held on\na little too loosely…",
+        "sk": "Jednej noci sa držala\ntrošku prislabo…"
+      }
+    },
+    {
+      "id": "fall",
+      "start": 12.0,
+      "end": 17.0,
+      "caption": {
+        "en": "…and fell all the way down.",
+        "sk": "…a spadla celkom dolu."
+      }
+    },
+    {
+      "id": "landed",
+      "start": 17.0,
+      "end": 24.0,
+      "caption": {
+        "en": "She was far too small\nto climb back home.",
+        "sk": "Bola príliš maličká,\naby vyliezla domov."
+      }
+    },
+    {
+      "id": "dimming",
+      "start": 24.0,
+      "end": 29.5,
+      "caption": {
+        "en": "And her light was\ngoing out.",
+        "sk": "A jej svetielko\npomaly haslo."
+      }
+    },
+    {
+      "id": "fireflies",
+      "start": 29.5,
+      "end": 36.0,
+      "caption": {
+        "en": "Then the forest noticed.",
+        "sk": "Vtedy si ju les všimol."
+      }
+    },
+    {
+      "id": "lift",
+      "start": 36.0,
+      "end": 41.5,
+      "caption": {
+        "en": "Little lights, together,\ncan carry anything home.",
+        "sk": "Malé svetielka spolu\ndonesú domov čokoľvek."
+      }
+    },
+    {
+      "id": "goodnight",
+      "start": 41.5,
+      "end": 45.0,
+      "caption": {
+        "en": "Good night.",
+        "sk": "Dobrú noc."
+      }
+    }
+  ]
+}
