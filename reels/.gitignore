@@ -1,4 +1,5 @@
 node_modules/
-out/preview/
-out/*.silent.mp4
-out/*.wav
+
+# Render outputs: regenerable from src/ + stories/, and large (~18 MB per 45s reel).
+# Keeping them out of git history avoids permanent repo bloat.
+out/
