@@ -186,6 +186,30 @@ class SearchIndex {
     return { terms, phrases, results };
   }
 
+  /**
+   * Passages matching at least `minTerms` of the given words (best passage per document).
+   * Used to find documents whose content relates to a section of a legal act.
+   */
+  relatedChunks(wordList, { minTerms = 3, allowDoc, limit = 6 } = {}) {
+    const raw = this.ms.search(wordList.join(' '), {
+      combineWith: 'OR',
+      prefix: false,
+      fuzzy: false,
+      boost: { heading: 1.5 },
+      filter: (r) => r.kind === 'text' && (!allowDoc || allowDoc(r.docId))
+    });
+    const out = [];
+    const seen = new Set();
+    for (const r of raw) {
+      if ((r.queryTerms || []).length < minTerms || seen.has(r.docId)) continue;
+      seen.add(r.docId);
+      const c = this.chunks.get(r.id);
+      out.push({ docId: r.docId, page: c.page, heading: c.heading, text: c.text, score: r.score, matched: r.queryTerms });
+      if (out.length >= limit) break;
+    }
+    return out;
+  }
+
   /** Best individual passages for question answering. */
   passages(q, opts = {}) {
     const { terms } = parseQuery(q);

@@ -42,7 +42,8 @@ async function extractPdf(buf) {
         const y = it.transform ? it.transform[5] : null;
         const h = Math.abs((it.transform && it.transform[3]) || it.height || 0);
         if (it.str === '' && !it.hasEOL) continue;
-        if (lastY !== null && y !== null && Math.abs(y - lastY) > 2) {
+        // A small vertical shift (superscript footnote numbers) stays on the same line.
+        if (lastY !== null && y !== null && Math.abs(y - lastY) > Math.max(2, Math.max(h, lastH) * 0.5)) {
           if (!out.endsWith('\n')) out += '\n';
           if (Math.abs(lastY - y) > Math.max(h, lastH, 1) * 1.6 && !out.endsWith('\n\n')) out += '\n';
         }

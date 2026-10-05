@@ -14,8 +14,8 @@ function row(d) {
     <span class="row-date">${fmtDate(d.reviewDate)}</span>
     ${d.reviewDate ? reviewChip(d.review) : ''}
     ${d.reviewDate
-      ? html`<button class="btn btn-sm" data-action="review" data-id="${d.id}">${icon('check')}${t('doc.markReviewed')}</button>`
-      : html`<a class="btn btn-sm" href="#/documents/${d.id}">${icon('edit')}${t('edit')}</a>`}
+      ? html`<button class="btn btn-sm" data-action="review" data-perm="editor" data-id="${d.id}">${icon('check')}${t('doc.markReviewed')}</button>`
+      : html`<a class="btn btn-sm" href="#/documents/${d.id}" data-perm="editor">${icon('edit')}${t('edit')}</a>`}
   </li>`;
 }
 

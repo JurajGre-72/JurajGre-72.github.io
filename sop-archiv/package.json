@@ -17,7 +17,6 @@
     "dist:linux": "electron-builder --linux"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.131.0",
     "diff": "^9.0.0",
     "jszip": "^3.10.2",
     "mammoth": "^1.13.0",
@@ -56,7 +55,6 @@
       "!node_modules/pdfjs-dist/legacy/web/**",
       "!node_modules/pdfjs-dist/legacy/image_decoders/**",
       "!node_modules/pdfjs-dist/types/**",
-      "!node_modules/@anthropic-ai/sdk/src/**",
       "!node_modules/**/{README,CHANGELOG,HISTORY}*",
       "!node_modules/**/{test,tests,docs,example,examples}/**"
     ],

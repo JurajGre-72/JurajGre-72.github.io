@@ -56,7 +56,7 @@ function reviewsTab() {
         [t('f.reviewDate'), doc.reviewDate ? html`${fmtDate(doc.reviewDate)} ${reviewChip(doc.review)}` : ''],
         [t('f.interval'), doc.reviewIntervalMonths ? t('doc.reviewEvery', { n: doc.reviewIntervalMonths }) : '']
       ])}</div>
-      <button class="btn btn-primary" data-action="review">${icon('check')}${t('doc.markReviewed')}</button>
+      <button class="btn btn-primary" data-action="review" data-perm="editor">${icon('check')}${t('doc.markReviewed')}</button>
     </div>
     <h3>${t('doc.reviewHistory')}</h3>
     ${rows.length
@@ -95,7 +95,7 @@ function legisTab(changes) {
       ${(doc.lawRefs || []).length
         ? html`<h3>${t('doc.otherRefs')}</h3><ul class="rows">${doc.lawRefs.map(
             (r) => html`<li class="row"><span class="chip chip-muted">${t(`kind.${r.jurisdiction}`)}</span><span class="row-title">${r.label}</span><span class="muted small">${r.count}×</span>
-            <button class="btn btn-sm" data-action="monitor" data-key="${r.key}" data-label="${r.label}" data-url="${r.url}" data-j="${r.jurisdiction}">${icon('plus')}${t('dash.suggestAdd')}</button></li>`
+            <button class="btn btn-sm" data-action="monitor" data-perm="editor" data-key="${r.key}" data-label="${r.label}" data-url="${r.url}" data-j="${r.jurisdiction}">${icon('plus')}${t('dash.suggestAdd')}</button></li>`
           )}</ul>`
         : ''}
     </section>`;
@@ -155,7 +155,12 @@ export function auditDetails(r) {
       ([k, v]) => html`<div><b>${t(`f.${k}`) === `f.${k}` ? k : t(`f.${k}`)}</b>: ${k === 'status' ? fmtStatus(v.from) : fmtVal(v.from)} → ${k === 'status' ? fmtStatus(v.to) : fmtVal(v.to)}</div>`
     );
   }
+  if (r.userChanges) {
+    return Object.entries(r.userChanges).map(([k, v]) => html`<div><b>${k === 'role' ? t('auth.role') : k === 'name' ? t('auth.name') : t('usr.disabled')}</b>: ${k === 'role' ? t(`role.${v.from}`) : String(v.from)} → ${k === 'role' ? t(`role.${v.to}`) : String(v.to)}</div>`);
+  }
   const parts = [];
+  if (r.role) parts.push(t(`role.${r.role}`));
+  if (r.source) parts.push(r.source);
   if (r.file) parts.push(r.file);
   if (r.from || r.to) parts.push(`${fmtVal(r.from)} → ${fmtVal(r.to)}`);
   if (r.outcome) parts.push(t(`rv.o.${r.outcome}`));
@@ -208,11 +213,11 @@ export async function render(route) {
       </div>
       <div class="head-actions wrap">
         <button class="btn btn-primary" data-action="openFile">${icon('external')}${t('doc.openFile')}</button>
-        <button class="btn" data-action="review">${icon('check')}${t('doc.markReviewed')}</button>
-        <button class="btn" data-action="newVersion">${icon('upload')}${t('doc.newVersion')}</button>
-        <button class="btn" data-action="edit">${icon('edit')}${t('edit')}</button>
+        <button class="btn" data-action="review" data-perm="editor">${icon('check')}${t('doc.markReviewed')}</button>
+        <button class="btn" data-action="newVersion" data-perm="editor">${icon('upload')}${t('doc.newVersion')}</button>
+        <button class="btn" data-action="edit" data-perm="editor">${icon('edit')}${t('edit')}</button>
         <button class="btn btn-ghost" data-action="reveal" title="${t('doc.showInFolder')}">${icon('folder')}</button>
-        <button class="btn btn-ghost danger" data-action="remove" title="${t('delete')}">${icon('trash')}</button>
+        <button class="btn btn-ghost danger" data-action="remove" data-perm="admin" title="${t('delete')}">${icon('trash')}</button>
       </div>
     </header>
     <nav class="tabs">${TABS.map(

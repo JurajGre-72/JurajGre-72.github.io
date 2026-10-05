@@ -1,7 +1,9 @@
 'use strict';
-// End-to-end test: launches the real Electron app with Playwright, imports sample documents,
-// searches, records a review, checks legislation against a local fake Slov-Lex server and
-// runs an AI impact analysis against a local fake Ollama server. Saves screenshots.
+// End-to-end test of the real Electron app (Playwright):
+//   first-time setup → import documents → search → review → legislation monitor →
+//   check documents against an act (downloaded PDF, web address, name) → recheck after a SOP update →
+//   AI analysis (local fake Ollama) → user profiles and roles → a second computer opens the shared
+//   archive read-only and takes over → privacy checks. Saves screenshots.
 //
 //   node test/e2e/run.js [screenshotDir]      (on Linux without a display: xvfb-run -a node test/e2e/run.js)
 
@@ -15,16 +17,18 @@ const { makeAll } = require('../fixtures/make');
 
 const ROOT = path.join(__dirname, '..', '..');
 const OUT = path.resolve(process.argv[2] || path.join(os.tmpdir(), 'sop-archiv-e2e'));
+const ADMIN = { name: 'Juraj Gregus', password: 'Tajne-heslo-1' };
+const READER = { name: 'Eva Nováková', password: 'citam123' };
 
 // --- Fake Slov-Lex -------------------------------------------------------------
-function lawPage(version, body, versions, port) {
+function lawPage(body, versions, port) {
   const links = versions.map((v) => `<li><a href="http://127.0.0.1:${port}/pravne-predpisy/SK/ZZ/2011/362/${v}">Znenie od ${v}</a></li>`).join('');
   return `<!doctype html><html><head><meta charset="utf-8"><title>362/2011 Z. z.</title></head><body>
   <header>Slov-Lex (test)</header><nav><ul>${links}</ul></nav>
   <main id="text">${body
     .split('\n')
     .map((l) => `<p>${l}</p>`)
-    .join('')}</main></body></html>`;
+    .join('')}</main><footer>© Ministerstvo spravodlivosti SR · aktualizované ${new Date().toISOString()}</footer></body></html>`;
 }
 
 const LAW_2025 = `Zákon č. 362/2011 Z. z. o liekoch a zdravotníckych pomôckach
@@ -35,15 +39,15 @@ Predmet úpravy
 Povinnosti držiteľa povolenia na veľkodistribúciu liekov
 (1) Držiteľ povolenia na veľkodistribúciu liekov je povinný
 k) zabezpečiť stiahnutie lieku z trhu na základe rozhodnutia štátneho ústavu,
-l) uchovávať záznamy o dodávkach liekov päť rokov.
+l) uchovávať záznamy o dodávkach liekov a o teplote päť rokov.
 § 19
-Zakázané činnosti
-(1) Držiteľ povolenia nesmie dodávať lieky osobám bez povolenia.
+Skladovanie liekov
+(1) Lieky sa skladujú pri teplote 15 – 25 °C; termolabilné lieky v chladničke pri teplote 2 – 8 °C. Poškodené balenia sa umiestnia do karantény.
 § 23
 Povinnosti držiteľa povolenia na poskytovanie lekárenskej starostlivosti
 (1) Text bez zmeny.`;
 
-const LAW_2027 = LAW_2025.replace('uchovávať záznamy o dodávkach liekov päť rokov.', 'uchovávať záznamy o dodávkach liekov desať rokov v elektronickej podobe.')
+const LAW_2027 = LAW_2025.replace('o teplote päť rokov.', 'o teplote desať rokov v elektronickej podobe.')
   .replace('k) zabezpečiť stiahnutie lieku z trhu na základe rozhodnutia štátneho ústavu,', 'k) zabezpečiť stiahnutie lieku z trhu do 24 hodín od doručenia rozhodnutia štátneho ústavu,')
   .concat('\n§ 19a\nOverovanie ochranných prvkov\n(1) Veľkodistribútor overuje ochranné prvky pri vrátení lieku.');
 
@@ -52,25 +56,24 @@ function startLawServer() {
     const versions = ['20240601', '20250101', '20270101'];
     const srv = http.createServer((req, res) => {
       const port = srv.address().port;
-      const m = req.url.match(/\/pravne-predpisy\/SK\/ZZ\/2011\/362\/(\d{8})?/);
       res.setHeader('content-type', 'text/html; charset=utf-8');
       if (req.url.startsWith('/spa')) {
-        // a page whose content is rendered by JavaScript after a delay
         res.end(`<!doctype html><html><body><div id="app">Načítavam…</div><script>setTimeout(()=>{document.getElementById('app').innerText='ŠÚKL oznamy\\nNové usmernenie k správnej distribučnej praxi platné od 1. 1. 2027\\nZmena formulára hlásenia nežiaducich účinkov\\n'+'Ďalší text oznamu. '.repeat(20)},900)</script></body></html>`);
         return;
       }
+      const m = req.url.match(/\/pravne-predpisy\/SK\/ZZ\/2011\/362\/(\d{8})?/);
       if (!m) {
         res.statusCode = 404;
         return res.end('not found');
       }
       const v = m[1] || '20250101';
-      res.end(lawPage(v, v === '20270101' ? LAW_2027 : LAW_2025, versions, port));
+      res.end(lawPage(v === '20270101' ? LAW_2027 : LAW_2025, versions, port));
     });
     srv.listen(0, '127.0.0.1', () => resolve(srv));
   });
 }
 
-// --- Fake Ollama ---------------------------------------------------------------
+// --- Fake Ollama (a local AI server) --------------------------------------------
 function startOllama() {
   return new Promise((resolve) => {
     const srv = http.createServer((req, res) => {
@@ -84,7 +87,7 @@ function startOllama() {
           const user = j.messages.find((m) => m.role === 'user').content;
           srv.lastPrompt = user;
           const text = user.includes('ZMENENÉ ČASTI PREDPISU')
-            ? '1. Záver: OVPLYVNENÝ – § 18 ods. 1 písm. k) skracuje lehotu na stiahnutie lieku na 24 hodín.\n2. Čo treba zmeniť: kap. 2 „Stiahnutie z trhu“ → doplniť lehotu 24 hodín od doručenia rozhodnutia ŠÚKL.\n3. Prečo: § 18 ods. 1 písm. k) v znení od 1. 1. 2027.\n4. Termín: 1. 1. 2027.\n5. Neistoty: overiť prechodné ustanovenia.'
+            ? '1. Záver: OVPLYVNENÝ – § 18 ods. 1 písm. l) predlžuje dobu uchovávania záznamov na desať rokov.\n2. Čo treba zmeniť: kap. 3 „Záznamy“ → 5 rokov nahradiť 10 rokmi, v elektronickej podobe.\n3. Prečo: § 18 ods. 1 písm. l) v znení od 1. 1. 2027.\n4. Termín: 1. 1. 2027.\n5. Neistoty: overiť prechodné ustanovenia.'
             : 'Dotknuté šarže sa zablokujú a presunú do karantény [SOP-SK-002, s. 1].';
           return res.end(JSON.stringify({ model: j.model, message: { role: 'assistant', content: text } }));
         }
@@ -102,6 +105,29 @@ async function shot(page, name) {
   console.log('  📸', name);
 }
 
+function launch(tmp, userdata) {
+  // SOP_ARCHIV_EXE=path/to/packaged/binary tests a built app instead of the sources.
+  const packaged = process.env.SOP_ARCHIV_EXE;
+  return electron.launch({
+    executablePath: packaged || require('electron'),
+    args: packaged ? ['--no-sandbox'] : [ROOT, '--no-sandbox'],
+    env: { ...process.env, SOP_ARCHIV_USERDATA: path.join(tmp, userdata), SOP_ARCHIV_DATA: path.join(tmp, 'archive'), SOP_ARCHIV_NO_TIMERS: '1', LANG: process.env.LANG || 'sk_SK.UTF-8' }
+  });
+}
+
+async function signIn(page, who) {
+  await page.waitForSelector('.profiles');
+  await page.click(`.profile:has-text("${who.name}")`);
+  await page.fill('#login-pw', who.password);
+  await page.click('#login-form button[type=submit]');
+  await page.waitForSelector('#nav .nav-item');
+}
+
+async function signOut(page) {
+  await page.click('#sign-out');
+  await page.waitForSelector('.profiles');
+}
+
 async function main() {
   fs.rmSync(OUT, { recursive: true, force: true });
   fs.mkdirSync(OUT, { recursive: true });
@@ -111,42 +137,61 @@ async function main() {
   const ollama = await startOllama();
   const lawBase = `http://127.0.0.1:${lawSrv.address().port}`;
 
-  // SOP_ARCHIV_EXE=path/to/packaged/binary tests a built app instead of the sources.
-  const packaged = process.env.SOP_ARCHIV_EXE;
-  const app = await electron.launch({
-    executablePath: packaged || require('electron'),
-    args: packaged ? ['--no-sandbox'] : [ROOT, '--no-sandbox'],
-    env: { ...process.env, SOP_ARCHIV_USERDATA: path.join(tmp, 'userdata'), SOP_ARCHIV_DATA: path.join(tmp, 'archive'), SOP_ARCHIV_NO_TIMERS: '1', LANG: process.env.LANG || 'sk_SK.UTF-8' }
-  });
+  let app = await launch(tmp, 'userdata-pc1');
+  let app2 = null;
   const errors = [];
   try {
-    const page = await app.firstWindow();
-    page.on('pageerror', (e) => errors.push(String(e)));
-    page.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
+    let page = await app.firstWindow();
+    const watch = (p) => {
+      p.on('pageerror', (e) => errors.push(String(e)));
+      p.on('console', (m) => m.type() === 'error' && !/ERR_BLOCKED_BY_CLIENT|Refused to connect|Failed to fetch|Content Security Policy/.test(m.text()) && errors.push(m.text()));
+    };
+    watch(page);
     await page.setViewportSize({ width: 1360, height: 860 });
-    await page.waitForSelector('#nav .nav-item');
-    await page.evaluate(() => window.api.app.setSettings({ lang: 'sk' }));
-    await page.reload();
-    await page.waitForSelector('.hero-empty');
-    await shot(page, '01-dashboard-empty');
 
-    // A PDF fixture, generated by Chromium itself (with Slovak diacritics, 2 pages).
+    // ---- First-time setup: the administrator profile ----
+    await page.waitForSelector('#setup-form');
+    await page.selectOption('#setup-lang', 'sk');
+    await page.waitForSelector('#setup-form [name=name]');
+    await page.fill('#setup-form [name=name]', ADMIN.name);
+    await page.fill('#setup-form [name=org]', 'PHARMACOPOLA s.r.o.');
+    await page.fill('#setup-form [name=password]', ADMIN.password);
+    await page.fill('#setup-form [name=password2]', 'iné heslo');
+    await page.click('#setup-form button[type=submit]');
+    await page.waitForSelector('#setup-err:has-text("nezhodujú")');
+    await page.fill('#setup-form [name=password2]', ADMIN.password);
+    await shot(page, '00-setup');
+    await page.click('#setup-form button[type=submit]');
+    await page.waitForSelector('.hero-empty');
+    const info0 = await page.evaluate(() => window.api.app.info());
+    assert.equal(info0.session.name, ADMIN.name);
+    assert.equal(info0.session.role, 'admin');
+    await shot(page, '01-dashboard-empty');
+    console.log('  ✓ first-time setup creates the administrator profile');
+
+    // PDFs generated by Chromium itself (with Slovak diacritics).
+    const pdfOf = async (html) =>
+      Buffer.from(
+        await app.evaluate(async ({ BrowserWindow }, h) => {
+          const w = new BrowserWindow({ show: false });
+          await w.loadURL('data:text/html;charset=utf-8,' + encodeURIComponent(h));
+          const buf = await w.webContents.printToPDF({});
+          w.destroy();
+          return buf.toString('base64');
+        }, html),
+        'base64'
+      );
     const pdfPath = path.join(tmp, 'fixtures', 'SOP-QA-001_Prijem_a_skladovanie.pdf');
-    const pdfB64 = await app.evaluate(async ({ BrowserWindow }) => {
-      const w = new BrowserWindow({ show: false });
-      const html = `<html><body style="font-family:sans-serif;font-size:13px"><p>PHARMACOPOLA s.r.o.</p><h1>SOP-QA-001 Príjem a skladovanie liekov</h1>
+    fs.writeFileSync(
+      pdfPath,
+      await pdfOf(`<html><body style="font-family:sans-serif;font-size:13px"><p>PHARMACOPOLA s.r.o.</p><h1>SOP-QA-001 Príjem a skladovanie liekov</h1>
         <p>Verzia: 3</p><p>Dátum účinnosti: 1. 3. 2024</p><p>Dátum ďalšej revízie: 20. 10. 2026</p><p>Vypracoval: Ing. Ján Novák</p>
         <h2>1. Príjem tovaru</h2><p>Pri príjme sa kontroluje neporušenosť obalov, šarža a dátum exspirácie. Lieky s porušeným obalom sa umiestnia do karantény.</p>
         <h2>2. Teplota</h2><p>Teplota skladovania liekov musí byť 15 – 25 °C. Termolabilné lieky sa skladujú v chladničke pri teplote 2 – 8 °C, v súlade s § 18 ods. 1 zákona č. 362/2011 Z. z.</p>
-        <div style="page-break-before:always"><h2>3. Záznamy</h2><p>Záznamy o teplote sa uchovávajú 5 rokov podľa § 18 ods. 1 písm. l) zákona č. 362/2011 Z. z. Veterinárne lieky podľa nariadenia (EÚ) 2019/6.</p></div></body></html>`;
-      await w.loadURL('data:text/html;charset=utf-8,' + encodeURIComponent(html));
-      const buf = await w.webContents.printToPDF({});
-      w.destroy();
-      return buf.toString('base64');
-    });
-    fs.writeFileSync(pdfPath, Buffer.from(pdfB64, 'base64'));
+        <div style="page-break-before:always"><h2>3. Záznamy</h2><p>Záznamy o teplote sa uchovávajú 5 rokov podľa § 18 ods. 1 písm. l) zákona č. 362/2011 Z. z. Veterinárne lieky podľa nariadenia (EÚ) 2019/6.</p></div></body></html>`)
+    );
 
-    // Import through the real import dialog.
+    // ---- Import through the real import dialog ----
     const paths = [pdfPath, fixtures.docx, fixtures.odt, fixtures.rtf, fixtures.txt, fixtures.xlsx];
     await page.evaluate((p) => import('./js/views/importer.js').then((m) => { m.startImport(p); }), paths);
     await page.waitForSelector('.imp-table tbody tr:nth-child(6)', { timeout: 30000 });
@@ -154,8 +199,7 @@ async function main() {
     const dept = await page.$eval('.imp-bulk select[data-bulk="department"]', (sel) => sel.options[2].value);
     await page.selectOption('.imp-bulk select[data-bulk="department"]', dept);
     await shot(page, '02-import-dialog');
-    const btnText = await page.textContent('.modal-foot .btn-primary');
-    assert.match(btnText, /6/, 'import button counts 6 files');
+    assert.match(await page.textContent('.modal-foot .btn-primary'), /6/, 'import button counts 6 files');
     await page.click('.modal-foot .btn-primary');
     await page.waitForSelector('.toast');
     await page.waitForFunction(() => window.api.docs.list().then((d) => d.length === 6));
@@ -168,7 +212,9 @@ async function main() {
     assert.ok(byCode['SOP-SK-002'], 'DOCX imported');
     assert.ok(byCode['OS 4/2023'], 'ODT imported');
     assert.equal(byCode['OS 4/2023'].review.state, 'overdue');
-    console.log('  ✓ import of 6 files (PDF, DOCX, ODT, RTF, TXT, XLSX) with metadata detection');
+    const audit1 = await page.evaluate(() => window.api.app.audit({ limit: 50 }));
+    assert.ok(audit1.some((r) => r.action === 'doc.imported' && r.user === ADMIN.name), 'audit records the signed-in user');
+    console.log("  ✓ import of 6 files with metadata detection, recorded under the user's name");
 
     await page.evaluate(() => (location.hash = '#/dashboard'));
     await page.waitForSelector('.kpis');
@@ -178,14 +224,13 @@ async function main() {
     await page.waitForSelector('.docs-table tbody tr.clickable');
     await shot(page, '04-documents');
 
-    // Document detail
+    // ---- Document detail ----
     await page.click(`tr[data-id="${byCode['SOP-QA-001'].id}"]`);
     await page.waitForSelector('.doc-head');
     await shot(page, '05-document');
     await page.click('a.tab[href$="tab=legis"]');
     await page.waitForSelector('.secs .sec');
-    const secs = await page.textContent('.secs');
-    assert.match(secs, /§ 18/, 'cites § 18');
+    assert.match(await page.textContent('.secs'), /§ 18/, 'cites § 18');
     await page.click('a.tab[href$="tab=text"]');
     await page.waitForSelector('#doc-text');
     await page.fill('#find-text', 'karantény');
@@ -193,23 +238,23 @@ async function main() {
     await shot(page, '06-document-text');
     console.log('  ✓ document detail, citations, text view');
 
-    // Search
+    // ---- Search ----
     await page.click('a.nav-item[href="#/search"]');
     await page.fill('#q', 'teplota chladnička');
     await page.waitForSelector('.result mark');
-    const first = await page.textContent('.result .result-title');
-    assert.match(first, /SOP-QA-001/);
+    assert.match(await page.textContent('.result .result-title'), /SOP-QA-001/);
     await page.fill('#q', 'stiahnutie lieku z trhu');
     await page.waitForFunction(() => document.querySelectorAll('.result').length >= 2);
     await shot(page, '07-search');
     console.log('  ✓ full-text search with Slovak word forms');
 
-    // Reviews: record a review through the dialog
+    // ---- Reviews ----
     await page.click('a.nav-item[href="#/reviews"]');
     await page.waitForSelector('.panel-bad .rows .row');
     await shot(page, '08-reviews');
     await page.click('.panel-bad .rows .row button[data-action="review"]');
     await page.waitForSelector('.modal textarea[name="notes"]');
+    assert.equal(await page.inputValue('.modal [name=by]'), ADMIN.name, 'reviewer defaults to the signed-in user');
     await page.fill('.modal textarea[name="notes"]', 'Bez zmien, overené QA.');
     await shot(page, '09-review-dialog');
     await page.click('.modal-foot .btn-primary');
@@ -219,7 +264,7 @@ async function main() {
     assert.equal(os4.reviews.length, 1);
     console.log('  ✓ review recorded, next review date moved');
 
-    // Legislation: point the register at the local fake Slov-Lex, disable the rest.
+    // ---- Legislation monitor against a local fake Slov-Lex ----
     const laws = await page.evaluate(() => window.api.laws.list());
     for (const l of laws) {
       if (l.key === 'SK:362/2011') await page.evaluate(([id, url]) => window.api.laws.update(id, { url }), [l.id, `${lawBase}/pravne-predpisy/SK/ZZ/2011/362/`]);
@@ -235,66 +280,203 @@ async function main() {
     assert.equal(changes.length, 1, 'one upcoming change detected at baseline');
     assert.equal(changes[0].kind, 'upcoming');
     assert.deepEqual(changes[0].summary.sections.sort(), ['§18', '§19a']);
+    const upcomingId = changes[0].id;
     const spaLaw = (await page.evaluate(() => window.api.laws.list())).find((l) => l.short === 'ŠÚKL oznamy');
     assert.equal(spaLaw.state.status, 'ok', 'JS-rendered page read: ' + (spaLaw.state.error || ''));
-    console.log('  ✓ legislation check: upcoming version found, § diff computed, JS page rendered');
+    let full = await page.evaluate((id) => window.api.changes.get(id), upcomingId);
+    const qaAff = full.affected.find((a) => a.docId === byCode['SOP-QA-001'].id);
+    assert.equal(qaAff.severity, 'high');
+    assert.ok(
+      qaAff.analysis.findings.some((f) => f.type === 'quantity' && f.docValue === '5 rokov' && f.lawValues.some((v) => /desať rokov/.test(v))),
+      'SOP "5 rokov" vs act "desať rokov"'
+    );
+    console.log('  ✓ monitor: upcoming version, § diff, and the "5 years vs ten years" mismatch in SOP-QA-001');
 
-    // AI (local fake Ollama)
+    // ---- AI analysis with a local model (a cloud address is refused) ----
+    const badAi = await page.evaluate(() => window.api.app.setSettings({ ai: { provider: 'ollama', baseUrl: 'https://api.openai.com' } }).then(() => 'accepted', (e) => e.message));
+    assert.match(badAi, /vnútornej sieti|internal/, 'a cloud AI address is refused');
     await page.evaluate((url) => window.api.app.setSettings({ ai: { provider: 'ollama', baseUrl: url, model: 'qwen2.5:7b' } }), `http://127.0.0.1:${ollama.address().port}`);
     await page.evaluate(() => window.__app.reloadInfo());
-    await page.click('.change-card');
+    await page.evaluate((id) => (location.hash = '#/legislation/change/' + id), upcomingId);
     await page.waitForSelector('.aff');
-    const affected = await page.$$eval('.aff', (els) => els.length);
-    assert.ok(affected >= 2, 'affected docs listed');
-    await page.click('.aff-direct button[data-action="analyze"]');
+    await page.click('.aff.sev-high button[data-action="analyze"]');
     await page.waitForSelector('.ai-text', { timeout: 30000 });
     assert.match(ollama.lastPrompt, /§ 18/, 'prompt contains changed section');
-    assert.match(ollama.lastPrompt, /Stiahnutie z trhu|stiahnutie/i, 'prompt contains document excerpt');
-    await page.click('.aff-direct button[data-action="flag"]');
-    await page.waitForSelector('.toast');
+    assert.match(ollama.lastPrompt, /5 rokov/, 'prompt contains the automatic finding');
+    await page.click('.aff.sev-high .compare summary');
     await shot(page, '11-change');
-    await page.evaluate(() => window.scrollTo(0, 0));
     await page.$eval('.main', (m) => (m.scrollTop = m.scrollHeight));
     await shot(page, '12-change-diff');
-    console.log('  ✓ affected documents, AI impact analysis via local model, flag for review');
+    console.log('  ✓ findings, side-by-side comparison, AI analysis via a local model (cloud address refused)');
 
-    // Ask the archive
+    // ---- Check documents against an act: downloaded PDF ----
+    const lawPdf = path.join(tmp, 'fixtures', 'zakon-362-2011-od-2027.pdf');
+    fs.writeFileSync(
+      lawPdf,
+      await pdfOf(
+        `<html><body style="font-family:serif;font-size:12px"><p>362/2011 Z. z.</p><p><b>ZÁKON</b></p><p>z 13. septembra 2011</p><p>o liekoch a zdravotníckych pomôckach</p><p>Znenie účinné od 1. 1. 2027</p>${LAW_2027.split('\n')
+          .slice(1)
+          .map((l) => (/^§/.test(l) ? `<p style="text-align:center;margin-top:14px">${l}</p>` : `<p>${l}</p>`))
+          .join('')}</body></html>`
+      )
+    );
+    await page.click('a.nav-item[href="#/legislation"]');
+    await page.waitForSelector('button[data-action="lawCheck"]');
+    await page.evaluate((p) => import('./js/views/lawcheck.js').then((m) => { m.lawCheckDialog({ file: p }); }), lawPdf);
+    await page.waitForSelector('.lc-file');
+    const lawSel = await page.$eval('[data-lc-law]', (s) => s.options[s.selectedIndex].textContent);
+    assert.match(lawSel, /liekoch/i, 'the act is recognised from the file');
+    assert.equal(await page.inputValue('.lc-body [name=versionDate]'), '2027-01-01', 'version date recognised');
+    await shot(page, '13-check-file');
+    await page.click('.modal-foot .btn-primary');
+    await page.waitForFunction(() => /legislation\/change\//.test(location.hash), null, { timeout: 30000 });
+    await page.waitForSelector('.aff');
+    const fileCheckId = decodeURIComponent((await page.evaluate(() => location.hash)).split('/').pop());
+    full = await page.evaluate((id) => window.api.changes.get(id), fileCheckId);
+    assert.equal(full.source.type, 'file');
+    assert.ok(
+      full.affected.some((a) => a.docId === byCode['SOP-QA-001'].id && a.analysis && a.analysis.findings.some((f) => f.type === 'quantity')),
+      'PDF of the act: mismatch found'
+    );
+    await shot(page, '14-check-report');
+    console.log('  ✓ check against a downloaded PDF of the act (act and version recognised automatically)');
+
+    // ---- Recheck after the SOP is updated ----
+    const sopV2 = path.join(tmp, 'fixtures', 'SOP-QA-001_v4.txt');
+    fs.writeFileSync(
+      sopV2,
+      'SOP-QA-001 Príjem a skladovanie liekov\nVerzia: 4\n3. Záznamy\nZáznamy o teplote sa uchovávajú 10 rokov v elektronickej podobe podľa § 18 ods. 1 písm. l) zákona č. 362/2011 Z. z.\nStiahnutie do 24 hodín podľa § 18 ods. 1 písm. k) zákona č. 362/2011 Z. z.'
+    );
+    await page.evaluate(([id, p]) => window.api.docs.addVersion(id, p, { version: '4' }), [byCode['SOP-QA-001'].id, sopV2]);
+    await page.click('button[data-action="recheck"]');
+    await page.waitForSelector('.toast');
+    full = await page.evaluate((id) => window.api.changes.get(id), fileCheckId);
+    const after = full.affected.find((a) => a.docId === byCode['SOP-QA-001'].id);
+    assert.equal(after.analysis.findings.filter((f) => f.type === 'quantity').length, 0, 'mismatch gone after the SOP update');
+    console.log('  ✓ recheck after updating the SOP clears the finding');
+
+    // ---- Check by web address and by name ----
+    for (const [mode, value] of [
+      ['url', `${lawBase}/pravne-predpisy/SK/ZZ/2011/362/`],
+      ['name', 'zákon o liekoch']
+    ]) {
+      await page.click('a.nav-item[href="#/legislation"]');
+      await page.waitForSelector('button[data-action="lawCheck"]');
+      await page.click('button[data-action="lawCheck"]');
+      await page.click(`[data-lc-mode="${mode}"]`);
+      await page.fill(mode === 'url' ? '.lc-body [name=url]' : '.lc-body [name=query]', value);
+      if (mode === 'name') {
+        await page.waitForSelector('#lc-resolved.ok');
+        await shot(page, '15-check-name');
+      }
+      const before = await page.evaluate(() => location.hash);
+      await page.click('.modal-foot .btn-primary');
+      await page.waitForFunction((b) => /legislation\/change\//.test(location.hash) && location.hash !== b, before, { timeout: 60000 });
+      await page.waitForSelector('.aff');
+      const id = decodeURIComponent((await page.evaluate(() => location.hash)).split('/').pop());
+      const rep = await page.evaluate((x) => window.api.changes.get(x), id);
+      assert.equal(rep.kind, 'check');
+      assert.equal(rep.source.type, mode);
+    }
+    console.log('  ✓ check by web address and by name');
+
+    // ---- Ask the archive (local AI) ----
     await page.click('a.nav-item[href="#/search"]');
     await page.click('button[data-mode="ask"]');
     await page.fill('#q', 'Čo robíme pri stiahnutí lieku z trhu?');
     await page.click('button[data-action="ask"]');
     await page.waitForSelector('.answer-text');
-    await shot(page, '13-ask');
     console.log('  ✓ question answering over passages');
 
-    // Settings + network log
+    // ---- Users: add a reader, sign in as them ----
     await page.click('a.nav-item[href="#/settings"]');
-    await page.waitForSelector('#set-privacy');
-    await shot(page, '14-settings');
-    await page.$eval('#set-privacy', (el) => el.scrollIntoView());
-    await shot(page, '15-privacy');
+    await page.waitForSelector('#set-users');
+    await page.click('button[data-action="addUser"]');
+    await page.fill('.modal [name=name]', READER.name);
+    await page.selectOption('.modal [name=role]', 'reader');
+    await page.fill('.modal [name=password]', READER.password);
+    await page.fill('.modal [name=password2]', READER.password);
+    await page.click('.modal-foot .btn-primary');
+    await page.waitForSelector(`.users-table td:has-text("${READER.name}")`);
+    await page.$eval('#set-users', (el) => el.scrollIntoView());
+    await shot(page, '16-users');
+    await signOut(page);
+    await shot(page, '17-sign-in');
+    await page.click(`.profile:has-text("${READER.name}")`);
+    await page.fill('#login-pw', 'zle-heslo');
+    await page.click('#login-form button[type=submit]');
+    await page.waitForSelector('#login-err:has-text("Nesprávne heslo")');
+    await signIn(page, READER);
+    await page.click('a.nav-item[href="#/documents"]');
+    await page.waitForSelector('.docs-table');
+    assert.equal(await page.isVisible('button[data-action="import"]'), false, 'readers do not see Import');
+    const denied = await page.evaluate((id) => window.api.docs.update(id, { title: 'X' }).then(() => 'allowed', (e) => e.message), byCode['SOP-SK-002'].id);
+    assert.match(denied, /oprávnenie|not allowed/, 'reader cannot change documents (enforced by the app core)');
+    const denied2 = await page.evaluate(() => window.api.users.list().then(() => 'allowed', (e) => e.message));
+    assert.match(denied2, /oprávnenie|not allowed/);
+    await page.click(`tr[data-id="${byCode['SOP-SK-002'].id}"]`);
+    await page.waitForSelector('.doc-head');
+    assert.equal(await page.isVisible('button[data-action="edit"]'), false);
+    await shot(page, '18-reader-view');
+    const audit2 = await page.evaluate(() => window.api.app.audit({ limit: 20 }));
+    assert.ok(audit2.some((r) => r.action === 'auth.failed'), 'failed sign-in is audited');
+    await signOut(page);
+    await signIn(page, ADMIN);
+    console.log('  ✓ profiles: reader cannot change anything (UI and core), wrong password rejected and audited');
 
-    // English + dark theme
-    await page.evaluate(() => window.api.app.setSettings({ lang: 'en', theme: 'dark' }));
-    await page.evaluate(() => window.__app.reloadInfo().then(() => (location.hash = '#/dashboard')));
-    await page.waitForSelector('.kpis');
-    await page.waitForTimeout(300);
-    await shot(page, '16-dashboard-en-dark');
-    await page.evaluate((id) => (location.hash = '#/legislation/change/' + id), changes[0].id);
+    // ---- A second computer opens the same archive: read-only ----
+    app2 = await launch(tmp, 'userdata-pc2');
+    const page2 = await app2.firstWindow();
+    watch(page2);
+    await page2.setViewportSize({ width: 1360, height: 860 });
+    await signIn(page2, READER);
+    const info2 = await page2.evaluate(() => window.api.app.info());
+    assert.ok(info2.readOnly, 'second computer is read-only');
+    await page2.click('a.nav-item[href="#/documents"]');
+    await page2.waitForSelector('.ro-banner');
+    await shot(page2, '19-second-computer-read-only');
+    await signOut(page2);
+    await signIn(page2, ADMIN);
+    const roErr = await page2.evaluate((id) => window.api.docs.update(id, { notes: 'x' }).then(() => 'allowed', (e) => e.message), byCode['SOP-SK-002'].id);
+    assert.match(roErr, /len na čítanie|read-only/, 'even an administrator cannot write while the other computer holds the archive');
+    // The first computer saves a change; the second sees it after the first closes and it takes over.
+    await page.evaluate((id) => window.api.docs.update(id, { notes: 'Zmena z PC1' }), byCode['SOP-SK-002'].id);
+    await app.close();
+    app = null;
+    await page2.click('#ro-retry');
+    await page2.waitForFunction(() => !document.querySelector('.ro-banner'));
+    const d2 = await page2.evaluate((id) => window.api.docs.get(id), byCode['SOP-SK-002'].id);
+    assert.equal(d2.notes, 'Zmena z PC1', 'changes of the first computer are visible');
+    assert.equal(await page2.evaluate((id) => window.api.docs.update(id, { notes: 'Zmena z PC2' }).then(() => 'ok'), byCode['SOP-SK-002'].id), 'ok');
+    console.log('  ✓ shared archive: second computer read-only, then takes over after the first closes');
+
+    // ---- Privacy: the UI cannot reach the internet ----
+    const net = await page2.evaluate(() => fetch('https://example.com/').then(() => 'reached', () => 'blocked'));
+    assert.equal(net, 'blocked');
+    console.log('  ✓ the user interface cannot reach the internet');
+
+    // ---- English + dark theme (per-user preferences) ----
+    page = page2;
+    await page.evaluate(() => window.api.auth.setPrefs({ lang: 'en', theme: 'dark' }));
+    await page.evaluate(() => window.__app.reloadInfo());
+    await page.evaluate((id) => (location.hash = '#/legislation/change/' + id), upcomingId);
     await page.waitForSelector('.aff');
-    await shot(page, '17-change-en-dark');
+    await shot(page, '20-change-en-dark');
 
-    // Data on disk
+    // ---- Data on disk ----
     const dataDir = path.join(tmp, 'archive');
-    assert.ok(fs.existsSync(path.join(dataDir, 'archive.json')));
+    const json = JSON.parse(fs.readFileSync(path.join(dataDir, 'archive.json'), 'utf8'));
+    assert.equal(json.users.length, 2);
+    assert.ok(json.users.every((u) => u.hash && !JSON.stringify(u).includes(ADMIN.password) && !JSON.stringify(u).includes(READER.password)), 'only password hashes are stored');
     assert.ok(fs.readFileSync(path.join(dataDir, 'audit.log'), 'utf8').includes('doc.reviewed'));
-    console.log('  ✓ archive.json and audit.log written');
+    console.log('  ✓ archive.json (profiles with hashed passwords) and audit.log written');
 
     const real = errors.filter((e) => !/favicon|Autofill/i.test(e));
     assert.deepEqual(real, [], 'no renderer errors');
     console.log(`\nAll e2e checks passed. Screenshots: ${OUT}`);
   } finally {
-    await app.close().catch(() => {});
+    if (app) await app.close().catch(() => {});
+    if (app2) await app2.close().catch(() => {});
     lawSrv.close();
     ollama.close();
   }

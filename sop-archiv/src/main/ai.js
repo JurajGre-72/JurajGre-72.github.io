@@ -1,21 +1,40 @@
 'use strict';
-// Optional AI assistance. OFF by default.
+// Optional AI assistant. OFF by default. Runs only on this computer or the company's internal
+// network – company documents are never sent to an internet service.
 //
-//   ollama     – local model via Ollama (http://127.0.0.1:11434). Nothing leaves the computer.
-//   openai     – any local OpenAI-compatible server (LM Studio, llama.cpp, Jan…). Nothing leaves the computer.
-//   anthropic  – Claude API with the user's own key. Text excerpts ARE sent to Anthropic (opt-in, labelled in the UI).
+//   ollama  – local model via Ollama (http://127.0.0.1:11434)
+//   openai  – any local OpenAI-compatible server (LM Studio, llama.cpp, Jan, an internal server)
 
-const Anthropic = require('@anthropic-ai/sdk');
 const { chunkPages } = require('./lib/text');
 const { detectCitations } = require('./lib/metadata');
 
-const AnthropicClient = Anthropic.default || Anthropic;
-
 const DEFAULTS = {
   ollama: { baseUrl: 'http://127.0.0.1:11434', model: 'qwen2.5:7b', budget: 14000 },
-  openai: { baseUrl: 'http://127.0.0.1:1234/v1', model: '', budget: 14000 },
-  anthropic: { baseUrl: '', model: 'claude-opus-5-5', budget: 200000 }
+  openai: { baseUrl: 'http://127.0.0.1:1234/v1', model: '', budget: 14000 }
 };
+
+/**
+ * Only this computer or a private (company) network: localhost, 10.x, 172.16–31.x, 192.168.x,
+ * IPv6 local addresses, *.local, or a single-label intranet name ("aiserver").
+ */
+function isLocalUrl(url) {
+  let u;
+  try {
+    u = new URL(url);
+  } catch (_) {
+    return false;
+  }
+  if (!/^https?:$/.test(u.protocol)) return false;
+  const h = u.hostname.replace(/^\[|\]$/g, '').toLowerCase();
+  if (h === 'localhost' || h === '::1' || h.endsWith('.local') || h.endsWith('.lan') || h.endsWith('.internal')) return true;
+  const m = h.match(/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/);
+  if (m) {
+    const [a, b] = [+m[1], +m[2]];
+    return a === 127 || a === 10 || (a === 172 && b >= 16 && b <= 31) || (a === 192 && b === 168);
+  }
+  if (/^(fc|fd|fe80)/.test(h) && h.includes(':')) return true;
+  return !h.includes('.') && !h.includes(':');
+}
 
 function cfgFor(ai) {
   const p = ai && ai.provider;
@@ -31,6 +50,7 @@ function cfgFor(ai) {
 }
 
 async function fetchJson(url, body, { timeoutMs = 300000, headers = {} } = {}) {
+  if (!isLocalUrl(url)) throw new Error('NOT_LOCAL');
   const ctrl = new AbortController();
   const t = setTimeout(() => ctrl.abort(), timeoutMs);
   try {
@@ -38,7 +58,8 @@ async function fetchJson(url, body, { timeoutMs = 300000, headers = {} } = {}) {
       method: body ? 'POST' : 'GET',
       headers: { 'content-type': 'application/json', ...headers },
       body: body ? JSON.stringify(body) : undefined,
-      signal: ctrl.signal
+      signal: ctrl.signal,
+      redirect: 'error'
     });
     const text = await res.text();
     if (!res.ok) throw new Error(`HTTP ${res.status}: ${text.slice(0, 300)}`);
@@ -48,11 +69,12 @@ async function fetchJson(url, body, { timeoutMs = 300000, headers = {} } = {}) {
   }
 }
 
-/** Send one system+user prompt to the configured provider. Returns { text, model }. */
-async function complete(ai, system, user, { effort = 'medium', log } = {}) {
+/** Send one system+user prompt to the configured local provider. Returns { text, model }. */
+async function complete(ai, system, user, { log } = {}) {
   const c = cfgFor(ai);
   if (!c) throw new Error('AI is not configured');
-  if (log) log({ purpose: 'ai', provider: c.provider, url: c.provider === 'anthropic' ? 'https://api.anthropic.com/v1/messages' : c.baseUrl, chars: system.length + user.length });
+  if (!isLocalUrl(c.baseUrl)) throw new Error('NOT_LOCAL');
+  if (log) log({ purpose: 'ai', provider: c.provider, url: c.baseUrl, chars: system.length + user.length });
   if (c.provider === 'ollama') {
     const r = await fetchJson(`${c.baseUrl}/api/chat`, {
       model: c.model,
@@ -65,70 +87,34 @@ async function complete(ai, system, user, { effort = 'medium', log } = {}) {
     });
     return { text: (r.message && r.message.content) || '', model: r.model || c.model };
   }
-  if (c.provider === 'openai') {
-    const headers = c.apiKey ? { authorization: `Bearer ${c.apiKey}` } : {};
-    const r = await fetchJson(
-      `${c.baseUrl}/chat/completions`,
-      {
-        model: c.model || undefined,
-        temperature: 0.2,
-        messages: [
-          { role: 'system', content: system },
-          { role: 'user', content: user }
-        ]
-      },
-      { headers }
-    );
-    return { text: (r.choices && r.choices[0] && r.choices[0].message && r.choices[0].message.content) || '', model: r.model || c.model };
-  }
-  // Claude API (opt-in). Server-side refusal fallback is enabled so a declined request is retried on a fallback model.
-  if (!c.apiKey) throw new Error('Missing Claude API key');
-  const client = new AnthropicClient({ apiKey: c.apiKey, maxRetries: 2, timeout: 10 * 60 * 1000 });
-  let response;
-  try {
-    response = await client.beta.messages.create({
-      model: c.model,
-      max_tokens: 16000,
-      betas: ['server-side-fallback-2026-07-01'],
-      fallbacks: 'default',
-      output_config: { effort },
-      system,
-      messages: [{ role: 'user', content: user }]
-    });
-  } catch (error) {
-    if (error instanceof Anthropic.AuthenticationError) throw new Error('Claude API: invalid API key');
-    if (error instanceof Anthropic.RateLimitError) throw new Error('Claude API: rate limited – try again later');
-    if (error instanceof Anthropic.BadRequestError) throw new Error(`Claude API: bad request – ${error.message}`);
-    if (error instanceof Anthropic.APIConnectionError) throw new Error('Claude API: no connection');
-    if (error instanceof Anthropic.APIError) throw new Error(`Claude API error ${error.status}: ${error.message}`);
-    throw error;
-  }
-  if (response.stop_reason === 'refusal') {
-    const why = response.stop_details && response.stop_details.explanation;
-    throw new Error(`Claude declined the request${why ? `: ${why}` : ''}`);
-  }
-  const text = response.content
-    .filter((b) => b.type === 'text')
-    .map((b) => b.text)
-    .join('\n');
-  return { text, model: response.model };
+  const headers = c.apiKey ? { authorization: `Bearer ${c.apiKey}` } : {};
+  const r = await fetchJson(
+    `${c.baseUrl}/chat/completions`,
+    {
+      model: c.model || undefined,
+      temperature: 0.2,
+      messages: [
+        { role: 'system', content: system },
+        { role: 'user', content: user }
+      ]
+    },
+    { headers }
+  );
+  return { text: (r.choices && r.choices[0] && r.choices[0].message && r.choices[0].message.content) || '', model: r.model || c.model };
 }
 
-/** Quick connectivity test; also lists available local models. */
+/** Quick connectivity test; also lists available models. */
 async function test(ai) {
   const c = cfgFor(ai);
   if (!c) throw new Error('AI is not configured');
+  if (!isLocalUrl(c.baseUrl)) throw new Error('NOT_LOCAL');
   if (c.provider === 'ollama') {
     const r = await fetchJson(`${c.baseUrl}/api/tags`, null, { timeoutMs: 8000 });
     return { ok: true, models: (r.models || []).map((m) => m.name) };
   }
-  if (c.provider === 'openai') {
-    const headers = c.apiKey ? { authorization: `Bearer ${c.apiKey}` } : {};
-    const r = await fetchJson(`${c.baseUrl}/models`, null, { timeoutMs: 8000, headers });
-    return { ok: true, models: (r.data || []).map((m) => m.id) };
-  }
-  const r = await complete(ai, 'Reply with the single word OK.', 'Test', { effort: 'low' });
-  return { ok: /ok/i.test(r.text), models: [r.model] };
+  const headers = c.apiKey ? { authorization: `Bearer ${c.apiKey}` } : {};
+  const r = await fetchJson(`${c.baseUrl}/models`, null, { timeoutMs: 8000, headers });
+  return { ok: true, models: (r.data || []).map((m) => m.id) };
 }
 
 // ---------------------------------------------------------------------------
@@ -158,7 +144,12 @@ const T = {
     cited: 'Dokument cituje',
     truncated: '[… text skrátený …]',
     question: 'Otázka',
-    sources: 'Úryvky z dokumentov'
+    sources: 'Úryvky z dokumentov',
+    found: 'Automaticky zistené rozdiely (over a vysvetli)',
+    foundQty: 'dokument uvádza',
+    foundLaw: 'predpis uvádza',
+    foundMissing: 'dokument cituje časť, ktorá v tomto znení predpisu nie je',
+    foundChanged: 'dokument cituje časť, ktorá sa zmenila'
   },
   en: {
     impactSystem:
@@ -183,7 +174,12 @@ const T = {
     cited: 'Document cites',
     truncated: '[… text shortened …]',
     question: 'Question',
-    sources: 'Document excerpts'
+    sources: 'Document excerpts',
+    found: 'Differences found automatically (verify and explain)',
+    foundQty: 'the document states',
+    foundLaw: 'the act states',
+    foundMissing: 'the document cites a part that is not in this version of the act',
+    foundChanged: 'the document cites a part that changed'
   }
 };
 
@@ -195,7 +191,7 @@ function lang(l) {
  * Build the impact prompt for one change × one document within a character budget.
  * Returns { system, user, truncated }.
  */
-function buildImpactPrompt({ change, law, diff, doc, pages, l, budget }) {
+function buildImpactPrompt({ change, law, diff, doc, pages, analysis, l, budget }) {
   const t = T[lang(l)];
   let truncated = false;
   const citation = (doc.citations || []).find((c) => c.lawId === law.id);
@@ -241,6 +237,16 @@ function buildImpactPrompt({ change, law, diff, doc, pages, l, budget }) {
     }
     lawText += s.text + '\n\n';
   }
+  // Findings the app already computed (numbers / deadlines that differ, cited § missing).
+  const found = ((analysis && analysis.findings) || [])
+    .filter((f) => f.type !== 'related')
+    .map((f) =>
+      f.type === 'quantity'
+        ? `- ${f.section}: ${t.foundQty} „${f.docValue}“, ${t.foundLaw}: ${f.lawValues.join(', ')}`
+        : f.type === 'missing'
+        ? `- ${f.section}: ${t.foundMissing}`
+        : `- ${f.section}: ${t.foundChanged}`
+    );
   const user = [
     `${t.law}: ${law.title}`,
     `${t.versions}: ${change.fromDate || '?'} → ${change.toDate || '?'}`,
@@ -254,6 +260,7 @@ function buildImpactPrompt({ change, law, diff, doc, pages, l, budget }) {
     `${t.excerpts}:`,
     docText.trim(),
     '',
+    found.length ? `${t.found}:\n${found.join('\n')}\n` : '',
     t.impactFormat
   ].join('\n');
   return { system: t.impactSystem, user, truncated };
@@ -274,4 +281,4 @@ function buildQaPrompt({ question, passages, l, budget }) {
   return { system: t.qaSystem, user: `${t.sources}:\n\n${ctx.trim()}\n\n${t.question}: ${question}`, truncated };
 }
 
-module.exports = { complete, test, buildImpactPrompt, buildQaPrompt, cfgFor, DEFAULTS };
+module.exports = { complete, test, buildImpactPrompt, buildQaPrompt, cfgFor, isLocalUrl, DEFAULTS };

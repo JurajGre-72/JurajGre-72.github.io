@@ -10,16 +10,21 @@ let lastResult = null;
 
 export function changeCard(c) {
   const s = c.summary && c.summary.stats;
-  const direct = (c.affected || []).filter((a) => a.direct && a.direct.length).length;
-  const tone = c.kind === 'upcoming' ? 'warn' : c.kind === 'repealed' ? 'bad' : 'info';
+  const aff = c.affected || [];
+  const high = aff.filter((a) => a.severity === 'high').length;
+  const medium = aff.filter((a) => a.severity === 'medium').length;
+  const citing = aff.filter((a) => a.severity !== 'info').length;
+  const tone = c.kind === 'upcoming' ? 'warn' : c.kind === 'repealed' ? 'bad' : c.kind === 'check' ? 'muted' : 'info';
   return html`<a class="change-card" href="#/legislation/change/${c.id}">
     <div class="cc-top"><span class="chip chip-${tone}">${t(`leg.kind.${c.kind}`)}</span>
-      ${c.toDate ? html`<span class="cc-date">${icon('clock')}${t('leg.effectiveFrom', { date: fmtDate(c.toDate) })}</span>` : ''}
+      ${c.toDate ? html`<span class="cc-date">${icon('clock')}${t(c.kind === 'check' ? 'lc.version' : 'leg.effectiveFrom', { date: fmtDate(c.toDate) })}</span>` : ''}
       ${c.status === 'reviewing' ? html`<span class="chip chip-muted">${t('ch.st.open')}</span>` : ''}</div>
     <div class="cc-title">${c.law ? c.law.short || c.law.title : ''}</div>
-    <div class="cc-sub muted small">${c.fromDate && c.toDate ? t('leg.versionsCmp', { from: fmtDate(c.fromDate), to: fmtDate(c.toDate) }) : ''}
+    <div class="cc-sub muted small">${c.fromDate && c.toDate && c.kind !== 'check' ? t('leg.versionsCmp', { from: fmtDate(c.fromDate), to: fmtDate(c.toDate) }) : c.source ? t(`lc.src.${c.source.type}`, { name: c.source.name }) : ''}
       ${s ? html` · ${c.summary.mode === 'lines' ? t('leg.statsLines', s) : t('leg.stats', s)}` : ''}</div>
-    <div class="cc-foot">${icon('file')}${t('leg.affected', { n: (c.affected || []).length })}${direct ? html` · <b>${t('leg.affectedDirect', { n: direct })}</b>` : ''}</div>
+    <div class="cc-foot">${icon('file')}${t('lc.card', { n: citing })}
+      ${high ? html`<span class="chip chip-bad">${t('lc.sum.high', { n: high })}</span>` : ''}
+      ${medium ? html`<span class="chip chip-warn">${t('lc.sum.medium', { n: medium })}</span>` : ''}</div>
   </a>`;
 }
 
@@ -47,10 +52,10 @@ function lawRow(l) {
     <td>${stateCell(l)}</td>
     <td class="num">${l.docCount || ''}${l.openChanges ? html` <span class="badge badge-info">${l.openChanges}</span>` : ''}</td>
     <td class="nowrap">
-      <button class="btn btn-sm" data-action="checkOne" data-id="${l.id}" ${app.legisProgress || app.info.settings.offline ? 'disabled' : ''}>${icon('refresh')}${t('leg.check')}</button>
+      <button class="btn btn-sm" data-action="checkOne" data-perm="editor" data-id="${l.id}" ${app.legisProgress || app.info.settings.offline ? 'disabled' : ''}>${icon('refresh')}${t('leg.check')}</button>
       <button class="btn btn-sm btn-ghost" data-action="openUrl" data-url="${l.url}" title="${t('leg.openSource')}">${icon('external')}</button>
-      <button class="btn btn-sm btn-ghost" data-action="editLaw" data-id="${l.id}" title="${t('edit')}">${icon('edit')}</button>
-      <button class="btn btn-sm btn-ghost danger" data-action="removeLaw" data-id="${l.id}" title="${t('remove')}">${icon('trash')}</button>
+      <button class="btn btn-sm btn-ghost" data-action="editLaw" data-perm="editor" data-id="${l.id}" title="${t('edit')}">${icon('edit')}</button>
+      <button class="btn btn-sm btn-ghost danger" data-action="removeLaw" data-perm="admin" data-id="${l.id}" title="${t('remove')}">${icon('trash')}</button>
     </td>
   </tr>`;
 }
@@ -65,10 +70,11 @@ export async function render() {
     <header class="page-head">
       <div><h1>${t('leg.title')}</h1></div>
       <div class="head-actions">
-        <label class="inline-select">${t('leg.auto')}:
+        <label class="inline-select" data-perm="admin">${t('leg.auto')}:
           <select data-change="auto">${['off', 'startup', 'daily', 'weekly'].map((m) => html`<option value="${m}" ${m === auto ? 'selected' : ''}>${t(`leg.auto.${m}`)}</option>`)}</select>
         </label>
-        <button class="btn btn-primary" data-action="checkAll" ${app.legisProgress || offline ? 'disabled' : ''}>${icon('refresh')}${t('leg.checkNow')}</button>
+        <button class="btn" data-action="checkAll" data-perm="editor" ${app.legisProgress || offline ? 'disabled' : ''}>${icon('refresh')}${t('leg.checkNow')}</button>
+        <button class="btn btn-primary" data-action="lawCheck" data-perm="editor">${icon('scale')}${t('lc.title')}</button>
       </div>
     </header>
     ${offline ? html`<div class="note note-warn">${icon('wifiOff')}${t('leg.offline')}</div>` : ''}
@@ -82,7 +88,7 @@ export async function render() {
 
     <section class="section">
       <div class="section-head"><h2>${t('leg.register')} <span class="count">${laws.length}</span></h2>
-        <button class="btn" data-action="addLaw">${icon('plus')}${t('leg.addLaw')}</button></div>
+        <button class="btn" data-action="addLaw" data-perm="editor">${icon('plus')}${t('leg.addLaw')}</button></div>
       <div class="table-wrap"><table class="table laws-table">
         <thead><tr><th></th><th>${t('leg.col.law')}</th><th>${t('leg.col.version')}</th><th>${t('leg.col.upcoming')}</th><th>${t('leg.col.checked')}</th><th>${t('leg.col.docs')}</th><th></th></tr></thead>
         <tbody>${laws.map(lawRow)}</tbody>

@@ -86,7 +86,7 @@ function attentionList(docs) {
         <span class="row-title">${d.title}</span>
       </a>
       ${reviewChip(d.review)}
-      <button class="btn btn-sm" data-action="review" data-id="${d.id}" title="${t('doc.markReviewed')} – ${fmtDate(d.reviewDate)}" aria-label="${t('doc.markReviewed')}">${icon('check')}</button>
+      <button class="btn btn-sm" data-action="review" data-perm="editor" data-id="${d.id}" title="${t('doc.markReviewed')} – ${fmtDate(d.reviewDate)}" aria-label="${t('doc.markReviewed')}">${icon('check')}</button>
     </li>`
   )}</ul>`;
 }
@@ -108,7 +108,7 @@ function legisPanel(laws, changes) {
           </li>`
         )}</ul>`
       : html`<div class="empty-inline">${icon('checkCircle')}${t('dash.legisNone')}</div>`}
-    <div class="panel-actions"><a class="btn btn-sm" href="#/legislation">${icon('refresh')}${t('leg.checkNow')}</a></div>`;
+    <div class="panel-actions"><a class="btn btn-sm" href="#/legislation" data-perm="editor">${icon('refresh')}${t('leg.checkNow')}</a></div>`;
 }
 
 function suggestions(docs, laws) {
@@ -132,7 +132,7 @@ function suggestions(docs, laws) {
         <span class="chip chip-muted">${t(`kind.${r.jurisdiction}`)}</span>
         <span class="row-title">${r.label}</span>
         <span class="muted small">${t('docs.count', { n: r.docs })}</span>
-        <button class="btn btn-sm" data-action="addSuggested" data-key="${r.key}" data-label="${r.label}" data-url="${r.url}" data-j="${r.jurisdiction}">${icon('plus')}${t('dash.suggestAdd')}</button>
+        <button class="btn btn-sm" data-action="addSuggested" data-perm="editor" data-key="${r.key}" data-label="${r.label}" data-url="${r.url}" data-j="${r.jurisdiction}">${icon('plus')}${t('dash.suggestAdd')}</button>
       </li>`
     )}</ul>
   </section>`;
@@ -145,8 +145,8 @@ function emptyState() {
       <h2>${t('dash.empty.title')}</h2>
       <p>${t('dash.empty.text')}</p>
       <div class="btn-row">
-        <button class="btn btn-primary" data-action="import">${icon('upload')}${t('dash.empty.files')}</button>
-        <button class="btn" data-action="importFolder">${icon('folder')}${t('dash.empty.folder')}</button>
+        <button class="btn btn-primary" data-action="import" data-perm="editor">${icon('upload')}${t('dash.empty.files')}</button>
+        <button class="btn" data-action="importFolder" data-perm="editor">${icon('folder')}${t('dash.empty.folder')}</button>
       </div>
     </div>
     <ol class="steps">
@@ -173,7 +173,7 @@ export async function render() {
   return html`<div class="page">
     <header class="page-head">
       <div><h1>${t('dash.title')}</h1><p class="muted">${app.info.archiveSettings.org || t('tagline')} · ${fmtDate(todayIso(), { long: true })}</p></div>
-      <div class="head-actions"><button class="btn btn-primary" data-action="import">${icon('upload')}${t('docs.importFiles')}</button></div>
+      <div class="head-actions"><button class="btn btn-primary" data-action="import" data-perm="editor">${icon('upload')}${t('docs.importFiles')}</button></div>
     </header>
     ${!docs.length
       ? emptyState()

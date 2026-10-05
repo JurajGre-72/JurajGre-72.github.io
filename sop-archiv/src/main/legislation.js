@@ -76,7 +76,8 @@ class LegislationMonitor {
         summary: diff ? { mode: diff.mode, stats: diff.stats, sections: touchedKeys(diff).slice(0, 80) } : null,
         ...extra
       },
-      diff || { mode: 'none', changed: [], added: [], removed: [], stats: {} }
+      diff || { mode: 'none', changed: [], added: [], removed: [], stats: {} },
+      toText || null
     );
   }
 
@@ -132,7 +133,13 @@ class LegislationMonitor {
         });
       } else {
         // Any other page (e.g. a non-consolidated act or a regulator's news page): watch its text.
-        const text = stableText(page.text);
+        // For EUR-Lex, read the act itself (TXT page) rather than its information page (ALL).
+        let textPage = page;
+        if (source === 'eurlex' && /\/ALL\//i.test(law.url)) {
+          await sleep(this.pauseMs);
+          textPage = await this.fetchPage(law.url.replace(/\/ALL\//i, '/TXT/'));
+        }
+        const text = stableText(textPage.text);
         if (text.length < 100) throw new Error('page has almost no text (blocked or requires login?)');
         const hash = hashText(text);
         const key = `p-${hash}`;
@@ -159,6 +166,24 @@ class LegislationMonitor {
     await this.archive.save();
     this.archive.audit('legislation.checked', { lawId: law.id, title: law.short || law.title, status: state.status, error: state.error, newChanges: created.length });
     return { lawId: law.id, status: state.status, error: state.error, changes: created.map((c) => c.id), state };
+  }
+
+  /**
+   * Check one act now and always produce a report: the new change(s) if a new version was
+   * found, otherwise a check of all documents against the current text.
+   */
+  async checkAndReport(lawId, source) {
+    if (this.running) throw new Error('A check is already running');
+    this.running = true;
+    try {
+      const r = await this.checkLaw(lawId);
+      if (r.status === 'error') throw new Error(r.error);
+      if (r.changes.length) return { changeId: r.changes[0], newChanges: r.changes.length };
+      const ch = await this.archive.checkReport(lawId, source);
+      return { changeId: ch.id, newChanges: 0 };
+    } finally {
+      this.running = false;
+    }
   }
 
   /** Check every enabled law, one at a time. onProgress({ done, total, law, result }) */

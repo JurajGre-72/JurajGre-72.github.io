@@ -18,9 +18,11 @@ const { chunkPages } = require('./lib/text');
 const { detectMetadata, detectCitations, detectAllLawRefs, aliasesFromKey } = require('./lib/metadata');
 const { SearchIndex } = require('./lib/search');
 const { reviewState } = require('./lib/reviews');
-const { touchedKeys } = require('./lib/legis-parse');
+const { touchedKeys, diffLaw, hashText } = require('./lib/legis-parse');
+const { analyzeLawAgainstDocs, SEVERITY } = require('./lib/compliance');
 const { today, addMonths } = require('./lib/dates');
 const { DEFAULT_LAWS, defaultArchive } = require('./lib/defaults');
+const { ROLES, hashPassword, verifyPassword, validPassword } = require('./lib/auth');
 
 const STATUSES = ['draft', 'effective', 'review', 'obsolete'];
 const DOC_FIELDS = ['type', 'code', 'title', 'status', 'department', 'owner', 'approver', 'tags', 'notes', 'effectiveDate', 'reviewDate', 'reviewIntervalMonths', 'version'];
@@ -63,6 +65,8 @@ class Archive {
     this.analyzed = new Map(); // filePath -> analysis (reused by import)
     this.saving = Promise.resolve();
     this.indexReady = false;
+    this.userId = null;
+    this.readOnly = false; // another computer has the archive open for changes
   }
 
   p(...parts) {
@@ -92,7 +96,7 @@ class Archive {
           }
         }
         if (!restored) throw e;
-        await fs.promises.copyFile(file, `${file}.damaged-${Date.now()}`);
+        if (!this.readOnly) await fs.promises.copyFile(file, `${file}.damaged-${Date.now()}`);
         this.restoredFrom = restored;
         await this.save();
         this.audit('archive.restored', { from: this.restoredFrom });
@@ -116,6 +120,7 @@ class Archive {
     d.docs = d.docs || [];
     d.laws = d.laws || [];
     d.changes = d.changes || [];
+    d.users = d.users || [];
     const def = defaultArchive(this.lang).settings;
     d.settings = { ...def, ...(d.settings || {}) };
     for (const doc of d.docs) {
@@ -141,6 +146,7 @@ class Archive {
   }
 
   save() {
+    if (this.readOnly) return this.saving; // never write while another computer holds the archive
     const json = JSON.stringify(this.data, null, 1);
     const file = this.p('archive.json');
     this.saving = this.saving
@@ -156,6 +162,7 @@ class Archive {
   }
 
   async _dailyBackup() {
+    if (this.readOnly) return;
     try {
       const target = this.p('backups', `archive-${today()}.json`);
       if (!fs.existsSync(target) && fs.existsSync(this.p('archive.json'))) {
@@ -168,8 +175,17 @@ class Archive {
     }
   }
 
+  /** Re-read archive.json written by another computer (read-only mode). */
+  async reload() {
+    const data = JSON.parse(await fs.promises.readFile(this.p('archive.json'), 'utf8'));
+    this.data = data;
+    this._migrate();
+    await this.buildIndex();
+  }
+
   audit(action, details = {}) {
-    const line = JSON.stringify({ ts: new Date().toISOString(), user: this.user, action, ...details }) + '\n';
+    if (this.readOnly) return;
+    const line = JSON.stringify({ ts: new Date().toISOString(), user: this.user, userId: this.userId || undefined, action, ...details }) + '\n';
     fs.promises.appendFile(this.p('audit.log'), line).catch((e) => console.error('audit failed', e));
   }
 
@@ -195,6 +211,97 @@ class Archive {
   }
 
   // ---------------------------------------------------------------------------
+  // User profiles (stored in the archive, so they travel with a shared archive folder)
+
+  publicUsers() {
+    return this.data.users.filter((u) => !u.disabled).map((u) => ({ id: u.id, name: u.name, role: u.role }));
+  }
+
+  listUsers() {
+    return this.data.users.map(({ salt, hash, ...u }) => u);
+  }
+
+  _user(userId) {
+    const u = this.data.users.find((x) => x.id === userId);
+    if (!u) throw new Error('User not found');
+    return u;
+  }
+
+  _checkName(name, exceptId) {
+    const n = String(name || '').trim();
+    if (n.length < 2) throw new Error('NAME_REQUIRED');
+    if (this.data.users.some((u) => u.id !== exceptId && u.name.toLowerCase() === n.toLowerCase())) throw new Error('NAME_TAKEN');
+    return n;
+  }
+
+  async createUser({ name, role, password }) {
+    const n = this._checkName(name);
+    if (!ROLES.includes(role)) throw new Error('Invalid role');
+    if (!validPassword(password)) throw new Error('PASSWORD_SHORT');
+    const u = { id: id(), name: n, role, ...hashPassword(password), createdAt: new Date().toISOString(), createdBy: this.user, disabled: false, prefs: {} };
+    this.data.users.push(u);
+    await this.save();
+    this.audit('user.created', { targetUser: n, role });
+    return this.listUsers().find((x) => x.id === u.id);
+  }
+
+  _activeAdmins(except) {
+    return this.data.users.filter((u) => u.role === 'admin' && !u.disabled && u.id !== except).length;
+  }
+
+  async updateUser(userId, patch) {
+    const u = this._user(userId);
+    const changes = {};
+    if (patch.name !== undefined) {
+      const n = this._checkName(patch.name, userId);
+      if (n !== u.name) changes.name = { from: u.name, to: n };
+      u.name = n;
+    }
+    const losesAdmin = (patch.role !== undefined && patch.role !== 'admin') || patch.disabled === true;
+    if (u.role === 'admin' && losesAdmin && !this._activeAdmins(userId)) throw new Error('LAST_ADMIN');
+    if (patch.role !== undefined) {
+      if (!ROLES.includes(patch.role)) throw new Error('Invalid role');
+      if (patch.role !== u.role) changes.role = { from: u.role, to: patch.role };
+      u.role = patch.role;
+    }
+    if (patch.disabled !== undefined) {
+      if (!!patch.disabled !== !!u.disabled) changes.disabled = { from: !!u.disabled, to: !!patch.disabled };
+      u.disabled = !!patch.disabled;
+    }
+    await this.save();
+    if (Object.keys(changes).length) this.audit('user.updated', { targetUser: u.name, userChanges: changes });
+    return this.listUsers().find((x) => x.id === userId);
+  }
+
+  async setPassword(userId, password, { self = false } = {}) {
+    const u = this._user(userId);
+    if (!validPassword(password)) throw new Error('PASSWORD_SHORT');
+    Object.assign(u, hashPassword(password), { passwordChangedAt: new Date().toISOString() });
+    await this.save();
+    this.audit(self ? 'user.password-changed' : 'user.password-reset', { targetUser: u.name });
+  }
+
+  /** Returns the user if the password is right (and the profile is active), else null. */
+  verifyLogin(userId, password) {
+    const u = this.data.users.find((x) => x.id === userId && !x.disabled);
+    if (!u || !verifyPassword(password, u.salt, u.hash)) return null;
+    return u;
+  }
+
+  async recordLogin(userId) {
+    const u = this._user(userId);
+    u.lastLoginAt = new Date().toISOString();
+    await this.save();
+  }
+
+  async setPrefs(userId, prefs) {
+    const u = this._user(userId);
+    u.prefs = { ...(u.prefs || {}), ...prefs };
+    await this.save();
+    return u.prefs;
+  }
+
+  // ---------------------------------------------------------------------------
   // Documents
 
   settings() {
@@ -209,7 +316,7 @@ class Archive {
   decorate(doc) {
     const rs = reviewState(doc, this.data.settings.warnDays);
     const pendingChanges = this.data.changes.filter(
-      (c) => c.status !== 'resolved' && (c.affected || []).some((a) => a.docId === doc.id && a.status === 'open')
+      (c) => c.status !== 'resolved' && (c.affected || []).some((a) => a.docId === doc.id && a.status === 'open' && a.severity !== 'info')
     ).length;
     const cur = doc.versions.find((v) => v.id === doc.currentVersionId) || null;
     return { ...doc, review: rs, pendingChanges, current: cur };
@@ -375,7 +482,8 @@ class Archive {
     Object.assign(doc, m);
     if (!m.version) doc.version = String(doc.versions.length + 1);
     await this._storeVersion(doc, filePath, a, doc.version);
-    if (!m.reviewDate && doc.effectiveDate && doc.reviewIntervalMonths) doc.reviewDate = addMonths(doc.effectiveDate, doc.reviewIntervalMonths);
+    // A new effective date moves the next review; otherwise the planned review date stays as it was.
+    if (!m.reviewDate && m.effectiveDate && doc.reviewIntervalMonths) doc.reviewDate = addMonths(m.effectiveDate, doc.reviewIntervalMonths);
     if (!m.status && doc.status === 'review') doc.status = 'effective';
     doc.updatedAt = new Date().toISOString();
     this._refreshCitations(doc, a.text);
@@ -483,7 +591,7 @@ class Archive {
   // Settings stored in the archive
 
   async updateSettings(patch) {
-    const allowed = ['warnDays', 'reminderDaysIcs', 'docTypes', 'departments', 'legisAutoCheck', 'legisLastAutoCheck'];
+    const allowed = ['warnDays', 'reminderDaysIcs', 'docTypes', 'departments', 'legisAutoCheck', 'legisLastAutoCheck', 'autoLockMinutes'];
     for (const k of allowed) if (patch[k] !== undefined) this.data.settings[k] = patch[k];
     if (patch.org !== undefined) this.data.org = String(patch.org).trim();
     await this.save();
@@ -576,51 +684,130 @@ class Archive {
     return fs.promises.readFile(this.snapshotPath(lawId, key), 'utf8');
   }
 
-  // Changes ----------------------------------------------------------------------
+  async listSnapshotKeys(lawId) {
+    try {
+      const files = await fs.promises.readdir(this.p('legislation', lawId));
+      const out = [];
+      for (const f of files) {
+        if (!f.endsWith('.txt')) continue;
+        const st = await fs.promises.stat(this.p('legislation', lawId, f));
+        out.push({ key: f.slice(0, -4), mtime: st.mtimeMs });
+      }
+      return out;
+    } catch (_) {
+      return [];
+    }
+  }
 
-  /** Documents affected by a change: everything citing the law; "direct" if a changed § is cited. */
-  _affected(change, diff, previous = []) {
-    const keys = new Set(touchedKeys(diff));
+  /** The stored version a new text of the act should be compared with. */
+  async previousSnapshotKey(law, key) {
+    const keys = (await this.listSnapshotKeys(law.id)).filter((k) => k.key !== key);
+    if (!keys.length) return null;
+    const dated = keys.filter((k) => /^\d{8}$/.test(k.key)).map((k) => k.key).sort();
+    if (/^\d{8}$/.test(key)) {
+      const older = dated.filter((k) => k < key);
+      if (older.length) return older[older.length - 1];
+    }
+    const st = law.state || {};
+    for (const k of [st.newestKey, st.lastImport && st.lastImport.key, st.snapshotKey]) if (k && k !== key && keys.some((x) => x.key === k)) return k;
+    return keys.sort((a, b) => b.mtime - a.mtime)[0].key;
+  }
+
+  // Changes and checks -------------------------------------------------------------
+
+  /** Check every document against the text of an act (see lib/compliance.js). */
+  async _analysisFor(law, lawText, touched) {
+    const active = this.data.docs.filter((d) => d.status !== 'obsolete');
+    const docs = [];
+    for (const d of active) if (d.citations.some((c) => c.lawId === law.id)) docs.push({ doc: d, pages: await this.loadText(d.currentVersionId) });
+    const allow = new Set(active.map((d) => d.id));
+    return analyzeLawAgainstDocs({
+      law,
+      lawText,
+      touched,
+      docs,
+      searchFn: this.indexReady || this.index.size ? (w, m) => this.index.relatedChunks(w, { minTerms: m, allowDoc: (docId) => allow.has(docId) }) : null
+    });
+  }
+
+  /**
+   * Affected documents of a change: those citing the act (from current citations) plus those the
+   * analysis found related. Keeps earlier decisions (status, note).
+   */
+  _affectedFrom(change, analysis, previous = []) {
+    const touched = new Set(change.touched || []);
     const prev = new Map(previous.map((a) => [a.docId, a]));
+    const byDoc = new Map(((analysis && analysis.docs) || []).map((d) => [d.docId, d]));
     const out = [];
     for (const doc of this.data.docs) {
       if (doc.status === 'obsolete') continue;
       const c = doc.citations.find((x) => x.lawId === change.lawId);
-      if (!c) continue;
-      const direct = c.sections.filter((s) => keys.has(s));
+      const an = byDoc.get(doc.id);
+      if (!c && !an) continue;
+      const direct = c ? c.sections.filter((s) => touched.has(s)) : [];
+      let severity = an ? an.severity : c ? 'low' : 'info';
+      if (direct.length) severity = 'high';
+      const counts = {};
+      for (const f of (an && an.findings) || []) counts[f.type] = (counts[f.type] || 0) + 1;
       const p = prev.get(doc.id);
-      out.push({ docId: doc.id, direct, cites: c.count, status: p ? p.status : 'open', note: p ? p.note : '' });
+      out.push({ docId: doc.id, direct, cites: c ? c.count : 0, severity, counts, status: p ? p.status : 'open', note: p ? p.note : '' });
     }
-    out.sort((a, b) => b.direct.length - a.direct.length || b.cites - a.cites);
+    out.sort((a, b) => SEVERITY[b.severity] - SEVERITY[a.severity] || b.direct.length - a.direct.length || b.cites - a.cites);
     return out;
   }
 
   _attachToOpenChanges(doc) {
     for (const ch of this.data.changes) {
       if (ch.status === 'resolved') continue;
-      if (!doc.citations.some((c) => c.lawId === ch.lawId)) continue;
-      if ((ch.affected || []).some((a) => a.docId === doc.id)) continue;
       const cit = doc.citations.find((c) => c.lawId === ch.lawId);
+      if (!cit || (ch.affected || []).some((a) => a.docId === doc.id)) continue;
       const direct = cit.sections.filter((s) => (ch.touched || []).includes(s));
-      ch.affected.push({ docId: doc.id, direct, cites: cit.count, status: 'open', note: '' });
+      ch.affected.push({ docId: doc.id, direct, cites: cit.count, severity: direct.length ? 'high' : 'low', counts: {}, status: 'open', note: '' });
     }
   }
 
-  async addChange(change, diff) {
+  _changeFile(change, suffix) {
+    return this.p('legislation', change.lawId, 'changes', `${change.id}${suffix}`);
+  }
+
+  /** Record a change (or a check report). lawText = the text of the act to check documents against. */
+  async addChange(change, diff, lawText = null) {
     const ch = { id: id(), detectedAt: new Date().toISOString(), status: 'new', ai: {}, ...change };
     ch.touched = touchedKeys(diff);
-    ch.affected = this._affected(ch, diff);
+    const law = this.data.laws.find((l) => l.id === ch.lawId);
+    const analysis = lawText && law ? await this._analysisFor(law, lawText, ch.touched) : null;
+    ch.affected = this._affectedFrom(ch, analysis, []);
+    if (analysis) {
+      ch.analyzedAt = new Date().toISOString();
+      ch.sectionsInText = analysis.sections;
+    }
     await fs.promises.mkdir(this.p('legislation', ch.lawId, 'changes'), { recursive: true });
-    await writeAtomic(this.p('legislation', ch.lawId, 'changes', `${ch.id}.json`), JSON.stringify(diff));
+    await writeAtomic(this._changeFile(ch, '.json'), JSON.stringify(diff || { mode: 'none', changed: [], added: [], removed: [], stats: {} }));
+    if (analysis) await writeAtomic(this._changeFile(ch, '.analysis.json'), JSON.stringify(analysis));
     this.data.changes.unshift(ch);
-    // Flag directly affected effective documents for review.
-    this.audit('legislation.change-detected', { lawId: ch.lawId, changeId: ch.id, kind: ch.kind, from: ch.fromDate, to: ch.toDate, affected: ch.affected.length });
+    this.audit(ch.kind === 'check' ? 'legislation.checked-docs' : 'legislation.change-detected', {
+      lawId: ch.lawId,
+      changeId: ch.id,
+      kind: ch.kind,
+      from: ch.fromDate,
+      to: ch.toDate,
+      affected: ch.affected.length,
+      source: ch.source ? ch.source.name : undefined
+    });
     return ch;
   }
 
   async loadDiff(change) {
     try {
-      return JSON.parse(await fs.promises.readFile(this.p('legislation', change.lawId, 'changes', `${change.id}.json`), 'utf8'));
+      return JSON.parse(await fs.promises.readFile(this._changeFile(change, '.json'), 'utf8'));
+    } catch (_) {
+      return null;
+    }
+  }
+
+  async loadAnalysis(change) {
+    try {
+      return JSON.parse(await fs.promises.readFile(this._changeFile(change, '.analysis.json'), 'utf8'));
     } catch (_) {
       return null;
     }
@@ -636,19 +823,124 @@ class Archive {
   async getChange(changeId) {
     const c = this.data.changes.find((x) => x.id === changeId);
     if (!c) throw new Error('Change not found');
-    const diff = await this.loadDiff(c);
-    c.affected = this._affected(c, diff, c.affected || []);
+    const [diff, analysis] = await Promise.all([this.loadDiff(c), this.loadAnalysis(c)]);
+    c.affected = this._affectedFrom(c, analysis, c.affected || []);
     const law = this.data.laws.find((l) => l.id === c.lawId);
     const docs = new Map(this.data.docs.map((d) => [d.id, d]));
+    const an = new Map(((analysis && analysis.docs) || []).map((d) => [d.docId, d]));
     return {
       ...c,
       law,
       diff,
+      hasText: !!((c.toKey || c.snapshotKey) && this.hasSnapshot(c.lawId, c.toKey || c.snapshotKey)),
       affected: c.affected.map((a) => {
         const d = docs.get(a.docId);
-        return { ...a, doc: d ? { id: d.id, code: d.code, title: d.title, version: d.version, status: d.status } : null };
+        const x = an.get(a.docId);
+        return {
+          ...a,
+          doc: d ? { id: d.id, code: d.code, title: d.title, version: d.version, status: d.status } : null,
+          analysis: x ? { findings: x.findings, refs: x.refs, related: x.related } : null
+        };
       })
     };
+  }
+
+  /** Check the documents again against the stored text of the act (e.g. after a SOP was updated). */
+  async recheckChange(changeId) {
+    const c = this.data.changes.find((x) => x.id === changeId);
+    if (!c) throw new Error('Change not found');
+    const law = this.data.laws.find((l) => l.id === c.lawId);
+    const key = c.toKey || c.snapshotKey;
+    if (!law || !key || !this.hasSnapshot(law.id, key)) throw new Error('The text of the act is not stored for this change');
+    const text = await this.loadSnapshot(law.id, key);
+    const analysis = await this._analysisFor(law, text, c.touched);
+    await writeAtomic(this._changeFile(c, '.analysis.json'), JSON.stringify(analysis));
+    c.affected = this._affectedFrom(c, analysis, c.affected || []);
+    c.analyzedAt = new Date().toISOString();
+    c.sectionsInText = analysis.sections;
+    await this.save();
+    this.audit('legislation.rechecked', { changeId, lawId: law.id, affected: c.affected.length });
+    return this.getChange(changeId);
+  }
+
+  /** Find or create a register entry. */
+  async ensureLaw({ lawId, spec }) {
+    if (lawId) {
+      const law = this.data.laws.find((l) => l.id === lawId);
+      if (!law) throw new Error('Law not found');
+      return law;
+    }
+    if (spec && spec.key) {
+      const existing = this.data.laws.find((l) => l.key === spec.key);
+      if (existing) return existing;
+    }
+    if (spec && spec.url) {
+      const existing = this.data.laws.find((l) => l.url && l.url.replace(/\/+$/, '') === spec.url.replace(/\/+$/, ''));
+      if (existing) return existing;
+    }
+    return this.addLaw({ jurisdiction: 'SK', ...spec, title: (spec && spec.title) || (spec && spec.key) || 'Predpis' });
+  }
+
+  /**
+   * The user brings a text of an act (downloaded file). It is stored as a version, compared with the
+   * previous stored version (if any), and every document is checked against it.
+   * opts: { lawId | spec, text, versionDate, source: { type, name } }
+   */
+  async importLawText({ lawId, spec, text, versionDate, source }) {
+    if (!text || text.length < 200) throw new Error('The file contains almost no text');
+    const law = await this.ensureLaw({ lawId, spec });
+    const key = versionDate && /^\d{4}-\d{2}-\d{2}$/.test(versionDate) ? versionDate.replace(/-/g, '') : `f-${hashText(text).slice(0, 10)}`;
+    const prevKey = await this.previousSnapshotKey(law, key);
+    const prevText = prevKey ? await this.loadSnapshot(law.id, prevKey) : null;
+    await this.saveSnapshot(law.id, key, text);
+    let diff = prevText ? diffLaw(prevText, text) : null;
+    const n = diff ? (diff.mode === 'sections' ? diff.changed.length + diff.added.length + diff.removed.length : diff.added.length + diff.removed.length) : 0;
+    if (!n) diff = null;
+    const day = today();
+    const kind = diff ? (versionDate && versionDate > day ? 'upcoming' : 'new-version') : 'check';
+    const prevDate = prevKey && /^\d{8}$/.test(prevKey) ? `${prevKey.slice(0, 4)}-${prevKey.slice(4, 6)}-${prevKey.slice(6, 8)}` : null;
+    const ch = await this.addChange(
+      {
+        lawId: law.id,
+        kind,
+        fromKey: diff ? prevKey : null,
+        fromDate: diff ? prevDate : null,
+        toKey: key,
+        toDate: versionDate || null,
+        snapshotKey: key,
+        source: source || null,
+        sourceUrl: law.url || null,
+        summary: diff ? { mode: diff.mode, stats: diff.stats, sections: touchedKeys(diff).slice(0, 80) } : null
+      },
+      diff,
+      text
+    );
+    const st = law.state || {};
+    law.state = {
+      ...st,
+      lastImport: { at: new Date().toISOString(), key, name: source ? source.name : '' },
+      newestKey: /^\d{8}$/.test(key) && (!st.newestKey || key > st.newestKey) ? key : st.newestKey || null,
+      newestDate: /^\d{8}$/.test(key) && (!st.newestKey || key > st.newestKey) ? versionDate : st.newestDate || null
+    };
+    await this.save();
+    return ch;
+  }
+
+  /** A check report for the newest stored text of an act (no new version needed). */
+  async checkReport(lawId, source) {
+    const law = this.data.laws.find((l) => l.id === lawId);
+    if (!law) throw new Error('Law not found');
+    const st = law.state || {};
+    const key = st.newestKey || st.snapshotKey || (st.lastImport && st.lastImport.key);
+    if (!key || !this.hasSnapshot(law.id, key)) throw new Error('The text of the act is not available');
+    const text = await this.loadSnapshot(law.id, key);
+    const ch = await this.addChange(
+      { lawId: law.id, kind: 'check', toKey: key, toDate: /^\d{8}$/.test(key) ? `${key.slice(0, 4)}-${key.slice(4, 6)}-${key.slice(6, 8)}` : null, snapshotKey: key, source: source || null, sourceUrl: law.url || null, summary: null },
+      null,
+      text
+    );
+    await this.save();
+    return ch;
   }
 
   async updateChange(changeId, patch) {

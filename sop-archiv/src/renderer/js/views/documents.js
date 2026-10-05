@@ -81,8 +81,8 @@ export async function render(route) {
       <div><h1>${t('docs.title')}</h1><p class="muted" id="doc-count">${countText()}</p></div>
       <div class="head-actions">
         <button class="btn" data-action="exportCsv">${icon('download')}${t('docs.exportCsv')}</button>
-        <button class="btn" data-action="importFolder">${icon('folder')}${t('docs.importFolder')}</button>
-        <button class="btn btn-primary" data-action="import">${icon('upload')}${t('docs.importFiles')}</button>
+        <button class="btn" data-action="importFolder" data-perm="editor">${icon('folder')}${t('docs.importFolder')}</button>
+        <button class="btn btn-primary" data-action="import" data-perm="editor">${icon('upload')}${t('docs.importFiles')}</button>
       </div>
     </header>
     <div class="toolbar">

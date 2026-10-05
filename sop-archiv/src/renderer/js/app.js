@@ -1,7 +1,9 @@
-// App shell: routing, sidebar, theme, drag & drop, event delegation.
+// App shell: sign-in, routing, sidebar, theme, drag & drop, event delegation.
 import { t, setLang, lang } from './i18n.js';
 import { html, icon, errorToast, toast } from './ui.js';
 import { startImport } from './views/importer.js';
+import { lawCheckDialog } from './views/lawcheck.js';
+import { authenticate } from './views/login.js';
 import * as dashboard from './views/dashboard.js';
 import * as documents from './views/documents.js';
 import * as documentView from './views/document.js';
@@ -10,7 +12,6 @@ import * as reviews from './views/reviews.js';
 import * as legislation from './views/legislation.js';
 import * as change from './views/change.js';
 import * as settingsView from './views/settings.js';
-import { maybeOnboard } from './views/onboarding.js';
 
 const api = window.api;
 
@@ -23,14 +24,23 @@ export const app = {
     this.info = await api.app.info();
     setLang(this.info.settings.lang);
     applyTheme(this.info.settings.theme);
+    applyRole();
+    renderBanner();
     return this.info;
+  },
+  /** true if the signed-in user has at least this role */
+  can(role) {
+    const rank = { reader: 1, editor: 2, admin: 3 };
+    const s = this.info && this.info.session;
+    return !!s && (rank[s.role] || 0) >= rank[role] && !(this.info.readOnly && role !== 'reader');
   },
   navigate(hash) {
     if (location.hash === `#/${hash}`) render();
     else location.hash = `#/${hash}`;
   },
   rerender: () => render(),
-  refreshSidebar: () => renderSidebar()
+  refreshSidebar: () => renderSidebar(),
+  signOut: (reason) => signOut(reason)
 };
 window.__app = app; // for debugging from DevTools
 
@@ -38,6 +48,23 @@ function applyTheme(theme) {
   const root = document.documentElement;
   if (theme === 'light' || theme === 'dark') root.dataset.theme = theme;
   else delete root.dataset.theme;
+}
+
+// Buttons carry data-perm="editor" / "admin"; CSS hides what the current user may not use.
+function applyRole() {
+  const b = document.body;
+  const s = app.info && app.info.session;
+  b.classList.toggle('role-reader', !!s && s.role === 'reader');
+  b.classList.toggle('role-editor', !!s && s.role === 'editor');
+  b.classList.toggle('role-admin', !!s && s.role === 'admin');
+  b.classList.toggle('read-only', !!(app.info && app.info.readOnly));
+}
+
+function renderBanner() {
+  const el = document.getElementById('banner');
+  if (!el || !app.info) return;
+  const ro = app.info.readOnly;
+  el.innerHTML = ro ? String(html`<div class="ro-banner">${icon('lock')}<span>${t('ro.banner', ro)}</span><button class="btn btn-sm" id="ro-retry">${icon('refresh')}${t('ro.retry')}</button></div>`) : '';
 }
 
 const NAV = [
@@ -73,9 +100,18 @@ function viewFor(route) {
   }
 }
 
+function initials(name) {
+  return String(name || '?')
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0].toUpperCase())
+    .join('');
+}
+
 async function renderSidebar() {
   const nav = document.getElementById('nav');
-  if (!nav || !app.info) return;
+  if (!nav || !app.info || !app.info.session) return;
   let badgeReviews = 0;
   let badgeLegis = 0;
   try {
@@ -93,7 +129,14 @@ async function renderSidebar() {
     </a>`;
   })}`);
   const s = app.info.settings;
+  const me = app.info.session;
   document.getElementById('side-foot').innerHTML = String(html`
+    <div class="me">
+      <span class="avatar sm">${initials(me.name)}</span>
+      <div class="me-text"><div class="me-name">${me.name}</div><div class="me-role">${t(`role.${me.role}`)}</div></div>
+      <button class="icon-btn side-btn" id="sign-out" title="${t('auth.signOut')}" aria-label="${t('auth.signOut')}">${icon('logout')}</button>
+    </div>
+    ${app.info.readOnly ? html`<div class="side-flag warn">${icon('lock')}${t('ro.short')}</div>` : ''}
     ${s.offline ? html`<div class="side-flag">${icon('wifiOff')}${t('side.offline')}</div>` : html`<div class="side-flag">${icon('lock')}${t('side.local')}</div>`}
     <div class="side-ver">v${app.info.version}</div>`);
   document.getElementById('side-org').textContent = app.info.archiveSettings.org || t('tagline');
@@ -102,6 +145,7 @@ async function renderSidebar() {
 
 let renderSeq = 0;
 async function render() {
+  if (!app.info || !app.info.session) return;
   const seq = ++renderSeq;
   const route = parseRoute();
   app.route = route;
@@ -114,7 +158,7 @@ async function render() {
     const content = await view.render(route);
     if (seq !== renderSeq) return; // a newer navigation won
     main.innerHTML = String(content);
-    main.scrollTop = route.query.keepScroll ? main.scrollTop : 0;
+    main.scrollTop = 0;
     if (view.mount) await view.mount(main, route);
   } catch (e) {
     console.error(e);
@@ -122,13 +166,56 @@ async function render() {
   }
 }
 
+// --- Sign-in ----------------------------------------------------------------------
+async function requireSignIn() {
+  const shellEl = document.querySelector('.shell');
+  const authEl = document.getElementById('auth');
+  shellEl.hidden = true;
+  authEl.hidden = false;
+  document.querySelectorAll('.modal-backdrop').forEach((m) => m.remove());
+  await authenticate(authEl, app.info);
+  authEl.hidden = true;
+  shellEl.hidden = false;
+  await app.reloadInfo();
+  idle.reset();
+  await render();
+}
+
+async function signOut(reason) {
+  try {
+    await api.auth.logout(reason);
+  } catch (_) {
+    /* already signed out */
+  }
+  await app.reloadInfo();
+  if (reason === 'idle') toast(t('auth.idleOut'), 'info', 6000);
+  await requireSignIn();
+}
+
+// Sign out automatically after a period without activity.
+const idle = {
+  last: Date.now(),
+  reset() {
+    this.last = Date.now();
+  },
+  check() {
+    const mins = app.info && app.info.archiveSettings.autoLockMinutes;
+    if (!app.info || !app.info.session || !mins) return;
+    if (Date.now() - this.last > mins * 60000) signOut('idle');
+  }
+};
+
 // --- Event delegation ------------------------------------------------------------
 function dispatch(kind, e) {
   const el = e.target.closest(`[data-${kind}]`);
   if (!el) return;
   const name = el.dataset[kind];
   const handlers = (app.view && app.view.actions) || {};
-  const shared = { import: () => startImport([], { pick: 'files' }), importFolder: () => startImport([], { pick: 'folder' }) };
+  const shared = {
+    import: () => startImport([], { pick: 'files' }),
+    importFolder: () => startImport([], { pick: 'folder' }),
+    lawCheck: () => lawCheckDialog()
+  };
   const fn = handlers[name] || (kind === 'action' ? shared[name] : null);
   if (!fn) return;
   if (kind === 'action') e.preventDefault();
@@ -151,13 +238,31 @@ function bindGlobalEvents() {
     }
   });
   window.addEventListener('hashchange', render);
+  document.getElementById('side-foot').addEventListener('click', (e) => {
+    if (e.target.closest('#sign-out')) signOut('user');
+  });
+  document.getElementById('banner').addEventListener('click', async (e) => {
+    if (!e.target.closest('#ro-retry')) return;
+    try {
+      const ro = await api.app.retryLock();
+      await app.reloadInfo();
+      toast(ro ? t('ro.still', ro) : t('ro.gotLock'), ro ? 'info' : 'good');
+      render();
+    } catch (err) {
+      errorToast(err);
+    }
+  });
+  for (const ev of ['mousemove', 'keydown', 'mousedown', 'wheel', 'touchstart']) window.addEventListener(ev, () => idle.reset(), { passive: true });
+  setInterval(() => idle.check(), 30000);
 
-  // Drag & drop files anywhere to import them.
+  // Drag & drop: documents anywhere; on the Legislation page a dropped file is a legal act to check against.
   let depth = 0;
   const overlay = document.getElementById('drop-overlay');
+  const allowed = () => app.info && app.info.session && app.can('editor');
   window.addEventListener('dragenter', (e) => {
-    if (!e.dataTransfer || !Array.from(e.dataTransfer.types).includes('Files')) return;
+    if (!allowed() || !e.dataTransfer || !Array.from(e.dataTransfer.types).includes('Files')) return;
     depth++;
+    overlay.innerHTML = String(html`<div class="drop-card">${icon(app.route && app.route.name === 'legislation' ? 'scale' : 'upload')}<p>${t(app.route && app.route.name === 'legislation' ? 'lc.drop' : 'docs.drop')}</p></div>`);
     overlay.classList.add('show');
   });
   window.addEventListener('dragleave', () => {
@@ -169,16 +274,28 @@ function bindGlobalEvents() {
     e.preventDefault();
     depth = 0;
     overlay.classList.remove('show');
+    if (!allowed()) return;
     const paths = Array.from(e.dataTransfer.files || [])
       .map((f) => api.pathForFile(f))
       .filter(Boolean);
-    if (paths.length) startImport(paths).catch(errorToast);
+    if (!paths.length) return;
+    if (app.route && app.route.name === 'legislation') lawCheckDialog({ file: paths[0] }).catch(errorToast);
+    else startImport(paths).catch(errorToast);
   });
 
-  api.on('navigate', (route) => app.navigate(route));
+  api.on('navigate', (route) => {
+    if (!app.info || !app.info.session) return;
+    app.navigate(route.replace(/\?import=1$/, ''));
+    if (/import=1/.test(route) && app.can('editor')) startImport([], { pick: 'files' }).catch(errorToast);
+  });
   api.on('data:changed', () => {
+    if (!app.info || !app.info.session) return;
     renderSidebar();
     if (app.view && app.view.onDataChanged) app.view.onDataChanged();
+  });
+  api.on('lock:changed', async () => {
+    await app.reloadInfo();
+    renderSidebar();
   });
   api.on('index:ready', () => {
     if (app.info) app.info.indexReady = true;
@@ -197,10 +314,9 @@ async function boot() {
     document.body.textContent = String(e.message || e);
     return;
   }
-  document.getElementById('drop-overlay').innerHTML = String(html`<div class="drop-card">${icon('upload')}<p>${t('docs.drop')}</p></div>`);
   bindGlobalEvents();
-  await render();
-  await maybeOnboard();
+  if (!app.info.session) await requireSignIn();
+  else await render();
   if (new URLSearchParams(location.hash.split('?')[1] || '').get('import')) startImport([], { pick: 'files' }).catch(errorToast);
 }
 

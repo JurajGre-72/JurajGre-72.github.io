@@ -24,7 +24,20 @@ const STR = {
     'err.targetHasArchive': 'V cieľovom priečinku už existuje archív.',
     'err.noAi': 'AI asistent nie je nastavený (Nastavenia → AI asistent).',
     'err.offline': 'Aplikácia je v režime offline.',
-    'err.openArchive': 'Archív sa nepodarilo otvoriť:'
+    'err.openArchive': 'Archív sa nepodarilo otvoriť:',
+    'err.signIn': 'Prihláste sa, prosím.',
+    'err.permission': 'Na túto akciu nemáte oprávnenie.',
+    'err.readOnly': 'Archív je otvorený len na čítanie – práve ho upravuje {user} na počítači {host}.',
+    'err.tooMany': 'Príliš veľa nesprávnych pokusov. Skúste to znova o minútu.',
+    'err.badPassword': 'Nesprávne heslo.',
+    'err.NAME_REQUIRED': 'Zadajte meno (aspoň 2 znaky).',
+    'err.NAME_TAKEN': 'Profil s týmto menom už existuje.',
+    'err.PASSWORD_SHORT': 'Heslo musí mať aspoň 4 znaky.',
+    'err.LAST_ADMIN': 'Musí zostať aspoň jeden aktívny správca.',
+    'err.NOT_LOCAL': 'AI server musí byť v tomto počítači alebo vo vnútornej sieti firmy – dokumenty sa nesmú posielať na internet.',
+    'err.lawNotFound': 'Predpis sa nepodarilo rozpoznať. Zadajte číslo (napr. 362/2011 alebo 2019/6), webovú adresu, alebo importujte stiahnutý súbor.',
+    'err.lawNoUrl': 'Tento predpis nemá webovú adresu – importujte stiahnutý súbor.',
+    'dlg.lawFiles': 'Text predpisu'
   },
   en: {
     'tray.open': 'Open SOP Archive',
@@ -48,7 +61,20 @@ const STR = {
     'err.targetHasArchive': 'The target folder already contains an archive.',
     'err.noAi': 'The AI assistant is not set up (Settings → AI assistant).',
     'err.offline': 'The app is in offline mode.',
-    'err.openArchive': 'Could not open the archive:'
+    'err.openArchive': 'Could not open the archive:',
+    'err.signIn': 'Please sign in.',
+    'err.permission': 'You are not allowed to do this.',
+    'err.readOnly': 'The archive is open read-only – {user} is changing it on computer {host}.',
+    'err.tooMany': 'Too many wrong attempts. Try again in a minute.',
+    'err.badPassword': 'Wrong password.',
+    'err.NAME_REQUIRED': 'Enter a name (at least 2 characters).',
+    'err.NAME_TAKEN': 'A profile with this name already exists.',
+    'err.PASSWORD_SHORT': 'The password must have at least 4 characters.',
+    'err.LAST_ADMIN': 'At least one active administrator must remain.',
+    'err.NOT_LOCAL': 'The AI server must be on this computer or the internal company network – documents must not be sent to the internet.',
+    'err.lawNotFound': 'The act could not be recognised. Enter its number (e.g. 362/2011 or 2019/6), a web address, or import a downloaded file.',
+    'err.lawNoUrl': 'This act has no web address – import a downloaded file instead.',
+    'dlg.lawFiles': 'Text of the act'
   }
 };
 

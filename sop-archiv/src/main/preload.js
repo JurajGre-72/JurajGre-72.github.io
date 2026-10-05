@@ -6,13 +6,16 @@ const { contextBridge, ipcRenderer, webUtils } = require('electron');
 const call = (channel) => (...args) => ipcRenderer.invoke(channel, ...args);
 
 const CHANNELS = {
-  app: ['info', 'setSettings', 'chooseFolder', 'switchDataDir', 'openDataDir', 'backup', 'openExternal', 'networkLog', 'audit', 'remindNow'],
+  app: ['info', 'setSettings', 'chooseFolder', 'switchDataDir', 'retryLock', 'openDataDir', 'backup', 'openExternal', 'networkLog', 'audit', 'remindNow'],
+  auth: ['state', 'setup', 'login', 'logout', 'changePassword', 'setPrefs'],
+  users: ['list', 'create', 'update', 'resetPassword', 'roles'],
+  legis: ['pickFile', 'inspectFile', 'importFile', 'resolve', 'check'],
   archive: ['updateSettings'],
   docs: ['list', 'get', 'text', 'pickFiles', 'pickFolder', 'expandPaths', 'analyze', 'import', 'addVersion', 'update', 'delete', 'open', 'reveal', 'markReviewed', 'exportCsv'],
   reviews: ['exportIcs'],
   search: ['query', 'ask'],
   laws: ['list', 'add', 'update', 'remove', 'check'],
-  changes: ['list', 'get', 'update', 'analyze'],
+  changes: ['list', 'get', 'update', 'recheck', 'analyze'],
   ai: ['test']
 };
 
@@ -22,7 +25,7 @@ for (const [ns, names] of Object.entries(CHANNELS)) {
   for (const n of names) api[ns][n] = call(`${ns}:${n}`);
 }
 
-const EVENTS = ['legis:progress', 'navigate', 'data:changed', 'index:ready'];
+const EVENTS = ['legis:progress', 'navigate', 'data:changed', 'index:ready', 'lock:changed'];
 api.on = (event, cb) => {
   if (!EVENTS.includes(event)) throw new Error('unknown event');
   const listener = (_e, payload) => cb(payload);

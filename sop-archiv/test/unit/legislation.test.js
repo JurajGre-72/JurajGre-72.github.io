@@ -175,11 +175,15 @@ test('archive: new version supersedes the old one; duplicates are detected; dele
   const d = await a.importFile(fx.rtf, {});
   const again = await a.analyzeFile(fx.rtf);
   assert.equal(again.duplicateOf.id, d.id);
+  const reviewBefore = a.getDoc(d.id).reviewDate;
   const v2 = await a.addVersion(d.id, fx.odt, { version: '2' });
-  assert.equal(v2.versions.length, 2);
-  assert.equal(v2.versions[0].status, 'superseded');
-  assert.equal(v2.version, '2');
-  assert.ok(fs.existsSync(a.filePath(d.id, v2.versions[0].id)));
+  assert.equal(v2.reviewDate, reviewBefore, 'a new version without a new effective date keeps the planned review');
+  const v3 = await a.addVersion(d.id, fx.txt, { version: '3', effectiveDate: '2026-11-01' });
+  assert.equal(v3.reviewDate, '2028-11-01', 'a new effective date moves the review by the interval');
+  assert.equal(v3.versions.length, 3);
+  assert.equal(v3.versions[0].status, 'superseded');
+  assert.equal(v3.version, '3');
+  assert.ok(fs.existsSync(a.filePath(d.id, v3.versions[0].id)));
   await a.deleteDoc(d.id);
   assert.equal(a.listDocs().length, 0);
   assert.equal(fs.readdirSync(path.join(dir, 'arch', 'trash')).length, 1);
@@ -225,4 +229,114 @@ test('monitor: Slov-Lex URL falls back to the /ezbierky/ form on HTTP 404', asyn
   assert.equal(r.status, 'ok', r.error);
   assert.equal(r.state.effectiveDate, '2025-01-01');
   assert.ok(seen[1].includes('/ezbierky/pravne-predpisy/SK/ZZ/2011/362/'));
+});
+
+test('importing law texts: first import = check report, newer version = diff + findings, recheck after SOP update', async () => {
+  const dir = tmpDir();
+  const a = new Archive({ dataDir: path.join(dir, 'arch'), user: 'qa' });
+  await a.open();
+  await a.buildIndex();
+  const sopDir = path.join(dir, 'sop');
+  fs.mkdirSync(sopDir);
+  const sopV1 = path.join(sopDir, 'SOP-SK-002.txt');
+  fs.writeFileSync(sopV1, 'SOP-SK-002 Stiahnutie liekov z trhu\nVerzia: 1\n2. Stiahnutie\nŠarže sa stiahnu z trhu do 48 hodín podľa § 18 ods. 1 písm. k) zákona č. 362/2011 Z. z.\n3. Záznamy\nZáznamy o dodávkach sa uchovávajú 5 rokov podľa § 18 ods. 1 písm. l) zákona č. 362/2011 Z. z.');
+  const storage = path.join(sopDir, 'SOP-QA-001.txt');
+  fs.writeFileSync(storage, 'SOP-QA-001 Skladovanie\nLieky skladujeme pri teplote 15 – 25 °C. Termolabilné lieky v chladničke, karanténa pre poškodené balenia, kontrola teploty teplomermi s kalibráciou.');
+  const sop = await a.importFile(sopV1, {});
+  const qa = await a.importFile(storage, {});
+  const lieky = a.data.laws.find((l) => l.key === 'SK:362/2011');
+
+  const v2025 = `§ 1\nPredmet\n(1) Zákon upravuje lieky.\n§ 18\nPovinnosti\n(1) k) stiahnuť liek z trhu do 48 hodín, l) uchovávať záznamy päť rokov.\n§ 19\nSkladovanie\n(1) Lieky sa skladujú pri teplote 15 – 25 °C, termolabilné lieky v chladničke pri teplote 2 – 8 °C, poškodené balenia v karanténe, kontrola teploty kalibrovanými teplomermi.\n§ 20\nPreprava\n(1) Preprava liekov s monitorovaním teploty.`;
+  const v2027 = v2025.replace('do 48 hodín', 'do dvadsiatich štyroch hodín').replace('päť rokov', 'desať rokov');
+
+  // 1) first text of the act -> a check report; the SOP agrees with it
+  const c1 = await a.importLawText({ lawId: lieky.id, text: v2025, versionDate: '2025-01-01', source: { type: 'file', name: 'zakon-2025.pdf' } });
+  assert.equal(c1.kind, 'check');
+  let full = await a.getChange(c1.id);
+  const s1 = full.affected.find((x) => x.docId === sop.id);
+  assert.equal(s1.analysis.findings.filter((f) => f.type === 'quantity').length, 0, 'SOP matches the 2025 text');
+  const q1 = full.affected.find((x) => x.docId === qa.id);
+  assert.equal(q1.severity, 'info', 'storage SOP is content-related');
+  assert.equal(q1.analysis.related[0].key, '§19');
+  assert.equal(a.getDoc(qa.id).pendingChanges, 0, 'related-only documents are not flagged as pending');
+
+  // 2) newer version -> diff against the stored one + findings for the SOP
+  const c2 = await a.importLawText({ lawId: lieky.id, text: v2027, versionDate: '2027-01-01', source: { type: 'file', name: 'zakon-2027.pdf' } });
+  assert.equal(c2.kind, 'upcoming');
+  assert.equal(c2.fromDate, '2025-01-01');
+  full = await a.getChange(c2.id);
+  assert.deepEqual(full.touched, ['§18']);
+  const s2 = full.affected.find((x) => x.docId === sop.id);
+  assert.equal(s2.severity, 'high');
+  assert.deepEqual(s2.analysis.findings.filter((f) => f.type === 'quantity').map((f) => f.docValue).sort(), ['48 hodín', '5 rokov']);
+  assert.equal(a.data.laws.find((l) => l.id === lieky.id).state.newestKey, '20270101');
+
+  // 3) the SOP is updated -> recheck clears the number findings
+  const sopV2 = path.join(sopDir, 'SOP-SK-002-v2.txt');
+  fs.writeFileSync(sopV2, fs.readFileSync(sopV1, 'utf8').replace('48 hodín', '24 hodín').replace('5 rokov', '10 rokov').replace('Verzia: 1', 'Verzia: 2'));
+  await a.addVersion(sop.id, sopV2, {});
+  full = await a.recheckChange(c2.id);
+  const s3 = full.affected.find((x) => x.docId === sop.id);
+  assert.equal(s3.analysis.findings.filter((f) => f.type === 'quantity').length, 0);
+  assert.equal(s3.severity, 'high', 'still cites a changed section until assessed');
+
+  // 4) a new act brought in by file -> created in the register
+  const c4 = await a.importLawText({ spec: { key: 'SK:100/2020', title: 'Zákon č. 100/2020 Z. z. (test)' }, text: v2025, source: { type: 'file', name: 'x.pdf' } });
+  assert.ok(a.data.laws.some((l) => l.key === 'SK:100/2020' && l.id === c4.lawId));
+});
+
+test('monitor.checkAndReport always returns a report', async () => {
+  const dir = tmpDir();
+  const a = new Archive({ dataDir: dir, user: 't' });
+  await a.open();
+  const lieky = a.data.laws.find((l) => l.key === 'SK:362/2011');
+  const base = 'https://www.slov-lex.sk/pravne-predpisy/SK/ZZ/2011/362/';
+  const m = new LegislationMonitor(a, { fetchPage: async () => ({ url: base + '20250101', title: 'Z', text: V['20250101'], html: '', links: [{ href: base + '20250101' }] }), pauseMs: 0 });
+  const r1 = await m.checkAndReport(lieky.id, { type: 'name', name: 'zákon o liekoch' });
+  assert.equal(r1.newChanges, 0);
+  const ch = a.data.changes.find((c) => c.id === r1.changeId);
+  assert.equal(ch.kind, 'check');
+  assert.equal(ch.toKey, '20250101');
+  await assert.rejects(new LegislationMonitor(a, { fetchPage: async () => { throw new Error('HTTP 503'); }, pauseMs: 0 }).checkAndReport(lieky.id), /503/);
+});
+
+test('archive lock: second holder is read-only, stale or crashed locks are taken over, release frees it', () => {
+  const { ArchiveLock } = require('../../src/main/lib/lock');
+  const dir = tmpDir();
+  const a = new ArchiveLock(dir, { host: 'pc1', user: 'Juraj', pid: process.pid });
+  const b = new ArchiveLock(dir, { host: 'pc2', user: 'Eva', pid: 4242 });
+  assert.equal(a.tryAcquire().ok, true);
+  const rb = b.tryAcquire();
+  assert.equal(rb.ok, false);
+  assert.equal(rb.holder.user, 'Juraj');
+  assert.equal(a.heartbeat(), true);
+  a.release();
+  assert.equal(b.tryAcquire().ok, true, 'free after release');
+  assert.equal(a.tryAcquire().ok, false);
+  // stale lock (no heartbeat for longer than staleMs)
+  const c = new ArchiveLock(dir, { host: 'pc3', user: 'Peter', pid: 1, staleMs: 0 });
+  assert.equal(c.tryAcquire().ok, true, 'stale lock taken over');
+  assert.equal(b.heartbeat(), false, 'previous holder notices it lost the lock');
+  // a crashed process on the same computer
+  fs.writeFileSync(path.join(dir, '.sop-archiv.lock'), JSON.stringify({ host: 'pc4', user: 'X', pid: 999999, ts: Date.now() }));
+  const d = new ArchiveLock(dir, { host: 'pc4', user: 'Y', pid: process.pid });
+  assert.equal(d.tryAcquire().ok, true, 'lock of a dead local process is taken over');
+});
+
+test('users: hashed passwords, roles, last administrator protected', async () => {
+  const dir = tmpDir();
+  const a = new Archive({ dataDir: dir, user: 'setup' });
+  await a.open();
+  const admin = await a.createUser({ name: 'Juraj Gregus', role: 'admin', password: 'tajne123' });
+  const eva = await a.createUser({ name: 'Eva', role: 'reader', password: '1234' });
+  assert.ok(a.verifyLogin(admin.id, 'tajne123'));
+  assert.equal(a.verifyLogin(admin.id, 'zle'), null);
+  await assert.rejects(a.createUser({ name: 'eva', role: 'reader', password: '1234' }), /NAME_TAKEN/);
+  await assert.rejects(a.createUser({ name: 'Peter', role: 'reader', password: '12' }), /PASSWORD_SHORT/);
+  await assert.rejects(a.updateUser(admin.id, { role: 'editor' }), /LAST_ADMIN/);
+  await a.updateUser(eva.id, { disabled: true });
+  assert.equal(a.verifyLogin(eva.id, '1234'), null, 'disabled profile cannot sign in');
+  await a.saving;
+  const raw = fs.readFileSync(path.join(dir, 'archive.json'), 'utf8');
+  assert.ok(!raw.includes('tajne123') && !raw.includes('"1234"'), 'no plain passwords on disk');
 });
