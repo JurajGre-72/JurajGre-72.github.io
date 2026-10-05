@@ -220,8 +220,9 @@ export function openModal({ title, body, size = 'md', buttons = [], onMount, dis
       }
     });
     if (onMount) onMount(wrap.querySelector('.modal'), close);
+    // Focus at once: a delayed focus could jump into the first field while the user is already typing in another.
     const first = wrap.querySelector('input, select, textarea');
-    if (first) setTimeout(() => first.focus(), 30);
+    if (first && !wrap.contains(document.activeElement)) first.focus();
   });
 }
 

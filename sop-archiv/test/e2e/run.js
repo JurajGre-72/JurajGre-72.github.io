@@ -140,8 +140,9 @@ async function main() {
   let app = await launch(tmp, 'userdata-pc1');
   let app2 = null;
   const errors = [];
+  let page = null;
   try {
-    let page = await app.firstWindow();
+    page = await app.firstWindow();
     const watch = (p) => {
       p.on('pageerror', (e) => errors.push(String(e)));
       p.on('console', (m) => m.type() === 'error' && !/ERR_BLOCKED_BY_CLIENT|Refused to connect|Failed to fetch|Content Security Policy/.test(m.text()) && errors.push(m.text()));
@@ -474,6 +475,15 @@ async function main() {
     const real = errors.filter((e) => !/favicon|Autofill/i.test(e));
     assert.deepEqual(real, [], 'no renderer errors');
     console.log(`\nAll e2e checks passed. Screenshots: ${OUT}`);
+  } catch (e) {
+    // Leave evidence for CI: a screenshot and any message the app showed.
+    if (page) {
+      await page.screenshot({ path: path.join(OUT, 'zz-failure.png') }).catch(() => {});
+      const shown = await page.evaluate(() => [...document.querySelectorAll('.modal .err, #login-err, .toast')].map((x) => x.textContent.trim()).filter(Boolean)).catch(() => []);
+      if (shown.length) console.error('Messages on screen:', shown);
+    }
+    if (errors.length) console.error('Renderer errors:', errors);
+    throw e;
   } finally {
     if (app) await app.close().catch(() => {});
     if (app2) await app2.close().catch(() => {});
