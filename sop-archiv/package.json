@@ -1,0 +1,121 @@
+{
+  "name": "sop-archiv",
+  "productName": "SOP Archiv",
+  "version": "1.0.0",
+  "description": "Offline intelligent archive for SOPs, organizational directives (OS) and other controlled documents, with review reminders and legislation change monitoring.",
+  "main": "src/main/main.js",
+  "author": "Juraj Gregus",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test test/unit/*.test.js",
+    "test:e2e": "node test/e2e/run.js",
+    "dist": "electron-builder",
+    "dist:win": "electron-builder --win",
+    "dist:mac": "electron-builder --mac",
+    "dist:linux": "electron-builder --linux"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.131.0",
+    "diff": "^9.0.0",
+    "jszip": "^3.10.2",
+    "mammoth": "^1.13.0",
+    "minisearch": "^7.2.0",
+    "pdfjs-dist": "^6.4.299",
+    "word-extractor": "^1.0.4"
+  },
+  "devDependencies": {
+    "electron": "^44.5.1",
+    "electron-builder": "^26.15.3",
+    "playwright": "^1.63.0"
+  },
+  "homepage": "https://github.com/JurajGre-72/JurajGre-72.github.io/tree/main/sop-archiv",
+  "build": {
+    "appId": "sk.soparchiv.app",
+    "productName": "SOP Archiv",
+    "copyright": "Juraj Gregus",
+    "asar": false,
+    "npmRebuild": false,
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "package.json",
+      "src/**/*",
+      "build/icon.png",
+      "!**/*.map",
+      "!**/*.d.ts",
+      "!**/*.d.mts",
+      "!**/*.d.cts",
+      "!node_modules/@napi-rs/**",
+      "!node_modules/pdfjs-dist/build/**",
+      "!node_modules/pdfjs-dist/web/**",
+      "!node_modules/pdfjs-dist/image_decoders/**",
+      "!node_modules/pdfjs-dist/legacy/web/**",
+      "!node_modules/pdfjs-dist/legacy/image_decoders/**",
+      "!node_modules/pdfjs-dist/types/**",
+      "!node_modules/@anthropic-ai/sdk/src/**",
+      "!node_modules/**/{README,CHANGELOG,HISTORY}*",
+      "!node_modules/**/{test,tests,docs,example,examples}/**"
+    ],
+    "artifactName": "SOP-Archiv-${version}-${os}-${arch}.${ext}",
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "SOP Archív",
+      "artifactName": "SOP-Archiv-${version}-Setup.${ext}"
+    },
+    "portable": {
+      "artifactName": "SOP-Archiv-${version}-portable.${ext}"
+    },
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64",
+            "x64"
+          ]
+        }
+      ],
+      "category": "public.app-category.business",
+      "icon": "build/icon.png",
+      "identity": null
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "category": "Office",
+      "icon": "build/icon.png"
+    },
+    "publish": null
+  }
+}
