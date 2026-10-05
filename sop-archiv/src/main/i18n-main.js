@@ -37,7 +37,8 @@ const STR = {
     'err.NOT_LOCAL': 'AI server musí byť v tomto počítači alebo vo vnútornej sieti firmy – dokumenty sa nesmú posielať na internet.',
     'err.lawNotFound': 'Predpis sa nepodarilo rozpoznať. Zadajte číslo (napr. 362/2011 alebo 2019/6), webovú adresu, alebo importujte stiahnutý súbor.',
     'err.lawNoUrl': 'Tento predpis nemá webovú adresu – importujte stiahnutý súbor.',
-    'dlg.lawFiles': 'Text predpisu'
+    'dlg.lawFiles': 'Text predpisu',
+    'err.BUSY': 'Práve prebieha iná kontrola legislatívy – skúste to o chvíľu znova.'
   },
   en: {
     'tray.open': 'Open SOP Archive',
@@ -74,7 +75,8 @@ const STR = {
     'err.NOT_LOCAL': 'The AI server must be on this computer or the internal company network – documents must not be sent to the internet.',
     'err.lawNotFound': 'The act could not be recognised. Enter its number (e.g. 362/2011 or 2019/6), a web address, or import a downloaded file.',
     'err.lawNoUrl': 'This act has no web address – import a downloaded file instead.',
-    'dlg.lawFiles': 'Text of the act'
+    'dlg.lawFiles': 'Text of the act',
+    'err.BUSY': 'Another legislation check is running – try again in a moment.'
   }
 };
 

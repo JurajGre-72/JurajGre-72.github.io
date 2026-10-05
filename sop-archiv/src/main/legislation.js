@@ -173,7 +173,7 @@ class LegislationMonitor {
    * found, otherwise a check of all documents against the current text.
    */
   async checkAndReport(lawId, source) {
-    if (this.running) throw new Error('A check is already running');
+    if (this.running) throw new Error('BUSY');
     this.running = true;
     try {
       const r = await this.checkLaw(lawId);
@@ -188,7 +188,7 @@ class LegislationMonitor {
 
   /** Check every enabled law, one at a time. onProgress({ done, total, law, result }) */
   async checkAll(onProgress, onlyIds) {
-    if (this.running) throw new Error('A check is already running');
+    if (this.running) throw new Error('BUSY');
     this.running = true;
     const results = [];
     try {
