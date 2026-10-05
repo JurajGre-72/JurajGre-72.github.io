@@ -116,7 +116,7 @@ async function main() {
   const app = await electron.launch({
     executablePath: packaged || require('electron'),
     args: packaged ? ['--no-sandbox'] : [ROOT, '--no-sandbox'],
-    env: { ...process.env, SOP_ARCHIV_USERDATA: path.join(tmp, 'userdata'), SOP_ARCHIV_DATA: path.join(tmp, 'archive'), SOP_ARCHIV_NO_TIMERS: '1', LANG: 'sk_SK.UTF-8' }
+    env: { ...process.env, SOP_ARCHIV_USERDATA: path.join(tmp, 'userdata'), SOP_ARCHIV_DATA: path.join(tmp, 'archive'), SOP_ARCHIV_NO_TIMERS: '1', LANG: process.env.LANG || 'sk_SK.UTF-8' }
   });
   const errors = [];
   try {
@@ -150,7 +150,9 @@ async function main() {
     const paths = [pdfPath, fixtures.docx, fixtures.odt, fixtures.rtf, fixtures.txt, fixtures.xlsx];
     await page.evaluate((p) => import('./js/views/importer.js').then((m) => { m.startImport(p); }), paths);
     await page.waitForSelector('.imp-table tbody tr:nth-child(6)', { timeout: 30000 });
-    await page.selectOption('.imp-bulk select[data-bulk="department"]', 'Kvalita (QA)');
+    // the QA department (2nd default entry; its name depends on the system language)
+    const dept = await page.$eval('.imp-bulk select[data-bulk="department"]', (sel) => sel.options[2].value);
+    await page.selectOption('.imp-bulk select[data-bulk="department"]', dept);
     await shot(page, '02-import-dialog');
     const btnText = await page.textContent('.modal-foot .btn-primary');
     assert.match(btnText, /6/, 'import button counts 6 files');
@@ -162,7 +164,7 @@ async function main() {
     assert.ok(byCode['SOP-QA-001'], 'PDF imported with detected code');
     assert.equal(byCode['SOP-QA-001'].version, '3');
     assert.equal(byCode['SOP-QA-001'].reviewDate, '2026-10-20');
-    assert.equal(byCode['SOP-QA-001'].department, 'Kvalita (QA)');
+    assert.equal(byCode['SOP-QA-001'].department, dept);
     assert.ok(byCode['SOP-SK-002'], 'DOCX imported');
     assert.ok(byCode['OS 4/2023'], 'ODT imported');
     assert.equal(byCode['OS 4/2023'].review.state, 'overdue');
