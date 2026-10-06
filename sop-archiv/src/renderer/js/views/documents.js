@@ -40,7 +40,9 @@ function sorted(list) {
   return list.slice().sort((a, b) => {
     const x = key(a);
     const y = key(b);
-    return (x < y ? -1 : x > y ? 1 : 0) * filters.dir;
+    // Natural order for codes and names: OS2 before OS10, ŠPP 09 before ŠPP 10.
+    const c = typeof x === 'string' && typeof y === 'string' ? x.localeCompare(y, 'sk', { numeric: true }) : x < y ? -1 : x > y ? 1 : 0;
+    return c * filters.dir;
   });
 }
 
@@ -56,13 +58,13 @@ function tableBody() {
   return list.map(
     (d) => html`<tr class="clickable" data-action="openDoc" data-id="${d.id}">
       <td class="code">${d.code || '—'}</td>
-      <td class="title-cell">${d.title}${d.pendingChanges ? html` <span class="flag" title="${t('docs.legisFlag')}">${icon('scale')}</span>` : ''}${d.current && d.current.textStatus !== 'ok' ? html` <span class="flag warn" title="${t('doc.noText')}">${icon('alert')}</span>` : ''}</td>
+      <td class="title-cell">${d.annexOf ? html`<span class="annex-mark" title="${t('doc.annexOf')} ${d.annexOf}">↳</span>` : ''}${d.title}${(d.tags || []).includes('EN') ? html` <span class="chip chip-muted chip-xs">EN</span>` : ''}${d.pendingChanges ? html` <span class="flag" title="${t('docs.legisFlag')}">${icon('scale')}</span>` : ''}${d.current && d.current.textStatus !== 'ok' ? html` <span class="flag warn" title="${t('doc.noText')}">${icon('alert')}</span>` : ''}</td>
       <td><span class="type-tag" title="${(types.find((x) => x.id === d.type) || {}).sk || ''}">${d.type}</span></td>
       <td class="num">${d.version}</td>
       <td>${statusChip(d.status)}</td>
       <td class="muted">${d.department || ''}</td>
       <td class="nowrap">${fmtDate(d.reviewDate)}</td>
-      <td>${d.status !== 'obsolete' && d.reviewDate ? reviewChip(d.review) : ''}</td>
+      <td>${d.status !== 'obsolete' && d.reviewDate ? reviewChip(d.review) : d.annexOf ? html`<span class="muted small">${t('doc.reviewWith', { code: d.annexOf })}</span>` : ''}</td>
     </tr>`
   );
 }

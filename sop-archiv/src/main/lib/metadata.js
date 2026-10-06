@@ -4,6 +4,7 @@
 
 const { fold, escapeRegExp } = require('./text');
 const { parseDate, DATE_PATTERN } = require('./dates');
+const { parseFileName } = require('./filenames');
 
 const DATE_RE = DATE_PATTERN;
 
@@ -89,9 +90,31 @@ function fileTitle(fileName) {
 
 /**
  * Detect document metadata from extracted text (header area) and file name.
+ * A file name in the company's pattern (see filenames.js) decides the code, type, title and edition;
+ * the text adds what the name does not carry (dates, author, approver, version number).
  * Returns only the fields it found (all optional).
  */
-function detectMetadata(text, fileName = '') {
+function detectMetadata(text, fileName = '', { folder = '' } = {}) {
+  const fromText = detectFromText(text, fileName);
+  const fn = parseFileName(fileName, folder);
+  if (!fn) return fromText;
+  const out = { ...fromText };
+  const en = fn.lang === 'en';
+  if (fn.code) out.code = en ? `${fn.code} (EN)` : fn.code;
+  else delete out.code;
+  if (fn.type) out.type = fn.type;
+  out.title = fn.title || fromText.title;
+  // An edition year (or "2024.09") in the name gives way to a version number written in the document.
+  const editionOnly = fn.version && /^\d{4}(?:\.\d{2})?$/.test(fn.version);
+  if (fn.version && !(editionOnly && fromText.version)) out.version = fn.version;
+  if (fn.effectiveDate) out.effectiveDate = fn.effectiveDate;
+  if (fn.annexOf) out.annexOf = en ? `${fn.annexOf} (EN)` : fn.annexOf;
+  if (fn.area) out.area = fn.area;
+  if (en) out.lang = 'en';
+  return out;
+}
+
+function detectFromText(text, fileName) {
   const head = String(text || '').slice(0, 8000);
   const out = {};
 

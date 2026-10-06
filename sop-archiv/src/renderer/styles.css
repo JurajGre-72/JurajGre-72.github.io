@@ -611,3 +611,13 @@ body.role-reader .perm-ro, body.read-only .perm-ro { display: inline-flex !impor
 .cmp-title { font-size: 11.5px; font-weight: 650; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); margin-bottom: 4px; }
 .cmp-text { white-space: pre-wrap; font-size: 13px; line-height: 1.5; max-height: 260px; overflow-y: auto; }
 .cmp-text + .cmp-text { margin-top: 6px; padding-top: 6px; border-top: 1px dashed var(--border); }
+
+/* ---------- Annexes ---------- */
+.annex-mark { color: var(--muted); margin-right: 6px; }
+.annex-of { display: flex; gap: 6px; align-items: center; margin: 8px 0 0; color: var(--text-2); }
+.annex-of .ico { width: 15px; height: 15px; color: var(--muted); }
+.annex-list { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 8px; }
+.annex-list .ico { width: 15px; height: 15px; vertical-align: -3px; margin-right: 4px; }
+.chip-link { text-decoration: none; }
+.chip-link:hover { border-color: var(--primary); text-decoration: none; }
+.chip-xs { font-size: 10.5px; padding: 0 6px; }

@@ -470,3 +470,40 @@ test('archive: company logo is stored in the archive folder, replaced and remove
   await a.clearLogo();
   assert.equal(a.logoInfo(), null);
 });
+
+test('archive: PHARMACOPOLA file names – annexes linked to their main document, departments, English copies', async () => {
+  const dir = tmpDir();
+  const fx = await makeAll(path.join(dir, 'fx'));
+  const a = new Archive({ dataDir: path.join(dir, 'arch'), user: 't' });
+  await a.open();
+  await a.buildIndex();
+  const src = path.join(dir, 'in');
+  fs.mkdirSync(path.join(src, 'Anglické verzie'), { recursive: true });
+  const put = (name, sub = '') => {
+    const p = path.join(src, sub, name);
+    fs.copyFileSync(fx.txt, p);
+    fs.appendFileSync(p, `\n${name}\n`); // different content, so not a duplicate
+    return p;
+  };
+  const os5 = await a.importFile(put('_OS5_Manažment rizík_2026.txt'));
+  const annex = await a.importFile(put('_OS5_Príloha č.1_Núdzové kontakty.txt'));
+  const hr = await a.importFile(put('SM_HR_003_2_Pracovný poriadok_od_01.01.2025.txt'));
+  const en = await a.importFile(put('_OS5_Risk management_2026.txt', 'Anglické verzie'));
+  assert.equal(os5.code, 'OS5');
+  assert.equal(os5.type, 'OS');
+  assert.equal(annex.code, 'OS5 Príloha č. 1');
+  assert.equal(annex.annexOf, 'OS5');
+  assert.equal(annex.reviewIntervalMonths, 0, 'an annex is reviewed with its main document');
+  const parent = a.getDoc(os5.id);
+  assert.deepEqual(parent.annexes.map((x) => x.code), ['OS5 Príloha č. 1']);
+  assert.equal(a.getDoc(annex.id).parent.code, 'OS5');
+  assert.equal(hr.type, 'SM');
+  assert.equal(hr.version, '2');
+  assert.equal(hr.effectiveDate, '2025-01-01');
+  assert.equal(hr.department, 'Personalistika');
+  assert.ok(a.data.settings.docTypes.some((t) => t.id === 'SM'));
+  assert.equal(en.code, 'OS5 (EN)', 'the English copy does not replace the Slovak document');
+  assert.deepEqual(en.tags, ['EN']);
+  const again = await a.analyzeFile(put('_OS5_Manažment rizík_2027.txt'));
+  assert.equal(again.sameCode.code, 'OS5', 'a newer edition is offered as a new version of OS5');
+});

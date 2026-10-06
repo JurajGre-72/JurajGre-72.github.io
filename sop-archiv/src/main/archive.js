@@ -22,13 +22,13 @@ const { reviewState } = require('./lib/reviews');
 const { touchedKeys, diffLaw, hashText } = require('./lib/legis-parse');
 const { analyzeLawAgainstDocs, SEVERITY } = require('./lib/compliance');
 const { today, addMonths } = require('./lib/dates');
-const { DEFAULT_LAWS, defaultArchive } = require('./lib/defaults');
+const { DEFAULT_LAWS, DOC_TYPES, defaultArchive } = require('./lib/defaults');
 const { ROLES, hashPassword, verifyPassword, validPassword } = require('./lib/auth');
 
 const STATUSES = ['draft', 'effective', 'review', 'obsolete'];
 const LOGO_TYPES = { '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.svg': 'image/svg+xml' };
 const LOGO_MAX_BYTES = 1024 * 1024;
-const DOC_FIELDS = ['type', 'code', 'title', 'status', 'department', 'owner', 'approver', 'tags', 'notes', 'effectiveDate', 'reviewDate', 'reviewIntervalMonths', 'version'];
+const DOC_FIELDS = ['type', 'code', 'title', 'status', 'department', 'owner', 'approver', 'tags', 'notes', 'effectiveDate', 'reviewDate', 'reviewIntervalMonths', 'version', 'annexOf'];
 
 function id() {
   return crypto.randomUUID();
@@ -325,13 +325,36 @@ class Archive {
     return { ...doc, review: rs, pendingChanges, current: cur };
   }
 
+  /** The main document an annex belongs to, and the annexes of a document (by code). */
+  _related(doc) {
+    const same = (a, b) => !!a && !!b && a.toUpperCase() === b.toUpperCase();
+    const brief = (d) => ({ id: d.id, code: d.code, title: d.title, version: d.version, status: d.status });
+    const parent = doc.annexOf ? this.data.docs.find((d) => same(d.code, doc.annexOf) && d.status !== 'obsolete') : null;
+    const annexes = doc.code ? this.data.docs.filter((d) => same(d.annexOf, doc.code) && d.status !== 'obsolete') : [];
+    return { parent: parent ? brief(parent) : null, annexes: annexes.map(brief).sort((a, b) => a.code.localeCompare(b.code, 'sk', { numeric: true })) };
+  }
+
+  /** Department for an area code in a document code ("SM_Q_01" -> quality, "SM_HR_003" -> HR). */
+  _departmentFor(area) {
+    const re = { Q: /kvalit|quality|\bQA\b/i, QA: /kvalit|quality|\bQA\b/i, HR: /personal|\bHR\b|human/i, IT: /^IT\b|\bIT\b/ }[area];
+    return (re && (this.data.settings.departments || []).find((d) => re.test(d))) || '';
+  }
+
+  /** A document type found in a file name but missing from the archive's list is added from the defaults. */
+  _ensureType(type) {
+    const list = this.data.settings.docTypes || (this.data.settings.docTypes = []);
+    if (!type || list.some((t) => t.id === type)) return;
+    const def = DOC_TYPES.find((t) => t.id === type);
+    if (def) list.push({ ...def });
+  }
+
   listDocs() {
     return this.data.docs.map((d) => this.decorate(d));
   }
 
   getDoc(docId) {
     const d = this.data.docs.find((x) => x.id === docId);
-    return d ? this.decorate(d) : null;
+    return d ? { ...this.decorate(d), ...this._related(d) } : null;
   }
 
   _doc(docId) {
@@ -377,7 +400,11 @@ class Archive {
     const sha = await sha256File(filePath);
     const ex = await extractFile(filePath);
     const text = ex.pages.map((p) => p.text).join('\n');
-    const meta = detectMetadata(text, path.basename(filePath));
+    const meta = detectMetadata(text, path.basename(filePath), { folder: path.dirname(filePath) });
+    if (meta.area) meta.department = this._departmentFor(meta.area) || undefined;
+    delete meta.area;
+    if (meta.lang === 'en') meta.tags = ['EN'];
+    delete meta.lang;
     const pub = {
       filePath,
       fileName: path.basename(filePath),
@@ -402,7 +429,7 @@ class Archive {
     if (out.tags && !Array.isArray(out.tags)) out.tags = String(out.tags).split(',').map((t) => t.trim()).filter(Boolean);
     if (out.status && !STATUSES.includes(out.status)) delete out.status;
     if (out.reviewIntervalMonths !== undefined) out.reviewIntervalMonths = Math.max(0, parseInt(out.reviewIntervalMonths, 10) || 0);
-    for (const k of ['code', 'title', 'department', 'owner', 'approver', 'notes', 'version']) if (typeof out[k] === 'string') out[k] = out[k].trim();
+    for (const k of ['code', 'title', 'department', 'owner', 'approver', 'notes', 'version', 'annexOf']) if (typeof out[k] === 'string') out[k] = out[k].trim();
     for (const k of ['effectiveDate', 'reviewDate']) if (out[k] === '') out[k] = null;
     return out;
   }
@@ -457,7 +484,9 @@ class Archive {
       notes: m.notes || '',
       version: m.version || '1',
       effectiveDate: m.effectiveDate || null,
-      reviewIntervalMonths: m.reviewIntervalMonths ?? this.typeInterval(m.type),
+      annexOf: m.annexOf || '',
+      // An annex is reviewed together with its main document.
+      reviewIntervalMonths: m.reviewIntervalMonths ?? (m.annexOf ? 0 : this.typeInterval(m.type)),
       reviewDate: m.reviewDate || null,
       versions: [],
       reviews: [],
@@ -467,6 +496,7 @@ class Archive {
       updatedAt: now
     };
     if (!doc.reviewDate && doc.effectiveDate && doc.reviewIntervalMonths) doc.reviewDate = addMonths(doc.effectiveDate, doc.reviewIntervalMonths);
+    this._ensureType(doc.type);
     await this._storeVersion(doc, filePath, a, doc.version);
     this._refreshCitations(doc, a.text);
     this.data.docs.push(doc);

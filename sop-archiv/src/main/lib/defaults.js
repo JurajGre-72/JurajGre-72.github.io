@@ -30,6 +30,10 @@ const DEFAULT_LAWS = [
 const DOC_TYPES = [
   { id: 'SOP', sk: 'Štandardný operačný postup (SOP)', en: 'Standard operating procedure (SOP)', interval: 24 },
   { id: 'OS', sk: 'Organizačná smernica (OS)', en: 'Organizational directive (OS)', interval: 24 },
+  { id: 'ŠPP', sk: 'Štandardný pracovný postup (ŠPP)', en: 'Standard working procedure (ŠPP)', interval: 24 },
+  { id: 'SM', sk: 'Smernica (SM)', en: 'Directive (SM)', interval: 24 },
+  { id: 'ME', sk: 'Metodika (ME)', en: 'Methodology (ME)', interval: 24 },
+  { id: 'ID', sk: 'Interný dokument (ID)', en: 'Internal document (ID)', interval: 24 },
   { id: 'PP', sk: 'Pracovný postup', en: 'Work instruction', interval: 24 },
   { id: 'MP', sk: 'Metodický pokyn', en: 'Guideline', interval: 24 },
   { id: 'F', sk: 'Formulár / záznam', en: 'Form / record', interval: 36 },
