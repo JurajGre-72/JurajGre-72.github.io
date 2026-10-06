@@ -33,6 +33,7 @@ const vault = require('./lib/vault');
 const training = require('./lib/training');
 const approval = require('./lib/approval');
 const company = require('./lib/company');
+const notices = require('./lib/notices');
 
 const STATUSES = ['draft', 'effective', 'review', 'obsolete'];
 const LOGO_TYPES = { '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.svg': 'image/svg+xml' };
@@ -186,6 +187,9 @@ class Archive {
     d.people = d.people || [];
     d.trainings = d.trainings || [];
     d.decisions = d.decisions || [];
+    d.notices = d.notices || { items: [], sources: {} };
+    d.notices.items = d.notices.items || [];
+    d.notices.sources = d.notices.sources || {};
     const def = defaultArchive(this.lang).settings;
     d.settings = { ...def, ...(d.settings || {}) };
     for (const doc of d.docs) {
@@ -1011,7 +1015,7 @@ class Archive {
   // Settings stored in the archive
 
   async updateSettings(patch) {
-    const allowed = ['warnDays', 'reminderDaysIcs', 'docTypes', 'departments', 'legisAutoCheck', 'legisLastAutoCheck', 'autoLockMinutes'];
+    const allowed = ['warnDays', 'reminderDaysIcs', 'docTypes', 'departments', 'legisAutoCheck', 'legisLastAutoCheck', 'autoLockMinutes', 'noticesAuto'];
     for (const k of allowed) if (patch[k] !== undefined) this.data.settings[k] = patch[k];
     if (patch.org !== undefined) this.data.org = String(patch.org).trim();
     await this.save();
@@ -1821,6 +1825,130 @@ class Archive {
     if (patch.ai) c.ai = { ...(c.ai || {}), ...patch.ai };
     await this.save();
     return this.getChange(changeId);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Notices of ŠÚKL and ÚŠKVBL (recalls, safety, availability, legislation)
+
+  /**
+   * Add what was read from the authorities' pages. batches: [{ src, items, error }].
+   * On the first successful read of a page, older notices (over 30 days, or without a date) are
+   * kept as "before monitoring started" so the list does not start with years of notices to assess.
+   * Returns the new notices.
+   */
+  async mergeNotices(batches, now = new Date()) {
+    const N = this.data.notices;
+    const nowIso = now.toISOString();
+    const todayIso = nowIso.slice(0, 10);
+    const byId = new Map(N.items.map((i) => [i.id, i]));
+    const added = [];
+    for (const b of batches) {
+      const st = N.sources[b.src.id] || {};
+      st.lastCheck = nowIso;
+      if (b.error) {
+        st.ok = false;
+        st.error = String(b.error).slice(0, 300);
+        N.sources[b.src.id] = st;
+        continue;
+      }
+      const first = !st.firstCheck;
+      for (const it of b.items) {
+        const id = notices.noticeId(b.src.authority, it.link, it.title);
+        const ex = byId.get(id);
+        if (ex) {
+          if (ex.category === 'other' && it.category !== 'other') ex.category = it.category;
+          if (!ex.dateKnown && it.date) Object.assign(ex, { date: it.date, dateKnown: true });
+          continue;
+        }
+        const age = it.date ? (Date.parse(todayIso) - Date.parse(it.date)) / 86400000 : null;
+        const old = first && (age === null || age > 30);
+        const n = {
+          id,
+          authority: b.src.authority,
+          source: b.src.id,
+          title: String(it.title).slice(0, 500),
+          link: it.link,
+          summary: String(it.summary || '').slice(0, 600),
+          date: it.date || todayIso,
+          dateKnown: !!it.date,
+          category: it.category,
+          firstSeen: nowIso,
+          seen: old,
+          handled: old ? { outcome: 'baseline', note: '', by: '', at: nowIso } : null
+        };
+        byId.set(id, n);
+        N.items.push(n);
+        if (!old) added.push(n);
+      }
+      Object.assign(st, { ok: true, error: null, count: b.items.length, firstCheck: st.firstCheck || nowIso });
+      N.sources[b.src.id] = st;
+    }
+    // Keep the list from growing without end: the newest 3000 (assessed notices are kept first).
+    if (N.items.length > 3000) {
+      N.items.sort((a, b) => (b.handled && b.handled.outcome !== 'baseline') - (a.handled && a.handled.outcome !== 'baseline') || String(b.date).localeCompare(String(a.date)));
+      N.items.length = 3000;
+    }
+    N.lastCheck = nowIso;
+    await this.save();
+    if (added.length) this.audit('notices.new', { n: added.length, titles: added.slice(0, 10).map((x) => x.title) });
+    return added;
+  }
+
+  _noticeView(n) {
+    return { ...n, rel: notices.relevance(n, this.data.company, company.activityHints) };
+  }
+
+  /** All notices, newest first, with whether each concerns the company; plus the state of each page read. */
+  listNotices() {
+    // Undated entries found on the first read (e.g. old acts on a list page) go last, not first.
+    const sortDate = (n) => (n.dateKnown || !(n.handled && n.handled.outcome === 'baseline') ? String(n.date) : '');
+    const items = this.data.notices.items
+      .map((n) => this._noticeView(n))
+      .sort((a, b) => sortDate(b).localeCompare(sortDate(a)) || String(b.firstSeen).localeCompare(String(a.firstSeen)));
+    const activities = company.ACTIVITIES.map(({ id, sk, en }) => ({ id, sk, en }));
+    return { items, sources: this.data.notices.sources, lastCheck: this.data.notices.lastCheck || null, counts: this.noticeCounts(items), activities };
+  }
+
+  /** toAssess: recalls (and watched names) that concern the company and wait for an assessment; unseen: new and not yet looked at. */
+  noticeCounts(items = null) {
+    const list = items || this.data.notices.items.map((n) => this._noticeView(n));
+    const needs = (n) => !n.handled && n.rel.forUs && (n.category === 'recall' || n.rel.watch.length > 0);
+    return {
+      toAssess: list.filter(needs).length,
+      unseen: list.filter((n) => !n.seen && n.rel.forUs && n.category !== 'other').length
+    };
+  }
+
+  async seeNotices(ids) {
+    const set = new Set(ids || []);
+    let n = 0;
+    for (const it of this.data.notices.items) if (set.has(it.id) && !it.seen) (it.seen = true), n++;
+    if (n) await this.save();
+    return n;
+  }
+
+  /** The company's assessment of a notice (e.g. a recall: not our product / measures taken / noted). */
+  async handleNotice(id, { outcome, note } = {}) {
+    const it = this.data.notices.items.find((x) => x.id === id);
+    if (!it) throw new Error('NOT_FOUND');
+    if (!notices.OUTCOMES.includes(outcome)) throw new Error('OUTCOME_REQUIRED');
+    const text = String(note || '').trim().slice(0, 2000);
+    if (outcome === 'done' && !text) throw new Error('NOTE_REQUIRED');
+    it.handled = { outcome, note: text, by: this.user, at: new Date().toISOString() };
+    it.seen = true;
+    await this.save();
+    this.audit('notice.handled', { title: it.title, authority: it.authority, outcome, note: text });
+    return this._noticeView(it);
+  }
+
+  async reopenNotice(id) {
+    const it = this.data.notices.items.find((x) => x.id === id);
+    if (!it) throw new Error('NOT_FOUND');
+    const was = it.handled;
+    it.handled = null;
+    await this.save();
+    this.audit('notice.reopened', { title: it.title, was: was && was.outcome });
+    return this._noticeView(it);
   }
 }
 

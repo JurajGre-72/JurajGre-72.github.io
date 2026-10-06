@@ -62,6 +62,7 @@ function defaultArchive(lang = 'sk') {
       docTypes: DOC_TYPES.map((t) => ({ ...t })),
       departments: (DEPARTMENTS[lang] || DEPARTMENTS.sk).slice(),
       legisAutoCheck: 'weekly', // off | startup | daily | weekly
+      noticesAuto: 'on', // ŠÚKL / ÚŠKVBL notices: checked every few hours while the app runs (on | off)
       autoLockMinutes: 30, // sign out after inactivity (0 = never)
       legisLastAutoCheck: null
     }

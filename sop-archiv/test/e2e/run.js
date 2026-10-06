@@ -15,6 +15,20 @@ const path = require('path');
 const http = require('http');
 const { makeAll } = require('../fixtures/make');
 const { makeTinyModel } = require('../fixtures/tiny-gguf');
+const NP = require('../fixtures/notices-pages');
+
+// ŠÚKL / ÚŠKVBL notices served by the local server (made-up products).
+const RECALLS = '/pre-odbornikov-a-firmy/dostupnost-a-kvalita-liekov/kvalita-liekov/oznamy-o-stiahnuti-liekov';
+const NOTICE_RECALLS = [
+  { title: 'Stiahnutie lieku Fiktivol 10 mg z trhu', path: `${RECALLS}/fiktivol`, date: NP.isoDaysAgo(3), summary: 'Stiahnutie šarží A123, A124 na úrovni veľkodistribútorov.' },
+  { title: 'Stiahnutie lieku Starý liek z trhu', path: `${RECALLS}/stary`, date: NP.isoDaysAgo(200) }
+];
+const NOTICE_NEWS = [
+  { title: 'MSC: Imaginex (tablety): prerušenie dodávky liekov', path: '/pre-odbornikov-a-firmy/dostupnost-a-kvalita-liekov/dostupnost-liekov/msc-imaginex', date: NP.isoDaysAgo(5) },
+  { title: 'Závery z Výboru pre hodnotenie rizík liekov (PRAC)', path: '/pre-odbornikov-a-firmy/bezpecnost-liekov/informacie-z-prac/zavery', date: NP.isoDaysAgo(8) },
+  { title: 'Dňa 15. 9. bude podateľňa zatvorená', path: '/oznamy/podatelna', date: NP.isoDaysAgo(9) }
+];
+const NOTICE_VET = [{ title: 'Oznámenie o stiahnutí veterinárneho lieku FIKTIVET 50 mg tablety pre psy', file: 'fiktivet.pdf', date: NP.isoDaysAgo(12) }];
 
 const ROOT = path.join(__dirname, '..', '..');
 const OUT = path.resolve(process.argv[2] || path.join(os.tmpdir(), 'sop-archiv-e2e'));
@@ -99,6 +113,12 @@ function startLawServer() {
         res.setHeader('content-type', 'application/json');
         return res.end(JSON.stringify([{ tag_name: 'sop-archiv-v9.9.0', html_url: 'https://github.com/example/releases/tag/sop-archiv-v9.9.0', published_at: '2027-01-15T09:00:00Z', body: 'Novinky' }, { tag_name: 'sop-archiv-v9.10.0-beta', prerelease: true }]));
       }
+      if (req.url.startsWith('/sk/rss')) {
+        res.setHeader('content-type', 'application/rss+xml; charset=utf-8');
+        return res.end(req.url.includes('pid=208') ? NP.suklRss('Mimoriadne oznamy', NOTICE_RECALLS) : NP.suklRss('Aktuality', NOTICE_NEWS));
+      }
+      if (req.url.startsWith('/?page_id=115')) return res.end(NP.uskvblNotices(NOTICE_VET));
+      if (req.url.startsWith('/?page_id=4702')) return res.end(NP.uskvblLegislation([{ title: 'NARIADENIE (EÚ) 2019/6 o veterinárnych liekoch', file: 'r2019-6.pdf' }]));
       if (req.url.startsWith('/spa')) {
         res.end(`<!doctype html><html><body><div id="app">Načítavam…</div><script>setTimeout(()=>{document.getElementById('app').innerText='ŠÚKL oznamy\\nNové usmernenie k správnej distribučnej praxi platné od 1. 1. 2027\\nZmena formulára hlásenia nežiaducich účinkov\\n'+'Ďalší text oznamu. '.repeat(20)},900)</script></body></html>`);
         return;
@@ -206,6 +226,7 @@ async function main() {
   const ollama = await startOllama();
   const lawBase = `http://127.0.0.1:${lawSrv.address().port}`;
   process.env.SOP_ARCHIV_UPDATE_URL = `${lawBase}/releases`;
+  process.env.SOP_ARCHIV_NOTICES_BASE = lawBase;
 
   let app = await launch(tmp, 'userdata-pc1');
   let app2 = null;
@@ -726,6 +747,39 @@ async function main() {
     assert.match((await readPdf(copyFile)).pages.map((p) => p.text).join('\n'), /RIADENÁ KÓPIA č\. 1/);
     await shot(page, '26-controlled-copy');
     console.log('  ✓ approval signed with the own password makes the version effective; controlled copy stamped on every page');
+    // ---- ŠÚKL / ÚŠKVBL notices: recalls to assess, watched product names ----
+    await page.evaluate(() => (location.hash = '#/settings'));
+    await page.fill('textarea[name=watchTerms]', 'Imaginex\nIný výrobok');
+    await page.click('form[data-submit="saveCompany"] button.btn-primary');
+    await page.waitForSelector('.toast:has-text("Profil spoločnosti uložený")');
+    await clearToasts(page);
+    await page.evaluate(() => (location.hash = '#/notices'));
+    await page.waitForSelector('.notices button[data-action="check"]');
+    await page.click('.notices button[data-action="check"]');
+    await page.waitForSelector('.toast:has-text("nových: 5")');
+    await page.waitForSelector('.nt-card:has-text("Fiktivol")');
+    const nt = await page.evaluate(() => window.api.notices.list());
+    assert.equal(nt.counts.toAssess, 3, 'two recalls and the watched product; the old recall and the office hours are not counted');
+    assert.equal(nt.items.find((n) => n.title.includes('Starý')).handled.outcome, 'baseline');
+    await page.waitForSelector('.nt-card:has-text("Imaginex") .nt-watch');
+    await page.waitForSelector('#nav a[href="#/notices"] .badge:has-text("3")');
+    await page.click('.nt-card:has-text("Fiktivol") button[data-outcome="done"]');
+    await page.waitForSelector('.modal:has-text("Váš postup:") a:has-text("SOP-SK-002")');
+    await page.click('.modal-foot .btn-primary');
+    await page.waitForSelector('.toast:has-text("Opíšte vykonané opatrenia")');
+    await page.fill('.modal [name=note]', 'Šarža A123 – 20 bal. v karanténe, 2 odberatelia informovaní.');
+    await page.click('.modal-foot .btn-primary');
+    await until(page, () => window.api.notices.counts().then((c) => c.toAssess === 2), 'recall assessed');
+    await page.click('.nt-tabs button[data-f="all"]');
+    await page.waitForSelector('.nt-card:has-text("Fiktivol") .nt-handled:has-text("20 bal. v karanténe")');
+    await shot(page, '27-notices');
+    const netNt = (await page.evaluate(() => window.api.app.networkLog())).filter((e) => e.purpose === 'notices');
+    assert.equal(netNt.length, 4, 'four public pages read');
+    assert.ok(netNt.every((e) => e.url.startsWith(lawBase)), 'only the (test) authority sites');
+    await page.evaluate(() => (location.hash = '#/dashboard'));
+    await page.waitForSelector('.panel:has-text("Oznamy ŠÚKL / ÚŠKVBL na posúdenie") .row:has-text("Imaginex")');
+    console.log('  ✓ ŠÚKL / ÚŠKVBL notices: read from the public pages only, recall assessed with measures, watched product highlighted');
+
     assert.ok(!fs.existsSync(path.join(tmp, 'archive', 'branding', 'logo.svg')));
     console.log('  ✓ company logo: another one can be chosen, and back to the PHARMACOPOLA logo');
 

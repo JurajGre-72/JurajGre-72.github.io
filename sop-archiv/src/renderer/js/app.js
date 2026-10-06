@@ -15,6 +15,7 @@ import * as change from './views/change.js';
 import * as settingsView from './views/settings.js';
 import * as compose from './views/compose.js';
 import * as trainingView from './views/training.js';
+import * as noticesView from './views/notices.js';
 
 const api = window.api;
 
@@ -110,6 +111,7 @@ const NAV = [
   { name: 'reviews', icon: 'calendar' },
   { name: 'training', icon: 'users' },
   { name: 'legislation', icon: 'scale' },
+  { name: 'notices', icon: 'bell' },
   { name: 'settings', icon: 'settings' }
 ];
 
@@ -136,6 +138,8 @@ function viewFor(route) {
       return compose;
     case 'training':
       return trainingView;
+    case 'notices':
+      return noticesView;
     default:
       return dashboard;
   }
@@ -157,20 +161,22 @@ async function renderSidebar() {
   let badgeLegis = 0;
   let badgeTraining = 0;
   let badgeSign = 0;
+  let badgeNotices = 0;
   try {
     const [docs, changes, mine, toSign] = await Promise.all([api.docs.list(), api.changes.list(), api.training.mine().catch(() => ({ docs: [] })), api.approval.mine().catch(() => [])]);
     badgeSign = toSign.length;
     badgeReviews = docs.filter((d) => d.review.state === 'overdue' || d.review.state === 'due').length;
     badgeLegis = changes.filter((c) => c.status !== 'resolved').length;
     badgeTraining = mine.docs.length;
+    badgeNotices = (await api.notices.counts().catch(() => ({ toAssess: 0 }))).toAssess;
   } catch (_) {
     /* ignore */
   }
   const active = app.route && app.route.name === 'compose' ? 'documents' : (app.route && app.route.name) || 'dashboard';
   nav.innerHTML = String(html`${NAV.map((n) => {
-    const badge = n.name === 'reviews' ? badgeReviews : n.name === 'legislation' ? badgeLegis : n.name === 'training' ? badgeTraining : n.name === 'dashboard' ? badgeSign : 0;
+    const badge = n.name === 'reviews' ? badgeReviews : n.name === 'legislation' ? badgeLegis : n.name === 'training' ? badgeTraining : n.name === 'dashboard' ? badgeSign : n.name === 'notices' ? badgeNotices : 0;
     return html`<a href="#/${n.name}" class="nav-item ${active === n.name ? 'active' : ''}" ${active === n.name ? html`aria-current="page"` : ''}>
-      ${icon(n.icon)}<span>${t(`nav.${n.name}`)}</span>${badge ? html`<span class="badge ${n.name === 'reviews' || n.name === 'training' || n.name === 'dashboard' ? 'badge-warn' : 'badge-info'}" ${n.name === 'dashboard' ? html`title="${t('apr.toSign')}"` : ''}>${badge}</span>` : ''}
+      ${icon(n.icon)}<span>${t(`nav.${n.name}`)}</span>${badge ? html`<span class="badge ${n.name === 'notices' ? 'badge-bad' : n.name === 'reviews' || n.name === 'training' || n.name === 'dashboard' ? 'badge-warn' : 'badge-info'}" ${n.name === 'dashboard' ? html`title="${t('apr.toSign')}"` : n.name === 'notices' ? html`title="${t('nt.toAssess')}"` : ''}>${badge}</span>` : ''}
     </a>`;
   })}`);
   const s = app.info.settings;

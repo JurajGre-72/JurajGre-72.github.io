@@ -13,6 +13,7 @@ const { pathToFileURL } = require('url');
 
 const { Archive } = require('./archive');
 const { LegislationMonitor, createElectronFetcher } = require('./legislation');
+const { NoticesMonitor, createTextFetcher, allowedUrl: noticeUrlAllowed } = require('./notices');
 const { createOcr } = require('./ocr');
 const updates = require('./lib/updates');
 const ai = require('./ai');
@@ -199,6 +200,9 @@ function readNetLog() {
 const UPDATE_REPO = 'JurajGre-72/JurajGre-72.github.io';
 let archive = null;
 let monitor = null;
+let noticesMonitor = null;
+// Tests only: the authorities' pages served by a local server.
+const NOTICES_BASE = /^http:\/\/127\.0\.0\.1:\d+$/.test(process.env.SOP_ARCHIV_NOTICES_BASE || '') ? process.env.SOP_ARCHIV_NOTICES_BASE : null;
 let lock = null;
 let lockHolder = null;
 let lockTimer = null;
@@ -269,6 +273,7 @@ async function openArchive(dir) {
   lock = l;
   lastArchiveMtime = archiveMtime();
   monitor = new LegislationMonitor(archive, { fetchPage: createElectronFetcher({ log: logNet }), isOffline: () => settings.offline });
+  noticesMonitor = new NoticesMonitor(archive, { fetchText: createTextFetcher({ log: logNet, base: NOTICES_BASE }), isOffline: () => settings.offline, base: NOTICES_BASE, pauseMs: NOTICES_BASE ? 0 : 800 });
   if (!archive.locked) afterUnlock();
   startLockTimers();
 }
@@ -282,6 +287,7 @@ function afterUnlock() {
       if (a !== archive) return;
       send('index:ready', { docs: a.data.docs.length });
       queueOcr(); // scans left unread when the app was last closed
+      if (!process.env.SOP_ARCHIV_NO_TIMERS) setTimeout(() => autoNoticesCheck(), 10000);
     })
     .catch((e) => console.error('index build failed', e));
 }
@@ -520,6 +526,39 @@ async function autoLegislationCheck() {
   } catch (e) {
     console.error('auto legislation check failed', e);
   }
+}
+
+/** ŠÚKL / ÚŠKVBL notices: read every few hours while the app runs (recalls should not wait a week). */
+async function autoNoticesCheck() {
+  if (!archive || archive.locked || archive.readOnly || settings.offline || !noticesMonitor || noticesMonitor.running) return;
+  if ((archive.data.settings.noticesAuto || 'on') === 'off') return;
+  const last = archive.data.notices.lastCheck;
+  if (last && Date.now() - new Date(last).getTime() < 4 * 60 * 60 * 1000) return;
+  try {
+    const r = await noticesMonitor.checkAll();
+    send('data:changed', { what: 'notices' });
+    notifyNotices(r.added);
+  } catch (e) {
+    console.error('notices check failed', e);
+  }
+}
+
+function notifyNotices(added) {
+  if (!added || !added.length || !settings.notifications || !Notification.isSupported()) return;
+  const view = new Map(archive.listNotices().items.map((n) => [n.id, n]));
+  const mine = added.map((n) => view.get(n.id)).filter((n) => n && n.rel.forUs && (n.category === 'recall' || n.rel.watch.length));
+  if (!mine.length) return;
+  const watched = mine.filter((n) => n.rel.watch.length);
+  const n = new Notification({
+    title: watched.length ? tr('notify.noticesWatch') : tr('notify.noticesTitle'),
+    body: mine
+      .slice(0, 3)
+      .map((x) => `${x.authority === 'sukl' ? 'ŠÚKL' : 'ÚŠKVBL'}: ${x.title}`)
+      .join('\n'),
+    icon: fs.existsSync(ICON) ? ICON : undefined
+  });
+  n.on('click', () => showWindow('notices'));
+  n.show();
 }
 
 // ---------------------------------------------------------------------------
@@ -1036,6 +1075,25 @@ function registerIpc() {
     { perm: 'editor', write: true }
   );
 
+  // --- notices of ŠÚKL and ÚŠKVBL ---
+  handle('notices:list', () => archive.listNotices());
+  handle('notices:counts', () => archive.noticeCounts());
+  handle(
+    'notices:check',
+    async () => {
+      if (settings.offline) throw new UserError(tr('err.offline'));
+      const r = await noticesMonitor.checkAll();
+      notifyNotices(r.added);
+      return { added: r.added.length, errors: r.errors };
+    },
+    { perm: 'editor', write: true }
+  );
+  handle('notices:seen', (ids) => archive.seeNotices(Array.isArray(ids) ? ids.slice(0, 5000) : []), { write: true });
+  handle('notices:handle', (id, outcome, note) => archive.handleNotice(id, { outcome, note }), { perm: 'editor', write: true });
+  handle('notices:reopen', (id) => archive.reopenNotice(id), { perm: 'editor', write: true });
+  // Opens a notice on the authority's site in the browser (only their addresses).
+  handle('notices:open', (url) => (noticeUrlAllowed(url, NOTICES_BASE) ? shell.openExternal(url) : false));
+
   // --- check documents against an act the user brings ---------------------------
   handle(
     'legis:pickFile',
@@ -1310,6 +1368,8 @@ if (!app.requestSingleInstanceLock()) {
       setInterval(() => reviewReminder(false), 60 * 60 * 1000);
       setTimeout(() => autoLegislationCheck(), 20000);
       setInterval(() => autoLegislationCheck(), 6 * 60 * 60 * 1000);
+      setTimeout(() => autoNoticesCheck(), 45000);
+      setInterval(() => autoNoticesCheck(), 30 * 60 * 1000);
     }
   });
 

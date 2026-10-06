@@ -158,7 +158,9 @@ function emptyState() {
 }
 
 export async function render() {
-  const [docs, laws, changes, trainingOv, toSign, toWithdraw] = await Promise.all([api.docs.list(), api.laws.list(), api.changes.list(), api.training.overview().catch(() => ({ missing: 0 })), api.approval.mine().catch(() => []), api.copies.toWithdraw().catch(() => [])]);
+  const [docs, laws, changes, trainingOv, toSign, toWithdraw, notices] = await Promise.all([api.docs.list(), api.laws.list(), api.changes.list(), api.training.overview().catch(() => ({ missing: 0 })), api.approval.mine().catch(() => []), api.copies.toWithdraw().catch(() => []), api.notices.list().catch(() => ({ items: [] }))]);
+  // Recalls (and watched names) from ŠÚKL / ÚŠKVBL that concern the company and wait for an assessment.
+  const noticesToAssess = notices.items.filter((n) => !n.handled && n.rel.forUs && (n.category === 'recall' || n.rel.watch.length));
   state = { docs, laws, changes };
   const trainingMissing = trainingOv.missing;
   const warn = app.info.archiveSettings.warnDays;
@@ -179,6 +181,11 @@ export async function render() {
     ${toSign.length
       ? html`<section class="panel panel-warn"><h3>${icon('shield')}${t('apr.toSign')} <span class="count">${toSign.length}</span></h3>
           <ul class="rows">${toSign.map((d) => html`<li class="row"><a class="row-main" href="#/documents/${d.id}"><span class="code">${d.code || '—'}</span><span class="row-title">${d.title}</span></a><span class="muted small">v${d.version} · ${t(`apr.role.${d.role}`)} · ${d.requestedBy}</span></li>`)}</ul></section>`
+      : ''}
+    ${noticesToAssess.length
+      ? html`<section class="panel panel-warn"><h3>${icon('bell')}${t('dash.notices')} <span class="count">${noticesToAssess.length}</span></h3>
+          <ul class="rows">${noticesToAssess.slice(0, 5).map((n) => html`<li class="row"><a class="row-main" href="#/notices"><span class="chip chip-${n.authority === 'sukl' ? 'info' : 'vet'}">${n.authority === 'sukl' ? 'ŠÚKL' : 'ÚŠKVBL'}</span><span class="row-title">${n.title}</span></a>${n.rel.watch.length ? html`<span class="chip chip-bad">${n.rel.watch.join(', ')}</span>` : ''}<span class="row-date">${fmtDate(n.date)}</span></li>`)}</ul>
+          ${noticesToAssess.length > 5 ? html`<a class="small" href="#/notices">${t('dash.noticesAll')} →</a>` : ''}</section>`
       : ''}
     ${toWithdraw.length ? html`<div class="note note-warn">${icon('alert')}<div>${t('cp.toWithdrawAll', { n: toWithdraw.length, list: Array.from(new Set(toWithdraw.map((c) => c.code || c.title))).join(', ') })}</div></div>` : ''}
     ${!docs.length

@@ -744,3 +744,36 @@ body.role-reader .perm-ro, body.read-only .perm-ro { display: inline-flex !impor
 .apr-steps { margin: 8px 0 0 18px; padding: 0; display: flex; flex-direction: column; gap: 4px; }
 .apr-steps li.open { color: var(--muted); }
 .apr-role { display: inline-block; min-width: 96px; color: var(--muted); font-size: 0.85rem; }
+
+/* ---------- Authority notices (ŠÚKL / ÚŠKVBL) ---------- */
+.badge-bad { background: #e5534b; color: #fff; }
+.nt-tabs { margin: 8px 0 12px; }
+.nt-tabs .tab { padding: 9px 11px; }
+.nt-tabs .tab { background: none; border: 0; border-bottom: 2px solid transparent; font: inherit; font-weight: 550; cursor: pointer; }
+.nt-tabs .tab.active { border-bottom-color: var(--primary); }
+.nt-filters { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 12px; }
+.nt-filters input[type='search'] { flex: 1 1 240px; max-width: 420px; }
+.nt-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
+.nt-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 16px; }
+.nt-card.nt-urgent { border-left: 4px solid var(--bad); }
+.nt-card.nt-dim { opacity: 0.75; }
+.nt-meta { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; font-size: 12.5px; color: var(--muted); }
+.nt-date { font-variant-numeric: tabular-nums; margin-right: 4px; }
+.chip-vet { background: var(--good-soft); color: var(--good); }
+.chip-new { background: var(--primary); color: var(--primary-ink); }
+.nt-title { font-size: 15px; margin: 6px 0 2px; line-height: 1.35; }
+.nt-title a { color: var(--text); }
+.nt-title .nt-ext { width: 13px; height: 13px; margin-left: 5px; color: var(--muted); vertical-align: -1px; }
+.nt-summary { margin: 2px 0 4px; }
+.nt-rel { display: flex; gap: 6px; align-items: center; font-size: 12.5px; margin-top: 4px; }
+.nt-watch { color: var(--bad); font-weight: 600; }
+.nt-actions, .nt-handled { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 8px; }
+.nt-note { font-size: 13px; }
+.nt-sources { list-style: none; padding: 0; margin: 8px 0 0; display: grid; gap: 4px; font-size: 12.5px; }
+.nt-sources li { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.nt-sources .ok { color: var(--good); }
+.nt-sources .warn { color: var(--warn); }
+.nt-assess fieldset { border: 0; padding: 0; margin: 10px 0; }
+.nt-assess legend { font-weight: 600; margin-bottom: 6px; }
+.nt-assess .radio-row { display: flex; gap: 8px; align-items: flex-start; padding: 6px 0; cursor: pointer; }
+.dash-notice { display: flex; gap: 8px; align-items: baseline; }

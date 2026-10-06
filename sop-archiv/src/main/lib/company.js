@@ -43,7 +43,7 @@ const ACTIVITIES = [
 
 // The two activities the company was set up for; everything else is left for the administrator.
 function defaultCompany() {
-  return { activities: { human: 'yes', vet: 'yes', other: 'yes' }, notes: '', updatedAt: null, updatedBy: null };
+  return { activities: { human: 'yes', vet: 'yes', other: 'yes' }, notes: '', watchTerms: '', updatedAt: null, updatedBy: null };
 }
 
 function cleanCompany(c) {
@@ -54,6 +54,10 @@ function cleanCompany(c) {
     if (v === 'yes' || v === 'no') out.activities[a.id] = v;
   }
   out.notes = String((c && c.notes) || '').slice(0, 4000);
+  // Product and manufacturer names to look for in the authorities' notices (one per line).
+  out.watchTerms = String((c && c.watchTerms) || '').slice(0, 50000);
+  if (c && typeof c.updatedAt === 'string') out.updatedAt = c.updatedAt;
+  if (c && typeof c.updatedBy === 'string') out.updatedBy = c.updatedBy;
   return out;
 }
 
