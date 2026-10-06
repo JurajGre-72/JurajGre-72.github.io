@@ -79,6 +79,8 @@ let llamaGpu = null;
 let model = null;
 let context = null;
 let chatWrapper = null; // the model's chat format, with "thinking" switched off
+let sequence = null; // the context's one working slot, emptied before every request
+let queue = Promise.resolve(); // requests run one after another
 let loaded = null; // { modelPath, gpu, contextSize }
 const running = new Map(); // request id -> AbortController
 
@@ -94,6 +96,7 @@ async function unload() {
   context = null;
   model = null;
   chatWrapper = null;
+  sequence = null;
   loaded = null;
 }
 
@@ -111,6 +114,9 @@ async function load({ modelPath, gpu = 'auto', contextSize = 8192, threads = 0 }
   // As much context as fits in memory, up to the requested size (never more than the model was made for).
   const max = Math.max(256, Math.min(contextSize, model.trainContextSize || contextSize));
   context = await model.createContext({ contextSize: { min: Math.min(2048, max), max }, sequences: 1 });
+  // Kept for the model's lifetime: a slot given back is freed only later, so taking a new one for
+  // the next request (e.g. the next chapter of a draft) could fail with "No sequences left".
+  sequence = context.getSequence();
   // Answers come straight away: a model that "thinks" first (Gemma 4 does by default) would spend the
   // answer's length – and minutes on an ordinary computer – on reasoning that is never shown.
   const wrapper = L.resolveChatWrapper(model);
@@ -139,22 +145,38 @@ function info() {
 }
 
 /** One request = one fresh conversation: nothing from an earlier request (or another user) is kept. */
-async function run(id, { system, user, maxTokens = 2048, temperature = 0.2 }) {
-  if (!model || !context) throw new Error('No model loaded');
+async function run(id, args) {
+  // Requests wait for each other; one cancelled while waiting does not run at all.
+  const ctrl = new AbortController();
+  ctrl.id = id;
+  running.set(id, ctrl);
+  const prev = queue;
+  let release;
+  queue = new Promise((r) => (release = r));
+  try {
+    await prev;
+    if (ctrl.signal.aborted) return { text: '', aborted: true };
+    return await runOne(ctrl, args);
+  } finally {
+    running.delete(id);
+    release();
+  }
+}
+
+async function runOne(ctrl, { system, user, maxTokens = 2048, temperature = 0.2 }) {
+  if (!model || !context || !sequence) throw new Error('No model loaded');
   // The request and the answer must fit in the context: a clear message instead of a cut-off answer.
   const used = model.tokenize(system || '').length + model.tokenize(user || '').length + 48;
   if (used > context.contextSize - 64) throw new Error('AI_PROMPT_TOO_LONG');
   maxTokens = Math.max(32, Math.min(maxTokens, context.contextSize - used));
   const L = await lib();
-  const ctrl = new AbortController();
-  running.set(id, ctrl);
-  const sequence = context.getSequence();
+  await sequence.clearHistory(); // the previous request leaves nothing behind
+  const session = new L.LlamaChatSession({ contextSequence: sequence, systemPrompt: system || undefined, autoDisposeSequence: false, ...(chatWrapper ? { chatWrapper } : {}) });
   try {
-    const session = new L.LlamaChatSession({ contextSequence: sequence, systemPrompt: system || undefined, autoDisposeSequence: false, ...(chatWrapper ? { chatWrapper } : {}) });
     let buffered = '';
     let last = Date.now();
     const flush = () => {
-      if (buffered) send({ t: 'chunk', id, text: buffered });
+      if (buffered) send({ t: 'chunk', id: ctrl.id, text: buffered });
       buffered = '';
       last = Date.now();
     };
@@ -170,11 +192,9 @@ async function run(id, { system, user, maxTokens = 2048, temperature = 0.2 }) {
       }
     });
     flush();
-    session.dispose({ disposeSequence: false });
-    return { text, aborted: ctrl.signal.aborted, tokens: sequence.tokenMeter ? sequence.tokenMeter.usedOutputTokens : undefined };
+    return { text, aborted: ctrl.signal.aborted };
   } finally {
-    running.delete(id);
-    sequence.dispose();
+    session.dispose({ disposeSequence: false });
   }
 }
 

@@ -47,6 +47,14 @@ test('built-in AI: loads a model, streams the answer, stops on request, keeps no
     assert.equal(r2.aborted, true);
     // Requests one after another (each one is a fresh conversation).
     for (let i = 0; i < 3; i++) assert.ok((await m.complete({ user: `Otázka ${i}`, maxTokens: 8, temperature: 0.8 })).text.length >= 0);
+    // Two requests at once (e.g. a draft chapter while a rewrite is asked for): the second waits for the first.
+    const both = await Promise.all([m.complete({ user: 'Prvá.', maxTokens: 16, temperature: 0.8 }), m.complete({ user: 'Druhá.', maxTokens: 16, temperature: 0.8 })]);
+    assert.ok(both.every((x) => x.aborted === false && x.text.length > 0), 'both answered');
+    // One cancelled while it waits does not run at all.
+    const wait = new AbortController();
+    const [first, queued] = await Promise.all([m.complete({ user: 'Tretia.', maxTokens: 16, temperature: 0.8 }), m.complete({ user: 'Štvrtá.', maxTokens: 16, signal: wait.signal }).finally(() => {}), Promise.resolve().then(() => wait.abort())]);
+    assert.equal(first.aborted, false);
+    assert.deepEqual(queued, { text: '', aborted: true });
     assert.equal(m.status().loaded.gpu, false);
   } finally {
     await m.stop();
