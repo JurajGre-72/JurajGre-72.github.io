@@ -37,6 +37,49 @@ function uniqueSorted(versions) {
   return Array.from(map.values()).sort((a, b) => a.key.localeCompare(b.key));
 }
 
+// Slov-Lex keeps every version of an act as a plain page on static.slov-lex.sk, listed on an index
+// page ("História predpisu"). It needs no JavaScript or sign-in, unlike the www.slov-lex.sk portal.
+function slovlexIndexUrl(url) {
+  const id = slovlexId(url);
+  if (!id) return null;
+  let origin = 'https://static.slov-lex.sk';
+  try {
+    const u = new URL(url);
+    if (!/(^|\.)slov-lex\.sk$/i.test(u.hostname)) origin = u.origin; // a mirror or a test server
+  } catch (_) {
+    /* not a URL: use Slov-Lex */
+  }
+  return `${origin}/static/SK/ZZ/${id.year}/${id.num}/`;
+}
+
+/**
+ * Versions listed on a Slov-Lex index page:
+ * [{ key, date, url, until, amendedBy: ['88/2026 Z. z.'] }] sorted ascending (the promulgated text is left out).
+ */
+function slovlexIndexVersions(html, indexUrl) {
+  const base = String(indexUrl || '').replace(/\/?$/, '/');
+  const out = [];
+  const re = /<tr\b([^>]*\beffectivenessHistoryItem\b[^>]*)>([\s\S]*?)<\/tr>/gi;
+  let m;
+  while ((m = re.exec(String(html || '')))) {
+    const attr = (name) => (m[1].match(new RegExp(`${name}="([^"]*)"`, 'i')) || [])[1] || '';
+    const key = (attr('data-iri').match(/\/(\d{8})$/) || [])[1];
+    const date = key && compactToIso(key);
+    if (!date || attr('data-vyhlasene') === '1') continue;
+    const amendedBy = [...m[2].matchAll(/>\s*(\d+\/\d{4})(?:&nbsp;|\s|\u00a0)*Z\.(?:&nbsp;|\s|\u00a0)*z\.\s*</gi)].map((x) => `${x[1]} Z. z.`);
+    out.push({ key, date, url: `${base}${key}.html`, until: /^\d{4}-\d{2}-\d{2}$/.test(attr('data-ucinnostdo')) ? attr('data-ucinnostdo') : null, amendedBy: [...new Set(amendedBy)] });
+  }
+  return uniqueSorted(out);
+}
+
+/** The act stops being in force: its last version on the Slov-Lex index has an end date. */
+function slovlexIndexRepealed(versions, day) {
+  const last = versions[versions.length - 1];
+  if (!last || !last.until) return null;
+  const [y, mo, d] = last.until.split('-');
+  return `${last.until < day ? 'Predpis je zrušený alebo stratil účinnosť' : 'Predpis bude zrušený alebo stratí účinnosť'} – posledné znenie je účinné do ${Number(d)}. ${Number(mo)}. ${y}.`;
+}
+
 /**
  * Read the versions ("znenia" / consolidated versions) of a law from a rendered page:
  * its links, final URL and raw HTML (versions may sit in <select> options or embedded JSON).
@@ -276,6 +319,9 @@ module.exports = {
   parseVersions,
   pageVersionKey,
   detectRepealed,
+  slovlexIndexUrl,
+  slovlexIndexVersions,
+  slovlexIndexRepealed,
   pickVersions,
   splitSections,
   diffLaw,

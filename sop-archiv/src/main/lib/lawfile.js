@@ -99,7 +99,7 @@ function detectLawIdentity(text, laws = []) {
 
 function urlForKey(key) {
   let m;
-  if ((m = String(key).match(/^SK:(\d+)\/(\d{4})$/))) return `https://www.slov-lex.sk/pravne-predpisy/SK/ZZ/${m[2]}/${m[1]}/`;
+  if ((m = String(key).match(/^SK:(\d+)\/(\d{4})$/))) return `https://www.slov-lex.sk/ezbierky/pravne-predpisy/SK/ZZ/${m[2]}/${m[1]}/`;
   if ((m = String(key).match(/^EU:(.+)$/))) return `https://eur-lex.europa.eu/legal-content/SK/ALL/?uri=CELEX:${m[1]}`;
   return '';
 }

@@ -5,7 +5,7 @@
 
 const { cleanText } = require('./lib/text');
 const { today, compactToIso } = require('./lib/dates');
-const { detectSource, parseVersions, pageVersionKey, detectRepealed, pickVersions, diffLaw, hashText, touchedKeys } = require('./lib/legis-parse');
+const { detectSource, parseVersions, pageVersionKey, detectRepealed, pickVersions, diffLaw, hashText, touchedKeys, slovlexIndexUrl, slovlexIndexVersions, slovlexIndexRepealed } = require('./lib/legis-parse');
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -30,8 +30,22 @@ class LegislationMonitor {
     this.running = false;
   }
 
-  /** Fetch a law page; for Slov-Lex also try the other URL form (with / without "/ezbierky"). */
+  /**
+   * Fetch a law page. For Slov-Lex, read the version index on static.slov-lex.sk (page.versionIndex);
+   * if that fails, the portal page, also in its other URL form (with / without "/ezbierky").
+   */
   async _fetchLawPage(url, source) {
+    const index = source === 'slovlex' && slovlexIndexUrl(url);
+    if (index) {
+      try {
+        const page = await this.fetchPage(index);
+        const versions = slovlexIndexVersions(page.html, page.url || index);
+        if (versions.length) return { ...page, versionIndex: versions };
+      } catch (_) {
+        /* fall back to the portal page */
+      }
+      await sleep(this.pauseMs);
+    }
     try {
       return await this.fetchPage(url);
     } catch (e) {
@@ -96,29 +110,39 @@ class LegislationMonitor {
       const day = today();
       state.source = source;
       state.pageTitle = page.title || '';
-      const versions = parseVersions(source, page, law);
+      const versions = page.versionIndex || parseVersions(source, page, law);
 
       if (versions.length) {
         const { effective, newest, upcoming } = pickVersions(versions, day);
         // The Slov-Lex page itself shows one version (the one in force unless its URL says otherwise).
-        const shownKey = source === 'slovlex' ? pageVersionKey(page) || effective.key : null;
+        const shownKey = source === 'slovlex' && !page.versionIndex ? pageVersionKey(page) || effective.key : null;
         const fetched = shownKey ? { key: shownKey, text: page.text } : null;
         const effText = await this._snapshotText(law, effective, fetched);
         const newText = newest.key === effective.key ? effText : await this._snapshotText(law, newest, fetched);
         if (!prev.newestKey) {
           // First check = baseline. If a future version is already published, report it right away.
           if (newest.key !== effective.key) {
-            const c = await this._change(law, 'upcoming', effective, newest, effText, newText);
+            const c = await this._change(law, 'upcoming', effective, newest, effText, newText, amendments(versions, effective.key, newest.key));
             if (c) created.push(c);
           }
         } else if (newest.key > prev.newestKey) {
           let from = { key: prev.newestKey, date: compactToIso(prev.newestKey) };
           let fromText = this.archive.hasSnapshot(law.id, from.key) ? await this.archive.loadSnapshot(law.id, from.key) : null;
+          const listed = fromText == null && versions.find((v) => v.key === prev.newestKey);
+          if (listed) {
+            // The previous text was not kept (e.g. an archive copied without its legislation folder): fetch it again.
+            try {
+              fromText = await this._snapshotText(law, listed, null);
+              from = listed;
+            } catch (_) {
+              /* compare with the version in force instead */
+            }
+          }
           if (fromText == null && newest.key !== effective.key) {
             from = effective;
             fromText = effText;
           }
-          const c = await this._change(law, newest.date > day ? 'upcoming' : 'new-version', from, newest, fromText, newText);
+          const c = await this._change(law, newest.date > day ? 'upcoming' : 'new-version', from, newest, fromText, newText, amendments(versions, from.key, newest.key));
           if (c) created.push(c);
         }
         Object.assign(state, {
@@ -152,7 +176,7 @@ class LegislationMonitor {
         Object.assign(state, { mode: 'page', hash, snapshotKey: key, effectiveKey: null, newestKey: null, upcoming: [] });
       }
 
-      const repealed = detectRepealed(source, page.bodyText || page.text);
+      const repealed = page.versionIndex ? slovlexIndexRepealed(page.versionIndex, today()) : detectRepealed(source, page.bodyText || page.text);
       if (repealed && !prev.repealed) {
         const c = await this._change(law, 'repealed', null, null, null, null, { notice: repealed });
         if (c) created.push(c);
@@ -225,6 +249,9 @@ const EXTRACT_JS = `(() => {
   let best = null;
   for (const c of cands) { const len = (c.innerText || '').length; if (!best || len > best.len) best = { el: c, len }; }
   if (best && best.len >= Math.max(200, bodyText.length * 0.4)) text = best.el.innerText;
+  // Slov-Lex: only the act and its annexes, not the page's contents list and info box (they differ in every version).
+  const act = document.querySelector('#predpis');
+  if (act && (act.innerText || '').length >= 200) text = [act, document.querySelector('#prilohy')].filter(Boolean).map((e) => e.innerText).join('\\n');
   return {
     text,
     bodyText,
@@ -232,6 +259,12 @@ const EXTRACT_JS = `(() => {
     links: Array.from(document.querySelectorAll('a[href]')).slice(0, 8000).map(a => ({ href: a.href, text: (a.textContent || '').trim().slice(0, 160) }))
   };
 })()`;
+
+/** Acts that amended the law after version `fromKey` up to `toKey` (Slov-Lex index only). */
+function amendments(versions, fromKey, toKey) {
+  const acts = versions.filter((v) => v.key > fromKey && v.key <= toKey).flatMap((v) => v.amendedBy || []);
+  return acts.length ? { amendedBy: [...new Set(acts)] } : {};
+}
 
 function createElectronFetcher({ log = () => {} } = {}) {
   const { BrowserWindow, session } = require('electron');
@@ -277,8 +310,9 @@ function createElectronFetcher({ log = () => {} } = {}) {
       let stable = 0;
       while (Date.now() - started < timeoutMs) {
         const len = await win.webContents.executeJavaScript('document.body ? document.body.innerText.length : 0', true).catch(() => 0);
-        if (len > 200 && len === last) {
-          if (++stable >= 3) break;
+        // A short page may still be loading its content, so it must stay unchanged for longer.
+        if (len > 0 && len === last) {
+          if (++stable >= (len > 200 ? 3 : 7)) break;
         } else stable = 0;
         last = len;
         await sleep(700);

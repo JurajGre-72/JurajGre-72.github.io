@@ -113,7 +113,7 @@ async function lawDialog(law) {
       <div class="field"><label>${t('leg.form.jurisdiction')}</label><select name="jurisdiction">${['SK', 'EU', 'OTHER'].map((j) => html`<option value="${j}" ${j === l.jurisdiction ? 'selected' : ''}>${t(`leg.j.${j}`)}</option>`)}</select></div>
       <div class="field"><label>${t('leg.form.key')}</label><input name="key" value="${l.key || ''}" placeholder="SK:362/2011"><span class="hint">${t('leg.form.keyHint')}</span></div>
       <div class="field"><label class="check"><input type="checkbox" name="enabled" ${l.enabled !== false ? 'checked' : ''}> ${t('leg.form.enabled')}</label></div>
-      <div class="field full"><label>${t('leg.form.url')}</label><input name="url" value="${l.url || ''}" placeholder="https://www.slov-lex.sk/pravne-predpisy/SK/ZZ/2011/362/"><span class="hint">${t('leg.form.urlHint')}</span></div>
+      <div class="field full"><label>${t('leg.form.url')}</label><input name="url" value="${l.url || ''}" placeholder="https://www.slov-lex.sk/ezbierky/pravne-predpisy/SK/ZZ/2011/362/"><span class="hint">${t('leg.form.urlHint')}</span></div>
       <div class="field full"><label>${t('leg.form.aliases')}</label><input name="aliases" value="${(l.aliases || []).join(', ')}"><span class="hint">${t('leg.form.aliasesHint')}</span></div>
       <div class="field full"><label>${t('f.notes')}</label><textarea name="notes" rows="2">${l.notes || ''}</textarea></div>
     </form>`,

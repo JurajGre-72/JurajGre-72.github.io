@@ -110,7 +110,7 @@ test('resolveLawQuery: names, numbers, CELEX, URLs', () => {
   assert.equal(resolveLawQuery('32016R0161', laws, DEFAULT_LAWS).spec.key, 'EU:32016R0161');
   assert.equal(resolveLawQuery('zákon o odpadoch', laws, DEFAULT_LAWS).spec.key, 'SK:79/2015');
   const unknown = resolveLawQuery('100/2020', laws, DEFAULT_LAWS).spec;
-  assert.equal(unknown.url, 'https://www.slov-lex.sk/pravne-predpisy/SK/ZZ/2020/100/');
+  assert.equal(unknown.url, 'https://www.slov-lex.sk/ezbierky/pravne-predpisy/SK/ZZ/2020/100/');
   assert.equal(resolveLawQuery('zákon o rodine', laws, DEFAULT_LAWS), null);
   assert.equal(resolveLawQuery('https://www.sukl.sk/oznamy', laws, DEFAULT_LAWS).spec.url, 'https://www.sukl.sk/oznamy');
 });

@@ -212,11 +212,12 @@ test('archive: a damaged archive.json is restored from the daily backup', async 
   assert.ok(fs.readdirSync(dir).some((f) => f.startsWith('archive.json.damaged-')));
 });
 
-test('monitor: Slov-Lex URL falls back to the /ezbierky/ form on HTTP 404', async () => {
+test('monitor: without the static index, the Slov-Lex portal URL falls back to the /ezbierky/ form on HTTP 404', async () => {
   const dir = tmpDir();
   const a = new Archive({ dataDir: dir, user: 't' });
   await a.open();
   const lieky = a.data.laws.find((l) => l.key === 'SK:362/2011');
+  lieky.url = 'https://www.slov-lex.sk/pravne-predpisy/SK/ZZ/2011/362/'; // address form used before 2025
   const seen = [];
   const fetchPage = async (url) => {
     seen.push(url);
@@ -228,7 +229,70 @@ test('monitor: Slov-Lex URL falls back to the /ezbierky/ form on HTTP 404', asyn
   const r = await m.checkLaw(lieky.id);
   assert.equal(r.status, 'ok', r.error);
   assert.equal(r.state.effectiveDate, '2025-01-01');
-  assert.ok(seen[1].includes('/ezbierky/pravne-predpisy/SK/ZZ/2011/362/'));
+  assert.equal(seen[0], 'https://static.slov-lex.sk/static/SK/ZZ/2011/362/', 'the static version index is tried first');
+  assert.ok(seen[2].includes('/ezbierky/pravne-predpisy/SK/ZZ/2011/362/'));
+});
+
+// Trimmed copy of a real Slov-Lex index page (static.slov-lex.sk/static/SK/ZZ/<year>/<num>/).
+const indexRow = (n, key, from, to, act) =>
+  `<tr class="effectivenessHistoryItem" data-iri="/SK/ZZ/2011/362/${key}" data-vyhlasene="0" data-ucinnostod="${from}" data-ucinnostdo="${to}"><td class="title">${n}.</td>` +
+  `<td class="title"><a href="${key}.html"><span>${from} - ${to}</span></a></td><td>${act ? `<a href="../../../ZZ/${act.split('/')[1]}/${act.split('/')[0]}/${key}.html">${act}&nbsp;Z.&nbsp;z.</a>` : ''}</td></tr>`;
+const indexPage = (rows) =>
+  `<html><body><h1>História predpisu 362/2011 Z. z.</h1><table><tbody>` +
+  `<tr class="effectivenessHistoryItem" data-iri="/SK/ZZ/2011/362/vyhlasene_znenie" data-vyhlasene="1" data-ucinnostod="" data-ucinnostdo=""><td><a href="vyhlasene_znenie.html">Vyhlásené znenie</a></td></tr>` +
+  rows.join('') +
+  `</tbody></table></body></html>`;
+
+test('Slov-Lex index: versions, amending acts and repeal', () => {
+  const html = indexPage([indexRow(2, '20250101', '2025-01-01', '2026-12-31', '361/2024'), indexRow(3, '20270101', '2027-01-01', '', '77/2026')]);
+  const v = L.slovlexIndexVersions(html, 'https://static.slov-lex.sk/static/SK/ZZ/2011/362/');
+  assert.deepEqual(
+    v.map((x) => [x.key, x.until, x.amendedBy.join(), x.url]),
+    [
+      ['20250101', '2026-12-31', '361/2024 Z. z.', 'https://static.slov-lex.sk/static/SK/ZZ/2011/362/20250101.html'],
+      ['20270101', null, '77/2026 Z. z.', 'https://static.slov-lex.sk/static/SK/ZZ/2011/362/20270101.html']
+    ]
+  );
+  assert.equal(L.slovlexIndexRepealed(v, '2026-10-06'), null, 'last version open-ended: in force');
+  const gone = L.slovlexIndexVersions(indexPage([indexRow(2, '20110701', '2011-07-01', '2011-11-30', '34/2011')]), 'x/');
+  assert.match(L.slovlexIndexRepealed(gone, '2026-10-06'), /zrušený.*30\. 11\. 2011/);
+  const ending = L.slovlexIndexVersions(indexPage([indexRow(2, '20260101', '2026-01-01', '2026-12-31', '')]), 'x/');
+  assert.match(L.slovlexIndexRepealed(ending, '2026-10-06'), /bude zrušený.*31\. 12\. 2026/);
+  assert.equal(L.slovlexIndexUrl('https://www.slov-lex.sk/ezbierky/pravne-predpisy/SK/ZZ/2011/362/20260530'), 'https://static.slov-lex.sk/static/SK/ZZ/2011/362/');
+  assert.equal(L.slovlexIndexUrl('http://127.0.0.1:8080/pravne-predpisy/SK/ZZ/2011/362/'), 'http://127.0.0.1:8080/static/SK/ZZ/2011/362/');
+});
+
+test('monitor: Slov-Lex through the static index – upcoming version with its amending act, then repeal', async () => {
+  const dir = tmpDir();
+  const a = new Archive({ dataDir: dir, user: 't' });
+  await a.open();
+  const lieky = a.data.laws.find((l) => l.key === 'SK:362/2011');
+  let rows = [indexRow(2, '20250101', '2025-01-01', '2026-12-31', '361/2024'), indexRow(3, '20270101', '2027-01-01', '', '77/2026')];
+  const seen = [];
+  const fetchPage = async (url) => {
+    seen.push(url);
+    if (url.endsWith('/static/SK/ZZ/2011/362/')) return { url, title: 'História predpisu 362/2011 Z. z.', text: 'História predpisu', html: indexPage(rows), links: [] };
+    const k = (url.match(/(\d{8})\.html$/) || [])[1];
+    if (k && V[k]) return { url, title: '362/2011 Z. z.', text: V[k], html: '', links: [] };
+    throw new Error('HTTP 404');
+  };
+  const m = new LegislationMonitor(a, { fetchPage, pauseMs: 0 });
+  const r = await m.checkLaw(lieky.id);
+  assert.equal(r.status, 'ok', r.error);
+  assert.equal(seen[0], 'https://static.slov-lex.sk/static/SK/ZZ/2011/362/');
+  assert.ok(!seen.some((u) => u.includes('www.slov-lex.sk')), 'the portal is not needed');
+  assert.equal(r.state.effectiveKey, '20250101');
+  assert.equal(r.state.newestKey, '20270101');
+  assert.equal(r.changes.length, 1);
+  const ch = await a.getChange(r.changes[0]);
+  assert.equal(ch.kind, 'upcoming');
+  assert.deepEqual(ch.amendedBy, ['77/2026 Z. z.']);
+  assert.ok(ch.touched.includes('§18') && ch.touched.includes('§19a'));
+  // The act is later repealed: its last version gets an end date on the index.
+  rows = [indexRow(2, '20250101', '2025-01-01', '2026-12-31', '361/2024'), indexRow(3, '20270101', '2027-01-01', '2027-06-30', '77/2026')];
+  const r2 = await m.checkLaw(lieky.id);
+  assert.match(r2.state.repealed, /bude zrušený.*30\. 6\. 2027/);
+  assert.equal((await a.getChange(r2.changes[0])).kind, 'repealed');
 });
 
 test('importing law texts: first import = check report, newer version = diff + findings, recheck after SOP update', async () => {

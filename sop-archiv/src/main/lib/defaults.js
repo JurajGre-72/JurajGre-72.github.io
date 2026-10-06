@@ -1,7 +1,7 @@
 'use strict';
 // Starter content for a new archive. Everything here can be edited in the app.
 
-const SLOVLEX = (year, num) => `https://www.slov-lex.sk/pravne-predpisy/SK/ZZ/${year}/${num}/`;
+const SLOVLEX = (year, num) => `https://www.slov-lex.sk/ezbierky/pravne-predpisy/SK/ZZ/${year}/${num}/`;
 const EURLEX = (celex) => `https://eur-lex.europa.eu/legal-content/SK/ALL/?uri=CELEX:${celex}`;
 
 // Legislation relevant to wholesale distribution of human and veterinary medicines in Slovakia.

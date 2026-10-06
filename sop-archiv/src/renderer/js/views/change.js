@@ -158,7 +158,7 @@ export async function render(route) {
       <div>
         <div class="chips"><span class="chip chip-${tone}">${t(`leg.kind.${ch.kind}`)}</span>${ch.toDate ? html`<span class="chip chip-muted">${icon('clock')}${t(ch.kind === 'check' ? 'lc.version' : 'leg.effectiveFrom', { date: fmtDate(ch.toDate) })}</span>` : ''}</div>
         <h1>${ch.law ? ch.law.title : ''}</h1>
-        <p class="muted">${ch.fromDate && ch.toDate && hasDiff ? t('leg.versionsCmp', { from: fmtDate(ch.fromDate), to: fmtDate(ch.toDate) }) + ' · ' : ''}
+        <p class="muted">${ch.fromDate && ch.toDate && hasDiff ? t('leg.versionsCmp', { from: fmtDate(ch.fromDate), to: fmtDate(ch.toDate) }) + ' · ' : ''}${ch.amendedBy && ch.amendedBy.length ? t('leg.amendedBy', { acts: ch.amendedBy.join(', ') }) + ' · ' : ''}
           ${hasDiff && s && ch.diff.mode === 'sections' ? t('leg.stats', s) + ' · ' : hasDiff && s ? t('leg.statsLines', s) + ' · ' : ''}${fmtDateTime(ch.detectedAt)}${ch.source ? ' · ' + sourceText() : ''}</p>
         ${summaryChips()}
         ${ch.notice ? html`<div class="note note-bad">${icon('alert')}${t('ch.notice', { notice: ch.notice })}</div>` : ''}

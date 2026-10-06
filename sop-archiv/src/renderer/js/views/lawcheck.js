@@ -49,7 +49,7 @@ export async function lawCheckDialog(opts = {}) {
     <form class="lc-body" autocomplete="off">
       ${mode === 'file' ? fileCard(fileInfo, laws) : ''}
       ${mode === 'url'
-        ? html`<div class="field"><label>${t('lc.url')}</label><input name="url" placeholder="https://www.slov-lex.sk/pravne-predpisy/SK/ZZ/2011/362/"><span class="hint">${t('lc.urlHint')}</span></div>`
+        ? html`<div class="field"><label>${t('lc.url')}</label><input name="url" placeholder="https://www.slov-lex.sk/ezbierky/pravne-predpisy/SK/ZZ/2011/362/"><span class="hint">${t('lc.urlHint')}</span></div>`
         : ''}
       ${mode === 'name'
         ? html`<div class="field"><label>${t('lc.name')}</label><input name="query" placeholder="${t('lc.namePh')}" data-lc-query><span class="hint" id="lc-resolved">${t('lc.nameHint')}</span></div>`

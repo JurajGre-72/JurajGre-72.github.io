@@ -106,7 +106,7 @@ test('detectAllLawRefs builds Slov-Lex / EUR-Lex identifiers', () => {
   const refs = detectAllLawRefs('podľa zákona č. 18/2018 Z. z., smernice 2001/83/ES, nariadenia (ES) č. 726/2004 a nariadenia (EÚ) 2019/6');
   const keys = refs.map((r) => r.key).sort();
   assert.deepEqual(keys, ['EU:32001L0083', 'EU:32004R0726', 'EU:32019R0006', 'SK:18/2018']);
-  assert.equal(refs.find((r) => r.key === 'SK:18/2018').url, 'https://www.slov-lex.sk/pravne-predpisy/SK/ZZ/2018/18/');
+  assert.equal(refs.find((r) => r.key === 'SK:18/2018').url, 'https://www.slov-lex.sk/ezbierky/pravne-predpisy/SK/ZZ/2018/18/');
 });
 
 test('chunkPages keeps headings and page numbers', () => {

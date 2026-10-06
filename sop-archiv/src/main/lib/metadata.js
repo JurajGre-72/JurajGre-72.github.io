@@ -283,7 +283,7 @@ function detectAllLawRefs(text) {
     const year = +m[2];
     if (year < 1945 || year > 2150) continue;
     const coll = m[3].startsWith('zb') ? 'Zb.' : 'Z. z.';
-    add(`SK:${num}/${year}`, `${num}/${year} ${coll}`, 'SK', `https://www.slov-lex.sk/pravne-predpisy/SK/ZZ/${year}/${num}/`);
+    add(`SK:${num}/${year}`, `${num}/${year} ${coll}`, 'SK', `https://www.slov-lex.sk/ezbierky/pravne-predpisy/SK/ZZ/${year}/${num}/`);
   }
   const euRe = /(nariaden\p{L}*|smernic\p{L}*|rozhodnut\p{L}*|regulation|directive|decision)\b[^.\n;]{0,90}?(?:\((eu|es|ehs|ec|eec|euratom)\)\s*(?:c\.|no\.?)?\s*(\d{1,4})\s*\/\s*(\d{1,4})(?!\s*\/)|(\d{4})\s*\/\s*(\d{1,4})\s*\/\s*(eu|es|ehs|ec|eec))/gu;
   while ((m = euRe.exec(folded))) {
