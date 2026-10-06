@@ -925,8 +925,28 @@ class Archive {
     return this.decorate(doc);
   }
 
-  async deleteDoc(docId) {
+  /**
+   * Why a document may not be deleted: it has been used as a controlled record (signed, issued as a
+   * controlled copy, trained on, reviewed, assessed against legislation, named in a decision). Such a
+   * document is withdrawn (status "obsolete") instead and kept. [] = it may be deleted (e.g. a mistaken import).
+   */
+  deletionBlockers(docId) {
     const doc = this._doc(docId);
+    const out = [];
+    if ((doc.approvals || []).some((a) => (a.steps || []).some((s) => s.decision))) out.push('approvals');
+    if ((doc.copies || []).length) out.push('copies');
+    if (this.data.trainings.some((t) => t.docId === docId)) out.push('training');
+    if ((doc.reviews || []).length) out.push('reviews');
+    if (this.data.changes.some((c) => (c.affected || []).some((a) => a.docId === docId && (a.status === 'done' || a.status === 'na' || a.note)))) out.push('assessed');
+    if (this.data.decisions.some((d) => d.docId === docId)) out.push('decisions');
+    return out;
+  }
+
+  async deleteDoc(docId, reason) {
+    const doc = this._doc(docId);
+    if (this.deletionBlockers(docId).length) throw new Error('DOC_HAS_RECORDS');
+    const why = String(reason || '').trim();
+    if (why.length < 5) throw new Error('REASON_REQUIRED');
     const src = this.p('files', docId);
     if (fs.existsSync(src)) {
       const dest = this.p('trash', `${docId}-${Date.now()}`);
@@ -939,7 +959,7 @@ class Archive {
     for (const c of this.data.changes) c.affected = (c.affected || []).filter((a) => a.docId !== docId);
     this.index.removeDocument(docId);
     await this.save();
-    this.audit('doc.deleted', { docId, code: doc.code, title: doc.title });
+    this.audit('doc.deleted', { docId, code: doc.code, title: doc.title, version: doc.version, status: doc.status, reason: why });
     return true;
   }
 

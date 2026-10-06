@@ -406,8 +406,45 @@ export const actions = {
     if (p) toast(t('doc.copySaved', { path: p }), 'good', 6000);
   },
   async remove() {
-    if (!(await confirmDialog(t('doc.deleteConfirm', { title: doc.title }), { okLabel: t('delete'), danger: true }))) return;
-    await api.docs.delete(doc.id);
+    // A document used as a controlled record is withdrawn, not deleted (it stays in the archive).
+    const blockers = await api.docs.deletionBlockers(doc.id);
+    if (blockers.length) {
+      const r = await openModal({
+        title: t('doc.cannotDelete'),
+        body: html`<p>${t('doc.cannotDeleteText')}</p><ul>${blockers.map((b) => html`<li>${t(`doc.blocker.${b}`)}</li>`)}</ul>${doc.status !== 'obsolete' ? html`<p class="muted small">${t('doc.withdrawHint')}</p>` : ''}`,
+        buttons: [{ label: t('close'), value: null }, ...(doc.status !== 'obsolete' ? [{ label: t('doc.withdraw'), kind: 'primary', value: 'withdraw' }] : [])]
+      });
+      if (r === 'withdraw') {
+        await api.docs.update(doc.id, { status: 'obsolete' });
+        toast(t('doc.withdrawn'), 'good');
+        app.rerender();
+      }
+      return;
+    }
+    let reason = '';
+    const r = await openModal({
+      title: t('doc.deleteTitle'),
+      body: html`<p>${t('doc.deleteConfirm', { title: doc.title })}</p>
+        <div class="field"><label>${t('doc.deleteReason')}</label><textarea id="del-reason" rows="2" placeholder="${t('doc.deleteReasonPh')}"></textarea></div>`,
+      buttons: [
+        { label: t('cancel'), value: null },
+        {
+          label: t('delete'),
+          kind: 'danger',
+          value: 'ok',
+          onClick: (el) => {
+            reason = el.querySelector('#del-reason').value.trim();
+            if (reason.length < 5) {
+              toast(t('doc.deleteReasonNeeded'), 'warn');
+              return false;
+            }
+            return true;
+          }
+        }
+      ]
+    });
+    if (r !== 'ok') return;
+    await api.docs.delete(doc.id, reason);
     toast(t('doc.deleted'), 'good');
     app.navigate('documents');
   },

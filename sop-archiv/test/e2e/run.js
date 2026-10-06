@@ -809,7 +809,19 @@ async function main() {
     await page.evaluate((id) => (location.hash = `#/documents/${id}`), pp07.id);
     await page.click('.head-actions button[data-action="remove"]');
     await page.click('.modal-foot .btn-danger');
+    await page.waitForSelector('.toast:has-text("Napíšte dôvod odstránenia")');
+    await page.fill('#del-reason', 'Omylom importovaný súbor.');
+    await page.click('.modal-foot .btn-danger');
     await until(page, (id) => window.api.docs.list().then((l) => !l.some((d) => d.id === id)), 'document deleted', pp07.id);
+    const delAudit = (await page.evaluate(() => window.api.app.audit({ limit: 30 }))).find((x) => x.action === 'doc.deleted');
+    assert.equal(delAudit.reason, 'Omylom importovaný súbor.');
+    // A document with training records, signatures and reviews cannot be deleted – only withdrawn.
+    const qa1 = (await page.evaluate(() => window.api.docs.list())).find((d) => d.code === 'SOP-QA-001');
+    await page.evaluate((id) => (location.hash = `#/documents/${id}`), qa1.id);
+    await page.click('.head-actions button[data-action="remove"]');
+    await page.waitForSelector('.modal:has-text("Dokument sa nedá odstrániť") li:has-text("záznamy o školení")');
+    await page.click('.modal-foot button:has-text("Zavrieť")');
+    await assert.rejects(() => page.evaluate((id) => window.api.docs.delete(id, 'Pokus o obídenie'), qa1.id), /nedá odstrániť/, 'the app core refuses it too');
     await page.evaluate(() => (location.hash = '#/settings'));
     await page.waitForSelector('.trash-row:has-text("1 odstránených")');
     await page.click('.trash-row button[data-action="emptyTrash"]');

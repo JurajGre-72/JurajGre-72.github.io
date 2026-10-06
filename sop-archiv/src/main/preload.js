@@ -11,7 +11,7 @@ const CHANNELS = {
   users: ['list', 'create', 'update', 'resetPassword', 'roles'],
   legis: ['pickFile', 'inspectFile', 'importFile', 'resolve', 'check'],
   archive: ['updateSettings', 'setLogo', 'clearLogo', 'newRecoveryCode', 'trash', 'emptyTrash'],
-  docs: ['list', 'get', 'text', 'pickFiles', 'pickFolder', 'expandPaths', 'analyze', 'import', 'addVersion', 'update', 'delete', 'open', 'markReviewed', 'exportCsv', 'saveCopy'],
+  docs: ['list', 'get', 'text', 'pickFiles', 'pickFolder', 'expandPaths', 'analyze', 'import', 'addVersion', 'update', 'delete', 'open', 'markReviewed', 'exportCsv', 'saveCopy', 'deletionBlockers'],
   reviews: ['exportIcs'],
   search: ['query', 'ask'],
   laws: ['list', 'add', 'update', 'remove', 'check'],

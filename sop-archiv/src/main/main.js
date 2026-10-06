@@ -1016,7 +1016,8 @@ function registerIpc() {
   handle('docs:import', (p, meta) => archive.importFile(p, meta).then(thenOcr), { perm: 'editor', write: true });
   handle('docs:addVersion', (id, p, meta) => archive.addVersion(id, p, meta).then(thenOcr), { perm: 'editor', write: true });
   handle('docs:update', (id, patch) => archive.updateDoc(id, patch), { perm: 'editor', write: true });
-  handle('docs:delete', (id) => archive.deleteDoc(id), { perm: 'admin', write: true });
+  handle('docs:delete', (id, reason) => archive.deleteDoc(id, reason), { perm: 'admin', write: true });
+  handle('docs:deletionBlockers', (id) => archive.deletionBlockers(id));
   handle('archive:trash', () => archive.trashInfo(), { perm: 'admin' });
   handle('archive:emptyTrash', () => archive.emptyTrash(), { perm: 'admin', write: true });
   handle('docs:open', async (id, versionId) => {

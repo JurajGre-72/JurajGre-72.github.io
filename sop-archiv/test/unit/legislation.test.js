@@ -221,7 +221,9 @@ test('archive: new version supersedes the old one; duplicates are detected; dele
   assert.equal(v3.versions[0].status, 'superseded');
   assert.equal(v3.version, '3');
   assert.ok(fs.existsSync(a.filePath(d.id, v3.versions[0].id)));
-  await a.deleteDoc(d.id);
+  await assert.rejects(() => a.deleteDoc(d.id), /REASON_REQUIRED/, 'a reason is required');
+  assert.deepEqual(a.deletionBlockers(d.id), []);
+  await a.deleteDoc(d.id, 'Omylom importovaný súbor.');
   assert.equal(a.listDocs().length, 0);
   assert.equal(fs.readdirSync(path.join(dir, 'arch', 'trash')).length, 1);
   const tr = await a.trashInfo();
@@ -679,4 +681,21 @@ test('encryption: an existing archive is converted in place and everyone keeps t
   assert.ok(await b.login(admin.id, 'stare-heslo-1'));
   await b.confirmRecoveryCodeKept();
   assert.equal(b.takePendingRecoveryCode(), null);
+});
+
+test('archive: a document used as a controlled record cannot be deleted, only withdrawn', async () => {
+  const dir = tmpDir();
+  const a = new Archive({ dataDir: dir, user: 'QA' });
+  await a.open();
+  await a.buildIndex();
+  const f = path.join(dir, 'SOP-QA-005.txt');
+  fs.writeFileSync(f, 'SOP-QA-005 Čistenie skladu\nVerzia: 1\nPostup čistenia skladu raz týždenne.');
+  const d = await a.importFile(f, { code: 'SOP-QA-005', title: 'Čistenie skladu', status: 'effective' });
+  assert.deepEqual(a.deletionBlockers(d.id), [], 'a fresh import may still be deleted');
+  await a.markReviewed(d.id, { outcome: 'no-change' });
+  const p = await a.savePerson({ name: 'Ján', department: 'Sklad' });
+  await a.recordTraining({ docId: d.id, personIds: [p.id], date: '2026-10-01', method: 'session' });
+  assert.deepEqual(a.deletionBlockers(d.id), ['training', 'reviews']);
+  await assert.rejects(() => a.deleteDoc(d.id, 'Už nepotrebujeme.'), /DOC_HAS_RECORDS/);
+  assert.equal(a.listDocs().length, 1, 'still in the archive');
 });
