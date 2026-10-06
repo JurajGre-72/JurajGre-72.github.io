@@ -296,9 +296,11 @@ function detectAllLawRefs(text) {
   const found = new Map();
   const add = (key, label, jurisdiction, url) => {
     const e = found.get(key) || { key, label, jurisdiction, url, count: 0 };
+    if (/^\d/.test(e.label) && !/^\d/.test(label)) e.label = label; // "Vyhláška č. 82/2012 Z. z." beats "82/2012 Z. z."
     e.count++;
     found.set(key, e);
   };
+  const slovlex = (num, year) => `https://www.slov-lex.sk/ezbierky/pravne-predpisy/SK/ZZ/${year}/${num}/`;
   let m;
   const skRe = /(?<![\p{N}/])(\d{1,4})\s*\/\s*(\d{4})\s*(z\.\s*z\.|zb\.)/gu;
   while ((m = skRe.exec(folded))) {
@@ -306,7 +308,24 @@ function detectAllLawRefs(text) {
     const year = +m[2];
     if (year < 1945 || year > 2150) continue;
     const coll = m[3].startsWith('zb') ? 'Zb.' : 'Z. z.';
-    add(`SK:${num}/${year}`, `${num}/${year} ${coll}`, 'SK', `https://www.slov-lex.sk/ezbierky/pravne-predpisy/SK/ZZ/${year}/${num}/`);
+    add(`SK:${num}/${year}`, `${num}/${year} ${coll}`, 'SK', slovlex(num, year));
+  }
+  // "zákona č. 362/2011", "vyhlášky MZ SR č. 129/2012", "Vyhlášky 82-2012 MZSR", "nariadenia vlády č. 211/2021"
+  const SK_KINDS = [
+    [/^zakonnik/, 'Zákonník'],
+    [/^zakon/, 'Zákon'],
+    [/^vyhlas/, 'Vyhláška'],
+    [/^nariaden/, 'Nariadenie vlády'],
+    [/^vynos/, 'Výnos']
+  ];
+  const kwRe = /(zakon\p{L}*|vyhlas\p{L}*|nariaden\p{L}*\s+vlady|vynos\p{L}*)(?![\p{L}])[^\n;§]{0,60}?(?<![\p{N}/.\-])(\d{1,4})\s*[/-]\s*((?:19|20)\d{2})(?![\p{N}/\-])/gu;
+  while ((m = kwRe.exec(folded))) {
+    const num = +m[2];
+    const year = +m[3];
+    if (!num || year > 2150) continue;
+    const kind = (SK_KINDS.find(([re]) => re.test(m[1])) || [null, 'Predpis'])[1];
+    const coll = year < 1993 ? 'Zb.' : 'Z. z.';
+    add(`SK:${num}/${year}`, `${kind} č. ${num}/${year} ${coll}`, 'SK', slovlex(num, year));
   }
   const euRe = /(nariaden\p{L}*|smernic\p{L}*|rozhodnut\p{L}*|regulation|directive|decision)\b[^.\n;]{0,90}?(?:\((eu|es|ehs|ec|eec|euratom)\)\s*(?:c\.|no\.?)?\s*(\d{1,4})\s*\/\s*(\d{1,4})(?!\s*\/)|(\d{4})\s*\/\s*(\d{1,4})\s*\/\s*(eu|es|ehs|ec|eec))/gu;
   while ((m = euRe.exec(folded))) {

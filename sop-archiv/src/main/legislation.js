@@ -5,7 +5,7 @@
 
 const { cleanText } = require('./lib/text');
 const { today, compactToIso } = require('./lib/dates');
-const { detectSource, parseVersions, pageVersionKey, detectRepealed, pickVersions, diffLaw, hashText, touchedKeys, slovlexIndexUrl, slovlexIndexVersions, slovlexIndexRepealed, eurlexLang } = require('./lib/legis-parse');
+const { detectSource, parseVersions, pageVersionKey, detectRepealed, pickVersions, diffLaw, hashText, touchedKeys, slovlexIndexUrl, slovlexIndexVersions, slovlexIndexRepealed, slovlexActName, eurlexLang } = require('./lib/legis-parse');
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -65,6 +65,7 @@ class LegislationMonitor {
       await sleep(this.pauseMs);
       const page = await this.fetchPage(version.url);
       text = page.text;
+      this.lastPageTitle = page.title || '';
     }
     text = cleanText(text).replace(/\n\s*\n/g, '\n');
     if (text.length < 200) throw new Error(`Version ${version.date}: page has almost no text`);
@@ -138,9 +139,13 @@ class LegislationMonitor {
         // The Slov-Lex page itself shows one version (the one in force unless its URL says otherwise).
         const shownKey = source === 'slovlex' && !page.versionIndex ? pageVersionKey(page) || effective.key : null;
         const fetched = shownKey ? { key: shownKey, text: page.text } : null;
+        this.lastPageTitle = '';
         const eff = await this._versionText(law, versions, effective, fetched, source);
         const effText = eff.text;
         effective = eff.version;
+        // An act added from a document citation gets its official name.
+        const named = law.autoTitle && source === 'slovlex' && slovlexActName(this.lastPageTitle);
+        if (named) Object.assign(law, named, { autoTitle: false });
         const nw = newest.key <= effective.key ? eff : await this._versionText(law, versions, newest, fetched, source);
         const newText = nw.text;
         newest = nw.version;

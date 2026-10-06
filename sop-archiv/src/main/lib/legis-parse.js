@@ -72,6 +72,28 @@ function slovlexIndexVersions(html, indexUrl) {
   return uniqueSorted(out);
 }
 
+/**
+ * Official name from a Slov-Lex version page title:
+ * "362/2011 Z. z. - Zákon o liekoch a zdravotníckych pomôckach a o zmene …"
+ *   -> { title: "Zákon č. 362/2011 Z. z. o liekoch a zdravotníckych pomôckach a o zmene …", short: "Zákon o liekoch a zdravotníckych pomôckach" }
+ */
+function slovlexActName(pageTitle) {
+  const m = String(pageTitle || '').match(/^\s*(\d+)\/(\d{4})\s+(Z\.\s*z\.|Zb\.)\s*[-–]\s*(\S+)\s+(.+?)\s*$/);
+  if (!m) return null;
+  const [, num, year, coll, kind, rest] = m;
+  const no = `č. ${num}/${year} ${coll.replace(/\s+/g, ' ')}`;
+  // The number goes before the subject: "Vyhláška Ministerstva zdravotníctva SR č. 129/2012 Z. z. o požiadavkách …"
+  const at = rest.search(/(?:^|\s)(?:o|ktor\S*|na|pre)\s/);
+  let authority = at > 0 ? rest.slice(0, at).trim() : at === 0 ? '' : rest;
+  const subject = at >= 0 ? rest.slice(at).trim() : '';
+  const comma = /,$/.test(authority); // "Nariadenie vlády SR, ktorým …" -> "Nariadenie vlády SR č. 211/2021 Z. z., ktorým …"
+  authority = authority.replace(/,$/, '');
+  const title = [kind, authority, comma ? `${no},` : no, subject].filter(Boolean).join(' ');
+  let short = /^ktor/.test(subject) ? `${kind} ${authority} č. ${num}/${year}` : subject ? `${kind} ${subject.replace(/\s+a\s+o\s+zmene\b.*$/i, '')}` : `${kind} ${rest}`;
+  if (short.length > 70) short = short.slice(0, 68).replace(/\s+\S*$/, '') + '…';
+  return { title, short };
+}
+
 /** The act stops being in force: its last version on the Slov-Lex index has an end date. */
 function slovlexIndexRepealed(versions, day) {
   const last = versions[versions.length - 1];
@@ -327,6 +349,7 @@ module.exports = {
   slovlexIndexUrl,
   slovlexIndexVersions,
   slovlexIndexRepealed,
+  slovlexActName,
   pickVersions,
   splitSections,
   diffLaw,

@@ -507,3 +507,45 @@ test('archive: PHARMACOPOLA file names – annexes linked to their main document
   const again = await a.analyzeFile(put('_OS5_Manažment rizík_2027.txt'));
   assert.equal(again.sameCode.code, 'OS5', 'a newer edition is offered as a new version of OS5');
 });
+
+test('archive: every act cited in a document is watched; removed ones are not added back; official name on the first check', async () => {
+  const dir = tmpDir();
+  const fx = await makeAll(path.join(dir, 'fx'));
+  const a = new Archive({ dataDir: path.join(dir, 'arch'), user: 't' });
+  await a.open();
+  await a.buildIndex();
+  const src = path.join(dir, 'in');
+  fs.mkdirSync(src);
+  const p1 = path.join(src, '2021.04_Dodávanie HL veľkodistribútormi podľa Prílohy 1_Vyhlášky 82-2012 MZSR.txt');
+  fs.writeFileSync(p1, 'Pokyn pre sklad.\nPostupuje sa podľa zákona č. 147/2001 Z. z. o reklame a zákonníka práce č. 311/2001 Z. z.\n');
+  await a.importFile(p1);
+  const byKey = (k) => a.data.laws.find((l) => l.key === k);
+  for (const k of ['SK:82/2012', 'SK:147/2001', 'SK:311/2001']) {
+    assert.ok(byKey(k), `${k} is watched`);
+    assert.equal(byKey(k).origin, 'documents');
+    assert.equal(byKey(k).enabled, true);
+  }
+  assert.equal(byKey('SK:82/2012').url, 'https://www.slov-lex.sk/ezbierky/pravne-predpisy/SK/ZZ/2012/82/');
+  const doc = a.data.docs[0];
+  assert.deepEqual(doc.lawRefs, [], 'nothing is left as a mere suggestion');
+  assert.ok(doc.citations.some((c) => c.lawId === byKey('SK:147/2001').id), 'the document is linked to the act it cites');
+  // Removed from the register on purpose: a later import does not add it again.
+  await a.removeLaw(byKey('SK:147/2001').id);
+  const p2 = path.join(src, 'ŠPP_22_2026_reklama.txt');
+  fs.writeFileSync(p2, 'Reklama liekov podľa zákona č. 147/2001 Z. z. a nariadenia vlády č. 211/2021 Z. z.\n'.repeat(3));
+  await a.importFile(p2);
+  assert.equal(byKey('SK:147/2001'), undefined);
+  assert.ok(byKey('SK:211/2021'));
+  // First check: the official name replaces "Vyhláška č. 82/2012 Z. z.".
+  const law = byKey('SK:82/2012');
+  const fetchPage = async (url) => {
+    if (url.endsWith('/static/SK/ZZ/2012/82/')) return { url, title: 'x', text: 'x', links: [], html: '<tr class="effectivenessHistoryItem" data-iri="/SK/ZZ/2012/82/20250101" data-vyhlasene="0" data-ucinnostod="2025-01-01" data-ucinnostdo=""><td></td></tr>' };
+    if (url.endsWith('20250101.html')) return { url, title: '82/2012 Z. z. - Vyhláška Ministerstva zdravotníctva Slovenskej republiky o zozname liekov', text: V['20250101'], links: [], html: '' };
+    throw new Error('HTTP 404');
+  };
+  const r = await new LegislationMonitor(a, { fetchPage, pauseMs: 0 }).checkLaw(law.id);
+  assert.equal(r.status, 'ok', r.error);
+  assert.equal(law.title, 'Vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 82/2012 Z. z. o zozname liekov');
+  assert.equal(law.short, 'Vyhláška o zozname liekov');
+  assert.equal(law.autoTitle, false);
+});

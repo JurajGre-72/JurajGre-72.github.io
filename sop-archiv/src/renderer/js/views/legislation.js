@@ -46,7 +46,7 @@ function lawRow(l) {
   const s = l.state || {};
   return html`<tr class="${l.enabled ? '' : 'disabled'}">
     <td><span class="chip chip-muted">${t(`leg.j.${l.jurisdiction}`)}</span></td>
-    <td class="law-cell"><div class="law-short">${l.short || l.title}</div><div class="muted small law-title">${l.title}</div>${s.repealed ? html`<div class="err small">${icon('alert')}${s.repealed}</div>` : ''}</td>
+    <td class="law-cell"><div class="law-short">${l.short || l.title}${l.origin === 'documents' ? html` <span class="chip chip-muted chip-xs" title="${t('leg.fromDocsHint')}">${t('leg.fromDocs')}</span>` : ''}</div><div class="muted small law-title">${l.title}</div>${s.repealed ? html`<div class="err small">${icon('alert')}${s.repealed}</div>` : ''}</td>
     <td class="nowrap">${s.effectiveDate ? fmtDate(s.effectiveDate) : s.mode === 'page' ? html`<span class="muted small">${t('leg.pageMode')}</span>` : ''}</td>
     <td class="nowrap">${(s.upcoming || []).map((u) => html`<span class="chip chip-warn">${fmtDate(u.date)}</span> `)}</td>
     <td>${stateCell(l)}</td>

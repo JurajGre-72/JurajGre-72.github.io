@@ -243,6 +243,7 @@ async function openArchive(dir) {
     throw new Error(tr('err.readOnly', { user: lockHolder.user, host: lockHolder.host }));
   }
   await a.open();
+  if (!a.readOnly) await a.watchCitedLaws().catch((e) => console.error('watch cited laws', e)); // acts cited in documents are watched
   archive = a;
   lock = l;
   lastArchiveMtime = archiveMtime();

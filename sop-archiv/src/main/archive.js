@@ -464,7 +464,39 @@ class Archive {
   _refreshCitations(doc, text) {
     doc.citations = detectCitations(text, this.data.laws);
     const known = new Set(this.data.laws.map((l) => l.key).filter(Boolean));
-    doc.lawRefs = detectAllLawRefs(text).filter((r) => !known.has(r.key));
+    // The title counts too: "Dodávanie HL … podľa Vyhlášky 82-2012 MZSR".
+    doc.lawRefs = detectAllLawRefs(`${doc.title || ''}\n${text}`).filter((r) => !known.has(r.key));
+  }
+
+  /**
+   * Every act cited in a document is watched: acts found in documents but missing from the register
+   * are added to it (unless someone removed them from the register before). Returns how many were added.
+   */
+  _watchCitedLaws() {
+    const ignored = new Set(this.data.settings.ignoredLawKeys || []);
+    const known = new Set(this.data.laws.map((l) => l.key).filter(Boolean));
+    let added = 0;
+    for (const doc of this.data.docs) {
+      if (doc.status === 'obsolete') continue;
+      for (const r of doc.lawRefs || []) {
+        if (!r.key || !r.url || known.has(r.key) || ignored.has(r.key)) continue;
+        const law = this._newLaw({ key: r.key, title: r.label, short: r.label, jurisdiction: r.jurisdiction, url: r.url, origin: 'documents', autoTitle: true });
+        law.aliases = aliasesFromKey(law.key);
+        this.data.laws.push(law);
+        known.add(r.key);
+        added++;
+        this.audit('law.added', { lawId: law.id, title: law.title, origin: 'documents', docId: doc.id, code: doc.code });
+      }
+    }
+    return added;
+  }
+
+  /** Watch the acts cited in documents; re-link citations when acts were added. */
+  async watchCitedLaws() {
+    if (!this._watchCitedLaws()) return 0;
+    await this._recomputeAllCitations();
+    await this.save();
+    return 1;
   }
 
   async importFile(filePath, meta = {}) {
@@ -500,6 +532,7 @@ class Archive {
     await this._storeVersion(doc, filePath, a, doc.version);
     this._refreshCitations(doc, a.text);
     this.data.docs.push(doc);
+    if (this._watchCitedLaws()) await this._recomputeAllCitations();
     this.index.setDocument(doc, chunkPages(a.ex.pages));
     this._attachToOpenChanges(doc);
     await this.save();
@@ -520,6 +553,7 @@ class Archive {
     if (!m.status && doc.status === 'review') doc.status = 'effective';
     doc.updatedAt = new Date().toISOString();
     this._refreshCitations(doc, a.text);
+    if (this._watchCitedLaws()) await this._recomputeAllCitations();
     this.index.setDocument(doc, chunkPages(a.ex.pages));
     await this.save();
     this.audit('doc.version-added', { docId, code: doc.code, from: prevLabel, to: doc.version, file: path.basename(filePath) });
@@ -692,6 +726,8 @@ class Archive {
       aliases: Array.isArray(l.aliases) ? l.aliases : String(l.aliases || '').split(',').map((a) => a.trim()).filter(Boolean),
       enabled: l.enabled !== false,
       notes: l.notes || '',
+      origin: l.origin || 'user', // 'documents' = added because a document cites it
+      autoTitle: !!l.autoTitle, // the name is replaced by the official title on the first check
       state: null,
       snapshots: []
     };
@@ -714,6 +750,7 @@ class Archive {
 
   async addLaw(l) {
     const law = this._newLaw(l);
+    if (law.key && this.data.settings.ignoredLawKeys) this.data.settings.ignoredLawKeys = this.data.settings.ignoredLawKeys.filter((k) => k !== law.key);
     if (!law.aliases.length) law.aliases = aliasesFromKey(law.key);
     this.data.laws.push(law);
     await this._recomputeAllCitations();
@@ -736,6 +773,7 @@ class Archive {
 
   async removeLaw(lawId) {
     const law = this.data.laws.find((l) => l.id === lawId);
+    if (law && law.key) this.data.settings.ignoredLawKeys = [...new Set([...(this.data.settings.ignoredLawKeys || []), law.key])];
     this.data.laws = this.data.laws.filter((l) => l.id !== lawId);
     this.data.changes = this.data.changes.filter((c) => c.lawId !== lawId);
     for (const d of this.data.docs) d.citations = d.citations.filter((c) => c.lawId !== lawId);
