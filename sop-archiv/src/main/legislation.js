@@ -5,7 +5,7 @@
 
 const { cleanText } = require('./lib/text');
 const { today, compactToIso } = require('./lib/dates');
-const { detectSource, parseVersions, pageVersionKey, detectRepealed, pickVersions, diffLaw, hashText, touchedKeys, slovlexIndexUrl, slovlexIndexVersions, slovlexIndexRepealed } = require('./lib/legis-parse');
+const { detectSource, parseVersions, pageVersionKey, detectRepealed, pickVersions, diffLaw, hashText, touchedKeys, slovlexIndexUrl, slovlexIndexVersions, slovlexIndexRepealed, eurlexLang } = require('./lib/legis-parse');
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -72,6 +72,27 @@ class LegislationMonitor {
     return text;
   }
 
+  /**
+   * Text of a version. A consolidated EUR-Lex version may not be published in the act's language yet
+   * (HTTP 404): then the newest earlier one that is, or for the first version the act as adopted.
+   */
+  async _versionText(law, versions, version, fetched, source) {
+    for (let i = versions.indexOf(version); i >= 0; i--) {
+      const v = versions[i];
+      try {
+        return { version: v, text: await this._snapshotText(law, v, fetched) };
+      } catch (e) {
+        if (source !== 'eurlex' || !/HTTP 404/.test(String(e.message))) throw e;
+        if (v.fallbackUrl) {
+          await sleep(this.pauseMs);
+          return { version: v, text: await this._snapshotText(law, { ...v, url: v.fallbackUrl }, null) };
+        }
+        await sleep(this.pauseMs);
+      }
+    }
+    throw new Error(`EUR-Lex: no version of this act is available in ${eurlexLang(law.url)}`);
+  }
+
   async _change(law, kind, from, to, fromText, toText, extra = {}) {
     const diff = fromText != null ? diffLaw(fromText, toText) : null;
     if (diff) {
@@ -113,12 +134,16 @@ class LegislationMonitor {
       const versions = page.versionIndex || parseVersions(source, page, law);
 
       if (versions.length) {
-        const { effective, newest, upcoming } = pickVersions(versions, day);
+        let { effective, newest, upcoming } = pickVersions(versions, day);
         // The Slov-Lex page itself shows one version (the one in force unless its URL says otherwise).
         const shownKey = source === 'slovlex' && !page.versionIndex ? pageVersionKey(page) || effective.key : null;
         const fetched = shownKey ? { key: shownKey, text: page.text } : null;
-        const effText = await this._snapshotText(law, effective, fetched);
-        const newText = newest.key === effective.key ? effText : await this._snapshotText(law, newest, fetched);
+        const eff = await this._versionText(law, versions, effective, fetched, source);
+        const effText = eff.text;
+        effective = eff.version;
+        const nw = newest.key <= effective.key ? eff : await this._versionText(law, versions, newest, fetched, source);
+        const newText = nw.text;
+        newest = nw.version;
         if (!prev.newestKey) {
           // First check = baseline. If a future version is already published, report it right away.
           if (newest.key !== effective.key) {
@@ -159,9 +184,11 @@ class LegislationMonitor {
         // Any other page (e.g. a non-consolidated act or a regulator's news page): watch its text.
         // For EUR-Lex, read the act itself (TXT page) rather than its information page (ALL).
         let textPage = page;
-        if (source === 'eurlex' && /\/ALL\//i.test(law.url)) {
+        if (source === 'eurlex' && /\/(ALL|TXT)\//i.test(law.url) && !/\/TXT\/HTML\//i.test(law.url)) {
           await sleep(this.pauseMs);
-          textPage = await this.fetchPage(law.url.replace(/\/ALL\//i, '/TXT/'));
+          textPage = await this.fetchPage(law.url.replace(/\/(ALL|TXT)\//i, '/TXT/HTML/')).catch((e) => {
+            throw /HTTP 404/.test(String(e.message)) ? new Error(`EUR-Lex: the act is not available in ${eurlexLang(law.url)} (HTTP 404)`) : e;
+          });
         }
         const text = stableText(textPage.text);
         if (text.length < 100) throw new Error('page has almost no text (blocked or requires login?)');
@@ -252,8 +279,8 @@ const EXTRACT_JS = `(() => {
   // Slov-Lex: only the act and its annexes, not the page's contents list and info box (they differ in every version).
   const act = document.querySelector('#predpis');
   if (act && (act.innerText || '').length >= 200) text = [act, document.querySelector('#prilohy')].filter(Boolean).map((e) => e.innerText).join('\\n');
-  // EUR-Lex: only the act (the "Text" tab), not the menus, language list and footer.
-  const eu = !act && (document.querySelector('#document1') || document.querySelector('#textTabContent'));
+  // EUR-Lex: only the act (HTML-only page or the "Text" tab), not the contents list, menus and footer.
+  const eu = !act && (document.querySelector('#docHtml') || document.querySelector('#document1') || document.querySelector('#textTabContent'));
   if (eu && (eu.innerText || '').length >= 200) text = eu.innerText;
   return {
     text,

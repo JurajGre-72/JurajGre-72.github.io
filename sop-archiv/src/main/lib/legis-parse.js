@@ -130,11 +130,16 @@ function parseVersions(source, page, law) {
       let m;
       while ((m = reG.exec(src))) keys.push(m[1]);
     }
-    return uniqueSorted(
+    // The HTML-only address answers 404 when a version is not available in this language,
+    // instead of quietly showing another language like the normal page does.
+    const out = uniqueSorted(
       keys
         .filter((k) => compactToIso(k))
-        .map((k) => ({ key: k, date: compactToIso(k), url: `https://eur-lex.europa.eu/legal-content/${lang}/TXT/?uri=CELEX:${cons}-${k}` }))
+        .map((k) => ({ key: k, date: compactToIso(k), url: `https://eur-lex.europa.eu/legal-content/${lang}/TXT/HTML/?uri=CELEX:${cons}-${k}` }))
     );
+    // The first consolidated version is the act as adopted: its original text can stand in for it.
+    if (out.length) out[0].fallbackUrl = `https://eur-lex.europa.eu/legal-content/${lang}/TXT/HTML/?uri=CELEX:${celex}`;
+    return out;
   }
   return [];
 }
@@ -330,5 +335,6 @@ module.exports = {
   normForCompare,
   slovlexId,
   baseCelex,
+  eurlexLang,
   sectionLabel
 };

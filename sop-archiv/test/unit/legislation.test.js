@@ -36,7 +36,44 @@ test('EUR-Lex consolidated versions', () => {
   const page = { url: 'x', links: [{ href: 'https://eur-lex.europa.eu/legal-content/SK/AUTO/?uri=CELEX%3A02019R0006-20220128' }], html: '<a href="?uri=CELEX:02019R0006-20230101">' };
   const vs = L.parseVersions('eurlex', page, { url: 'https://eur-lex.europa.eu/legal-content/SK/ALL/?uri=CELEX:32019R0006', key: 'EU:32019R0006' });
   assert.deepEqual(vs.map((v) => v.key), ['20220128', '20230101']);
-  assert.equal(vs[1].url, 'https://eur-lex.europa.eu/legal-content/SK/TXT/?uri=CELEX:02019R0006-20230101');
+  assert.equal(vs[1].url, 'https://eur-lex.europa.eu/legal-content/SK/TXT/HTML/?uri=CELEX:02019R0006-20230101', 'HTML-only page: 404 instead of another language');
+  assert.equal(vs[0].fallbackUrl, 'https://eur-lex.europa.eu/legal-content/SK/TXT/HTML/?uri=CELEX:32019R0006', 'the first version can be read from the act as adopted');
+  assert.equal(vs[1].fallbackUrl, undefined);
+});
+
+test('monitor: EUR-Lex versions not yet available in Slovak are skipped, never read in another language', async () => {
+  const dir = tmpDir();
+  const a = new Archive({ dataDir: dir, user: 't' });
+  await a.open();
+  const reg = a.data.laws.find((l) => l.key === 'EU:32021R1248');
+  const art = (n, body) => `Článok ${n}\nNázov\n${body} ${'Text ustanovenia. '.repeat(6)}`;
+  const sk = (extra) => ['VYKONÁVACIE NARIADENIE KOMISIE (EÚ) 2021/1248', art(1, 'Predmet.'), art(2, 'Vymedzenie pojmov.'), art(3, 'Systém kvality.' + extra)].join('\n');
+  const seen = [];
+  const pages = {
+    'ALL/?uri=CELEX:32021R1248': { text: 'Info', html: '<a href="?uri=CELEX:02021R1248-20210730">x</a><a href="?uri=CELEX:02021R1248-20240101">y</a>' },
+    'TXT/HTML/?uri=CELEX:32021R1248': { text: sk('') } // the act as adopted (in Slovak)
+    // 02021R1248-20210730 and -20240101: consolidated, not published in Slovak -> 404
+  };
+  const fetchPage = async (url) => {
+    seen.push(url);
+    const k = Object.keys(pages).find((p) => url.endsWith(p));
+    if (!k) throw new Error('HTTP 404');
+    return { url, title: 'EUR-Lex', html: '', links: [], ...pages[k] };
+  };
+  const m = new LegislationMonitor(a, { fetchPage, pauseMs: 0 });
+  const r = await m.checkLaw(reg.id);
+  assert.equal(r.status, 'ok', r.error);
+  assert.equal(r.state.newestKey, '20210730', 'the 2024 version is not in Slovak yet, so it is not used');
+  assert.match(await a.loadSnapshot(reg.id, '20210730'), /VYKONÁVACIE NARIADENIE/);
+  assert.ok(seen.some((u) => u.endsWith('TXT/HTML/?uri=CELEX:32021R1248')), 'first version read from the act as adopted');
+  assert.equal(r.changes.length, 0);
+  // Once the 2024 version is published in Slovak, it is reported as a new version.
+  pages['TXT/HTML/?uri=CELEX:02021R1248-20240101'] = { text: sk(' Doplnené: overovanie dodávateľov.') };
+  const r2 = await m.checkLaw(reg.id);
+  assert.equal(r2.state.newestKey, '20240101');
+  const ch = await a.getChange(r2.changes[0]);
+  assert.equal(ch.kind, 'new-version');
+  assert.deepEqual(ch.touched, ['art3']);
 });
 
 test('section split and diff ignore renumbered footnotes', () => {
