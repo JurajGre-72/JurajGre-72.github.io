@@ -6,6 +6,22 @@
 
 const MODELS = [
   {
+    id: 'gemma-4-12b',
+    name: 'Gemma 4 12B',
+    vendor: 'Google',
+    license: 'Apache 2.0',
+    url: 'https://huggingface.co/google/gemma-4-12B-it-qat-q4_0-gguf/resolve/29d097773436b69ff9feafd636ab4cf873786537/gemma-4-12b-it-qat-q4_0.gguf',
+    file: 'gemma-4-12b-it-qat-q4_0.gguf',
+    size: 6975879296,
+    sha256: '93567e57a8fe10b23569b9d9ec38cd005deedf71e29477c421a4b83f418a538b',
+    ramGB: 12,
+    goodRamGB: 16,
+    contextSize: 16384,
+    recommended: true,
+    sk: 'Odporúčaný – najlepšia slovenčina a presné odkazy na predpisy; kapitola SOP trvá na bežnom notebooku niekoľko minút. Pre počítače so 16 GB pamäte.',
+    en: 'Recommended – the best Slovak and exact legal references; a SOP chapter takes a few minutes on a regular laptop. For computers with 16 GB of memory.'
+  },
+  {
     id: 'gemma-4-e4b',
     name: 'Gemma 4 E4B',
     vendor: 'Google',
@@ -15,26 +31,10 @@ const MODELS = [
     size: 5154941280,
     sha256: '676c35070db6dbe52f93e9c864ee0fba4eddea94b9c875d9cb10daff453fbaee',
     ramGB: 8, // works with
-    goodRamGB: 16, // comfortable with
+    goodRamGB: 12, // comfortable with
     contextSize: 16384,
-    recommended: true,
-    sk: 'Odporúčaný pre bežný notebook. Dobrá slovenčina, rýchle odpovede.',
-    en: 'Recommended for a regular laptop. Good Slovak, quick answers.'
-  },
-  {
-    id: 'gemma-4-12b',
-    name: 'Gemma 4 12B',
-    vendor: 'Google',
-    license: 'Apache 2.0',
-    url: 'https://huggingface.co/google/gemma-4-12B-it-qat-q4_0-gguf/resolve/29d097773436b69ff9feafd636ab4cf873786537/gemma-4-12b-it-qat-q4_0.gguf',
-    file: 'gemma-4-12b-it-qat-q4_0.gguf',
-    size: 6975879296,
-    sha256: '93567e57a8fe10b23569b9d9ec38cd005deedf71e29477c421a4b83f418a538b',
-    ramGB: 16,
-    goodRamGB: 24,
-    contextSize: 16384,
-    sk: 'Lepšie texty ako E4B, ale pomalší – pre počítače s 24 GB pamäte.',
-    en: 'Better texts than E4B but slower – for computers with 24 GB of memory.'
+    sk: 'Rýchlejší, ale v slovenčine robí viac chýb – na prvý hrubý návrh. Pre počítače s 8 – 12 GB pamäte.',
+    en: 'Faster, but makes more mistakes in Slovak – for a rough first draft. For computers with 8 – 12 GB of memory.'
   },
   {
     id: 'gemma-4-26b-a4b',
