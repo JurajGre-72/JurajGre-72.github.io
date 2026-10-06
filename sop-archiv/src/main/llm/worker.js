@@ -78,6 +78,7 @@ let llama = null;
 let llamaGpu = null;
 let model = null;
 let context = null;
+let chatWrapper = null; // the model's chat format, with "thinking" switched off
 let loaded = null; // { modelPath, gpu, contextSize }
 const running = new Map(); // request id -> AbortController
 
@@ -92,6 +93,7 @@ async function unload() {
   if (model) await model.dispose().catch(() => {});
   context = null;
   model = null;
+  chatWrapper = null;
   loaded = null;
 }
 
@@ -109,6 +111,10 @@ async function load({ modelPath, gpu = 'auto', contextSize = 8192, threads = 0 }
   // As much context as fits in memory, up to the requested size (never more than the model was made for).
   const max = Math.max(256, Math.min(contextSize, model.trainContextSize || contextSize));
   context = await model.createContext({ contextSize: { min: Math.min(2048, max), max }, sequences: 1 });
+  // Answers come straight away: a model that "thinks" first (Gemma 4 does by default) would spend the
+  // answer's length – and minutes on an ordinary computer – on reasoning that is never shown.
+  const wrapper = L.resolveChatWrapper(model);
+  chatWrapper = L.Gemma4ChatWrapper && wrapper instanceof L.Gemma4ChatWrapper ? new L.Gemma4ChatWrapper({ reasoning: false }) : wrapper;
   // How many characters of a typical Slovak text fit in one token of this model (to size requests).
   const sample = SAMPLE.repeat(2);
   charsPerToken = Math.max(0.5, Math.min(6, sample.length / Math.max(1, model.tokenize(sample).length)));
@@ -144,7 +150,7 @@ async function run(id, { system, user, maxTokens = 2048, temperature = 0.2 }) {
   running.set(id, ctrl);
   const sequence = context.getSequence();
   try {
-    const session = new L.LlamaChatSession({ contextSequence: sequence, systemPrompt: system || undefined, autoDisposeSequence: false });
+    const session = new L.LlamaChatSession({ contextSequence: sequence, systemPrompt: system || undefined, autoDisposeSequence: false, ...(chatWrapper ? { chatWrapper } : {}) });
     let buffered = '';
     let last = Date.now();
     const flush = () => {
@@ -157,6 +163,7 @@ async function run(id, { system, user, maxTokens = 2048, temperature = 0.2 }) {
       temperature,
       signal: ctrl.signal,
       stopOnAbortSignal: true,
+      budgets: { thoughtTokens: 0 }, // other reasoning models too
       onTextChunk: (chunk) => {
         buffered += chunk;
         if (Date.now() - last > 120) flush();
