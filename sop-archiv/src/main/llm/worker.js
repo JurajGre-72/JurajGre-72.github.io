@@ -174,7 +174,7 @@ async function runOne(ctrl, { system, user, maxTokens = 2048, temperature = 0.2 
   const session = new L.LlamaChatSession({ contextSequence: sequence, systemPrompt: system || undefined, autoDisposeSequence: false, ...(chatWrapper ? { chatWrapper } : {}) });
   try {
     let buffered = '';
-    let last = Date.now();
+    let last = 0; // the first words go out at once (the user sees the answer start; "stop" can act early)
     const flush = () => {
       if (buffered) send({ t: 'chunk', id: ctrl.id, text: buffered });
       buffered = '';

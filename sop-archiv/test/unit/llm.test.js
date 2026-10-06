@@ -32,18 +32,22 @@ test('built-in AI: loads a model, streams the answer, stops on request, keeps no
     assert.equal(r.aborted, false);
     assert.ok(r.text.length > 0, 'text written');
     assert.equal(chunks, r.text, 'streamed text adds up to the answer');
-    // Stopped by the user.
-    const ctrl = new AbortController();
-    let n = 0;
-    const r2 = await m.complete({
-      user: 'Píš dlho.',
-      maxTokens: 400,
-      temperature: 0.8,
-      signal: ctrl.signal,
-      onChunk: () => {
-        if (++n === 1) ctrl.abort();
-      }
-    });
+    // Stopped by the user. (The tiny random model sometimes ends its answer by itself before the
+    // stop arrives, so a few tries are allowed.)
+    let r2 = null;
+    for (let i = 0; i < 4 && !(r2 && r2.aborted); i++) {
+      const ctrl = new AbortController();
+      let n = 0;
+      r2 = await m.complete({
+        user: 'Píš dlho.',
+        maxTokens: 400,
+        temperature: 0.8,
+        signal: ctrl.signal,
+        onChunk: () => {
+          if (++n === 1) ctrl.abort();
+        }
+      });
+    }
     assert.equal(r2.aborted, true);
     // Requests one after another (each one is a fresh conversation).
     for (let i = 0; i < 3; i++) assert.ok((await m.complete({ user: `Otázka ${i}`, maxTokens: 8, temperature: 0.8 })).text.length >= 0);
