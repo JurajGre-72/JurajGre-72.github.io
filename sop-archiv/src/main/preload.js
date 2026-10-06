@@ -18,6 +18,8 @@ const CHANNELS = {
   changes: ['list', 'get', 'update', 'recheck', 'analyze'],
   company: ['get', 'update'],
   people: ['list', 'save'],
+  approval: ['request', 'sign', 'cancel', 'mine'],
+  copies: ['issue', 'withdraw', 'toWithdraw'],
   training: ['overview', 'person', 'doc', 'mine', 'record', 'remove', 'confirm', 'exportCsv'],
   decisions: ['list', 'add', 'remove'],
   ai: ['test', 'models', 'download', 'cancelDownload', 'removeModel', 'addModelFile', 'cancel'],

@@ -166,9 +166,9 @@ async function clearToasts(page) {
 }
 
 /** Poll an async check in the page (waitForFunction does not wait for a returned promise). */
-async function until(page, fn, what, timeout = 30000) {
+async function until(page, fn, what, arg = undefined, timeout = 30000) {
   const end = Date.now() + timeout;
-  while (!(await page.evaluate(fn))) {
+  while (!(await page.evaluate(fn, arg))) {
     if (Date.now() > end) throw new Error(`Timed out waiting: ${what}`);
     await page.waitForTimeout(200);
   }
@@ -692,6 +692,40 @@ async function main() {
     await until(page, () => window.api.training.overview().then((o) => o.missing === 1), 'training recorded');
     await shot(page, '24-training');
     console.log('  ✓ training: employee linked to a profile, who must know a document, a training session recorded');
+
+    // ---- Approval with signatures (own password), controlled copy with a stamp ----
+    await page.evaluate((id) => (location.hash = `#/documents/${id}`), newDoc.id);
+    await page.click('.head-actions button[data-action="aprRequest"]');
+    const adminUser = (await page.evaluate(() => window.api.auth.state())).users.find((u) => u.name === ADMIN.name);
+    await page.check(`.modal [data-apr="${adminUser.id}"]`);
+    await page.fill('.modal [name=note]', 'Prvé vydanie');
+    await page.click('.modal-foot .btn-primary');
+    await page.waitForSelector('.apr-banner button[data-action="aprSign"]');
+    await page.click('.apr-banner button[data-action="aprSign"]');
+    await page.fill('#apr-pw', 'zle-heslo');
+    await page.click('.modal-foot .btn-primary');
+    await page.waitForSelector('#apr-sign-err:has-text("Nesprávne heslo")');
+    await page.fill('#apr-pw', ADMIN.password);
+    await page.click('.modal-foot .btn-primary');
+    await until(page, (id) => window.api.docs.get(id).then((d) => d.status === 'effective'), 'approved and effective', newDoc.id);
+    const approved = await page.evaluate((id) => window.api.docs.get(id), newDoc.id);
+    assert.equal(approved.approver, ADMIN.name);
+    assert.equal(approved.approvals[0].steps[0].decision, 'approved');
+    // a controlled copy of the scanned PDF, stamped
+    const copyFile = path.join(tmp, 'riadena-kopia.pdf');
+    await app.evaluate(({ dialog }, p) => {
+      dialog.showSaveDialog = async () => ({ canceled: false, filePath: p });
+    }, copyFile);
+    await page.evaluate((id) => (location.hash = `#/documents/${id}?tab=control`), scanDoc.id);
+    await page.click('button[data-action="cpIssue"]');
+    await page.fill('.modal [name=issuedTo]', 'Sklad – vedúci skladu');
+    await page.check('.modal [name=format][value=pdf]');
+    await page.click('.modal-foot .btn-primary');
+    await page.waitForSelector('.table td:has-text("Sklad – vedúci skladu")');
+    const { extractFile: readPdf } = require('../../src/main/lib/extract');
+    assert.match((await readPdf(copyFile)).pages.map((p) => p.text).join('\n'), /RIADENÁ KÓPIA č\. 1/);
+    await shot(page, '26-controlled-copy');
+    console.log('  ✓ approval signed with the own password makes the version effective; controlled copy stamped on every page');
     assert.ok(!fs.existsSync(path.join(tmp, 'archive', 'branding', 'logo.svg')));
     console.log('  ✓ company logo: another one can be chosen, and back to the PHARMACOPOLA logo');
 

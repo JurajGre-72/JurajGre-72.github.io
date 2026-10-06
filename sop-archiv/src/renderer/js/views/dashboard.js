@@ -158,7 +158,7 @@ function emptyState() {
 }
 
 export async function render() {
-  const [docs, laws, changes, trainingOv] = await Promise.all([api.docs.list(), api.laws.list(), api.changes.list(), api.training.overview().catch(() => ({ missing: 0 }))]);
+  const [docs, laws, changes, trainingOv, toSign, toWithdraw] = await Promise.all([api.docs.list(), api.laws.list(), api.changes.list(), api.training.overview().catch(() => ({ missing: 0 })), api.approval.mine().catch(() => []), api.copies.toWithdraw().catch(() => [])]);
   state = { docs, laws, changes };
   const trainingMissing = trainingOv.missing;
   const warn = app.info.archiveSettings.warnDays;
@@ -176,6 +176,11 @@ export async function render() {
       <div><h1>${t('dash.title')}</h1><p class="muted">${app.info.archiveSettings.org || t('tagline')} · ${fmtDate(todayIso(), { long: true })}</p></div>
       <div class="head-actions"><a class="btn" href="#/compose" data-perm="editor">${icon('plus')}${t('nd.title')}</a><button class="btn btn-primary" data-action="import" data-perm="editor">${icon('upload')}${t('docs.importFiles')}</button></div>
     </header>
+    ${toSign.length
+      ? html`<section class="panel panel-warn"><h3>${icon('shield')}${t('apr.toSign')} <span class="count">${toSign.length}</span></h3>
+          <ul class="rows">${toSign.map((d) => html`<li class="row"><a class="row-main" href="#/documents/${d.id}"><span class="code">${d.code || '—'}</span><span class="row-title">${d.title}</span></a><span class="muted small">v${d.version} · ${t(`apr.role.${d.role}`)} · ${d.requestedBy}</span></li>`)}</ul></section>`
+      : ''}
+    ${toWithdraw.length ? html`<div class="note note-warn">${icon('alert')}<div>${t('cp.toWithdrawAll', { n: toWithdraw.length, list: Array.from(new Set(toWithdraw.map((c) => c.code || c.title))).join(', ') })}</div></div>` : ''}
     ${!docs.length
       ? emptyState()
       : html`

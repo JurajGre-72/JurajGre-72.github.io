@@ -63,10 +63,21 @@ const STR = {
     'err.AI_PROMPT_TOO_LONG': 'Text je pre tento model príliš dlhý. Skúste kratšiu časť alebo väčší model.',
     'err.titleRequired': 'Zadajte názov dokumentu.',
     'err.NAME_REQUIRED': 'Zadajte meno.',
+    'err.APPROVAL_PENDING': 'Dokument už čaká na schválenie.',
+    'err.NOTHING_TO_SIGN': 'Nie je čo podpísať.',
+    'err.NOT_YOUR_TURN': 'Teraz podpisuje niekto iný (najprv preskúmanie, potom schválenie).',
+    'err.VERSION_CHANGED': 'Medzitým bola nahraná nová verzia – žiadosť o schválenie zrušte a pošlite znova.',
+    'err.APPROVER_REQUIRED': 'Vyberte aspoň jedného schvaľovateľa.',
+    'err.UNKNOWN_SIGNER': 'Vybraný používateľ neexistuje alebo je vypnutý.',
+    'err.RECIPIENT_REQUIRED': 'Zadajte, komu sa kópia vydáva.',
     'err.USER_LINKED': 'Tento profil v aplikácii už patrí inému zamestnancovi.',
     'err.PEOPLE_REQUIRED': 'Vyberte aspoň jedného zamestnanca.',
     'err.NO_PERSON': 'Váš profil nie je priradený k zamestnancovi – požiadajte správcu (Školenia → Zamestnanci).',
-    'dlg.modelTitle': 'Vyberte súbor modelu (.gguf)'
+    'dlg.modelTitle': 'Vyberte súbor modelu (.gguf)',
+    'stamp.title': 'RIADENÁ KÓPIA č. {no}',
+    'stamp.to': 'Vydané pre: {to}',
+    'stamp.version': 'Verzia {v} · vydané {date}',
+    'stamp.back': 'Pri novej verzii kópiu vráťte.'
   },
   en: {
     'tray.open': 'Open SOP Archive',
@@ -129,10 +140,21 @@ const STR = {
     'err.AI_PROMPT_TOO_LONG': 'The text is too long for this model. Try a shorter part or a larger model.',
     'err.titleRequired': 'Please enter the document title.',
     'err.NAME_REQUIRED': 'Please enter a name.',
+    'err.APPROVAL_PENDING': 'The document is already waiting for approval.',
+    'err.NOTHING_TO_SIGN': 'There is nothing to sign.',
+    'err.NOT_YOUR_TURN': 'Someone else signs now (review first, then approval).',
+    'err.VERSION_CHANGED': 'A new version was uploaded meanwhile – cancel the request and send it again.',
+    'err.APPROVER_REQUIRED': 'Choose at least one approver.',
+    'err.UNKNOWN_SIGNER': 'The chosen user does not exist or is disabled.',
+    'err.RECIPIENT_REQUIRED': 'Enter who the copy is issued to.',
     'err.USER_LINKED': 'This app profile already belongs to another employee.',
     'err.PEOPLE_REQUIRED': 'Choose at least one employee.',
     'err.NO_PERSON': 'Your profile is not linked to an employee – ask an administrator (Training → Employees).',
-    'dlg.modelTitle': 'Choose a model file (.gguf)'
+    'dlg.modelTitle': 'Choose a model file (.gguf)',
+    'stamp.title': 'CONTROLLED COPY No. {no}',
+    'stamp.to': 'Issued to: {to}',
+    'stamp.version': 'Version {v} · issued {date}',
+    'stamp.back': 'Return this copy when a new version is issued.'
   }
 };
 

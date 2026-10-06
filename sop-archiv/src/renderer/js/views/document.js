@@ -8,14 +8,15 @@ import { fold } from '../text.js';
 import { rewriteDialog } from './rewrite.js';
 import { logoPng } from './compose.js';
 import { recordTrainingDialog, confirmReadDialog } from './training.js';
+import { approvalBanner, controlTab, controlActions } from './control.js';
 
 const api = window.api;
 let doc = null;
 let laws = [];
 let pages = null;
 
-const TABS = ['info', 'reviews', 'legis', 'training', 'proposals', 'versions', 'text', 'history'];
-const TAB_LABEL = { info: 'doc.tabInfo', reviews: 'doc.tabReviews', legis: 'doc.tabLegis', training: 'doc.tabTraining', proposals: 'doc.tabProposals', versions: 'doc.tabVersions', text: 'doc.tabText', history: 'doc.tabHistory' };
+const TABS = ['info', 'reviews', 'legis', 'training', 'control', 'proposals', 'versions', 'text', 'history'];
+const TAB_LABEL = { info: 'doc.tabInfo', reviews: 'doc.tabReviews', legis: 'doc.tabLegis', training: 'doc.tabTraining', control: 'doc.tabControl', proposals: 'doc.tabProposals', versions: 'doc.tabVersions', text: 'doc.tabText', history: 'doc.tabHistory' };
 
 // Who must know this document, who is trained on its current version.
 function trainingTab(tr, mine) {
@@ -272,6 +273,7 @@ export async function render(route) {
   else if (tab === 'reviews') body = reviewsTab();
   else if (tab === 'legis') body = legisTab(changes);
   else if (tab === 'proposals') body = proposalsTab();
+  else if (tab === 'control') body = controlTab(doc, await api.copies.toWithdraw());
   else if (tab === 'training') {
     const [tr, mine] = await Promise.all([api.training.doc(id), api.training.mine()]);
     body = trainingTab(tr, mine);
@@ -290,6 +292,7 @@ export async function render(route) {
         <h1>${doc.title}</h1>
         <div class="chips">${statusChip(doc.status)} <span class="chip chip-muted">v${doc.version}</span> ${doc.status !== 'obsolete' ? (doc.annexOf && !doc.reviewDate ? html`<span class="chip chip-muted">${t('doc.reviewWith', { code: doc.annexOf })}</span>` : reviewChip(doc.review)) : ''}${(doc.tags || []).includes('EN') ? html` <span class="chip chip-muted">EN</span>` : ''}</div>
         ${doc.annexOf ? html`<p class="annex-of">${icon('layers')}${t('doc.annexOf')} ${doc.parent ? html`<a href="#/documents/${doc.parent.id}"><b>${doc.parent.code}</b> ${doc.parent.title}</a>` : html`<b>${doc.annexOf}</b> <span class="muted">(${t('doc.parentMissing')})</span>`}</p>` : ''}
+        ${approvalBanner(doc)}
         ${(doc.annexes || []).length ? html`<div class="annex-list"><span class="muted">${icon('layers')}${t('doc.annexes', { n: doc.annexes.length })}:</span> ${doc.annexes.map((x) => html`<a class="chip chip-link" href="#/documents/${x.id}">${x.code.replace(/^.*?(Príloha)/, '$1')} – ${x.title}</a>`)}</div>` : ''}
       </div>
       <div class="head-actions wrap">
@@ -297,6 +300,7 @@ export async function render(route) {
         <button class="btn" data-action="review" data-perm="editor">${icon('check')}${t('doc.markReviewed')}</button>
         <button class="btn" data-action="newVersion" data-perm="editor">${icon('upload')}${t('doc.newVersion')}</button>
         <button class="btn" data-action="rewrite" data-perm="editor">${icon('sparkles')}${t('rw.title')}</button>
+        ${doc.status === 'draft' && !(doc.approvals || []).some((a) => a.status === 'pending') ? html`<button class="btn" data-action="aprRequest" data-perm="editor">${icon('shield')}${t('apr.request')}</button>` : ''}
         <button class="btn" data-action="edit" data-perm="editor">${icon('edit')}${t('edit')}</button>
         <button class="btn btn-ghost" data-action="saveCopy" title="${t('doc.saveCopy')}">${icon('download')}</button>
         <button class="btn btn-ghost danger" data-action="remove" data-perm="admin" title="${t('delete')}">${icon('trash')}</button>
@@ -353,6 +357,7 @@ export function mount(root) {
 }
 
 export const actions = {
+  ...controlActions(() => doc),
   openFile: (el) => api.docs.open(doc.id, el.dataset.vid || undefined),
   async saveCopy(el) {
     const p = await api.docs.saveCopy(doc.id, el.dataset.vid || undefined);

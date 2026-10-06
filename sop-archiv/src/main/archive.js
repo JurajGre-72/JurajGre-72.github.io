@@ -31,6 +31,7 @@ const { ROLES, hashPassword, verifyPassword, validPassword } = require('./lib/au
 const { pagesWithoutText } = require('./ocr');
 const vault = require('./lib/vault');
 const training = require('./lib/training');
+const approval = require('./lib/approval');
 const company = require('./lib/company');
 
 const STATUSES = ['draft', 'effective', 'review', 'obsolete'];
@@ -194,6 +195,8 @@ class Archive {
       doc.citations = doc.citations || [];
       doc.lawRefs = doc.lawRefs || [];
       doc.proposals = doc.proposals || [];
+      doc.approvals = doc.approvals || [];
+      doc.copies = doc.copies || [];
     }
   }
 
@@ -860,6 +863,8 @@ class Archive {
       citations: [],
       lawRefs: [],
       proposals: [],
+      approvals: [],
+      copies: [],
       trainingFor: m.trainingFor || [],
       trainingSeq: 1,
       createdAt: now,
@@ -1058,6 +1063,119 @@ class Archive {
     if (f) await fs.promises.rm(f, { force: true });
     this.audit('archive.logo', { removed: true });
     return null;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Approval of a version (see lib/approval.js) and controlled copies
+
+  _pendingApproval(doc) {
+    return (doc.approvals || []).find((a) => a.status === 'pending') || null;
+  }
+
+  async requestApproval(docId, { reviewers = [], approvers = [], note = '' }) {
+    const doc = this._doc(docId);
+    if (this._pendingApproval(doc)) throw new Error('APPROVAL_PENDING');
+    const req = approval.createRequest({ doc, reviewers, approvers, note, by: this.user, users: this.data.users });
+    (doc.approvals = doc.approvals || []).push(req);
+    await this.save();
+    this.audit('approval.requested', { docId, code: doc.code, version: doc.version, reviewers: req.steps.filter((x) => x.role === 'review').map((x) => x.name), approvers: req.steps.filter((x) => x.role === 'approve').map((x) => x.name) });
+    return req;
+  }
+
+  /** Sign the next step (the password was checked by the caller). The last approval makes the version effective. */
+  async signApproval(docId, userId, { decision, comment = '' }) {
+    const doc = this._doc(docId);
+    const req = this._pendingApproval(doc);
+    if (!req) throw new Error('NOTHING_TO_SIGN');
+    if (req.versionId !== doc.currentVersionId) throw new Error('VERSION_CHANGED');
+    const step = approval.nextStep(req);
+    approval.sign(req, { userId, decision, comment });
+    this.audit(decision === 'approved' ? 'approval.signed' : 'approval.rejected', { docId, code: doc.code, version: doc.version, role: step.role, signer: step.name, comment: comment || undefined });
+    if (req.status === 'approved') {
+      const approvers = req.steps.filter((x) => x.role === 'approve').map((x) => x.name);
+      doc.approver = approvers.join(', ');
+      doc.approvedAt = req.closedAt;
+      doc.status = 'effective';
+      if (!doc.effectiveDate) doc.effectiveDate = today();
+      if (!doc.reviewDate && doc.reviewIntervalMonths) doc.reviewDate = addMonths(doc.effectiveDate, doc.reviewIntervalMonths);
+      doc.updatedAt = new Date().toISOString();
+      this.audit('approval.approved', { docId, code: doc.code, version: doc.version, approvers });
+    }
+    await this.save();
+    return req;
+  }
+
+  async cancelApproval(docId) {
+    const doc = this._doc(docId);
+    const req = this._pendingApproval(doc);
+    if (!req) return null;
+    req.status = 'cancelled';
+    req.closedAt = new Date().toISOString();
+    await this.save();
+    this.audit('approval.cancelled', { docId, code: doc.code, version: doc.version });
+    return req;
+  }
+
+  /** Documents waiting for this user's signature. */
+  approvalsFor(userId) {
+    const out = [];
+    for (const d of this.data.docs) {
+      const req = this._pendingApproval(d);
+      const step = approval.nextStep(req);
+      if (step && step.userId === userId) out.push({ id: d.id, code: d.code, title: d.title, version: d.version, role: step.role, requestedBy: req.requestedBy, requestedAt: req.requestedAt, note: req.note });
+    }
+    return out;
+  }
+
+  /** Register a controlled copy of the current version: { copy, name, data, stamped }. PDFs get the stamp on every page. */
+  async issueCopy(docId, { issuedTo, location = '', format = 'print', note = '', labels = {} }) {
+    const doc = this._doc(docId);
+    const to = String(issuedTo || '').trim();
+    if (!to) throw new Error('RECIPIENT_REQUIRED');
+    const cur = doc.versions.find((v) => v.id === doc.currentVersionId);
+    const no = (doc.copies || []).reduce((n, c) => Math.max(n, c.no), 0) + 1;
+    const copy = { id: id(), no, versionId: cur.id, versionSeq: cur.seq, version: doc.version, issuedTo: to.slice(0, 200), location: String(location || '').trim().slice(0, 200), format: format === 'pdf' ? 'pdf' : 'print', note: String(note || '').slice(0, 1000), issuedBy: this.user, issuedAt: new Date().toISOString(), status: 'issued' };
+    const content = await this.versionContent(docId);
+    let data = content.data;
+    let stamped = false;
+    if (/\.pdf$/i.test(content.name)) {
+      const { stampPdf } = require('./lib/stamp');
+      const L = { title: 'RIADENÁ KÓPIA č. {no}', to: 'Vydané pre: {to}', version: 'Verzia {v} · vydané {date}', back: 'Pri novej verzii kópiu vráťte.', ...labels };
+      const fill = (s) => s.replace('{no}', no).replace('{to}', [copy.issuedTo, copy.location].filter(Boolean).join(' – ')).replace('{v}', doc.version).replace('{date}', new Date().toLocaleDateString('sk-SK'));
+      data = await stampPdf(data, { title: fill(L.title), lines: [`${doc.code || ''} ${doc.title}`.trim().slice(0, 70), fill(L.to), fill(L.version), L.back] });
+      stamped = true;
+    }
+    copy.stamped = stamped;
+    (doc.copies = doc.copies || []).push(copy);
+    await this.save();
+    this.audit('copy.issued', { docId, code: doc.code, version: doc.version, no, to: copy.issuedTo, location: copy.location || undefined, format: copy.format });
+    const base = content.name.replace(/(\.[^.]+)$/, '');
+    const ext = (content.name.match(/\.[^.]+$/) || [''])[0];
+    return { copy, name: `${base}_RK${no}${ext}`, data, stamped };
+  }
+
+  async withdrawCopy(docId, copyId) {
+    const doc = this._doc(docId);
+    const c = (doc.copies || []).find((x) => x.id === copyId);
+    if (!c) throw new Error('Copy not found');
+    c.status = 'withdrawn';
+    c.withdrawnAt = new Date().toISOString();
+    c.withdrawnBy = this.user;
+    await this.save();
+    this.audit('copy.withdrawn', { docId, code: doc.code, version: c.version, no: c.no, to: c.issuedTo });
+    return c;
+  }
+
+  /** Issued copies of versions that are no longer current (or of documents no longer valid): to be withdrawn. */
+  copiesToWithdraw() {
+    const out = [];
+    for (const d of this.data.docs) {
+      for (const c of d.copies || []) {
+        if (c.status !== 'issued') continue;
+        if (c.versionId !== d.currentVersionId || d.status === 'obsolete') out.push({ docId: d.id, code: d.code, title: d.title, currentVersion: d.version, ...c });
+      }
+    }
+    return out;
   }
 
   // ---------------------------------------------------------------------------

@@ -733,3 +733,14 @@ body.role-reader .perm-ro, body.read-only .perm-ro { display: inline-flex !impor
   #print-area .note { margin: 8px 0; }
   #print-area svg { display: none; }
 }
+
+/* Approval and controlled copies */
+.apr-banner { margin-top: 10px; align-items: center; }
+.apr-banner > div:first-of-type { flex: 1; }
+.apr-pick { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 2px 14px; border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px; max-height: 180px; overflow: auto; }
+.apr-req { border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; margin: 8px 0; }
+.apr-req.st-cancelled, .apr-req.st-rejected { opacity: 0.8; }
+.apr-head { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.apr-steps { margin: 8px 0 0 18px; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.apr-steps li.open { color: var(--muted); }
+.apr-role { display: inline-block; min-width: 96px; color: var(--muted); font-size: 0.85rem; }

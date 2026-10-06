@@ -1094,6 +1094,51 @@ function registerIpc() {
     { perm: 'editor', write: true }
   );
 
+  // --- approval of a version (signed with the signer's password) and controlled copies ---
+  handle('approval:request', (docId, r) => archive.requestApproval(docId, r || {}), { perm: 'editor', write: true });
+  handle(
+    'approval:sign',
+    async (docId, decision, comment, password) => {
+      if (!archive.checkPassword(session.userId, password)) {
+        archive.audit('approval.sign-failed', { docId });
+        throw new UserError(tr('err.badPassword'));
+      }
+      return archive.signApproval(docId, session.userId, { decision, comment });
+    },
+    { write: true }
+  );
+  handle('approval:cancel', (docId) => archive.cancelApproval(docId), { perm: 'editor', write: true });
+  handle('approval:mine', () => archive.approvalsFor(session.userId));
+  handle(
+    'copies:issue',
+    async (docId, r) => {
+      const labels = { title: tr('stamp.title'), to: tr('stamp.to'), version: tr('stamp.version'), back: tr('stamp.back') };
+      const out = await archive.issueCopy(docId, { ...(r || {}), labels });
+      if (out.copy.format === 'pdf') {
+        const sd = await dialog.showSaveDialog(mainWindow, { defaultPath: out.name });
+        if (!sd.canceled && sd.filePath) await fs.promises.writeFile(sd.filePath, out.data);
+        return { copy: out.copy, stamped: out.stamped, file: sd.canceled ? null : sd.filePath };
+      }
+      // To print: a read-only working copy opened in the default program (removed when the app quits).
+      const dir = workDir();
+      await fs.promises.mkdir(dir, { recursive: true, mode: 0o700 });
+      const dest = path.join(dir, out.name.replace(/[<>:"/\\|?*]+/g, '_'));
+      try {
+        await fs.promises.chmod(dest, 0o644);
+      } catch (_) {
+        /* new file */
+      }
+      await fs.promises.writeFile(dest, out.data, { mode: 0o600 });
+      await fs.promises.chmod(dest, 0o444).catch(() => {});
+      const err = await shell.openPath(dest);
+      if (err) throw new Error(err);
+      return { copy: out.copy, stamped: out.stamped, file: null };
+    },
+    { perm: 'editor', write: true }
+  );
+  handle('copies:withdraw', (docId, copyId) => archive.withdrawCopy(docId, copyId), { perm: 'editor', write: true });
+  handle('copies:toWithdraw', () => archive.copiesToWithdraw());
+
   // --- employees and training records ---
   handle('people:list', () => archive.listPeople());
   handle('people:save', (p) => archive.savePerson(p), { perm: 'admin', write: true });
