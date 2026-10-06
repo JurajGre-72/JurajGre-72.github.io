@@ -3,6 +3,7 @@ import { t, setLang } from '../i18n.js';
 import { html, icon, fmtDateTime, toast, errorToast, formValues, openModal, confirmDialog } from '../ui.js';
 import { app } from '../app.js';
 import { auditDetails } from './document.js';
+import { showRecoveryCode } from './recovery.js';
 
 const api = window.api;
 let netLog = [];
@@ -53,7 +54,7 @@ function usersSection() {
           <td><b>${u.name}</b>${u.id === me.userId ? html` <span class="chip chip-muted">${t('usr.you')}</span>` : ''}</td>
           <td>${t(`role.${u.role}`)}</td>
           <td class="muted small nowrap">${u.lastLoginAt ? fmtDateTime(u.lastLoginAt) : '—'}</td>
-          <td>${u.disabled ? html`<span class="chip chip-muted">${t('usr.disabled')}</span>` : html`<span class="chip chip-good">${t('usr.active')}</span>`}</td>
+          <td>${u.disabled ? html`<span class="chip chip-muted">${t('usr.disabled')}</span>` : u.needsPassword ? html`<span class="chip chip-warn" title="${t('usr.needsPasswordHint')}">${t('usr.needsPassword')}</span>` : html`<span class="chip chip-good">${t('usr.active')}</span>`}</td>
           <td class="nowrap">
             <button class="btn btn-sm" data-action="editUser" data-id="${u.id}">${icon('edit')}${t('edit')}</button>
             <button class="btn btn-sm" data-action="resetPw" data-id="${u.id}">${icon('key')}${t('usr.resetPw')}</button>
@@ -190,6 +191,9 @@ export async function render() {
             (e) => html`<tr><td class="nowrap">${fmtDateTime(e.ts)}</td><td><span class="chip chip-${e.purpose === 'ai' ? 'warn' : 'muted'}">${e.purpose}</span></td><td class="url">${e.url}</td></tr>`
           )}</tbody></table></div>`
         : html`<p class="muted small">${t('set.netLogEmpty')}</p>`}
+      ${app.info.encrypted ? html`<div class="note note-good">${icon('lock')}<div>${t('enc.on')}</div></div>
+      <div class="btn-row" data-perm="admin"><button class="btn" data-action="newRecoveryCode">${icon('key')}${t('enc.newCode')}</button></div>
+      <p class="muted small" data-perm="admin">${t('enc.newCodeHint')}</p>` : ''}
       <h4>${t('set.audit')}</h4>
       <div class="table-wrap log"><table class="table compact"><tbody>${audit.map(
         (r) => html`<tr><td class="nowrap">${fmtDateTime(r.ts)}</td><td>${r.user}</td><td>${t(`audit.${r.action}`) === `audit.${r.action}` ? r.action : t(`audit.${r.action}`)}</td><td>${r.code || r.targetUser || r.title || ''}</td><td class="small">${auditDetails(r)}</td></tr>`
@@ -402,6 +406,15 @@ export const actions = {
     }
   },
   clearLogo: () => saveAndReload(api.archive.clearLogo()),
+  async newRecoveryCode() {
+    if (!(await confirmDialog(t('enc.newCodeConfirm'), { okLabel: t('enc.newCode') }))) return;
+    try {
+      const code = await api.archive.newRecoveryCode();
+      await showRecoveryCode(code, { org: app.info.archiveSettings.org });
+    } catch (e) {
+      errorToast(e);
+    }
+  },
   async checkUpdate() {
     const out = document.getElementById('upd-result');
     out.className = 'small muted';

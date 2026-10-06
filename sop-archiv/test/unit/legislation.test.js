@@ -429,17 +429,17 @@ test('users: hashed passwords, roles, last administrator protected', async () =>
   const a = new Archive({ dataDir: dir, user: 'setup' });
   await a.open();
   const admin = await a.createUser({ name: 'Juraj Gregus', role: 'admin', password: 'tajne123' });
-  const eva = await a.createUser({ name: 'Eva', role: 'reader', password: '1234' });
+  const eva = await a.createUser({ name: 'Eva', role: 'reader', password: 'evine-heslo' });
   assert.ok(a.verifyLogin(admin.id, 'tajne123'));
   assert.equal(a.verifyLogin(admin.id, 'zle'), null);
-  await assert.rejects(a.createUser({ name: 'eva', role: 'reader', password: '1234' }), /NAME_TAKEN/);
-  await assert.rejects(a.createUser({ name: 'Peter', role: 'reader', password: '12' }), /PASSWORD_SHORT/);
+  await assert.rejects(a.createUser({ name: 'eva', role: 'reader', password: 'evine-heslo' }), /NAME_TAKEN/);
+  await assert.rejects(a.createUser({ name: 'Peter', role: 'reader', password: '1234567' }), /PASSWORD_SHORT/, 'at least 8 characters');
   await assert.rejects(a.updateUser(admin.id, { role: 'editor' }), /LAST_ADMIN/);
   await a.updateUser(eva.id, { disabled: true });
-  assert.equal(a.verifyLogin(eva.id, '1234'), null, 'disabled profile cannot sign in');
+  assert.equal(a.verifyLogin(eva.id, 'evine-heslo'), null, 'disabled profile cannot sign in');
   await a.saving;
   const raw = fs.readFileSync(path.join(dir, 'archive.json'), 'utf8');
-  assert.ok(!raw.includes('tajne123') && !raw.includes('"1234"'), 'no plain passwords on disk');
+  assert.ok(!raw.includes('tajne123') && !raw.includes('evine-heslo'), 'no plain passwords on disk');
 });
 
 test('archive: company logo is stored in the archive folder, replaced and removed', async () => {
@@ -548,4 +548,129 @@ test('archive: every act cited in a document is watched; removed ones are not ad
   assert.equal(law.title, 'Vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 82/2012 Z. z. o zozname liekov');
   assert.equal(law.short, 'Vyhláška o zozname liekov');
   assert.equal(law.autoTitle, false);
+});
+
+// ---------------------------------------------------------------------------------------------
+// Encryption of the archive folder
+
+const readAll = (dir) => {
+  const out = [];
+  const walk = (d) => {
+    for (const e of fs.readdirSync(d, { withFileTypes: true })) {
+      const f = path.join(d, e.name);
+      if (e.isDirectory()) walk(f);
+      else out.push({ f, name: e.name, buf: fs.readFileSync(f) });
+    }
+  };
+  walk(dir);
+  return out;
+};
+
+test('encryption: nothing readable on disk, locked until sign-in, wrong password fails, recovery code works', async () => {
+  const dir = tmpDir();
+  const fx = await makeAll(path.join(dir, 'fx'));
+  const arch = path.join(dir, 'arch');
+  const a = new Archive({ dataDir: arch, user: 'setup' });
+  await a.open();
+  const code = await a.enableEncryption(); // first-time setup
+  const admin = await a.createUser({ name: 'Juraj Gregus', role: 'admin', password: 'Tajne-heslo-1' });
+  const eva = await a.createUser({ name: 'Eva Nováková', role: 'reader', password: 'citam123' });
+  await a.buildIndex();
+  const doc = await a.importFile(fx.docx, { department: 'QA' }); // SOP-SK-002 Reklamácie, vratky a stiahnutie liekov z trhu
+  await a.saving;
+  await new Promise((r) => setTimeout(r, 50)); // audit lines are appended asynchronously
+
+  // On disk: no document text, no titles in file names, no passwords.
+  const words = ['Reklamácie', 'stiahnutie', 'karant', 'Tajne-heslo-1', 'citam123'];
+  for (const { f, name, buf } of readAll(arch)) {
+    if (name === 'keyring.json') {
+      const k = buf.toString('utf8');
+      assert.ok(k.includes('Juraj Gregus'), 'the sign-in screen needs the profile names');
+      assert.ok(!k.includes('Tajne') && !k.includes('citam'), 'no passwords in the keyring');
+      continue;
+    }
+    if (name === '.sop-archiv.lock') continue;
+    const txt = buf.toString('utf8');
+    for (const w of words) assert.ok(!txt.includes(w), `${path.relative(arch, f)} contains "${w}"`);
+    assert.ok(!/Reklam/i.test(name), `file name ${name} shows a title`);
+  }
+  assert.ok(fs.readFileSync(path.join(arch, 'audit.log'), 'utf8').split('\n').filter(Boolean).every((l) => l.startsWith('E1:')));
+
+  // A second program (another computer, or after a restart) sees a locked archive.
+  const b = new Archive({ dataDir: arch, user: 'pc2' });
+  const opened = await b.open();
+  assert.equal(opened.locked, true);
+  assert.equal(b.locked, true);
+  assert.deepEqual(b.publicUsers().map((u) => u.name).sort(), ['Eva Nováková', 'Juraj Gregus']);
+  assert.equal(b.data.docs.length, 0, 'nothing is read before signing in');
+  assert.equal(await b.login(eva.id, 'zle-heslo'), null);
+  const r = await b.login(eva.id, 'citam123');
+  assert.ok(r && r.unlocked && r.user.name === 'Eva Nováková');
+  assert.equal(b.data.docs.length, 1);
+  await b.buildIndex();
+  assert.ok(b.search('reklamácie').results.length, 'search works on the decrypted text');
+  const original = await b.versionContent(doc.id);
+  assert.equal(original.name, path.basename(fx.docx));
+  assert.ok(original.data.equals(fs.readFileSync(fx.docx)), 'the original file comes back unchanged');
+  assert.equal(await b.login(admin.id, 'citam123'), null, 'another user’s password does not work');
+
+  // All passwords forgotten: the recovery code opens the archive and sets a new administrator password.
+  const c = new Archive({ dataDir: arch, user: 'pc3' });
+  await c.open();
+  assert.equal(await c.recover('AAAAA-BBBBB-CCCCC-DDDDD-EEEEE-FFFFF', admin.id, 'nove-heslo-2027'), null, 'a wrong code does nothing');
+  await assert.rejects(c.recover(code, eva.id, 'nove-heslo-2027'), /NOT_ADMIN/);
+  const d = new Archive({ dataDir: arch, user: 'pc4' });
+  await d.open();
+  const rec = await d.recover(code.toLowerCase().replace(/-/g, ' '), admin.id, 'nove-heslo-2027');
+  assert.equal(rec.name, 'Juraj Gregus');
+  const e = new Archive({ dataDir: arch, user: 'pc5' });
+  await e.open();
+  assert.equal(await e.login(admin.id, 'Tajne-heslo-1'), null, 'the old password no longer works');
+  assert.ok(await e.login(admin.id, 'nove-heslo-2027'));
+
+  // A disabled profile loses its key; after re-enabling, an administrator sets a new password.
+  await e.updateUser(eva.id, { disabled: true });
+  const f = new Archive({ dataDir: arch, user: 'pc6' });
+  await f.open();
+  assert.ok(!f.publicUsers().some((u) => u.id === eva.id));
+  await assert.rejects(f.login(eva.id, 'citam123'), /NEEDS_PASSWORD/);
+  await e.updateUser(eva.id, { disabled: false });
+  assert.equal(e.listUsers().find((u) => u.id === eva.id).needsPassword, true);
+  await e.setPassword(eva.id, 'nove-citam-123');
+  const g = new Archive({ dataDir: arch, user: 'pc7' });
+  await g.open();
+  assert.ok(await g.login(eva.id, 'nove-citam-123'));
+});
+
+test('encryption: an existing archive is converted in place and everyone keeps their password', async () => {
+  const dir = tmpDir();
+  const fx = await makeAll(path.join(dir, 'fx'));
+  const arch = path.join(dir, 'arch');
+  const a = new Archive({ dataDir: arch, user: 't' });
+  await a.open();
+  const admin = await a.createUser({ name: 'Admin', role: 'admin', password: 'stare-heslo-1' });
+  const reader = await a.createUser({ name: 'Čitateľ', role: 'reader', password: 'citatel-123' });
+  await a.buildIndex();
+  const doc = await a.importFile(fx.docx);
+  await a.saving;
+  const before = doc.versions[0].file;
+  assert.match(before, /v1-.*\.docx$/, 'unencrypted archives keep the file name');
+  assert.ok(fs.readFileSync(path.join(arch, 'archive.json'), 'utf8').includes('Reklam'));
+
+  const code = await a.enableEncryption();
+  await a.saving;
+  assert.equal(a.takePendingRecoveryCode(), code, 'shown to the first administrator who signs in');
+  assert.ok(!a.data.users.some((u) => u.hash || u.salt), 'old password checks are removed');
+  assert.ok(!fs.existsSync(path.join(arch, before)), 'the plain file is gone');
+  for (const { name, buf } of readAll(arch)) if (!['keyring.json', '.sop-archiv.lock'].includes(name)) assert.ok(!buf.toString('utf8').includes('Reklam'), name);
+
+  const b = new Archive({ dataDir: arch, user: 't2' });
+  await b.open();
+  const r = await b.login(reader.id, 'citatel-123');
+  assert.ok(r, 'the old password still works');
+  assert.equal(b.keyring.users.find((u) => u.id === reader.id).wrap.kdf.alg, 'scrypt', 'renewed with a fresh salt at sign-in');
+  assert.ok((await b.versionContent(doc.id)).data.equals(fs.readFileSync(fx.docx)));
+  assert.ok(await b.login(admin.id, 'stare-heslo-1'));
+  await b.confirmRecoveryCodeKept();
+  assert.equal(b.takePendingRecoveryCode(), null);
 });

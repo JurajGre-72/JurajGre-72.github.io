@@ -7,11 +7,11 @@ const call = (channel) => (...args) => ipcRenderer.invoke(channel, ...args);
 
 const CHANNELS = {
   app: ['info', 'setSettings', 'chooseFolder', 'switchDataDir', 'retryLock', 'openDataDir', 'backup', 'openExternal', 'networkLog', 'audit', 'remindNow', 'logo', 'checkUpdate'],
-  auth: ['state', 'setup', 'login', 'logout', 'changePassword', 'setPrefs'],
+  auth: ['state', 'setup', 'login', 'logout', 'changePassword', 'setPrefs', 'recover', 'pendingRecovery', 'recoveryKept'],
   users: ['list', 'create', 'update', 'resetPassword', 'roles'],
   legis: ['pickFile', 'inspectFile', 'importFile', 'resolve', 'check'],
-  archive: ['updateSettings', 'setLogo', 'clearLogo'],
-  docs: ['list', 'get', 'text', 'pickFiles', 'pickFolder', 'expandPaths', 'analyze', 'import', 'addVersion', 'update', 'delete', 'open', 'reveal', 'markReviewed', 'exportCsv'],
+  archive: ['updateSettings', 'setLogo', 'clearLogo', 'newRecoveryCode'],
+  docs: ['list', 'get', 'text', 'pickFiles', 'pickFolder', 'expandPaths', 'analyze', 'import', 'addVersion', 'update', 'delete', 'open', 'markReviewed', 'exportCsv', 'saveCopy'],
   reviews: ['exportIcs'],
   search: ['query', 'ask'],
   laws: ['list', 'add', 'update', 'remove', 'check'],

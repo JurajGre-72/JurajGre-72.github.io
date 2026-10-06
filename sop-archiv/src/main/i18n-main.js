@@ -32,7 +32,7 @@ const STR = {
     'err.badPassword': 'Nesprávne heslo.',
     'err.NAME_REQUIRED': 'Zadajte meno (aspoň 2 znaky).',
     'err.NAME_TAKEN': 'Profil s týmto menom už existuje.',
-    'err.PASSWORD_SHORT': 'Heslo musí mať aspoň 4 znaky.',
+    'err.PASSWORD_SHORT': 'Heslo musí mať aspoň 8 znakov.',
     'err.LAST_ADMIN': 'Musí zostať aspoň jeden aktívny správca.',
     'err.NOT_LOCAL': 'AI server musí byť v tomto počítači alebo vo vnútornej sieti firmy – dokumenty sa nesmú posielať na internet.',
     'err.lawNotFound': 'Predpis sa nepodarilo rozpoznať. Zadajte číslo (napr. 362/2011 alebo 2019/6), webovú adresu, alebo importujte stiahnutý súbor.',
@@ -43,7 +43,12 @@ const STR = {
     'dlg.images': 'Obrázky',
     'err.LOGO_TYPE': 'Logo musí byť obrázok PNG, JPG, WEBP alebo SVG.',
     'err.LOGO_SIZE': 'Logo je príliš veľké (najviac 1 MB).',
-    'err.updateCheck': 'Zoznam verzií sa nepodarilo načítať (HTTP {status}).'
+    'err.updateCheck': 'Zoznam verzií sa nepodarilo načítať (HTTP {status}).',
+    'err.NEEDS_PASSWORD': 'Tento profil je potrebné odomknúť: správca mu musí nastaviť nové heslo (Nastavenia → Používatelia).',
+    'err.NOT_ADMIN': 'Kód na obnovu prístupu môže použiť len profil správcu.',
+    'err.badRecoveryCode': 'Kód na obnovu prístupu nie je správny.',
+    'err.USER_DISABLED': 'Profil je vypnutý – najprv ho zapnite.',
+    'err.LOCKED': 'Archív je zamknutý – prihláste sa.'
   },
   en: {
     'tray.open': 'Open SOP Archive',
@@ -75,7 +80,7 @@ const STR = {
     'err.badPassword': 'Wrong password.',
     'err.NAME_REQUIRED': 'Enter a name (at least 2 characters).',
     'err.NAME_TAKEN': 'A profile with this name already exists.',
-    'err.PASSWORD_SHORT': 'The password must have at least 4 characters.',
+    'err.PASSWORD_SHORT': 'The password must have at least 8 characters.',
     'err.LAST_ADMIN': 'At least one active administrator must remain.',
     'err.NOT_LOCAL': 'The AI server must be on this computer or the internal company network – documents must not be sent to the internet.',
     'err.lawNotFound': 'The act could not be recognised. Enter its number (e.g. 362/2011 or 2019/6), a web address, or import a downloaded file.',
@@ -86,7 +91,12 @@ const STR = {
     'dlg.images': 'Images',
     'err.LOGO_TYPE': 'The logo must be a PNG, JPG, WEBP or SVG image.',
     'err.LOGO_SIZE': 'The logo is too large (1 MB at most).',
-    'err.updateCheck': 'The list of versions could not be loaded (HTTP {status}).'
+    'err.updateCheck': 'The list of versions could not be loaded (HTTP {status}).',
+    'err.NEEDS_PASSWORD': 'This profile needs to be unlocked: an administrator has to set a new password (Settings → Users).',
+    'err.NOT_ADMIN': 'Only an administrator profile can use the recovery code.',
+    'err.badRecoveryCode': 'The recovery code is not correct.',
+    'err.USER_DISABLED': 'The profile is disabled – enable it first.',
+    'err.LOCKED': 'The archive is locked – please sign in.'
   }
 };
 

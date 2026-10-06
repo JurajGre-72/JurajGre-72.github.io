@@ -63,7 +63,22 @@ function loginHtml(state, selected) {
           <div class="err small" id="login-err"></div>
         </form>`
       : html`<p class="muted">${t('auth.pick')}</p>`}
-    <p class="muted small auth-foot">${t('auth.forgot')}</p>`);
+    <p class="muted small auth-foot">${t('auth.forgot')}${state.canRecover ? html` <button type="button" class="link" id="go-recover">${t('rec.forgotLink')}</button>` : ''}</p>`);
+}
+
+function recoverHtml(state) {
+  const admins = state.users.filter((u) => u.role === 'admin');
+  return shell(html`
+    <h2>${t('rec.recoverTitle')}</h2>
+    <p class="muted">${t('rec.recoverIntro')}</p>
+    <form id="recover-form" class="form-grid" autocomplete="off">
+      <div class="field full"><label>${t('rec.adminProfile')}</label><select name="userId">${admins.map((u) => html`<option value="${u.id}">${u.name}</option>`)}</select></div>
+      <div class="field full"><label>${t('rec.code')}</label><input name="code" id="rec-input" class="mono" placeholder="XXXXX-XXXXX-XXXXX-XXXXX-XXXXX-XXXXX" required></div>
+      <div class="field"><label>${t('usr.newPw')}</label><input type="password" name="pw" required></div>
+      <div class="field"><label>${t('auth.password2')}</label><input type="password" name="pw2" required></div>
+      <div class="field full err small" id="login-err"></div>
+      <div class="field full btn-row"><button type="button" class="btn btn-ghost" id="back-login">← ${t('auth.signIn')}</button><button class="btn btn-primary" type="submit">${icon('key')}${t('rec.recoverBtn')}</button></div>
+    </form>`);
 }
 
 /**
@@ -75,9 +90,12 @@ export async function authenticate(root, info) {
   setLang(info.settings.lang);
   return new Promise((resolve) => {
     let selected = null;
+    let recovering = false;
     const draw = async () => {
       state = await api.auth.state();
-      root.innerHTML = String(state.needsSetup ? setupHtml(info) : loginHtml(state, selected));
+      root.innerHTML = String(state.needsSetup ? setupHtml(info) : recovering ? recoverHtml(state) : loginHtml(state, selected));
+      const rc = root.querySelector('#rec-input');
+      if (rc) rc.focus();
       const pw = root.querySelector('#login-pw');
       if (pw) pw.focus();
       else {
@@ -86,6 +104,11 @@ export async function authenticate(root, info) {
       }
     };
     root.onclick = async (e) => {
+      if (e.target.closest('#go-recover') || e.target.closest('#back-login')) {
+        recovering = !!e.target.closest('#go-recover');
+        await draw();
+        return;
+      }
       const p = e.target.closest('[data-user]');
       if (p) {
         selected = p.dataset.user;
@@ -139,6 +162,14 @@ export async function authenticate(root, info) {
           }
           await api.app.setSettings({ launchAtLogin: v.launchAtLogin, runInBackground: v.runInBackground });
           const s = await api.auth.setup({ name: v.name, password: v.password, org: v.org, lang: v.lang });
+          root.innerHTML = '';
+          resolve(s);
+        } else if (form.id === 'recover-form') {
+          if (v.pw !== v.pw2) {
+            root.querySelector('#login-err').textContent = t('auth.mismatch');
+            return;
+          }
+          const s = await api.auth.recover(v.code, v.userId, v.pw);
           root.innerHTML = '';
           resolve(s);
         } else {

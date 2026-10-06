@@ -120,7 +120,7 @@ function versionsTab() {
         <td>${v.fileName} <span class="muted">· ${fmtSize(v.size)}</span></td>
         <td class="muted small nowrap">${fmtDateTime(v.importedAt)} · ${t('doc.importedBy', { who: v.importedBy })}</td>
         <td>${v.ocr && v.ocr.status === 'pending' ? html`<span class="chip chip-muted">${t('ocr.pendingShort')}</span>` : v.textStatus !== 'ok' ? html`<span class="chip chip-warn">${t('imp.noText')}</span>` : html`<span class="muted small">${v.chars} ${t('doc.chars')}${v.ocr && v.ocr.status === 'done' ? ' · OCR' : ''}</span>`}</td>
-        <td class="nowrap"><button class="btn btn-sm" data-action="openFile" data-vid="${v.id}">${icon('external')}${t('open')}</button> <button class="btn btn-sm btn-ghost" data-action="reveal" data-vid="${v.id}">${icon('folder')}</button></td>
+        <td class="nowrap"><button class="btn btn-sm" data-action="openFile" data-vid="${v.id}">${icon('external')}${t('open')}</button> <button class="btn btn-sm btn-ghost" data-action="saveCopy" data-vid="${v.id}" title="${t('doc.saveCopy')}">${icon('download')}</button></td>
       </tr>`
     )}</tbody></table></div></section>`;
 }
@@ -232,7 +232,7 @@ export async function render(route) {
         <button class="btn" data-action="review" data-perm="editor">${icon('check')}${t('doc.markReviewed')}</button>
         <button class="btn" data-action="newVersion" data-perm="editor">${icon('upload')}${t('doc.newVersion')}</button>
         <button class="btn" data-action="edit" data-perm="editor">${icon('edit')}${t('edit')}</button>
-        <button class="btn btn-ghost" data-action="reveal" title="${t('doc.showInFolder')}">${icon('folder')}</button>
+        <button class="btn btn-ghost" data-action="saveCopy" title="${t('doc.saveCopy')}">${icon('download')}</button>
         <button class="btn btn-ghost danger" data-action="remove" data-perm="admin" title="${t('delete')}">${icon('trash')}</button>
       </div>
     </header>
@@ -284,7 +284,10 @@ export function mount(root) {
 
 export const actions = {
   openFile: (el) => api.docs.open(doc.id, el.dataset.vid || undefined),
-  reveal: (el) => api.docs.reveal(doc.id, el.dataset.vid || undefined),
+  async saveCopy(el) {
+    const p = await api.docs.saveCopy(doc.id, el.dataset.vid || undefined);
+    if (p) toast(t('doc.copySaved', { path: p }), 'good', 6000);
+  },
   async review() {
     if (await recordReview(doc)) app.rerender();
   },

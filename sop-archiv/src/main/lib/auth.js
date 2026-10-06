@@ -19,12 +19,15 @@ function verifyPassword(password, salt, hash) {
   return expected.length === h.length && crypto.timingSafeEqual(h, expected);
 }
 
+// Passwords protect the archive's encryption key, so they need some length.
+const MIN_PASSWORD = 8;
+
 function validPassword(pw) {
-  return typeof pw === 'string' && pw.length >= 4;
+  return typeof pw === 'string' && pw.length >= MIN_PASSWORD;
 }
 
 function hasRole(role, needed) {
   return (RANK[role] || 0) >= (RANK[needed] || 99);
 }
 
-module.exports = { ROLES, RANK, hashPassword, verifyPassword, validPassword, hasRole };
+module.exports = { ROLES, RANK, MIN_PASSWORD, hashPassword, verifyPassword, validPassword, hasRole };

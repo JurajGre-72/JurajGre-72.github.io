@@ -64,13 +64,13 @@ function createOcr({ dataDir, log = () => {} } = {}) {
   }
 
   /**
-   * Recognise the text of the given pages of a PDF file. onPage({ page, done, total }) after each page.
+   * Recognise the text of the given pages of a PDF (its contents, or a path). onPage({ page, done, total }) after each page.
    * Returns [{ page, text }].
    */
-  async function readPdf(filePath, pageNumbers, onPage = () => {}) {
+  async function readPdf(file, pageNumbers, onPage = () => {}) {
     const w = await renderer();
     const tess = await recognizer();
-    const b64 = (await fs.promises.readFile(filePath)).toString('base64');
+    const b64 = (Buffer.isBuffer(file) ? file : await fs.promises.readFile(file)).toString('base64');
     const count = await w.webContents.executeJavaScript(`window.ocrOpen(${JSON.stringify(b64)})`);
     const wanted = (pageNumbers && pageNumbers.length ? pageNumbers : Array.from({ length: count }, (_, i) => i + 1)).filter((n) => n >= 1 && n <= count);
     const out = [];

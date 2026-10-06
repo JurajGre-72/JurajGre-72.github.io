@@ -19,7 +19,7 @@ const ai = require('./ai');
 const { summarize, buildIcs, buildCsv } = require('./lib/reviews');
 const { SUPPORTED, extractFile } = require('./lib/extract');
 const { today } = require('./lib/dates');
-const { hasRole, ROLES } = require('./lib/auth');
+const { hasRole, ROLES, validPassword } = require('./lib/auth');
 const { ArchiveLock } = require('./lib/lock');
 const { lawTextFromPages, detectLawIdentity, resolveLawQuery, urlForKey } = require('./lib/lawfile');
 const { sectionMap } = require('./lib/compliance');
@@ -246,19 +246,48 @@ async function openArchive(dir) {
     throw new Error(tr('err.readOnly', { user: lockHolder.user, host: lockHolder.host }));
   }
   await a.open();
-  if (!a.readOnly) await a.watchCitedLaws().catch((e) => console.error('watch cited laws', e)); // acts cited in documents are watched
+  // An archive from before encryption (has profiles, no keyring) is encrypted now; everyone keeps their password.
+  if (!a.encrypted && !a.readOnly && a.data.users.length) await a.enableEncryption();
   archive = a;
   lock = l;
   lastArchiveMtime = archiveMtime();
   monitor = new LegislationMonitor(archive, { fetchPage: createElectronFetcher({ log: logNet }), isOffline: () => settings.offline });
-  archive
-    .buildIndex()
+  if (!archive.locked) afterUnlock();
+  startLockTimers();
+}
+
+/** Once the archive can be read (after the first sign-in when it is encrypted). */
+function afterUnlock() {
+  const a = archive;
+  (a.readOnly ? Promise.resolve() : a.watchCitedLaws().catch((e) => console.error('watch cited laws', e))) // acts cited in documents are watched
+    .then(() => a.buildIndex())
     .then(() => {
-      send('index:ready', { docs: archive.data.docs.length });
+      if (a !== archive) return;
+      send('index:ready', { docs: a.data.docs.length });
       queueOcr(); // scans left unread when the app was last closed
     })
     .catch((e) => console.error('index build failed', e));
-  startLockTimers();
+}
+
+/** Private folder for decrypted working copies of opened documents. */
+function workDir() {
+  return path.join(app.getPath('temp'), `SOP-Archiv-${process.pid}`);
+}
+
+function cleanWorkCopies(all = false) {
+  try {
+    const tmp = app.getPath('temp');
+    for (const name of fs.readdirSync(tmp)) {
+      if (!/^SOP-Archiv(-\d+)?$/.test(name)) continue;
+      const pid = +(name.split('-')[2] || 0);
+      if (!all && pid === process.pid) continue;
+      const dir = path.join(tmp, name);
+      for (const f of fs.readdirSync(dir)) fs.chmodSync(path.join(dir, f), 0o600);
+      fs.rmSync(dir, { recursive: true, force: true });
+    }
+  } catch (_) {
+    /* a document is still open in another program: removed next time */
+  }
 }
 
 function send(channel, payload) {
@@ -276,7 +305,7 @@ function queueOcr() {
 }
 
 async function runOcrQueue() {
-  if (ocrRunning || !archive || archive.readOnly) return;
+  if (ocrRunning || !archive || archive.locked || archive.readOnly) return;
   ocrRunning = true;
   const failed = new Set();
   try {
@@ -288,7 +317,7 @@ async function runOcrQueue() {
       ocrState = { title: job.title, done: 0, total: job.pages.length, queue: a.pendingOcr().length };
       send('ocr:progress', ocrState);
       try {
-        const pages = await ocr.readPdf(a.versionFile(job.docId, job.versionId), job.pages, (p) => {
+        const pages = await ocr.readPdf((await a.versionContent(job.docId, job.versionId)).data, job.pages, (p) => {
           ocrState = { ...ocrState, done: p.done };
           send('ocr:progress', ocrState);
         });
@@ -427,7 +456,7 @@ function openChangesCount() {
 }
 
 function reviewReminder(force = false) {
-  if (!archive || !settings.notifications || !Notification.isSupported()) return null;
+  if (!archive || archive.locked || !settings.notifications || !Notification.isSupported()) return null;
   const s = summarize(archive.data.docs, archive.data.settings.warnDays);
   const legis = openChangesCount();
   const sig = `${s.overdue.length}|${s.due.length}|${legis}`;
@@ -448,7 +477,7 @@ function reviewReminder(force = false) {
 }
 
 async function autoLegislationCheck() {
-  if (!archive || archive.readOnly || settings.offline || !monitor || monitor.running) return;
+  if (!archive || archive.locked || archive.readOnly || settings.offline || !monitor || monitor.running) return;
   const mode = archive.data.settings.legisAutoCheck;
   if (!mode || mode === 'off') return;
   const last = archive.data.settings.legisLastAutoCheck;
@@ -491,7 +520,7 @@ function stampName() {
 }
 
 function needsSetup() {
-  return !!archive && archive.data.users.length === 0;
+  return !!archive && !archive.encrypted && archive.data.users.length === 0;
 }
 
 class UserError extends Error {}
@@ -550,7 +579,8 @@ function registerIpc() {
       needsSetup: needsSetup(),
       readOnly: readOnlyInfo(),
       settings: publicSettings(),
-      archiveSettings: { ...archive.data.settings, org: archive.data.org },
+      archiveSettings: archive.locked ? { org: '', docTypes: [], departments: [], autoLockMinutes: 30, warnDays: 60 } : { ...archive.data.settings, org: archive.data.org },
+      encrypted: archive.encrypted,
       logo: archive.logoInfo(),
       indexReady: archive.indexReady,
       ocr: ocrState,
@@ -560,13 +590,16 @@ function registerIpc() {
     { perm: 'public' }
   );
 
-  handle('auth:state', () => ({ needsSetup: needsSetup(), users: archive.publicUsers(), session: sessionPublic(), lastUserId: settings.lastUserId, readOnly: readOnlyInfo() }), { perm: 'public' });
+  handle('auth:state', () => ({ needsSetup: needsSetup(), users: archive.publicUsers(), session: sessionPublic(), lastUserId: settings.lastUserId, readOnly: readOnlyInfo(), canRecover: archive.encrypted }), { perm: 'public' });
 
   handle(
     'auth:setup',
     async ({ name, password, org, lang: l }) => {
       if (!needsSetup()) throw new UserError(tr('err.permission'));
+      if (!validPassword(password)) throw new UserError(tr('err.PASSWORD_SHORT'));
+      const code = await archive.enableEncryption();
       const u = await archive.createUser({ name, role: 'admin', password });
+      archive.data.pendingRecoveryCode = code; // shown right after setup, until the administrator confirms it is kept
       if (org !== undefined) await archive.updateSettings({ org });
       const full = archive.data.users.find((x) => x.id === u.id);
       if (l) {
@@ -588,16 +621,24 @@ function registerIpc() {
     async (userId, password) => {
       const f = failedLogins.get(userId);
       if (f && f.until > Date.now()) throw new UserError(tr('err.tooMany'));
-      const u = archive.verifyLogin(userId, password);
-      if (!u) {
+      let r;
+      try {
+        r = await archive.login(userId, password);
+      } catch (e) {
+        if (e.message === 'NEEDS_PASSWORD') throw new UserError(tr('err.NEEDS_PASSWORD'));
+        throw e;
+      }
+      if (!r) {
         const n = ((f && f.count) || 0) + 1;
         failedLogins.set(userId, { count: n, until: n >= 5 ? Date.now() + 60000 : 0 });
-        const target = archive.data.users.find((x) => x.id === userId);
+        const target = archive.publicUsers().find((x) => x.id === userId);
         archive.audit('auth.failed', { targetUser: target ? target.name : '?' });
         throw new UserError(tr('err.badPassword'));
       }
       failedLogins.delete(userId);
+      const u = r.user;
       setSession(u);
+      if (r.unlocked) afterUnlock();
       if (!archive.readOnly) await archive.recordLogin(u.id);
       archive.audit('auth.login', {});
       settings.lastUserId = u.id;
@@ -606,6 +647,39 @@ function registerIpc() {
     },
     { perm: 'public' }
   );
+
+  // All passwords forgotten: the recovery code (printed at setup) sets a new administrator password.
+  handle(
+    'auth:recover',
+    async (code, userId, newPassword) => {
+      const f = failedLogins.get('recovery');
+      if (f && f.until > Date.now()) throw new UserError(tr('err.tooMany'));
+      if (!validPassword(newPassword)) throw new UserError(tr('err.PASSWORD_SHORT'));
+      const wasLocked = archive.locked;
+      let u;
+      try {
+        u = await archive.recover(code, userId, newPassword);
+      } catch (e) {
+        if (e.message === 'NOT_ADMIN') throw new UserError(tr('err.NOT_ADMIN'));
+        throw e;
+      }
+      if (!u) {
+        const n = ((f && f.count) || 0) + 1;
+        failedLogins.set('recovery', { count: n, until: n >= 5 ? Date.now() + 5 * 60000 : 0 });
+        throw new UserError(tr('err.badRecoveryCode'));
+      }
+      failedLogins.delete('recovery');
+      setSession(u);
+      if (wasLocked) afterUnlock();
+      settings.lastUserId = u.id;
+      saveSettings();
+      return sessionPublic();
+    },
+    { perm: 'public', write: true }
+  );
+  handle('auth:pendingRecovery', () => archive.takePendingRecoveryCode(), { perm: 'admin' });
+  handle('auth:recoveryKept', () => archive.confirmRecoveryCodeKept(), { perm: 'admin', write: true });
+  handle('archive:newRecoveryCode', () => archive.newRecoveryCode(), { perm: 'admin', write: true });
 
   handle('auth:logout', (reason) => {
     archive.audit('auth.logout', { reason: reason || undefined });
@@ -616,7 +690,7 @@ function registerIpc() {
   handle(
     'auth:changePassword',
     async (oldPw, newPw) => {
-      if (!archive.verifyLogin(session.userId, oldPw)) throw new UserError(tr('err.badPassword'));
+      if (!archive.checkPassword(session.userId, oldPw)) throw new UserError(tr('err.badPassword'));
       await archive.setPassword(session.userId, newPw, { self: true });
       return true;
     },
@@ -726,7 +800,7 @@ function registerIpc() {
       settings.dataDir = dir;
       saveSettings();
       // Profiles belong to an archive: keep the session only when the same profile exists there (a copy).
-      const same = prev && archive.data.users.find((u) => u.id === prev.id && !u.disabled);
+      const same = prev && !archive.locked && archive.data.users.find((u) => u.id === prev.id && !u.disabled);
       setSession(same || null);
       archive.audit('archive.opened', { dir, mode });
       return { dataDir: dir, session: sessionPublic(), needsSetup: needsSetup() };
@@ -847,11 +921,11 @@ function registerIpc() {
   handle('docs:open', async (id, versionId) => {
     // Open a read-only working copy, so the archived (controlled) original can't be changed by accident.
     // Changes are brought back with "Upload new version".
-    const src = archive.filePath(id, versionId);
+    const content = await archive.versionContent(id, versionId);
     const doc = archive.getDoc(id);
     const v = doc.versions.find((x) => x.id === (versionId || doc.currentVersionId));
-    const dir = path.join(app.getPath('temp'), 'SOP-Archiv');
-    await fs.promises.mkdir(dir, { recursive: true });
+    const dir = workDir();
+    await fs.promises.mkdir(dir, { recursive: true, mode: 0o700 });
     const prefix = `${(doc.code || 'doc').replace(/[<>:"/\\|?*\s]+/g, '_')}_v${String(v.label).replace(/[^\w.-]+/g, '_')}_`;
     const dest = path.join(dir, prefix + v.fileName.replace(/[<>:"/\\|?*]+/g, '_'));
     try {
@@ -859,13 +933,21 @@ function registerIpc() {
     } catch (_) {
       /* no previous copy */
     }
-    await fs.promises.copyFile(src, dest);
+    await fs.promises.writeFile(dest, content.data, { mode: 0o600 });
     await fs.promises.chmod(dest, 0o444).catch(() => {});
     const err = await shell.openPath(dest);
     if (err) throw new Error(err);
     return true;
   });
-  handle('docs:reveal', (id, versionId) => shell.showItemInFolder(archive.filePath(id, versionId)));
+  // Stored files are encrypted: "save a copy" writes a readable copy where the user chooses.
+  handle('docs:saveCopy', async (id, versionId) => {
+    const content = await archive.versionContent(id, versionId);
+    const r = await dialog.showSaveDialog(mainWindow, { defaultPath: content.name });
+    if (r.canceled || !r.filePath) return null;
+    await fs.promises.writeFile(r.filePath, content.data);
+    archive.audit('doc.copy-saved', { docId: id, file: path.basename(r.filePath) });
+    return r.filePath;
+  });
   handle('docs:markReviewed', (id, r) => archive.markReviewed(id, r), { perm: 'editor', write: true });
   handle('docs:exportCsv', async (labels) => {
     const r = await dialog.showSaveDialog(mainWindow, { defaultPath: `SOP-Archiv-dokumenty-${today()}.csv`, filters: [{ name: 'CSV', extensions: ['csv'] }] });
@@ -1023,6 +1105,7 @@ if (!app.requestSingleInstanceLock()) {
   app.whenReady().then(async () => {
     app.setAppUserModelId(APP_ID);
     loadSettings();
+    cleanWorkCopies(); // copies left by an earlier run
     // The user interface itself never talks to the internet (only app:// files are allowed).
     electronSession.defaultSession.webRequest.onBeforeRequest({ urls: ['http://*/*', 'https://*/*', 'ws://*/*', 'wss://*/*'] }, (_d, cb) => cb({ cancel: true }));
     electronSession.defaultSession.setSpellCheckerEnabled(false); // no dictionary downloads
@@ -1067,6 +1150,7 @@ if (!app.requestSingleInstanceLock()) {
   app.on('activate', () => showWindow());
   app.on('before-quit', () => {
     quitting = true;
+    cleanWorkCopies(true);
     if (archive && session) archive.audit('auth.logout', { reason: 'quit' });
     if (lock) lock.release();
   });

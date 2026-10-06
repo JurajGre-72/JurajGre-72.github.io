@@ -205,6 +205,16 @@ async function main() {
     await page.fill('#setup-form [name=password2]', ADMIN.password);
     await shot(page, '00-setup');
     await page.click('#setup-form button[type=submit]');
+    // The archive is encrypted from the start: the recovery code is shown once and must be confirmed.
+    await page.waitForSelector('#rec-code');
+    const recoveryCode = (await page.textContent('#rec-code')).trim();
+    assert.match(recoveryCode, /^[0-9A-Z]{5}(-[0-9A-Z]{5}){5}$/);
+    await shot(page, '00b-recovery-code');
+    await page.click('.modal-foot .btn-primary'); // not confirmed yet: stays open
+    assert.ok(await page.isVisible('#rec-code'));
+    await page.check('#rec-kept');
+    await page.click('.modal-foot .btn-primary');
+    await page.waitForFunction(() => !document.querySelector('#rec-code'));
     await page.waitForSelector('.hero-empty');
     const info0 = await page.evaluate(() => window.api.app.info());
     assert.equal(info0.session.name, ADMIN.name);
@@ -566,13 +576,48 @@ async function main() {
     await page.waitForSelector('.aff');
     await shot(page, '20-change-en-dark');
 
-    // ---- Data on disk ----
+    // ---- All administrators forgot their password: the recovery code restores access ----
+    const NEW_ADMIN_PW = 'Nove-heslo-2027';
+    await signOut(page);
+    await page.click('#go-recover');
+    await page.fill('#recover-form [name=code]', 'AAAAA-BBBBB-CCCCC-DDDDD-EEEEE-FFFFF');
+    await page.fill('#recover-form [name=pw]', NEW_ADMIN_PW);
+    await page.fill('#recover-form [name=pw2]', NEW_ADMIN_PW);
+    await page.click('#recover-form button[type=submit]');
+    await page.waitForFunction(() => (document.querySelector('#login-err') || {}).textContent);
+    await page.fill('#recover-form [name=code]', recoveryCode.toLowerCase().replace(/-/g, ' '));
+    await page.click('#recover-form button[type=submit]');
+    await page.waitForSelector('#nav .nav-item');
+    assert.equal((await page.evaluate(() => window.api.app.info())).session.name, ADMIN.name);
+    await signOut(page);
+    await page.click(`.profile:has-text("${ADMIN.name}")`);
+    await page.fill('#login-pw', ADMIN.password);
+    await page.click('#login-form button[type=submit]');
+    await page.waitForFunction(() => (document.querySelector('#login-err') || {}).textContent, null, { timeout: 15000 });
+    await signIn(page, { name: ADMIN.name, password: NEW_ADMIN_PW });
+    console.log('  ✓ recovery code: wrong code refused, right code sets a new administrator password');
+
+    // ---- Data on disk: encrypted, nothing readable without signing in ----
     const dataDir = path.join(tmp, 'archive');
-    const json = JSON.parse(fs.readFileSync(path.join(dataDir, 'archive.json'), 'utf8'));
-    assert.equal(json.users.length, 2);
-    assert.ok(json.users.every((u) => u.hash && !JSON.stringify(u).includes(ADMIN.password) && !JSON.stringify(u).includes(READER.password)), 'only password hashes are stored');
-    assert.ok(fs.readFileSync(path.join(dataDir, 'audit.log'), 'utf8').includes('doc.reviewed'));
-    console.log('  ✓ archive.json (profiles with hashed passwords) and audit.log written');
+    const words = ['Reklamácie', 'karantén', 'Príjem a skladovanie', 'termolabil', ADMIN.password, READER.password, NEW_ADMIN_PW];
+    const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? walk(path.join(d, e.name)) : [path.join(d, e.name)]));
+    let checked = 0;
+    for (const f of walk(dataDir)) {
+      const rel = path.relative(dataDir, f);
+      if (rel === '.sop-archiv.lock' || rel.startsWith('branding')) continue;
+      const txt = fs.readFileSync(f).toString('utf8');
+      for (const w of words) if (w !== READER.name) assert.ok(!txt.includes(w), `${rel} contains "${w}"`);
+      if (rel !== 'keyring.json') assert.ok(!/Reklam|Prijem|SOP-QA/i.test(path.basename(f)), `file name ${rel} shows a title`);
+      checked++;
+    }
+    assert.ok(checked > 20);
+    assert.equal(fs.readFileSync(path.join(dataDir, 'archive.json')).subarray(0, 7).toString('latin1'), 'SOPARC1', 'archive.json is encrypted');
+    const keyring = JSON.parse(fs.readFileSync(path.join(dataDir, 'keyring.json'), 'utf8'));
+    assert.deepEqual(keyring.users.map((u) => u.name).sort(), [READER.name, ADMIN.name].sort());
+    assert.ok(fs.readFileSync(path.join(dataDir, 'audit.log'), 'utf8').split('\n').filter(Boolean).every((l) => l.startsWith('E1:')), 'audit log lines are encrypted');
+    const auditRows = await page.evaluate(() => window.api.app.audit({ limit: 500 }));
+    assert.ok(auditRows.some((r) => r.action === 'doc.reviewed') && auditRows.some((r) => r.action === 'auth.recovered'), 'the app still reads its audit log');
+    console.log(`  ✓ archive folder encrypted: ${checked} files, no document text, titles or passwords readable`);
 
     const real = errors.filter((e) => !/favicon|Autofill/i.test(e));
     assert.deepEqual(real, [], 'no renderer errors');

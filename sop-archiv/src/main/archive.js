@@ -8,6 +8,10 @@
 //   <dataDir>/backups/                 daily copies of archive.json
 //   <dataDir>/audit.log                append-only audit trail (JSON lines)
 //   <dataDir>/branding/logo.*          company logo shown in the app (optional)
+//   <dataDir>/keyring.json             once encrypted: the data key, wrapped per user password and for the recovery code
+//
+// After the first administrator profile is set up, every file above (except keyring.json, the lock and the
+// logo) is encrypted with AES-256-GCM (lib/vault.js); it can only be read after signing in to the app.
 //
 // Plain files on purpose: the folder can be backed up, moved or inspected without this app.
 
@@ -25,6 +29,7 @@ const { today, addMonths } = require('./lib/dates');
 const { DEFAULT_LAWS, DOC_TYPES, defaultArchive } = require('./lib/defaults');
 const { ROLES, hashPassword, verifyPassword, validPassword } = require('./lib/auth');
 const { pagesWithoutText } = require('./ocr');
+const vault = require('./lib/vault');
 
 const STATUSES = ['draft', 'effective', 'review', 'obsolete'];
 const LOGO_TYPES = { '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.svg': 'image/svg+xml' };
@@ -71,6 +76,44 @@ class Archive {
     this.indexReady = false;
     this.userId = null;
     this.readOnly = false; // another computer has the archive open for changes
+    this.key = null; // data key, only in memory, after a user signed in
+    this.keyring = null; // keyring.json when the archive is encrypted
+    this.pendingAudit = []; // audit entries made while locked, written after unlocking
+  }
+
+  /** The archive is encrypted (has a keyring). */
+  get encrypted() {
+    return !!this.keyring;
+  }
+
+  /** Encrypted and nobody has signed in yet: nothing can be read. */
+  get locked() {
+    return this.encrypted && !this.key;
+  }
+
+  // Every file of the archive goes through these: encrypted when the archive is, plain files still readable.
+  async _readFile(file) {
+    const buf = await fs.promises.readFile(file);
+    if (!vault.isEncrypted(buf)) return buf;
+    if (!this.key) throw new Error('LOCKED');
+    return vault.decrypt(this.key, buf);
+  }
+
+  async _readText(file) {
+    return (await this._readFile(file)).toString('utf8');
+  }
+
+  async _readJson(file) {
+    return JSON.parse(await this._readText(file));
+  }
+
+  _seal(data) {
+    const buf = Buffer.isBuffer(data) ? data : Buffer.from(String(data), 'utf8');
+    return this.key ? vault.encrypt(this.key, buf) : buf;
+  }
+
+  async _write(file, data) {
+    await writeAtomic(file, this._seal(data));
   }
 
   p(...parts) {
@@ -79,12 +122,23 @@ class Archive {
 
   async open() {
     for (const d of ['', 'files', 'text', 'legislation', 'backups', 'trash']) await fs.promises.mkdir(this.p(d), { recursive: true });
+    this.keyring = this._loadKeyring();
+    if (this.locked) {
+      // Encrypted: nothing is read until someone signs in (see login / unlock).
+      this.data = defaultArchive(this.lang);
+      return { created: false, locked: true };
+    }
+    return this._load();
+  }
+
+  async _load() {
     const file = this.p('archive.json');
     let created = false;
     if (fs.existsSync(file)) {
       try {
-        this.data = JSON.parse(await fs.promises.readFile(file, 'utf8'));
+        this.data = await this._readJson(file);
       } catch (e) {
+        if (e.message === 'LOCKED') throw e;
         // Damaged file (e.g. power loss): keep it aside and restore the previous save,
         // or else the newest daily backup.
         const backups = (await fs.promises.readdir(this.p('backups'))).filter((f) => /^archive-.*\.json$/.test(f)).sort().reverse();
@@ -92,7 +146,7 @@ class Archive {
         let restored = null;
         for (const c of candidates) {
           try {
-            this.data = JSON.parse(await fs.promises.readFile(c, 'utf8'));
+            this.data = await this._readJson(c);
             restored = path.basename(c);
             break;
           } catch (_) {
@@ -150,13 +204,13 @@ class Archive {
   }
 
   save() {
-    if (this.readOnly) return this.saving; // never write while another computer holds the archive
-    const json = JSON.stringify(this.data, null, 1);
+    if (this.readOnly || this.locked) return this.saving; // never write while another computer holds the archive, or before unlocking
+    const content = this._seal(JSON.stringify(this.data, null, 1));
     const file = this.p('archive.json');
     this.saving = this.saving
       .then(async () => {
         const tmp = `${file}.${process.pid}.tmp`;
-        await fs.promises.writeFile(tmp, json);
+        await fs.promises.writeFile(tmp, content);
         // Keep the previous state one save back, for recovery.
         if (fs.existsSync(file)) await fs.promises.copyFile(file, this.p('archive.prev.json')).catch(() => {});
         await fs.promises.rename(tmp, file);
@@ -166,7 +220,7 @@ class Archive {
   }
 
   async _dailyBackup() {
-    if (this.readOnly) return;
+    if (this.readOnly || this.locked) return;
     try {
       const target = this.p('backups', `archive-${today()}.json`);
       if (!fs.existsSync(target) && fs.existsSync(this.p('archive.json'))) {
@@ -181,7 +235,8 @@ class Archive {
 
   /** Re-read archive.json written by another computer (read-only mode). */
   async reload() {
-    const data = JSON.parse(await fs.promises.readFile(this.p('archive.json'), 'utf8'));
+    if (this.locked) return;
+    const data = await this._readJson(this.p('archive.json'));
     this.data = data;
     this._migrate();
     await this.buildIndex();
@@ -189,7 +244,12 @@ class Archive {
 
   audit(action, details = {}) {
     if (this.readOnly) return;
-    const line = JSON.stringify({ ts: new Date().toISOString(), user: this.user, userId: this.userId || undefined, action, ...details }) + '\n';
+    const json = JSON.stringify({ ts: new Date().toISOString(), user: this.user, userId: this.userId || undefined, action, ...details });
+    if (this.locked) {
+      this.pendingAudit.push(json); // written once someone signs in
+      return;
+    }
+    const line = (this.key ? vault.encryptLine(this.key, json) : json) + '\n';
     fs.promises.appendFile(this.p('audit.log'), line).catch((e) => console.error('audit failed', e));
   }
 
@@ -201,7 +261,7 @@ class Archive {
         .filter(Boolean)
         .map((l) => {
           try {
-            return JSON.parse(l);
+            return JSON.parse(this.key ? vault.decryptLine(this.key, l) : l);
           } catch (_) {
             return null;
           }
@@ -218,11 +278,13 @@ class Archive {
   // User profiles (stored in the archive, so they travel with a shared archive folder)
 
   publicUsers() {
+    // Encrypted: the sign-in screen only knows the names in the keyring (profiles that can sign in).
+    if (this.encrypted) return this.keyring.users.filter((u) => u.wrap).map((u) => ({ id: u.id, name: u.name, role: u.role }));
     return this.data.users.filter((u) => !u.disabled).map((u) => ({ id: u.id, name: u.name, role: u.role }));
   }
 
   listUsers() {
-    return this.data.users.map(({ salt, hash, ...u }) => u);
+    return this.data.users.map(({ salt, hash, ...u }) => ({ ...u, needsPassword: this.encrypted && !u.disabled && !this._keyEntry(u.id)?.wrap }));
   }
 
   _user(userId) {
@@ -242,8 +304,11 @@ class Archive {
     const n = this._checkName(name);
     if (!ROLES.includes(role)) throw new Error('Invalid role');
     if (!validPassword(password)) throw new Error('PASSWORD_SHORT');
-    const u = { id: id(), name: n, role, ...hashPassword(password), createdAt: new Date().toISOString(), createdBy: this.user, disabled: false, prefs: {} };
+    const u = { id: id(), name: n, role, createdAt: new Date().toISOString(), createdBy: this.user, disabled: false, prefs: {} };
+    if (this.encrypted) this._setKeyEntry(u, password);
+    else Object.assign(u, hashPassword(password));
     this.data.users.push(u);
+    if (this.encrypted) await this._saveKeyring();
     await this.save();
     this.audit('user.created', { targetUser: n, role });
     return this.listUsers().find((x) => x.id === u.id);
@@ -272,6 +337,13 @@ class Archive {
       if (!!patch.disabled !== !!u.disabled) changes.disabled = { from: !!u.disabled, to: !!patch.disabled };
       u.disabled = !!patch.disabled;
     }
+    if (this.encrypted) {
+      const e = this._keyEntry(userId);
+      if (e) Object.assign(e, { name: u.name, role: u.role });
+      // A disabled profile loses its key: even with the old password it cannot open the archive files.
+      if (e && u.disabled) e.wrap = null;
+      await this._saveKeyring();
+    }
     await this.save();
     if (Object.keys(changes).length) this.audit('user.updated', { targetUser: u.name, userChanges: changes });
     return this.listUsers().find((x) => x.id === userId);
@@ -280,16 +352,210 @@ class Archive {
   async setPassword(userId, password, { self = false } = {}) {
     const u = this._user(userId);
     if (!validPassword(password)) throw new Error('PASSWORD_SHORT');
-    Object.assign(u, hashPassword(password), { passwordChangedAt: new Date().toISOString() });
+    if (this.encrypted) {
+      if (u.disabled) throw new Error('USER_DISABLED');
+      this._setKeyEntry(u, password);
+      await this._saveKeyring();
+      u.passwordChangedAt = new Date().toISOString();
+    } else Object.assign(u, hashPassword(password), { passwordChangedAt: new Date().toISOString() });
     await this.save();
     this.audit(self ? 'user.password-changed' : 'user.password-reset', { targetUser: u.name });
   }
 
-  /** Returns the user if the password is right (and the profile is active), else null. */
+  /** Returns the user if the password is right (and the profile is active), else null. Unencrypted archives only. */
   verifyLogin(userId, password) {
+    if (this.encrypted) return this.key && this.checkPassword(userId, password) ? this.data.users.find((x) => x.id === userId && !x.disabled) || null : null;
     const u = this.data.users.find((x) => x.id === userId && !x.disabled);
     if (!u || !verifyPassword(password, u.salt, u.hash)) return null;
     return u;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Encryption: keyring, unlocking, recovery code (see lib/vault.js)
+
+  _loadKeyring() {
+    try {
+      return JSON.parse(fs.readFileSync(this.p('keyring.json'), 'utf8'));
+    } catch (_) {
+      return null;
+    }
+  }
+
+  async _saveKeyring() {
+    if (this.readOnly) return;
+    await writeAtomic(this.p('keyring.json'), JSON.stringify(this.keyring, null, 1));
+  }
+
+  _keyEntry(userId) {
+    return this.keyring ? this.keyring.users.find((x) => x.id === userId) : null;
+  }
+
+  _setKeyEntry(user, password) {
+    let e = this._keyEntry(user.id);
+    if (!e) {
+      e = { id: user.id };
+      this.keyring.users.push(e);
+    }
+    Object.assign(e, { name: user.name, role: user.role, wrap: vault.wrapKey(this.key, password) });
+    delete user.salt;
+    delete user.hash;
+  }
+
+  /** Is this the user's password? (Encrypted archives: the user's copy of the data key opens with it.) */
+  checkPassword(userId, password) {
+    if (!this.encrypted) return !!this.verifyLogin(userId, password);
+    const dek = vault.unwrapKey(this._keyEntry(userId)?.wrap, password);
+    return !!dek && (!this.key || dek.equals(this.key));
+  }
+
+  /** Open an encrypted archive with its data key. */
+  async unlock(dek) {
+    if (this.key) return false;
+    this.key = dek;
+    try {
+      await this._load();
+    } catch (e) {
+      this.key = null;
+      throw e;
+    }
+    for (const json of this.pendingAudit.splice(0)) {
+      await fs.promises.appendFile(this.p('audit.log'), vault.encryptLine(this.key, json) + '\n').catch(() => {});
+    }
+    await this._encryptRemaining(); // a conversion that was interrupted continues
+    return true;
+  }
+
+  /**
+   * Sign in. Encrypted archives: the password must open the user's copy of the data key; the first sign-in
+   * unlocks the archive. Returns { user, unlocked } or null; throws NEEDS_PASSWORD for a profile without a key.
+   */
+  async login(userId, password) {
+    if (!this.encrypted) {
+      const u = this.verifyLogin(userId, password);
+      return u ? { user: u, unlocked: false } : null;
+    }
+    const e = this._keyEntry(userId);
+    if (e && !e.wrap) throw new Error('NEEDS_PASSWORD');
+    const dek = vault.unwrapKey(e && e.wrap, password);
+    if (!dek) return null;
+    if (this.key && !dek.equals(this.key)) return null;
+    const unlocked = this.key ? false : await this.unlock(dek);
+    const u = this.data.users.find((x) => x.id === userId && !x.disabled);
+    if (!u) return null;
+    if (vault.wrapIsOld(e.wrap) && !this.readOnly) {
+      this._setKeyEntry(u, password); // profiles from before encryption get a fresh, stronger wrap
+      await this._saveKeyring();
+      await this.save();
+    }
+    return { user: u, unlocked };
+  }
+
+  /**
+   * Turn on encryption. New archives: when the first administrator is set up. Existing archives: every
+   * profile keeps its password (its stored password check wraps the key until the next sign-in), every file
+   * is encrypted in place. Returns the recovery code, to be shown once.
+   */
+  async enableEncryption() {
+    if (this.encrypted) throw new Error('Already encrypted');
+    if (this.readOnly) throw new Error('READ_ONLY');
+    this.key = vault.newDataKey();
+    const code = vault.newRecoveryCode();
+    this.keyring = {
+      format: 1,
+      createdAt: new Date().toISOString(),
+      users: this.data.users
+        .filter((u) => u.salt && u.hash)
+        .map((u) => ({ id: u.id, name: u.name, role: u.role, wrap: u.disabled ? null : vault.wrapKeyLegacy(this.key, u) })),
+      recovery: { wrap: vault.wrapKey(this.key, vault.normalizeRecoveryCode(code)), createdAt: new Date().toISOString() }
+    };
+    for (const u of this.data.users) {
+      delete u.salt;
+      delete u.hash;
+    }
+    if (this.data.users.length) this.data.pendingRecoveryCode = code; // shown to the first administrator who signs in
+    await this._saveKeyring();
+    await this.save();
+    await this._encryptRemaining();
+    this.audit('archive.encrypted', {});
+    return code;
+  }
+
+  /** Encrypt every file of the archive that is still plain (also moves document files to neutral names). */
+  async _encryptRemaining() {
+    if (!this.key || this.readOnly) return;
+    let renamed = false;
+    for (const doc of this.data.docs) {
+      for (const v of doc.versions) {
+        const file = this.p(v.file);
+        const neutral = path.join('files', doc.id, `v${v.seq}.bin`);
+        if (!fs.existsSync(file) || v.file === neutral.split(path.sep).join('/')) continue;
+        const buf = await fs.promises.readFile(file);
+        await writeAtomic(this.p(neutral), vault.isEncrypted(buf) ? buf : vault.encrypt(this.key, buf));
+        await fs.promises.unlink(file);
+        v.file = neutral.split(path.sep).join('/');
+        renamed = true;
+      }
+    }
+    if (renamed) await this.save();
+    const skip = new Set([this.p('keyring.json'), this.p('.sop-archiv.lock'), this.p('audit.log')]);
+    const walk = async (dir) => {
+      for (const ent of await fs.promises.readdir(dir, { withFileTypes: true }).catch(() => [])) {
+        const f = path.join(dir, ent.name);
+        if (ent.isDirectory()) {
+          if (f !== this.p('branding')) await walk(f);
+        } else if (!skip.has(f) && !ent.name.endsWith('.tmp')) {
+          const buf = await fs.promises.readFile(f);
+          if (!vault.isEncrypted(buf)) await writeAtomic(f, vault.encrypt(this.key, buf));
+        }
+      }
+    };
+    await walk(this.dir);
+    // The audit log: every plain line becomes an encrypted one.
+    const log = this.p('audit.log');
+    if (fs.existsSync(log)) {
+      const lines = (await fs.promises.readFile(log, 'utf8')).split('\n').filter(Boolean);
+      if (lines.some((l) => !l.startsWith('E1:'))) await writeAtomic(log, lines.map((l) => (l.startsWith('E1:') ? l : vault.encryptLine(this.key, l))).join('\n') + '\n');
+    }
+  }
+
+  /** Forgotten passwords: the recovery code opens the archive and sets a new password for an administrator. */
+  async recover(code, userId, newPassword) {
+    if (!this.encrypted) throw new Error('Not encrypted');
+    if (!validPassword(newPassword)) throw new Error('PASSWORD_SHORT');
+    const dek = vault.unwrapKey(this.keyring.recovery && this.keyring.recovery.wrap, vault.normalizeRecoveryCode(code));
+    if (!dek || (this.key && !dek.equals(this.key))) return null;
+    if (!this.key) await this.unlock(dek);
+    const u = this.data.users.find((x) => x.id === userId && x.role === 'admin');
+    if (!u) throw new Error('NOT_ADMIN');
+    u.disabled = false;
+    this._setKeyEntry(u, newPassword);
+    await this._saveKeyring();
+    u.passwordChangedAt = new Date().toISOString();
+    await this.save();
+    this.audit('auth.recovered', { targetUser: u.name });
+    return u;
+  }
+
+  /** A new recovery code (the old one stops working). Shown once. */
+  async newRecoveryCode() {
+    if (!this.key) throw new Error('LOCKED');
+    const code = vault.newRecoveryCode();
+    this.keyring.recovery = { wrap: vault.wrapKey(this.key, vault.normalizeRecoveryCode(code)), createdAt: new Date().toISOString() };
+    await this._saveKeyring();
+    this.audit('archive.recovery-code', {});
+    return code;
+  }
+
+  /** The recovery code created when an existing archive was encrypted, until an administrator has kept it. */
+  takePendingRecoveryCode() {
+    return (this.data && this.data.pendingRecoveryCode) || null;
+  }
+
+  async confirmRecoveryCodeKept() {
+    if (this.data.pendingRecoveryCode) {
+      delete this.data.pendingRecoveryCode;
+      await this.save();
+    }
   }
 
   async recordLogin(userId) {
@@ -353,7 +619,7 @@ class Archive {
     if (!v) throw new Error('Version not found');
     const byPage = new Map(ocrPages.map((p) => [p.page, p.text]));
     const pages = (await this.loadText(versionId)).map((p) => (byPage.has(p.page) && byPage.get(p.page).length > (p.text || '').length ? { ...p, text: byPage.get(p.page), ocr: true } : p));
-    await writeAtomic(this.p('text', `${versionId}.json`), JSON.stringify({ pages }));
+    await this._write(this.p('text', `${versionId}.json`), JSON.stringify({ pages }));
     const text = pages.map((p) => p.text).join('\n');
     v.chars = text.length;
     v.textStatus = text.replace(/\s+/g, '').length >= 25 ? 'ok' : 'empty';
@@ -421,7 +687,7 @@ class Archive {
   async loadText(versionId) {
     if (!versionId) return [];
     try {
-      const j = JSON.parse(await fs.promises.readFile(this.p('text', `${versionId}.json`), 'utf8'));
+      const j = await this._readJson(this.p('text', `${versionId}.json`));
       return j.pages || [];
     } catch (_) {
       return [];
@@ -493,10 +759,12 @@ class Archive {
   async _storeVersion(doc, filePath, analysis, label) {
     const seq = doc.versions.length + 1;
     const vid = id();
-    const rel = path.join('files', doc.id, `v${seq}-${safeName(path.basename(filePath))}`);
+    // Encrypted archives do not show document names in file names either.
+    const rel = path.join('files', doc.id, this.key ? `v${seq}.bin` : `v${seq}-${safeName(path.basename(filePath))}`);
     await fs.promises.mkdir(this.p('files', doc.id), { recursive: true });
-    await fs.promises.copyFile(filePath, this.p(rel));
-    await writeAtomic(this.p('text', `${vid}.json`), JSON.stringify({ pages: analysis.ex.pages }));
+    if (this.key) await this._write(this.p(rel), await fs.promises.readFile(filePath));
+    else await fs.promises.copyFile(filePath, this.p(rel));
+    await this._write(this.p('text', `${vid}.json`), JSON.stringify({ pages: analysis.ex.pages }));
     const version = {
       id: vid,
       seq,
@@ -682,6 +950,14 @@ class Archive {
     return this.p(v.file);
   }
 
+  /** The original file of a version, decrypted: { name, data }. */
+  async versionContent(docId, versionId) {
+    const doc = this._doc(docId);
+    const v = doc.versions.find((x) => x.id === (versionId || doc.currentVersionId));
+    if (!v) throw new Error('Version not found');
+    return { name: v.fileName, data: await this._readFile(this.p(v.file)) };
+  }
+
   // ---------------------------------------------------------------------------
   // Search
 
@@ -854,11 +1130,11 @@ class Archive {
 
   async saveSnapshot(lawId, key, text) {
     await fs.promises.mkdir(this.p('legislation', lawId), { recursive: true });
-    await writeAtomic(this.snapshotPath(lawId, key), text);
+    await this._write(this.snapshotPath(lawId, key), text);
   }
 
   async loadSnapshot(lawId, key) {
-    return fs.promises.readFile(this.snapshotPath(lawId, key), 'utf8');
+    return this._readText(this.snapshotPath(lawId, key));
   }
 
   async listSnapshotKeys(lawId) {
@@ -959,8 +1235,8 @@ class Archive {
       ch.sectionsInText = analysis.sections;
     }
     await fs.promises.mkdir(this.p('legislation', ch.lawId, 'changes'), { recursive: true });
-    await writeAtomic(this._changeFile(ch, '.json'), JSON.stringify(diff || { mode: 'none', changed: [], added: [], removed: [], stats: {} }));
-    if (analysis) await writeAtomic(this._changeFile(ch, '.analysis.json'), JSON.stringify(analysis));
+    await this._write(this._changeFile(ch, '.json'), JSON.stringify(diff || { mode: 'none', changed: [], added: [], removed: [], stats: {} }));
+    if (analysis) await this._write(this._changeFile(ch, '.analysis.json'), JSON.stringify(analysis));
     this.data.changes.unshift(ch);
     this.audit(ch.kind === 'check' ? 'legislation.checked-docs' : 'legislation.change-detected', {
       lawId: ch.lawId,
@@ -976,7 +1252,7 @@ class Archive {
 
   async loadDiff(change) {
     try {
-      return JSON.parse(await fs.promises.readFile(this._changeFile(change, '.json'), 'utf8'));
+      return await this._readJson(this._changeFile(change, '.json'));
     } catch (_) {
       return null;
     }
@@ -984,7 +1260,7 @@ class Archive {
 
   async loadAnalysis(change) {
     try {
-      return JSON.parse(await fs.promises.readFile(this._changeFile(change, '.analysis.json'), 'utf8'));
+      return await this._readJson(this._changeFile(change, '.analysis.json'));
     } catch (_) {
       return null;
     }
@@ -1031,7 +1307,7 @@ class Archive {
     if (!law || !key || !this.hasSnapshot(law.id, key)) throw new Error('The text of the act is not stored for this change');
     const text = await this.loadSnapshot(law.id, key);
     const analysis = await this._analysisFor(law, text, c.touched);
-    await writeAtomic(this._changeFile(c, '.analysis.json'), JSON.stringify(analysis));
+    await this._write(this._changeFile(c, '.analysis.json'), JSON.stringify(analysis));
     c.affected = this._affectedFrom(c, analysis, c.affected || []);
     c.analyzedAt = new Date().toISOString();
     c.sectionsInText = analysis.sections;

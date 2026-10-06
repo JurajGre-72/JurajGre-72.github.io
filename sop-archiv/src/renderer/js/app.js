@@ -4,6 +4,7 @@ import { html, icon, errorToast, toast } from './ui.js';
 import { startImport } from './views/importer.js';
 import { lawCheckDialog } from './views/lawcheck.js';
 import { authenticate } from './views/login.js';
+import { showRecoveryCode } from './views/recovery.js';
 import * as dashboard from './views/dashboard.js';
 import * as documents from './views/documents.js';
 import * as documentView from './views/document.js';
@@ -212,6 +213,14 @@ async function requireSignIn() {
   await app.reloadInfo();
   idle.reset();
   await render();
+  // The recovery code of a newly set up (or newly encrypted) archive is shown to an administrator once.
+  if (app.info.session && app.info.session.role === 'admin') {
+    const code = await api.auth.pendingRecovery().catch(() => null);
+    if (code) {
+      await showRecoveryCode(code, { org: app.info.archiveSettings.org });
+      await api.auth.recoveryKept();
+    }
+  }
 }
 
 async function signOut(reason) {
