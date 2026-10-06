@@ -53,7 +53,7 @@ function createOcr({ dataDir, log = () => {} } = {}) {
 
   async function renderer() {
     if (win && !win.isDestroyed()) return win;
-    win = new BrowserWindow({ show: false, width: 800, height: 600, webPreferences: { sandbox: true, contextIsolation: true, nodeIntegration: false, spellcheck: false, backgroundThrottling: false } });
+    win = new BrowserWindow({ show: false, width: 800, height: 600, webPreferences: { sandbox: true, contextIsolation: true, nodeIntegration: false, spellcheck: false, backgroundThrottling: false, devTools: !require('electron').app.isPackaged } });
     win.webContents.setWindowOpenHandler(() => ({ action: 'deny' }));
     await win.loadURL('app://app/ocr.html');
     for (let i = 0; i < 100; i++) {

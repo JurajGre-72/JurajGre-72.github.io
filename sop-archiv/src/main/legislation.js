@@ -323,7 +323,7 @@ function createElectronFetcher({ log = () => {} } = {}) {
       show: false,
       width: 1280,
       height: 900,
-      webPreferences: { session: getSession(), sandbox: true, contextIsolation: true, nodeIntegration: false, spellcheck: false, images: false, backgroundThrottling: false }
+      webPreferences: { session: getSession(), sandbox: true, contextIsolation: true, nodeIntegration: false, spellcheck: false, images: false, backgroundThrottling: false, devTools: !require('electron').app.isPackaged }
     });
     win.webContents.setWindowOpenHandler(() => ({ action: 'deny' }));
     win.webContents.setAudioMuted(true);

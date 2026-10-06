@@ -32,6 +32,19 @@ const RENDERER_DIR = path.join(__dirname, '..', 'renderer');
 const ICON = path.join(__dirname, '..', '..', 'build', 'icon.png');
 const LAW_FILE_TYPES = ['pdf', 'docx', 'doc', 'odt', 'rtf', 'html', 'htm', 'txt', 'xml'];
 
+// The installed app refuses to start in a debugging mode (remote debugging, inspector, JavaScript flags):
+// those would let someone at the computer take control of a running, signed-in app. Together with the
+// Electron fuses set at build time (no "run as Node", no NODE_OPTIONS, sealed app.asar), the program
+// cannot be entered from a terminal. Only a test build made for the automated tests allows it.
+const DEBUG_SWITCHES = ['remote-debugging-port', 'remote-debugging-pipe', 'inspect', 'inspect-brk', 'inspect-port', 'js-flags'];
+if (app.isPackaged && !require('../../package.json').soparchivTestBuild) {
+  const args = [...process.argv, ...process.execArgv];
+  if (DEBUG_SWITCHES.some((sw) => app.commandLine.hasSwitch(sw) || args.some((a) => a === `--${sw}` || a.startsWith(`--${sw}=`)))) {
+    console.error('SOP Archív cannot be started in a debugging mode.');
+    process.exit(1);
+  }
+}
+
 if (process.env.SOP_ARCHIV_USERDATA) app.setPath('userData', process.env.SOP_ARCHIV_USERDATA);
 const startHidden = process.argv.includes('--hidden');
 
@@ -356,7 +369,7 @@ function createWindow() {
     icon: fs.existsSync(ICON) ? ICON : undefined,
     backgroundColor: '#f4f6f6',
     autoHideMenuBar: process.platform !== 'darwin',
-    webPreferences: { preload: path.join(__dirname, 'preload.js'), contextIsolation: true, nodeIntegration: false, sandbox: true, spellcheck: false, webSecurity: true }
+    webPreferences: { preload: path.join(__dirname, 'preload.js'), contextIsolation: true, nodeIntegration: false, sandbox: true, spellcheck: false, webSecurity: true, devTools: !app.isPackaged }
   });
   mainWindow.webContents.setWindowOpenHandler(({ url }) => {
     if (/^https?:\/\//i.test(url)) shell.openExternal(url);
@@ -442,7 +455,8 @@ function buildMenu() {
     { role: 'editMenu', label: tr('menu.edit') },
     {
       label: tr('menu.view'),
-      submenu: [{ role: 'reload' }, { role: 'toggleDevTools' }, { type: 'separator' }, { role: 'resetZoom' }, { role: 'zoomIn' }, { role: 'zoomOut' }, { type: 'separator' }, { role: 'togglefullscreen' }]
+      // The installed app has no developer tools.
+      submenu: [...(app.isPackaged ? [] : [{ role: 'reload' }, { role: 'toggleDevTools' }, { type: 'separator' }]), { role: 'resetZoom' }, { role: 'zoomIn' }, { role: 'zoomOut' }, { type: 'separator' }, { role: 'togglefullscreen' }]
     }
   ];
   Menu.setApplicationMenu(Menu.buildFromTemplate(template));

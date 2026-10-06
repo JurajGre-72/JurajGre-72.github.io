@@ -37,7 +37,7 @@
     "appId": "sk.soparchiv.app",
     "productName": "SOP Archiv",
     "copyright": "Juraj Gregus",
-    "asar": false,
+    "asar": true,
     "npmRebuild": false,
     "directories": {
       "output": "dist",
@@ -120,6 +120,21 @@
       "category": "Office",
       "icon": "build/icon.png"
     },
-    "publish": null
+    "publish": null,
+    "asarUnpack": [
+      "node_modules/tesseract.js/**",
+      "node_modules/tesseract.js-core/**",
+      "node_modules/@tesseract.js-data/**"
+    ],
+    "electronFuses": {
+      "runAsNode": false,
+      "enableCookieEncryption": true,
+      "enableNodeOptionsEnvironmentVariable": false,
+      "enableNodeCliInspectArguments": false,
+      "enableEmbeddedAsarIntegrityValidation": true,
+      "onlyLoadAppFromAsar": true,
+      "loadBrowserProcessSpecificV8Snapshot": false,
+      "grantFileProtocolExtraPrivileges": false
+    }
   }
 }
