@@ -118,10 +118,10 @@ export async function render() {
       <div class="logo-setting" data-perm="admin">
         <h4>${t('set.logo')}</h4>
         <div class="logo-row">
-          <div class="logo-preview">${app.logoUrl ? html`<img src="${app.logoUrl}" alt="">` : html`<span class="muted small">${t('set.logoNone')}</span>`}</div>
+          <div class="logo-preview"><img src="${app.logoUrl}" alt=""></div>
           <div class="btn-row">
             <button class="btn" data-action="setLogo">${icon('upload')}${t('set.logoPick')}</button>
-            ${app.logoUrl ? html`<button class="btn btn-ghost" data-action="clearLogo">${icon('x')}${t('set.logoRemove')}</button>` : ''}
+            ${app.customLogo ? html`<button class="btn btn-ghost" data-action="clearLogo">${icon('x')}${t('set.logoRemove')}</button>` : ''}
           </div>
         </div>
         <p class="muted small">${t('set.logoHint')}</p>

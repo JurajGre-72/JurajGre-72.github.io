@@ -18,6 +18,7 @@ const api = window.api;
 export const app = {
   info: null,
   logoUrl: null,
+  customLogo: false,
   view: null,
   route: null,
   legisProgress: null,
@@ -62,17 +63,20 @@ function applyRole() {
   b.classList.toggle('read-only', !!(app.info && app.info.readOnly));
 }
 
-// Company logo (Settings → Archive): fetched again only when it changes; shown in the sidebar and on the sign-in screen.
-let logoVersion = null;
+// Company logo in the sidebar and on the sign-in screen: the PHARMACOPOLA logo that comes with the app,
+// or one chosen in Settings → Archive (fetched again only when it changes).
+export const DEFAULT_LOGO = 'brand/pharmacopola-logo.svg';
+let logoVersion;
 async function loadLogo() {
   const v = (app.info.logo && app.info.logo.v) || null;
   if (v === logoVersion) return;
   logoVersion = v;
-  app.logoUrl = v ? await api.app.logo() : null;
+  app.customLogo = !!v;
+  app.logoUrl = (v && (await api.app.logo())) || DEFAULT_LOGO;
   const box = document.getElementById('brand-logo');
-  box.querySelector('img').src = app.logoUrl || '';
-  box.hidden = !app.logoUrl;
-  document.body.classList.toggle('has-logo', !!app.logoUrl);
+  box.querySelector('img').src = app.logoUrl;
+  box.hidden = false;
+  document.body.classList.add('has-logo');
 }
 
 function renderBanner() {
