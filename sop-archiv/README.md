@@ -20,15 +20,21 @@
 | **Čo treba zmeniť a prečo** | Pri zmene predpisu aplikácia ukáže **ktoré § / články sa zmenili** (pôvodné vs. nové znenie, slovo po slove), **od kedy** zmena platí a **ktoré vaše dokumenty predpis citujú** – navrchu tie, ktoré citujú priamo zmenený paragraf. Ku každému dokumentu zaznamenáte posúdenie (upravené / netýka sa / poznámka), môžete ho označiť „Na revízii“ a zmenu uzavrieť. Voliteľný **AI asistent** k tomu napíše návrh „čo v SOP zmeniť a prečo“. |
 | **Používatelia** | Každý kolega má **vlastný profil s heslom** a rolou: *Čitateľ* (prezerá a vyhľadáva), *Editor* (importuje, upravuje, zaznamenáva revízie, kontroluje legislatívu), *Správca* (navyše používatelia, nastavenia, mazanie). Oprávnenia stráži jadro aplikácie, nielen obrazovka. Po nečinnosti sa používateľ automaticky odhlási. Profily sú uložené v priečinku archívu – heslá iba ako šifrovaný odtlačok (scrypt). |
 | **Spoločný archív** | Archív môže ležať na **firemnom sieťovom disku**. Upravovať ho môže v jednej chvíli len jeden počítač; ostatní ho majú otvorený **len na čítanie** a zmeny sa im načítajú automaticky. Keď prvý počítač aplikáciu zavrie, ďalší môže prevziať úpravy (tlačidlo *Skúsiť znova*). Tým sa zabráni prepísaniu práce kolegu. |
-| **Audit** | Každé prihlásenie, import, zmena údajov, revízia, kontrola legislatívy a posúdenie dopadu sa zapisuje do auditného záznamu – pod menom prihláseného používateľa (kto, kedy, čo). |
+| **Audit** | Každé prihlásenie, import, otvorenie dokumentu, zmena údajov, revízia, kontrola legislatívy, rozhodnutie „neplatí pre nás“ a použitie AI sa zapisuje do auditného záznamu – pod menom prihláseného používateľa (kto, kedy, čo). |
+| **Naskenované dokumenty (OCR)** | Naskenované PDF bez textovej vrstvy aplikácia prečíta sama, v tomto počítači (slovenčina + angličtina), na pozadí. Potom sa v nich dá vyhľadávať a kontrolujú sa voči predpisom. |
+| **Vaše postupy majú prednosť** | SOP a OS opisujú, ako spoločnosť skutočne pracuje – nemusia opakovať zákon. V **Profile spoločnosti** (Nastavenia) označíte, čo robíte a čo nie (napr. omamné látky, zásielkový predaj, výroba). Pri zmene predpisu môžete ustanovenie označiť **„Na našu spoločnosť sa nevzťahuje“** alebo **„Platí náš dokument“** (zámerne iný, napr. prísnejší postup) – vždy s dôvodom pre inšpekciu. Takéto zistenia sa potom nehlásia; ak sa ustanovenie v novom znení zmení, aplikácia sa opýta znova. |
+| **Nový dokument** | Nová SOP / ŠPP / smernica zo šablóny: kód podľa vášho číslovania, popis „ako to u nás funguje“, predpisy k téme (navrhne ich sama), osnova a štýl podľa existujúceho dokumentu. Text napíšete sami alebo ho **navrhne AI kapitolu po kapitole** – z vášho popisu a predpisov; čo nevie (čísla, lehoty, mená), označí žltým **[DOPLNIŤ]**. Uloží sa do archívu ako **návrh vo Worde** s hlavičkou, logom, tabuľkou Vypracoval / Preskúmal / Schválil a číslovaním strán. |
+| **Prepísať s AI** | Vyberiete odsek či kapitolu dokumentu a pokyn (zosúladiť s aktuálnym znením predpisu / doplniť, čo predpis vyžaduje / sprehľadniť / vlastný). AI navrhne nové znenie – zobrazí sa **vedľa pôvodného so zvýraznenými zmenami**, s **dôvodmi a odkazmi na §**. Návrhy sa ukladajú k dokumentu (karta *Návrhy zmien*) a dajú sa **exportovať do Wordu** pre toho, kto upravuje originál. Dostupné aj priamo zo správy o zmene predpisu. |
+| **Zabezpečenie** | Celý priečinok archívu je **zašifrovaný (AES-256)** – bez prihlásenia sa nedá prečítať ani skopírovaný. Pri založení dostanete **kód na obnovenie** (vytlačte a uschovajte). Nainštalovaná aplikácia sa nedá spustiť v ladiacom režime ani ovládať z terminálu. |
 
 ### Súkromie – SOP a OS nikdy neopustia počítač ani firmu
 
 * Aplikácia **nemá server, cloud, účet ani telemetriu**. Beží iba vo vašom počítači; nikto (ani autor) nevidí, čo v nej je.
-* Všetky údaje sú v **jednom priečinku** (predvolene `Dokumenty\SOP-Archiv`, alebo priečinok na firemnom disku) ako obyčajné súbory – originály dokumentov, vytiahnutý text, `archive.json` a `audit.log`. Priečinok môžete zálohovať, presunúť alebo otvoriť aj bez aplikácie.
+* Všetky údaje sú v **jednom priečinku** (predvolene `Dokumenty\SOP-Archiv`, alebo priečinok na firemnom disku) – **zašifrované**; prečítať ich dá len aplikácia po prihlásení. Priečinok môžete zálohovať alebo presunúť.
+* Archív **nedávajte do priečinka OneDrive, Dropbox, Google Drive ani iCloud** – súbory by sa (zašifrované) nahrávali do ich cloudu. Aplikácia na to upozorní (pozor: na firemných notebookoch býva aj priečinok *Dokumenty* presunutý do OneDrive).
 * **Dokumenty sa nikdy neposielajú na internet.** Používateľské rozhranie aplikácie má prístup na internet úplne zablokovaný. Jediné spojenie von je stiahnutie **verejnej stránky predpisu** pri kontrole legislatívy (Slov-Lex, EUR-Lex …) – smerom von ide iba adresa tejto stránky. Každé spojenie je zapísané v *Nastavenia → Súkromie a záznamy → Sieťová aktivita*.
 * **Režim offline** (Nastavenia → Legislatíva) zakáže akékoľvek pripojenie; predpisy potom importujete ako stiahnuté súbory.
-* AI asistent je **predvolene vypnutý** a smie bežať **iba v tomto počítači alebo na serveri vo vnútornej sieti firmy** (Ollama alebo LM Studio, napr. `ollama pull qwen2.5:7b`). Adresy na internete aplikácia odmietne.
+* AI asistent je **predvolene vypnutý**. **Vstavaná AI** beží priamo v aplikácii, v samostatnom procese, ktorý **nemá prístup na internet ani nemôže spúšťať iné programy** (aplikácia to overí a ukáže v Nastaveniach). Internet treba len raz – na stiahnutie súboru modelu (overí sa jeho odtlačok SHA-256); model sa dá nahrať aj z USB kľúča. Alternatívne Ollama / LM Studio v tomto počítači alebo na serveri vo firemnej sieti – adresy na internete aplikácia odmietne.
 
 ### Inštalácia (Windows)
 
@@ -37,7 +43,8 @@
    * `SOP-Archiv-1.0.0-Setup.exe` – klasická inštalácia (odporúčané; vytvorí odkaz na ploche a v ponuke Štart),
    * `SOP-Archiv-1.0.0-portable.exe` – bez inštalácie, stačí spustiť (napr. z USB).
 3. Inštalátor nie je digitálne podpísaný, preto Windows zobrazí „Systém Windows ochránil váš počítač“ → kliknite **Ďalšie informácie → Spustiť aj tak**.
-4. Pri prvom spustení zvoľte jazyk, meno, organizáciu a priečinok archívu.
+4. Pri prvom spustení zvoľte jazyk, meno, organizáciu a priečinok archívu; vytlačte si kód na obnovenie.
+5. Ak chcete AI: *Nastavenia → AI asistent → Vstavaná AI* – stiahnite odporúčaný model (niekoľko GB, raz) alebo vyberte súbor modelu z počítača, a kliknite *Vyskúšať model*.
 
 *macOS:* `SOP-Archiv-Mac` (.dmg) – pri prvom otvorení pravým tlačidlom → **Otvoriť**. *Linux:* AppImage.
 
@@ -53,12 +60,12 @@ Automatická kontrola: predvolene raz týždenne (dá sa vypnúť alebo zmeniť)
 
 ### Obmedzenia – na čo si dať pozor
 
-* **Naskenované PDF bez textovej vrstvy** (sken podpísaného originálu) sa uložia, ale nedá sa v nich vyhľadávať (OCR zatiaľ nie je). Aplikácia ich označí; odporúčame archivovať aj textovú verziu (Word / PDF z Wordu).
-* **Kontrola legislatívy závisí od štruktúry stránok Slov-Lex a EUR-Lex.** Logika bola otestovaná na simulovaných stránkach, nie priamo na živých portáloch. Po prvej kontrole skontrolujte v registri, či sa pri predpisoch zobrazilo platné znenie; ak niektorý hlási chybu, otvorte zdroj tlačidlom ↗ a prípadne upravte adresu.
+* **OCR naskenovaných PDF** závisí od kvality skenu; pri zlom skene odporúčame archivovať aj textovú verziu (Word / PDF z Wordu).
+* **Kontrola legislatívy závisí od štruktúry stránok Slov-Lex a EUR-Lex** (overené na živých portáloch, ale portály sa môžu zmeniť). Ak niektorý predpis v registri hlási chybu, otvorte zdroj tlačidlom ↗ a prípadne upravte adresu, alebo predpis importujte ako stiahnutý súbor.
 * **Kontrola voči predpisu je pomôcka, nie právny výklad.** Rozdiely v číslach a lehotách hľadá v pasážach, ktoré citujú konkrétny §; ak SOP cituje predpis bez čísla paragrafu, zobrazí sa len ako „cituje predpis“. Obsahovú súvislosť určuje podľa spoločných odborných pojmov.
 * Na sieťovom disku môže archív v jednej chvíli **upravovať len jeden počítač** (ostatní len čítajú).
 * **GDP / validácia:** ak bude aplikácia slúžiť ako systém riadenia dokumentácie v rámci SDP, pred použitím ju zahrňte do validácie počítačových systémov podľa vášho systému kvality (Usmernenia SDP, kap. 3.5). Má profily s heslami, roly a auditný záznam; nemá kvalifikované elektronické podpisy.
-* Výstup AI je vždy iba **návrh** – overte ho v plnom znení predpisu.
+* Výstup AI je vždy iba **návrh** – overte ho v plnom znení predpisu. Za obsah dokumentu zodpovedá autor a schvaľovateľ. Kvalita textu závisí od modelu a od toho, ako podrobne opíšete svoj postup; na bežnom notebooku bez grafickej karty trvá napísanie celej SOP aj niekoľko minút.
 
 ---
 
@@ -73,11 +80,16 @@ Automatická kontrola: predvolene raz týždenne (dá sa vypnúť alebo zmeniť)
 * **Check documents against an act you bring** – a downloaded file (PDF/Word/HTML), a web address, or just a name or number. The act and version are recognised automatically; every SOP/OS is checked: cited § missing or changed, **deadlines, retention periods and temperatures that differ** (also when the act writes numbers as words), and documents related by content that don't cite it. Side-by-side comparison; *Check again* after updating a SOP.
 * **User profiles** with passwords and roles (Reader / Editor / Administrator), enforced by the app core; automatic sign-out after inactivity; everything recorded under the user's name.
 * **Shared archive** on a company network drive: one computer edits at a time, the others are read-only and refresh automatically.
-* **Audit trail** of every action.
+* **Audit trail** of every action (sign-in, import, opening a document, changes, reviews, legislation checks, decisions, use of the AI).
+* **Scanned PDFs (OCR)** are read on this computer (Slovak + English), in the background, then searchable and checked like any other document.
+* **Your processes take precedence** over the literal text of the law: a **company profile** (what you do and don't do), and per provision **"does not apply to our company"** or **"our document applies"** (deliberately different, e.g. stricter) – always with a reason for inspections. Such findings are no longer reported; if the provision changes in a new version, the app asks again.
+* **New document** from a template: next code in your numbering, "how it works in our company", acts suggested for the topic, outline and style from an existing document; write it yourself or let the **AI draft it chapter by chapter** (unknown numbers, deadlines and names are marked **[COMPLETE]**). Saved as a **Word draft** with header, logo, *prepared / reviewed / approved* table and page numbers.
+* **Rewrite with AI**: choose a passage and an instruction; the proposed wording is shown **next to the original with changes highlighted**, with **reasons and § references**; proposals are kept with the document and **exported to Word**.
+* **Security**: the whole archive folder is **encrypted (AES-256)**; a **recovery code** is issued at setup; the installed app cannot be started in a debugging mode or controlled from a terminal.
 
 ### Privacy
 
-No server, no cloud, no account, no telemetry. All data lives in one ordinary folder (on the computer or a company network drive). **Documents are never sent to the internet**: the user interface is blocked from the internet entirely; the only outbound connection is downloading the public page of a legal act during a legislation check. Every connection is listed in *Settings → Privacy*. **Offline mode** blocks all network access. The optional AI assistant may only run on this computer or a server in the internal company network (Ollama, LM Studio) – internet addresses are refused.
+No server, no cloud, no account, no telemetry. All data lives in one ordinary folder (on the computer or a company network drive). **Documents are never sent to the internet**: the user interface is blocked from the internet entirely; the only outbound connection is downloading the public page of a legal act during a legislation check. Every connection is listed in *Settings → Privacy*. **Offline mode** blocks all network access. The archive folder is encrypted; the app warns if it is inside a OneDrive / Dropbox / Google Drive / iCloud folder. The optional AI assistant is off by default: the **built-in AI** runs inside the app in a separate process **without any network access or ability to start programs** (verified and shown in Settings); the internet is needed once to download the model file (checked against its SHA-256 fingerprint), or the model can be copied from a USB stick. Alternatively Ollama / LM Studio on this computer or the internal network – internet addresses are refused.
 
 ### Install
 
@@ -85,7 +97,7 @@ Download **SOP-Archiv-Windows** from *Actions → SOP Archiv → latest run → 
 
 ### Limitations
 
-Scanned PDFs without a text layer are stored but not searchable (no OCR yet). Legislation parsing depends on the structure of Slov-Lex / EUR-Lex pages and was tested against simulated pages, not the live portals – check the register after the first run, or import downloaded files. The check against an act is an aid, not a legal interpretation. On a shared drive only one computer edits at a time. If used as a GDP-relevant system, validate it under your QMS (GDP Guidelines ch. 3.5). AI output is a suggestion only.
+OCR quality depends on the scan. Legislation parsing depends on the structure of Slov-Lex / EUR-Lex pages (verified on the live portals, but they may change) – check the register, or import downloaded files. AI drafts depend on the model and on how well the process is described; the author and approver remain responsible for the content. The check against an act is an aid, not a legal interpretation. On a shared drive only one computer edits at a time. If used as a GDP-relevant system, validate it under your QMS (GDP Guidelines ch. 3.5). AI output is a suggestion only.
 
 ---
 
@@ -100,6 +112,6 @@ xvfb-run -a npm run test:e2e   # end-to-end test of the real Electron app (scree
 npm run dist:win          # build installers (run on the target OS; CI does this for all three)
 ```
 
-* `src/main/` – Electron main process: `main.js` (window, sign-in sessions, role checks on every call, archive lock), `archive.js` (storage, documents, users, reviews, legislation changes and checks), `legislation.js` (monitor + page fetcher), `ai.js` (optional local-only providers), `lib/` (pure, unit-tested: text extraction, metadata & citation detection, Slovak search, version parsing & § diff, `compliance.js` + `quantities.js` (checking documents against an act), `lawfile.js` (recognising an imported act), `auth.js`, `lock.js`, reviews/ICS).
+* `src/main/` – Electron main process: `main.js` (window, sign-in sessions, role checks on every call, archive lock, debug-switch refusal), `archive.js` (encrypted storage, documents, users, reviews, legislation changes and checks, decisions, proposals), `legislation.js` (monitor + page fetcher), `ocr.js` (local OCR), `ai.js` (local-only providers), `llm/` (built-in AI: `worker.js` runs the model in a utility process with network and process launches disabled, `engine.js`, `download.js`, `models.js`, `builtin.js`), `writing.js` (new document and rewrite handlers), `lib/` (pure, unit-tested: text extraction, metadata & citation detection, file names, Slovak search, version parsing & § diff, `compliance.js` + `quantities.js`, `company.js` (company profile and decisions), `drafting.js` (templates, codes, prompts), `docx.js` (Word writer), `vault.js` (encryption), `cloudsync.js`, `lawfile.js`, `auth.js`, `lock.js`, reviews/ICS).
 * `src/renderer/` – UI (plain ES modules, no build step), served over a private `app://` scheme with a strict Content-Security-Policy; the UI talks to the main process only through the whitelisted bridge in `src/main/preload.js`.
 * Test hooks: `SOP_ARCHIV_USERDATA`, `SOP_ARCHIV_DATA`, `SOP_ARCHIV_NO_TIMERS`, `SOP_ARCHIV_EXE` (run the e2e test against a packaged build).

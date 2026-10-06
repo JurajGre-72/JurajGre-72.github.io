@@ -1,0 +1,21 @@
+'use strict';
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const { cloudSyncProvider } = require('../../src/main/lib/cloudsync');
+
+test('archive folders synchronised to a cloud service are recognised', () => {
+  const none = { roots: [] };
+  // Windows: "Documents" moved into OneDrive (company or personal)
+  assert.equal(cloudSyncProvider('C:\\Users\\jana\\OneDrive - PHARMACOPOLA s.r.o\\Dokumenty\\SOP-Archiv', none), 'OneDrive');
+  assert.equal(cloudSyncProvider('C:\\Users\\jana\\OneDrive\\Documents\\SOP-Archiv', none), 'OneDrive');
+  assert.equal(cloudSyncProvider('D:\\Firma\\SOP', { roots: [['OneDrive', 'D:\\Firma']] }), 'OneDrive', 'the folder OneDrive reports');
+  assert.equal(cloudSyncProvider('/Users/jana/Library/CloudStorage/OneDrive-Personal/SOP', none), 'OneDrive');
+  assert.equal(cloudSyncProvider('/Users/jana/Library/CloudStorage/GoogleDrive-jana@firma.sk/My Drive/SOP', none), 'Google Drive');
+  assert.equal(cloudSyncProvider('/home/jana/Dropbox/SOP-Archiv', none), 'Dropbox');
+  assert.equal(cloudSyncProvider('C:\\Users\\jana\\Dropbox (PHARMACOPOLA)\\SOP', none), 'Dropbox');
+  assert.equal(cloudSyncProvider('/Users/jana/Library/Mobile Documents/com~apple~CloudDocs/SOP', none), 'iCloud Drive');
+  // local disk or the company server: fine
+  assert.equal(cloudSyncProvider('C:\\Users\\jana\\Documents\\SOP-Archiv', none), null);
+  assert.equal(cloudSyncProvider('\\\\server\\QA\\SOP-Archiv', none), null);
+  assert.equal(cloudSyncProvider('/home/jana/OneDriveBackup-old/SOP', none), null, 'only the folder itself, not a similar name');
+});

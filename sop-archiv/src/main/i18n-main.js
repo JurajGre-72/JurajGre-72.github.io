@@ -61,6 +61,7 @@ const STR = {
     'err.AI_CRASHED': 'AI sa v tomto počítači zastavila (málo pamäte?). Skúste menší model.',
     'err.AI_NOT_LOADED': 'Model ešte nie je načítaný.',
     'err.AI_PROMPT_TOO_LONG': 'Text je pre tento model príliš dlhý. Skúste kratšiu časť alebo väčší model.',
+    'err.titleRequired': 'Zadajte názov dokumentu.',
     'dlg.modelTitle': 'Vyberte súbor modelu (.gguf)'
   },
   en: {
@@ -122,6 +123,7 @@ const STR = {
     'err.AI_CRASHED': 'The AI stopped on this computer (not enough memory?). Try a smaller model.',
     'err.AI_NOT_LOADED': 'The model is not loaded yet.',
     'err.AI_PROMPT_TOO_LONG': 'The text is too long for this model. Try a shorter part or a larger model.',
+    'err.titleRequired': 'Please enter the document title.',
     'dlg.modelTitle': 'Choose a model file (.gguf)'
   }
 };

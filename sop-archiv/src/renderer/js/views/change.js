@@ -4,6 +4,7 @@ import { t, lang } from '../i18n.js';
 import { html, icon, fmtDate, fmtDateTime, openModal, formValues, toast, errorToast, confirmDialog } from '../ui.js';
 import { app } from '../app.js';
 import { secLabel } from './document.js';
+import { rewriteDialog } from './rewrite.js';
 
 const api = window.api;
 let ch = null;
@@ -127,6 +128,7 @@ function docItem(a, aiOn) {
     <div class="aff-actions">
       ${a.doc.status !== 'review' ? html`<button class="btn btn-sm" data-action="flag" data-doc="${a.docId}" data-perm="editor">${icon('flag')}${t('ch.flag')}</button>` : html`<span class="chip chip-warn">${t('status.review')}</span>`}
       ${aiOn ? html`<button class="btn btn-sm" data-action="analyze" data-doc="${a.docId}" data-perm="editor" ${busy.has(a.docId) ? 'disabled' : ''}>${icon('sparkles')}${t('ch.ai')}</button>` : ''}
+      ${aiOn && (a.analysis && a.analysis.refs || []).some((r) => (r.docExcerpts || []).length) ? html`<button class="btn btn-sm" data-action="rewriteDoc" data-doc="${a.docId}" data-perm="editor">${icon('edit')}${t('ch.rewrite')}</button>` : ''}
       <input class="aff-note" placeholder="${t('ch.note')}…" value="${a.note || ''}" data-change="docNote" data-doc="${a.docId}" data-perm="editor">
       ${a.note ? html`<span class="muted small perm-ro">${a.note}</span>` : ''}
     </div>
@@ -311,6 +313,14 @@ export const actions = {
       app.refreshSidebar();
       app.rerender();
     }
+  },
+  /** Propose new wording for the passages of the document that cite the changed provisions. */
+  async rewriteDoc(el) {
+    const a = ch.affected.find((x) => x.docId === el.dataset.doc);
+    const refs = (a.analysis && a.analysis.refs) || [];
+    const first = refs.filter((r) => r.changed).concat(refs).find((r) => (r.docExcerpts || []).length);
+    const doc = await api.docs.get(a.docId);
+    await rewriteDialog({ doc, passage: first ? first.docExcerpts.map((x) => x.text.replace(/ …$/, '')).join('\n\n') : '', lawIds: [ch.lawId], instruction: 'align', changeId: ch.id });
   },
   async undoDecision(el) {
     if (!(await confirmDialog(t('dec.undoConfirm'), { okLabel: t('dec.undo') }))) return;

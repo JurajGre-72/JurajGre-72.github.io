@@ -679,3 +679,41 @@ body.role-reader .perm-ro, body.read-only .perm-ro { display: inline-flex !impor
 .model-dl { display: flex; gap: 8px; align-items: center; min-width: 260px; }
 .model-dl .progress { flex: 1; }
 @media (max-width: 720px) { .model { flex-direction: column; align-items: stretch; } .model-dl { min-width: 0; } }
+
+/* New document */
+.compose .panel h3 { display: flex; align-items: center; gap: 8px; }
+.step { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--primary); color: var(--primary-ink); font-size: 0.8rem; font-weight: 700; }
+.compose textarea { width: 100%; }
+.nd-laws { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 2px 18px; margin-top: 8px; }
+.nd-laws .check { align-items: flex-start; }
+.nd-laws .check input { margin-top: 4px; }
+.cmp-sec { border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; margin: 10px 0; background: var(--surface); }
+.cmp-sec-head { display: flex; gap: 8px; align-items: center; margin-bottom: 4px; }
+.cmp-sec-title { flex: 1; font-weight: 700; color: var(--heading); border: 1px solid transparent; background: transparent; padding: 4px 6px; border-radius: 6px; font-size: 1rem; }
+.cmp-sec-title:hover, .cmp-sec-title:focus { border-color: var(--border); background: var(--surface-2); }
+.cmp-sec-text { margin-top: 6px; font-family: inherit; line-height: 1.5; }
+.cmp-sec-state { min-height: 1.2em; margin-top: 4px; display: flex; gap: 6px; align-items: center; }
+
+/* Rewrite with AI */
+.rw-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; }
+.rw-left textarea, .rw-right textarea { width: 100%; }
+.rw-pick { margin-top: 6px; }
+.rw-pick summary { cursor: pointer; color: var(--primary); font-weight: 600; display: flex; gap: 6px; align-items: center; }
+.rw-pick input[type=search] { width: 100%; margin: 6px 0; }
+.rw-passages { list-style: none; margin: 0; padding: 0; max-height: 240px; overflow: auto; border: 1px solid var(--border); border-radius: 8px; }
+.rw-p { display: block; width: 100%; text-align: left; background: none; border: 0; border-bottom: 1px solid var(--grid); padding: 6px 8px; font: inherit; font-size: 0.85rem; color: var(--text); cursor: pointer; }
+.rw-p:hover, .rw-p:focus-visible { background: var(--primary-soft); }
+.rw-laws { display: flex; flex-direction: column; gap: 2px; max-height: 180px; overflow: auto; }
+.rw-out { min-height: 120px; }
+.rw-stream { white-space: pre-wrap; font-family: inherit; font-size: 0.9rem; background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; padding: 10px; max-height: 360px; overflow: auto; margin-top: 8px; }
+.rw-reasons { margin: 4px 0 8px 18px; padding: 0; font-size: 0.9rem; }
+.word-diff { white-space: pre-wrap; line-height: 1.6; background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; font-size: 0.92rem; }
+.word-diff ins { background: var(--ins); color: var(--ins-ink); text-decoration: none; border-radius: 3px; padding: 0 1px; }
+.word-diff del { background: var(--del); color: var(--del-ink); border-radius: 3px; padding: 0 1px; }
+@media (max-width: 900px) { .rw-grid { grid-template-columns: 1fr; } }
+
+/* Change proposals */
+.proposal { border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; margin: 10px 0; }
+.proposal.st-done, .proposal.st-rejected { opacity: 0.7; }
+.proposal-head { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 8px; }
+.spacer { flex: 1; }

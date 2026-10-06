@@ -264,3 +264,38 @@ export function debounce(fn, ms = 200) {
 export function snippetHtml(segs) {
   return (segs || []).map((s) => (s.hit ? html`<mark>${s.text}</mark>` : html`${s.text}`));
 }
+
+// --- Word-level comparison of two texts (old -> new) ---------------------------------------------------
+/** [{ t: 'same' | 'add' | 'del', s }] – longest common subsequence of words (and spaces). */
+export function wordDiff(a, b) {
+  const A = String(a || '').split(/(\s+)/).filter((x) => x !== '');
+  const B = String(b || '').split(/(\s+)/).filter((x) => x !== '');
+  if (A.length * B.length > 4e6) return [{ t: 'del', s: a }, { t: 'add', s: b }];
+  const n = A.length;
+  const m = B.length;
+  const L = Array.from({ length: n + 1 }, () => new Uint32Array(m + 1));
+  for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--) L[i][j] = A[i] === B[j] ? L[i + 1][j + 1] + 1 : Math.max(L[i + 1][j], L[i][j + 1]);
+  const out = [];
+  const push = (t, s) => {
+    const last = out[out.length - 1];
+    if (last && last.t === t) last.s += s;
+    else out.push({ t, s });
+  };
+  let i = 0;
+  let j = 0;
+  while (i < n && j < m) {
+    if (A[i] === B[j]) {
+      push('same', A[i]);
+      i++;
+      j++;
+    } else if (L[i + 1][j] >= L[i][j + 1]) push('del', A[i++]);
+    else push('add', B[j++]);
+  }
+  while (i < n) push('del', A[i++]);
+  while (j < m) push('add', B[j++]);
+  return out;
+}
+
+export function diffView(a, b) {
+  return html`<div class="word-diff">${wordDiff(a, b).map((p) => (p.t === 'add' ? html`<ins>${p.s}</ins>` : p.t === 'del' ? html`<del>${p.s}</del>` : html`<span>${p.s}</span>`))}</div>`;
+}

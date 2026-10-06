@@ -13,6 +13,7 @@ import * as reviews from './views/reviews.js';
 import * as legislation from './views/legislation.js';
 import * as change from './views/change.js';
 import * as settingsView from './views/settings.js';
+import * as compose from './views/compose.js';
 
 const api = window.api;
 
@@ -129,6 +130,8 @@ function viewFor(route) {
       return route.parts[0] === 'change' ? change : legislation;
     case 'settings':
       return settingsView;
+    case 'compose':
+      return compose;
     default:
       return dashboard;
   }
@@ -155,7 +158,7 @@ async function renderSidebar() {
   } catch (_) {
     /* ignore */
   }
-  const active = (app.route && app.route.name) || 'dashboard';
+  const active = app.route && app.route.name === 'compose' ? 'documents' : (app.route && app.route.name) || 'dashboard';
   nav.innerHTML = String(html`${NAV.map((n) => {
     const badge = n.name === 'reviews' ? badgeReviews : n.name === 'legislation' ? badgeLegis : 0;
     return html`<a href="#/${n.name}" class="nav-item ${active === n.name ? 'active' : ''}" ${active === n.name ? html`aria-current="page"` : ''}>

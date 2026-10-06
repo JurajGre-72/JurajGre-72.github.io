@@ -27,6 +27,7 @@ const { sectionMap } = require('./lib/compliance');
 const { aliasesFromKey } = require('./lib/metadata');
 const { DEFAULT_LAWS } = require('./lib/defaults');
 const { companyContext } = require('./lib/company');
+const { cloudSyncProvider } = require('./lib/cloudsync');
 const mainText = require('./i18n-main');
 
 const APP_ID = 'sk.soparchiv.app';
@@ -596,6 +597,7 @@ function registerIpc() {
       version: app.getVersion(),
       platform: process.platform,
       dataDir: archive.dir,
+      dataDirCloud: cloudSyncProvider(archive.dir),
       user: session ? session.name : osUser(),
       session: sessionPublic(),
       needsSetup: needsSetup(),
@@ -792,6 +794,8 @@ function registerIpc() {
     { perm: 'public' }
   );
 
+  // Is a folder synchronised to a cloud service? (The archive should stay on this computer or the company server.)
+  handle('app:cloudSync', (dir) => cloudSyncProvider(dir), { perm: 'public' });
   handle(
     'app:chooseFolder',
     async () => {
@@ -1089,6 +1093,9 @@ function registerIpc() {
     },
     { perm: 'editor', write: true }
   );
+
+  // --- writing with the AI: new documents and proposals to rewrite a passage (writing.js) ---
+  require('./writing').register({ handle, getArchive: () => archive, ai, aiConfig, send, logNet, lang, tr, UserError, dialog, getWindow: () => mainWindow });
 
   // --- the company's own rules: profile and "does not apply to us" decisions ---
   handle('company:get', () => ({ profile: archive.companyProfile(), activities: require('./lib/company').ACTIVITIES.map(({ id, sk, en }) => ({ id, sk, en })) }));

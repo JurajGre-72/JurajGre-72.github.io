@@ -2,6 +2,7 @@
 import { t, setLang } from '../i18n.js';
 import { html, icon, formValues, errorToast } from '../ui.js';
 import { app } from '../app.js';
+import { cloudNote, confirmLocalFolder } from './cloudnote.js';
 
 const api = window.api;
 
@@ -34,7 +35,7 @@ function setupHtml(info) {
       <div class="field"><label>${t('auth.role')}</label><div class="readonly">${t('role.admin')}</div></div>
       <div class="field"><label>${t('auth.password')}</label><input type="password" name="password" required></div>
       <div class="field"><label>${t('auth.password2')}</label><input type="password" name="password2" required></div>
-      <div class="field full"><label>${t('ob.folder')}</label><div class="path-box">${icon('folder')}<code id="setup-folder">${info.dataDir}</code><button type="button" class="btn btn-sm" id="setup-change">${t('ob.change')}</button></div><span class="hint">${t('auth.folderHint')}</span></div>
+      <div class="field full"><label>${t('ob.folder')}</label><div class="path-box">${icon('folder')}<code id="setup-folder">${info.dataDir}</code><button type="button" class="btn btn-sm" id="setup-change">${t('ob.change')}</button></div><span class="hint">${t('auth.folderHint')}</span>${cloudNote(info.dataDirCloud)}</div>
       <div class="field full"><label>${t('ob.reminders')}</label>
         <label class="check"><input type="checkbox" name="launchAtLogin"> ${t('set.launchAtLogin')}</label>
         <label class="check"><input type="checkbox" name="runInBackground"> ${t('set.background')}</label>
@@ -117,10 +118,11 @@ export async function authenticate(root, info) {
       }
       if (e.target.closest('#setup-change')) {
         const dir = await api.app.chooseFolder();
-        if (!dir) return;
+        if (!dir || !(await confirmLocalFolder(dir))) return;
         try {
           const r = await api.app.switchDataDir(dir, 'open');
           info.dataDir = r.dataDir;
+          info.dataDirCloud = await api.app.cloudSync(r.dataDir).catch(() => null);
           if (!r.needsSetup) {
             // The folder already holds an archive with profiles: sign in to it.
             info = await api.app.info();

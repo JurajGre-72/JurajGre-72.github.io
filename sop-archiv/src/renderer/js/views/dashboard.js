@@ -173,7 +173,7 @@ export async function render() {
   return html`<div class="page">
     <header class="page-head">
       <div><h1>${t('dash.title')}</h1><p class="muted">${app.info.archiveSettings.org || t('tagline')} · ${fmtDate(todayIso(), { long: true })}</p></div>
-      <div class="head-actions"><button class="btn btn-primary" data-action="import" data-perm="editor">${icon('upload')}${t('docs.importFiles')}</button></div>
+      <div class="head-actions"><a class="btn" href="#/compose" data-perm="editor">${icon('plus')}${t('nd.title')}</a><button class="btn btn-primary" data-action="import" data-perm="editor">${icon('upload')}${t('docs.importFiles')}</button></div>
     </header>
     ${!docs.length
       ? emptyState()

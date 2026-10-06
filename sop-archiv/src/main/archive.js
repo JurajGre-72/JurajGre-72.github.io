@@ -190,6 +190,7 @@ class Archive {
       doc.tags = doc.tags || [];
       doc.citations = doc.citations || [];
       doc.lawRefs = doc.lawRefs || [];
+      doc.proposals = doc.proposals || [];
     }
   }
 
@@ -854,6 +855,7 @@ class Archive {
       reviews: [],
       citations: [],
       lawRefs: [],
+      proposals: [],
       createdAt: now,
       updatedAt: now
     };
@@ -1398,6 +1400,60 @@ class Archive {
         };
       })
     };
+  }
+
+  /** The newest stored text of an act (null when none was downloaded or imported yet). */
+  async lawText(lawId) {
+    const law = this.data.laws.find((l) => l.id === lawId);
+    if (!law) return null;
+    const st = law.state || {};
+    for (const key of [st.newestKey, st.snapshotKey, st.lastImport && st.lastImport.key]) if (key && this.hasSnapshot(law.id, key)) return this.loadSnapshot(law.id, key);
+    return null;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Proposals to change a document's text (written with the AI or by hand), kept until the new version.
+
+  async addProposal(docId, p) {
+    const doc = this._doc(docId);
+    const prop = {
+      id: id(),
+      at: new Date().toISOString(),
+      by: this.user,
+      versionId: doc.currentVersionId,
+      version: doc.version,
+      instruction: String(p.instruction || '').slice(0, 2000),
+      original: String(p.original || '').slice(0, 20000),
+      text: String(p.text || '').slice(0, 20000),
+      reasons: (p.reasons || []).map((r) => String(r).slice(0, 1000)).slice(0, 30),
+      lawIds: (p.lawIds || []).filter((x) => this.data.laws.some((l) => l.id === x)),
+      ai: p.ai ? { model: String(p.ai.model || ''), provider: String(p.ai.provider || '') } : null,
+      changeId: p.changeId || null,
+      status: 'open'
+    };
+    (doc.proposals = doc.proposals || []).push(prop);
+    await this.save();
+    this.audit('doc.proposal-added', { docId, code: doc.code, proposalId: prop.id, ai: prop.ai ? prop.ai.model : undefined });
+    return prop;
+  }
+
+  async updateProposal(docId, proposalId, patch) {
+    const doc = this._doc(docId);
+    const prop = (doc.proposals || []).find((x) => x.id === proposalId);
+    if (!prop) throw new Error('Proposal not found');
+    if (patch.text !== undefined) prop.text = String(patch.text).slice(0, 20000);
+    if (patch.status && ['open', 'done', 'rejected'].includes(patch.status)) prop.status = patch.status;
+    prop.updatedAt = new Date().toISOString();
+    await this.save();
+    this.audit('doc.proposal-updated', { docId, code: doc.code, proposalId, status: prop.status });
+    return prop;
+  }
+
+  async removeProposal(docId, proposalId) {
+    const doc = this._doc(docId);
+    doc.proposals = (doc.proposals || []).filter((x) => x.id !== proposalId);
+    await this.save();
+    this.audit('doc.proposal-removed', { docId, code: doc.code, proposalId });
   }
 
   /** Check the documents again against the stored text of the act (e.g. after a SOP was updated). */

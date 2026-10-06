@@ -6,7 +6,7 @@ const { contextBridge, ipcRenderer, webUtils } = require('electron');
 const call = (channel) => (...args) => ipcRenderer.invoke(channel, ...args);
 
 const CHANNELS = {
-  app: ['info', 'setSettings', 'chooseFolder', 'switchDataDir', 'retryLock', 'openDataDir', 'backup', 'openExternal', 'networkLog', 'audit', 'remindNow', 'logo', 'checkUpdate'],
+  app: ['info', 'setSettings', 'chooseFolder', 'switchDataDir', 'retryLock', 'openDataDir', 'backup', 'openExternal', 'networkLog', 'audit', 'remindNow', 'logo', 'checkUpdate', 'cloudSync'],
   auth: ['state', 'setup', 'login', 'logout', 'changePassword', 'setPrefs', 'recover', 'pendingRecovery', 'recoveryKept'],
   users: ['list', 'create', 'update', 'resetPassword', 'roles'],
   legis: ['pickFile', 'inspectFile', 'importFile', 'resolve', 'check'],
@@ -18,7 +18,9 @@ const CHANNELS = {
   changes: ['list', 'get', 'update', 'recheck', 'analyze'],
   company: ['get', 'update'],
   decisions: ['list', 'add', 'remove'],
-  ai: ['test', 'models', 'download', 'cancelDownload', 'removeModel', 'addModelFile']
+  ai: ['test', 'models', 'download', 'cancelDownload', 'removeModel', 'addModelFile', 'cancel'],
+  compose: ['init', 'outlineOf', 'suggestLaws', 'draftSection', 'save', 'saveCopy'],
+  rewrite: ['passages', 'propose', 'save', 'update', 'remove', 'exportDocx']
 };
 
 const api = {};

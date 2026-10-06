@@ -84,6 +84,7 @@ export async function render(route) {
       <div class="head-actions">
         <button class="btn" data-action="exportCsv">${icon('download')}${t('docs.exportCsv')}</button>
         <button class="btn" data-action="importFolder" data-perm="editor">${icon('folder')}${t('docs.importFolder')}</button>
+        <a class="btn" href="#/compose" data-perm="editor">${icon('plus')}${t('nd.title')}</a>
         <button class="btn btn-primary" data-action="import" data-perm="editor">${icon('upload')}${t('docs.importFiles')}</button>
       </div>
     </header>

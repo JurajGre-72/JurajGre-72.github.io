@@ -1,18 +1,51 @@
 // Document detail.
 import { t, lang } from '../i18n.js';
-import { html, icon, statusChip, reviewChip, fmtDate, fmtDateTime, fmtSize, typeLabel, openModal, formValues, confirmDialog, toast, esc } from '../ui.js';
+import { html, icon, statusChip, reviewChip, fmtDate, fmtDateTime, fmtSize, typeLabel, openModal, formValues, confirmDialog, toast, esc, diffView } from '../ui.js';
 import { app } from '../app.js';
 import { recordReview } from './review-dialog.js';
 import { uploadVersion } from './importer.js';
 import { fold } from '../text.js';
+import { rewriteDialog } from './rewrite.js';
+import { logoPng } from './compose.js';
 
 const api = window.api;
 let doc = null;
 let laws = [];
 let pages = null;
 
-const TABS = ['info', 'reviews', 'legis', 'versions', 'text', 'history'];
-const TAB_LABEL = { info: 'doc.tabInfo', reviews: 'doc.tabReviews', legis: 'doc.tabLegis', versions: 'doc.tabVersions', text: 'doc.tabText', history: 'doc.tabHistory' };
+const TABS = ['info', 'reviews', 'legis', 'proposals', 'versions', 'text', 'history'];
+const TAB_LABEL = { info: 'doc.tabInfo', reviews: 'doc.tabReviews', legis: 'doc.tabLegis', proposals: 'doc.tabProposals', versions: 'doc.tabVersions', text: 'doc.tabText', history: 'doc.tabHistory' };
+
+// Proposals to change the text (from "Rewrite with AI"), until a new version takes them over.
+function proposalsTab() {
+  const list = (doc.proposals || []).slice().reverse();
+  const open = list.filter((p) => p.status === 'open').length;
+  return html`<section class="panel">
+    <div class="panel-head">
+      <p class="muted">${t('pr.intro')}</p>
+      <div class="btn-row">
+        <button class="btn btn-primary" data-action="rewrite" data-perm="editor">${icon('sparkles')}${t('rw.title')}</button>
+        ${open ? html`<button class="btn" data-action="exportProposals">${icon('download')}${t('pr.export')}</button>` : ''}
+      </div>
+    </div>
+    ${list.length
+      ? list.map(
+          (p) => html`<article class="proposal st-${p.status}">
+            <div class="proposal-head">
+              <span class="chip chip-${p.status === 'open' ? 'info' : p.status === 'done' ? 'good' : 'muted'}">${t(`pr.st.${p.status}`)}</span>
+              <span class="small"><b>${p.instruction}</b></span>
+              <span class="muted small">${p.by} · ${fmtDateTime(p.at)}${p.version !== doc.version ? ` · ${t('pr.forVersion', { v: p.version })}` : ''}${p.ai ? ` · ${icon('sparkles')}${p.ai.model}` : ''}</span>
+              <span class="spacer"></span>
+              <select data-change="proposalStatus" data-id="${p.id}" data-perm="editor">${['open', 'done', 'rejected'].map((x) => html`<option value="${x}" ${x === p.status ? 'selected' : ''}>${t(`pr.st.${x}`)}</option>`)}</select>
+              <button class="btn btn-sm btn-ghost danger" data-action="removeProposal" data-id="${p.id}" data-perm="editor" title="${t('delete')}">${icon('trash')}</button>
+            </div>
+            ${diffView(p.original, p.text)}
+            ${p.reasons.length ? html`<ul class="rw-reasons">${p.reasons.map((r) => html`<li>${r}</li>`)}</ul>` : ''}
+          </article>`
+        )
+      : html`<p class="muted">${t('pr.none')}</p>`}
+  </section>`;
+}
 
 function dl(rows) {
   return html`<dl class="dl">${rows.filter(Boolean).map(([k, v]) => html`<dt>${k}</dt><dd>${v || html`<span class="muted">${t('none')}</span>`}</dd>`)}</dl>`;
@@ -212,10 +245,12 @@ export async function render(route) {
   if (tab === 'info') body = infoTab();
   else if (tab === 'reviews') body = reviewsTab();
   else if (tab === 'legis') body = legisTab(changes);
+  else if (tab === 'proposals') body = proposalsTab();
   else if (tab === 'versions') body = versionsTab();
   else if (tab === 'text') body = textTab();
   else body = await historyTab();
   const legisCount = changes.filter((c) => c.status !== 'resolved' && (c.affected || []).some((a) => a.docId === doc.id)).length;
+  const openProposals = (doc.proposals || []).filter((p) => p.status === 'open').length;
 
   return html`<div class="page">
     <a class="back" href="#/documents">← ${t('docs.title')}</a>
@@ -231,13 +266,14 @@ export async function render(route) {
         <button class="btn btn-primary" data-action="openFile">${icon('external')}${t('doc.openFile')}</button>
         <button class="btn" data-action="review" data-perm="editor">${icon('check')}${t('doc.markReviewed')}</button>
         <button class="btn" data-action="newVersion" data-perm="editor">${icon('upload')}${t('doc.newVersion')}</button>
+        <button class="btn" data-action="rewrite" data-perm="editor">${icon('sparkles')}${t('rw.title')}</button>
         <button class="btn" data-action="edit" data-perm="editor">${icon('edit')}${t('edit')}</button>
         <button class="btn btn-ghost" data-action="saveCopy" title="${t('doc.saveCopy')}">${icon('download')}</button>
         <button class="btn btn-ghost danger" data-action="remove" data-perm="admin" title="${t('delete')}">${icon('trash')}</button>
       </div>
     </header>
     <nav class="tabs">${TABS.map(
-      (k) => html`<a href="#/documents/${doc.id}?tab=${k}" class="tab ${k === tab ? 'active' : ''}">${t(TAB_LABEL[k])}${k === 'legis' && legisCount ? html`<span class="badge badge-info">${legisCount}</span>` : ''}${k === 'versions' ? html`<span class="count">${doc.versions.length}</span>` : ''}</a>`
+      (k) => html`<a href="#/documents/${doc.id}?tab=${k}" class="tab ${k === tab ? 'active' : ''}">${t(TAB_LABEL[k])}${k === 'legis' && legisCount ? html`<span class="badge badge-info">${legisCount}</span>` : ''}${k === 'proposals' && openProposals ? html`<span class="badge badge-info">${openProposals}</span>` : ''}${k === 'versions' ? html`<span class="count">${doc.versions.length}</span>` : ''}</a>`
     )}</nav>
     ${body}
   </div>`;
@@ -299,6 +335,20 @@ export const actions = {
     }
   },
   edit: () => editDialog(),
+  rewrite: () => rewriteDialog({ doc }),
+  async proposalStatus(el) {
+    await api.rewrite.update(doc.id, el.dataset.id, { status: el.value });
+    app.rerender();
+  },
+  async removeProposal(el) {
+    if (!(await confirmDialog(t('pr.removeConfirm'), { okLabel: t('delete'), danger: true }))) return;
+    await api.rewrite.remove(doc.id, el.dataset.id);
+    app.rerender();
+  },
+  async exportProposals() {
+    const p = await api.rewrite.exportDocx(doc.id, { original: t('pr.original'), proposed: t('pr.proposed'), reasons: t('rw.reasons'), proposal: t('pr.one'), title: t('pr.docTitle'), logoPng: await logoPng() });
+    if (p) toast(t('doc.copySaved', { path: p }), 'good', 6000);
+  },
   async remove() {
     if (!(await confirmDialog(t('doc.deleteConfirm', { title: doc.title }), { okLabel: t('delete'), danger: true }))) return;
     await api.docs.delete(doc.id);

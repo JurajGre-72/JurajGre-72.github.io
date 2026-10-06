@@ -4,6 +4,7 @@ import { html, icon, fmtDateTime, toast, errorToast, formValues, openModal, conf
 import { app } from '../app.js';
 import { auditDetails } from './document.js';
 import { showRecoveryCode } from './recovery.js';
+import { cloudNote, confirmLocalFolder } from './cloudnote.js';
 
 const api = window.api;
 let netLog = [];
@@ -180,6 +181,7 @@ export async function render() {
       'folder',
       html`<p class="muted">${t('set.dataDirHint')}</p>
       <div class="path-box">${icon('folder')}<code>${app.info.dataDir}</code></div>
+      ${cloudNote(app.info.dataDirCloud)}
       <p class="muted small">${t('set.sharedHint')}</p>
       <div class="btn-row">
         <button class="btn" data-action="openFolder">${icon('external')}${t('set.openFolder')}</button>
@@ -568,7 +570,7 @@ export const actions = {
   },
   async switchArchive() {
     const dir = await api.app.chooseFolder();
-    if (!dir) return;
+    if (!dir || !(await confirmLocalFolder(dir))) return;
     try {
       const r = await api.app.switchDataDir(dir, 'open');
       toast(t('set.switched', { path: r.dataDir }), 'good');
@@ -581,7 +583,7 @@ export const actions = {
   },
   async copyArchive() {
     const dir = await api.app.chooseFolder();
-    if (!dir) return;
+    if (!dir || !(await confirmLocalFolder(dir))) return;
     try {
       const r = await api.app.switchDataDir(dir, 'copy');
       toast(t('set.switched', { path: r.dataDir }), 'good');

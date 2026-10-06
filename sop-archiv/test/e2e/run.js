@@ -128,6 +128,19 @@ function startOllama() {
           const j = JSON.parse(body);
           const user = j.messages.find((m) => m.role === 'user').content;
           srv.lastPrompt = user;
+          srv.lastSystem = (j.messages.find((m) => m.role === 'system') || {}).content || '';
+          const chapter = user.match(/Napíš obsah kapitoly „([^“]+)“/);
+          if (chapter) {
+            srv.drafts = (srv.drafts || 0) + 1;
+            const c = chapter[1].startsWith('5.')
+              ? '5.1 Kontrola pri príjme\n- Skladník skontroluje dodací list a záznam z dataloggera.\n- Termolabilné lieky uloží do chladiaceho boxu do [DOPLNIŤ: lehota v minútach].\n5.2 Odchýlky\n- Odchýlku hlási vedúcemu skladu (§ 19 zákona č. 362/2011 Z. z.).'
+              : `Text kapitoly ${chapter[1]} podľa postupu spoločnosti.`;
+            return res.end(JSON.stringify({ model: j.model, message: { role: 'assistant', content: c } }));
+          }
+          if (user.includes('== UPRAVOVANÝ TEXT ==')) {
+            const orig = user.split('== UPRAVOVANÝ TEXT ==\n')[1].split('\n\n==')[0];
+            return res.end(JSON.stringify({ model: j.model, message: { role: 'assistant', content: `NOVÉ ZNENIE:\n${orig.replace(/5 rokov/g, '10 rokov')} Záznamy sa vedú elektronicky.\nZDÔVODNENIE:\n- Doba uchovávania podľa § 18 ods. 1 písm. l) v znení od 1. 1. 2027.\n- Postup spoločnosti ostáva zachovaný.` } }));
+          }
           const text = user.includes('ZMENENÉ ČASTI PREDPISU')
             ? '1. Záver: OVPLYVNENÝ – § 18 ods. 1 písm. l) predlžuje dobu uchovávania záznamov na desať rokov.\n2. Čo treba zmeniť: kap. 3 „Záznamy“ → 5 rokov nahradiť 10 rokmi, v elektronickej podobe.\n3. Prečo: § 18 ods. 1 písm. l) v znení od 1. 1. 2027.\n4. Termín: 1. 1. 2027.\n5. Neistoty: overiť prechodné ustanovenia.'
             : 'Dotknuté šarže sa zablokujú a presunú do karantény [SOP-SK-002, s. 1].';
@@ -583,6 +596,72 @@ async function main() {
     assert.equal(viaBuiltin.ai[byCode['SOP-QA-001'].id].provider, 'builtin', 'the impact analysis ran on the built-in model');
     assert.equal(await aiNet(), aiNetBefore, 'the built-in AI makes no network requests');
     console.log('  ✓ built-in AI: model from a file, test answer, no network in the AI process, impact analysis on it');
+
+    // ---- New document: template, the company's own process, the acts, AI draft, saved as a draft (Word) ----
+    await page.evaluate((url) => window.api.app.setSettings({ ai: { provider: 'ollama', baseUrl: url, model: 'qwen2.5:7b' } }), `http://127.0.0.1:${ollama.address().port}`);
+    await page.evaluate(() => window.__app.reloadInfo());
+    await page.evaluate(() => (location.hash = '#/documents'));
+    await page.click('a[href="#/compose"]');
+    await page.waitForSelector('.compose #nd-title');
+    assert.equal(await page.inputValue('.compose input[data-k="code"]'), 'ŠPP 32', 'the next free ŠPP number');
+    await page.fill('#nd-title', 'Príjem a skladovanie termolabilných liekov');
+    await page.fill('.compose textarea[data-input="description"]', 'Termolabilné lieky preberá skladník podľa dodacieho listu a záznamu z dataloggera. Skladovanie v chladiacich zariadeniach pri teplote 2 – 8 °C, teplotu sleduje monitorovací systém.');
+    await page.click('button[data-action="suggest"]');
+    await page.waitForSelector('.nd-laws .chip-good');
+    assert.ok(await page.isChecked(`.nd-laws input[value="${lieky.id}"]`), 'the act on medicines is suggested for the topic');
+    await page.click('#nd-all');
+    await page.waitForFunction(() => !document.querySelector('#nd-stop') || document.querySelector('#nd-stop').hidden, null, { timeout: 60000 });
+    const ch5 = await page.inputValue('.cmp-sec[data-i="4"] textarea');
+    assert.match(ch5, /5\.1 Kontrola pri príjme/);
+    assert.ok(ollama.drafts >= 9, 'every chapter drafted');
+    assert.match(ollama.lastPrompt, /dataloggera/, "the company's own description is the basis");
+    assert.match(ollama.lastPrompt, /NEVYKONÁVA: Omamné a psychotropné látky/, 'the company profile is given');
+    assert.match(ollama.lastSystem, /má prednosť/);
+    await page.$eval('.cmp-sec[data-i="4"]', (el) => el.scrollIntoView({ block: 'center' }));
+    await shot(page, '21-new-document');
+    await page.click('#nd-save');
+    await page.waitForFunction(() => /#\/documents\/[\w-]+$/.test(location.hash), null, { timeout: 30000 });
+    const newDoc = await page.evaluate(() => window.api.docs.get(decodeURIComponent(location.hash.split('/').pop())));
+    assert.equal(newDoc.code, 'ŠPP 32');
+    assert.equal(newDoc.status, 'draft');
+    assert.equal(newDoc.type, 'ŠPP');
+    assert.match(newDoc.current.fileName, /\.docx$/);
+    const newText = (await page.evaluate((id) => window.api.docs.text(id), newDoc.id)).map((p) => p.text).join('\n');
+    assert.match(newText, /Vypracoval/);
+    assert.match(newText, /5\.1 Kontrola pri príjme/);
+    assert.ok(newDoc.citations.some((c) => c.lawId === lieky.id), 'the new document cites the act');
+    console.log('  ✓ new document: next code, acts suggested for the topic, AI draft from the company process, saved as a Word draft');
+
+    // ---- Rewrite with AI: a proposal with the changes and reasons, kept with the document, exported to Word ----
+    await page.evaluate((id) => (location.hash = `#/documents/${id}`), byCode['SOP-QA-001'].id);
+    await page.waitForSelector('button[data-action="rewrite"]');
+    await page.click('.head-actions button[data-action="rewrite"]');
+    await page.waitForSelector('.rw #rw-passage');
+    await page.click('.rw-pick summary');
+    await page.fill('#rw-find', 'uchovávajú');
+    await page.click('.rw-passages li:not([hidden]) .rw-p');
+    assert.match(await page.inputValue('#rw-passage'), /uchovávajú/);
+    await page.click('#rw-go');
+    await page.waitForSelector('.rw .word-diff ins');
+    assert.match(ollama.lastPrompt, /== UPRAVOVANÝ TEXT ==/);
+    assert.match(ollama.lastPrompt, /§ 18/, 'the provisions the passage cites are given');
+    await shot(page, '22-rewrite');
+    await page.click('#rw-save');
+    await page.waitForFunction(() => !document.querySelector('.rw'));
+    await page.click('a.tab[href$="tab=proposals"]');
+    await page.waitForSelector('.proposal .word-diff');
+    const exportFile = path.join(tmp, 'navrh-zmien.docx');
+    await app.evaluate(({ dialog }, p) => {
+      dialog.showSaveDialog = async () => ({ canceled: false, filePath: p });
+    }, exportFile);
+    await page.click('button[data-action="exportProposals"]');
+    await page.waitForFunction(() => Array.from(document.querySelectorAll('.toast')).some((x) => /navrh-zmien/.test(x.textContent)));
+    const { extractFile } = require('../../src/main/lib/extract');
+    const exported = (await extractFile(exportFile)).pages.map((p) => p.text).join('\n');
+    assert.match(exported, /Navrhované znenie/);
+    assert.match(exported, /10 rokov/);
+    await shot(page, '23-proposals');
+    console.log('  ✓ rewrite with AI: changes and reasons shown, proposal kept with the document, exported to Word');
     assert.ok(!fs.existsSync(path.join(tmp, 'archive', 'branding', 'logo.svg')));
     console.log('  ✓ company logo: another one can be chosen, and back to the PHARMACOPOLA logo');
 
