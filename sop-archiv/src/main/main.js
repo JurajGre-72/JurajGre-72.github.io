@@ -25,6 +25,7 @@ const { lawTextFromPages, detectLawIdentity, resolveLawQuery, urlForKey } = requ
 const { sectionMap } = require('./lib/compliance');
 const { aliasesFromKey } = require('./lib/metadata');
 const { DEFAULT_LAWS } = require('./lib/defaults');
+const { companyContext } = require('./lib/company');
 const mainText = require('./i18n-main');
 
 const APP_ID = 'sk.soparchiv.app';
@@ -301,6 +302,11 @@ function cleanWorkCopies(all = false) {
   } catch (_) {
     /* a document is still open in another program: removed next time */
   }
+}
+
+/** "§18" -> "§ 18", "art5" -> "čl. 5" (for texts given to the AI). */
+function sectionText(k) {
+  return String(k).replace(/^§/, '§ ').replace(/^art/, lang() === 'en' ? 'Art. ' : 'čl. ').replace(/^annex/, lang() === 'en' ? 'Annex ' : 'príloha ');
 }
 
 function send(channel, payload) {
@@ -951,6 +957,7 @@ function registerIpc() {
     await fs.promises.chmod(dest, 0o444).catch(() => {});
     const err = await shell.openPath(dest);
     if (err) throw new Error(err);
+    archive.audit('doc.opened', { docId: id, code: doc.code, title: doc.title, version: v.label });
     return true;
   });
   // Stored files are encrypted: "save a copy" writes a readable copy where the user chooses.
@@ -1077,6 +1084,13 @@ function registerIpc() {
     { perm: 'editor', write: true }
   );
 
+  // --- the company's own rules: profile and "does not apply to us" decisions ---
+  handle('company:get', () => ({ profile: archive.companyProfile(), activities: require('./lib/company').ACTIVITIES.map(({ id, sk, en }) => ({ id, sk, en })) }));
+  handle('company:update', (patch) => archive.updateCompany(patch), { perm: 'admin', write: true });
+  handle('decisions:list', () => archive.listDecisions());
+  handle('decisions:add', (d) => archive.addDecision(d), { perm: 'editor', write: true });
+  handle('decisions:remove', (decisionId) => archive.removeDecision(decisionId), { perm: 'editor', write: true });
+
   handle('changes:list', () => archive.listChanges());
   handle('changes:get', (id) => archive.getChange(id));
   handle('changes:update', (id, patch) => archive.updateChange(id, patch), { perm: 'editor', write: true });
@@ -1090,7 +1104,10 @@ function registerIpc() {
       const doc = archive.getDoc(docId);
       const pages = await archive.docText(docId);
       const aff = ch.affected.find((a) => a.docId === docId);
-      const p = ai.buildImpactPrompt({ change: ch, law: ch.law, diff: ch.diff, doc, pages, analysis: aff && aff.analysis, l: lang(), budget: ai.cfgFor(cfg).budget });
+      // Findings the company already decided (does not apply / our document applies) are not sent as problems.
+      const analysis = aff && aff.analysis ? { ...aff.analysis, findings: (aff.findings || []).filter((f) => !f.decision) } : null;
+      const companyText = companyContext(archive.companyProfile(), archive.data.decisions, { lang: lang(), lawId: ch.lawId, docId, sectionLabel: sectionText });
+      const p = ai.buildImpactPrompt({ change: ch, law: ch.law, diff: ch.diff, doc, pages, analysis, l: lang(), budget: ai.cfgFor(cfg).budget, companyText });
       const r = await ai.complete(cfg, p.system, p.user, { log: logNet });
       archive.audit('ai.impact-analysis', { changeId, docId, provider: cfg.provider, model: r.model });
       return archive.updateChange(changeId, { ai: { [docId]: { text: r.text, model: r.model, provider: cfg.provider, at: new Date().toISOString(), truncated: p.truncated } } });

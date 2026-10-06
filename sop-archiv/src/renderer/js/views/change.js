@@ -1,12 +1,13 @@
 // A detected change of a legal act, or a check of documents against an act:
 // what changed, which documents are affected and why, decisions.
-import { t } from '../i18n.js';
-import { html, icon, fmtDate, fmtDateTime, openModal, formValues, toast, errorToast } from '../ui.js';
+import { t, lang } from '../i18n.js';
+import { html, icon, fmtDate, fmtDateTime, openModal, formValues, toast, errorToast, confirmDialog } from '../ui.js';
 import { app } from '../app.js';
 import { secLabel } from './document.js';
 
 const api = window.api;
 let ch = null;
+let activities = [];
 const busy = new Set();
 
 const SEV_TONE = { high: 'bad', medium: 'warn', low: 'muted', info: 'info' };
@@ -50,12 +51,45 @@ function findingText(f) {
   return f.type;
 }
 
+const actLabel = (id) => {
+  const a = activities.find((x) => x.id === id);
+  return a ? (lang() === 'sk' ? a.sk : a.en) : id;
+};
+
+// The company's decision about a provision ("does not apply to us" / "our document applies").
+function decisionHtml(d, { reassess = false } = {}) {
+  return html`<div class="decision ${reassess ? 'reassess' : ''}">
+    ${icon(reassess ? 'alert' : 'shield')}
+    <div><b>${t(reassess ? 'dec.reassess' : `dec.kind.${d.kind}`)}</b>${d.docId ? '' : html` <span class="chip chip-muted">${t('dec.companyWide')}</span>`}
+      <div class="small">${d.reason}</div>
+      <div class="muted small">${d.by} · ${fmtDateTime(d.at)}</div></div>
+    <button class="btn btn-sm btn-ghost" data-action="undoDecision" data-id="${d.id}" data-perm="editor">${icon('x')}${t('dec.undo')}</button>
+  </div>`;
+}
+
+function hintHtml(f) {
+  if (!f.hints || !f.hints.length || f.decision) return '';
+  return html`<div class="hint-act">${icon('info')}${t('dec.hint', { acts: f.hints.map((h) => actLabel(h.id)).join(', ') })}</div>`;
+}
+
+function decideBtn(a, f) {
+  if (f.decision) return '';
+  return html`<button class="btn btn-sm btn-ghost" data-action="decide" data-doc="${a.docId}" data-sec="${f.section}" data-hints="${(f.hints || []).map((h) => h.id).join(',')}" data-perm="editor">${icon('shield')}${t('dec.btn')}</button>`;
+}
+
 function findingsHtml(a) {
-  const list = ((a.analysis && a.analysis.findings) || []).filter((f) => f.type !== 'related');
-  // Directly cited changed sections are known even without a stored analysis.
-  if (!list.some((f) => f.type === 'changed')) for (const s of a.direct || []) list.unshift({ type: 'changed', severity: 'high', section: s });
+  const list = (a.findings || []).filter((f) => f.type !== 'related');
   if (!list.length) return html`<div class="aff-why muted">${icon('checkCircle')}${a.cites ? t('lc.f.none') : ''}</div>`;
-  return html`<ul class="findings">${list.map((f) => html`<li class="finding sev-${f.severity}"><span class="chip chip-${SEV_TONE[f.severity]}">${t(`lc.sev.${f.severity}`)}</span><span>${findingText(f)}</span></li>`)}</ul>`;
+  // One decision often covers several findings of the same provision: its box is shown once, after the last of them.
+  const lastOf = new Map();
+  list.forEach((f, i) => f.decision && lastOf.set(f.decision.id, i));
+  return html`<ul class="findings">${list.map(
+    (f, i) => html`<li class="finding sev-${f.severity} ${f.decision ? 'decided' : ''}">
+      <div class="finding-main">${f.decision ? html`<span class="chip chip-good">${icon('check')}${t('dec.decided')}</span>` : html`<span class="chip chip-${SEV_TONE[f.severity]}">${t(`lc.sev.${f.severity}`)}</span>`}<span>${findingText(f)}</span>${decideBtn(a, f)}</div>
+      ${hintHtml(f)}
+      ${f.decision ? (lastOf.get(f.decision.id) === i ? decisionHtml(f.decision) : '') : f.reassess ? decisionHtml(f.reassess, { reassess: true }) : ''}
+    </li>`
+  )}</ul>`;
 }
 
 function compareHtml(a) {
@@ -109,7 +143,10 @@ function relatedItem(a) {
       <a href="#/documents/${a.doc.id}" class="aff-title"><span class="code">${a.doc.code || ''}</span> ${a.doc.title} <span class="muted small">v${a.doc.version}</span></a>
       <select data-change="docStatus" data-doc="${a.docId}" class="st-${a.status}" data-perm="editor">${['open', 'done', 'na'].map((s) => html`<option value="${s}" ${s === a.status ? 'selected' : ''}>${t(`ch.st.${s}`)}</option>`)}</select>
     </div>
-    <ul class="findings">${rel.map((r) => html`<li class="finding"><span class="chip chip-info">${secLabel(r.key)}</span><span class="muted">${t('lc.relTerms', { terms: (r.terms || []).join(', ') })}</span></li>`)}</ul>
+    <ul class="findings">${rel.map((r) => {
+      const f = (a.findings || []).find((x) => x.type === 'related' && x.section === r.key) || { type: 'related', section: r.key };
+      return html`<li class="finding ${f.decision ? 'decided' : ''}"><div class="finding-main"><span class="chip chip-${f.decision ? 'good' : 'info'}">${secLabel(r.key)}</span><span class="muted">${t('lc.relTerms', { terms: (r.terms || []).join(', ') })}</span>${decideBtn(a, f)}</div>${hintHtml(f)}${f.decision ? decisionHtml(f.decision) : ''}</li>`;
+    })}</ul>
     ${compareHtml(a)}
   </li>`;
 }
@@ -121,6 +158,7 @@ function affectedHtml() {
   return html`
     <section class="panel">
       <h3>${icon('file')}${t('lc.citing')} <span class="count">${citing.length}</span></h3>
+      <p class="muted small">${icon('shield')}${t('dec.principle')}</p>
       ${citing.length ? html`<ul class="affected">${citing.map((a) => docItem(a, aiOn))}</ul>` : html`<p class="muted">${t('ch.affectedNone')}</p>`}
       ${aiOn ? '' : html`<p class="muted small">${icon('info')}${t('ch.aiOff')}</p>`}
     </section>
@@ -148,7 +186,7 @@ function sourceText() {
 }
 
 export async function render(route) {
-  ch = await api.changes.get(route.parts[1]);
+  [ch, { activities }] = await Promise.all([api.changes.get(route.parts[1]), api.company.get()]);
   const s = ch.diff && ch.diff.stats;
   const tone = ch.kind === 'upcoming' ? 'warn' : ch.kind === 'repealed' ? 'bad' : ch.kind === 'check' ? 'muted' : 'info';
   const hasDiff = ch.diff && ch.diff.mode && ch.diff.mode !== 'none';
@@ -174,8 +212,81 @@ export async function render(route) {
       </div>
     </header>
     <div id="affected">${affectedHtml()}</div>
+    ${decisionsPanel()}
     ${diffHtml(ch.diff)}
   </div>`;
+}
+
+function decisionsPanel() {
+  const list = ch.decisions || [];
+  if (!list.length) return '';
+  return html`<section class="panel" id="decisions"><h3>${icon('shield')}${t('dec.title')} <span class="count">${list.length}</span></h3>
+    <p class="muted small">${t('dec.panelHint')}</p>
+    <ul class="rows">${list.map(
+      (d) => html`<li class="row decision-row">
+        <span class="sec-label">${d.section === '*' ? t('dec.wholeAct') : secLabel(d.section)}</span>
+        <span class="chip chip-${d.kind === 'na' ? 'muted' : 'good'}">${t(`dec.kind.${d.kind}`)}</span>
+        <span class="row-title">${d.reason}</span>
+        <span class="muted small">${d.doc ? `${d.doc.code || d.doc.title}` : t('dec.companyWide')} · ${d.by} · ${fmtDate(d.at.slice(0, 10))}</span>
+        <button class="btn btn-sm btn-ghost" data-action="undoDecision" data-id="${d.id}" data-perm="editor">${icon('x')}${t('dec.undo')}</button>
+      </li>`
+    )}</ul></section>`;
+}
+
+/** Record the company's decision about a provision for one document or for the whole company. */
+export async function decisionDialog({ lawId, lawTitle, section, docId, docLabel, hints = [], changeId, activityList = activities }) {
+  let vals = null;
+  const label = (id) => {
+    const a = activityList.find((x) => x.id === id);
+    return a ? (lang() === 'sk' ? a.sk : a.en) : id;
+  };
+  const suggested = hints.length ? t('dec.reasonFromProfile', { acts: hints.map(label).join(', ') }) : '';
+  const r = await openModal({
+    title: `${t('dec.dialogTitle')} – ${secLabel(section)}`,
+    size: 'md',
+    body: html`<form class="form-grid dec-form">
+      <p class="field full muted small">${lawTitle}</p>
+      <div class="field full"><label>${t('dec.what')}</label><div class="radio-col">
+        <label class="radio"><input type="radio" name="kind" value="na" ${hints.length || !docId ? 'checked' : ''}> <span><b>${t('dec.kind.na')}</b><br><span class="muted small">${t('dec.kind.na.help')}</span></span></label>
+        <label class="radio"><input type="radio" name="kind" value="ours" ${!hints.length && docId ? 'checked' : ''}> <span><b>${t('dec.kind.ours')}</b><br><span class="muted small">${t('dec.kind.ours.help')}</span></span></label>
+      </div></div>
+      <div class="field full"><label>${t('dec.scope')}</label><div class="radio-col">
+        ${docId ? html`<label class="radio"><input type="radio" name="scope" value="doc" ${hints.length ? '' : 'checked'}> ${t('dec.scope.doc', { doc: docLabel })}</label>` : ''}
+        <label class="radio"><input type="radio" name="scope" value="company" ${hints.length || !docId ? 'checked' : ''}> ${t('dec.scope.company')}</label>
+      </div></div>
+      <div class="field full"><label>${t('dec.provision')}</label><div class="radio-col">
+        <label class="radio"><input type="radio" name="whole" value="sec" checked> ${secLabel(section)}</label>
+        <label class="radio"><input type="radio" name="whole" value="all"> ${t('dec.wholeActOf')}</label>
+      </div></div>
+      <div class="field full"><label>${t('dec.reason')}</label><textarea name="reason" rows="3" required placeholder="${t('dec.reasonPh')}">${suggested}</textarea></div>
+      <p class="field full muted small">${icon('info')}${t('dec.note')}</p>
+      <div class="field full err small" id="dec-err"></div>
+    </form>`,
+    buttons: [
+      { label: t('cancel'), value: null },
+      {
+        label: t('save'),
+        kind: 'primary',
+        value: 'ok',
+        onClick: async (el) => {
+          vals = formValues(el);
+          if ((vals.reason || '').trim().length < 3) {
+            el.querySelector('#dec-err').textContent = t('dec.reasonMissing');
+            return false;
+          }
+          try {
+            await api.decisions.add({ lawId, section: vals.whole === 'all' ? '*' : section, docId: vals.scope === 'doc' ? docId : null, kind: vals.kind, reason: vals.reason, changeId });
+            return true;
+          } catch (e) {
+            el.querySelector('#dec-err').textContent = String(e.message || e).replace(/^Error invoking remote method '[^']+': (Error: )?/, '');
+            return false;
+          }
+        }
+      }
+    ]
+  });
+  if (r === 'ok') toast(t('dec.saved'), 'good');
+  return r === 'ok';
 }
 
 function refreshAffected() {
@@ -185,6 +296,28 @@ function refreshAffected() {
 
 export const actions = {
   openSource: () => api.app.openExternal(ch.sourceUrl || (ch.law && ch.law.url)),
+  async decide(el) {
+    const a = ch.affected.find((x) => x.docId === el.dataset.doc);
+    const ok = await decisionDialog({
+      lawId: ch.lawId,
+      lawTitle: ch.law ? ch.law.title : '',
+      section: el.dataset.sec,
+      docId: el.dataset.doc,
+      docLabel: a && a.doc ? a.doc.code || a.doc.title : '',
+      hints: (el.dataset.hints || '').split(',').filter(Boolean),
+      changeId: ch.id
+    });
+    if (ok) {
+      app.refreshSidebar();
+      app.rerender();
+    }
+  },
+  async undoDecision(el) {
+    if (!(await confirmDialog(t('dec.undoConfirm'), { okLabel: t('dec.undo') }))) return;
+    await api.decisions.remove(el.dataset.id);
+    app.refreshSidebar();
+    app.rerender();
+  },
   async docStatus(el) {
     ch = await api.changes.update(ch.id, { docId: el.dataset.doc, docStatus: el.value });
     refreshAffected();

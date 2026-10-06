@@ -30,6 +30,7 @@ const { DEFAULT_LAWS, DOC_TYPES, defaultArchive } = require('./lib/defaults');
 const { ROLES, hashPassword, verifyPassword, validPassword } = require('./lib/auth');
 const { pagesWithoutText } = require('./ocr');
 const vault = require('./lib/vault');
+const company = require('./lib/company');
 
 const STATUSES = ['draft', 'effective', 'review', 'obsolete'];
 const LOGO_TYPES = { '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.svg': 'image/svg+xml' };
@@ -179,6 +180,8 @@ class Archive {
     d.laws = d.laws || [];
     d.changes = d.changes || [];
     d.users = d.users || [];
+    d.company = d.company ? company.cleanCompany(d.company) : company.defaultCompany();
+    d.decisions = d.decisions || [];
     const def = defaultArchive(this.lang).settings;
     d.settings = { ...def, ...(d.settings || {}) };
     for (const doc of d.docs) {
@@ -791,7 +794,7 @@ class Archive {
   _refreshCitations(doc, text) {
     doc.citations = detectCitations(text, this.data.laws);
     const known = new Set(this.data.laws.map((l) => l.key).filter(Boolean));
-    // The title counts too: "Dodávanie HL … podľa Vyhlášky 82-2012 MZSR".
+    // The title counts too: "Pokyn … podľa Vyhlášky 82-2012 MZSR".
     doc.lawRefs = detectAllLawRefs(`${doc.title || ''}\n${text}`).filter((r) => !known.has(r.key));
   }
 
@@ -1048,6 +1051,89 @@ class Archive {
   }
 
   // ---------------------------------------------------------------------------
+  // The company's own rules (see lib/company.js): what the company does, and decisions that a
+  // provision does not apply to it or that its document deliberately differs.
+
+  companyProfile() {
+    return this.data.company;
+  }
+
+  async updateCompany(patch) {
+    const next = company.cleanCompany({ ...this.data.company, ...patch, activities: { ...this.data.company.activities, ...((patch && patch.activities) || {}) } });
+    for (const k of Object.keys((patch && patch.activities) || {})) if (!patch.activities[k]) delete next.activities[k];
+    next.updatedAt = new Date().toISOString();
+    next.updatedBy = this.user;
+    this.data.company = next;
+    await this.save();
+    this.audit('company.updated', { activities: next.activities });
+    return next;
+  }
+
+  listDecisions() {
+    const laws = new Map(this.data.laws.map((l) => [l.id, l]));
+    const docs = new Map(this.data.docs.map((d) => [d.id, d]));
+    return this.data.decisions.map((d) => {
+      const law = laws.get(d.lawId);
+      const doc = d.docId ? docs.get(d.docId) : null;
+      return { ...d, law: law ? { id: law.id, title: law.title, short: law.short } : null, doc: doc ? { id: doc.id, code: doc.code, title: doc.title } : null };
+    });
+  }
+
+  /** { lawId, section ('§18', 'art5' or '*'), docId (optional), kind ('na' | 'ours'), reason, changeId (optional) } */
+  async addDecision({ lawId, section, docId, kind, reason, changeId }) {
+    const law = this.data.laws.find((l) => l.id === lawId);
+    if (!law) throw new Error('Law not found');
+    if (docId) this._doc(docId);
+    if (!company.KINDS.includes(kind)) throw new Error('Unknown decision');
+    const why = String(reason || '').trim();
+    if (why.length < 3) throw new Error('REASON_REQUIRED');
+    const sec = section === '*' ? '*' : String(section || '').trim();
+    if (!sec) throw new Error('Section missing');
+    const ch = changeId ? this.data.changes.find((c) => c.id === changeId) : null;
+    const st = law.state || {};
+    const d = {
+      id: id(),
+      lawId,
+      lawKey: law.key || '',
+      section: sec,
+      docId: docId || null,
+      kind,
+      reason: why.slice(0, 2000),
+      // the version of the act the decision was made for: a later change of the provision asks again
+      atKey: (ch && (ch.toKey || ch.snapshotKey)) || st.newestKey || st.snapshotKey || null,
+      by: this.user,
+      at: new Date().toISOString()
+    };
+    // one decision per provision and scope: a new one replaces the previous
+    this.data.decisions = this.data.decisions.filter((x) => !(x.lawId === d.lawId && x.section === d.section && (x.docId || null) === d.docId));
+    this.data.decisions.push(d);
+    await this._refreshAffected(lawId);
+    await this.save();
+    this.audit('decision.added', { lawId, title: law.title, section: sec, docId: d.docId || undefined, code: d.docId ? this._doc(d.docId).code : undefined, kind, reason: d.reason });
+    return d;
+  }
+
+  async removeDecision(decisionId) {
+    const d = this.data.decisions.find((x) => x.id === decisionId);
+    if (!d) throw new Error('Decision not found');
+    this.data.decisions = this.data.decisions.filter((x) => x.id !== decisionId);
+    await this._refreshAffected(d.lawId);
+    await this.save();
+    const law = this.data.laws.find((l) => l.id === d.lawId);
+    this.audit('decision.removed', { lawId: d.lawId, title: law ? law.title : '', section: d.section, docId: d.docId || undefined, kind: d.kind, reason: d.reason });
+    return true;
+  }
+
+  /** Recompute the affected documents of the open changes of an act (after a decision). */
+  async _refreshAffected(lawId) {
+    for (const c of this.data.changes) if (c.lawId === lawId) c.affected = this._affectedFrom(c, await this.loadAnalysis(c), c.affected || []);
+  }
+
+  _decisionCtx(change, docId) {
+    return { lawId: change.lawId, docId, changeKey: change.toKey || change.snapshotKey || null };
+  }
+
+  // ---------------------------------------------------------------------------
   // Legislation register
 
   _newLaw(l) {
@@ -1197,13 +1283,14 @@ class Archive {
       const c = doc.citations.find((x) => x.lawId === change.lawId);
       const an = byDoc.get(doc.id);
       if (!c && !an) continue;
-      const direct = c ? c.sections.filter((s) => touched.has(s)) : [];
-      let severity = an ? an.severity : c ? 'low' : 'info';
-      if (direct.length) severity = 'high';
+      // Provisions that do not apply to the company, or where its document deliberately differs, are not findings.
+      const ap = company.applyDecisions({ findings: (an && an.findings) || [], direct: c ? c.sections.filter((s) => touched.has(s)) : [], cites: !!c }, this.data.decisions, this._decisionCtx(change, doc.id));
+      if (!c && an && !ap.active.length) continue; // only related by content, and all of it decided
       const counts = {};
-      for (const f of (an && an.findings) || []) counts[f.type] = (counts[f.type] || 0) + 1;
+      for (const f of ap.active) counts[f.type] = (counts[f.type] || 0) + 1;
+      const decided = ap.findings.length - ap.active.length;
       const p = prev.get(doc.id);
-      out.push({ docId: doc.id, direct, cites: c ? c.count : 0, severity, counts, status: p ? p.status : 'open', note: p ? p.note : '' });
+      out.push({ docId: doc.id, direct: ap.direct, cites: c ? c.count : 0, severity: ap.severity, counts, decided, status: p ? p.status : 'open', note: p ? p.note : '' });
     }
     out.sort((a, b) => SEVERITY[b.severity] - SEVERITY[a.severity] || b.direct.length - a.direct.length || b.cites - a.cites);
     return out;
@@ -1281,17 +1368,32 @@ class Archive {
     const law = this.data.laws.find((l) => l.id === c.lawId);
     const docs = new Map(this.data.docs.map((d) => [d.id, d]));
     const an = new Map(((analysis && analysis.docs) || []).map((d) => [d.docId, d]));
+    // Text of each provision (from the comparison and the diff), to recognise activities the company does not perform.
+    const provision = new Map();
+    for (const x of an.values()) for (const r of [...(x.refs || []), ...(x.related || [])]) if (r.lawExcerpt && !provision.has(r.key)) provision.set(r.key, { text: r.lawExcerpt, heading: '' });
+    if (diff && diff.mode === 'sections') for (const s of [...diff.changed, ...diff.added, ...diff.removed]) provision.set(String(s.key).replace(/#\d+$/, ''), { text: s.newText || s.oldText || '', heading: s.label || '' });
+    const hints = (section) => {
+      const p = provision.get(section);
+      return p ? company.activityHints(p.text, this.data.company, p.heading) : [];
+    };
     return {
       ...c,
       law,
       diff,
       hasText: !!((c.toKey || c.snapshotKey) && this.hasSnapshot(c.lawId, c.toKey || c.snapshotKey)),
+      decisions: this.listDecisions().filter((d) => d.lawId === c.lawId),
       affected: c.affected.map((a) => {
         const d = docs.get(a.docId);
         const x = an.get(a.docId);
+        const ctx = this._decisionCtx(c, a.docId);
+        // Changed cited provisions are findings even without a stored analysis.
+        const base = x ? x.findings.slice() : [];
+        if (!base.some((f) => f.type === 'changed')) for (const s of (d && d.citations.find((ci) => ci.lawId === c.lawId) || { sections: [] }).sections.filter((s2) => (c.touched || []).includes(s2))) base.unshift({ type: 'changed', severity: 'high', section: s });
+        const ap = company.applyDecisions({ findings: base }, this.data.decisions, ctx);
         return {
           ...a,
           doc: d ? { id: d.id, code: d.code, title: d.title, version: d.version, status: d.status } : null,
+          findings: ap.findings.map((f) => ({ ...f, hints: hints(f.section) })),
           analysis: x ? { findings: x.findings, refs: x.refs, related: x.related } : null
         };
       })

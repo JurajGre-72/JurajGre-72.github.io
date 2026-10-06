@@ -412,6 +412,40 @@ async function main() {
     await shot(page, '14-check-report');
     console.log('  ✓ check against a downloaded PDF of the act (act and version recognised automatically)');
 
+    // ---- The company's document applies: a deliberate difference is recorded with a reason ----
+    const qaId = byCode['SOP-QA-001'].id;
+    const qaBefore = full.affected.find((a) => a.docId === qaId);
+    const qFinding = qaBefore.findings.find((f) => f.type === 'quantity' && !f.decision);
+    await page.click(`button[data-action="decide"][data-doc="${qaId}"][data-sec="${qFinding.section}"]`);
+    await page.waitForSelector('.dec-form');
+    await page.check('.dec-form input[name=kind][value=ours]');
+    await page.check('.dec-form input[name=scope][value=doc]');
+    await page.fill('.dec-form textarea[name=reason]', '');
+    await page.click('.modal-foot .btn-primary');
+    await page.waitForSelector('#dec-err:has-text("dôvod")');
+    await page.fill('.dec-form textarea[name=reason]', 'Záznamy uchovávame dlhšie, než vyžaduje zákon – postup schválený vedením.');
+    await page.click('.modal-foot .btn-primary');
+    await page.waitForSelector('.finding.decided .decision');
+    full = await page.evaluate((id) => window.api.changes.get(id), fileCheckId);
+    const qaAfter = full.affected.find((a) => a.docId === qaId);
+    assert.ok(qaAfter.findings.filter((f) => f.section === qFinding.section && f.type !== 'related').every((f) => f.decision && f.decision.kind === 'ours'), 'findings at the provision are covered by the decision');
+    assert.equal(full.decisions.length, 1);
+    assert.equal(full.decisions[0].docId, qaId);
+    await shot(page, '14b-decision');
+    // the company profile: an activity the company does not perform
+    await page.evaluate(() => (location.hash = '#/settings'));
+    await page.waitForSelector('#set-company');
+    await page.click('#set-company label.seg-opt:has(input[name="act-narcotics"][value="no"])');
+    await clearToasts(page);
+    await page.click('#set-company button.btn-primary');
+    await page.waitForSelector('.toast');
+    assert.equal((await page.evaluate(() => window.api.company.get())).profile.activities.narcotics, 'no');
+    await page.$eval('#set-company', (el) => el.scrollIntoView());
+    await shot(page, '14c-company-profile');
+    await page.evaluate((id) => (location.hash = `#/legislation/change/${id}`), fileCheckId);
+    await page.waitForSelector('.aff');
+    console.log("  ✓ company precedence: a deliberate difference recorded with a reason, company profile saved");
+
     // ---- Recheck after the SOP is updated ----
     const sopV2 = path.join(tmp, 'fixtures', 'SOP-QA-001_v4.txt');
     fs.writeFileSync(

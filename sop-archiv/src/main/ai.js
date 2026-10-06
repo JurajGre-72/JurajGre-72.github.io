@@ -125,7 +125,11 @@ const T = {
     impactSystem:
       'Si asistent pre súlad s legislatívou vo farmaceutickej veľkodistribučnej spoločnosti na Slovensku (humánne a veterinárne lieky). ' +
       'Porovnávaš zmeny v právnych predpisoch s internými riadenými dokumentmi (SOP, organizačné smernice) a konkrétne uvádzaš, čo treba v dokumente zmeniť a prečo. ' +
-      'Vychádzaj výhradne z poskytnutých textov; nič si nedomýšľaj. Ak zmena dokument neovplyvňuje, jasne to povedz. Odpovedaj po slovensky, stručne a vecne.',
+      'Vychádzaj výhradne z poskytnutých textov; nič si nedomýšľaj. Ak zmena dokument neovplyvňuje, jasne to povedz. Odpovedaj po slovensky, stručne a vecne.\n' +
+      'Interné dokumenty opisujú, ako spoločnosť skutočne pracuje, a majú prednosť: dokument nemusí opakovať znenie predpisu a nenavrhuj ho prepisovať podľa doslovného textu zákona. ' +
+      'Zmenu navrhni len tam, kde predpis pri činnostiach, ktoré spoločnosť vykonáva, niečo prikazuje alebo zakazuje a dokument s tým nie je v súlade. ' +
+      'Ustanovenia o činnostiach, ktoré spoločnosť nevykonáva, a ustanovenia, o ktorých spoločnosť rozhodla, že sa na ňu nevzťahujú alebo že platí jej postup, nepovažuj za nesúlad. ' +
+      'Prísnejší postup spoločnosti je v poriadku. Nikdy nedopĺňaj činnosti, ktoré spoločnosť nevykonáva. Ak spoločnosť činnosť zabezpečuje externe (napr. prepravu), jej povinnosti voči dodávateľovi platia ďalej.',
     impactFormat:
       'Odpoveď štruktúruj takto:\n1. Záver: OVPLYVNENÝ / MOŽNO OVPLYVNENÝ / NEOVPLYVNENÝ (jedna veta zdôvodnenia)\n2. Čo treba zmeniť: zoznam – časť dokumentu → navrhovaná úprava\n3. Prečo: odkaz na konkrétny § / článok a čo sa v ňom zmenilo\n4. Termín: od kedy zmena platí\n5. Neistoty: čo treba overiť v plnom znení predpisu',
     qaSystem:
@@ -141,6 +145,7 @@ const T = {
     added: 'NOVÁ ČASŤ',
     removed: 'ZRUŠENÁ ČASŤ',
     doc: 'INTERNÝ DOKUMENT',
+    company: 'SPOLOČNOSŤ',
     excerpts: 'Relevantné časti dokumentu',
     cited: 'Dokument cituje',
     truncated: '[… text skrátený …]',
@@ -156,7 +161,11 @@ const T = {
     impactSystem:
       'You are a regulatory-compliance assistant for a pharmaceutical wholesale distributor in Slovakia (human and veterinary medicines). ' +
       "You compare changes in legislation with the company's controlled documents (SOPs, organizational directives) and state concretely what must be changed in the document and why. " +
-      'Rely only on the texts provided; do not invent anything. If the change does not affect the document, say so clearly. Answer in English, concisely.',
+      'Rely only on the texts provided; do not invent anything. If the change does not affect the document, say so clearly. Answer in English, concisely.\n' +
+      "The internal documents describe how the company actually works and take precedence: a document need not repeat the act, and you must not propose rewriting it to the literal wording of the law. " +
+      'Propose a change only where the act requires or forbids something for activities the company performs and the document does not comply. ' +
+      'Provisions about activities the company does not perform, and provisions the company decided do not apply to it or where its own process applies, are not non-compliance. ' +
+      'A stricter company process is fine. Never add activities the company does not perform. If the company outsources an activity (e.g. transport), its obligations towards the contractor still apply.',
     impactFormat:
       'Structure the answer as:\n1. Verdict: AFFECTED / POSSIBLY AFFECTED / NOT AFFECTED (one-sentence reason)\n2. What to change: list – document part → proposed change\n3. Why: the specific § / article and what changed in it\n4. Deadline: when the change takes effect\n5. Uncertainties: what to verify in the full text of the law',
     qaSystem:
@@ -172,6 +181,7 @@ const T = {
     added: 'NEW PART',
     removed: 'REPEALED PART',
     doc: 'INTERNAL DOCUMENT',
+    company: 'THE COMPANY',
     excerpts: 'Relevant parts of the document',
     cited: 'Document cites',
     truncated: '[… text shortened …]',
@@ -193,7 +203,7 @@ function lang(l) {
  * Build the impact prompt for one change × one document within a character budget.
  * Returns { system, user, truncated }.
  */
-function buildImpactPrompt({ change, law, diff, doc, pages, analysis, l, budget }) {
+function buildImpactPrompt({ change, law, diff, doc, pages, analysis, l, budget, companyText = '' }) {
   const t = T[lang(l)];
   let truncated = false;
   const citation = (doc.citations || []).find((c) => c.lawId === law.id);
@@ -250,6 +260,7 @@ function buildImpactPrompt({ change, law, diff, doc, pages, analysis, l, budget 
         : `- ${f.section}: ${t.foundChanged}`
     );
   const user = [
+    ...(companyText ? [`== ${t.company} ==`, companyText, ''] : []),
     `${t.law}: ${law.title}`,
     `${t.versions}: ${change.fromDate || '?'} → ${change.toDate || '?'}`,
     `${t.effective}: ${change.toDate || '?'}`,

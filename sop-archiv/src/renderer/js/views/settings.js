@@ -1,5 +1,5 @@
 // Settings: my profile (everyone), users and archive settings (administrator), privacy logs.
-import { t, setLang } from '../i18n.js';
+import { t, setLang, lang } from '../i18n.js';
 import { html, icon, fmtDateTime, toast, errorToast, formValues, openModal, confirmDialog } from '../ui.js';
 import { app } from '../app.js';
 import { auditDetails } from './document.js';
@@ -9,6 +9,27 @@ const api = window.api;
 let netLog = [];
 let audit = [];
 let users = [];
+let company = { profile: { activities: {}, notes: '' }, activities: [] };
+
+// What the company does and does not do (see lib/company.js); administrators edit it.
+function companySection() {
+  const p = company.profile;
+  const val = (id) => p.activities[id] || '';
+  return html`<p class="muted">${t('co.intro')}</p>
+    <form class="form-grid" data-submit="saveCompany">
+      <div class="field full"><div class="co-grid">${company.activities.map(
+        (a) => html`<div class="co-row"><span>${lang() === 'sk' ? a.sk : a.en}</span>
+          <div class="seg" role="radiogroup" aria-label="${lang() === 'sk' ? a.sk : a.en}">
+            ${[['yes', t('co.yes')], ['no', t('co.no')], ['', t('co.unset')]].map(
+              ([v, label]) => html`<label class="seg-opt ${v === 'no' ? 'seg-no' : v === 'yes' ? 'seg-yes' : ''}"><input type="radio" name="act-${a.id}" value="${v}" ${val(a.id) === v ? 'checked' : ''} ${app.can('admin') ? '' : 'disabled'}><span>${label}</span></label>`
+            )}
+          </div></div>`
+      )}</div></div>
+      <div class="field full"><label>${t('co.notes')}</label><textarea name="notes" rows="3" placeholder="${t('co.notesPh')}" ${app.can('admin') ? '' : 'readonly'}>${p.notes || ''}</textarea></div>
+      ${p.updatedAt ? html`<p class="field full muted small">${p.updatedBy} · ${fmtDateTime(p.updatedAt)}</p>` : ''}
+      <div class="field full btn-row" data-perm="admin"><button class="btn btn-primary">${t('save')}</button></div>
+    </form>`;
+}
 
 function section(id, title, iconName, body, perm) {
   return html`<section class="panel settings-sec" id="set-${id}" ${perm ? html`data-perm="${perm}"` : ''}><h3>${icon(iconName)}${title}</h3>${body}</section>`;
@@ -73,7 +94,7 @@ function usersSection() {
 
 export async function render() {
   await app.reloadInfo();
-  [netLog, audit, users] = await Promise.all([api.app.networkLog(), api.app.audit({ limit: 150 }), app.info.session.role === 'admin' ? api.users.list() : Promise.resolve([])]);
+  [netLog, audit, users, company] = await Promise.all([api.app.networkLog(), api.app.audit({ limit: 150 }), app.info.session.role === 'admin' ? api.users.list() : Promise.resolve([]), api.company.get()]);
   const s = app.info.settings;
   const a = app.info.archiveSettings;
   const me = app.info.session;
@@ -133,6 +154,8 @@ export async function render() {
         <div class="field full btn-row"><button class="btn btn-primary">${t('save')}</button></div>
       </form>`
     )}
+
+    ${section('company', t('co.title'), 'shield', companySection())}
 
     ${section(
       'reviews',
@@ -324,6 +347,14 @@ export const actions = {
     const u = users.find((x) => x.id === el.dataset.id);
     if (!u.disabled && !(await confirmDialog(t('usr.disableConfirm', { name: u.name }), { okLabel: t('usr.disable'), danger: true }))) return;
     await saveAndReload(api.users.update(u.id, { disabled: !u.disabled }));
+  },
+  async saveCompany(form) {
+    const v = formValues(form);
+    const activities = {};
+    for (const a of company.activities) activities[a.id] = v[`act-${a.id}`] || '';
+    await api.company.update({ activities, notes: v.notes });
+    toast(t('co.saved'), 'good');
+    app.rerender();
   },
   async saveOrg(form) {
     const v = formValues(form);

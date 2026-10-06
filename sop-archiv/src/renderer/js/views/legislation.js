@@ -2,10 +2,12 @@
 import { t } from '../i18n.js';
 import { html, icon, fmtDate, fmtDateTime, openModal, formValues, confirmDialog, toast } from '../ui.js';
 import { app } from '../app.js';
+import { secLabel } from './document.js';
 
 const api = window.api;
 let laws = [];
 let changes = [];
+let decisions = [];
 let lastResult = null;
 
 export function changeCard(c) {
@@ -61,7 +63,7 @@ function lawRow(l) {
 }
 
 export async function render() {
-  [laws, changes] = await Promise.all([api.laws.list(), api.changes.list()]);
+  [laws, changes, decisions] = await Promise.all([api.laws.list(), api.changes.list(), api.decisions.list()]);
   const open = changes.filter((c) => c.status !== 'resolved');
   const closed = changes.filter((c) => c.status === 'resolved');
   const offline = app.info.settings.offline;
@@ -94,6 +96,25 @@ export async function render() {
         <tbody>${laws.map(lawRow)}</tbody>
       </table></div>
     </section>
+
+    <details class="section" id="decisions-all">
+      <summary><h2>${t('dec.titleAll')} <span class="count">${decisions.length}</span></h2></summary>
+      <p class="muted small">${t('dec.panelHint')}</p>
+      ${decisions.length
+        ? html`<div class="table-wrap"><table class="table compact">
+          <tbody>${decisions.map(
+            (d) => html`<tr>
+              <td>${d.law ? d.law.short || d.law.title : '?'}</td>
+              <td class="nowrap">${d.section === '*' ? t('dec.wholeAct') : secLabel(d.section)}</td>
+              <td><span class="chip chip-${d.kind === 'na' ? 'muted' : 'good'}">${t(`dec.kind.${d.kind}`)}</span></td>
+              <td>${d.reason}</td>
+              <td class="small">${d.doc ? d.doc.code || d.doc.title : t('dec.companyWide')}</td>
+              <td class="small nowrap">${d.by}<br>${fmtDate(d.at.slice(0, 10))}</td>
+              <td><button class="btn btn-sm btn-ghost" data-action="undoDecision" data-id="${d.id}" data-perm="editor">${icon('x')}${t('dec.undo')}</button></td>
+            </tr>`
+          )}</tbody></table></div>`
+        : html`<p class="muted small">${t('dec.none')}</p>`}
+    </details>
 
     ${closed.length
       ? html`<details class="section"><summary><h2>${t('leg.resolvedChanges')} <span class="count">${closed.length}</span></h2></summary><div class="cards">${closed.map(changeCard)}</div></details>`
@@ -151,6 +172,12 @@ async function runCheck(ids) {
 }
 
 export const actions = {
+  async undoDecision(el) {
+    if (!(await confirmDialog(t('dec.undoConfirm'), { okLabel: t('dec.undo') }))) return;
+    await api.decisions.remove(el.dataset.id);
+    app.refreshSidebar();
+    app.rerender();
+  },
   checkAll: () => runCheck(null),
   checkOne: (el) => runCheck([el.dataset.id]),
   openUrl: (el) => api.app.openExternal(el.dataset.url),

@@ -48,7 +48,8 @@ const STR = {
     'err.NOT_ADMIN': 'Kód na obnovu prístupu môže použiť len profil správcu.',
     'err.badRecoveryCode': 'Kód na obnovu prístupu nie je správny.',
     'err.USER_DISABLED': 'Profil je vypnutý – najprv ho zapnite.',
-    'err.LOCKED': 'Archív je zamknutý – prihláste sa.'
+    'err.LOCKED': 'Archív je zamknutý – prihláste sa.',
+    'err.REASON_REQUIRED': 'Uveďte dôvod – pri inšpekcii ho budete potrebovať.'
   },
   en: {
     'tray.open': 'Open SOP Archive',
@@ -96,7 +97,8 @@ const STR = {
     'err.NOT_ADMIN': 'Only an administrator profile can use the recovery code.',
     'err.badRecoveryCode': 'The recovery code is not correct.',
     'err.USER_DISABLED': 'The profile is disabled – enable it first.',
-    'err.LOCKED': 'The archive is locked – please sign in.'
+    'err.LOCKED': 'The archive is locked – please sign in.',
+    'err.REASON_REQUIRED': 'Please give a reason – an inspector will ask for it.'
   }
 };
 

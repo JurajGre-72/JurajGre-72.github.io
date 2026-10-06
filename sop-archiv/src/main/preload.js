@@ -16,6 +16,8 @@ const CHANNELS = {
   search: ['query', 'ask'],
   laws: ['list', 'add', 'update', 'remove', 'check'],
   changes: ['list', 'get', 'update', 'recheck', 'analyze'],
+  company: ['get', 'update'],
+  decisions: ['list', 'add', 'remove'],
   ai: ['test']
 };
 
