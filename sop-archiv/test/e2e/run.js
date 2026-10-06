@@ -428,6 +428,37 @@ async function main() {
     await page.waitForSelector('.answer-text');
     console.log('  ✓ question answering over passages');
 
+    // ---- A scanned document (text only as a picture) is read by OCR in the background ----
+    const scanPng = await app.evaluate(async ({ BrowserWindow }, lines) => {
+      const w = new BrowserWindow({ show: false });
+      await w.loadURL('data:text/html;charset=utf-8,<canvas id=c width=1240 height=1754></canvas>');
+      const url = await w.webContents.executeJavaScript(`(() => { const c = document.getElementById('c'), x = c.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, 1240, 1754); x.fillStyle = '#111'; x.font = '30px serif'; ${JSON.stringify(lines)}.forEach((l, i) => x.fillText(l, 110, 160 + i * 52)); return c.toDataURL('image/png'); })()`);
+      w.destroy();
+      return url;
+    }, ['PHARMACOPOLA s.r.o.', 'ŠPP 13 Preprava termolabilných liekov', 'Verzia: 2     Dátum účinnosti: 1. 3. 2026', '', 'Termolabilné lieky sa prepravujú v chladiacich boxoch', 'pri teplote 2 – 8 °C s kalibrovaným dataloggerom.', 'Postup je v súlade s § 18 zákona č. 362/2011 Z. z.']);
+    const scanPath = path.join(tmp, 'fixtures', 'ŠPP_13_2025_preprava termolabilných liekov.pdf');
+    fs.writeFileSync(scanPath, await pdfOf(`<html><body style="margin:0"><img src="${scanPng}" style="width:210mm"></body></html>`));
+    const scanDoc = await page.evaluate((p) => window.api.docs.import(p, {}), scanPath);
+    assert.equal(scanDoc.code, 'ŠPP 13');
+    assert.equal(scanDoc.current.ocr.status, 'pending', 'no text layer: waits for OCR');
+    let scanned = null;
+    for (let i = 0; i < 180; i++) {
+      scanned = await page.evaluate((id) => window.api.docs.get(id), scanDoc.id);
+      if (scanned.current.ocr.status !== 'pending') break;
+      await page.waitForTimeout(500);
+    }
+    assert.equal(scanned.current.ocr.status, 'done', scanned.current.ocr.error || '');
+    assert.equal(scanned.effectiveDate, '2026-03-01', 'dates read from the scan fill empty fields');
+    const lieky = (await page.evaluate(() => window.api.laws.list())).find((l) => l.key === 'SK:362/2011');
+    const scanText = (await page.evaluate((id) => window.api.docs.text(id), scanDoc.id)).map((p) => p.text).join('\n');
+    assert.ok(scanned.citations.some((c) => c.lawId === lieky.id && c.sections.includes('§18')), `the scan is linked to the act and section it cites: ${JSON.stringify(scanned.citations)} / ${scanText}`);
+    const hits = await page.evaluate(() => window.api.search.query('dataloggerom chladiacich', {}));
+    assert.ok(hits.results.some((r) => r.docId === scanDoc.id), 'recognised text is searchable');
+    await page.evaluate((id) => (location.hash = '#/documents/' + id), scanDoc.id);
+    await page.waitForSelector('.doc-head');
+    await shot(page, '15b-scanned-ocr');
+    console.log('  ✓ scanned PDF: text recognised on this computer (OCR), searchable, dates filled in');
+
     // ---- Users: add a reader, sign in as them ----
     await page.click('a.nav-item[href="#/settings"]');
     await page.waitForSelector('#set-users');

@@ -29,6 +29,7 @@ export const app = {
     applyRole();
     renderBanner();
     await loadLogo();
+    renderOcr(this.info.ocr);
     return this.info;
   },
   /** true if the signed-in user has at least this role */
@@ -77,6 +78,19 @@ async function loadLogo() {
   box.querySelector('img').src = app.logoUrl;
   box.hidden = false;
   document.body.classList.add('has-logo');
+}
+
+// Text recognition of scanned documents running in the background.
+function renderOcr(p) {
+  const el = document.getElementById('side-ocr');
+  if (!el) return;
+  if (!p || p.finished) {
+    el.hidden = true;
+    el.textContent = '';
+    return;
+  }
+  el.hidden = false;
+  el.innerHTML = String(html`<span class="spinner sm"></span><div><div>${t('ocr.running')}</div><div class="side-ocr-doc">${p.title}</div><div>${t('ocr.page', { done: p.done, total: p.total })}${p.queue > 1 ? ` · ${t('ocr.queue', { n: p.queue - 1 })}` : ''}</div></div>`);
 }
 
 function renderBanner() {
@@ -316,6 +330,7 @@ function bindGlobalEvents() {
     await app.reloadInfo();
     renderSidebar();
   });
+  api.on('ocr:progress', renderOcr);
   api.on('index:ready', () => {
     if (app.info) app.info.indexReady = true;
     if (app.view && app.view.onIndexReady) app.view.onIndexReady();

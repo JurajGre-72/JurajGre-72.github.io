@@ -20,8 +20,9 @@ function statusOptions(selected) {
 
 function rowHtml(item, i) {
   const m = item.meta || {};
-  const textBad = item.textStatus !== 'ok';
-  const textNote = item.textStatus === 'unsupported' ? t('imp.unsupported') : textBad ? t('imp.noText') : `${item.pages ? item.pages + ' ' + t('doc.pages') + ' · ' : ''}${fmtSize(item.size)}`;
+  const scanned = item.ocrPages > 0;
+  const textBad = item.textStatus !== 'ok' && !scanned;
+  const textNote = item.textStatus === 'unsupported' ? t('imp.unsupported') : scanned ? t('ocr.importNote', { n: item.ocrPages }) : textBad ? t('imp.noText') : `${item.pages ? item.pages + ' ' + t('doc.pages') + ' · ' : ''}${fmtSize(item.size)}`;
   return html`<tr data-row="${i}" class="${item.duplicateOf ? 'is-dup' : ''}">
     <td class="imp-file">
       <div class="imp-fname" title="${item.filePath}">${icon('file')}${item.fileName}</div>

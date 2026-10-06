@@ -43,7 +43,7 @@ function infoTab() {
         [t('f.file'), doc.current ? html`${doc.current.fileName} <span class="muted">(${fmtSize(doc.current.size)})</span>` : ''],
         [t('f.notes'), doc.notes ? html`<span class="pre">${doc.notes}</span>` : '']
       ])}
-      ${doc.current && doc.current.textStatus !== 'ok' ? html`<div class="note note-warn">${icon('alert')}${t('doc.noText')}</div>` : ''}
+      ${ocrNote(doc.current)}
     </section>
   </div>`;
 }
@@ -119,7 +119,7 @@ function versionsTab() {
         <td>${v.label} ${v.status === 'current' ? html`<span class="chip chip-good">${t('doc.versionCurrent')}</span>` : html`<span class="chip chip-muted">${t('doc.versionSuperseded')}</span>`}</td>
         <td>${v.fileName} <span class="muted">· ${fmtSize(v.size)}</span></td>
         <td class="muted small nowrap">${fmtDateTime(v.importedAt)} · ${t('doc.importedBy', { who: v.importedBy })}</td>
-        <td>${v.textStatus !== 'ok' ? html`<span class="chip chip-warn">${t('imp.noText')}</span>` : html`<span class="muted small">${v.chars} ${t('doc.chars')}</span>`}</td>
+        <td>${v.ocr && v.ocr.status === 'pending' ? html`<span class="chip chip-muted">${t('ocr.pendingShort')}</span>` : v.textStatus !== 'ok' ? html`<span class="chip chip-warn">${t('imp.noText')}</span>` : html`<span class="muted small">${v.chars} ${t('doc.chars')}${v.ocr && v.ocr.status === 'done' ? ' · OCR' : ''}</span>`}</td>
         <td class="nowrap"><button class="btn btn-sm" data-action="openFile" data-vid="${v.id}">${icon('external')}${t('open')}</button> <button class="btn btn-sm btn-ghost" data-action="reveal" data-vid="${v.id}">${icon('folder')}</button></td>
       </tr>`
     )}</tbody></table></div></section>`;
@@ -184,6 +184,20 @@ function fmtVal(v) {
   if (Array.isArray(v)) return v.join(', ');
   if (/^\d{4}-\d{2}-\d{2}$/.test(String(v))) return fmtDate(v);
   return String(v);
+}
+
+/** Text of a scanned document: waiting for OCR, read by OCR, or not readable. */
+function ocrNote(cur) {
+  if (!cur) return '';
+  const o = cur.ocr;
+  if (o && o.status === 'pending') return html`<div class="note">${icon('clock')}${t('ocr.pendingNote')}</div>`;
+  if (o && o.status === 'done' && cur.textStatus === 'ok') return html`<div class="note">${icon('info')}${t('ocr.doneNote')}</div>`;
+  if (cur.textStatus !== 'ok') return html`<div class="note note-warn">${icon('alert')}${o && o.status === 'error' ? t('ocr.failedNote') : t('doc.noText')}</div>`;
+  return '';
+}
+
+export function onDataChanged() {
+  if (doc && app.route && app.route.name === 'documents') app.rerender();
 }
 
 export async function render(route) {

@@ -25,7 +25,7 @@ for (const [ns, names] of Object.entries(CHANNELS)) {
   for (const n of names) api[ns][n] = call(`${ns}:${n}`);
 }
 
-const EVENTS = ['legis:progress', 'navigate', 'data:changed', 'index:ready', 'lock:changed'];
+const EVENTS = ['legis:progress', 'navigate', 'data:changed', 'index:ready', 'lock:changed', 'ocr:progress'];
 api.on = (event, cb) => {
   if (!EVENTS.includes(event)) throw new Error('unknown event');
   const listener = (_e, payload) => cb(payload);

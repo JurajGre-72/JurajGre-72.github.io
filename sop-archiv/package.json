@@ -17,11 +17,14 @@
     "dist:linux": "electron-builder --linux"
   },
   "dependencies": {
+    "@tesseract.js-data/eng": "^1.0.0",
+    "@tesseract.js-data/slk": "^1.0.0",
     "diff": "^9.0.0",
     "jszip": "^3.10.2",
     "mammoth": "^1.13.0",
     "minisearch": "^7.2.0",
     "pdfjs-dist": "^6.4.299",
+    "tesseract.js": "^7.0.0",
     "word-extractor": "^1.0.4"
   },
   "devDependencies": {
@@ -56,7 +59,10 @@
       "!node_modules/pdfjs-dist/legacy/image_decoders/**",
       "!node_modules/pdfjs-dist/types/**",
       "!node_modules/**/{README,CHANGELOG,HISTORY}*",
-      "!node_modules/**/{test,tests,docs,example,examples}/**"
+      "!node_modules/**/{test,tests,docs,example,examples}/**",
+      "!node_modules/tesseract.js/dist/**",
+      "!node_modules/tesseract.js-core/*.wasm.js",
+      "!node_modules/@tesseract.js-data/*/4.0.0/**"
     ],
     "artifactName": "SOP-Archiv-${version}-${os}-${arch}.${ext}",
     "win": {

@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <!-- Hidden helper page: draws pages of a scanned PDF as images for text recognition (OCR). Never visible, no network. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self'; connect-src 'self'; img-src 'self' data: blob:; style-src 'unsafe-inline'">
+  <title>OCR</title>
+</head>
+<body>
+  <script type="module" src="js/ocr-render.js"></script>
+</body>
+</html>

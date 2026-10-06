@@ -13,6 +13,7 @@ const { pathToFileURL } = require('url');
 
 const { Archive } = require('./archive');
 const { LegislationMonitor, createElectronFetcher } = require('./legislation');
+const { createOcr } = require('./ocr');
 const ai = require('./ai');
 const { summarize, buildIcs, buildCsv } = require('./lib/reviews');
 const { SUPPORTED, extractFile } = require('./lib/extract');
@@ -250,13 +251,61 @@ async function openArchive(dir) {
   monitor = new LegislationMonitor(archive, { fetchPage: createElectronFetcher({ log: logNet }), isOffline: () => settings.offline });
   archive
     .buildIndex()
-    .then(() => send('index:ready', { docs: archive.data.docs.length }))
+    .then(() => {
+      send('index:ready', { docs: archive.data.docs.length });
+      queueOcr(); // scans left unread when the app was last closed
+    })
     .catch((e) => console.error('index build failed', e));
   startLockTimers();
 }
 
 function send(channel, payload) {
   if (mainWindow && !mainWindow.isDestroyed()) mainWindow.webContents.send(channel, payload);
+}
+
+// ---------------------------------------------------------------------------
+// OCR of scanned documents: one at a time, in the background, on this computer only.
+let ocr = null;
+let ocrRunning = false;
+let ocrState = null;
+
+function queueOcr() {
+  setImmediate(() => runOcrQueue().catch((e) => console.error('ocr queue', e)));
+}
+
+async function runOcrQueue() {
+  if (ocrRunning || !archive || archive.readOnly) return;
+  ocrRunning = true;
+  const failed = new Set();
+  try {
+    for (;;) {
+      const a = archive;
+      const job = a.pendingOcr().find((j) => !failed.has(j.versionId));
+      if (!job || a.readOnly) break;
+      if (!ocr) ocr = createOcr({ dataDir: path.join(app.getPath('userData'), 'ocr'), log: (m) => console.log('ocr:', m) });
+      ocrState = { title: job.title, done: 0, total: job.pages.length, queue: a.pendingOcr().length };
+      send('ocr:progress', ocrState);
+      try {
+        const pages = await ocr.readPdf(a.versionFile(job.docId, job.versionId), job.pages, (p) => {
+          ocrState = { ...ocrState, done: p.done };
+          send('ocr:progress', ocrState);
+        });
+        if (a !== archive || a.readOnly) break; // the archive was switched or became read-only meanwhile
+        await a.applyOcr(job.docId, job.versionId, pages);
+      } catch (e) {
+        console.error('ocr failed', e);
+        failed.add(job.versionId);
+        await a.ocrFailed(job.docId, job.versionId, e.message || e).catch(() => {});
+      }
+      send('data:changed', { what: 'ocr', docId: job.docId });
+    }
+  } finally {
+    ocrRunning = false;
+    ocrState = null;
+    send('ocr:progress', { finished: true });
+    if (ocr) await ocr.close().catch(() => {});
+    ocr = null;
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -502,6 +551,7 @@ function registerIpc() {
       archiveSettings: { ...archive.data.settings, org: archive.data.org },
       logo: archive.logoInfo(),
       indexReady: archive.indexReady,
+      ocr: ocrState,
       supported: SUPPORTED,
       encryptionAvailable: safeStorage.isEncryptionAvailable()
     }),
@@ -694,6 +744,7 @@ function registerIpc() {
     lockHolder = null;
     lastArchiveMtime = archiveMtime();
     send('data:changed', { what: 'lock' });
+    queueOcr();
     return null;
   });
 
@@ -771,8 +822,12 @@ function registerIpc() {
     { perm: 'editor' }
   );
   handle('docs:analyze', (p) => archive.analyzeFile(p), { perm: 'editor' });
-  handle('docs:import', (p, meta) => archive.importFile(p, meta), { perm: 'editor', write: true });
-  handle('docs:addVersion', (id, p, meta) => archive.addVersion(id, p, meta), { perm: 'editor', write: true });
+  const thenOcr = (r) => {
+    queueOcr();
+    return r;
+  };
+  handle('docs:import', (p, meta) => archive.importFile(p, meta).then(thenOcr), { perm: 'editor', write: true });
+  handle('docs:addVersion', (id, p, meta) => archive.addVersion(id, p, meta).then(thenOcr), { perm: 'editor', write: true });
   handle('docs:update', (id, patch) => archive.updateDoc(id, patch), { perm: 'editor', write: true });
   handle('docs:delete', (id) => archive.deleteDoc(id), { perm: 'admin', write: true });
   handle('docs:open', async (id, versionId) => {
@@ -956,9 +1011,20 @@ if (!app.requestSingleInstanceLock()) {
     loadSettings();
     // The user interface itself never talks to the internet (only app:// files are allowed).
     electronSession.defaultSession.webRequest.onBeforeRequest({ urls: ['http://*/*', 'https://*/*', 'ws://*/*', 'wss://*/*'] }, (_d, cb) => cb({ cancel: true }));
+    electronSession.defaultSession.setSpellCheckerEnabled(false); // no dictionary downloads
     protocol.handle('app', (req) => {
       const u = new URL(req.url);
       const rel = decodeURIComponent(u.pathname).replace(/^\/+/, '') || 'index.html';
+      // PDF.js for the hidden OCR page (only its scripts and image decoders).
+      const vendor = rel.match(/^vendor\/(pdfjs|pdfjs-wasm)\/([\w.-]+\.(?:mjs|wasm))$/);
+      if (vendor) {
+        const dir = vendor[1] === 'pdfjs' ? path.dirname(require.resolve('pdfjs-dist/legacy/build/pdf.mjs')) : path.join(path.dirname(require.resolve('pdfjs-dist/package.json')), 'wasm');
+        const type = vendor[2].endsWith('.wasm') ? 'application/wasm' : 'text/javascript';
+        return fs.promises.readFile(path.join(dir, vendor[2])).then(
+          (b) => new Response(b, { headers: { 'content-type': type } }),
+          () => new Response('Not found', { status: 404 })
+        );
+      }
       const file = path.normalize(path.join(RENDERER_DIR, rel));
       if (!file.startsWith(RENDERER_DIR + path.sep)) return new Response('Not found', { status: 404 });
       return net.fetch(pathToFileURL(file).toString());

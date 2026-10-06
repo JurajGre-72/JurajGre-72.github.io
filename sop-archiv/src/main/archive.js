@@ -24,6 +24,7 @@ const { analyzeLawAgainstDocs, SEVERITY } = require('./lib/compliance');
 const { today, addMonths } = require('./lib/dates');
 const { DEFAULT_LAWS, DOC_TYPES, defaultArchive } = require('./lib/defaults');
 const { ROLES, hashPassword, verifyPassword, validPassword } = require('./lib/auth');
+const { pagesWithoutText } = require('./ocr');
 
 const STATUSES = ['draft', 'effective', 'review', 'obsolete'];
 const LOGO_TYPES = { '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.svg': 'image/svg+xml' };
@@ -325,6 +326,60 @@ class Archive {
     return { ...doc, review: rs, pendingChanges, current: cur };
   }
 
+  // ---------------------------------------------------------------------------
+  // OCR of scanned documents (done by main.js with ocr.js; the archive keeps the result)
+
+  /** Versions waiting for text recognition, current versions first. */
+  pendingOcr() {
+    const jobs = [];
+    for (const d of this.data.docs) {
+      for (const v of d.versions) {
+        if (v.ocr && v.ocr.status === 'pending') jobs.push({ docId: d.id, versionId: v.id, pages: v.ocr.pages, title: d.code ? `${d.code} ${d.title}` : d.title, current: v.id === d.currentVersionId });
+      }
+    }
+    return jobs.sort((a, b) => b.current - a.current);
+  }
+
+  versionFile(docId, versionId) {
+    const v = this._doc(docId).versions.find((x) => x.id === versionId);
+    if (!v) throw new Error('Version not found');
+    return this.p(v.file);
+  }
+
+  /** Store recognised text of scanned pages; the document becomes searchable and is checked against the acts it cites. */
+  async applyOcr(docId, versionId, ocrPages) {
+    const doc = this._doc(docId);
+    const v = doc.versions.find((x) => x.id === versionId);
+    if (!v) throw new Error('Version not found');
+    const byPage = new Map(ocrPages.map((p) => [p.page, p.text]));
+    const pages = (await this.loadText(versionId)).map((p) => (byPage.has(p.page) && byPage.get(p.page).length > (p.text || '').length ? { ...p, text: byPage.get(p.page), ocr: true } : p));
+    await writeAtomic(this.p('text', `${versionId}.json`), JSON.stringify({ pages }));
+    const text = pages.map((p) => p.text).join('\n');
+    v.chars = text.length;
+    v.textStatus = text.replace(/\s+/g, '').length >= 25 ? 'ok' : 'empty';
+    v.ocr = { status: 'done', pages: ocrPages.map((p) => p.page), at: new Date().toISOString() };
+    if (versionId === doc.currentVersionId) {
+      // Fill in what the scan's text tells and nobody has entered yet.
+      const found = detectMetadata(text, v.fileName);
+      for (const k of ['effectiveDate', 'reviewDate', 'owner', 'approver']) if (!doc[k] && found[k]) doc[k] = found[k];
+      if (!doc.reviewDate && doc.effectiveDate && doc.reviewIntervalMonths) doc.reviewDate = addMonths(doc.effectiveDate, doc.reviewIntervalMonths);
+      this._refreshCitations(doc, text);
+      if (this._watchCitedLaws()) await this._recomputeAllCitations();
+      this.index.setDocument(doc, chunkPages(pages));
+      this._attachToOpenChanges(doc);
+    }
+    await this.save();
+    this.audit('doc.ocr', { docId, code: doc.code, title: doc.title, pages: ocrPages.length });
+    return this.decorate(doc);
+  }
+
+  async ocrFailed(docId, versionId, error) {
+    const v = this._doc(docId).versions.find((x) => x.id === versionId);
+    if (!v) return;
+    v.ocr = { ...(v.ocr || {}), status: 'error', error: String(error).slice(0, 300) };
+    await this.save();
+  }
+
   /** The main document an annex belongs to, and the annexes of a document (by code). */
   _related(doc) {
     const same = (a, b) => !!a && !!b && a.toUpperCase() === b.toUpperCase();
@@ -414,6 +469,7 @@ class Archive {
       textError: ex.error || null,
       chars: text.length,
       pages: ex.pages.filter((p) => p.page).length || null,
+      ocrPages: path.extname(filePath).toLowerCase() === '.pdf' ? pagesWithoutText(ex.pages).length : 0,
       meta,
       preview: text.slice(0, 600)
     };
@@ -455,6 +511,9 @@ class Archive {
       chars: analysis.text.length,
       status: 'current'
     };
+    // Scanned pages (no text layer) are read later by OCR, in the background.
+    const scanned = path.extname(filePath).toLowerCase() === '.pdf' ? pagesWithoutText(analysis.ex.pages) : [];
+    if (scanned.length) version.ocr = { status: 'pending', pages: scanned };
     for (const v of doc.versions) if (v.status === 'current') v.status = 'superseded';
     doc.versions.push(version);
     doc.currentVersionId = vid;

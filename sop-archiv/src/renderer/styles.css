@@ -621,3 +621,8 @@ body.role-reader .perm-ro, body.read-only .perm-ro { display: inline-flex !impor
 .chip-link { text-decoration: none; }
 .chip-link:hover { border-color: var(--primary); text-decoration: none; }
 .chip-xs { font-size: 10.5px; padding: 0 6px; }
+
+/* ---------- OCR progress in the sidebar ---------- */
+.side-ocr { display: flex; gap: 8px; align-items: flex-start; font-size: 11.5px; color: var(--side-text); background: rgba(255, 255, 255, 0.06); border-radius: 8px; padding: 8px 10px; margin: 0 4px; }
+.side-ocr .spinner.sm { border-color: rgba(255, 255, 255, 0.2); border-top-color: var(--brand-accent); margin: 2px 0 0; flex: none; }
+.side-ocr-doc { color: var(--side-strong); font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 150px; }
