@@ -18,7 +18,7 @@ const CHANNELS = {
   changes: ['list', 'get', 'update', 'recheck', 'analyze'],
   company: ['get', 'update'],
   decisions: ['list', 'add', 'remove'],
-  ai: ['test']
+  ai: ['test', 'models', 'download', 'cancelDownload', 'removeModel', 'addModelFile']
 };
 
 const api = {};
@@ -27,7 +27,7 @@ for (const [ns, names] of Object.entries(CHANNELS)) {
   for (const n of names) api[ns][n] = call(`${ns}:${n}`);
 }
 
-const EVENTS = ['legis:progress', 'navigate', 'data:changed', 'index:ready', 'lock:changed', 'ocr:progress'];
+const EVENTS = ['legis:progress', 'navigate', 'data:changed', 'index:ready', 'lock:changed', 'ocr:progress', 'ai:progress', 'ai:chunk'];
 api.on = (event, cb) => {
   if (!EVENTS.includes(event)) throw new Error('unknown event');
   const listener = (_e, payload) => cb(payload);

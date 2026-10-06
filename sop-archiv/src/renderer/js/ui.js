@@ -171,6 +171,7 @@ export function toast(message, tone = 'info', ms = 4200) {
     el.classList.add('out');
     setTimeout(() => el.remove(), 300);
   }, ms);
+  return el;
 }
 
 export function errorToast(e) {

@@ -14,6 +14,7 @@ const os = require('os');
 const path = require('path');
 const http = require('http');
 const { makeAll } = require('../fixtures/make');
+const { makeTinyModel } = require('../fixtures/tiny-gguf');
 
 const ROOT = path.join(__dirname, '..', '..');
 const OUT = path.resolve(process.argv[2] || path.join(os.tmpdir(), 'sop-archiv-e2e'));
@@ -558,6 +559,30 @@ async function main() {
     const netUpd = await page.evaluate(() => window.api.app.networkLog());
     assert.ok(netUpd.some((e) => e.purpose === 'update' && e.url.endsWith('/releases')), 'the update check is in the network log');
     console.log('  ✓ check for updates: newer version shown, logged, nothing else sent');
+
+    // ---- Built-in AI: a model file from this computer, runs in a process without network ----
+    const tinyModel = makeTinyModel(path.join(tmp, 'tiny-test-model.gguf'));
+    await app.evaluate(({ dialog }, p) => {
+      dialog.showOpenDialog = async () => ({ canceled: false, filePaths: [p] });
+    }, tinyModel);
+    await page.$eval('#set-ai', (el) => el.scrollIntoView());
+    await page.check('#ai-form input[name=provider][value=builtin]');
+    await page.waitForSelector('#ai-form .model-list');
+    await page.click('button[data-action="aiAddFile"]');
+    await page.waitForSelector('#ai-form .model.chosen input[name=model][value="file:tiny-test-model.gguf"]:checked');
+    assert.equal((await page.evaluate(() => window.api.app.info())).settings.ai.provider, 'builtin');
+    await page.click('#ai-form button[data-action="aiTest"]');
+    await page.waitForSelector('#ai-test .ai-text, #ai-test .err', { timeout: 120000 });
+    assert.ok(await page.isVisible('#ai-test .ai-text'), 'test answer: ' + ((await page.textContent('#ai-test')) || '').trim());
+    assert.ok(await page.isVisible('#ai-test .ok'), 'the AI process cannot reach the network');
+    await page.$eval('#set-ai', (el) => el.scrollIntoView());
+    await shot(page, '16c-builtin-ai');
+    const aiNet = async () => (await page.evaluate(() => window.api.app.networkLog())).filter((e) => e.purpose === 'ai').length;
+    const aiNetBefore = await aiNet();
+    const viaBuiltin = await page.evaluate(([cid, did]) => window.api.changes.analyze(cid, did), [upcomingId, byCode['SOP-QA-001'].id]);
+    assert.equal(viaBuiltin.ai[byCode['SOP-QA-001'].id].provider, 'builtin', 'the impact analysis ran on the built-in model');
+    assert.equal(await aiNet(), aiNetBefore, 'the built-in AI makes no network requests');
+    console.log('  ✓ built-in AI: model from a file, test answer, no network in the AI process, impact analysis on it');
     assert.ok(!fs.existsSync(path.join(tmp, 'archive', 'branding', 'logo.svg')));
     console.log('  ✓ company logo: another one can be chosen, and back to the PHARMACOPOLA logo');
 

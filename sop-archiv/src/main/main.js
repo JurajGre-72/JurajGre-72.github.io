@@ -16,6 +16,7 @@ const { LegislationMonitor, createElectronFetcher } = require('./legislation');
 const { createOcr } = require('./ocr');
 const updates = require('./lib/updates');
 const ai = require('./ai');
+const { BuiltinAi } = require('./llm/builtin');
 const { summarize, buildIcs, buildCsv } = require('./lib/reviews');
 const { SUPPORTED, extractFile } = require('./lib/extract');
 const { today } = require('./lib/dates');
@@ -56,6 +57,7 @@ protocol.registerSchemesAsPrivileged([{ scheme: 'app', privileges: { standard: t
 
 const SETTINGS_FILE = () => path.join(app.getPath('userData'), 'settings.json');
 let settings = null;
+let builtinAi = null;
 
 function loadSettings() {
   let s = {};
@@ -65,8 +67,8 @@ function loadSettings() {
     /* first run */
   }
   const locale = (app.getLocale() || 'en').toLowerCase();
-  const ai0 = { provider: 'none', baseUrl: '', model: '', budget: 0, apiKeyEnc: '', ...(s.ai || {}) };
-  if (!['none', 'ollama', 'openai'].includes(ai0.provider)) ai0.provider = 'none'; // cloud providers were removed
+  const ai0 = { provider: 'none', baseUrl: '', model: '', budget: 0, apiKeyEnc: '', gpu: true, contextSize: 0, ...(s.ai || {}) };
+  if (!ai.PROVIDERS.includes(ai0.provider)) ai0.provider = 'none'; // cloud providers were removed
   settings = {
     dataDir: process.env.SOP_ARCHIV_DATA || s.dataDir || path.join(app.getPath('documents'), 'SOP-Archiv'),
     lang: s.lang || (locale.startsWith('sk') || locale.startsWith('cs') ? 'sk' : 'en'),
@@ -771,7 +773,10 @@ function registerIpc() {
       }
       if (patch.ai) {
         const { apiKey: key, clearKey, ...rest } = patch.ai;
-        if (rest.provider && !['none', 'ollama', 'openai'].includes(rest.provider)) throw new UserError(tr('err.permission'));
+        if (rest.provider && !ai.PROVIDERS.includes(rest.provider)) throw new UserError(tr('err.permission'));
+        if (rest.gpu !== undefined) rest.gpu = !!rest.gpu;
+        if (rest.contextSize !== undefined) rest.contextSize = Math.max(0, Math.min(131072, parseInt(rest.contextSize, 10) || 0));
+        if (settings.ai.provider === 'builtin' && (rest.provider !== undefined || rest.model !== undefined || rest.gpu !== undefined)) builtinAi.engine.stop().catch(() => {}); // loaded again with the new settings
         if (rest.baseUrl && !ai.isLocalUrl(rest.baseUrl)) throw new UserError(tr('err.NOT_LOCAL'));
         settings.ai = { ...settings.ai, ...rest };
         if (key) setApiKey(key);
@@ -1006,6 +1011,7 @@ function registerIpc() {
     const passages = archive.passages(question, 8);
     const cfg = aiConfig();
     if (!ai.cfgFor(cfg) || !passages.length) return { passages, answer: null };
+    await ai.prepare(cfg);
     const p = ai.buildQaPrompt({ question, passages, l: lang(), budget: ai.cfgFor(cfg).budget });
     const r = await ai.complete(cfg, p.system, p.user, { log: logNet });
     archive.audit('ai.question', { provider: cfg.provider, model: r.model, question });
@@ -1100,6 +1106,7 @@ function registerIpc() {
     async (changeId, docId) => {
       const cfg = aiConfig();
       if (!ai.cfgFor(cfg)) throw new UserError(tr('err.noAi'));
+      await ai.prepare(cfg);
       const ch = await archive.getChange(changeId);
       const doc = archive.getDoc(docId);
       const pages = await archive.docText(docId);
@@ -1114,6 +1121,28 @@ function registerIpc() {
     },
     { perm: 'editor', write: true }
   );
+  // --- the built-in AI: models on this computer ----------------------------------
+  handle('ai:models', () => ({ ...builtinAi.list(), status: builtinAi.status() }), { perm: 'admin' });
+  handle(
+    'ai:download',
+    (id) => {
+      if (settings.offline) throw new UserError(tr('err.offline'));
+      return builtinAi.startDownload(id);
+    },
+    { perm: 'admin' }
+  );
+  handle('ai:cancelDownload', () => builtinAi.cancelDownload(), { perm: 'admin' });
+  handle('ai:removeModel', (choice) => builtinAi.remove(choice), { perm: 'admin' });
+  handle(
+    'ai:addModelFile',
+    async () => {
+      const r = await dialog.showOpenDialog(mainWindow, { title: tr('dlg.modelTitle'), properties: ['openFile'], filters: [{ name: 'GGUF', extensions: ['gguf'] }] });
+      if (r.canceled) return null;
+      return builtinAi.addFile(r.filePaths[0]);
+    },
+    { perm: 'admin' }
+  );
+
   handle(
     'ai:test',
     async (cfgPatch) => {
@@ -1137,6 +1166,15 @@ if (!app.requestSingleInstanceLock()) {
     app.setAppUserModelId(APP_ID);
     loadSettings();
     cleanWorkCopies(); // copies left by an earlier run
+    // The built-in AI: model files in the app's folder on this computer; downloads only from the model's address.
+    builtinAi = new BuiltinAi({
+      dir: path.join(app.getPath('userData'), 'models'),
+      fetchFn: (url, init) => electronSession.fromPartition('model-download').fetch(url, { ...init, cache: 'no-store' }),
+      logNet,
+      log: (m) => console.error(m),
+      onProgress: (p) => send('ai:progress', p)
+    });
+    ai.useBuiltin(builtinAi);
     // The user interface itself never talks to the internet (only app:// files are allowed).
     electronSession.defaultSession.webRequest.onBeforeRequest({ urls: ['http://*/*', 'https://*/*', 'ws://*/*', 'wss://*/*'] }, (_d, cb) => cb({ cancel: true }));
     electronSession.defaultSession.setSpellCheckerEnabled(false); // no dictionary downloads
@@ -1181,6 +1219,7 @@ if (!app.requestSingleInstanceLock()) {
   app.on('activate', () => showWindow());
   app.on('before-quit', () => {
     quitting = true;
+    if (builtinAi) builtinAi.stop().catch(() => {});
     cleanWorkCopies(true);
     if (archive && session) archive.audit('auth.logout', { reason: 'quit' });
     if (lock) lock.release();

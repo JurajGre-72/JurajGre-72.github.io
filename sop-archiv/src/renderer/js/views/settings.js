@@ -10,6 +10,9 @@ let netLog = [];
 let audit = [];
 let users = [];
 let company = { profile: { activities: {}, notes: '' }, activities: [] };
+let aiModels = null; // the built-in AI's models (administrators)
+const aiProgress = {}; // model id -> { phase, done, total }
+let offProgress = null;
 
 // What the company does and does not do (see lib/company.js); administrators edit it.
 function companySection() {
@@ -37,6 +40,50 @@ function section(id, title, iconName, body, perm) {
 
 const errText = (e) => String((e && e.message) || e).replace(/^Error invoking remote method '[^']+': (Error: )?/, '');
 
+const gb = (n) => {
+  if (!n) return '';
+  const dec = (x) => x.replace('.', lang() === 'sk' ? ',' : '.');
+  return n < 1024 ** 3 ? `${dec((n / 1024 ** 2).toFixed(n < 10 * 1024 ** 2 ? 1 : 0))} MB` : `${dec((n / 1024 ** 3).toFixed(1))} GB`;
+};
+
+// The built-in AI: models on this computer, download, own file, graphics card, test.
+function builtinHtml(s) {
+  const L = aiModels;
+  if (!L) return html`<div class="muted small">${t('loading')}</div>`;
+  const chosen = s.ai.model || '';
+  const rec = L.models.find((m) => m.id === L.recommended);
+  return html`
+    <div class="field full"><div class="note note-good">${icon('shield')}<div>${t('set.aiBuiltinPrivacy')}</div></div></div>
+    <p class="field full muted small">${t('set.aiRam', { gb: L.ramGB })}${rec ? ' ' + t('set.aiRec', { name: rec.name }) : ''}</p>
+    <div class="field full"><div class="model-list">${L.models.map((m) => {
+      const here = m.here;
+      const dl = aiProgress[m.id];
+      return html`<div class="model ${here && chosen === m.id ? 'chosen' : ''}" data-model="${m.id}">
+        <label class="model-pick">${here ? html`<input type="radio" name="model" value="${m.id}" ${chosen === m.id ? 'checked' : ''}>` : html`<input type="radio" disabled>`}
+          <span><b>${m.name}</b>${m.recommended ? html` <span class="chip chip-good">${t('set.aiRecommended')}</span>` : ''}${m.custom ? html` <span class="chip chip-muted">${t('set.aiOwnFile')}</span>` : ''}
+          <br><span class="muted small">${[m.vendor, m.license, m.size ? gb(m.size) : '', m.ramGB ? t('set.aiNeedsRam', { gb: m.goodRamGB || m.ramGB }) : ''].filter(Boolean).join(' · ')}</span>
+          ${m.sk ? html`<br><span class="small">${lang() === 'sk' ? m.sk : m.en}</span>` : ''}</span></label>
+        <div class="model-actions">
+          ${here
+            ? html`<span class="chip chip-good">${icon('check')}${t('set.aiHere')}</span><button type="button" class="btn btn-sm btn-ghost" data-action="aiRemoveModel" data-id="${m.id}">${icon('trash')}</button>`
+            : dl && (dl.phase === 'download' || dl.phase === 'verify')
+              ? html`<div class="model-dl"><div class="progress"><div class="progress-bar" style="width:${dl.total ? Math.round((dl.done / dl.total) * 100) : 0}%"></div></div>
+                  <span class="small muted">${dl.phase === 'verify' ? t('set.aiVerifying') : `${gb(dl.done)} / ${gb(dl.total)}`}</span>
+                  <button type="button" class="btn btn-sm btn-ghost" data-action="aiCancelDownload">${t('cancel')}</button></div>`
+              : m.downloadable
+                ? html`<button type="button" class="btn btn-sm" data-action="aiDownload" data-id="${m.id}">${icon('download')}${m.partial ? t('set.aiResume') : t('set.aiDownload')}</button>`
+                : html`<span class="muted small">${t('set.aiNotYet')}</span>`}
+        </div>
+      </div>`;
+    })}</div>
+    <div class="btn-row"><button type="button" class="btn btn-sm" data-action="aiAddFile">${icon('folder')}${t('set.aiAddFile')}</button></div>
+    <span class="hint">${t('set.aiAddFileHint')}</span></div>
+    <div class="field full"><label class="check"><input type="checkbox" name="gpu" ${s.ai.gpu !== false ? 'checked' : ''}> ${t('set.aiGpu')}</label>
+      ${L.status && L.status.gpuFailed ? html`<span class="hint">${t('set.aiGpuFailed')}</span>` : ''}</div>
+    <div class="field full btn-row"><button type="button" class="btn" data-action="aiTest" ${L.models.some((m) => m.here) ? '' : 'disabled'}>${icon('sparkles')}${t('set.aiTestBuiltin')}</button></div>
+    <div class="field full" id="ai-test"></div>`;
+}
+
 function aiSection(s) {
   const p = s.ai.provider || 'none';
   const defaults = { ollama: 'http://127.0.0.1:11434', openai: 'http://127.0.0.1:1234/v1' };
@@ -46,11 +93,13 @@ function aiSection(s) {
     <div class="note">${icon('lock')}${t('set.aiLocalOnly')}</div>
     <form id="ai-form" class="form-grid">
       <div class="field full radio-col">
-        ${['none', 'ollama', 'openai'].map((x) => html`<label class="radio"><input type="radio" name="provider" value="${x}" ${x === p ? 'checked' : ''} data-change="aiProvider"> ${t(`set.ai.${x}`)}</label>`)}
+        ${['none', 'builtin', 'ollama', 'openai'].map((x) => html`<label class="radio"><input type="radio" name="provider" value="${x}" ${x === p ? 'checked' : ''} data-change="aiProvider"> ${t(`set.ai.${x}`)}</label>`)}
       </div>
       ${p === 'none'
         ? ''
-        : html`
+        : p === 'builtin'
+          ? builtinHtml(s)
+          : html`
         <div class="field full note">${icon('info')}${t('set.aiOllamaHelp')}</div>
         <div class="field"><label>${t('set.aiBaseUrl')}</label><input name="baseUrl" value="${s.ai.baseUrl || defaults[p]}"><span class="hint">${t('set.aiUrlHint')}</span></div>
         <div class="field"><label>${t('set.aiModel')}</label><input name="model" value="${s.ai.model || modelDefault[p]}" list="ai-models"><datalist id="ai-models"></datalist></div>
@@ -94,7 +143,8 @@ function usersSection() {
 
 export async function render() {
   await app.reloadInfo();
-  [netLog, audit, users, company] = await Promise.all([api.app.networkLog(), api.app.audit({ limit: 150 }), app.info.session.role === 'admin' ? api.users.list() : Promise.resolve([]), api.company.get()]);
+  const admin = app.info.session.role === 'admin';
+  [netLog, audit, users, company, aiModels] = await Promise.all([api.app.networkLog(), api.app.audit({ limit: 150 }), admin ? api.users.list() : Promise.resolve([]), api.company.get(), admin ? api.ai.models() : Promise.resolve(null)]);
   const s = app.info.settings;
   const a = app.info.archiveSettings;
   const me = app.info.session;
@@ -399,12 +449,43 @@ export const actions = {
   },
   async aiSave() {
     const v = formValues(document.getElementById('ai-form'));
-    const patch = { provider: v.provider, baseUrl: v.baseUrl || '', model: v.model || '', budget: Number(v.budget) || 0 };
+    const patch = v.provider === 'builtin' ? { provider: 'builtin', model: v.model || '', gpu: !!v.gpu } : { provider: v.provider, baseUrl: v.baseUrl || '', model: v.model || '', budget: Number(v.budget) || 0 };
     if (v.apiKey) patch.apiKey = v.apiKey;
     try {
       await saveAndReload(api.app.setSettings({ ai: patch }));
     } catch (e) {
       errorToast(e);
+    }
+  },
+  async aiDownload(el) {
+    try {
+      aiProgress[el.dataset.id] = { phase: 'download', done: 0, total: 0 };
+      await api.ai.download(el.dataset.id);
+      app.rerender();
+    } catch (e) {
+      delete aiProgress[el.dataset.id];
+      errorToast(e);
+    }
+  },
+  aiCancelDownload: () => api.ai.cancelDownload(),
+  async aiRemoveModel(el) {
+    if (!(await confirmDialog(t('set.aiRemoveConfirm'), { okLabel: t('delete'), danger: true }))) return;
+    await api.ai.removeModel(el.dataset.id);
+    app.rerender();
+  },
+  async aiAddFile() {
+    const busy = toast(t('set.aiCopying'), 'info', 60000);
+    try {
+      const r = await api.ai.addModelFile();
+      if (r) {
+        await api.app.setSettings({ ai: { provider: 'builtin', model: r.id } });
+        await app.reloadInfo();
+        app.rerender();
+      }
+    } catch (e) {
+      errorToast(e);
+    } finally {
+      if (busy) busy.remove();
     }
   },
   async clearKey() {
@@ -413,6 +494,21 @@ export const actions = {
   async aiTest() {
     const v = formValues(document.getElementById('ai-form'));
     const out = document.getElementById('ai-test');
+    if (v.provider === 'builtin') {
+      if (!v.model) return toast(t('set.aiPickModel'), 'bad');
+      out.innerHTML = String(html`<div class="ai-box"><div class="spinner sm"></div>${t('set.aiTesting')}</div>`);
+      try {
+        const r = (await api.ai.test({ provider: 'builtin', model: v.model, gpu: !!v.gpu })).builtin;
+        out.innerHTML = String(html`<div class="ai-box">
+          <div class="ai-text">${r.text}</div>
+          <div class="small">${r.model} · ${r.gpu ? t('set.aiOnGpu', { gpu: r.gpu }) : t('set.aiOnCpu')} · ${t('set.aiTimes', { load: (r.loadMs / 1000).toFixed(1), gen: (r.genMs / 1000).toFixed(1) })}</div>
+          <div class="small ${r.networkBlocked ? 'ok' : 'err'}">${icon(r.networkBlocked ? 'shield' : 'alert')}${r.networkBlocked ? t('set.aiNetBlocked') : t('set.aiNetOpen')}</div>
+        </div>`);
+      } catch (e) {
+        out.innerHTML = String(html`<div class="err small">${errText(e)}</div>`);
+      }
+      return;
+    }
     out.textContent = t('loading');
     out.className = 'small muted';
     try {
@@ -496,3 +592,30 @@ export const actions = {
     }
   }
 };
+
+// Download progress of a model: the bar is updated in place, the list again when it ends.
+export function mount() {
+  if (offProgress) offProgress();
+  offProgress = api.on('ai:progress', (p) => {
+    aiProgress[p.id] = p;
+    if (p.phase === 'done' || p.phase === 'error' || p.phase === 'cancelled') {
+      delete aiProgress[p.id];
+      if (p.phase === 'error') errorToast(new Error(t(`set.aiErr.${p.error}`) === `set.aiErr.${p.error}` ? p.error : t(`set.aiErr.${p.error}`)));
+      if (p.phase === 'done') toast(t('set.aiDownloaded'), 'good');
+      app.rerender();
+      return;
+    }
+    const box = document.querySelector(`.model[data-model="${CSS.escape(p.id)}"] .model-actions`);
+    if (!box) return;
+    const bar = box.querySelector('.progress-bar');
+    const label = box.querySelector('.model-dl .small');
+    if (!bar) return app.rerender();
+    bar.style.width = `${p.total ? Math.round((p.done / p.total) * 100) : 0}%`;
+    if (label) label.textContent = p.phase === 'verify' ? t('set.aiVerifying') : `${gb(p.done)} / ${gb(p.total)}`;
+  });
+}
+
+export function unmount() {
+  if (offProgress) offProgress();
+  offProgress = null;
+}

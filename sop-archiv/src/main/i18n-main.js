@@ -49,7 +49,19 @@ const STR = {
     'err.badRecoveryCode': 'Kód na obnovu prístupu nie je správny.',
     'err.USER_DISABLED': 'Profil je vypnutý – najprv ho zapnite.',
     'err.LOCKED': 'Archív je zamknutý – prihláste sa.',
-    'err.REASON_REQUIRED': 'Uveďte dôvod – pri inšpekcii ho budete potrebovať.'
+    'err.REASON_REQUIRED': 'Uveďte dôvod – pri inšpekcii ho budete potrebovať.',
+    'err.MODEL_NO_CHECKSUM': 'Tento model sa zatiaľ nedá stiahnuť (chýba overený odtlačok súboru). Môžete vybrať súbor modelu z počítača.',
+    'err.MODEL_BUSY': 'Už sa sťahuje iný model.',
+    'err.MODEL_HOST': 'Súbor modelu prišiel z neočakávanej adresy – sťahovanie zastavené.',
+    'err.MODEL_CHECKSUM': 'Stiahnutý súbor nezodpovedá overenému odtlačku – bol zahodený. Skúste to znova.',
+    'err.MODEL_INCOMPLETE': 'Súbor modelu nie je úplný – skúste sťahovanie znova.',
+    'err.MODEL_CANCELLED': 'Sťahovanie zrušené.',
+    'err.MODEL_MISSING': 'Vybraný model nie je v tomto počítači. Stiahnite ho v Nastaveniach → AI asistent.',
+    'err.MODEL_NOT_GGUF': 'Súbor nie je model vo formáte GGUF.',
+    'err.AI_CRASHED': 'AI sa v tomto počítači zastavila (málo pamäte?). Skúste menší model.',
+    'err.AI_NOT_LOADED': 'Model ešte nie je načítaný.',
+    'err.AI_PROMPT_TOO_LONG': 'Text je pre tento model príliš dlhý. Skúste kratšiu časť alebo väčší model.',
+    'dlg.modelTitle': 'Vyberte súbor modelu (.gguf)'
   },
   en: {
     'tray.open': 'Open SOP Archive',
@@ -98,7 +110,19 @@ const STR = {
     'err.badRecoveryCode': 'The recovery code is not correct.',
     'err.USER_DISABLED': 'The profile is disabled – enable it first.',
     'err.LOCKED': 'The archive is locked – please sign in.',
-    'err.REASON_REQUIRED': 'Please give a reason – an inspector will ask for it.'
+    'err.REASON_REQUIRED': 'Please give a reason – an inspector will ask for it.',
+    'err.MODEL_NO_CHECKSUM': 'This model cannot be downloaded yet (no verified file fingerprint). You can choose a model file from this computer.',
+    'err.MODEL_BUSY': 'Another model is being downloaded.',
+    'err.MODEL_HOST': 'The model file came from an unexpected address – download stopped.',
+    'err.MODEL_CHECKSUM': 'The downloaded file does not match the verified fingerprint – it was discarded. Please try again.',
+    'err.MODEL_INCOMPLETE': 'The model file is incomplete – please try the download again.',
+    'err.MODEL_CANCELLED': 'Download cancelled.',
+    'err.MODEL_MISSING': 'The chosen model is not on this computer. Download it in Settings → AI assistant.',
+    'err.MODEL_NOT_GGUF': 'The file is not a model in GGUF format.',
+    'err.AI_CRASHED': 'The AI stopped on this computer (not enough memory?). Try a smaller model.',
+    'err.AI_NOT_LOADED': 'The model is not loaded yet.',
+    'err.AI_PROMPT_TOO_LONG': 'The text is too long for this model. Try a shorter part or a larger model.',
+    'dlg.modelTitle': 'Choose a model file (.gguf)'
   }
 };
 

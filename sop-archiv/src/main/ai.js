@@ -2,13 +2,23 @@
 // Optional AI assistant. OFF by default. Runs only on this computer or the company's internal
 // network – company documents are never sent to an internet service.
 //
+//   builtin – the model runs inside the app, in a process without network access (llm/)
 //   ollama  – local model via Ollama (http://127.0.0.1:11434)
 //   openai  – any local OpenAI-compatible server (LM Studio, llama.cpp, Jan, an internal server)
 
 const { chunkPages } = require('./lib/text');
 const { detectCitations } = require('./lib/metadata');
 
+const PROVIDERS = ['none', 'builtin', 'ollama', 'openai'];
+
+// The built-in AI (llm/builtin.js), set by the app.
+let builtin = null;
+function useBuiltin(b) {
+  builtin = b;
+}
+
 const DEFAULTS = {
+  builtin: { baseUrl: '', model: '', budget: 24000 },
   ollama: { baseUrl: 'http://127.0.0.1:11434', model: 'qwen2.5:7b', budget: 14000 },
   openai: { baseUrl: 'http://127.0.0.1:1234/v1', model: '', budget: 14000 }
 };
@@ -40,6 +50,7 @@ function cfgFor(ai) {
   const p = ai && ai.provider;
   if (!p || p === 'none' || !DEFAULTS[p]) return null;
   const d = DEFAULTS[p];
+  if (p === 'builtin') return { provider: p, baseUrl: '', model: ai.model || '', gpu: ai.gpu !== false, contextSize: Number(ai.contextSize) || 0, budget: builtin ? builtin.budget(ai) : d.budget, apiKey: '' };
   return {
     provider: p,
     baseUrl: (ai.baseUrl || d.baseUrl).replace(/\/+$/, ''),
@@ -70,9 +81,13 @@ async function fetchJson(url, body, { timeoutMs = 300000, headers = {} } = {}) {
 }
 
 /** Send one system+user prompt to the configured local provider. Returns { text, model }. */
-async function complete(ai, system, user, { log } = {}) {
+async function complete(ai, system, user, { log, onChunk, signal, maxTokens } = {}) {
   const c = cfgFor(ai);
   if (!c) throw new Error('AI is not configured');
+  if (c.provider === 'builtin') {
+    if (!builtin) throw new Error('AI is not configured');
+    return builtin.complete(c, system, user, { onChunk, signal, maxTokens });
+  }
   if (!isLocalUrl(c.baseUrl)) throw new Error('NOT_LOCAL');
   if (log) log({ purpose: 'ai', provider: c.provider, url: c.baseUrl, chars: system.length + user.length });
   if (c.provider === 'ollama') {
@@ -103,10 +118,17 @@ async function complete(ai, system, user, { log } = {}) {
   return { text: (r.choices && r.choices[0] && r.choices[0].message && r.choices[0].message.content) || '', model: r.model || c.model };
 }
 
+/** Before putting a request together: the built-in model is loaded, so its real size limits the request. */
+async function prepare(ai) {
+  const c = cfgFor(ai);
+  if (c && c.provider === 'builtin' && builtin) await builtin.prepare(c);
+}
+
 /** Quick connectivity test; also lists available models. */
 async function test(ai) {
   const c = cfgFor(ai);
   if (!c) throw new Error('AI is not configured');
+  if (c.provider === 'builtin') return { ok: true, builtin: await builtin.test(c) };
   if (!isLocalUrl(c.baseUrl)) throw new Error('NOT_LOCAL');
   if (c.provider === 'ollama') {
     const r = await fetchJson(`${c.baseUrl}/api/tags`, null, { timeoutMs: 8000 });
@@ -295,4 +317,4 @@ function buildQaPrompt({ question, passages, l, budget }) {
   return { system: t.qaSystem, user: `${t.sources}:\n\n${ctx.trim()}\n\n${t.question}: ${question}`, truncated };
 }
 
-module.exports = { complete, test, buildImpactPrompt, buildQaPrompt, cfgFor, isLocalUrl, DEFAULTS };
+module.exports = { complete, prepare, test, buildImpactPrompt, buildQaPrompt, cfgFor, isLocalUrl, useBuiltin, DEFAULTS, PROVIDERS };

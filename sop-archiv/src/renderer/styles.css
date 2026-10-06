@@ -668,3 +668,14 @@ body.role-reader .perm-ro, body.read-only .perm-ro { display: inline-flex !impor
 .decision-row .sec-label { min-width: 80px; }
 .dec-form .radio { align-items: flex-start; }
 .dec-form .radio input { margin-top: 3px; }
+
+/* Built-in AI: models on this computer */
+.model-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 8px; }
+.model { display: flex; gap: 12px; align-items: center; justify-content: space-between; padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); }
+.model.chosen { border-color: var(--primary); background: var(--primary-soft); }
+.model-pick { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; flex: 1; }
+.model-pick input { margin-top: 4px; }
+.model-actions { display: flex; gap: 8px; align-items: center; flex: none; }
+.model-dl { display: flex; gap: 8px; align-items: center; min-width: 260px; }
+.model-dl .progress { flex: 1; }
+@media (max-width: 720px) { .model { flex-direction: column; align-items: stretch; } .model-dl { min-width: 0; } }

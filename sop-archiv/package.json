@@ -23,6 +23,7 @@
     "jszip": "^3.10.2",
     "mammoth": "^1.13.0",
     "minisearch": "^7.2.0",
+    "node-llama-cpp": "3.22.1",
     "pdfjs-dist": "^6.4.299",
     "tesseract.js": "^7.0.0",
     "word-extractor": "^1.0.4"
@@ -62,7 +63,12 @@
       "!node_modules/**/{test,tests,docs,example,examples}/**",
       "!node_modules/tesseract.js/dist/**",
       "!node_modules/tesseract.js-core/*.wasm.js",
-      "!node_modules/@tesseract.js-data/*/4.0.0/**"
+      "!node_modules/@tesseract.js-data/*/4.0.0/**",
+      "!node_modules/node-llama-cpp/llama/gitRelease.bundle",
+      "!node_modules/node-llama-cpp/llama/{addon,toolchains,cmake,profiles}/**",
+      "!node_modules/node-llama-cpp/templates/**",
+      "!node_modules/@node-llama-cpp/*cuda*/**",
+      "!node_modules/@node-llama-cpp/{linux-arm64,linux-armv7l,linux-riscv64,win-arm64}/**"
     ],
     "artifactName": "SOP-Archiv-${version}-${os}-${arch}.${ext}",
     "win": {
@@ -124,7 +130,9 @@
     "asarUnpack": [
       "node_modules/tesseract.js/**",
       "node_modules/tesseract.js-core/**",
-      "node_modules/@tesseract.js-data/**"
+      "node_modules/@tesseract.js-data/**",
+      "node_modules/node-llama-cpp/**",
+      "node_modules/@node-llama-cpp/**"
     ],
     "electronFuses": {
       "runAsNode": false,
