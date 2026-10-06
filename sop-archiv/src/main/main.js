@@ -499,6 +499,7 @@ function registerIpc() {
       readOnly: readOnlyInfo(),
       settings: publicSettings(),
       archiveSettings: { ...archive.data.settings, org: archive.data.org },
+      logo: archive.logoInfo(),
       indexReady: archive.indexReady,
       supported: SUPPORTED,
       encryptionAvailable: safeStorage.isEncryptionAvailable()
@@ -714,6 +715,17 @@ function registerIpc() {
   handle('app:audit', (opts) => archive.readAudit(opts || {}));
   handle('app:remindNow', () => reviewReminder(true));
   handle('archive:updateSettings', (patch) => archive.updateSettings(patch), { perm: 'admin', write: true });
+  handle('app:logo', () => archive.logoDataUrl(), { perm: 'public' });
+  handle(
+    'archive:setLogo',
+    async () => {
+      const r = await dialog.showOpenDialog(mainWindow, { title: tr('dlg.logoTitle'), properties: ['openFile'], filters: [{ name: tr('dlg.images'), extensions: ['png', 'jpg', 'jpeg', 'webp', 'svg'] }] });
+      if (r.canceled) return false;
+      return archive.setLogo(r.filePaths[0]);
+    },
+    { perm: 'admin', write: true }
+  );
+  handle('archive:clearLogo', () => archive.clearLogo(), { perm: 'admin', write: true });
 
   // --- documents ---------------------------------------------------------------
   handle('docs:list', () => archive.listDocs());

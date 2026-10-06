@@ -7,6 +7,7 @@
 //   <dataDir>/legislation/<lawId>/...  law snapshots and change diffs
 //   <dataDir>/backups/                 daily copies of archive.json
 //   <dataDir>/audit.log                append-only audit trail (JSON lines)
+//   <dataDir>/branding/logo.*          company logo shown in the app (optional)
 //
 // Plain files on purpose: the folder can be backed up, moved or inspected without this app.
 
@@ -25,6 +26,8 @@ const { DEFAULT_LAWS, defaultArchive } = require('./lib/defaults');
 const { ROLES, hashPassword, verifyPassword, validPassword } = require('./lib/auth');
 
 const STATUSES = ['draft', 'effective', 'review', 'obsolete'];
+const LOGO_TYPES = { '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.svg': 'image/svg+xml' };
+const LOGO_MAX_BYTES = 1024 * 1024;
 const DOC_FIELDS = ['type', 'code', 'title', 'status', 'department', 'owner', 'approver', 'tags', 'notes', 'effectiveDate', 'reviewDate', 'reviewIntervalMonths', 'version'];
 
 function id() {
@@ -596,6 +599,53 @@ class Archive {
     if (patch.org !== undefined) this.data.org = String(patch.org).trim();
     await this.save();
     return { ...this.data.settings, org: this.data.org };
+  }
+
+  // ---------------------------------------------------------------------------
+  // Company logo: one image in <dataDir>/branding, so every computer sharing the archive shows it
+
+  _logoFile() {
+    try {
+      const f = fs.readdirSync(this.p('branding')).find((n) => /^logo\.[a-z]+$/.test(n) && LOGO_TYPES[path.extname(n)]);
+      return f ? this.p('branding', f) : null;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  /** { v, type } (v changes whenever the logo changes) or null */
+  logoInfo() {
+    const f = this._logoFile();
+    if (!f) return null;
+    return { v: Math.round(fs.statSync(f).mtimeMs), type: LOGO_TYPES[path.extname(f)] };
+  }
+
+  logoDataUrl() {
+    const f = this._logoFile();
+    if (!f) return null;
+    return `data:${LOGO_TYPES[path.extname(f)]};base64,${fs.readFileSync(f).toString('base64')}`;
+  }
+
+  async setLogo(src) {
+    const ext = path.extname(src).toLowerCase();
+    if (!LOGO_TYPES[ext]) throw new Error('LOGO_TYPE');
+    if (fs.statSync(src).size > LOGO_MAX_BYTES) throw new Error('LOGO_SIZE');
+    const dir = this.p('branding');
+    await fs.promises.mkdir(dir, { recursive: true });
+    const old = this._logoFile();
+    const tmp = path.join(dir, `.logo-${id()}${ext}`);
+    await fs.promises.copyFile(src, tmp);
+    if (old) await fs.promises.rm(old, { force: true });
+    await fs.promises.rename(tmp, path.join(dir, `logo${ext}`));
+    this.audit('archive.logo', { file: path.basename(src) });
+    return this.logoInfo();
+  }
+
+  async clearLogo() {
+    const f = this._logoFile();
+    if (f) await fs.promises.rm(f, { force: true });
+    this.audit('archive.logo', { removed: true });
+    return null;
   }
 
   // ---------------------------------------------------------------------------

@@ -17,6 +17,7 @@ const api = window.api;
 
 export const app = {
   info: null,
+  logoUrl: null,
   view: null,
   route: null,
   legisProgress: null,
@@ -26,6 +27,7 @@ export const app = {
     applyTheme(this.info.settings.theme);
     applyRole();
     renderBanner();
+    await loadLogo();
     return this.info;
   },
   /** true if the signed-in user has at least this role */
@@ -58,6 +60,19 @@ function applyRole() {
   b.classList.toggle('role-editor', !!s && s.role === 'editor');
   b.classList.toggle('role-admin', !!s && s.role === 'admin');
   b.classList.toggle('read-only', !!(app.info && app.info.readOnly));
+}
+
+// Company logo (Settings → Archive): fetched again only when it changes; shown in the sidebar and on the sign-in screen.
+let logoVersion = null;
+async function loadLogo() {
+  const v = (app.info.logo && app.info.logo.v) || null;
+  if (v === logoVersion) return;
+  logoVersion = v;
+  app.logoUrl = v ? await api.app.logo() : null;
+  const box = document.getElementById('brand-logo');
+  box.querySelector('img').src = app.logoUrl || '';
+  box.hidden = !app.logoUrl;
+  document.body.classList.toggle('has-logo', !!app.logoUrl);
 }
 
 function renderBanner() {

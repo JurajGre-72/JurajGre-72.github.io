@@ -1,11 +1,13 @@
 // Sign-in screen and first-time setup (creates the administrator profile).
 import { t, setLang } from '../i18n.js';
 import { html, icon, formValues, errorToast } from '../ui.js';
+import { app } from '../app.js';
 
 const api = window.api;
 
 function shell(inner) {
   return html`<div class="auth-wrap"><div class="auth-card">
+    ${app.logoUrl ? html`<img class="auth-logo" src="${app.logoUrl}" alt="">` : ''}
     <div class="auth-brand">${icon('shield', 'big')}<div><div class="auth-title">${t('appName')}</div><div class="muted small">${t('tagline')}</div></div></div>
     ${inner}
   </div></div>`;

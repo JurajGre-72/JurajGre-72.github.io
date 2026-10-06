@@ -6,11 +6,11 @@ const { contextBridge, ipcRenderer, webUtils } = require('electron');
 const call = (channel) => (...args) => ipcRenderer.invoke(channel, ...args);
 
 const CHANNELS = {
-  app: ['info', 'setSettings', 'chooseFolder', 'switchDataDir', 'retryLock', 'openDataDir', 'backup', 'openExternal', 'networkLog', 'audit', 'remindNow'],
+  app: ['info', 'setSettings', 'chooseFolder', 'switchDataDir', 'retryLock', 'openDataDir', 'backup', 'openExternal', 'networkLog', 'audit', 'remindNow', 'logo'],
   auth: ['state', 'setup', 'login', 'logout', 'changePassword', 'setPrefs'],
   users: ['list', 'create', 'update', 'resetPassword', 'roles'],
   legis: ['pickFile', 'inspectFile', 'importFile', 'resolve', 'check'],
-  archive: ['updateSettings'],
+  archive: ['updateSettings', 'setLogo', 'clearLogo'],
   docs: ['list', 'get', 'text', 'pickFiles', 'pickFolder', 'expandPaths', 'analyze', 'import', 'addVersion', 'update', 'delete', 'open', 'reveal', 'markReviewed', 'exportCsv'],
   reviews: ['exportIcs'],
   search: ['query', 'ask'],

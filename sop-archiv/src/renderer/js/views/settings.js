@@ -115,6 +115,17 @@ export async function render() {
         <button class="btn" data-action="copyArchive" data-perm="admin">${icon('layers')}${t('set.copyFolder')}</button>
         <button class="btn btn-ghost" data-action="switchArchive" data-perm="admin">${icon('folder')}${t('set.switchFolder')}</button>
       </div>
+      <div class="logo-setting" data-perm="admin">
+        <h4>${t('set.logo')}</h4>
+        <div class="logo-row">
+          <div class="logo-preview">${app.logoUrl ? html`<img src="${app.logoUrl}" alt="">` : html`<span class="muted small">${t('set.logoNone')}</span>`}</div>
+          <div class="btn-row">
+            <button class="btn" data-action="setLogo">${icon('upload')}${t('set.logoPick')}</button>
+            ${app.logoUrl ? html`<button class="btn btn-ghost" data-action="clearLogo">${icon('x')}${t('set.logoRemove')}</button>` : ''}
+          </div>
+        </div>
+        <p class="muted small">${t('set.logoHint')}</p>
+      </div>
       <form class="form-grid" data-submit="saveOrg" data-perm="admin">
         <div class="field"><label>${t('set.org')}</label><input name="org" value="${a.org || ''}"></div>
         <div class="field"><label>${t('set.autoLock')}</label><input type="number" name="autoLockMinutes" min="0" max="480" value="${a.autoLockMinutes ?? 30}"><span class="hint">${t('set.autoLockHint')}</span></div>
@@ -375,6 +386,14 @@ export const actions = {
       out.className = 'small err';
     }
   },
+  async setLogo() {
+    try {
+      if (await api.archive.setLogo()) await saveAndReload(Promise.resolve());
+    } catch (e) {
+      errorToast(e);
+    }
+  },
+  clearLogo: () => saveAndReload(api.archive.clearLogo()),
   openFolder: () => api.app.openDataDir(),
   async backup() {
     const p = await api.app.backup();

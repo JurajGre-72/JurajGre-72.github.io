@@ -38,7 +38,11 @@ const STR = {
     'err.lawNotFound': 'Predpis sa nepodarilo rozpoznať. Zadajte číslo (napr. 362/2011 alebo 2019/6), webovú adresu, alebo importujte stiahnutý súbor.',
     'err.lawNoUrl': 'Tento predpis nemá webovú adresu – importujte stiahnutý súbor.',
     'dlg.lawFiles': 'Text predpisu',
-    'err.BUSY': 'Práve prebieha iná kontrola legislatívy – skúste to o chvíľu znova.'
+    'err.BUSY': 'Práve prebieha iná kontrola legislatívy – skúste to o chvíľu znova.',
+    'dlg.logoTitle': 'Vyberte firemné logo',
+    'dlg.images': 'Obrázky',
+    'err.LOGO_TYPE': 'Logo musí byť obrázok PNG, JPG, WEBP alebo SVG.',
+    'err.LOGO_SIZE': 'Logo je príliš veľké (najviac 1 MB).'
   },
   en: {
     'tray.open': 'Open SOP Archive',
@@ -76,7 +80,11 @@ const STR = {
     'err.lawNotFound': 'The act could not be recognised. Enter its number (e.g. 362/2011 or 2019/6), a web address, or import a downloaded file.',
     'err.lawNoUrl': 'This act has no web address – import a downloaded file instead.',
     'dlg.lawFiles': 'Text of the act',
-    'err.BUSY': 'Another legislation check is running – try again in a moment.'
+    'err.BUSY': 'Another legislation check is running – try again in a moment.',
+    'dlg.logoTitle': 'Choose the company logo',
+    'dlg.images': 'Images',
+    'err.LOGO_TYPE': 'The logo must be a PNG, JPG, WEBP or SVG image.',
+    'err.LOGO_SIZE': 'The logo is too large (1 MB at most).'
   }
 };
 

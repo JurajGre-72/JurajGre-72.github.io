@@ -401,7 +401,23 @@ async function main() {
     await page.waitForSelector(`.users-table td:has-text("${READER.name}")`);
     await page.$eval('#set-users', (el) => el.scrollIntoView());
     await shot(page, '16-users');
+
+    // ---- Company logo: stored in the archive folder, shown in the sidebar and at sign-in ----
+    const logoFile = path.join(tmp, 'firemne-logo.svg');
+    fs.writeFileSync(logoFile, '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60"><rect width="240" height="60" rx="8" fill="#ffffff"/><circle cx="30" cy="30" r="18" fill="#1d4f91"/><text x="58" y="39" font-family="Arial" font-size="24" font-weight="700" fill="#1d4f91">TEST LOGO</text></svg>');
+    await app.evaluate(({ dialog }, p) => {
+      dialog.showOpenDialog = async () => ({ canceled: false, filePaths: [p] });
+    }, logoFile);
+    await page.click('button[data-action="setLogo"]');
+    await page.waitForSelector('#brand-logo:not([hidden]) img[src^="data:image/svg+xml"]');
+    await page.waitForSelector('.logo-preview img');
+    assert.ok(fs.existsSync(path.join(tmp, 'archive', 'branding', 'logo.svg')), 'logo is kept in the archive folder');
+    await page.$eval('#set-archive', (el) => el.scrollIntoView());
+    await shot(page, '16b-logo');
+    console.log('  ✓ company logo in the sidebar and settings');
+
     await signOut(page);
+    await page.waitForSelector('.auth-logo');
     await shot(page, '17-sign-in');
     await page.click(`.profile:has-text("${READER.name}")`);
     await page.fill('#login-pw', 'zle-heslo');
@@ -433,6 +449,7 @@ async function main() {
     await signIn(page2, READER);
     const info2 = await page2.evaluate(() => window.api.app.info());
     assert.ok(info2.readOnly, 'second computer is read-only');
+    assert.ok(await page2.isVisible('#brand-logo img'), 'the second computer shows the logo from the shared archive');
     await page2.click('a.nav-item[href="#/documents"]');
     await page2.waitForSelector('.ro-banner');
     await shot(page2, '19-second-computer-read-only');

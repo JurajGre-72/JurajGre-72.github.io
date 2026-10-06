@@ -340,3 +340,32 @@ test('users: hashed passwords, roles, last administrator protected', async () =>
   const raw = fs.readFileSync(path.join(dir, 'archive.json'), 'utf8');
   assert.ok(!raw.includes('tajne123') && !raw.includes('"1234"'), 'no plain passwords on disk');
 });
+
+test('archive: company logo is stored in the archive folder, replaced and removed', async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'sop-logo-'));
+  const a = new Archive({ dataDir: path.join(dir, 'arch'), user: 't' });
+  await a.open();
+  assert.equal(a.logoInfo(), null);
+  assert.equal(a.logoDataUrl(), null);
+  const svg = path.join(dir, 'Logo Firmy.svg');
+  fs.writeFileSync(svg, '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><rect width="10" height="10" fill="#c00"/></svg>');
+  const info = await a.setLogo(svg);
+  assert.equal(info.type, 'image/svg+xml');
+  assert.match(a.logoDataUrl(), /^data:image\/svg\+xml;base64,/);
+  // A new logo replaces the old one (also when the file type changes).
+  const png = path.join(dir, 'logo.PNG');
+  fs.writeFileSync(png, Buffer.from('89504e470d0a1a0a', 'hex'));
+  await a.setLogo(png);
+  assert.deepEqual(fs.readdirSync(path.join(dir, 'arch', 'branding')), ['logo.png']);
+  assert.equal(a.logoInfo().type, 'image/png');
+  // Only images, and not huge ones.
+  const txt = path.join(dir, 'logo.txt');
+  fs.writeFileSync(txt, 'x');
+  await assert.rejects(a.setLogo(txt), /LOGO_TYPE/);
+  const big = path.join(dir, 'big.png');
+  fs.writeFileSync(big, Buffer.alloc(1024 * 1024 + 1));
+  await assert.rejects(a.setLogo(big), /LOGO_SIZE/);
+  assert.equal(a.logoInfo().type, 'image/png', 'a rejected file keeps the current logo');
+  await a.clearLogo();
+  assert.equal(a.logoInfo(), null);
+});
