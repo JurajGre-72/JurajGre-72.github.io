@@ -28,7 +28,17 @@ async function sha256File(file, onProgress) {
  * allowHost: (hostname) => boolean – the address the file finally comes from must be allowed
  * onProgress({ phase: 'download' | 'verify', done, total })
  */
-async function downloadFile({ url, dest, sha256, size = 0, fetchFn, allowHost, onProgress = () => {}, signal }) {
+async function downloadFile(opts) {
+  try {
+    return await download(opts);
+  } catch (e) {
+    // Cancelled at any moment (waiting for the server, receiving, verifying): one clear message.
+    if (opts.signal && opts.signal.aborted) throw new Error('MODEL_CANCELLED');
+    throw e;
+  }
+}
+
+async function download({ url, dest, sha256, size = 0, fetchFn, allowHost, onProgress = () => {}, signal }) {
   if (!sha256 || !/^[0-9a-f]{64}$/.test(sha256)) throw new Error('MODEL_NO_CHECKSUM');
   const part = `${dest}.part`;
   let have = fs.existsSync(part) ? fs.statSync(part).size : 0;
@@ -60,27 +70,22 @@ async function downloadFile({ url, dest, sha256, size = 0, fetchFn, allowHost, o
       const out = fs.createWriteStream(part, { flags: have ? 'a' : 'w' });
       let done = have;
       let last = 0;
-      try {
-        await pipeline(
-          Readable.fromWeb(res.body),
-          async function* (src) {
-            for await (const chunk of src) {
-              done += chunk.length;
-              const now = Date.now();
-              if (now - last > 250) {
-                last = now;
-                onProgress({ phase: 'download', done, total });
-              }
-              yield chunk;
+      await pipeline(
+        Readable.fromWeb(res.body),
+        async function* (src) {
+          for await (const chunk of src) {
+            done += chunk.length;
+            const now = Date.now();
+            if (now - last > 250) {
+              last = now;
+              onProgress({ phase: 'download', done, total });
             }
-          },
-          out,
-          { signal }
-        );
-      } catch (e) {
-        if (signal && signal.aborted) throw new Error('MODEL_CANCELLED');
-        throw e;
-      }
+            yield chunk;
+          }
+        },
+        out,
+        { signal }
+      );
       onProgress({ phase: 'download', done, total });
     }
   }

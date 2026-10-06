@@ -56,10 +56,16 @@ test('model download: resumes after an interruption, verifies the fingerprint, o
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'sop-dl-'));
   const dest = path.join(dir, 'model.gguf');
   try {
-    // interrupted half-way
+    // cancelled before the server answered
+    const early = new AbortController();
+    early.abort();
+    await assert.rejects(downloadFile({ url: `${base}/redirect`, dest, sha256: sha, size: data.length, fetchFn: fetch, allowHost: only127, signal: early.signal }), /MODEL_CANCELLED/);
+    // interrupted half-way (after the first data arrived)
     const ctrl = new AbortController();
-    setTimeout(() => ctrl.abort(), 150);
-    await assert.rejects(downloadFile({ url: `${base}/redirect`, dest, sha256: sha, size: data.length, fetchFn: fetch, allowHost: only127, signal: ctrl.signal }), /MODEL_CANCELLED/);
+    await assert.rejects(
+      downloadFile({ url: `${base}/redirect`, dest, sha256: sha, size: data.length, fetchFn: fetch, allowHost: only127, signal: ctrl.signal, onProgress: (p) => p.done > 0 && setTimeout(() => ctrl.abort(), 150) }),
+      /MODEL_CANCELLED/
+    );
     const partial = fs.statSync(`${dest}.part`).size;
     assert.ok(partial > 0 && partial < data.length, 'a part is kept');
     // resumed from where it stopped
