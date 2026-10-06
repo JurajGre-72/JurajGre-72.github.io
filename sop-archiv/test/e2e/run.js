@@ -467,11 +467,11 @@ async function main() {
       const url = await w.webContents.executeJavaScript(`(() => { const c = document.getElementById('c'), x = c.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, 1240, 1754); x.fillStyle = '#111'; x.font = '30px serif'; ${JSON.stringify(lines)}.forEach((l, i) => x.fillText(l, 110, 160 + i * 52)); return c.toDataURL('image/png'); })()`);
       w.destroy();
       return url;
-    }, ['PHARMACOPOLA s.r.o.', 'ŠPP 13 Preprava termolabilných liekov', 'Verzia: 2     Dátum účinnosti: 1. 3. 2026', '', 'Termolabilné lieky sa prepravujú v chladiacich boxoch', 'pri teplote 2 – 8 °C s kalibrovaným dataloggerom.', 'Postup je v súlade s § 18 zákona č. 362/2011 Z. z.']);
-    const scanPath = path.join(tmp, 'fixtures', 'ŠPP_13_2025_preprava termolabilných liekov.pdf');
+    }, ['PHARMACOPOLA s.r.o.', 'ŠPP 31 Vzorová preprava chladených liekov', 'Verzia: 2     Dátum účinnosti: 1. 3. 2026', '', 'Termolabilné lieky sa prepravujú v chladiacich boxoch', 'pri teplote 2 – 8 °C s kalibrovaným dataloggerom.', 'Postup je v súlade s § 18 zákona č. 362/2011 Z. z.']);
+    const scanPath = path.join(tmp, 'fixtures', 'ŠPP_31_2025_vzorová preprava.pdf');
     fs.writeFileSync(scanPath, await pdfOf(`<html><body style="margin:0"><img src="${scanPng}" style="width:210mm"></body></html>`));
     const scanDoc = await page.evaluate((p) => window.api.docs.import(p, {}), scanPath);
-    assert.equal(scanDoc.code, 'ŠPP 13');
+    assert.equal(scanDoc.code, 'ŠPP 31');
     assert.equal(scanDoc.current.ocr.status, 'pending', 'no text layer: waits for OCR');
     let scanned = null;
     for (let i = 0; i < 180; i++) {

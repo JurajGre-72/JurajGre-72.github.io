@@ -485,10 +485,10 @@ test('archive: PHARMACOPOLA file names – annexes linked to their main document
     fs.appendFileSync(p, `\n${name}\n`); // different content, so not a duplicate
     return p;
   };
-  const os5 = await a.importFile(put('_OS5_Manažment rizík_2026.txt'));
-  const annex = await a.importFile(put('_OS5_Príloha č.1_Núdzové kontakty.txt'));
-  const hr = await a.importFile(put('SM_HR_003_2_Pracovný poriadok_od_01.01.2025.txt'));
-  const en = await a.importFile(put('_OS5_Risk management_2026.txt', 'Anglické verzie'));
+  const os5 = await a.importFile(put('_OS5_Testovacia smernica_2026.txt'));
+  const annex = await a.importFile(put('_OS5_Príloha č.1_Zoznam kontaktov.txt'));
+  const hr = await a.importFile(put('SM_HR_003_2_Vzorový poriadok_od_01.01.2025.txt'));
+  const en = await a.importFile(put('_OS5_Sample directive_2026.txt', 'Anglické verzie'));
   assert.equal(os5.code, 'OS5');
   assert.equal(os5.type, 'OS');
   assert.equal(annex.code, 'OS5 Príloha č. 1');
@@ -504,7 +504,7 @@ test('archive: PHARMACOPOLA file names – annexes linked to their main document
   assert.ok(a.data.settings.docTypes.some((t) => t.id === 'SM'));
   assert.equal(en.code, 'OS5 (EN)', 'the English copy does not replace the Slovak document');
   assert.deepEqual(en.tags, ['EN']);
-  const again = await a.analyzeFile(put('_OS5_Manažment rizík_2027.txt'));
+  const again = await a.analyzeFile(put('_OS5_Testovacia smernica_2027.txt'));
   assert.equal(again.sameCode.code, 'OS5', 'a newer edition is offered as a new version of OS5');
 });
 
@@ -516,7 +516,7 @@ test('archive: every act cited in a document is watched; removed ones are not ad
   await a.buildIndex();
   const src = path.join(dir, 'in');
   fs.mkdirSync(src);
-  const p1 = path.join(src, '2021.04_Dodávanie HL veľkodistribútormi podľa Prílohy 1_Vyhlášky 82-2012 MZSR.txt');
+  const p1 = path.join(src, '2021.04_Vzorový pokyn podľa Prílohy 1_Vyhlášky 82-2012 MZSR.txt');
   fs.writeFileSync(p1, 'Pokyn pre sklad.\nPostupuje sa podľa zákona č. 147/2001 Z. z. o reklame a zákonníka práce č. 311/2001 Z. z.\n');
   await a.importFile(p1);
   const byKey = (k) => a.data.laws.find((l) => l.key === k);
