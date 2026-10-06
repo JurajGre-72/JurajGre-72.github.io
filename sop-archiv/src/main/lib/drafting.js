@@ -166,11 +166,14 @@ const P = {
       'Základom je skutočný postup spoločnosti, ako ho opísal autor – dokument opisuje, ako spoločnosť pracuje, a má prednosť pred doslovným znením predpisov. ' +
       'Z predpisov dopĺňaj len to, čo vyžadujú pre činnosti, ktoré spoločnosť vykonáva, a uveď presný odkaz (napr. § 18 ods. 1 písm. l) zákona č. 362/2011 Z. z.). Nepridávaj činnosti, ktoré spoločnosť nevykonáva. ' +
       'Nikdy si nevymýšľaj čísla, lehoty, teploty, mená, funkcie, názvy formulárov ani systémov, ktoré nie sú v podkladoch – na ich miesto napíš [DOPLNIŤ: čo treba doplniť]. ' +
+      'Píš spisovnou slovenčinou s diakritikou a skontroluj pravopis aj zhodu (napr. „tovar sa presunie“, nie „tovar sa presunú“). ' +
       'Píš len obsah požadovanej kapitoly, bez jej nadpisu a bez úvodných či záverečných poznámok.',
     rewriteSystem:
       'Si skúsený manažér kvality (QA) vo farmaceutickej veľkodistribučnej spoločnosti na Slovensku. Upravuješ časť interného riadeného dokumentu podľa pokynu. ' +
       'Dokument opisuje, ako spoločnosť skutočne pracuje, a má prednosť: zachovaj jej postupy, funkcie, lehoty a formuláre; meň len to, čo vyžaduje pokyn alebo predpis pre činnosti, ktoré spoločnosť vykonáva. ' +
-      'Prísnejší postup spoločnosti je v poriadku. Nepridávaj činnosti, ktoré spoločnosť nevykonáva. Nevymýšľaj údaje – kde chýbajú, napíš [DOPLNIŤ: …]. Pri požiadavke z predpisu uveď presný odkaz (§, článok). ' +
+      'Prísnejší postup spoločnosti je v poriadku. Nepridávaj činnosti, ktoré spoločnosť nevykonáva. Nevymýšľaj údaje – kde chýbajú, napíš [DOPLNIŤ: …]. ' +
+      'Nevymazávaj ani neskracuj vety, ktorých sa pokyn netýka. Ak sa niečo v texte týka činnosti, ktorú spoločnosť podľa profilu nevykonáva, text ponechaj a upozorni na to v zdôvodnení – rozhodne autor. ' +
+      'Odkaz na predpis uveď v tvare „§ 18 ods. 1 písm. l) zákona č. 362/2011 Z. z.“ alebo „čl. 99 nariadenia (EÚ) 2019/6“. Píš spisovnou slovenčinou s diakritikou a skontroluj pravopis. ' +
       'Odpovedz presne v tvare:\nNOVÉ ZNENIE:\n<upravený text>\nZDÔVODNENIE:\n- <čo si zmenil a prečo, s odkazom na predpis>\nAk netreba nič meniť, v časti NOVÉ ZNENIE zopakuj pôvodný text a v ZDÔVODNENÍ to napíš.',
     company: 'SPOLOČNOSŤ',
     doc: 'DOKUMENT',
@@ -201,7 +204,9 @@ const P = {
     rewriteSystem:
       'You are an experienced quality manager (QA) at a pharmaceutical wholesale distributor in Slovakia. You revise part of an internal controlled document as instructed. ' +
       "The document describes how the company actually works and takes precedence: keep its processes, positions, deadlines and forms; change only what the instruction or the law requires for activities the company performs. " +
-      'A stricter company process is fine. Do not add activities the company does not perform. Do not invent data – write [COMPLETE: …] where it is missing. Give exact references (section, article) for legal requirements. ' +
+      'A stricter company process is fine. Do not add activities the company does not perform. Do not invent data – write [COMPLETE: …] where it is missing. ' +
+      'Do not delete or shorten sentences the instruction is not about. If something in the text concerns an activity the company does not perform according to its profile, keep the text and point it out under REASONS – the author decides. ' +
+      'Give legal references in the form "§ 18(1)(l) of Act No. 362/2011 Coll." or "Art. 99 of Regulation (EU) 2019/6". ' +
       'Answer exactly in the form:\nNEW TEXT:\n<revised text>\nREASONS:\n- <what you changed and why, with the legal reference>\nIf nothing needs to change, repeat the original text under NEW TEXT and say so under REASONS.',
     company: 'THE COMPANY',
     doc: 'DOCUMENT',
