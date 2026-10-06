@@ -146,6 +146,20 @@ async function shot(page, name) {
   console.log('  📸', name);
 }
 
+/** Remove messages still on screen, so that waiting for '.toast' waits for the next one. */
+async function clearToasts(page) {
+  await page.evaluate(() => document.querySelectorAll('.toast').forEach((el) => el.remove()));
+}
+
+/** Poll an async check in the page (waitForFunction does not wait for a returned promise). */
+async function until(page, fn, what, timeout = 30000) {
+  const end = Date.now() + timeout;
+  while (!(await page.evaluate(fn))) {
+    if (Date.now() > end) throw new Error(`Timed out waiting: ${what}`);
+    await page.waitForTimeout(200);
+  }
+}
+
 function launch(tmp, userdata) {
   // SOP_ARCHIV_EXE=path/to/packaged/binary tests a built app instead of the sources.
   const packaged = process.env.SOP_ARCHIV_EXE;
@@ -254,9 +268,10 @@ async function main() {
     await page.selectOption('.imp-bulk select[data-bulk="department"]', dept);
     await shot(page, '02-import-dialog');
     assert.match(await page.textContent('.modal-foot .btn-primary'), /6/, 'import button counts 6 files');
+    await clearToasts(page); // e.g. the recovery code reminder may still be on screen
     await page.click('.modal-foot .btn-primary');
     await page.waitForSelector('.toast');
-    await page.waitForFunction(() => window.api.docs.list().then((d) => d.length === 6));
+    await until(page, () => window.api.docs.list().then((d) => d.length === 6), 'all 6 files imported');
     const docs = await page.evaluate(() => window.api.docs.list());
     const byCode = Object.fromEntries(docs.map((d) => [d.code || d.title, d]));
     assert.ok(byCode['SOP-QA-001'], 'PDF imported with detected code');
@@ -404,6 +419,7 @@ async function main() {
       'SOP-QA-001 Príjem a skladovanie liekov\nVerzia: 4\n3. Záznamy\nZáznamy o teplote sa uchovávajú 10 rokov v elektronickej podobe podľa § 18 ods. 1 písm. l) zákona č. 362/2011 Z. z.\nStiahnutie do 24 hodín podľa § 18 ods. 1 písm. k) zákona č. 362/2011 Z. z.'
     );
     await page.evaluate(([id, p]) => window.api.docs.addVersion(id, p, { version: '4' }), [byCode['SOP-QA-001'].id, sopV2]);
+    await clearToasts(page);
     await page.click('button[data-action="recheck"]');
     await page.waitForSelector('.toast');
     full = await page.evaluate((id) => window.api.changes.get(id), fileCheckId);
