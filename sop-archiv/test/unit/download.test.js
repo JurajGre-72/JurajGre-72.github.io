@@ -27,6 +27,7 @@ function server() {
       return res.end();
     }
     const m = /bytes=(\d+)-/.exec(req.headers.range || '');
+    s.ranges.push(req.headers.range || '');
     const from = m ? Number(m[1]) : 0;
     if (from >= data.length) {
       res.writeHead(416);
@@ -45,6 +46,7 @@ function server() {
     };
     step();
   });
+  s.ranges = [];
   return new Promise((r) => s.listen(0, '127.0.0.1', () => r(s)));
 }
 
@@ -66,12 +68,16 @@ test('model download: resumes after an interruption, verifies the fingerprint, o
       downloadFile({ url: `${base}/redirect`, dest, sha256: sha, size: data.length, fetchFn: fetch, allowHost: only127, signal: ctrl.signal, onProgress: (p) => p.done > 0 && setTimeout(() => ctrl.abort(), 150) }),
       /MODEL_CANCELLED/
     );
-    const partial = fs.statSync(`${dest}.part`).size;
-    assert.ok(partial > 0 && partial < data.length, 'a part is kept');
+    // resumed from a part on disk: only the rest is requested
+    // (what was received but not yet written when it was cancelled is simply fetched again)
+    const partial = 1024 * 1024 + 7;
+    fs.writeFileSync(`${dest}.part`, data.subarray(0, partial));
+    s.ranges.length = 0;
     // resumed from where it stopped
     const phases = new Set();
     const r = await downloadFile({ url: `${base}/redirect`, dest, sha256: sha, size: data.length, fetchFn: fetch, allowHost: only127, onProgress: (p) => phases.add(p.phase) });
     assert.equal(r.sha256, sha);
+    assert.deepEqual(s.ranges.filter(Boolean), [`bytes=${partial}-`], 'only the missing part is requested');
     assert.ok(fs.readFileSync(dest).equals(data));
     assert.ok(!fs.existsSync(`${dest}.part`));
     assert.deepEqual([...phases].sort(), ['download', 'verify']);
