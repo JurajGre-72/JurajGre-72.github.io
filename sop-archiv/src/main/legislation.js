@@ -252,6 +252,9 @@ const EXTRACT_JS = `(() => {
   // Slov-Lex: only the act and its annexes, not the page's contents list and info box (they differ in every version).
   const act = document.querySelector('#predpis');
   if (act && (act.innerText || '').length >= 200) text = [act, document.querySelector('#prilohy')].filter(Boolean).map((e) => e.innerText).join('\\n');
+  // EUR-Lex: only the act (the "Text" tab), not the menus, language list and footer.
+  const eu = !act && (document.querySelector('#document1') || document.querySelector('#textTabContent'));
+  if (eu && (eu.innerText || '').length >= 200) text = eu.innerText;
   return {
     text,
     bodyText,
