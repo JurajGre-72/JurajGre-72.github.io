@@ -7,14 +7,40 @@ import { uploadVersion } from './importer.js';
 import { fold } from '../text.js';
 import { rewriteDialog } from './rewrite.js';
 import { logoPng } from './compose.js';
+import { recordTrainingDialog, confirmReadDialog } from './training.js';
 
 const api = window.api;
 let doc = null;
 let laws = [];
 let pages = null;
 
-const TABS = ['info', 'reviews', 'legis', 'proposals', 'versions', 'text', 'history'];
-const TAB_LABEL = { info: 'doc.tabInfo', reviews: 'doc.tabReviews', legis: 'doc.tabLegis', proposals: 'doc.tabProposals', versions: 'doc.tabVersions', text: 'doc.tabText', history: 'doc.tabHistory' };
+const TABS = ['info', 'reviews', 'legis', 'training', 'proposals', 'versions', 'text', 'history'];
+const TAB_LABEL = { info: 'doc.tabInfo', reviews: 'doc.tabReviews', legis: 'doc.tabLegis', training: 'doc.tabTraining', proposals: 'doc.tabProposals', versions: 'doc.tabVersions', text: 'doc.tabText', history: 'doc.tabHistory' };
+
+// Who must know this document, who is trained on its current version.
+function trainingTab(tr, mine) {
+  const missing = tr.rows.filter((r) => !r.record);
+  const myTurn = mine.docs.some((d) => d.id === doc.id);
+  return html`<section class="panel">
+    <div class="panel-head">
+      <div>${dl([[t('tr.for'), tr.trainingFor.length ? (tr.trainingFor.includes('*') ? t('tr.forAll') : tr.trainingFor.join(', ')) : html`<span class="muted">${t('tr.forNone')}</span> <button class="link" data-action="edit" data-perm="editor">${t('tr.setFor')}</button>`]])}</div>
+      <div class="btn-row">
+        ${myTurn ? html`<button class="btn btn-primary" data-action="confirmRead">${icon('check')}${t('tr.readOk')}</button>` : ''}
+        <button class="btn" data-action="recordTraining" data-perm="editor">${icon('check')}${t('tr.record')}</button>
+      </div>
+    </div>
+    ${tr.rows.length
+      ? html`<div class="table-wrap"><table class="table compact"><thead><tr><th>${t('tr.name')}</th><th>${t('f.department')}</th><th>${t('tr.status')}</th></tr></thead>
+        <tbody>${tr.rows.map((r) => html`<tr><td>${r.person.name}</td><td>${r.person.department}</td><td>${r.record ? html`<span class="chip chip-good">${icon('check')}${fmtDate(r.record.date)} · ${t(`tr.m.${r.record.method}`)}</span>` : html`<span class="chip chip-warn">${t('tr.missing')}</span>`}</td></tr>`)}</tbody></table></div>
+        <p class="muted small">${missing.length ? t('tr.docMissing', { n: missing.length }) : t('tr.docComplete')}</p>`
+      : html`<p class="muted small">${t('tr.docNoPeople')}</p>`}
+    ${tr.history.length
+      ? html`<h3>${t('tr.history')}</h3><div class="table-wrap"><table class="table compact"><thead><tr><th>${t('rv.date')}</th><th>${t('tr.name')}</th><th>${t('f.version')}</th><th>${t('tr.method')}</th><th>${t('tr.trainer')}</th><th></th></tr></thead>
+        <tbody>${tr.history.map((h) => html`<tr><td class="nowrap">${fmtDate(h.date)}</td><td>${h.personName}</td><td>${h.version}</td><td>${t(`tr.m.${h.method}`)}${h.confirmedByUser ? html` <span class="chip chip-good">${t('tr.signed')}</span>` : ''}</td><td>${h.trainer || ''}</td>
+          <td><button class="btn btn-sm btn-ghost danger" data-action="removeTraining" data-id="${h.id}" data-perm="admin" title="${t('delete')}">${icon('trash')}</button></td></tr>`)}</tbody></table></div>`
+      : ''}
+  </section>`;
+}
 
 // Proposals to change the text (from "Rewrite with AI"), until a new version takes them over.
 function proposalsTab() {
@@ -246,6 +272,10 @@ export async function render(route) {
   else if (tab === 'reviews') body = reviewsTab();
   else if (tab === 'legis') body = legisTab(changes);
   else if (tab === 'proposals') body = proposalsTab();
+  else if (tab === 'training') {
+    const [tr, mine] = await Promise.all([api.training.doc(id), api.training.mine()]);
+    body = trainingTab(tr, mine);
+  }
   else if (tab === 'versions') body = versionsTab();
   else if (tab === 'text') body = textTab();
   else body = await historyTab();
@@ -299,11 +329,15 @@ async function editDialog() {
       <div class="field"><label>${t('f.effectiveDate')}</label><input type="date" name="effectiveDate" value="${doc.effectiveDate || ''}"></div>
       <div class="field"><label>${t('f.reviewDate')}</label><input type="date" name="reviewDate" value="${doc.reviewDate || ''}"></div>
       <div class="field"><label>${t('f.interval')}</label><input type="number" min="0" max="120" name="reviewIntervalMonths" value="${doc.reviewIntervalMonths || ''}"></div>
+      <div class="field full"><label>${t('tr.for')}</label><div class="tf-list">
+        <label class="check"><input type="checkbox" data-tf="*" ${(doc.trainingFor || []).includes('*') ? 'checked' : ''}> <b>${t('tr.forAll')}</b></label>
+        ${s.departments.map((d) => html`<label class="check"><input type="checkbox" data-tf="${d}" ${(doc.trainingFor || []).includes(d) ? 'checked' : ''}> ${d}</label>`)}
+      </div><span class="hint">${t('tr.forHint')}</span></div>
       <div class="field full"><label>${t('f.notes')}</label><textarea name="notes" rows="3">${doc.notes}</textarea></div>
     </form>`,
     buttons: [
       { label: t('cancel'), value: null },
-      { label: t('save'), kind: 'primary', value: 'ok', onClick: (el) => ((vals = formValues(el)), true) }
+      { label: t('save'), kind: 'primary', value: 'ok', onClick: (el) => ((vals = { ...formValues(el), trainingFor: Array.from(el.querySelectorAll('[data-tf]:checked')).map((x) => x.dataset.tf) }), true) }
     ]
   });
   if (r !== 'ok') return;
@@ -336,6 +370,20 @@ export const actions = {
   },
   edit: () => editDialog(),
   rewrite: () => rewriteDialog({ doc }),
+  async recordTraining() {
+    if (await recordTrainingDialog(doc.id)) app.rerender();
+  },
+  async confirmRead() {
+    if (await confirmReadDialog(doc)) {
+      app.refreshSidebar();
+      app.rerender();
+    }
+  },
+  async removeTraining(el) {
+    if (!(await confirmDialog(t('tr.removeConfirm'), { okLabel: t('delete'), danger: true }))) return;
+    await api.training.remove(el.dataset.id);
+    app.rerender();
+  },
   async proposalStatus(el) {
     await api.rewrite.update(doc.id, el.dataset.id, { status: el.value });
     app.rerender();

@@ -62,6 +62,10 @@ const STR = {
     'err.AI_NOT_LOADED': 'Model ešte nie je načítaný.',
     'err.AI_PROMPT_TOO_LONG': 'Text je pre tento model príliš dlhý. Skúste kratšiu časť alebo väčší model.',
     'err.titleRequired': 'Zadajte názov dokumentu.',
+    'err.NAME_REQUIRED': 'Zadajte meno.',
+    'err.USER_LINKED': 'Tento profil v aplikácii už patrí inému zamestnancovi.',
+    'err.PEOPLE_REQUIRED': 'Vyberte aspoň jedného zamestnanca.',
+    'err.NO_PERSON': 'Váš profil nie je priradený k zamestnancovi – požiadajte správcu (Školenia → Zamestnanci).',
     'dlg.modelTitle': 'Vyberte súbor modelu (.gguf)'
   },
   en: {
@@ -124,6 +128,10 @@ const STR = {
     'err.AI_NOT_LOADED': 'The model is not loaded yet.',
     'err.AI_PROMPT_TOO_LONG': 'The text is too long for this model. Try a shorter part or a larger model.',
     'err.titleRequired': 'Please enter the document title.',
+    'err.NAME_REQUIRED': 'Please enter a name.',
+    'err.USER_LINKED': 'This app profile already belongs to another employee.',
+    'err.PEOPLE_REQUIRED': 'Choose at least one employee.',
+    'err.NO_PERSON': 'Your profile is not linked to an employee – ask an administrator (Training → Employees).',
     'dlg.modelTitle': 'Choose a model file (.gguf)'
   }
 };

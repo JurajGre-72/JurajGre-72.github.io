@@ -158,8 +158,9 @@ function emptyState() {
 }
 
 export async function render() {
-  const [docs, laws, changes] = await Promise.all([api.docs.list(), api.laws.list(), api.changes.list()]);
+  const [docs, laws, changes, trainingOv] = await Promise.all([api.docs.list(), api.laws.list(), api.changes.list(), api.training.overview().catch(() => ({ missing: 0 }))]);
   state = { docs, laws, changes };
+  const trainingMissing = trainingOv.missing;
   const warn = app.info.archiveSettings.warnDays;
   const active = docs.filter((d) => d.status !== 'obsolete');
   const overdue = docs.filter((d) => d.review.state === 'overdue').length;
@@ -183,6 +184,7 @@ export async function render() {
         ${kpi({ label: t('dash.kpiOverdue'), value: overdue, tone: overdue ? 'bad' : '', iconName: 'alert', href: 'reviews' })}
         ${kpi({ label: t('dash.kpiDue', { days: warn }), value: due, tone: due ? 'warn' : '', iconName: 'clock', href: 'reviews' })}
         ${kpi({ label: t('dash.kpiLegis'), value: openChanges, tone: openChanges ? 'info' : '', iconName: 'scale', href: 'legislation' })}
+        ${trainingMissing ? kpi({ label: t('dash.kpiTraining'), value: trainingMissing, tone: 'warn', iconName: 'users', href: 'training' }) : ''}
       </section>
       <div class="grid-2">
         <section class="panel"><h3>${icon('bell')}${t('dash.attention')}</h3>${attentionList(docs)}</section>

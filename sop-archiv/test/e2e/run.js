@@ -662,6 +662,36 @@ async function main() {
     assert.match(exported, /10 rokov/);
     await shot(page, '23-proposals');
     console.log('  ✓ rewrite with AI: changes and reasons shown, proposal kept with the document, exported to Word');
+
+    // ---- Training: employees, who must know a document, a training session ----
+    const readerUser = (await page.evaluate(() => window.api.users.list())).find((u) => u.name === READER.name);
+    await page.evaluate(() => (location.hash = '#/training'));
+    await page.waitForSelector('.training button[data-action="addPerson"]');
+    await page.click('.training button[data-action="addPerson"]');
+    await page.fill('.modal [name=name]', READER.name);
+    await page.selectOption('.modal [name=department]', { index: 3 }); // the warehouse (3rd default department)
+    await page.fill('.modal [name=position]', 'skladníčka');
+    await page.selectOption('.modal [name=userId]', readerUser.id);
+    await page.click('.modal-foot .btn-primary');
+    await page.waitForSelector(`.training td:has-text("${READER.name}")`);
+    const warehouse = (await page.evaluate(() => window.api.people.list()))[0].department;
+    // who must know which document: set in the document's edit dialog
+    await page.evaluate((id) => (location.hash = `#/documents/${id}`), byCode['SOP-QA-001'].id);
+    await page.click('.head-actions button[data-action="edit"]');
+    await page.check(`.modal [data-tf="${warehouse}"]`);
+    await page.click('.modal-foot .btn-primary');
+    await page.waitForFunction((id) => window.api.docs.get(id).then((d) => d.trainingFor.length === 1), byCode['SOP-QA-001'].id).catch(() => {});
+    await page.evaluate((id) => window.api.docs.update(id, { trainingFor: ['*'] }), byCode['SOP-SK-002'].id);
+    await page.evaluate(() => (location.hash = '#/training'));
+    await page.waitForSelector('.training .tr-bar');
+    assert.equal((await page.evaluate(() => window.api.training.overview())).missing, 2);
+    await page.click(`.training tr:has-text("SOP-QA-001") button[data-action="record"]`);
+    await page.waitForSelector('.tr-form [data-person]:checked');
+    await page.fill('.tr-form [name=trainer]', 'QA manažér');
+    await page.click('.modal-foot .btn-primary');
+    await until(page, () => window.api.training.overview().then((o) => o.missing === 1), 'training recorded');
+    await shot(page, '24-training');
+    console.log('  ✓ training: employee linked to a profile, who must know a document, a training session recorded');
     assert.ok(!fs.existsSync(path.join(tmp, 'archive', 'branding', 'logo.svg')));
     console.log('  ✓ company logo: another one can be chosen, and back to the PHARMACOPOLA logo');
 
@@ -684,11 +714,24 @@ async function main() {
     await page.waitForSelector('.doc-head');
     assert.equal(await page.isVisible('button[data-action="edit"]'), false);
     await shot(page, '18-reader-view');
+    // "read and understood", confirmed with the employee's own password
+    await page.click('a.nav-item[href="#/training"]');
+    await page.waitForSelector('.training button[data-action="confirmRead"]');
+    assert.equal(await page.textContent('a.nav-item[href="#/training"] .badge'), '1', 'one document to read');
+    await page.click('.training button[data-action="confirmRead"]');
+    await page.fill('#tr-pw', 'zle-heslo');
+    await page.click('.modal-foot .btn-primary');
+    await page.waitForSelector('#tr-pw-err:has-text("Nesprávne heslo")');
+    await page.fill('#tr-pw', READER.password);
+    await page.click('.modal-foot .btn-primary');
+    await page.waitForSelector('.training .panel:not(.panel-warn) p:has-text("prečítané")');
+    assert.equal((await page.evaluate(() => window.api.training.overview())).missing, 0);
+    await shot(page, '25-read-confirmed');
     const audit2 = await page.evaluate(() => window.api.app.audit({ limit: 20 }));
     assert.ok(audit2.some((r) => r.action === 'auth.failed'), 'failed sign-in is audited');
     await signOut(page);
     await signIn(page, ADMIN);
-    console.log('  ✓ profiles: reader cannot change anything (UI and core), wrong password rejected and audited');
+    console.log('  ✓ profiles: reader cannot change anything (UI and core), wrong password rejected and audited; reading confirmed with the own password');
 
     // ---- A second computer opens the same archive: read-only ----
     app2 = await launch(tmp, 'userdata-pc2');

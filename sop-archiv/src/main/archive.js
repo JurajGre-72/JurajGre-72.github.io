@@ -30,12 +30,13 @@ const { DEFAULT_LAWS, DOC_TYPES, defaultArchive } = require('./lib/defaults');
 const { ROLES, hashPassword, verifyPassword, validPassword } = require('./lib/auth');
 const { pagesWithoutText } = require('./ocr');
 const vault = require('./lib/vault');
+const training = require('./lib/training');
 const company = require('./lib/company');
 
 const STATUSES = ['draft', 'effective', 'review', 'obsolete'];
 const LOGO_TYPES = { '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.svg': 'image/svg+xml' };
 const LOGO_MAX_BYTES = 1024 * 1024;
-const DOC_FIELDS = ['type', 'code', 'title', 'status', 'department', 'owner', 'approver', 'tags', 'notes', 'effectiveDate', 'reviewDate', 'reviewIntervalMonths', 'version', 'annexOf'];
+const DOC_FIELDS = ['type', 'code', 'title', 'status', 'department', 'owner', 'approver', 'tags', 'notes', 'effectiveDate', 'reviewDate', 'reviewIntervalMonths', 'version', 'annexOf', 'trainingFor'];
 
 function id() {
   return crypto.randomUUID();
@@ -181,6 +182,8 @@ class Archive {
     d.changes = d.changes || [];
     d.users = d.users || [];
     d.company = d.company ? company.cleanCompany(d.company) : company.defaultCompany();
+    d.people = d.people || [];
+    d.trainings = d.trainings || [];
     d.decisions = d.decisions || [];
     const def = defaultArchive(this.lang).settings;
     d.settings = { ...def, ...(d.settings || {}) };
@@ -753,6 +756,7 @@ class Archive {
     const out = {};
     for (const k of DOC_FIELDS) if (meta[k] !== undefined) out[k] = meta[k];
     if (out.tags && !Array.isArray(out.tags)) out.tags = String(out.tags).split(',').map((t) => t.trim()).filter(Boolean);
+    if (out.trainingFor !== undefined) out.trainingFor = (Array.isArray(out.trainingFor) ? out.trainingFor : String(out.trainingFor || '').split(',')).map((x) => String(x).trim()).filter(Boolean);
     if (out.status && !STATUSES.includes(out.status)) delete out.status;
     if (out.reviewIntervalMonths !== undefined) out.reviewIntervalMonths = Math.max(0, parseInt(out.reviewIntervalMonths, 10) || 0);
     for (const k of ['code', 'title', 'department', 'owner', 'approver', 'notes', 'version', 'annexOf']) if (typeof out[k] === 'string') out[k] = out[k].trim();
@@ -856,6 +860,8 @@ class Archive {
       citations: [],
       lawRefs: [],
       proposals: [],
+      trainingFor: m.trainingFor || [],
+      trainingSeq: 1,
       createdAt: now,
       updatedAt: now
     };
@@ -879,7 +885,9 @@ class Archive {
     const prevLabel = doc.version;
     Object.assign(doc, m);
     if (!m.version) doc.version = String(doc.versions.length + 1);
-    await this._storeVersion(doc, filePath, a, doc.version);
+    const stored = await this._storeVersion(doc, filePath, a, doc.version);
+    // A new version needs training again, unless it is only a correction that does not change what people do.
+    if (meta.retrain !== false) doc.trainingSeq = stored.seq;
     // A new effective date moves the next review; otherwise the planned review date stays as it was.
     if (!m.reviewDate && m.effectiveDate && doc.reviewIntervalMonths) doc.reviewDate = addMonths(m.effectiveDate, doc.reviewIntervalMonths);
     if (!m.status && doc.status === 'review') doc.status = 'effective';
@@ -1050,6 +1058,122 @@ class Archive {
     if (f) await fs.promises.rm(f, { force: true });
     this.audit('archive.logo', { removed: true });
     return null;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Employees and training records (see lib/training.js)
+
+  listPeople() {
+    const users = new Map(this.data.users.map((u) => [u.id, u.name]));
+    return this.data.people.map((p) => ({ ...p, userName: p.userId ? users.get(p.userId) || '' : '' })).sort((a, b) => a.name.localeCompare(b.name, 'sk'));
+  }
+
+  async savePerson(p) {
+    const name = String(p.name || '').trim();
+    if (!name) throw new Error('NAME_REQUIRED');
+    const userId = p.userId && this.data.users.some((u) => u.id === p.userId) ? p.userId : null;
+    if (userId && this.data.people.some((x) => x.userId === userId && x.id !== p.id)) throw new Error('USER_LINKED');
+    let person = p.id ? this.data.people.find((x) => x.id === p.id) : null;
+    const fields = { name, department: String(p.department || '').trim(), position: String(p.position || '').trim(), userId, active: p.active !== false };
+    if (person) Object.assign(person, fields, { updatedAt: new Date().toISOString() });
+    else {
+      person = { id: id(), ...fields, createdAt: new Date().toISOString() };
+      this.data.people.push(person);
+    }
+    await this.save();
+    this.audit(p.id ? 'person.updated' : 'person.added', { personId: person.id, person: person.name, department: person.department, active: person.active });
+    return person;
+  }
+
+  /** The employee record of an app profile (for "read and understood"). */
+  personOfUser(userId) {
+    return this.data.people.find((p) => p.userId === userId && p.active !== false) || null;
+  }
+
+  _activeDocs() {
+    return this.data.docs.filter((d) => d.status !== 'obsolete' && d.status !== 'draft');
+  }
+
+  /** Record training of people on the current version of a document. */
+  async recordTraining({ docId, personIds, date, method, trainer, notes }, { confirmedByUser = null } = {}) {
+    const doc = this._doc(docId);
+    const cur = doc.versions.find((v) => v.id === doc.currentVersionId);
+    if (!cur) throw new Error('Version not found');
+    const people = (personIds || []).map((pid) => this.data.people.find((p) => p.id === pid)).filter(Boolean);
+    if (!people.length) throw new Error('PEOPLE_REQUIRED');
+    const day = /^\d{4}-\d{2}-\d{2}$/.test(date || '') ? date : today();
+    const m = training.METHODS.includes(method) ? method : 'session';
+    const at = new Date().toISOString();
+    const recs = people.map((p) => ({
+      id: id(),
+      docId: doc.id,
+      code: doc.code,
+      title: doc.title,
+      versionId: cur.id,
+      versionSeq: cur.seq,
+      version: doc.version,
+      personId: p.id,
+      personName: p.name,
+      date: day,
+      method: m,
+      trainer: String(trainer || '').trim().slice(0, 200),
+      notes: String(notes || '').trim().slice(0, 2000),
+      by: this.user,
+      at,
+      confirmedByUser: confirmedByUser || undefined
+    }));
+    this.data.trainings.push(...recs);
+    await this.save();
+    this.audit(confirmedByUser ? 'training.confirmed' : 'training.recorded', { docId: doc.id, code: doc.code, version: doc.version, people: recs.map((r) => r.personName), date: day, method: m, trainer: recs[0].trainer || undefined });
+    return recs;
+  }
+
+  async removeTraining(trainingId) {
+    const r = this.data.trainings.find((x) => x.id === trainingId);
+    if (!r) throw new Error('Record not found');
+    this.data.trainings = this.data.trainings.filter((x) => x.id !== trainingId);
+    await this.save();
+    this.audit('training.removed', { docId: r.docId, code: r.code, person: r.personName, date: r.date, version: r.version });
+    return true;
+  }
+
+  trainingOverview() {
+    const docs = this._activeDocs();
+    const ov = training.overview(docs, this.data.people, this.data.trainings);
+    const byId = new Map(this.data.docs.map((d) => [d.id, d]));
+    return {
+      missing: ov.missing,
+      people: ov.people.map((x) => ({ ...x.person, required: x.required, trained: x.trained, missing: x.missing.map((d) => ({ id: d, code: byId.get(d).code, title: byId.get(d).title, version: byId.get(d).version })) })),
+      docs: ov.docs.map((x) => {
+        const d = byId.get(x.docId);
+        return { id: d.id, code: d.code, title: d.title, version: d.version, trainingFor: d.trainingFor || [], required: x.required, trained: x.trained, missing: x.missing };
+      })
+    };
+  }
+
+  /** Everything about one employee: records (newest first) and what is missing. */
+  personCard(personId) {
+    const p = this.data.people.find((x) => x.id === personId);
+    if (!p) throw new Error('Person not found');
+    const records = this.data.trainings.filter((t) => t.personId === personId).sort((a, b) => `${b.date}${b.at}`.localeCompare(`${a.date}${a.at}`));
+    const missing = this._activeDocs().filter((d) => training.isRequired(d, p) && !training.validRecord(d, p, this.data.trainings)).map((d) => ({ id: d.id, code: d.code, title: d.title, version: d.version }));
+    return { person: p, records, missing };
+  }
+
+  /** Training of one document: who must know it, who is trained on its current version. */
+  docTraining(docId) {
+    const d = this._doc(docId);
+    const people = this.data.people.filter((p) => training.isRequired(d, p));
+    const rows = people.map((p) => ({ person: { id: p.id, name: p.name, department: p.department }, record: training.validRecord(d, p, this.data.trainings) }));
+    const history = this.data.trainings.filter((t) => t.docId === docId).sort((a, b) => `${b.date}${b.at}`.localeCompare(`${a.date}${a.at}`));
+    return { trainingFor: d.trainingFor || [], requiredSeq: training.requiredSeq(d), rows, history };
+  }
+
+  /** Documents the signed-in user (through their employee record) still has to read. */
+  readingList(userId) {
+    const p = this.personOfUser(userId);
+    if (!p) return { person: null, docs: [] };
+    return { person: { id: p.id, name: p.name }, docs: this.personCard(p.id).missing };
   }
 
   // ---------------------------------------------------------------------------

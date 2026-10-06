@@ -717,3 +717,19 @@ body.role-reader .perm-ro, body.read-only .perm-ro { display: inline-flex !impor
 .proposal.st-done, .proposal.st-rejected { opacity: 0.7; }
 .proposal-head { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 8px; }
 .spacer { flex: 1; }
+
+/* Training */
+.tr-bar { display: flex; align-items: center; gap: 8px; min-width: 140px; }
+.tr-bar .progress { flex: 1; }
+.progress-bar.full { background: var(--good); }
+.tr-people { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 2px 16px; max-height: 260px; overflow: auto; border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px; }
+.tf-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 2px 16px; }
+.training tr.muted td { color: var(--muted); }
+.tr-card-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+@media print {
+  #print-area table { border-collapse: collapse; width: 100%; font-size: 10pt; }
+  #print-area th, #print-area td { border: 1px solid #999; padding: 4px 6px; text-align: left; }
+  #print-area .chip { border: 1px solid #999; padding: 0 4px; border-radius: 3px; }
+  #print-area .note { margin: 8px 0; }
+  #print-area svg { display: none; }
+}

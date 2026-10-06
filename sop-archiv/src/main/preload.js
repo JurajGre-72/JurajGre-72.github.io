@@ -17,6 +17,8 @@ const CHANNELS = {
   laws: ['list', 'add', 'update', 'remove', 'check'],
   changes: ['list', 'get', 'update', 'recheck', 'analyze'],
   company: ['get', 'update'],
+  people: ['list', 'save'],
+  training: ['overview', 'person', 'doc', 'mine', 'record', 'remove', 'confirm', 'exportCsv'],
   decisions: ['list', 'add', 'remove'],
   ai: ['test', 'models', 'download', 'cancelDownload', 'removeModel', 'addModelFile', 'cancel'],
   compose: ['init', 'outlineOf', 'suggestLaws', 'draftSection', 'save', 'saveCopy'],

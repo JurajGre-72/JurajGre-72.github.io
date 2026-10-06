@@ -14,6 +14,7 @@ import * as legislation from './views/legislation.js';
 import * as change from './views/change.js';
 import * as settingsView from './views/settings.js';
 import * as compose from './views/compose.js';
+import * as trainingView from './views/training.js';
 
 const api = window.api;
 
@@ -107,6 +108,7 @@ const NAV = [
   { name: 'documents', icon: 'file' },
   { name: 'search', icon: 'search' },
   { name: 'reviews', icon: 'calendar' },
+  { name: 'training', icon: 'users' },
   { name: 'legislation', icon: 'scale' },
   { name: 'settings', icon: 'settings' }
 ];
@@ -132,6 +134,8 @@ function viewFor(route) {
       return settingsView;
     case 'compose':
       return compose;
+    case 'training':
+      return trainingView;
     default:
       return dashboard;
   }
@@ -151,18 +155,20 @@ async function renderSidebar() {
   if (!nav || !app.info || !app.info.session) return;
   let badgeReviews = 0;
   let badgeLegis = 0;
+  let badgeTraining = 0;
   try {
-    const [docs, changes] = await Promise.all([api.docs.list(), api.changes.list()]);
+    const [docs, changes, mine] = await Promise.all([api.docs.list(), api.changes.list(), api.training.mine().catch(() => ({ docs: [] }))]);
     badgeReviews = docs.filter((d) => d.review.state === 'overdue' || d.review.state === 'due').length;
     badgeLegis = changes.filter((c) => c.status !== 'resolved').length;
+    badgeTraining = mine.docs.length;
   } catch (_) {
     /* ignore */
   }
   const active = app.route && app.route.name === 'compose' ? 'documents' : (app.route && app.route.name) || 'dashboard';
   nav.innerHTML = String(html`${NAV.map((n) => {
-    const badge = n.name === 'reviews' ? badgeReviews : n.name === 'legislation' ? badgeLegis : 0;
+    const badge = n.name === 'reviews' ? badgeReviews : n.name === 'legislation' ? badgeLegis : n.name === 'training' ? badgeTraining : 0;
     return html`<a href="#/${n.name}" class="nav-item ${active === n.name ? 'active' : ''}" ${active === n.name ? html`aria-current="page"` : ''}>
-      ${icon(n.icon)}<span>${t(`nav.${n.name}`)}</span>${badge ? html`<span class="badge ${n.name === 'reviews' ? 'badge-warn' : 'badge-info'}">${badge}</span>` : ''}
+      ${icon(n.icon)}<span>${t(`nav.${n.name}`)}</span>${badge ? html`<span class="badge ${n.name === 'reviews' || n.name === 'training' ? 'badge-warn' : 'badge-info'}">${badge}</span>` : ''}
     </a>`;
   })}`);
   const s = app.info.settings;

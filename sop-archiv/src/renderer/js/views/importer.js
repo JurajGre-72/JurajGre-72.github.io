@@ -176,6 +176,7 @@ export async function uploadVersion(doc) {
       <div class="field"><label>${t('f.effectiveDate')}</label><input type="date" name="effectiveDate" value="${m.effectiveDate || ''}"></div>
       <div class="field"><label>${t('f.reviewDate')}</label><input type="date" name="reviewDate" value="${m.reviewDate || ''}"></div>
       <div class="field full"><label>${t('f.title')}</label><input name="title" value="${doc.title}"></div>
+      ${(doc.trainingFor || []).length ? html`<div class="field full"><label class="check"><input type="checkbox" name="retrain" checked> ${t('tr.retrain')}</label><span class="hint">${t('tr.retrainHint')}</span></div>` : ''}
     </form>`,
     buttons: [
       { label: t('cancel'), value: null },
@@ -186,6 +187,7 @@ export async function uploadVersion(doc) {
   const vals = uploadVersion.vals;
   const meta = { ...vals };
   for (const k of ['version', 'effectiveDate', 'reviewDate']) if (!meta[k]) delete meta[k];
+  if (meta.retrain === undefined) delete meta.retrain;
   try {
     return await api.docs.addVersion(doc.id, a.filePath, meta);
   } catch (e) {

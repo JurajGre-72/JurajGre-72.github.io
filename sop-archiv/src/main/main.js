@@ -1094,6 +1094,51 @@ function registerIpc() {
     { perm: 'editor', write: true }
   );
 
+  // --- employees and training records ---
+  handle('people:list', () => archive.listPeople());
+  handle('people:save', (p) => archive.savePerson(p), { perm: 'admin', write: true });
+  handle('training:overview', () => archive.trainingOverview());
+  handle('training:person', (personId) => archive.personCard(personId));
+  handle('training:doc', (docId) => archive.docTraining(docId));
+  handle('training:mine', () => archive.readingList(session.userId));
+  handle('training:record', (r) => archive.recordTraining(r), { perm: 'editor', write: true });
+  handle('training:remove', (trainingId) => archive.removeTraining(trainingId), { perm: 'admin', write: true });
+  // "Read and understood": confirmed with the user's own password (a simple electronic signature).
+  handle(
+    'training:confirm',
+    async (docId, password) => {
+      if (!archive.checkPassword(session.userId, password)) {
+        archive.audit('training.confirm-failed', { docId });
+        throw new UserError(tr('err.badPassword'));
+      }
+      const person = archive.personOfUser(session.userId);
+      if (!person) throw new UserError(tr('err.NO_PERSON'));
+      return archive.recordTraining({ docId, personIds: [person.id], method: 'reading', date: today(), trainer: '' }, { confirmedByUser: session.userId });
+    },
+    { write: true }
+  );
+  handle('training:exportCsv', async (labels) => {
+    const r = await dialog.showSaveDialog(mainWindow, { defaultPath: `SOP-Archiv-skolenia-${today()}.csv`, filters: [{ name: 'CSV', extensions: ['csv'] }] });
+    if (r.canceled) return null;
+    const L = labels || {};
+    const people = new Map(archive.data.people.map((p) => [p.id, p]));
+    const rows = archive.data.trainings.slice().sort((a, b) => String(b.date).localeCompare(String(a.date)));
+    const cols = [
+      { label: L.person || 'Employee', key: 'personName' },
+      { label: L.department || 'Department', get: (x) => (people.get(x.personId) || {}).department || '' },
+      { label: L.code || 'Code', key: 'code' },
+      { label: L.title || 'Title', key: 'title' },
+      { label: L.version || 'Version', key: 'version' },
+      { label: L.date || 'Date', key: 'date' },
+      { label: L.method || 'Method', get: (x) => (L.methods && L.methods[x.method]) || x.method },
+      { label: L.trainer || 'Trainer', key: 'trainer' },
+      { label: L.by || 'Recorded by', get: (x) => (x.confirmedByUser ? L.confirmed || 'confirmed by the employee' : x.by) }
+    ];
+    await fs.promises.writeFile(r.filePath, buildCsv(rows, cols));
+    archive.audit('training.exported', { count: rows.length, file: path.basename(r.filePath) });
+    return r.filePath;
+  });
+
   // --- writing with the AI: new documents and proposals to rewrite a passage (writing.js) ---
   require('./writing').register({ handle, getArchive: () => archive, ai, aiConfig, send, logNet, lang, tr, UserError, dialog, getWindow: () => mainWindow });
 
