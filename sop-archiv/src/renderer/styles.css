@@ -1,21 +1,24 @@
 /* SOP Archív – stylesheet. System fonts only: nothing is loaded from the internet. */
 
 :root {
-  --bg: #f3f5f5;
+  /* PHARMACOPOLA brand (pharmacopola.sk): navy #003A5B, teal #00A78F.
+     Buttons and links use a deeper teal so white text on them stays readable (5.3:1). */
+  --bg: #f2f5f7;
   --surface: #ffffff;
-  --surface-2: #f8faf9;
-  --surface-3: #eef2f1;
-  --border: #dfe5e4;
-  --border-strong: #c9d2d0;
-  --text: #142120;
-  --text-2: #3c4b49;
-  --muted: #607270;
-  --primary: #0f766e;
-  --primary-hover: #0b5f58;
-  --primary-soft: #e3f2ef;
+  --surface-2: #f7f9fa;
+  --surface-3: #eaf0f3;
+  --border: #d3dee3;
+  --border-strong: #b9c9d2;
+  --text: #14202b;
+  --text-2: #3d4a55;
+  --muted: #5b6e7a;
+  --primary: #007a69;
+  --primary-hover: #00695b;
+  --primary-soft: #e0f2ee;
   --primary-ink: #ffffff;
-  --chart: #0d9488;
-  --grid: #e6ebea;
+  --heading: #003a5b;
+  --chart: #00a78f;
+  --grid: #e3eaee;
   --good: #166534;
   --good-soft: #e5f4ea;
   --warn: #92400e;
@@ -32,18 +35,17 @@
   --ins-ink: #14532d;
   --del: #fbe2e0;
   --del-ink: #8a1c16;
-  --side-bg: #0e2f2d;
-  --side-text: #d4e6e3;
-  --side-muted: #8fb0ab;
-  --side-active: #1b4a46;
-  /* Brand accents used on the dark sidebar and the sign-in background */
+  --side-bg: #003a5b;
+  --side-text: #d6e4ec;
+  --side-muted: #9fb8c7;
+  --side-active: #0b4d73;
   --side-strong: #ffffff;
-  --brand-accent: #5fd3c3;
-  --side-avatar-bg: rgba(95, 211, 195, 0.18);
-  --side-avatar-ink: #9be5da;
-  --auth-glow: #16443f;
-  --shadow: 0 1px 2px rgba(16, 24, 23, 0.06), 0 1px 3px rgba(16, 24, 23, 0.05);
-  --shadow-lg: 0 18px 50px rgba(10, 20, 19, 0.22);
+  --brand-accent: #00a78f;
+  --side-avatar-bg: rgba(0, 167, 143, 0.22);
+  --side-avatar-ink: #8fe6d6;
+  --auth-glow: #0b5e8c;
+  --shadow: 0 1px 2px rgba(0, 31, 49, 0.06), 0 1px 3px rgba(0, 31, 49, 0.05);
+  --shadow-lg: 0 18px 50px rgba(0, 25, 40, 0.24);
   --radius: 10px;
   --radius-sm: 7px;
   --font: 'Segoe UI Variable Text', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Roboto, Arial, sans-serif;
@@ -53,21 +55,22 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
-    --bg: #0d1312;
-    --surface: #151d1c;
-    --surface-2: #192221;
-    --surface-3: #1e2928;
-    --border: #263331;
-    --border-strong: #34433f;
-    --text: #e4edeb;
-    --text-2: #c2cfcc;
-    --muted: #8fa19e;
-    --primary: #2aa597;
-    --primary-hover: #34b8a9;
-    --primary-soft: #16302d;
-    --primary-ink: #04201d;
-    --chart: #1f9e8f;
-    --grid: #24302e;
+    --bg: #0a141c;
+    --surface: #111e29;
+    --surface-2: #152532;
+    --surface-3: #1a2c3a;
+    --border: #223646;
+    --border-strong: #2e4659;
+    --text: #e4edf2;
+    --text-2: #c1cfd8;
+    --muted: #8fa3b0;
+    --primary: #00a78f;
+    --primary-hover: #1cbfa6;
+    --primary-soft: #0f3331;
+    --primary-ink: #02201b;
+    --heading: #e4edf2;
+    --chart: #00a78f;
+    --grid: #1f3242;
     --good: #6fd08e;
     --good-soft: #15291d;
     --warn: #f2b660;
@@ -84,29 +87,30 @@
     --ins-ink: #b9efc9;
     --del: #3d1c1a;
     --del-ink: #ffc2bc;
-    --side-bg: #0a1110;
-    --side-text: #cfe0dd;
-    --side-muted: #7f9b97;
-    --side-active: #17302d;
+    --side-bg: #062436;
+    --side-text: #cfe0e9;
+    --side-muted: #8faabb;
+    --side-active: #0b3a57;
     color-scheme: dark;
   }
 }
 :root[data-theme='dark'] {
-  --bg: #0d1312;
-  --surface: #151d1c;
-  --surface-2: #192221;
-  --surface-3: #1e2928;
-  --border: #263331;
-  --border-strong: #34433f;
-  --text: #e4edeb;
-  --text-2: #c2cfcc;
-  --muted: #8fa19e;
-  --primary: #2aa597;
-  --primary-hover: #34b8a9;
-  --primary-soft: #16302d;
-  --primary-ink: #04201d;
-  --chart: #1f9e8f;
-  --grid: #24302e;
+  --bg: #0a141c;
+  --surface: #111e29;
+  --surface-2: #152532;
+  --surface-3: #1a2c3a;
+  --border: #223646;
+  --border-strong: #2e4659;
+  --text: #e4edf2;
+  --text-2: #c1cfd8;
+  --muted: #8fa3b0;
+  --primary: #00a78f;
+  --primary-hover: #1cbfa6;
+  --primary-soft: #0f3331;
+  --primary-ink: #02201b;
+  --heading: #e4edf2;
+  --chart: #00a78f;
+  --grid: #1f3242;
   --good: #6fd08e;
   --good-soft: #15291d;
   --warn: #f2b660;
@@ -123,10 +127,10 @@
   --ins-ink: #b9efc9;
   --del: #3d1c1a;
   --del-ink: #ffc2bc;
-  --side-bg: #0a1110;
-  --side-text: #cfe0dd;
-  --side-muted: #7f9b97;
-  --side-active: #17302d;
+  --side-bg: #062436;
+  --side-text: #cfe0e9;
+  --side-muted: #8faabb;
+  --side-active: #0b3a57;
   color-scheme: dark;
 }
 
@@ -143,7 +147,7 @@ body {
 a { color: var(--primary); text-decoration: none; }
 a:hover { text-decoration: underline; }
 h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.01em; }
-h1 { font-size: 22px; line-height: 1.25; }
+h1 { font-size: 22px; line-height: 1.25; color: var(--heading); }
 h2 { font-size: 17px; }
 h3 { font-size: 14.5px; display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
 h4 { font-size: 13px; margin: 14px 0 6px; color: var(--text-2); }
