@@ -42,7 +42,7 @@ test('inspection report: register, reviews, legislation, decisions, training, ap
   assert.equal(r.decisions[0].reason, 'Nedistribuujeme omamné látky.');
   assert.deepEqual(r.trainingMissing.map((x) => x.person), ['Eva']);
   assert.equal(r.copies[0].status, 'withdraw', 'copy of an old version');
-  assert.deepEqual(r.counts, { docs: 1, effective: 1, overdue: 1, dueSoon: 0, openChanges: 1, decisions: 1, trainingMissing: 1, copiesToWithdraw: 1 });
+  assert.deepEqual(r.counts, { docs: 1, effective: 1, overdue: 1, dueSoon: 0, openChanges: 1, decisions: 1, trainingMissing: 1, copiesToWithdraw: 1, noticesOpen: 0 });
   assert.equal(R.reportData(data, { today: '2026-10-06', from: '2026-03-02', to: '2026-03-31' }).reviewsDone.length, 0, 'the period limits the records');
 
   const html = R.reportHtml(r, L);
@@ -57,4 +57,33 @@ test('inspection report: register, reviews, legislation, decisions, training, ap
   const text = (await extractFile(f)).pages.map((p) => p.text).join('\n');
   assert.match(text, /SOP-QA-001/);
   assert.match(text, /Nedistribuujeme omamné látky\./);
+});
+
+test('inspection report: recall assessments and the Excel sheets', async () => {
+  const labels = require('../../src/main/report-labels');
+  const notices = [
+    { authority: 'sukl', category: 'recall', title: 'Stiahnutie lieku Fiktivol', date: '2026-09-25', rel: { forUs: true, watch: [] }, handled: { outcome: 'done', note: 'Šarža A1 v karanténe.', by: 'QA', at: '2026-09-26T08:00:00Z' } },
+    { authority: 'uskvbl', category: 'recall', title: 'Stiahnutie FIKTIVET', date: '2026-09-28', rel: { forUs: true, watch: [] }, handled: null },
+    { authority: 'sukl', category: 'recall', title: 'Starý', date: '2025-01-01', rel: { forUs: true, watch: [] }, handled: { outcome: 'baseline', at: '2026-09-01T00:00:00Z' } },
+    { authority: 'sukl', category: 'recall', title: 'Netýka sa', date: '2026-09-20', rel: { forUs: false, watch: [] }, handled: null },
+    { authority: 'sukl', category: 'safety', title: 'PRAC', date: '2026-09-20', rel: { forUs: true, watch: [] }, handled: null }
+  ];
+  const r = R.reportData(data, { today: '2026-10-06', from: '2026-01-01', to: '2026-12-31', notices });
+  assert.deepEqual(r.notices.map((n) => [n.title, n.outcome]), [['Stiahnutie FIKTIVET', 'open'], ['Stiahnutie lieku Fiktivol', 'done']], 'waiting first; baseline, not ours and other kinds left out');
+  assert.equal(r.counts.noticesOpen, 1);
+  for (const lang of ['sk', 'en']) {
+    const sheets = R.reportSheets(r, labels(lang));
+    const names = sheets.map((s) => s.name);
+    assert.ok(names.every((n) => n.length <= 31), `sheet names fit Excel (${lang})`);
+    assert.equal(new Set(names).size, names.length, 'unique sheet names');
+    assert.equal(sheets.length, 12);
+    const due = sheets.find((s) => s.name === labels(lang)['sheet.reviewsDue']);
+    assert.match(String(due.rows[0][3]), lang === 'sk' ? /po termíne 35 dní/ : /overdue by 35 days/);
+    const laws = sheets.find((s) => s.name === labels(lang)['sheet.laws']);
+    assert.equal(typeof laws.rows[0][4], 'number', 'counts stay numbers');
+  }
+  const html = R.reportHtml(r, labels('sk'));
+  assert.match(html, /Oznamy ŠÚKL a ÚŠKVBL o stiahnutí liekov a ich posúdenie/);
+  assert.match(html, /čaká na posúdenie/);
+  assert.match(html, /Šarža A1 v karanténe\./);
 });

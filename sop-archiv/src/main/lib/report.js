@@ -1,7 +1,7 @@
 'use strict';
 // Inspection report: what an inspector (ŠÚKL, ÚŠKVBL) or an internal audit asks for, in one place –
 // the register of controlled documents, reviews, legislation and the company's decisions about it,
-// training, approvals and controlled copies. As a printable page (PDF) and as an Excel workbook.
+// training, approvals, controlled copies and how recalls announced by the authorities were assessed. As a printable page (PDF) and as an Excel workbook.
 
 const training = require('./training');
 
@@ -17,7 +17,8 @@ function fmt(iso) {
 }
 
 /** Everything the report shows, from the archive's data. period: { from, to } (yyyy-mm-dd, both optional). */
-function reportData(data, { from = '', to = '', today = new Date().toISOString().slice(0, 10), warnDays = 60 } = {}) {
+/** notices: the authorities' notices with .rel (as Archive.listNotices gives them) – only recalls and watched names that concern the company. */
+function reportData(data, { from = '', to = '', today = new Date().toISOString().slice(0, 10), warnDays = 60, notices = [] } = {}) {
   const docs = data.docs.filter((d) => d.status !== 'obsolete').sort((a, b) => (a.code || a.title).localeCompare(b.code || b.title, 'sk', { numeric: true }));
   const laws = new Map(data.laws.map((l) => [l.id, l]));
   const days = (iso) => Math.round((new Date(`${iso}T12:00:00Z`) - new Date(`${today}T12:00:00Z`)) / 86400000);
@@ -69,6 +70,10 @@ function reportData(data, { from = '', to = '', today = new Date().toISOString()
   for (const d of data.docs) for (const a of d.approvals || []) if (inPeriod(a.requestedAt, from, to) || inPeriod(a.closedAt, from, to)) approvals.push({ code: d.code || '', title: d.title, version: a.version, status: a.status, requested: a.requestedAt.slice(0, 10), by: a.requestedBy, signatures: a.steps.filter((s) => s.decision).map((s) => `${s.name} (${s.role}, ${s.decision}, ${fmt(s.at)})`).join('; ') });
   const copies = [];
   for (const d of data.docs) for (const c of d.copies || []) copies.push({ code: d.code || '', title: d.title, no: c.no, version: c.version, to: [c.issuedTo, c.location].filter(Boolean).join(' – '), issued: c.issuedAt.slice(0, 10), status: c.status === 'withdrawn' ? 'withdrawn' : c.versionId !== d.currentVersionId || d.status === 'obsolete' ? 'withdraw' : 'valid', withdrawn: c.withdrawnAt ? c.withdrawnAt.slice(0, 10) : '' });
+  const noticeRows = notices
+    .filter((n) => n.rel && n.rel.forUs && (n.category === 'recall' || n.rel.watch.length) && (!n.handled ? true : n.handled.outcome !== 'baseline' && inPeriod(n.handled.at, from, to)))
+    .map((n) => ({ date: n.date, authority: n.authority === 'sukl' ? 'ŠÚKL' : 'ÚŠKVBL', title: n.title, outcome: n.handled ? n.handled.outcome : 'open', note: n.handled ? n.handled.note : '', by: n.handled ? n.handled.by : '', at: n.handled ? n.handled.at.slice(0, 10) : '' }))
+    .sort((a, b) => (b.outcome === 'open') - (a.outcome === 'open') || String(b.date).localeCompare(String(a.date))); // waiting ones first
   return {
     org: data.org || '',
     today,
@@ -82,7 +87,8 @@ function reportData(data, { from = '', to = '', today = new Date().toISOString()
       openChanges: data.changes.filter((c) => c.status !== 'resolved').length,
       decisions: decisions.length,
       trainingMissing: trainingMissing.length,
-      copiesToWithdraw: copies.filter((c) => c.status === 'withdraw').length
+      copiesToWithdraw: copies.filter((c) => c.status === 'withdraw').length,
+      noticesOpen: noticeRows.filter((n) => n.outcome === 'open').length
     },
     register,
     reviewsDue,
@@ -93,7 +99,8 @@ function reportData(data, { from = '', to = '', today = new Date().toISOString()
     trainingRecords,
     trainingMissing,
     approvals,
-    copies
+    copies,
+    notices: noticeRows
   };
 }
 
@@ -114,8 +121,9 @@ function reportTables(r, L) {
     { id: 'trainingMissing', title: L.trainingMissing, columns: [['person', L.person, 24], ['department', L.department, 18], ['code', L.code, 12], ['title', L.title_, 40], ['version', L.version, 8]], rows: r.trainingMissing },
     { id: 'trainingRecords', title: L.trainingRecords, columns: [['date', L.date, 12, fmt], ['person', L.person, 24], ['department', L.department, 16], ['code', L.code, 12], ['title', L.title_, 34], ['version', L.version, 8], ['method', L.method, 18, (v) => L[`method.${v}`] || v], ['trainer', L.trainer, 20], ['signed', L.signed, 10, (v) => (v ? L.yes : '')]], rows: r.trainingRecords },
     { id: 'approvals', title: L.approvals, columns: [['code', L.code, 12], ['title', L.title_, 34], ['version', L.version, 8], ['status', L.status, 12, (v) => L[`apr.${v}`] || v], ['requested', L.requested, 12, fmt], ['by', L.by, 18], ['signatures', L.signatures, 60]], rows: r.approvals },
-    { id: 'copies', title: L.copies, columns: [['code', L.code, 12], ['title', L.title_, 34], ['no', L.copyNo, 6], ['version', L.version, 8], ['to', L.issuedTo, 30], ['issued', L.issued, 12, fmt], ['status', L.status, 14, (v) => L[`copy.${v}`] || v], ['withdrawn', L.withdrawnAt, 12, fmt]], rows: r.copies }
-  ].map((t) => ({ ...t, columns: t.columns.map(([key, label, width, f]) => ({ key, label, width, fmt: f || ((v) => (v === null || v === undefined ? '' : String(v))) })) }));
+    { id: 'copies', title: L.copies, columns: [['code', L.code, 12], ['title', L.title_, 34], ['no', L.copyNo, 6], ['version', L.version, 8], ['to', L.issuedTo, 30], ['issued', L.issued, 12, fmt], ['status', L.status, 14, (v) => L[`copy.${v}`] || v], ['withdrawn', L.withdrawnAt, 12, fmt]], rows: r.copies },
+    { id: 'notices', title: L.notices, columns: [['date', L.date, 12, fmt], ['authority', L.authority, 10], ['title', L.title_, 50], ['outcome', L.assessment, 18, (v) => L[`nt.${v}`] || v], ['note', L.measures, 44], ['by', L.by, 18], ['at', L.assessedAt, 12, fmt]], rows: r.notices }
+  ].map((t) => ({ ...t, columns: t.columns.map(([key, label, width, f]) => ({ key, label, width, custom: !!f, fmt: f || ((v) => (v === null || v === undefined ? '' : String(v))) })) }));
 }
 
 /** The report as a page to print to PDF (A4, landscape tables). */
@@ -130,11 +138,14 @@ function reportHtml(r, L) {
     [L.sumChanges, k.openChanges],
     [L.sumDecisions, k.decisions],
     [L.sumTraining, k.trainingMissing],
-    [L.sumCopies, k.copiesToWithdraw]
+    [L.sumCopies, k.copiesToWithdraw],
+    [L.sumNotices, k.noticesOpen]
   ];
+  // Codes, versions and dates stay on one line; long texts wrap.
+  const NW = new Set(['code', 'version', 'date', 'at', 'effectiveDate', 'reviewDate', 'approvedInApp', 'next', 'from', 'detected', 'requested', 'issued', 'withdrawn', 'checked', 'no', 'training', 'days', 'section', 'authority', 'docs', 'affected']);
   const table = (t) => `<section><h2>${esc(t.title)} <span class="n">(${t.rows.length})</span></h2>${
     t.rows.length
-      ? `<table><thead><tr>${t.columns.map((c) => `<th>${esc(c.label)}</th>`).join('')}</tr></thead><tbody>${t.rows.map((row) => `<tr>${t.columns.map((c) => `<td>${esc(c.fmt(row[c.key]))}</td>`).join('')}</tr>`).join('')}</tbody></table>`
+      ? `<table><thead><tr>${t.columns.map((c) => `<th>${esc(c.label)}</th>`).join('')}</tr></thead><tbody>${t.rows.map((row) => `<tr>${t.columns.map((c) => `<td${NW.has(c.key) ? ' class="nw"' : ''}>${esc(c.fmt(row[c.key]))}</td>`).join('')}</tr>`).join('')}</tbody></table>`
       : `<p class="none">${esc(L.none)}</p>`
   }</section>`;
   return `<!doctype html><html lang="${L.lang}"><head><meta charset="utf-8"><title>${esc(L.title)}</title><style>
@@ -143,6 +154,9 @@ function reportHtml(r, L) {
     h1 { color: #003a5b; font-size: 18pt; margin: 0 0 4px; }
     h2 { color: #003a5b; font-size: 12pt; margin: 18px 0 6px; border-bottom: 2px solid #00a78f; padding-bottom: 2px; }
     h2 .n { color: #5b6e7a; font-weight: normal; font-size: 10pt; }
+    h2 { break-after: avoid; page-break-after: avoid; }
+    td.nw { white-space: nowrap; }
+    thead { display: table-header-group; }
     .meta { color: #5b6e7a; margin-bottom: 10px; }
     table { border-collapse: collapse; width: 100%; page-break-inside: auto; }
     tr { page-break-inside: avoid; }
@@ -164,4 +178,41 @@ function reportHtml(r, L) {
   </body></html>`;
 }
 
-module.exports = { reportData, reportTables, reportHtml, fmt };
+/** The report as Excel sheets (for lib/xlsx): a summary, then one sheet per table. */
+function reportSheets(r, L) {
+  const k = r.counts;
+  const period = r.from || r.to ? `${fmt(r.from) || '…'} – ${fmt(r.to) || '…'}` : L.periodAll;
+  const summary = {
+    name: L['sheet.summary'],
+    columns: [
+      { label: L.title, width: 48 },
+      { label: '', width: 40 }
+    ],
+    rows: [
+      [r.org, ''],
+      [L.period, period],
+      [L.generated.replace('{date}', fmt(r.today)), ''],
+      [L.sumDocs, k.docs],
+      [L.sumEffective.replace('{n}', '').trim(), k.effective],
+      [L.sumOverdue, k.overdue],
+      [L.sumDue, k.dueSoon],
+      [L.sumChanges, k.openChanges],
+      [L.sumDecisions, k.decisions],
+      [L.sumTraining, k.trainingMissing],
+      [L.sumCopies, k.copiesToWithdraw],
+      [L.sumNotices, k.noticesOpen],
+      ['', ''],
+      [L.footer, '']
+    ]
+  };
+  return [
+    summary,
+    ...reportTables(r, L).map((t) => ({
+      name: L[`sheet.${t.id}`] || t.title,
+      columns: t.columns.map((c) => ({ label: c.label, width: c.width })),
+      rows: t.rows.map((row) => t.columns.map((c) => (typeof row[c.key] === 'number' && !c.custom ? row[c.key] : c.fmt(row[c.key])))) // counts stay numbers
+    }))
+  ];
+}
+
+module.exports = { reportData, reportTables, reportHtml, reportSheets, fmt };

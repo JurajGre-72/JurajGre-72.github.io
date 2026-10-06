@@ -3,6 +3,19 @@
 
 const SK = {
   lang: 'sk',
+  fileName: 'Sprava-o-dokumentacii',
+  'sheet.summary': 'Súhrn',
+  'sheet.register': 'Dokumenty',
+  'sheet.reviewsDue': 'Revízie – termíny',
+  'sheet.reviewsDone': 'Vykonané revízie',
+  'sheet.laws': 'Predpisy',
+  'sheet.changes': 'Zmeny legislatívy',
+  'sheet.decisions': 'Rozhodnutia',
+  'sheet.trainingMissing': 'Chýbajúce školenia',
+  'sheet.trainingRecords': 'Školenia',
+  'sheet.approvals': 'Schvaľovanie',
+  'sheet.copies': 'Riadené kópie',
+  'sheet.notices': 'Oznamy ŠÚKL a ÚŠKVBL',
   title: 'Správa o riadenej dokumentácii',
   period: 'Obdobie',
   periodAll: 'Celé obdobie',
@@ -100,11 +113,34 @@ const SK = {
   'apr.cancelled': 'zrušené',
   'copy.valid': 'platná',
   'copy.withdraw': 'stiahnuť',
-  'copy.withdrawn': 'stiahnutá'
+  'copy.withdrawn': 'stiahnutá',
+  notices: 'Oznamy ŠÚKL a ÚŠKVBL o stiahnutí liekov a ich posúdenie',
+  sumNotices: 'oznamov o stiahnutí na posúdenie',
+  authority: 'Úrad',
+  assessment: 'Posúdenie',
+  measures: 'Opatrenia / poznámka',
+  assessedAt: 'Posúdené',
+  'nt.open': 'čaká na posúdenie',
+  'nt.not-ours': 'netýka sa nás',
+  'nt.done': 'opatrenia vykonané',
+  'nt.noted': 'na vedomie'
 };
 
 const EN = {
   lang: 'en',
+  fileName: 'Documentation-report',
+  'sheet.summary': 'Summary',
+  'sheet.register': 'Documents',
+  'sheet.reviewsDue': 'Reviews due',
+  'sheet.reviewsDone': 'Reviews done',
+  'sheet.laws': 'Acts',
+  'sheet.changes': 'Legislation changes',
+  'sheet.decisions': 'Decisions',
+  'sheet.trainingMissing': 'Missing training',
+  'sheet.trainingRecords': 'Training',
+  'sheet.approvals': 'Approvals',
+  'sheet.copies': 'Controlled copies',
+  'sheet.notices': 'ŠÚKL and ÚŠKVBL notices',
   title: 'Controlled documentation report',
   period: 'Period',
   periodAll: 'Whole period',
@@ -202,7 +238,17 @@ const EN = {
   'apr.cancelled': 'cancelled',
   'copy.valid': 'valid',
   'copy.withdraw': 'to withdraw',
-  'copy.withdrawn': 'withdrawn'
+  'copy.withdrawn': 'withdrawn',
+  notices: 'ŠÚKL and ÚŠKVBL recall notices and their assessment',
+  sumNotices: 'recall notices to assess',
+  authority: 'Authority',
+  assessment: 'Assessment',
+  measures: 'Measures / note',
+  assessedAt: 'Assessed',
+  'nt.open': 'to assess',
+  'nt.not-ours': 'not ours',
+  'nt.done': 'measures taken',
+  'nt.noted': 'noted'
 };
 
 module.exports = (lang) => {

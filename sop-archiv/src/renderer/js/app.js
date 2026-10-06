@@ -16,6 +16,7 @@ import * as settingsView from './views/settings.js';
 import * as compose from './views/compose.js';
 import * as trainingView from './views/training.js';
 import * as noticesView from './views/notices.js';
+import { inspectionReportDialog } from './views/report.js';
 
 const api = window.api;
 
@@ -273,7 +274,8 @@ function dispatch(kind, e) {
   const shared = {
     import: () => startImport([], { pick: 'files' }),
     importFolder: () => startImport([], { pick: 'folder' }),
-    lawCheck: () => lawCheckDialog()
+    lawCheck: () => lawCheckDialog(),
+    inspectionReport: () => inspectionReportDialog()
   };
   const fn = handlers[name] || (kind === 'action' ? shared[name] : null);
   if (!fn) return;

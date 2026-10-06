@@ -6,6 +6,7 @@
 // Every such request is listed in Settings → Privacy → Network activity.
 
 const { app, BrowserWindow, ipcMain, dialog, shell, protocol, net, session: electronSession, Notification, Tray, Menu, nativeImage, safeStorage } = require('electron');
+const crypto = require('crypto');
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
@@ -19,6 +20,9 @@ const updates = require('./lib/updates');
 const ai = require('./ai');
 const { BuiltinAi } = require('./llm/builtin');
 const { summarize, buildIcs, buildCsv } = require('./lib/reviews');
+const report = require('./lib/report');
+const { buildXlsx } = require('./lib/xlsx');
+const reportLabels = require('./report-labels');
 const { SUPPORTED, extractFile } = require('./lib/extract');
 const { today } = require('./lib/dates');
 const { hasRole, ROLES, validPassword } = require('./lib/auth');
@@ -290,6 +294,33 @@ function afterUnlock() {
       if (!process.env.SOP_ARCHIV_NO_TIMERS) setTimeout(() => autoNoticesCheck(), 10000);
     })
     .catch((e) => console.error('index build failed', e));
+}
+
+const reportPages = new Map();
+
+/** Prints a report page (HTML) to an A4 landscape PDF in a hidden window without scripts. */
+async function printReport(htmlText, { org = '', title = '' } = {}) {
+  const token = crypto.randomBytes(16).toString('hex');
+  reportPages.set(token, htmlText);
+  const win = new BrowserWindow({ show: false, width: 1123, height: 794, webPreferences: { sandbox: true, contextIsolation: true, nodeIntegration: false, javascript: false, spellcheck: false, devTools: false } });
+  win.webContents.setWindowOpenHandler(() => ({ action: 'deny' }));
+  win.webContents.on('will-navigate', (e) => e.preventDefault());
+  try {
+    await win.loadURL(`app://sop/__report/${token}.html`);
+    const esc = (v) => String(v || '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+    return await win.webContents.printToPDF({
+      landscape: true,
+      pageSize: 'A4',
+      printBackground: true,
+      preferCSSPageSize: true,
+      displayHeaderFooter: true,
+      headerTemplate: '<span></span>',
+      footerTemplate: `<div style="font-size:7px;color:#5b6e7a;width:100%;padding:0 12mm;display:flex;justify-content:space-between;font-family:Arial,sans-serif"><span>${esc(org)} · ${esc(title)}</span><span><span class="pageNumber"></span> / <span class="totalPages"></span></span></div>`
+    });
+  } finally {
+    reportPages.delete(token);
+    win.destroy();
+  }
 }
 
 /** Private folder for decrypted working copies of opened documents. */
@@ -1040,6 +1071,25 @@ function registerIpc() {
     await fs.promises.writeFile(r.filePath, buildCsv(docs, cols));
     return r.filePath;
   });
+  // Inspection report: register, reviews, legislation, decisions, training, approvals, copies, recalls.
+  handle(
+    'report:inspection',
+    async ({ format = 'pdf', from = '', to = '' } = {}) => {
+      const iso = (v) => (/^\d{4}-\d{2}-\d{2}$/.test(String(v || '')) ? v : '');
+      const L = reportLabels(lang());
+      const r = report.reportData(archive.data, { from: iso(from), to: iso(to), today: today(), warnDays: archive.data.settings.warnDays || 60, notices: archive.listNotices().items });
+      const xlsx = format === 'xlsx';
+      const name = `${L.fileName}-${today()}.${xlsx ? 'xlsx' : 'pdf'}`;
+      const sd = await dialog.showSaveDialog(mainWindow, { defaultPath: name, filters: [xlsx ? { name: 'Excel', extensions: ['xlsx'] } : { name: 'PDF', extensions: ['pdf'] }] });
+      if (sd.canceled || !sd.filePath) return null;
+      const data = xlsx ? await buildXlsx(report.reportSheets(r, L), { title: L.title }) : await printReport(report.reportHtml(r, L), { org: r.org, title: L.title });
+      await fs.promises.writeFile(sd.filePath, data);
+      archive.audit('report.exported', { format: xlsx ? 'xlsx' : 'pdf', from: r.from, to: r.to, file: path.basename(sd.filePath) });
+      return sd.filePath;
+    },
+    { perm: 'editor' }
+  );
+
   handle('reviews:exportIcs', async (labels) => {
     const r = await dialog.showSaveDialog(mainWindow, { defaultPath: `SOP-Archiv-revizie-${today()}.ics`, filters: [{ name: 'iCalendar', extensions: ['ics'] }] });
     if (r.canceled) return null;
@@ -1336,6 +1386,12 @@ if (!app.requestSingleInstanceLock()) {
     protocol.handle('app', (req) => {
       const u = new URL(req.url);
       const rel = decodeURIComponent(u.pathname).replace(/^\/+/, '') || 'index.html';
+      // The inspection report while it is printed to PDF (kept in memory only, never on disk).
+      const rep = rel.match(/^__report\/([0-9a-f]{32})\.html$/);
+      if (rep) {
+        const page = reportPages.get(rep[1]);
+        return page ? new Response(page, { headers: { 'content-type': 'text/html; charset=utf-8' } }) : new Response('Not found', { status: 404 });
+      }
       // PDF.js for the hidden OCR page (only its scripts and image decoders).
       const vendor = rel.match(/^vendor\/(pdfjs|pdfjs-wasm)\/([\w.-]+\.(?:mjs|wasm))$/);
       if (vendor) {

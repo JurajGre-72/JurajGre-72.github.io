@@ -219,6 +219,7 @@ export function auditDetails(r) {
     return Object.entries(r.userChanges).map(([k, v]) => html`<div><b>${k === 'role' ? t('auth.role') : k === 'name' ? t('auth.name') : t('usr.disabled')}</b>: ${k === 'role' ? t(`role.${v.from}`) : String(v.from)} → ${k === 'role' ? t(`role.${v.to}`) : String(v.to)}</div>`);
   }
   if (r.action === 'notice.handled' || r.action === 'notice.reopened') return [r.title, r.outcome ? t(`nt.out.${r.outcome}`) : '', r.note].filter(Boolean).join(' · ');
+  if (r.action === 'report.exported') return [String(r.format || '').toUpperCase(), r.from || r.to ? `${fmtDate(r.from) || '…'} – ${fmtDate(r.to) || '…'}` : '', r.file].filter(Boolean).join(' · ');
   if (r.action === 'notices.new') return [`+${r.n}`, ...(r.titles || [])].join(' · ');
   const parts = [];
   if (r.role) parts.push(t(`role.${r.role}`));

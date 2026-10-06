@@ -2,6 +2,7 @@
 import { t } from '../i18n.js';
 import { html, raw, icon, reviewChip, fmtDate, fmtDateTime, fmtMonth, todayIso, toast, esc } from '../ui.js';
 import { app } from '../app.js';
+import { reportButton } from './report.js';
 import { recordReview } from './review-dialog.js';
 
 const api = window.api;
@@ -176,7 +177,7 @@ export async function render() {
   return html`<div class="page">
     <header class="page-head">
       <div><h1>${t('dash.title')}</h1><p class="muted">${app.info.archiveSettings.org || t('tagline')} · ${fmtDate(todayIso(), { long: true })}</p></div>
-      <div class="head-actions"><a class="btn" href="#/compose" data-perm="editor">${icon('plus')}${t('nd.title')}</a><button class="btn btn-primary" data-action="import" data-perm="editor">${icon('upload')}${t('docs.importFiles')}</button></div>
+      <div class="head-actions">${reportButton()}<a class="btn" href="#/compose" data-perm="editor">${icon('plus')}${t('nd.title')}</a><button class="btn btn-primary" data-action="import" data-perm="editor">${icon('upload')}${t('docs.importFiles')}</button></div>
     </header>
     ${toSign.length
       ? html`<section class="panel panel-warn"><h3>${icon('shield')}${t('apr.toSign')} <span class="count">${toSign.length}</span></h3>

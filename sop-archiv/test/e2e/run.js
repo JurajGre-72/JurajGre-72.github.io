@@ -780,6 +780,30 @@ async function main() {
     await page.waitForSelector('.panel:has-text("Oznamy ŠÚKL / ÚŠKVBL na posúdenie") .row:has-text("Imaginex")');
     console.log('  ✓ ŠÚKL / ÚŠKVBL notices: read from the public pages only, recall assessed with measures, watched product highlighted');
 
+    // ---- Inspection report: PDF and Excel ----
+    for (const format of ['pdf', 'xlsx']) {
+      const out = path.join(tmp, `sprava.${format}`);
+      await app.evaluate(({ dialog }, p) => {
+        dialog.showSaveDialog = async () => ({ canceled: false, filePath: p });
+      }, out);
+      await clearToasts(page);
+      await page.click('.head-actions button[data-action="inspectionReport"]');
+      await page.waitForSelector('.modal .rep-form');
+      await page.check(`.modal [name=format][value=${format}]`);
+      await page.click('.modal-foot .btn-primary');
+      await page.waitForSelector('.toast:has-text("Správa uložená")');
+      const text = (await readPdf(out)).pages.map((p) => p.text).join('\n');
+      for (const re of [/SOP-QA-001/, /Fiktivol/, /Šarža A123/, /Juraj\s+Gregus/, /platí dokument\s+spoločnosti/]) assert.match(text, re, `${format}: ${re}`);
+      if (format === 'pdf') {
+        assert.match(text, /Správa o riadenej dokumentácii/);
+        assert.match(text, /Oznamy ŠÚKL a ÚŠKVBL o stiahnutí liekov a ich posúdenie/);
+        fs.copyFileSync(out, path.join(OUT, 'inspection-report.pdf'));
+      }
+    }
+    const repAudit = await page.evaluate(() => window.api.app.audit({ limit: 20 }));
+    assert.ok(repAudit.filter((x) => x.action === 'report.exported').length === 2, 'both reports in the audit trail');
+    console.log('  ✓ inspection report: PDF (A4 landscape) and Excel with register, reviews, legislation, decisions, training, approvals, copies and recall assessments');
+
     assert.ok(!fs.existsSync(path.join(tmp, 'archive', 'branding', 'logo.svg')));
     console.log('  ✓ company logo: another one can be chosen, and back to the PHARMACOPOLA logo');
 
