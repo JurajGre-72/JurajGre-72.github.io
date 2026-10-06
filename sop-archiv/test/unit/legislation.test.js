@@ -224,6 +224,12 @@ test('archive: new version supersedes the old one; duplicates are detected; dele
   await a.deleteDoc(d.id);
   assert.equal(a.listDocs().length, 0);
   assert.equal(fs.readdirSync(path.join(dir, 'arch', 'trash')).length, 1);
+  const tr = await a.trashInfo();
+  assert.equal(tr.count, 1);
+  assert.ok(tr.bytes > 0);
+  assert.deepEqual(await a.emptyTrash(), tr);
+  assert.deepEqual(fs.readdirSync(path.join(dir, 'arch', 'trash')), [], 'the files are gone for good; the folder stays');
+  assert.deepEqual(await a.trashInfo(), { count: 0, bytes: 0 });
 });
 
 test('archive: a damaged archive.json is restored from the daily backup', async () => {

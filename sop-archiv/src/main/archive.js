@@ -943,6 +943,34 @@ class Archive {
     return true;
   }
 
+  /** Deleted documents are kept (still encrypted) in the trash folder until it is emptied. */
+  async trashInfo() {
+    const size = async (p) => {
+      const st = await fs.promises.stat(p);
+      if (!st.isDirectory()) return st.size;
+      let n = 0;
+      for (const e of await fs.promises.readdir(p)) n += await size(path.join(p, e));
+      return n;
+    };
+    let entries = [];
+    try {
+      entries = await fs.promises.readdir(this.p('trash'));
+    } catch (_) {
+      /* no trash yet */
+    }
+    let bytes = 0;
+    for (const e of entries) bytes += await size(this.p('trash', e)).catch(() => 0);
+    return { count: entries.length, bytes };
+  }
+
+  /** Removes the deleted documents' files for good. */
+  async emptyTrash() {
+    const info = await this.trashInfo();
+    for (const e of await fs.promises.readdir(this.p('trash')).catch(() => [])) await fs.promises.rm(this.p('trash', e), { recursive: true, force: true });
+    this.audit('archive.trash-emptied', { n: info.count });
+    return info;
+  }
+
   async markReviewed(docId, r) {
     const doc = this._doc(docId);
     const review = {

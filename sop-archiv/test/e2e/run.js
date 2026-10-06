@@ -804,6 +804,20 @@ async function main() {
     assert.ok(repAudit.filter((x) => x.action === 'report.exported').length === 2, 'both reports in the audit trail');
     console.log('  ✓ inspection report: PDF (A4 landscape) and Excel with register, reviews, legislation, decisions, training, approvals, copies and recall assessments');
 
+    // ---- Delete a document, then empty the trash for good ----
+    const pp07 = (await page.evaluate(() => window.api.docs.list())).find((d) => d.code === 'PP-07');
+    await page.evaluate((id) => (location.hash = `#/documents/${id}`), pp07.id);
+    await page.click('.head-actions button[data-action="remove"]');
+    await page.click('.modal-foot .btn-danger');
+    await until(page, (id) => window.api.docs.list().then((l) => !l.some((d) => d.id === id)), 'document deleted', pp07.id);
+    await page.evaluate(() => (location.hash = '#/settings'));
+    await page.waitForSelector('.trash-row:has-text("1 odstránených")');
+    await page.click('.trash-row button[data-action="emptyTrash"]');
+    await page.click('.modal-foot .btn-danger');
+    await page.waitForSelector('.trash-row:has-text("Kôš je prázdny")');
+    assert.deepEqual(fs.readdirSync(path.join(tmp, 'archive', 'trash')), []);
+    console.log('  ✓ delete a document (administrator), then empty the trash: its files are gone for good');
+
     assert.ok(!fs.existsSync(path.join(tmp, 'archive', 'branding', 'logo.svg')));
     console.log('  ✓ company logo: another one can be chosen, and back to the PHARMACOPOLA logo');
 

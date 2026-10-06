@@ -1,6 +1,6 @@
 // Settings: my profile (everyone), users and archive settings (administrator), privacy logs.
 import { t, setLang, lang } from '../i18n.js';
-import { html, icon, fmtDateTime, toast, errorToast, formValues, openModal, confirmDialog } from '../ui.js';
+import { html, icon, fmtDateTime, fmtSize, toast, errorToast, formValues, openModal, confirmDialog } from '../ui.js';
 import { app } from '../app.js';
 import { auditDetails } from './document.js';
 import { showRecoveryCode } from './recovery.js';
@@ -12,6 +12,7 @@ let audit = [];
 let users = [];
 let company = { profile: { activities: {}, notes: '' }, activities: [] };
 let aiModels = null; // the built-in AI's models (administrators)
+let trash = null; // deleted documents kept in the archive (administrators)
 const aiProgress = {}; // model id -> { phase, done, total }
 let offProgress = null;
 
@@ -146,7 +147,7 @@ function usersSection() {
 export async function render() {
   await app.reloadInfo();
   const admin = app.info.session.role === 'admin';
-  [netLog, audit, users, company, aiModels] = await Promise.all([api.app.networkLog(), api.app.audit({ limit: 150 }), admin ? api.users.list() : Promise.resolve([]), api.company.get(), admin ? api.ai.models() : Promise.resolve(null)]);
+  [netLog, audit, users, company, aiModels, trash] = await Promise.all([api.app.networkLog(), api.app.audit({ limit: 150 }), admin ? api.users.list() : Promise.resolve([]), api.company.get(), admin ? api.ai.models() : Promise.resolve(null), admin ? api.archive.trash().catch(() => null) : Promise.resolve(null)]);
   const s = app.info.settings;
   const a = app.info.archiveSettings;
   const me = app.info.session;
@@ -190,6 +191,10 @@ export async function render() {
         <button class="btn" data-action="copyArchive" data-perm="admin">${icon('layers')}${t('set.copyFolder')}</button>
         <button class="btn btn-ghost" data-action="switchArchive" data-perm="admin">${icon('folder')}${t('set.switchFolder')}</button>
       </div>
+      ${trash
+        ? html`<div class="trash-row" data-perm="admin">${icon('trash')}<span>${trash.count ? t('set.trash', { n: trash.count, size: fmtSize(trash.bytes) }) : t('set.trashEmpty')}</span>
+            ${trash.count ? html`<button class="btn btn-sm danger" data-action="emptyTrash">${t('set.trashEmptyBtn')}</button>` : ''}</div>`
+        : ''}
       <div class="logo-setting" data-perm="admin">
         <h4>${t('set.logo')}</h4>
         <div class="logo-row">
@@ -565,6 +570,12 @@ export const actions = {
   },
   openUpdate: (el) => api.app.openExternal(el.dataset.url),
   openFolder: () => api.app.openDataDir(),
+  async emptyTrash() {
+    if (!(await confirmDialog(t('set.trashConfirm', { n: trash.count }), { okLabel: t('set.trashEmptyBtn'), danger: true }))) return;
+    await api.archive.emptyTrash();
+    toast(t('set.trashDone'), 'good');
+    app.rerender();
+  },
   async backup() {
     const p = await api.app.backup();
     if (p) toast(t('set.backupDone', { path: p }), 'good', 8000);

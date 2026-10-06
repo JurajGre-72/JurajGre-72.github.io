@@ -777,3 +777,4 @@ body.role-reader .perm-ro, body.read-only .perm-ro { display: inline-flex !impor
 .nt-assess legend { font-weight: 600; margin-bottom: 6px; }
 .nt-assess .radio-row { display: flex; gap: 8px; align-items: flex-start; padding: 6px 0; cursor: pointer; }
 .dash-notice { display: flex; gap: 8px; align-items: baseline; }
+.trash-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 12px; color: var(--text-2); font-size: 13px; }

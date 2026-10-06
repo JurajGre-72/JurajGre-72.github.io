@@ -1017,6 +1017,8 @@ function registerIpc() {
   handle('docs:addVersion', (id, p, meta) => archive.addVersion(id, p, meta).then(thenOcr), { perm: 'editor', write: true });
   handle('docs:update', (id, patch) => archive.updateDoc(id, patch), { perm: 'editor', write: true });
   handle('docs:delete', (id) => archive.deleteDoc(id), { perm: 'admin', write: true });
+  handle('archive:trash', () => archive.trashInfo(), { perm: 'admin' });
+  handle('archive:emptyTrash', () => archive.emptyTrash(), { perm: 'admin', write: true });
   handle('docs:open', async (id, versionId) => {
     // Open a read-only working copy, so the archived (controlled) original can't be changed by accident.
     // Changes are brought back with "Upload new version".
