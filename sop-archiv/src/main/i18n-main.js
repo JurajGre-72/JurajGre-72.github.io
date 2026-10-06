@@ -42,7 +42,8 @@ const STR = {
     'dlg.logoTitle': 'Vyberte firemné logo',
     'dlg.images': 'Obrázky',
     'err.LOGO_TYPE': 'Logo musí byť obrázok PNG, JPG, WEBP alebo SVG.',
-    'err.LOGO_SIZE': 'Logo je príliš veľké (najviac 1 MB).'
+    'err.LOGO_SIZE': 'Logo je príliš veľké (najviac 1 MB).',
+    'err.updateCheck': 'Zoznam verzií sa nepodarilo načítať (HTTP {status}).'
   },
   en: {
     'tray.open': 'Open SOP Archive',
@@ -84,7 +85,8 @@ const STR = {
     'dlg.logoTitle': 'Choose the company logo',
     'dlg.images': 'Images',
     'err.LOGO_TYPE': 'The logo must be a PNG, JPG, WEBP or SVG image.',
-    'err.LOGO_SIZE': 'The logo is too large (1 MB at most).'
+    'err.LOGO_SIZE': 'The logo is too large (1 MB at most).',
+    'err.updateCheck': 'The list of versions could not be loaded (HTTP {status}).'
   }
 };
 

@@ -93,6 +93,11 @@ function startLawServer() {
         }
         return res.end(staticVersion(st[1] === '20270101' ? LAW_2027 : LAW_2025, st[1]));
       }
+      if (req.url.startsWith('/releases')) {
+        // Fake GitHub release list for "Check for updates"
+        res.setHeader('content-type', 'application/json');
+        return res.end(JSON.stringify([{ tag_name: 'sop-archiv-v9.9.0', html_url: 'https://github.com/example/releases/tag/sop-archiv-v9.9.0', published_at: '2027-01-15T09:00:00Z', body: 'Novinky' }, { tag_name: 'sop-archiv-v9.10.0-beta', prerelease: true }]));
+      }
       if (req.url.startsWith('/spa')) {
         res.end(`<!doctype html><html><body><div id="app">Načítavam…</div><script>setTimeout(()=>{document.getElementById('app').innerText='ŠÚKL oznamy\\nNové usmernenie k správnej distribučnej praxi platné od 1. 1. 2027\\nZmena formulára hlásenia nežiaducich účinkov\\n'+'Ďalší text oznamu. '.repeat(20)},900)</script></body></html>`);
         return;
@@ -172,6 +177,7 @@ async function main() {
   const lawSrv = await startLawServer();
   const ollama = await startOllama();
   const lawBase = `http://127.0.0.1:${lawSrv.address().port}`;
+  process.env.SOP_ARCHIV_UPDATE_URL = `${lawBase}/releases`;
 
   let app = await launch(tmp, 'userdata-pc1');
   let app2 = null;
@@ -486,6 +492,12 @@ async function main() {
     await shot(page, '16b-logo');
     await page.click('button[data-action="clearLogo"]');
     await page.waitForSelector('#brand-logo img[src$="pharmacopola-logo.svg"]');
+    // Check for updates: only the list of published versions is read
+    await page.click('button[data-action="checkUpdate"]');
+    await page.waitForSelector('#upd-result .note-good:has-text("9.9.0")');
+    const netUpd = await page.evaluate(() => window.api.app.networkLog());
+    assert.ok(netUpd.some((e) => e.purpose === 'update' && e.url.endsWith('/releases')), 'the update check is in the network log');
+    console.log('  ✓ check for updates: newer version shown, logged, nothing else sent');
     assert.ok(!fs.existsSync(path.join(tmp, 'archive', 'branding', 'logo.svg')));
     console.log('  ✓ company logo: another one can be chosen, and back to the PHARMACOPOLA logo');
 

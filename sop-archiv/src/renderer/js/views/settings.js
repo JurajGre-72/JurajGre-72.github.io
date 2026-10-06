@@ -196,7 +196,15 @@ export async function render() {
       )}</tbody></table></div>`
     )}
 
-    ${section('about', t('set.about'), 'info', html`<p>${t('appName')} – ${t('set.version', { v: app.info.version })}</p><p class="muted small">${t('tagline')}</p>`)}
+    ${section(
+      'about',
+      t('set.about'),
+      'info',
+      html`<p>${t('appName')} – ${t('set.version', { v: app.info.version })}</p><p class="muted small">${t('tagline')}</p>
+      <div class="btn-row"><button class="btn" data-action="checkUpdate">${icon('refresh')}${t('upd.check')}</button></div>
+      <div id="upd-result" class="small"></div>
+      <p class="muted small">${t('upd.privacy')}</p>`
+    )}
   </div>`;
 }
 
@@ -394,6 +402,25 @@ export const actions = {
     }
   },
   clearLogo: () => saveAndReload(api.archive.clearLogo()),
+  async checkUpdate() {
+    const out = document.getElementById('upd-result');
+    out.className = 'small muted';
+    out.textContent = t('loading');
+    try {
+      const r = await api.app.checkUpdate();
+      if (r.newer) {
+        out.className = 'small';
+        out.innerHTML = String(html`<div class="note note-good">${icon('download')}<div>${t('upd.available', { v: r.latest.version, date: r.latest.publishedAt ? fmtDateTime(r.latest.publishedAt) : '' })}<div class="btn-row"><button class="btn btn-primary btn-sm" data-action="openUpdate" data-url="${r.latest.url}">${t('upd.download')}</button></div><div class="muted">${t('upd.keepData')}</div></div></div>`);
+      } else {
+        out.className = 'small ok';
+        out.textContent = r.latest ? t('upd.upToDate', { v: r.current }) : t('upd.noneYet', { v: r.current });
+      }
+    } catch (e) {
+      out.className = 'small err';
+      out.textContent = errText(e);
+    }
+  },
+  openUpdate: (el) => api.app.openExternal(el.dataset.url),
   openFolder: () => api.app.openDataDir(),
   async backup() {
     const p = await api.app.backup();

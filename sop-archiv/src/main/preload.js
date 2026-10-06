@@ -6,7 +6,7 @@ const { contextBridge, ipcRenderer, webUtils } = require('electron');
 const call = (channel) => (...args) => ipcRenderer.invoke(channel, ...args);
 
 const CHANNELS = {
-  app: ['info', 'setSettings', 'chooseFolder', 'switchDataDir', 'retryLock', 'openDataDir', 'backup', 'openExternal', 'networkLog', 'audit', 'remindNow', 'logo'],
+  app: ['info', 'setSettings', 'chooseFolder', 'switchDataDir', 'retryLock', 'openDataDir', 'backup', 'openExternal', 'networkLog', 'audit', 'remindNow', 'logo', 'checkUpdate'],
   auth: ['state', 'setup', 'login', 'logout', 'changePassword', 'setPrefs'],
   users: ['list', 'create', 'update', 'resetPassword', 'roles'],
   legis: ['pickFile', 'inspectFile', 'importFile', 'resolve', 'check'],

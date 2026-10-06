@@ -14,6 +14,7 @@ const { pathToFileURL } = require('url');
 const { Archive } = require('./archive');
 const { LegislationMonitor, createElectronFetcher } = require('./legislation');
 const { createOcr } = require('./ocr');
+const updates = require('./lib/updates');
 const ai = require('./ai');
 const { summarize, buildIcs, buildCsv } = require('./lib/reviews');
 const { SUPPORTED, extractFile } = require('./lib/extract');
@@ -178,6 +179,7 @@ function readNetLog() {
 // ---------------------------------------------------------------------------
 // Archive + lock (one computer at a time can change a shared archive)
 
+const UPDATE_REPO = 'JurajGre-72/JurajGre-72.github.io';
 let archive = null;
 let monitor = null;
 let lock = null;
@@ -763,6 +765,18 @@ function registerIpc() {
     { perm: 'editor' }
   );
   handle('app:openExternal', (url) => (/^https?:\/\//i.test(url) ? shell.openExternal(url) : false));
+  // Only on request: the list of published versions of this app. Nothing about the archive is sent.
+  handle('app:checkUpdate', async () => {
+    if (settings.offline) throw new UserError(tr('err.offline'));
+    const url = process.env.SOP_ARCHIV_UPDATE_URL || `https://api.github.com/repos/${UPDATE_REPO}/releases?per_page=30`;
+    logNet({ purpose: 'update', url });
+    const ses = electronSession.fromPartition('update-check');
+    const res = await ses.fetch(url, { headers: { accept: 'application/vnd.github+json', 'user-agent': 'SOP-Archiv' }, redirect: 'error', cache: 'no-store' });
+    if (!res.ok) throw new UserError(tr('err.updateCheck', { status: res.status }));
+    const latest = updates.newestRelease(await res.json());
+    const current = app.getVersion();
+    return { current, latest, newer: !!latest && updates.compareVersions(latest.version, current) > 0 };
+  });
   handle('app:networkLog', () => readNetLog());
   handle('app:audit', (opts) => archive.readAudit(opts || {}));
   handle('app:remindNow', () => reviewReminder(true));
