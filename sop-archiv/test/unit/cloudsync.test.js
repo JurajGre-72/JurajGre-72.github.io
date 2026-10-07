@@ -19,3 +19,15 @@ test('archive folders synchronised to a cloud service are recognised', () => {
   assert.equal(cloudSyncProvider('\\\\server\\QA\\SOP-Archiv', none), null);
   assert.equal(cloudSyncProvider('/home/jana/OneDriveBackup-old/SOP', none), null, 'only the folder itself, not a similar name');
 });
+
+test('a new archive is offered in a folder no cloud service synchronises', () => {
+  const { localDefault } = require('../../src/main/lib/cloudsync');
+  const none = { roots: [] };
+  const docs = 'C:\\Users\\jana\\Documents\\SOP-Archiv';
+  const home = 'C:\\Users\\jana\\SOP-Archiv';
+  assert.equal(localDefault([docs, home], none), docs, 'Documents when it stays on the computer');
+  const kfm = { roots: [['OneDrive', 'C:\\Users\\jana\\Documents']] }; // OneDrive has taken over "Documents"
+  assert.equal(localDefault([docs, home], kfm), home, 'the own folder instead');
+  const all = { roots: [['OneDrive', 'C:\\Users\\jana']] };
+  assert.equal(localDefault([docs, home], all), docs, 'everything synchronised: the first, and the setup screen warns');
+});

@@ -80,6 +80,19 @@ jobs:
       - name: End-to-end test on Windows
         if: runner.os == 'Windows'
         run: node test/e2e/run.js e2e-screenshots
+      # The same test on the packaged app (what users install): the same files, sealed app.asar and fuses,
+      # only marked as a test build so the test can drive it. The real build refuses that (checked below).
+      - name: End-to-end test on the packaged Windows app
+        if: runner.os == 'Windows'
+        run: |
+          npx electron-builder --win dir --publish never -c.electronFuses.enableNodeCliInspectArguments=true -c.extraMetadata.soparchivTestBuild=true
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $env:SOP_ARCHIV_EXE = (Resolve-Path 'dist/win-unpacked/SOP Archiv.exe').Path
+          node test/e2e/run.js e2e-screenshots/packaged
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          Remove-Item -Recurse -Force dist
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: 'false'
       - uses: actions/upload-artifact@v4
         if: runner.os == 'Windows' && always()
         with:
@@ -90,6 +103,14 @@ jobs:
         run: npx electron-builder ${{ matrix.target }} --publish never
         env:
           CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+      - name: The installed app refuses a debugging mode
+        if: runner.os == 'Windows'
+        run: |
+          $p = Start-Process -FilePath (Resolve-Path 'dist/win-unpacked/SOP Archiv.exe').Path -ArgumentList '--inspect=0' -PassThru
+          $null = $p.Handle
+          if (-not $p.WaitForExit(60000)) { $p.Kill(); throw 'The installed app started with a debugger attached' }
+          if ($p.ExitCode -ne 1) { throw "Unexpected exit code $($p.ExitCode)" }
+          'Refused, as it should.'
       - uses: actions/upload-artifact@v4
         with:
           name: SOP-Archiv-${{ matrix.name }}

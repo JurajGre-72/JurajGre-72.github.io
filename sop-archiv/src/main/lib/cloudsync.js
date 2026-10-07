@@ -57,4 +57,13 @@ function cloudSyncProvider(dir, { env = process.env, roots = null } = {}) {
   return null;
 }
 
-module.exports = { cloudSyncProvider, knownRoots };
+/**
+ * The folder offered for a new archive: the first candidate no cloud service synchronises (on many
+ * Windows 11 computers OneDrive takes over "Documents" – then the user's own folder is offered instead).
+ * If every candidate is synchronised, the first one (the setup screen then warns).
+ */
+function localDefault(candidates, opts) {
+  return candidates.find((c) => !cloudSyncProvider(c, opts)) || candidates[0];
+}
+
+module.exports = { cloudSyncProvider, knownRoots, localDefault };

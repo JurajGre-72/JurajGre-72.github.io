@@ -34,7 +34,7 @@
 ### Súkromie – SOP a OS nikdy neopustia počítač ani firmu
 
 * Aplikácia **nemá server, cloud, účet ani telemetriu**. Beží iba vo vašom počítači; nikto (ani autor) nevidí, čo v nej je.
-* Všetky údaje sú v **jednom priečinku** (predvolene `Dokumenty\SOP-Archiv`, alebo priečinok na firemnom disku) – **zašifrované**; prečítať ich dá len aplikácia po prihlásení. Priečinok môžete zálohovať alebo presunúť.
+* Všetky údaje sú v **jednom priečinku** (predvolene `Dokumenty\SOP-Archiv`; ak „Dokumenty“ synchronizuje OneDrive, ponúkne sa `C:\Users\<meno>\SOP-Archiv`; alebo priečinok na firemnom disku) – **zašifrované**; prečítať ich dá len aplikácia po prihlásení. Priečinok môžete zálohovať alebo presunúť.
 * Archív **nedávajte do priečinka OneDrive, Dropbox, Google Drive ani iCloud** – súbory by sa (zašifrované) nahrávali do ich cloudu. Aplikácia na to upozorní (pozor: na firemných notebookoch býva aj priečinok *Dokumenty* presunutý do OneDrive).
 * **Dokumenty sa nikdy neposielajú na internet.** Používateľské rozhranie aplikácie má prístup na internet úplne zablokovaný. Jediné spojenia von sú stiahnutie **verejnej stránky predpisu** pri kontrole legislatívy (Slov-Lex, EUR-Lex …) a **verejných oznamov ŠÚKL a ÚŠKVBL** – smerom von ide iba adresa stránky. Každé spojenie je zapísané v *Nastavenia → Súkromie a záznamy → Sieťová aktivita*.
 * **Režim offline** (Nastavenia → Legislatíva) zakáže akékoľvek pripojenie; predpisy potom importujete ako stiahnuté súbory.

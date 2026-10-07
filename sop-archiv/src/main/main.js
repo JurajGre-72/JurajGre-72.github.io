@@ -35,7 +35,7 @@ const { sectionMap } = require('./lib/compliance');
 const { aliasesFromKey } = require('./lib/metadata');
 const { DEFAULT_LAWS } = require('./lib/defaults');
 const { companyContext } = require('./lib/company');
-const { cloudSyncProvider } = require('./lib/cloudsync');
+const { cloudSyncProvider, localDefault } = require('./lib/cloudsync');
 const mainText = require('./i18n-main');
 
 const APP_ID = 'sk.soparchiv.app';
@@ -79,7 +79,7 @@ function loadSettings() {
   const ai0 = { provider: 'none', baseUrl: '', model: '', budget: 0, apiKeyEnc: '', gpu: true, contextSize: 0, ...(s.ai || {}) };
   if (!ai.PROVIDERS.includes(ai0.provider)) ai0.provider = 'none'; // cloud providers were removed
   settings = {
-    dataDir: process.env.SOP_ARCHIV_DATA || s.dataDir || path.join(app.getPath('documents'), 'SOP-Archiv'),
+    dataDir: process.env.SOP_ARCHIV_DATA || s.dataDir || localDefault([path.join(app.getPath('documents'), 'SOP-Archiv'), path.join(app.getPath('home'), 'SOP-Archiv')]),
     lang: s.lang || (locale.startsWith('sk') || locale.startsWith('cs') ? 'sk' : 'en'),
     theme: s.theme || 'system',
     offline: !!s.offline,
