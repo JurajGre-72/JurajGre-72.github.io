@@ -79,7 +79,7 @@ function loadSettings() {
   const ai0 = { provider: 'none', baseUrl: '', model: '', budget: 0, apiKeyEnc: '', gpu: true, contextSize: 0, ...(s.ai || {}) };
   if (!ai.PROVIDERS.includes(ai0.provider)) ai0.provider = 'none'; // cloud providers were removed
   settings = {
-    dataDir: process.env.SOP_ARCHIV_DATA || s.dataDir || localDefault([path.join(app.getPath('documents'), 'SOP-Archiv'), path.join(app.getPath('home'), 'SOP-Archiv')]),
+    dataDir: process.env.SOP_ARCHIV_DATA || s.dataDir || defaultDataDir(),
     lang: s.lang || (locale.startsWith('sk') || locale.startsWith('cs') ? 'sk' : 'en'),
     theme: s.theme || 'system',
     offline: !!s.offline,
@@ -91,6 +91,11 @@ function loadSettings() {
     lastUserId: s.lastUserId || null,
     bounds: s.bounds || null
   };
+}
+
+/** The folder offered for a new archive: Documents, unless a cloud service synchronises it (then the own folder). */
+function defaultDataDir() {
+  return localDefault([path.join(app.getPath('documents'), 'SOP-Archiv'), path.join(app.getPath('home'), 'SOP-Archiv')]);
 }
 
 function saveSettings() {
@@ -882,7 +887,7 @@ function registerIpc() {
       if (f && f.until > Date.now()) throw new UserError(tr('err.tooMany'));
       let r;
       try {
-        r = await archive.login(userId, password);
+        r = archive.readOnly ? await archive.login(userId, password) : await withWrite(() => archive.login(userId, password));
       } catch (e) {
         if (e.message === 'NEEDS_PASSWORD') throw new UserError(tr('err.NEEDS_PASSWORD'));
         throw e;
@@ -1637,11 +1642,15 @@ if (!app.requestSingleInstanceLock()) {
       if (!file.startsWith(RENDERER_DIR + path.sep)) return new Response('Not found', { status: 404 });
       return net.fetch(pathToFileURL(file).toString());
     });
+    // A folder where no archive was set up yet that a cloud service synchronises (e.g. Documents in iCloud):
+    // the local folder is offered instead – the archive is not to leave the computer or company server.
+    const hasArchive = (d) => fs.existsSync(path.join(d, 'archive.json')) || fs.existsSync(path.join(d, 'keyring.json'));
+    if (!process.env.SOP_ARCHIV_DATA && !hasArchive(settings.dataDir) && cloudSyncProvider(settings.dataDir)) settings.dataDir = defaultDataDir();
     try {
       await openArchive(settings.dataDir);
     } catch (e) {
-      dialog.showErrorBox('SOP Archív', `${tr('err.openArchive')}\n${settings.dataDir}\n\n${e.message}`);
-      settings.dataDir = path.join(app.getPath('documents'), 'SOP-Archiv');
+      dialog.showErrorBox('SOP Archív', `${tr('err.openArchive')}\n${settings.dataDir}\n\n${tr(e.message === 'ARCHIVE_MISSING' ? 'err.ARCHIVE_MISSING' : '') || e.message}`);
+      settings.dataDir = defaultDataDir();
       await openArchive(settings.dataDir);
     }
     saveSettings();

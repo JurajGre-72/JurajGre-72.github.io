@@ -157,6 +157,7 @@ class Archive {
   async _load() {
     const file = this.p('archive.json');
     let created = false;
+    this._rev = this._readRev();
     if (fs.existsSync(file)) {
       try {
         this.data = await this._readJson(file);
@@ -164,37 +165,47 @@ class Archive {
         if (e.message === 'LOCKED') throw e;
         // Damaged file (e.g. power loss): keep it aside and restore the previous save,
         // or else the newest daily backup.
-        const backups = (await fs.promises.readdir(this.p('backups'))).filter((f) => /^archive-.*\.json$/.test(f)).sort().reverse();
-        const candidates = [this.p('archive.prev.json'), ...backups.map((b) => this.p('backups', b))];
-        let restored = null;
-        for (const c of candidates) {
-          try {
-            this.data = await this._readJson(c);
-            restored = path.basename(c);
-            break;
-          } catch (_) {
-            /* try the next one */
-          }
-        }
-        if (!restored) throw e;
+        if (!(await this._restoreFromCopies())) throw e;
         if (!this.readOnly) await fs.promises.copyFile(file, `${file}.damaged-${Date.now()}`);
-        this.restoredFrom = restored;
+        this._migrate();
         await this.save();
         this.audit('archive.restored', { from: this.restoredFrom });
       }
+    } else if (await this._restoreFromCopies()) {
+      // The main file is gone (deleted, or moved away by a cloud sync program such as iCloud) but earlier
+      // saves are here: the archive is put back from the newest of them, never started again empty.
+      this._migrate();
+      await this.save();
+      this.audit('archive.restored', { from: this.restoredFrom, reason: 'missing' });
+    } else if (this.encrypted) {
+      throw new Error('ARCHIVE_MISSING'); // profiles and keys exist, the data does not: nothing to start from
     } else {
       this.data = defaultArchive(this.lang);
       this.data.laws = DEFAULT_LAWS.map((l) => this._newLaw(l));
       created = true;
     }
     this._migrate();
-    this._rev = this._readRev();
     if (created) {
       await this.save();
       this.audit('archive.created', { dir: this.dir });
     }
     await this._dailyBackup();
     return { created };
+  }
+
+  /** The previous save, else the newest readable daily backup, into memory. Returns its name or null. */
+  async _restoreFromCopies() {
+    const backups = (await fs.promises.readdir(this.p('backups')).catch(() => [])).filter((f) => /^archive-.*\.json$/.test(f)).sort().reverse();
+    for (const c of [this.p('archive.prev.json'), ...backups.map((b) => this.p('backups', b))]) {
+      try {
+        this.data = await this._readJson(c);
+        this.restoredFrom = path.basename(c);
+        return this.restoredFrom;
+      } catch (_) {
+        /* missing or unreadable: the next one */
+      }
+    }
+    return null;
   }
 
   _readRev() {
@@ -230,7 +241,17 @@ class Archive {
     if (fs.existsSync(this.p('keyring.json'))) {
       keyring = JSON.parse(await retryBusy(() => fs.promises.readFile(this.p('keyring.json'), 'utf8')));
     }
-    const data = JSON.parse((await retryBusy(() => this._readFile(this.p('archive.json')))).toString('utf8'));
+    let data;
+    try {
+      data = JSON.parse((await retryBusy(() => this._readFile(this.p('archive.json')))).toString('utf8'));
+    } catch (e) {
+      if (e.code !== 'ENOENT') throw e;
+      // The main file is gone (moved away by a cloud sync program such as iCloud, or deleted): what is in
+      // memory is the newest state there is; the next save writes the file again.
+      if (!this._missingNoted) this.audit('archive.fileMissing', {});
+      this._missingNoted = true;
+      return false;
+    }
     // This computer saved a change while the file was being read: what was read is older than what is in
     // memory now, so it is not used (a write transaction reads the colleagues' changes before it changes anything).
     if (saves !== this._saves) return false;
@@ -329,6 +350,7 @@ class Archive {
         const rev = crypto.randomBytes(8).toString('hex');
         await writeFileRetry(this.p('archive.rev'), rev);
         this._rev = rev;
+        this._missingNoted = false;
       })
       .catch((e) => {
         console.error('save failed', e);
@@ -626,13 +648,13 @@ class Archive {
       }
     }
     if (renamed) await this.save();
-    const skip = new Set([this.p('keyring.json'), this.p('.sop-archiv.lock'), this.p('audit.log')]);
+    const skip = new Set([this.p('keyring.json'), this.p('archive.rev'), this.p('audit.log')]);
     const walk = async (dir) => {
       for (const ent of await fs.promises.readdir(dir, { withFileTypes: true }).catch(() => [])) {
         const f = path.join(dir, ent.name);
         if (ent.isDirectory()) {
           if (f !== this.p('branding') && f !== this.p('audit')) await walk(f); // audit files: line by line, below
-        } else if (!skip.has(f) && !ent.name.endsWith('.tmp')) {
+        } else if (!skip.has(f) && !ent.name.endsWith('.tmp') && !ent.name.startsWith('.')) {
           const buf = await fs.promises.readFile(f);
           if (!vault.isEncrypted(buf)) await writeAtomic(f, vault.encrypt(this.key, buf));
         }

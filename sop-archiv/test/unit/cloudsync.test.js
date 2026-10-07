@@ -31,3 +31,16 @@ test('a new archive is offered in a folder no cloud service synchronises', () =>
   const all = { roots: [['OneDrive', 'C:\\Users\\jana']] };
   assert.equal(localDefault([docs, home], all), docs, 'everything synchronised: the first, and the setup screen warns');
 });
+
+test('Mac: "Desktop & Documents Folders" in iCloud is recognised, though the folders keep their usual place', () => {
+  const { localDefault } = require('../../src/main/lib/cloudsync');
+  const home = '/Users/jujugregre';
+  const drive = `${home}/Library/Mobile Documents/com~apple~CloudDocs`;
+  const on = { env: {}, platform: 'darwin', home, exists: (p) => p === `${drive}/Documents` || p === `${drive}/Desktop` };
+  const off = { env: {}, platform: 'darwin', home, exists: () => false };
+  assert.equal(cloudSyncProvider(`${home}/Documents/SOP-Archiv`, on), 'iCloud Drive');
+  assert.equal(cloudSyncProvider(`${home}/Desktop/SOP-Archiv`, on), 'iCloud Drive');
+  assert.equal(cloudSyncProvider(`${home}/SOP-Archiv`, on), null, 'the own folder stays on the Mac');
+  assert.equal(cloudSyncProvider(`${home}/Documents/SOP-Archiv`, off), null, 'iCloud for Documents switched off');
+  assert.equal(localDefault([`${home}/Documents/SOP-Archiv`, `${home}/SOP-Archiv`], on), `${home}/SOP-Archiv`);
+});

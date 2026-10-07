@@ -177,3 +177,56 @@ test('a save that does not reach the disk is reported once, audited, and what is
   await sleep(50);
   assert.ok((await a.allAudit()).some((r) => r.action === 'archive.saveFailed'), 'in the audit trail');
 });
+
+test('the main file vanishes while the app is open (e.g. iCloud moved it): the next change writes it again', async () => {
+  const dir = tmpDir();
+  const a = await computer(dir, 'MacBook');
+  await tx(a, () => {
+    a.data.settings.x = 'pred';
+  });
+  fs.rmSync(path.join(dir, 'archive.json'));
+  fs.writeFileSync(path.join(dir, 'archive.rev'), 'iny'); // as if changed elsewhere: the file is read – and is missing
+  await tx(a, () => {
+    a.data.settings.x = 'po'; // a change of settings, the language … no "ENOENT" any more
+  });
+  assert.ok(fs.existsSync(path.join(dir, 'archive.json')), 'written again');
+  const check = await computer(dir, 'PC-3');
+  assert.equal(check.data.settings.x, 'po');
+  await sleep(50);
+  assert.ok((await a.allAudit()).some((r) => r.action === 'archive.fileMissing'), 'recorded in the audit trail');
+});
+
+test('encrypted archive whose main file is missing at sign-in: restored from the previous save, never started empty', async () => {
+  const dir = tmpDir();
+  const a = await computer(dir, 'MacBook');
+  a.inTx = true;
+  await a.enableEncryption();
+  const admin = await a.createUser({ name: 'Juraj Gregus', role: 'admin', password: 'Tajne-heslo-1', mustChange: false });
+  a.data.settings.x = 'uložené';
+  await a.save();
+  await a.save(); // the previous save (archive.prev.json) holds the data too
+  a.inTx = false;
+  assert.equal(fs.readFileSync(path.join(dir, 'archive.rev'), 'utf8').length, 16, 'the revision marker stays readable');
+
+  fs.rmSync(path.join(dir, 'archive.json'));
+  const b = new Archive({ dataDir: dir, user: 'MacBook', host: 'MacBook' });
+  await b.open();
+  b.shared = true;
+  b.inTx = true;
+  const r = await b.login(admin.id, 'Tajne-heslo-1');
+  b.inTx = false;
+  assert.ok(r && r.user, 'signed in');
+  assert.equal(b.data.settings.x, 'uložené', 'the data is back');
+  assert.ok(b.data.users.some((u) => u.name === 'Juraj Gregus'));
+  assert.ok(fs.existsSync(path.join(dir, 'archive.json')), 'and written again');
+
+  // No copy at all: an error, not an empty archive in place of the company's.
+  for (const f of ['archive.json', 'archive.prev.json']) fs.rmSync(path.join(dir, f), { force: true });
+  fs.rmSync(path.join(dir, 'backups'), { recursive: true, force: true });
+  const c = new Archive({ dataDir: dir, user: 'MacBook', host: 'MacBook' });
+  await c.open();
+  c.shared = true;
+  c.inTx = true;
+  await assert.rejects(c.login(admin.id, 'Tajne-heslo-1'), /ARCHIVE_MISSING/);
+  assert.ok(!fs.existsSync(path.join(dir, 'archive.json')), 'nothing empty was written');
+});

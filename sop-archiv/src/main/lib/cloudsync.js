@@ -32,9 +32,17 @@ function inside(dir, root) {
   return a === b || a.startsWith(b + path.sep) || a.startsWith(b + '/') || a.startsWith(b + '\\');
 }
 
-/** Folders the sync programs report (Windows environment variables, Dropbox's own settings). */
-function knownRoots(env = process.env) {
+/**
+ * Folders the sync programs report (Windows environment variables, Dropbox's own settings), and on a Mac
+ * "Desktop & Documents Folders" in iCloud – switched on by default on many Macs: the folders keep their
+ * usual place (~/Documents) but their files go to iCloud, and iCloud may move or replace them meanwhile.
+ */
+function knownRoots(env = process.env, { platform = process.platform, home = os.homedir(), exists = fs.existsSync } = {}) {
   const out = [];
+  if (platform === 'darwin') {
+    const drive = path.join(home, 'Library', 'Mobile Documents', 'com~apple~CloudDocs');
+    for (const f of ['Documents', 'Desktop']) if (exists(path.join(drive, f))) out.push(['iCloud Drive', path.join(home, f)]);
+  }
   for (const k of ['OneDrive', 'OneDriveCommercial', 'OneDriveConsumer']) if (env[k]) out.push(['OneDrive', env[k]]);
   const dropboxInfo = [path.join(env.APPDATA || '', 'Dropbox', 'info.json'), path.join(env.LOCALAPPDATA || '', 'Dropbox', 'info.json'), path.join(os.homedir(), '.dropbox', 'info.json')];
   for (const f of dropboxInfo) {
@@ -49,9 +57,9 @@ function knownRoots(env = process.env) {
 }
 
 /** The name of the cloud service that synchronises this folder, or null. */
-function cloudSyncProvider(dir, { env = process.env, roots = null } = {}) {
+function cloudSyncProvider(dir, { env = process.env, roots = null, ...where } = {}) {
   if (!dir) return null;
-  for (const [name, root] of roots || knownRoots(env)) if (inside(dir, root)) return name;
+  for (const [name, root] of roots || knownRoots(env, where)) if (inside(dir, root)) return name;
   const p = norm(dir);
   for (const [name, re] of PATTERNS) if (re.test(p)) return name;
   return null;
@@ -59,7 +67,8 @@ function cloudSyncProvider(dir, { env = process.env, roots = null } = {}) {
 
 /**
  * The folder offered for a new archive: the first candidate no cloud service synchronises (on many
- * Windows 11 computers OneDrive takes over "Documents" – then the user's own folder is offered instead).
+ * Windows 11 computers OneDrive takes over "Documents", on many Macs iCloud does – then the user's own
+ * folder is offered instead).
  * If every candidate is synchronised, the first one (the setup screen then warns).
  */
 function localDefault(candidates, opts) {
