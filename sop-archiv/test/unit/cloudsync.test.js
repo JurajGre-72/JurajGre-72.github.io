@@ -36,7 +36,8 @@ test('Mac: "Desktop & Documents Folders" in iCloud is recognised, though the fol
   const { localDefault } = require('../../src/main/lib/cloudsync');
   const home = '/Users/jujugregre';
   const drive = `${home}/Library/Mobile Documents/com~apple~CloudDocs`;
-  const on = { env: {}, platform: 'darwin', home, exists: (p) => p === `${drive}/Documents` || p === `${drive}/Desktop` };
+  const slash = (p) => p.split('\\').join('/'); // the tests also run on Windows, where paths are joined with \\
+  const on = { env: {}, platform: 'darwin', home, exists: (p) => [`${drive}/Documents`, `${drive}/Desktop`].includes(slash(p)) };
   const off = { env: {}, platform: 'darwin', home, exists: () => false };
   assert.equal(cloudSyncProvider(`${home}/Documents/SOP-Archiv`, on), 'iCloud Drive');
   assert.equal(cloudSyncProvider(`${home}/Desktop/SOP-Archiv`, on), 'iCloud Drive');
