@@ -23,6 +23,7 @@ const { summarize, buildIcs, buildCsv } = require('./lib/reviews');
 const report = require('./lib/report');
 const { buildXlsx } = require('./lib/xlsx');
 const reportLabels = require('./report-labels');
+const { queryAudit } = require('./lib/auditquery');
 const { SUPPORTED, extractFile } = require('./lib/extract');
 const { today } = require('./lib/dates');
 const { hasRole, ROLES, validPassword } = require('./lib/auth');
@@ -981,6 +982,35 @@ function registerIpc() {
   });
   handle('app:networkLog', () => readNetLog());
   handle('app:audit', (opts) => archive.readAudit(opts || {}));
+  // The audit trail with filters, and its export for an inspector (exactly what the filter shows).
+  handle('audit:query', async (f) => queryAudit(await archive.allAudit(), f || {}), { perm: 'editor' });
+  handle(
+    'audit:export',
+    async ({ format = 'pdf', title, subtitle, columns, rows, filter } = {}) => {
+      if (!Array.isArray(columns) || !Array.isArray(rows) || rows.length > 200000) throw new Error('Bad export');
+      const cell = (v) => String(v === null || v === undefined ? '' : v).slice(0, 4000);
+      const cols = columns.slice(0, 12).map(cell);
+      const body = rows.map((r) => (Array.isArray(r) ? r : []).slice(0, cols.length).map(cell));
+      const xlsx = format === 'xlsx';
+      const name = `${lang() === 'en' ? 'Audit-trail' : 'Auditny-zaznam'}-${today()}.${xlsx ? 'xlsx' : 'pdf'}`;
+      const sd = await dialog.showSaveDialog(mainWindow, { defaultPath: name, filters: [xlsx ? { name: 'Excel', extensions: ['xlsx'] } : { name: 'PDF', extensions: ['pdf'] }] });
+      if (sd.canceled || !sd.filePath) return null;
+      const generated = tr('au.generated', { date: new Date().toLocaleString(lang() === 'en' ? 'en-GB' : 'sk-SK'), user: session.name });
+      const data = xlsx
+        ? await buildXlsx(
+            [
+              { name: cell(title).slice(0, 31), columns: cols.map((c, i) => ({ label: c, width: [18, 22, 30, 22, 70][i] || 20 })), rows: body },
+              { name: tr('au.sheetFilter'), columns: [{ label: tr('au.sheetFilter'), width: 100 }], rows: [[cell(subtitle)], [generated], [archive.data.org || '']] }
+            ],
+            { title: cell(title) }
+          )
+        : await printReport(report.tableHtml({ lang: lang(), title: cell(title), subtitle: cell(subtitle), org: archive.data.org || '', generated, columns: cols, rows: body, footer: tr('au.footer'), empty: tr('au.empty') }), { org: archive.data.org || '', title: cell(title) });
+      await fs.promises.writeFile(sd.filePath, data);
+      archive.audit('audit.exported', { format: xlsx ? 'xlsx' : 'pdf', count: body.length, filter: filter || {}, file: path.basename(sd.filePath) });
+      return sd.filePath;
+    },
+    { perm: 'editor' }
+  );
   handle('app:remindNow', () => reviewReminder(true));
   handle('archive:updateSettings', (patch) => archive.updateSettings(patch), { perm: 'admin', write: true });
   handle('app:logo', () => archive.logoDataUrl(), { perm: 'public' });

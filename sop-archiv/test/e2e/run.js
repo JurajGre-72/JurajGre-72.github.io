@@ -859,6 +859,32 @@ async function main() {
     assert.deepEqual(fs.readdirSync(path.join(tmp, 'archive', 'trash')), []);
     console.log('  ✓ delete a document (administrator), then empty the trash: its files are gone for good');
 
+    // ---- Audit trail: filters an inspector needs, export of exactly what is filtered ----
+    await page.evaluate(() => (location.hash = '#/audit'));
+    await page.waitForSelector('.audit .au-table');
+    await page.selectOption('.au-filters [name=docId]', qa1.id);
+    await page.check('.au-filters [name=changesOnly]');
+    await until(page, () => Array.from(document.querySelectorAll('.au-table tbody tr td:nth-child(4)')).every((td) => td.textContent.includes('SOP-QA-001')) && !document.querySelector('.au-table').textContent.includes('Dokument otvorený'), 'only changes of SOP-QA-001');
+    const auRows = await page.$$eval('.au-table tbody tr', (trs) => trs.length);
+    assert.ok(auRows >= 3, `changes of SOP-QA-001 listed (${auRows})`);
+    await shot(page, '28-audit');
+    for (const format of ['pdf', 'xlsx']) {
+      const out = path.join(tmp, `audit.${format}`);
+      await app.evaluate(({ dialog }, p) => {
+        dialog.showSaveDialog = async () => ({ canceled: false, filePath: p });
+      }, out);
+      await clearToasts(page);
+      await page.click(`.audit button[data-action="${format === 'pdf' ? 'exportPdf' : 'exportXlsx'}"]`);
+      await page.waitForSelector('.toast:has-text("uložená")');
+      const text = (await readPdf(out)).pages.map((p) => p.text).join('\n');
+      assert.match(text, /SOP-QA-001/, `${format}: the document`);
+      assert.match(text, /Dokument: SOP-QA-001/, `${format}: the filter is printed`);
+      assert.match(text, /Juraj\s+Gregus/, `${format}: who`);
+    }
+    const auExp = (await page.evaluate(() => window.api.audit.query({ area: 'archive' }))).rows.find((r) => r.action === 'audit.exported');
+    assert.equal(auExp.filter.docId, qa1.id, 'the export and its filter are themselves in the audit trail');
+    console.log('  ✓ audit trail: filtered by document and changes only, exported to PDF and Excel with the filter printed');
+
     assert.ok(!fs.existsSync(path.join(tmp, 'archive', 'branding', 'logo.svg')));
     console.log('  ✓ company logo: another one can be chosen, and back to the PHARMACOPOLA logo');
 

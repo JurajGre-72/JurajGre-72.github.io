@@ -16,6 +16,7 @@ import * as settingsView from './views/settings.js';
 import * as compose from './views/compose.js';
 import * as trainingView from './views/training.js';
 import * as noticesView from './views/notices.js';
+import * as auditView from './views/audit.js';
 import { inspectionReportDialog } from './views/report.js';
 
 const api = window.api;
@@ -113,6 +114,7 @@ const NAV = [
   { name: 'training', icon: 'users' },
   { name: 'legislation', icon: 'scale' },
   { name: 'notices', icon: 'bell' },
+  { name: 'audit', icon: 'history', perm: 'editor' },
   { name: 'settings', icon: 'settings' }
 ];
 
@@ -141,6 +143,8 @@ function viewFor(route) {
       return trainingView;
     case 'notices':
       return noticesView;
+    case 'audit':
+      return app.can('editor') ? auditView : dashboard;
     default:
       return dashboard;
   }
@@ -174,7 +178,7 @@ async function renderSidebar() {
     /* ignore */
   }
   const active = app.route && app.route.name === 'compose' ? 'documents' : (app.route && app.route.name) || 'dashboard';
-  nav.innerHTML = String(html`${NAV.map((n) => {
+  nav.innerHTML = String(html`${NAV.filter((n) => !n.perm || app.can(n.perm)).map((n) => {
     const badge = n.name === 'reviews' ? badgeReviews : n.name === 'legislation' ? badgeLegis : n.name === 'training' ? badgeTraining : n.name === 'dashboard' ? badgeSign : n.name === 'notices' ? badgeNotices : 0;
     return html`<a href="#/${n.name}" class="nav-item ${active === n.name ? 'active' : ''}" ${active === n.name ? html`aria-current="page"` : ''}>
       ${icon(n.icon)}<span>${t(`nav.${n.name}`)}</span>${badge ? html`<span class="badge ${n.name === 'notices' ? 'badge-bad' : n.name === 'reviews' || n.name === 'training' || n.name === 'dashboard' ? 'badge-warn' : 'badge-info'}" ${n.name === 'dashboard' ? html`title="${t('apr.toSign')}"` : n.name === 'notices' ? html`title="${t('nt.toAssess')}"` : ''}>${badge}</span>` : ''}

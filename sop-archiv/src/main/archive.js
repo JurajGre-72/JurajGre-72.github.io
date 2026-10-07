@@ -267,10 +267,11 @@ class Archive {
     fs.promises.appendFile(this.p('audit.log'), line).catch((e) => console.error('audit failed', e));
   }
 
-  async readAudit({ docId, limit = 300 } = {}) {
+  /** Every record of the audit trail, oldest first. */
+  async allAudit() {
     try {
       const raw = await fs.promises.readFile(this.p('audit.log'), 'utf8');
-      let rows = raw
+      return raw
         .split('\n')
         .filter(Boolean)
         .map((l) => {
@@ -281,11 +282,15 @@ class Archive {
           }
         })
         .filter(Boolean);
-      if (docId) rows = rows.filter((r) => r.docId === docId);
-      return rows.slice(-limit).reverse();
     } catch (_) {
       return [];
     }
+  }
+
+  async readAudit({ docId, limit = 300 } = {}) {
+    let rows = await this.allAudit();
+    if (docId) rows = rows.filter((r) => r.docId === docId);
+    return rows.slice(-limit).reverse();
   }
 
   // ---------------------------------------------------------------------------

@@ -104,6 +104,30 @@ function reportData(data, { from = '', to = '', today = new Date().toISOString()
   };
 }
 
+// Print styles shared by the reports (A4 landscape, PHARMACOPOLA colours).
+const CSS = `
+    @page { size: A4 landscape; margin: 14mm 12mm; }
+    body { font-family: "Segoe UI", Calibri, Arial, sans-serif; color: #14202b; font-size: 9pt; }
+    h1 { color: #003a5b; font-size: 18pt; margin: 0 0 4px; }
+    h2 { color: #003a5b; font-size: 12pt; margin: 18px 0 6px; border-bottom: 2px solid #00a78f; padding-bottom: 2px; }
+    h2 .n { color: #5b6e7a; font-weight: normal; font-size: 10pt; }
+    h2 { break-after: avoid; page-break-after: avoid; }
+    td.nw { white-space: nowrap; }
+    thead { display: table-header-group; }
+    .meta { color: #5b6e7a; margin-bottom: 10px; }
+    table { border-collapse: collapse; width: 100%; page-break-inside: auto; }
+    tr { page-break-inside: avoid; }
+    th { background: #003a5b; color: #fff; text-align: left; padding: 4px 5px; font-weight: 600; }
+    td { border-bottom: 1px solid #d3dee3; padding: 3px 5px; vertical-align: top; }
+    tbody tr:nth-child(even) td { background: #f4f7f8; }
+    .summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin: 10px 0; }
+    .summary div { border: 1px solid #d3dee3; border-radius: 6px; padding: 6px 8px; }
+    .summary b { display: block; font-size: 14pt; color: #003a5b; }
+    .none { color: #5b6e7a; font-style: italic; }
+    .note { color: #5b6e7a; font-size: 8pt; margin-top: 16px; }
+    section { page-break-inside: auto; }
+`;
+
 function esc(s) {
   return String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
@@ -149,26 +173,7 @@ function reportHtml(r, L) {
       : `<p class="none">${esc(L.none)}</p>`
   }</section>`;
   return `<!doctype html><html lang="${L.lang}"><head><meta charset="utf-8"><title>${esc(L.title)}</title><style>
-    @page { size: A4 landscape; margin: 14mm 12mm; }
-    body { font-family: "Segoe UI", Calibri, Arial, sans-serif; color: #14202b; font-size: 9pt; }
-    h1 { color: #003a5b; font-size: 18pt; margin: 0 0 4px; }
-    h2 { color: #003a5b; font-size: 12pt; margin: 18px 0 6px; border-bottom: 2px solid #00a78f; padding-bottom: 2px; }
-    h2 .n { color: #5b6e7a; font-weight: normal; font-size: 10pt; }
-    h2 { break-after: avoid; page-break-after: avoid; }
-    td.nw { white-space: nowrap; }
-    thead { display: table-header-group; }
-    .meta { color: #5b6e7a; margin-bottom: 10px; }
-    table { border-collapse: collapse; width: 100%; page-break-inside: auto; }
-    tr { page-break-inside: avoid; }
-    th { background: #003a5b; color: #fff; text-align: left; padding: 4px 5px; font-weight: 600; }
-    td { border-bottom: 1px solid #d3dee3; padding: 3px 5px; vertical-align: top; }
-    tbody tr:nth-child(even) td { background: #f4f7f8; }
-    .summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin: 10px 0; }
-    .summary div { border: 1px solid #d3dee3; border-radius: 6px; padding: 6px 8px; }
-    .summary b { display: block; font-size: 14pt; color: #003a5b; }
-    .none { color: #5b6e7a; font-style: italic; }
-    .note { color: #5b6e7a; font-size: 8pt; margin-top: 16px; }
-    section { page-break-inside: auto; }
+${CSS}
   </style></head><body>
   <h1>${esc(L.title)}</h1>
   <div class="meta">${esc(r.org)} · ${esc(period)} · ${esc(L.generated.replace('{date}', fmt(r.today)))}</div>
@@ -215,4 +220,17 @@ function reportSheets(r, L) {
   ];
 }
 
-module.exports = { reportData, reportTables, reportHtml, reportSheets, fmt };
+/**
+ * One table as a printable page, e.g. the filtered audit trail.
+ * { lang, title, subtitle, org, generated, columns: [label], rows: [[text]], footer }
+ */
+function tableHtml({ lang = 'sk', title, subtitle = '', org = '', generated = '', columns, rows, footer = '', empty = '' }) {
+  return `<!doctype html><html lang="${esc(lang)}"><head><meta charset="utf-8"><title>${esc(title)}</title><style>${CSS}</style></head><body>
+  <h1>${esc(title)}</h1>
+  <div class="meta">${[org, subtitle, generated].filter(Boolean).map(esc).join(' · ')}</div>
+  ${rows.length ? `<table><thead><tr>${columns.map((c) => `<th>${esc(c)}</th>`).join('')}</tr></thead><tbody>${rows.map((r) => `<tr>${r.map((v, i) => `<td${i === 0 ? ' class="nw"' : ''}>${esc(v)}</td>`).join('')}</tr>`).join('')}</tbody></table>` : `<p class="none">${esc(empty)}</p>`}
+  ${footer ? `<p class="note">${esc(footer)}</p>` : ''}
+  </body></html>`;
+}
+
+module.exports = { reportData, reportTables, reportHtml, reportSheets, tableHtml, fmt };

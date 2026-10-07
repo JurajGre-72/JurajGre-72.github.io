@@ -276,7 +276,8 @@ export async function render() {
       <div class="btn-row" data-perm="admin"><button class="btn" data-action="newRecoveryCode">${icon('key')}${t('enc.newCode')}</button></div>
       <p class="muted small" data-perm="admin">${t('enc.newCodeHint')}</p>` : ''}
       <h4>${t('set.audit')}</h4>
-      <div class="table-wrap log"><table class="table compact"><tbody>${audit.map(
+      <div class="btn-row" data-perm="editor"><a class="btn btn-sm" href="#/audit">${icon('history')}${t('au.openFull')}</a></div>
+      <div class="table-wrap log"><table class="table compact"><tbody>${audit.slice(0, 30).map(
         (r) => html`<tr><td class="nowrap">${fmtDateTime(r.ts)}</td><td>${r.user}</td><td>${t(`audit.${r.action}`) === `audit.${r.action}` ? r.action : t(`audit.${r.action}`)}</td><td>${r.code || r.targetUser || r.title || ''}</td><td class="small">${auditDetails(r)}</td></tr>`
       )}</tbody></table></div>`
     )}

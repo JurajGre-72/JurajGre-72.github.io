@@ -9,6 +9,7 @@ import { rewriteDialog } from './rewrite.js';
 import { logoPng } from './compose.js';
 import { recordTrainingDialog, confirmReadDialog } from './training.js';
 import { approvalBanner, controlTab, controlActions } from './control.js';
+import { forDocument as auditForDocument } from './audit.js';
 
 const api = window.api;
 let doc = null;
@@ -195,15 +196,15 @@ function textTab() {
   </section>`;
 }
 
-function auditLabel(a) {
+export function auditLabel(a) {
   return t(`audit.${a}`) === `audit.${a}` ? a : t(`audit.${a}`);
 }
 
 async function historyTab() {
   const rows = await api.app.audit({ docId: doc.id });
   if (!rows.length) return html`<p class="muted">${t('none')}</p>`;
-  return html`<section class="panel"><div class="table-wrap"><table class="table">
-    <thead><tr><th>${t('rv.date')}</th><th>${t('rv.by')}</th><th>${t('audit.action')}</th><th>${t('audit.details')}</th></tr></thead>
+  return html`${app.can('editor') ? html`<div class="btn-row"><button class="btn btn-sm" data-action="auditFor">${icon('history')}${t('au.openForDoc')}</button></div>` : ''}<section class="panel"><div class="table-wrap"><table class="table">
+    <thead><tr><th>${t('au.when')}</th><th>${t('au.who')}</th><th>${t('audit.action')}</th><th>${t('audit.details')}</th></tr></thead>
     <tbody>${rows.map(
       (r) => html`<tr><td class="nowrap">${fmtDateTime(r.ts)}</td><td>${r.user}</td><td>${auditLabel(r.action)}</td><td class="small">${auditDetails(r)}</td></tr>`
     )}</tbody></table></div></section>`;
@@ -405,6 +406,7 @@ export const actions = {
     const p = await api.rewrite.exportDocx(doc.id, { original: t('pr.original'), proposed: t('pr.proposed'), reasons: t('rw.reasons'), proposal: t('pr.one'), title: t('pr.docTitle'), logoPng: await logoPng() });
     if (p) toast(t('doc.copySaved', { path: p }), 'good', 6000);
   },
+  auditFor: () => auditForDocument(doc.id),
   async remove() {
     // A document used as a controlled record is withdrawn, not deleted (it stays in the archive).
     const blockers = await api.docs.deletionBlockers(doc.id);
