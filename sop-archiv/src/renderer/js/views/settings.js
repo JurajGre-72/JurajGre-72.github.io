@@ -5,6 +5,7 @@ import { app } from '../app.js';
 import { auditDetails } from './document.js';
 import { showRecoveryCode } from './recovery.js';
 import { cloudNote, confirmLocalFolder } from './cloudnote.js';
+import { auditTable } from './audit.js';
 
 const api = window.api;
 let netLog = [];
@@ -195,6 +196,11 @@ export async function render() {
         ? html`<div class="trash-row" data-perm="admin">${icon('trash')}<span>${trash.count ? t('set.trash', { n: trash.count, size: fmtSize(trash.bytes) }) : t('set.trashEmpty')}</span>
             ${trash.count ? html`<button class="btn btn-sm danger" data-action="emptyTrash">${t('set.trashEmptyBtn')}</button>` : ''}</div>`
         : ''}
+      <div class="export-setting" data-perm="admin">
+        <h4>${t('ex.title')}</h4>
+        <p class="muted small">${t('ex.hint')}</p>
+        <button class="btn" data-action="exportAll">${icon('download')}${t('ex.button')}</button>
+      </div>
       <div class="logo-setting" data-perm="admin">
         <h4>${t('set.logo')}</h4>
         <div class="logo-row">
@@ -571,6 +577,34 @@ export const actions = {
   },
   openUpdate: (el) => api.app.openExternal(el.dataset.url),
   openFolder: () => api.app.openDataDir(),
+  async exportAll() {
+    let opts = null;
+    const r = await openModal({
+      title: t('ex.title'),
+      body: html`<form class="ex-form">
+        <p>${t('ex.intro')}</p>
+        <label class="check"><input type="checkbox" name="includeOld" checked> ${t('ex.old')}</label>
+        <label class="check"><input type="checkbox" name="includeObsolete" checked> ${t('ex.obsolete')}</label>
+        <div class="note note-warn">${icon('alert')}<div>${t('ex.warn')}</div></div>
+      </form>`,
+      buttons: [
+        { label: t('cancel'), value: null },
+        {
+          label: t('ex.go'),
+          kind: 'primary',
+          value: 'ok',
+          onClick: (el) => {
+            opts = { includeOld: el.querySelector('[name=includeOld]').checked, includeObsolete: el.querySelector('[name=includeObsolete]').checked };
+            return true;
+          }
+        }
+      ]
+    });
+    if (r !== 'ok') return;
+    toast(t('ex.working'), 'info');
+    const dir = await api.archive.exportAll({ ...opts, audit: await auditTable() });
+    if (dir) toast(t('ex.done', { path: dir }), 'good', 8000);
+  },
   async emptyTrash() {
     if (!(await confirmDialog(t('set.trashConfirm', { n: trash.count }), { okLabel: t('doc.deleteNext'), danger: true }))) return;
     if (!(await confirmDialog(t('set.trashFinal'), { okLabel: t('set.trashYes'), danger: true }))) return;

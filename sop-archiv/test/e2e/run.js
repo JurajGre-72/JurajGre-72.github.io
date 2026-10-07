@@ -885,6 +885,33 @@ async function main() {
     assert.equal(auExp.filter.docId, qa1.id, 'the export and its filter are themselves in the audit trail');
     console.log('  ✓ audit trail: filtered by document and changes only, exported to PDF and Excel with the filter printed');
 
+    // ---- Readable export of the whole archive (for an audit; opens without the app) ----
+    const exportParent = path.join(tmp, 'pre-audit');
+    fs.mkdirSync(exportParent);
+    await app.evaluate(({ dialog, shell }, p) => {
+      dialog.showOpenDialog = async () => ({ canceled: false, filePaths: [p] });
+      shell.openPath = async () => '';
+    }, exportParent);
+    await page.evaluate(() => (location.hash = '#/settings'));
+    await clearToasts(page);
+    await page.click('button[data-action="exportAll"]');
+    await page.waitForSelector('.modal .ex-form');
+    await page.click('.modal-foot .btn-primary');
+    await page.waitForSelector('.toast:has-text("Export je hotový")', { timeout: 120000 });
+    const [expDir] = fs.readdirSync(exportParent).map((d) => path.join(exportParent, d));
+    const expFiles = [];
+    (function walk(d) {
+      for (const e of fs.readdirSync(d, { withFileTypes: true })) e.isDirectory() ? walk(path.join(d, e.name)) : expFiles.push(path.relative(expDir, path.join(d, e.name)));
+    })(expDir);
+    for (const f of ['ČÍTAJ MA.txt', 'Register dokumentov.xlsx', 'Správa o dokumentácii.pdf', 'Správa o dokumentácii.xlsx', 'Auditný záznam.xlsx']) assert.ok(expFiles.includes(f), `export contains ${f}`);
+    const expDocs = expFiles.filter((f) => f.startsWith('Dokumenty'));
+    assert.ok(expDocs.length >= 6, `document files exported (${expDocs.length})`);
+    const expQa = expDocs.find((f) => /SOP-QA-001/.test(f) && !/\(stará\)/.test(f));
+    assert.ok(expQa, 'the valid version of SOP-QA-001 is there');
+    const auditX = (await readPdf(path.join(expDir, 'Auditný záznam.xlsx'))).pages.map((p) => p.text).join('\n');
+    assert.match(auditX, /Dokument odstránený/, 'the whole audit trail, in words');
+    console.log('  ✓ readable export: every document as an ordinary file, register, report and the audit trail – for an auditor, without the app');
+
     assert.ok(!fs.existsSync(path.join(tmp, 'archive', 'branding', 'logo.svg')));
     console.log('  ✓ company logo: another one can be chosen, and back to the PHARMACOPOLA logo');
 

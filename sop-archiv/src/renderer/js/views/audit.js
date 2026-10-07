@@ -79,15 +79,24 @@ function filterText() {
   return parts.length ? parts.join(' · ') : t('au.noFilter');
 }
 
+const plain = (v) => {
+  const div = document.createElement('div');
+  div.innerHTML = String(v);
+  return div.textContent.replace(/\s+/g, ' ').trim();
+};
+const formatRows = (list) => list.map((r) => [fmtDateTime(r.ts), [r.user, r.host].filter(Boolean).join(' / '), plain(auditLabel(r.action)), r.docId ? r.code || docLabel(r.docId) : '', plain(auditDetails(r))]);
+
+/** The whole audit trail as text columns (for the readable export of the archive). */
+export async function auditTable() {
+  docs = await api.docs.list().catch(() => []);
+  const all = await api.audit.query({ limit: 0 });
+  return { columns: [t('au.when'), t('au.who'), t('audit.action'), t('au.doc'), t('audit.details')], rows: formatRows(all.rows) };
+}
+
 async function exportAs(format) {
   // All matching records (not only those on the screen), formatted as on the screen.
   const all = await api.audit.query({ ...filters(), limit: 0 });
-  const plain = (v) => {
-    const div = document.createElement('div');
-    div.innerHTML = String(v);
-    return div.textContent.replace(/\s+/g, ' ').trim();
-  };
-  const rows = all.rows.map((r) => [fmtDateTime(r.ts), [r.user, r.host].filter(Boolean).join(' / '), plain(auditLabel(r.action)), r.docId ? r.code || docLabel(r.docId) : '', plain(auditDetails(r))]);
+  const rows = formatRows(all.rows);
   try {
     const file = await api.audit.export({
       format,

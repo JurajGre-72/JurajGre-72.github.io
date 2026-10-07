@@ -24,6 +24,7 @@ const report = require('./lib/report');
 const { buildXlsx } = require('./lib/xlsx');
 const reportLabels = require('./report-labels');
 const { queryAudit } = require('./lib/auditquery');
+const { exportArchive } = require('./export');
 const { SUPPORTED, extractFile } = require('./lib/extract');
 const { today } = require('./lib/dates');
 const { hasRole, ROLES, validPassword } = require('./lib/auth');
@@ -303,6 +304,12 @@ function afterUnlock() {
       if (!process.env.SOP_ARCHIV_NO_TIMERS) setTimeout(() => autoNoticesCheck(), 10000);
     })
     .catch((e) => console.error('index build failed', e));
+}
+
+/** An export inside the archive folder would be encrypted-archive data next to readable copies: refused. */
+function backupInsideArchive(dir) {
+  const rel = path.relative(path.resolve(archive.dir), path.resolve(dir));
+  return rel === '' || (!rel.startsWith('..') && !path.isAbsolute(rel));
 }
 
 const reportPages = new Map();
@@ -982,6 +989,39 @@ function registerIpc() {
   });
   handle('app:networkLog', () => readNetLog());
   handle('app:audit', (opts) => archive.readAudit(opts || {}));
+  // Readable export of everything (for an audit, or to never be locked in): ordinary, unencrypted files.
+  handle(
+    'archive:exportAll',
+    async ({ includeOld = true, includeObsolete = true, audit } = {}) => {
+      const r = await dialog.showOpenDialog(mainWindow, { title: tr('dlg.exportTitle'), properties: ['openDirectory', 'createDirectory'] });
+      if (r.canceled || !r.filePaths[0]) return null;
+      let dest = path.join(r.filePaths[0], `SOP-Archiv-export-${today()}`);
+      for (let i = 2; fs.existsSync(dest); i++) dest = path.join(r.filePaths[0], `SOP-Archiv-export-${today()}-${i}`);
+      if (backupInsideArchive(dest)) throw new UserError(tr('err.EXPORT_INSIDE_ARCHIVE'));
+      const L = reportLabels(lang());
+      const types = archive.data.settings.docTypes || [];
+      const res = await exportArchive(archive, dest, {
+        includeOld: !!includeOld,
+        includeObsolete: !!includeObsolete,
+        lang: lang(),
+        user: session.name,
+        version: app.getVersion(),
+        labels: L,
+        typeLabel: (id) => {
+          const t = types.find((x) => x.id === id);
+          return t ? (lang() === 'en' ? t.en : t.sk) || id : id || '';
+        },
+        notices: archive.listNotices().items,
+        audit: audit && Array.isArray(audit.rows) ? { columns: (audit.columns || []).slice(0, 12), rows: audit.rows } : null,
+        printPdf: (h) => printReport(h, { org: archive.data.org || '', title: L.title })
+      });
+      archive.audit('archive.exported', { dir: dest, docs: res.docs, files: res.files, includeOld: !!includeOld, includeObsolete: !!includeObsolete });
+      shell.openPath(dest);
+      return dest;
+    },
+    { perm: 'admin' }
+  );
+
   // The audit trail with filters, and its export for an inspector (exactly what the filter shows).
   handle('audit:query', async (f) => queryAudit(await archive.allAudit(), f || {}), { perm: 'editor' });
   handle(
