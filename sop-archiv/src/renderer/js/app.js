@@ -17,6 +17,7 @@ import * as compose from './views/compose.js';
 import * as trainingView from './views/training.js';
 import * as noticesView from './views/notices.js';
 import * as auditView from './views/audit.js';
+import * as helpView from './views/help.js';
 import { inspectionReportDialog } from './views/report.js';
 
 const api = window.api;
@@ -145,6 +146,8 @@ function viewFor(route) {
       return noticesView;
     case 'audit':
       return app.can('editor') ? auditView : dashboard;
+    case 'help':
+      return helpView;
     default:
       return dashboard;
   }
@@ -202,6 +205,7 @@ async function renderSidebar() {
     </div>
     ${app.info.readOnly ? html`<div class="side-flag warn">${icon('lock')}${t('ro.short')}</div>` : ''}
     <div id="side-presence"></div>
+    <a class="side-flag side-help" href="#/help">${icon('info')}${t('help.link')}</a>
     ${s.offline ? html`<div class="side-flag">${icon('wifiOff')}${t('side.offline')}</div>` : html`<div class="side-flag">${icon('lock')}${t('side.local')}</div>`}
     <div class="side-ver">v${app.info.version}</div>`);
   document.getElementById('side-org').textContent = app.info.archiveSettings.org || t('tagline');

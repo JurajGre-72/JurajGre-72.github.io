@@ -91,7 +91,18 @@ function field(instr) {
  * doc: { org, typeLabel, code, title, version, effectiveDate, department, preparedBy, approvedBy, draft }
  * sections: [{ heading, text }]   logoPng: PNG image (Buffer) or null
  */
-async function buildDocx({ doc = {}, sections = [], logoPng = null, lang = 'sk' }) {
+/** A section's table: { columns: [label], widths: [twips], rows: [[text]] } (header row shaded and repeated on each page). */
+function dataTable(tb, scale = 1) {
+  const widths = tb.widths.map((w) => Math.round(w * scale));
+  const head = `<w:tr><w:trPr><w:tblHeader/></w:trPr>${tb.columns.map((c, i) => cell(para(c, { style: 'Small', bold: true }), { width: widths[i], shade: 'EAF0F3' })).join('')}</w:tr>`;
+  const grid = widths.map((w) => `<w:gridCol w:w="${w}"/>`).join('');
+  const tblPr = '<w:tblPr><w:tblStyle w:val="TableGrid"/><w:tblW w:w="0" w:type="auto"/><w:tblLook w:val="04A0" w:firstRow="1" w:lastRow="0" w:firstColumn="1" w:lastColumn="0" w:noHBand="0" w:noVBand="1"/></w:tblPr>';
+  const rows = tb.rows.map((r) => `<w:tr><w:trPr><w:cantSplit/></w:trPr>${r.map((v, i) => cell(String(v ?? '').split('\n').map((l) => para(l, { style: 'Small' })).join(''), { width: widths[i], vAlign: 'top' })).join('')}</w:tr>`).join('');
+  return `<w:tbl>${tblPr}<w:tblGrid>${grid}</w:tblGrid>${head}${rows}</w:tbl><w:p/>`;
+}
+
+/** landscape: wide tables (the page is turned; table widths given for portrait are scaled). */
+async function buildDocx({ doc = {}, sections = [], logoPng = null, lang = 'sk', landscape = false }) {
   const t = L[lang] || L.sk;
   const logo = pngSize(logoPng);
   const zip = new JSZip();
@@ -171,11 +182,11 @@ async function buildDocx({ doc = {}, sections = [], logoPng = null, lang = 'sk' 
     '<w:p/>',
     sign,
     '<w:p/>',
-    ...sections.map((s) => para(s.heading, { style: 'Heading1' }) + bodyParagraphs(s.text))
+    ...sections.map((s) => para(s.heading, { style: 'Heading1', keepNext: true }) + bodyParagraphs(s.text) + (s.table ? dataTable(s.table, landscape ? 14570 / 9638 : 1) : ''))
   ].join('');
   zip.file(
     'word/document.xml',
-    `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="${W}" xmlns:r="${R}"><w:body>${body}<w:sectPr><w:headerReference w:type="default" r:id="rIdH1"/><w:footerReference w:type="default" r:id="rIdF1"/><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1134" w:right="1134" w:bottom="1134" w:left="1134" w:header="567" w:footer="567" w:gutter="0"/></w:sectPr></w:body></w:document>`
+    `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="${W}" xmlns:r="${R}"><w:body>${body}<w:sectPr><w:headerReference w:type="default" r:id="rIdH1"/><w:footerReference w:type="default" r:id="rIdF1"/>${landscape ? '<w:pgSz w:w="16838" w:h="11906" w:orient="landscape"/>' : '<w:pgSz w:w="11906" w:h="16838"/>'}<w:pgMar w:top="1134" w:right="1134" w:bottom="1134" w:left="1134" w:header="567" w:footer="567" w:gutter="0"/></w:sectPr></w:body></w:document>`
   );
   zip.file(
     'word/_rels/document.xml.rels',

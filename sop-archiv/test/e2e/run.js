@@ -913,6 +913,27 @@ async function main() {
     assert.match(auditX, /Dokument odstránený/, 'the whole audit trail, in words');
     console.log('  ✓ readable export: every document as an ordinary file, register, report and the audit trail – for an auditor, without the app');
 
+    // ---- Help: the SOP for using the app – read in the app, saved as Word, added to the archive as a draft ----
+    await page.click('a.side-help');
+    await page.waitForSelector('.sop-doc h2:has-text("Používanie aplikácie SOP Archív")');
+    assert.ok((await page.$$('.sop-doc mark')).length > 5, 'the places the company fills in are highlighted');
+    await shot(page, '29-help-sop');
+    const sopFile = path.join(OUT, 'SOP-SA-01 Používanie aplikácie SOP Archív.docx');
+    await app.evaluate(({ dialog }, p) => {
+      dialog.showSaveDialog = async () => ({ canceled: false, filePath: p });
+    }, sopFile);
+    await clearToasts(page);
+    await page.click('.help button[data-action="saveWord"]');
+    await page.waitForSelector('.toast:has-text("SOP-SA-01")');
+    const sopText = (await readPdf(sopFile)).pages.map((p) => p.text).join('\n');
+    assert.match(sopText, /Používanie aplikácie SOP Archív na riadenie dokumentácie/);
+    assert.match(sopText, /5\.12 Auditný záznam, inšpekcia a audit/);
+    await page.click('.help button[data-action="addDraft"]');
+    await page.waitForSelector('.page-head:has-text("SOP-SA-01")');
+    const sopDoc = (await page.evaluate(() => window.api.docs.list())).find((d) => d.code === 'SOP-SA-01');
+    assert.equal(sopDoc.status, 'draft', 'added as a draft, to be approved like any SOP');
+    console.log('  ✓ help: the SOP for using the app – shown in the app, saved as Word, added to the archive as a draft');
+
     assert.ok(!fs.existsSync(path.join(tmp, 'archive', 'branding', 'logo.svg')));
     console.log('  ✓ company logo: another one can be chosen, and back to the PHARMACOPOLA logo');
 

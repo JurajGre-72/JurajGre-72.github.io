@@ -23,6 +23,7 @@ const CHANNELS = {
   notices: ['list', 'counts', 'check', 'seen', 'handle', 'reopen', 'open'],
   report: ['inspection'],
   audit: ['query', 'export', 'integrity'],
+  help: ['sop', 'saveSop', 'importSop'],
   training: ['overview', 'person', 'doc', 'mine', 'record', 'remove', 'confirm', 'exportCsv'],
   decisions: ['list', 'add', 'remove'],
   ai: ['test', 'models', 'download', 'cancelDownload', 'removeModel', 'addModelFile', 'cancel'],

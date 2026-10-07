@@ -12,6 +12,7 @@ const { buildDocx } = require('./lib/docx');
 const { companyContext } = require('./lib/company');
 const { detectCitations } = require('./lib/metadata');
 const { sectionMap } = require('./lib/compliance');
+const appSop = require('./lib/appsop');
 
 function register({ handle, getArchive, ai, aiConfig, send, logNet, lang, tr, UserError, dialog, getWindow }) {
   const jobs = new Map(); // request id -> AbortController
@@ -184,6 +185,39 @@ function register({ handle, getArchive, ai, aiConfig, send, logNet, lang, tr, Us
       return r.filePath;
     },
     { perm: 'editor' }
+  );
+
+  // --- The company's SOP for using this app (Help) -----------------------------------------------
+  handle('help:sop', () => ({ doc: appSop.DOC, sections: appSop.SECTIONS }));
+  const sopDocx = (logoPng) =>
+    docxFor({ logoPng, doc: { ...appSop.DOC, owner: getArchive().user }, sections: appSop.SECTIONS });
+  handle('help:saveSop', async ({ logoPng } = {}) => {
+    const r = await dialog.showSaveDialog(getWindow(), { defaultPath: fileNameFor(appSop.DOC), filters: [{ name: 'Word', extensions: ['docx'] }] });
+    if (r.canceled || !r.filePath) return null;
+    fs.writeFileSync(r.filePath, await sopDocx(logoPng));
+    getArchive().audit('doc.copy-saved', { code: appSop.DOC.code, title: appSop.DOC.title, file: path.basename(r.filePath), draft: true });
+    return r.filePath;
+  });
+  // Into the archive as a draft: it is then completed, reviewed and approved like any other SOP.
+  handle(
+    'help:importSop',
+    async ({ logoPng } = {}) => {
+      const a = getArchive();
+      const d = appSop.DOC;
+      const existing = a.data.docs.find((x) => x.code === d.code && x.status !== 'obsolete');
+      if (existing) return existing;
+      const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'sop-help-'));
+      const file = path.join(dir, fileNameFor(d));
+      try {
+        fs.writeFileSync(file, await sopDocx(logoPng), { mode: 0o600 });
+        const doc = await a.importFile(file, { type: d.type, code: d.code, title: d.title, department: d.department, version: d.version, status: 'draft' });
+        a.audit('doc.created', { docId: doc.id, code: doc.code, title: doc.title, from: 'help' });
+        return doc;
+      } finally {
+        fs.rmSync(dir, { recursive: true, force: true });
+      }
+    },
+    { perm: 'editor', write: true }
   );
 
   // --- Rewriting a passage of an existing document -------------------------------------------------
