@@ -144,8 +144,9 @@ function osUser() {
 let session = null; // { userId, name, role, prefs }
 const failedLogins = new Map(); // userId -> { count, until }
 
+/** The user's own choice, else the company's (chosen when the archive was set up), else this computer's. */
 function lang() {
-  return (session && session.prefs && session.prefs.lang) || settings.lang;
+  return (session && session.prefs && session.prefs.lang) || (session && archive && !archive.locked && archive.data.settings.lang) || settings.lang;
 }
 function theme() {
   return (session && session.prefs && session.prefs.theme) || settings.theme;
@@ -862,6 +863,7 @@ function registerIpc() {
       if (l) {
         full.prefs = { lang: l };
         settings.lang = l;
+        archive.data.settings.lang = l; // the company's language: colleagues see it on any computer
       }
       setSession(full);
       await archive.recordLogin(full.id);

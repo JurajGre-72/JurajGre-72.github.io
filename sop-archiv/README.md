@@ -47,7 +47,7 @@
    * `SOP-Archiv-1.0.0-Setup.exe` – klasická inštalácia (odporúčané; vytvorí odkaz na ploche a v ponuke Štart),
    * `SOP-Archiv-1.0.0-portable.exe` – bez inštalácie, stačí spustiť (napr. z USB).
 3. Inštalátor nie je digitálne podpísaný, preto Windows zobrazí „Systém Windows ochránil váš počítač“ → kliknite **Ďalšie informácie → Spustiť aj tak**.
-4. Pri prvom spustení zvoľte jazyk, meno, organizáciu a priečinok archívu; vytlačte si kód na obnovenie.
+4. Pri prvom spustení zvoľte jazyk, meno, organizáciu a priečinok archívu; vytlačte si kód na obnovenie. Zvolený jazyk je jazykom archívu: kolegovia ho uvidia na každom počítači (aj s anglickým Windows), kým si v nastaveniach nezvolia vlastný.
 5. Ak chcete AI: *Nastavenia → AI asistent → Vstavaná AI* – stiahnite odporúčaný model (niekoľko GB, raz) alebo vyberte súbor modelu z počítača, a kliknite *Vyskúšať model*.
 
 *macOS:* `SOP-Archiv-Mac` (.dmg) – pri prvom otvorení pravým tlačidlom → **Otvoriť**. *Linux:* AppImage.

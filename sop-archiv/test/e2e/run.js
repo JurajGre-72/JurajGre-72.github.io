@@ -197,14 +197,14 @@ async function until(page, fn, what, arg = undefined, timeout = 30000) {
 // What the app itself reported (main process), printed when the test fails.
 const appLog = [];
 
-async function launch(tmp, userdata, host = 'PC-QA') {
+async function launch(tmp, userdata, host = 'PC-QA', locale = 'sk_SK.UTF-8') {
   // SOP_ARCHIV_EXE=path/to/packaged/binary tests a built app instead of the sources.
   const packaged = process.env.SOP_ARCHIV_EXE;
   const app = await electron.launch({
     executablePath: packaged || require('electron'),
     args: packaged ? ['--no-sandbox'] : [ROOT, '--no-sandbox'],
     // Two "computers" on one machine: each has its own name. STRICT_TX: a save outside a write transaction fails the test.
-    env: { ...process.env, SOP_ARCHIV_USERDATA: path.join(tmp, userdata), SOP_ARCHIV_DATA: path.join(tmp, 'archive'), SOP_ARCHIV_NO_TIMERS: '1', SOP_ARCHIV_HOST: host, SOP_ARCHIV_STRICT_TX: '1', LANG: 'sk_SK.UTF-8', LANGUAGE: 'sk' }
+    env: { ...process.env, SOP_ARCHIV_USERDATA: path.join(tmp, userdata), SOP_ARCHIV_DATA: path.join(tmp, 'archive'), SOP_ARCHIV_NO_TIMERS: '1', SOP_ARCHIV_HOST: host, SOP_ARCHIV_STRICT_TX: '1', LANG: locale, LANGUAGE: locale.slice(0, 2) }
   });
   app.process().stderr.on('data', (d) => {
     for (const line of String(d).split('\n')) if (line.trim()) appLog.push(`[${host}] ${line}`);
@@ -988,7 +988,8 @@ async function main() {
 
     // ---- A second computer opens the same archive: both work at the same time ----
     const PETER = { name: 'Peter Novák', password: 'Docasne-heslo-1', next: 'Peter-vlastne-2' };
-    app2 = await launch(tmp, 'userdata-pc2', 'PC-SKLAD');
+    // The warehouse computer has an English system (as on the Windows test machines): the archive is still in Slovak.
+    app2 = await launch(tmp, 'userdata-pc2', 'PC-SKLAD', 'en_US.UTF-8');
     const page2 = await app2.firstWindow();
     watch(page2);
     await page2.setViewportSize({ width: 1360, height: 860 });
@@ -1005,6 +1006,7 @@ async function main() {
     await until(page2, () => window.api.auth.state().then((s) => s.users.some((u) => u.name === 'Peter Novák')), 'PC-SKLAD knows Peter');
     await signOut(page2);
     await signIn(page2, PETER);
+    assert.equal((await page2.evaluate(() => window.api.app.info())).settings.lang, 'sk', 'a new colleague sees the company\'s language, whatever the language of their Windows');
     // Both change the same document at the same moment – different things; nothing is lost.
     const sk2 = byCode['SOP-SK-002'].id;
     await Promise.all([
