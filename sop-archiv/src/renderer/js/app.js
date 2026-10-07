@@ -3,7 +3,7 @@ import { t, setLang, lang } from './i18n.js';
 import { html, icon, errorToast, toast } from './ui.js';
 import { startImport } from './views/importer.js';
 import { lawCheckDialog } from './views/lawcheck.js';
-import { authenticate } from './views/login.js';
+import { authenticate, forcePasswordChange } from './views/login.js';
 import { showRecoveryCode } from './views/recovery.js';
 import * as dashboard from './views/dashboard.js';
 import * as documents from './views/documents.js';
@@ -226,6 +226,12 @@ async function requireSignIn() {
   authEl.hidden = false;
   document.querySelectorAll('.modal-backdrop').forEach((m) => m.remove());
   await authenticate(authEl, app.info);
+  // A password set by an administrator is replaced by the user's own before going on.
+  const st = await api.auth.state();
+  if (st.session && st.session.mustChangePassword && !(await forcePasswordChange(authEl, st.session))) {
+    await app.reloadInfo();
+    return requireSignIn();
+  }
   authEl.hidden = true;
   shellEl.hidden = false;
   await app.reloadInfo();

@@ -33,7 +33,7 @@ const NOTICE_VET = [{ title: 'Oznámenie o stiahnutí veterinárneho lieku FIKTI
 const ROOT = path.join(__dirname, '..', '..');
 const OUT = path.resolve(process.argv[2] || path.join(os.tmpdir(), 'sop-archiv-e2e'));
 const ADMIN = { name: 'Juraj Gregus', password: 'Tajne-heslo-1' };
-const READER = { name: 'Eva Nováková', password: 'citam123' };
+const READER = { name: 'Eva Nováková', password: 'citam123', next: 'vlastne-heslo-7' }; // the administrator sets the first password
 
 // --- Fake Slov-Lex -------------------------------------------------------------
 function lawPage(body, versions, port) {
@@ -209,7 +209,22 @@ async function signIn(page, who) {
   await page.click(`.profile:has-text("${who.name}")`);
   await page.fill('#login-pw', who.password);
   await page.click('#login-form button[type=submit]');
-  await page.waitForSelector('#nav .nav-item');
+  await page.waitForSelector('#nav .nav-item, #pwchange-form');
+  // A password set by the administrator: the user sets their own first (it is also their signature).
+  if (await page.$('#pwchange-form')) {
+    assert.ok(who.next, `${who.name} must set an own password`);
+    await page.fill('#pwchange-form [name=old]', who.password);
+    await page.fill('#pwchange-form [name=pw]', who.password);
+    await page.fill('#pwchange-form [name=pw2]', who.password);
+    await page.click('#pwchange-form button[type=submit]');
+    await page.waitForSelector('#pwchange-err:has-text("iné ako doterajšie")');
+    await page.fill('#pwchange-form [name=pw]', who.next);
+    await page.fill('#pwchange-form [name=pw2]', who.next);
+    await page.click('#pwchange-form button[type=submit]');
+    who.password = who.next;
+    delete who.next;
+    await page.waitForSelector('#nav .nav-item');
+  }
 }
 
 async function signOut(page) {
@@ -745,8 +760,17 @@ async function main() {
     await page.waitForSelector('.table td:has-text("Sklad – vedúci skladu")');
     const { extractFile: readPdf } = require('../../src/main/lib/extract');
     assert.match((await readPdf(copyFile)).pages.map((p) => p.text).join('\n'), /RIADENÁ KÓPIA č\. 1/);
+    // A PDF opened or saved from the archive is marked as an uncontrolled copy on every page.
+    const freeCopy = path.join(tmp, 'neriadena-kopia.pdf');
+    await app.evaluate(({ dialog }, p) => {
+      dialog.showSaveDialog = async () => ({ canceled: false, filePath: p });
+    }, freeCopy);
+    await page.evaluate((id) => window.api.docs.saveCopy(id), scanDoc.id);
+    const freeText = (await readPdf(freeCopy)).pages.map((p) => p.text).join('\n');
+    assert.match(freeText, /NERIADENÁ KÓPIA/);
+    assert.match(freeText, /Platná len v deň tlače/);
     await shot(page, '26-controlled-copy');
-    console.log('  ✓ approval signed with the own password makes the version effective; controlled copy stamped on every page');
+    console.log('  ✓ approval signed with the own password makes the version effective; controlled copy stamped on every page; other copies marked uncontrolled');
     // ---- ŠÚKL / ÚŠKVBL notices: recalls to assess, watched product names ----
     await page.evaluate(() => (location.hash = '#/settings'));
     await page.fill('textarea[name=watchTerms]', 'Imaginex\nIný výrobok');
@@ -812,6 +836,9 @@ async function main() {
     await page.waitForSelector('.toast:has-text("Napíšte dôvod odstránenia")');
     await page.fill('#del-reason', 'Omylom importovaný súbor.');
     await page.click('.modal-foot .btn-danger');
+    // Second step: a separate confirmation; "Cancel" there keeps the document.
+    await page.waitForSelector('.modal:has-text("Posledné potvrdenie")');
+    await page.click('.modal-foot .btn-danger');
     await until(page, (id) => window.api.docs.list().then((l) => !l.some((d) => d.id === id)), 'document deleted', pp07.id);
     const delAudit = (await page.evaluate(() => window.api.app.audit({ limit: 30 }))).find((x) => x.action === 'doc.deleted');
     assert.equal(delAudit.reason, 'Omylom importovaný súbor.');
@@ -825,6 +852,8 @@ async function main() {
     await page.evaluate(() => (location.hash = '#/settings'));
     await page.waitForSelector('.trash-row:has-text("1 odstránených")');
     await page.click('.trash-row button[data-action="emptyTrash"]');
+    await page.click('.modal-foot .btn-danger');
+    await page.waitForSelector('.modal:has-text("Posledné potvrdenie")');
     await page.click('.modal-foot .btn-danger');
     await page.waitForSelector('.trash-row:has-text("Kôš je prázdny")');
     assert.deepEqual(fs.readdirSync(path.join(tmp, 'archive', 'trash')), []);

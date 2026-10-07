@@ -51,6 +51,8 @@ const STR = {
     'err.LOCKED': 'Archív je zamknutý – prihláste sa.',
     'err.REASON_REQUIRED': 'Uveďte dôvod – pri inšpekcii ho budete potrebovať.',
     'err.OUTCOME_REQUIRED': 'Vyberte výsledok posúdenia.',
+    'err.mustChangePassword': 'Najprv si nastavte vlastné heslo.',
+    'err.samePassword': 'Nové heslo musí byť iné ako doterajšie.',
     'err.DOC_HAS_RECORDS': 'Dokument má záznamy (schválenie, kópie, školenia, revízie alebo posúdenia), preto sa nedá odstrániť. Označte ho ako neplatný – zostane v archíve.',
     'err.NOTE_REQUIRED': 'Opíšte vykonané opatrenia (napr. zablokované šarže, informovaní odberatelia).',
     'err.NOT_FOUND': 'Záznam sa nenašiel – možno ho medzitým niekto zmenil.',
@@ -83,7 +85,12 @@ const STR = {
     'stamp.title': 'RIADENÁ KÓPIA č. {no}',
     'stamp.to': 'Vydané pre: {to}',
     'stamp.version': 'Verzia {v} · vydané {date}',
-    'stamp.back': 'Pri novej verzii kópiu vráťte.'
+    'stamp.back': 'Pri novej verzii kópiu vráťte.',
+    'stamp.uncontrolled': 'NERIADENÁ KÓPIA',
+    'stamp.validOn': 'Platná len v deň tlače: {date}',
+    'stamp.superseded': 'NEPLATNÁ (STARŠIA) VERZIA – len na nahliadnutie',
+    'stamp.obsolete': 'ZRUŠENÝ DOKUMENT – neplatí',
+    'stamp.draft': 'NÁVRH – neschválený dokument'
   },
   en: {
     'tray.open': 'Open SOP Archive',
@@ -134,6 +141,8 @@ const STR = {
     'err.LOCKED': 'The archive is locked – please sign in.',
     'err.REASON_REQUIRED': 'Please give a reason – an inspector will ask for it.',
     'err.OUTCOME_REQUIRED': 'Choose the outcome of the assessment.',
+    'err.mustChangePassword': 'Please set your own password first.',
+    'err.samePassword': 'The new password must be different from the current one.',
     'err.DOC_HAS_RECORDS': 'The document has records (approval, copies, training, reviews or assessments), so it cannot be deleted. Mark it as obsolete – it stays in the archive.',
     'err.NOTE_REQUIRED': 'Describe the measures taken (e.g. batches blocked, customers informed).',
     'err.NOT_FOUND': 'The record was not found – someone may have changed it meanwhile.',
@@ -166,7 +175,12 @@ const STR = {
     'stamp.title': 'CONTROLLED COPY No. {no}',
     'stamp.to': 'Issued to: {to}',
     'stamp.version': 'Version {v} · issued {date}',
-    'stamp.back': 'Return this copy when a new version is issued.'
+    'stamp.back': 'Return this copy when a new version is issued.',
+    'stamp.uncontrolled': 'UNCONTROLLED COPY',
+    'stamp.validOn': 'Valid only on the day printed: {date}',
+    'stamp.superseded': 'SUPERSEDED VERSION – for reference only',
+    'stamp.obsolete': 'WITHDRAWN DOCUMENT – not valid',
+    'stamp.draft': 'DRAFT – not approved'
   }
 };
 

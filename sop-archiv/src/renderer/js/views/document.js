@@ -429,7 +429,7 @@ export const actions = {
       buttons: [
         { label: t('cancel'), value: null },
         {
-          label: t('delete'),
+          label: t('doc.deleteNext'),
           kind: 'danger',
           value: 'ok',
           onClick: (el) => {
@@ -444,6 +444,8 @@ export const actions = {
       ]
     });
     if (r !== 'ok') return;
+    // Second step: a separate, explicit confirmation.
+    if (!(await confirmDialog(t('doc.deleteFinal', { title: doc.title }), { okLabel: t('doc.deleteYes'), danger: true }))) return;
     await api.docs.delete(doc.id, reason);
     toast(t('doc.deleted'), 'good');
     app.navigate('documents');

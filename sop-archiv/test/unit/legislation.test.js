@@ -645,9 +645,12 @@ test('encryption: nothing readable on disk, locked until sign-in, wrong password
   await e.updateUser(eva.id, { disabled: false });
   assert.equal(e.listUsers().find((u) => u.id === eva.id).needsPassword, true);
   await e.setPassword(eva.id, 'nove-citam-123');
+  assert.equal(e.listUsers().find((u) => u.id === eva.id).mustChangePassword, true, 'set by an administrator: changed at the next sign-in');
   const g = new Archive({ dataDir: arch, user: 'pc7' });
   await g.open();
   assert.ok(await g.login(eva.id, 'nove-citam-123'));
+  await g.setPassword(eva.id, 'moje-vlastne-1', { self: true });
+  assert.equal(g.listUsers().find((u) => u.id === eva.id).mustChangePassword, false, 'her own password');
 });
 
 test('encryption: an existing archive is converted in place and everyone keeps their password', async () => {

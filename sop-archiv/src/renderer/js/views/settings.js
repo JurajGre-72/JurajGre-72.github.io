@@ -127,7 +127,7 @@ function usersSection() {
           <td><b>${u.name}</b>${u.id === me.userId ? html` <span class="chip chip-muted">${t('usr.you')}</span>` : ''}</td>
           <td>${t(`role.${u.role}`)}</td>
           <td class="muted small nowrap">${u.lastLoginAt ? fmtDateTime(u.lastLoginAt) : '—'}</td>
-          <td>${u.disabled ? html`<span class="chip chip-muted">${t('usr.disabled')}</span>` : u.needsPassword ? html`<span class="chip chip-warn" title="${t('usr.needsPasswordHint')}">${t('usr.needsPassword')}</span>` : html`<span class="chip chip-good">${t('usr.active')}</span>`}</td>
+          <td>${u.disabled ? html`<span class="chip chip-muted">${t('usr.disabled')}</span>` : u.needsPassword ? html`<span class="chip chip-warn" title="${t('usr.needsPasswordHint')}">${t('usr.needsPassword')}</span>` : html`<span class="chip chip-good">${t('usr.active')}</span>`}${!u.disabled && u.mustChangePassword ? html` <span class="chip chip-info">${t('usr.mustChange')}</span>` : ''}</td>
           <td class="nowrap">
             <button class="btn btn-sm" data-action="editUser" data-id="${u.id}">${icon('edit')}${t('edit')}</button>
             <button class="btn btn-sm" data-action="resetPw" data-id="${u.id}">${icon('key')}${t('usr.resetPw')}</button>
@@ -571,7 +571,8 @@ export const actions = {
   openUpdate: (el) => api.app.openExternal(el.dataset.url),
   openFolder: () => api.app.openDataDir(),
   async emptyTrash() {
-    if (!(await confirmDialog(t('set.trashConfirm', { n: trash.count }), { okLabel: t('set.trashEmptyBtn'), danger: true }))) return;
+    if (!(await confirmDialog(t('set.trashConfirm', { n: trash.count }), { okLabel: t('doc.deleteNext'), danger: true }))) return;
+    if (!(await confirmDialog(t('set.trashFinal'), { okLabel: t('set.trashYes'), danger: true }))) return;
     await api.archive.emptyTrash();
     toast(t('set.trashDone'), 'good');
     app.rerender();

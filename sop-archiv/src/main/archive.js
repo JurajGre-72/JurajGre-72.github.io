@@ -314,11 +314,12 @@ class Archive {
     return n;
   }
 
-  async createUser({ name, role, password }) {
+  /** mustChange: a password set by an administrator is changed by its user at the first sign-in. */
+  async createUser({ name, role, password, mustChange = true }) {
     const n = this._checkName(name);
     if (!ROLES.includes(role)) throw new Error('Invalid role');
     if (!validPassword(password)) throw new Error('PASSWORD_SHORT');
-    const u = { id: id(), name: n, role, createdAt: new Date().toISOString(), createdBy: this.user, disabled: false, prefs: {} };
+    const u = { id: id(), name: n, role, createdAt: new Date().toISOString(), createdBy: this.user, disabled: false, prefs: {}, mustChangePassword: !!mustChange };
     if (this.encrypted) this._setKeyEntry(u, password);
     else Object.assign(u, hashPassword(password));
     this.data.users.push(u);
@@ -372,6 +373,8 @@ class Archive {
       await this._saveKeyring();
       u.passwordChangedAt = new Date().toISOString();
     } else Object.assign(u, hashPassword(password), { passwordChangedAt: new Date().toISOString() });
+    // Set by an administrator: known to two people, so the user replaces it at the next sign-in.
+    u.mustChangePassword = !self;
     await this.save();
     this.audit(self ? 'user.password-changed' : 'user.password-reset', { targetUser: u.name });
   }

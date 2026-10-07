@@ -150,8 +150,16 @@ function theme() {
 const tr = (key, vars) => mainText(lang(), key, vars);
 
 function sessionPublic() {
-  return session ? { userId: session.userId, name: session.name, role: session.role } : null;
+  return session ? { userId: session.userId, name: session.name, role: session.role, mustChangePassword: mustChangePassword() } : null;
 }
+
+/** The signed-in user still has the password an administrator set: only changing it (or signing out) is possible. */
+function mustChangePassword() {
+  if (!session || !archive || archive.locked) return false;
+  const u = archive.data.users.find((x) => x.id === session.userId);
+  return !!(u && u.mustChangePassword);
+}
+const ALLOWED_BEFORE_PASSWORD_CHANGE = new Set(['auth:changePassword', 'auth:logout', 'auth:setPrefs']);
 
 function setSession(u) {
   session = u ? { userId: u.id, name: u.name, role: u.role, prefs: { ...(u.prefs || {}) } } : null;
@@ -320,6 +328,25 @@ async function printReport(htmlText, { org = '', title = '' } = {}) {
   } finally {
     reportPages.delete(token);
     win.destroy();
+  }
+}
+
+/**
+ * A PDF opened or saved from the archive is an uncontrolled copy: every page says so, with the date (a
+ * printout is valid only on that day) and whether the version is not the valid one. The archived original
+ * is not changed; other formats are opened as they are.
+ */
+async function uncontrolledStamp(data, doc, v) {
+  if (!v || !Buffer.isBuffer(data) || data.subarray(0, 5).toString('latin1') !== '%PDF-') return data;
+  const d = new Date();
+  const date = lang() === 'en' ? d.toISOString().slice(0, 10) : `${d.getDate()}. ${d.getMonth() + 1}. ${d.getFullYear()}`;
+  const state = v.id !== doc.currentVersionId ? tr('stamp.superseded') : doc.status === 'obsolete' ? tr('stamp.obsolete') : doc.status === 'draft' ? tr('stamp.draft') : null;
+  try {
+    const { stampPdf } = require('./lib/stamp');
+    return await stampPdf(data, { title: tr('stamp.uncontrolled'), lines: [`${doc.code || ''} v${v.label} – ${doc.title}`.trim().slice(0, 70), tr('stamp.validOn', { date }), ...(state ? [state] : [])], tone: 'uncontrolled' });
+  } catch (e) {
+    console.error('uncontrolled stamp failed', e.message); // e.g. a password-protected PDF: shown as it is
+    return data;
   }
 }
 
@@ -629,6 +656,7 @@ function handle(channel, fn, { perm = 'reader', write = false } = {}) {
     if (perm !== 'public') {
       if (!session) throw new UserError(tr('err.signIn'));
       if (!hasRole(session.role, perm)) throw new UserError(tr('err.permission'));
+      if (!ALLOWED_BEFORE_PASSWORD_CHANGE.has(channel) && mustChangePassword()) throw new UserError(tr('err.mustChangePassword'));
     }
     if (write && archive.readOnly) {
       const ro = readOnlyInfo();
@@ -692,7 +720,7 @@ function registerIpc() {
       if (!needsSetup()) throw new UserError(tr('err.permission'));
       if (!validPassword(password)) throw new UserError(tr('err.PASSWORD_SHORT'));
       const code = await archive.enableEncryption();
-      const u = await archive.createUser({ name, role: 'admin', password });
+      const u = await archive.createUser({ name, role: 'admin', password, mustChange: false });
       archive.data.pendingRecoveryCode = code; // shown right after setup, until the administrator confirms it is kept
       if (org !== undefined) await archive.updateSettings({ org });
       const full = archive.data.users.find((x) => x.id === u.id);
@@ -785,6 +813,7 @@ function registerIpc() {
     'auth:changePassword',
     async (oldPw, newPw) => {
       if (!archive.checkPassword(session.userId, oldPw)) throw new UserError(tr('err.badPassword'));
+      if (oldPw === newPw) throw new UserError(tr('err.samePassword'));
       await archive.setPassword(session.userId, newPw, { self: true });
       return true;
     },
@@ -1026,6 +1055,7 @@ function registerIpc() {
     const content = await archive.versionContent(id, versionId);
     const doc = archive.getDoc(id);
     const v = doc.versions.find((x) => x.id === (versionId || doc.currentVersionId));
+    content.data = await uncontrolledStamp(content.data, doc, v);
     const dir = workDir();
     await fs.promises.mkdir(dir, { recursive: true, mode: 0o700 });
     const prefix = `${(doc.code || 'doc').replace(/[<>:"/\\|?*\s]+/g, '_')}_v${String(v.label).replace(/[^\w.-]+/g, '_')}_`;
@@ -1045,6 +1075,8 @@ function registerIpc() {
   // Stored files are encrypted: "save a copy" writes a readable copy where the user chooses.
   handle('docs:saveCopy', async (id, versionId) => {
     const content = await archive.versionContent(id, versionId);
+    const doc = archive.getDoc(id);
+    content.data = await uncontrolledStamp(content.data, doc, doc.versions.find((x) => x.id === (versionId || doc.currentVersionId)));
     const r = await dialog.showSaveDialog(mainWindow, { defaultPath: content.name });
     if (r.canceled || !r.filePath) return null;
     await fs.promises.writeFile(r.filePath, content.data);

@@ -83,6 +83,46 @@ function recoverHtml(state) {
 }
 
 /**
+ * A password set by an administrator: its user sets their own before going on (it is also their signature).
+ * Resolves true when changed, false when the user signs out instead.
+ */
+export function forcePasswordChange(root, session) {
+  root.innerHTML = String(
+    shell(html`
+    <h2>${t('auth.mustChangeTitle')}</h2>
+    <p class="muted">${t('auth.mustChangeIntro', { name: session.name })}</p>
+    <form id="pwchange-form" class="form-grid" autocomplete="off">
+      <div class="field full"><label>${t('auth.adminPassword')}</label><input type="password" name="old" required></div>
+      <div class="field"><label>${t('usr.newPw')}</label><input type="password" name="pw" required minlength="8"></div>
+      <div class="field"><label>${t('auth.password2')}</label><input type="password" name="pw2" required></div>
+      <div class="field full err small" id="pwchange-err"></div>
+      <div class="field full btn-row"><button type="button" class="btn btn-ghost" id="pwchange-out">${t('auth.signOut')}</button><button class="btn btn-primary" type="submit">${icon('lock')}${t('auth.mustChangeBtn')}</button></div>
+    </form>`)
+  );
+  const first = root.querySelector('[name=old]');
+  if (first) first.focus();
+  return new Promise((resolve) => {
+    root.querySelector('#pwchange-out').onclick = async () => {
+      await api.auth.logout('user').catch(() => {});
+      resolve(false);
+    };
+    root.querySelector('#pwchange-form').onsubmit = async (e) => {
+      e.preventDefault();
+      const v = formValues(e.target);
+      const err = root.querySelector('#pwchange-err');
+      if (v.pw !== v.pw2) return (err.textContent = t('auth.mismatch'));
+      if (v.pw.length < 8) return (err.textContent = t('auth.short'));
+      try {
+        await api.auth.changePassword(v.old, v.pw);
+        resolve(true);
+      } catch (ex) {
+        err.textContent = String(ex.message || ex).replace(/^Error invoking remote method '[^']+': (Error: )?/, '');
+      }
+    };
+  });
+}
+
+/**
  * Show sign-in (or first-time setup) and resolve once a user is signed in.
  */
 export async function authenticate(root, info) {
