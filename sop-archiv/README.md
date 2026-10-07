@@ -67,8 +67,8 @@ Automatická kontrola: predvolene raz týždenne (dá sa vypnúť alebo zmeniť)
 * **OCR naskenovaných PDF** závisí od kvality skenu; pri zlom skene odporúčame archivovať aj textovú verziu (Word / PDF z Wordu).
 * **Kontrola legislatívy závisí od štruktúry stránok Slov-Lex a EUR-Lex** (overené na živých portáloch, ale portály sa môžu zmeniť). Ak niektorý predpis v registri hlási chybu, otvorte zdroj tlačidlom ↗ a prípadne upravte adresu, alebo predpis importujte ako stiahnutý súbor.
 * **Kontrola voči predpisu je pomôcka, nie právny výklad.** Rozdiely v číslach a lehotách hľadá v pasážach, ktoré citujú konkrétny §; ak SOP cituje predpis bez čísla paragrafu, zobrazí sa len ako „cituje predpis“. Obsahovú súvislosť určuje podľa spoločných odborných pojmov.
-* Na sieťovom disku môže archív v jednej chvíli **upravovať len jeden počítač** (ostatní len čítajú).
-* **GDP / validácia:** ak bude aplikácia slúžiť ako systém riadenia dokumentácie v rámci SDP, pred použitím ju zahrňte do validácie počítačových systémov podľa vášho systému kvality (Usmernenia SDP, kap. 3.5). Má profily s heslami, roly a auditný záznam; nemá kvalifikované elektronické podpisy.
+* Na sieťovom disku môže s archívom pracovať naraz viac počítačov; ak dvaja v tej istej chvíli ukladajú, druhý počká niekoľko sekúnd. Údaje toho istého dokumentu z rovnakého stavu neprepíšu – aplikácia ohlási, kto ich medzitým zmenil.
+* **GDP / validácia:** ak bude aplikácia slúžiť ako systém riadenia dokumentácie v rámci SDP, pred použitím ju zahrňte do validácie počítačových systémov podľa vášho systému kvality (Usmernenia SDP 2013/C 343/01, kap. 3.3.1 Počítačové systémy). Má profily s heslami, roly a auditný záznam; nemá kvalifikované elektronické podpisy.
 * Výstup AI je vždy iba **návrh** – overte ho v plnom znení predpisu. Za obsah dokumentu zodpovedá autor a schvaľovateľ. Kvalita textu závisí od modelu a od toho, ako podrobne opíšete svoj postup; na bežnom notebooku bez grafickej karty trvá napísanie celej SOP aj niekoľko minút.
 
 ---
@@ -105,7 +105,7 @@ Download **SOP-Archiv-Windows** from *Actions → SOP Archiv → latest run → 
 
 ### Limitations
 
-OCR quality depends on the scan. Legislation parsing depends on the structure of Slov-Lex / EUR-Lex pages (verified on the live portals, but they may change) – check the register, or import downloaded files. AI drafts depend on the model and on how well the process is described; the author and approver remain responsible for the content. The check against an act is an aid, not a legal interpretation. On a shared drive only one computer edits at a time. If used as a GDP-relevant system, validate it under your QMS (GDP Guidelines ch. 3.5). AI output is a suggestion only.
+OCR quality depends on the scan. Legislation parsing depends on the structure of Slov-Lex / EUR-Lex pages (verified on the live portals, but they may change) – check the register, or import downloaded files. AI drafts depend on the model and on how well the process is described; the author and approver remain responsible for the content. The check against an act is an aid, not a legal interpretation. If used as a GDP-relevant system, validate it under your QMS (GDP Guidelines 2013/C 343/01, ch. 3.3.1 Computerised systems). AI output is a suggestion only.
 
 ---
 

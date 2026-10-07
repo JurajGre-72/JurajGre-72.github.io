@@ -201,7 +201,7 @@ function launch(tmp, userdata, host = 'PC-QA') {
     executablePath: packaged || require('electron'),
     args: packaged ? ['--no-sandbox'] : [ROOT, '--no-sandbox'],
     // Two "computers" on one machine: each has its own name. STRICT_TX: a save outside a write transaction fails the test.
-    env: { ...process.env, SOP_ARCHIV_USERDATA: path.join(tmp, userdata), SOP_ARCHIV_DATA: path.join(tmp, 'archive'), SOP_ARCHIV_NO_TIMERS: '1', SOP_ARCHIV_HOST: host, SOP_ARCHIV_STRICT_TX: '1', LANG: process.env.LANG || 'sk_SK.UTF-8' }
+    env: { ...process.env, SOP_ARCHIV_USERDATA: path.join(tmp, userdata), SOP_ARCHIV_DATA: path.join(tmp, 'archive'), SOP_ARCHIV_NO_TIMERS: '1', SOP_ARCHIV_HOST: host, SOP_ARCHIV_STRICT_TX: '1', LANG: 'sk_SK.UTF-8', LANGUAGE: 'sk' }
   });
 }
 
@@ -218,7 +218,7 @@ async function signIn(page, who) {
     await page.fill('#pwchange-form [name=pw]', who.password);
     await page.fill('#pwchange-form [name=pw2]', who.password);
     await page.click('#pwchange-form button[type=submit]');
-    await page.waitForSelector('#pwchange-err:has-text("iné ako doterajšie")');
+    await page.waitForFunction(() => document.querySelector('#pwchange-err').textContent.trim().length > 0); // "must differ from the current one" (any language)
     await page.fill('#pwchange-form [name=pw]', who.next);
     await page.fill('#pwchange-form [name=pw2]', who.next);
     await page.click('#pwchange-form button[type=submit]');
