@@ -159,6 +159,14 @@ function initials(name) {
     .join('');
 }
 
+/** Colleagues working with the archive on other computers right now. */
+async function renderPresence() {
+  const el = document.getElementById('side-presence');
+  if (!el) return;
+  const others = await api.app.presence().catch(() => []);
+  el.innerHTML = others.length ? String(html`<div class="side-flag presence" title="${others.map((o) => `${o.name} (${o.host})`).join(', ')}">${icon('users')}${t('side.alsoWorking', { names: others.map((o) => o.name).join(', ') })}</div>`) : '';
+}
+
 async function renderSidebar() {
   const nav = document.getElementById('nav');
   if (!nav || !app.info || !app.info.session) return;
@@ -193,9 +201,11 @@ async function renderSidebar() {
       <button class="icon-btn side-btn" id="sign-out" title="${t('auth.signOut')}" aria-label="${t('auth.signOut')}">${icon('logout')}</button>
     </div>
     ${app.info.readOnly ? html`<div class="side-flag warn">${icon('lock')}${t('ro.short')}</div>` : ''}
+    <div id="side-presence"></div>
     ${s.offline ? html`<div class="side-flag">${icon('wifiOff')}${t('side.offline')}</div>` : html`<div class="side-flag">${icon('lock')}${t('side.local')}</div>`}
     <div class="side-ver">v${app.info.version}</div>`);
   document.getElementById('side-org').textContent = app.info.archiveSettings.org || t('tagline');
+  renderPresence();
   document.getElementById('brand-name').textContent = t('appName');
 }
 
@@ -364,6 +374,13 @@ function bindGlobalEvents() {
     renderSidebar();
     if (app.view && app.view.onDataChanged) app.view.onDataChanged();
   });
+  // A colleague is saving on another computer: this computer's change waits a moment.
+  let waitToast = null;
+  api.on('lock:waiting', (holder) => {
+    if (waitToast) waitToast.remove();
+    waitToast = holder ? toast(t('lock.waiting', { user: holder.user || '?', host: holder.host || '?' }), 'info', 120000) : null;
+  });
+  setInterval(() => app.info && app.info.session && renderPresence(), 20000);
   api.on('lock:changed', async () => {
     await app.reloadInfo();
     renderSidebar();

@@ -7,6 +7,7 @@
 
 const { app, BrowserWindow, ipcMain, dialog, shell, protocol, net, session: electronSession, Notification, Tray, Menu, nativeImage, safeStorage } = require('electron');
 const crypto = require('crypto');
+const { AsyncLocalStorage } = require('async_hooks');
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
@@ -170,6 +171,8 @@ function setSession(u) {
     archive.userId = session ? session.userId : null;
   }
   if (lock) lock.setUser(session ? session.name : osUser());
+  if (session) writePresence();
+  else clearPresence();
   buildMenu();
   refreshTrayMenu();
 }
@@ -226,6 +229,72 @@ let mainWindow = null;
 let tray = null;
 let quitting = false;
 
+/** This computer's name (the tests run two "computers" on one machine). */
+function hostName() {
+  return process.env.SOP_ARCHIV_HOST || os.hostname();
+}
+
+/** Can this computer write to the archive folder at all (permissions of a network share)? */
+function folderWritable(dir) {
+  const probe = path.join(dir, `.write-test-${process.pid}`);
+  try {
+    fs.writeFileSync(probe, '');
+    fs.unlinkSync(probe);
+    return true;
+  } catch (_) {
+    return false;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Several computers, one archive: every change is a short write transaction.
+//   take the folder's lock (waiting while another computer saves) → read what others saved since →
+//   change → save → release. Requests of this computer run one after another; a transaction started
+//   inside another one simply joins it.
+const txContext = new AsyncLocalStorage();
+let txChain = Promise.resolve();
+
+function withWrite(fn, { waitMs = 90000 } = {}) {
+  const ctx = txContext.getStore();
+  if (ctx && ctx.active) return fn();
+  const run = async () => {
+    const a = archive;
+    const l = lock;
+    if (!a || !l) return fn();
+    if (a.readOnly) throw new UserError(tr('err.folderReadOnly'));
+    const started = Date.now();
+    let told = false;
+    for (;;) {
+      const got = l.tryAcquire();
+      if (got.ok) break;
+      if (!told && Date.now() - started > 1200) {
+        told = true;
+        send('lock:waiting', got.holder);
+      }
+      if (Date.now() - started > waitMs) {
+        send('lock:waiting', null);
+        throw new UserError(tr('err.busyOther', { user: (got.holder && got.holder.user) || '?', host: (got.holder && got.holder.host) || '?' }));
+      }
+      await new Promise((r) => setTimeout(r, 250));
+    }
+    if (told) send('lock:waiting', null);
+    const me = { active: true };
+    a.inTx = true;
+    try {
+      if (await a.syncFromDisk()) send('data:changed', { what: 'reload' });
+      return await txContext.run(me, fn);
+    } finally {
+      await a.saving;
+      me.active = false;
+      a.inTx = false;
+      l.release();
+    }
+  };
+  const p = txChain.then(run, run);
+  txChain = p.catch(() => {});
+  return p;
+}
+
 function archiveMtime() {
   try {
     return fs.statSync(path.join(archive.dir, 'archive.json')).mtimeMs;
@@ -235,59 +304,103 @@ function archiveMtime() {
 }
 
 function readOnlyInfo() {
-  return archive && archive.readOnly ? { user: (lockHolder && lockHolder.user) || '?', host: (lockHolder && lockHolder.host) || '?', since: lockHolder && lockHolder.since } : null;
+  return archive && archive.readOnly ? { folder: true, user: '', host: hostName() } : null;
 }
 
 function startLockTimers() {
   clearInterval(lockTimer);
   clearInterval(reloadTimer);
+  // The lock is held only during a write transaction; a long one keeps it fresh.
   lockTimer = setInterval(() => {
-    if (!lock || !archive) return;
-    if (lock.owned) {
-      if (!lock.heartbeat()) {
-        // Another computer took over (we were asleep or offline too long): stop writing.
-        archive.readOnly = true;
-        lockHolder = (lock.read() && { host: lock.read().host, user: lock.read().user, since: lock.read().since }) || null;
-        send('lock:changed', readOnlyInfo());
-      }
-    }
-  }, 30000);
-  // In read-only mode, pick up changes saved by the other computer.
-  reloadTimer = setInterval(async () => {
-    if (!archive || !archive.readOnly) return;
-    const m = archiveMtime();
-    if (m && m !== lastArchiveMtime) {
-      lastArchiveMtime = m;
-      try {
-        await archive.reload();
-        send('data:changed', { what: 'reload' });
-      } catch (_) {
-        /* file being written: try next time */
-      }
-    }
+    if (lock && lock.owned) lock.heartbeat();
+    writePresence();
   }, 20000);
+  // Changes saved by colleagues on other computers appear within a few seconds.
+  reloadTimer = setInterval(async () => {
+    if (!archive || archive.locked || archive.inTx) return;
+    try {
+      if (await archive.syncFromDisk()) {
+        refreshSessionFromData();
+        send('data:changed', { what: 'reload' });
+      }
+    } catch (_) {
+      /* the file is being written: next time */
+    }
+  }, 4000);
+}
+
+/** A colleague changed this user's profile on another computer: name and role follow. */
+function refreshSessionFromData() {
+  if (!session || !archive || archive.locked) return;
+  const u = archive.data.users.find((x) => x.id === session.userId);
+  if (!u || u.disabled) return;
+  if (u.name !== session.name || u.role !== session.role) {
+    session.name = u.name;
+    session.role = u.role;
+    archive.user = u.name;
+    buildMenu();
+  }
+}
+
+// Who else works with the archive right now (shown in the app): presence/<computer>.json, refreshed every
+// 20 s while someone is signed in, encrypted like the rest of the archive.
+function writePresence() {
+  if (!archive || archive.locked || archive.readOnly || !session) return;
+  const dir = path.join(archive.dir, 'presence');
+  const file = path.join(dir, `${crypto.createHash('sha256').update(hostName()).digest('hex').slice(0, 16)}.json`);
+  const body = JSON.stringify({ name: session.name, host: hostName(), ts: Date.now() });
+  fs.promises
+    .mkdir(dir, { recursive: true })
+    .then(() => fs.promises.writeFile(file, archive.key ? require('./lib/vault').encrypt(archive.key, Buffer.from(body)) : body))
+    .catch(() => {});
+}
+
+function clearPresence() {
+  if (!archive) return;
+  try {
+    fs.unlinkSync(path.join(archive.dir, 'presence', `${crypto.createHash('sha256').update(hostName()).digest('hex').slice(0, 16)}.json`));
+  } catch (_) {
+    /* not there */
+  }
+}
+
+async function othersOnline() {
+  if (!archive || archive.locked) return [];
+  const dir = path.join(archive.dir, 'presence');
+  const out = [];
+  for (const f of await fs.promises.readdir(dir).catch(() => [])) {
+    try {
+      const buf = await fs.promises.readFile(path.join(dir, f));
+      const vault = require('./lib/vault');
+      const p = JSON.parse((vault.isEncrypted(buf) && archive.key ? vault.decrypt(archive.key, buf) : buf).toString('utf8'));
+      if (p.host !== hostName() && Date.now() - p.ts < 70000) out.push({ name: p.name, host: p.host });
+    } catch (_) {
+      /* being written, or another archive key */
+    }
+  }
+  return out;
 }
 
 async function openArchive(dir) {
   if (lock) lock.release();
-  const a = new Archive({ dataDir: dir, user: osUser(), lang: settings.lang });
-  const l = new ArchiveLock(dir, { host: os.hostname(), user: osUser() });
+  const a = new Archive({ dataDir: dir, user: osUser(), lang: settings.lang, host: hostName() });
+  const l = new ArchiveLock(dir, { host: hostName(), user: osUser() });
   fs.mkdirSync(dir, { recursive: true });
-  const got = l.tryAcquire();
-  a.readOnly = !got.ok;
-  lockHolder = got.ok ? null : got.holder;
-  if (a.readOnly && !fs.existsSync(path.join(dir, 'archive.json'))) {
-    // Nothing to read yet: should not happen, but never create an archive without the lock.
-    throw new Error(tr('err.readOnly', { user: lockHolder.user, host: lockHolder.host }));
-  }
-  await a.open();
-  // An archive from before encryption (has profiles, no keyring) is encrypted now; everyone keeps their password.
-  if (!a.encrypted && !a.readOnly && a.data.users.length) await a.enableEncryption();
+  // Any number of computers may open the archive; only a folder this computer may not write to is read-only.
+  a.readOnly = !folderWritable(dir);
+  a.shared = true;
+  lockHolder = null;
+  if (a.readOnly && !fs.existsSync(path.join(dir, 'archive.json'))) throw new Error(tr('err.folderReadOnly'));
   archive = a;
   lock = l;
+  await withWrite(async () => {
+    await a.open();
+    // An archive from before encryption (has profiles, no keyring) is encrypted now; everyone keeps their password.
+    if (!a.encrypted && !a.readOnly && a.data.users.length) await a.enableEncryption();
+  });
   lastArchiveMtime = archiveMtime();
-  monitor = new LegislationMonitor(archive, { fetchPage: createElectronFetcher({ log: logNet }), isOffline: () => settings.offline });
-  noticesMonitor = new NoticesMonitor(archive, { fetchText: createTextFetcher({ log: logNet, base: NOTICES_BASE }), isOffline: () => settings.offline, base: NOTICES_BASE, pauseMs: NOTICES_BASE ? 0 : 800 });
+  monitor = new LegislationMonitor(archive, { fetchPage: createElectronFetcher({ log: logNet }), isOffline: () => settings.offline, transact: (fn) => withWrite(fn) });
+  noticesMonitor = new NoticesMonitor(archive, { fetchText: createTextFetcher({ log: logNet, base: NOTICES_BASE }), isOffline: () => settings.offline, base: NOTICES_BASE, pauseMs: NOTICES_BASE ? 0 : 800, transact: (fn) => withWrite(fn) });
   if (!archive.locked) afterUnlock();
   startLockTimers();
 }
@@ -295,7 +408,7 @@ async function openArchive(dir) {
 /** Once the archive can be read (after the first sign-in when it is encrypted). */
 function afterUnlock() {
   const a = archive;
-  (a.readOnly ? Promise.resolve() : a.watchCitedLaws().catch((e) => console.error('watch cited laws', e))) // acts cited in documents are watched
+  (a.readOnly ? Promise.resolve() : withWrite(() => a.watchCitedLaws()).catch((e) => console.error('watch cited laws', e))) // acts cited in documents are watched
     .then(() => a.buildIndex())
     .then(() => {
       if (a !== archive) return;
@@ -416,11 +529,11 @@ async function runOcrQueue() {
           send('ocr:progress', ocrState);
         });
         if (a !== archive || a.readOnly) break; // the archive was switched or became read-only meanwhile
-        await a.applyOcr(job.docId, job.versionId, pages);
+        await withWrite(() => a.applyOcr(job.docId, job.versionId, pages));
       } catch (e) {
         console.error('ocr failed', e);
         failed.add(job.versionId);
-        await a.ocrFailed(job.docId, job.versionId, e.message || e).catch(() => {});
+        await withWrite(() => a.ocrFailed(job.docId, job.versionId, e.message || e)).catch(() => {});
       }
       send('data:changed', { what: 'ocr', docId: job.docId });
     }
@@ -579,8 +692,10 @@ async function autoLegislationCheck() {
   const ageDays = last ? (Date.now() - new Date(last).getTime()) / 86400000 : Infinity;
   const due = mode === 'startup' || (mode === 'daily' && ageDays >= 1) || (mode === 'weekly' && ageDays >= 7);
   if (!due) return;
-  archive.data.settings.legisLastAutoCheck = new Date().toISOString();
-  await archive.save();
+  await withWrite(async () => {
+    archive.data.settings.legisLastAutoCheck = new Date().toISOString();
+    await archive.save();
+  });
   try {
     const r = await monitor.checkAll((p) => send('legis:progress', p));
     send('data:changed', { what: 'legislation' });
@@ -666,16 +781,16 @@ function handle(channel, fn, { perm = 'reader', write = false } = {}) {
       if (!hasRole(session.role, perm)) throw new UserError(tr('err.permission'));
       if (!ALLOWED_BEFORE_PASSWORD_CHANGE.has(channel) && mustChangePassword()) throw new UserError(tr('err.mustChangePassword'));
     }
-    if (write && archive.readOnly) {
-      const ro = readOnlyInfo();
-      throw new UserError(tr('err.readOnly', { user: ro.user, host: ro.host }));
-    }
+    if (write && archive.readOnly) throw new UserError(tr('err.folderReadOnly'));
     try {
-      return await fn(...args);
+      // write: true = the whole request is one write transaction; 'self' = it makes its own (long work outside).
+      return write === true ? await withWrite(() => fn(...args)) : await fn(...args);
     } catch (e) {
       // Known error codes from the archive get a translated message.
       const code = String((e && e.message) || e);
       if (/^[A-Z_]+$/.test(code)) throw new UserError(tr(`err.${code}`));
+      const conflict = code.match(/^CONFLICT:(.*)$/);
+      if (conflict) throw new UserError(tr('err.conflict', { user: conflict[1] }));
       throw e;
     }
   });
@@ -769,7 +884,7 @@ function registerIpc() {
       const u = r.user;
       setSession(u);
       if (r.unlocked) afterUnlock();
-      if (!archive.readOnly) await archive.recordLogin(u.id);
+      if (!archive.readOnly) await withWrite(() => archive.recordLogin(u.id));
       archive.audit('auth.login', {});
       settings.lastUserId = u.id;
       saveSettings();
@@ -833,7 +948,7 @@ function registerIpc() {
     if (prefs.lang === 'sk' || prefs.lang === 'en') p.lang = prefs.lang;
     if (['system', 'light', 'dark'].includes(prefs.theme)) p.theme = prefs.theme;
     session.prefs = { ...session.prefs, ...p };
-    if (!archive.readOnly) await archive.setPrefs(session.userId, p);
+    if (!archive.readOnly) await withWrite(() => archive.setPrefs(session.userId, p));
     buildMenu();
     refreshTrayMenu();
     return publicSettings();
@@ -841,7 +956,7 @@ function registerIpc() {
 
   // --- user management (administrator) ----------------------------------------
   handle('users:list', () => archive.listUsers(), { perm: 'admin' });
-  handle('users:create', (u) => archive.createUser(u), { perm: 'admin', write: true });
+  handle('users:create', (u) => archive.createUser({ name: u.name, role: u.role, password: u.password }), { perm: 'admin', write: true });
   handle(
     'users:update',
     async (userId, patch) => {
@@ -946,19 +1061,15 @@ function registerIpc() {
 
   handle('app:retryLock', async () => {
     if (!archive.readOnly) return null;
-    const got = lock.tryAcquire();
-    if (!got.ok) {
-      lockHolder = got.holder;
-      return readOnlyInfo();
-    }
-    await archive.reload(); // pick up everything the other computer saved
+    if (!folderWritable(archive.dir)) return readOnlyInfo();
     archive.readOnly = false;
-    lockHolder = null;
-    lastArchiveMtime = archiveMtime();
+    await withWrite(() => archive.syncFromDisk());
     send('data:changed', { what: 'lock' });
     queueOcr();
     return null;
   });
+  // Colleagues working with the archive on other computers right now.
+  handle('app:presence', () => othersOnline());
 
   handle('app:openDataDir', () => shell.openPath(archive.dir));
   handle(
@@ -1024,6 +1135,7 @@ function registerIpc() {
 
   // The audit trail with filters, and its export for an inspector (exactly what the filter shows).
   handle('audit:query', async (f) => queryAudit(await archive.allAudit(), f || {}), { perm: 'editor' });
+  handle('audit:integrity', () => archive.auditIntegrity(), { perm: 'editor' });
   handle(
     'audit:export',
     async ({ format = 'pdf', title, subtitle, columns, rows, filter } = {}) => {
@@ -1114,7 +1226,7 @@ function registerIpc() {
   };
   handle('docs:import', (p, meta) => archive.importFile(p, meta).then(thenOcr), { perm: 'editor', write: true });
   handle('docs:addVersion', (id, p, meta) => archive.addVersion(id, p, meta).then(thenOcr), { perm: 'editor', write: true });
-  handle('docs:update', (id, patch) => archive.updateDoc(id, patch), { perm: 'editor', write: true });
+  handle('docs:update', (id, patch, expected) => archive.updateDoc(id, patch, { expected }), { perm: 'editor', write: true });
   handle('docs:delete', (id, reason) => archive.deleteDoc(id, reason), { perm: 'admin', write: true });
   handle('docs:deletionBlockers', (id) => archive.deletionBlockers(id));
   handle('archive:trash', () => archive.trashInfo(), { perm: 'admin' });
@@ -1227,7 +1339,7 @@ function registerIpc() {
       if (settings.offline) throw new UserError(tr('err.offline'));
       return monitor.checkAll((p) => send('legis:progress', p), ids || null);
     },
-    { perm: 'editor', write: true }
+    { perm: 'editor', write: 'self' }
   );
 
   // --- notices of ŠÚKL and ÚŠKVBL ---
@@ -1241,7 +1353,7 @@ function registerIpc() {
       notifyNotices(r.added);
       return { added: r.added.length, errors: r.errors };
     },
-    { perm: 'editor', write: true }
+    { perm: 'editor', write: 'self' }
   );
   handle('notices:seen', (ids) => archive.seeNotices(Array.isArray(ids) ? ids.slice(0, 5000) : []), { write: true });
   handle('notices:handle', (id, outcome, note) => archive.handleNotice(id, { outcome, note }), { perm: 'editor', write: true });
@@ -1277,11 +1389,11 @@ function registerIpc() {
         const title = (opts.title || '').trim() || (key ? key.slice(3) : path.basename(p));
         spec = { key: key || '', title, short: opts.short || title, url: key ? urlForKey(key) : '', jurisdiction: key ? key.slice(0, 2) : 'OTHER', aliases: key ? aliasesFromKey(key) : [] };
       }
-      const ch = await archive.importLawText({ lawId: opts.lawId || null, spec, text, versionDate: opts.versionDate || null, source: { type: 'file', name: path.basename(p) } });
+      const ch = await withWrite(() => archive.importLawText({ lawId: opts.lawId || null, spec, text, versionDate: opts.versionDate || null, source: { type: 'file', name: path.basename(p) } }));
       send('data:changed', { what: 'legislation' });
       return { changeId: ch.id };
     },
-    { perm: 'editor', write: true }
+    { perm: 'editor', write: 'self' }
   );
   handle('legis:resolve', (query) => {
     const r = resolveLawQuery(query, archive.data.laws, DEFAULT_LAWS);
@@ -1298,13 +1410,13 @@ function registerIpc() {
       if (settings.offline) throw new UserError(tr('err.offline'));
       const r = resolveLawQuery(query, archive.data.laws, DEFAULT_LAWS);
       if (!r) throw new UserError(tr('err.lawNotFound'));
-      const law = await archive.ensureLaw(r);
+      const law = await withWrite(() => archive.ensureLaw(r));
       if (!/^https?:\/\//i.test(law.url || '')) throw new UserError(tr('err.lawNoUrl'));
       const res = await monitor.checkAndReport(law.id, { type: /^https?:/i.test(query) ? 'url' : 'name', name: String(query).trim() });
       send('data:changed', { what: 'legislation' });
       return res;
     },
-    { perm: 'editor', write: true }
+    { perm: 'editor', write: 'self' }
   );
 
   // --- approval of a version (signed with the signer's password) and controlled copies ---
@@ -1427,9 +1539,9 @@ function registerIpc() {
       const p = ai.buildImpactPrompt({ change: ch, law: ch.law, diff: ch.diff, doc, pages, analysis, l: lang(), budget: ai.cfgFor(cfg).budget, companyText });
       const r = await ai.complete(cfg, p.system, p.user, { log: logNet });
       archive.audit('ai.impact-analysis', { changeId, docId, provider: cfg.provider, model: r.model });
-      return archive.updateChange(changeId, { ai: { [docId]: { text: r.text, model: r.model, provider: cfg.provider, at: new Date().toISOString(), truncated: p.truncated } } });
+      return withWrite(() => archive.updateChange(changeId, { ai: { [docId]: { text: r.text, model: r.model, provider: cfg.provider, at: new Date().toISOString(), truncated: p.truncated } } }));
     },
-    { perm: 'editor', write: true }
+    { perm: 'editor', write: 'self' }
   );
   // --- the built-in AI: models on this computer ----------------------------------
   handle('ai:models', () => ({ ...builtinAi.list(), status: builtinAi.status() }), { perm: 'admin' });
@@ -1540,6 +1652,7 @@ if (!app.requestSingleInstanceLock()) {
     if (builtinAi) builtinAi.stop().catch(() => {});
     cleanWorkCopies(true);
     if (archive && session) archive.audit('auth.logout', { reason: 'quit' });
+    clearPresence();
     if (lock) lock.release();
   });
   app.on('window-all-closed', () => {

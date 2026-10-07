@@ -6,9 +6,15 @@
 //   <dataDir>/text/<versionId>.json    extracted text (for search)
 //   <dataDir>/legislation/<lawId>/...  law snapshots and change diffs
 //   <dataDir>/backups/                 daily copies of archive.json
-//   <dataDir>/audit.log                append-only audit trail (JSON lines)
+//   <dataDir>/audit/<computer>.log     append-only audit trail, one file per computer (lib/auditlog.js);
+//                                      older archives also have audit.log
 //   <dataDir>/branding/logo.*          company logo shown in the app (optional)
 //   <dataDir>/keyring.json             once encrypted: the data key, wrapped per user password and for the recovery code
+//   <dataDir>/archive.rev              a new random value after every save: other computers see that something changed
+//
+// Several computers can work with one archive (a shared network folder). Every change is a short
+// write transaction (main.js withWrite): take the folder's lock, read what others saved since
+// (syncFromDisk), change, save, release. Nobody holds the archive for a whole session.
 //
 // After the first administrator profile is set up, every file above (except keyring.json, the lock and the
 // logo) is encrypted with AES-256-GCM (lib/vault.js); it can only be read after signing in to the app.
@@ -34,6 +40,8 @@ const training = require('./lib/training');
 const approval = require('./lib/approval');
 const company = require('./lib/company');
 const notices = require('./lib/notices');
+const { AuditLog } = require('./lib/auditlog');
+const os = require('os');
 
 const STATUSES = ['draft', 'effective', 'review', 'obsolete'];
 const LOGO_TYPES = { '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.svg': 'image/svg+xml' };
@@ -69,7 +77,8 @@ async function writeAtomic(file, data) {
 }
 
 class Archive {
-  constructor({ dataDir, user, lang = 'sk' }) {
+  constructor({ dataDir, user, lang = 'sk', host }) {
+    const opts = { host };
     this.dir = dataDir;
     this.user = user || 'user';
     this.lang = lang;
@@ -83,6 +92,12 @@ class Archive {
     this.key = null; // data key, only in memory, after a user signed in
     this.keyring = null; // keyring.json when the archive is encrypted
     this.pendingAudit = []; // audit entries made while locked, written after unlocking
+    // The audit trail of this computer (each computer working with a shared archive writes its own file).
+    this.host = opts.host || os.hostname();
+    this.auditLog = new AuditLog(this.dir, this.host, {
+      encrypt: (json) => (this.key ? vault.encryptLine(this.key, json) : json),
+      decrypt: (line) => (line.startsWith('E1:') ? vault.decryptLine(this.key, line) : line)
+    });
   }
 
   /** The archive is encrypted (has a keyring). */
@@ -169,12 +184,39 @@ class Archive {
       created = true;
     }
     this._migrate();
+    this._rev = this._readRev();
     if (created) {
       await this.save();
       this.audit('archive.created', { dir: this.dir });
     }
     await this._dailyBackup();
     return { created };
+  }
+
+  _readRev() {
+    try {
+      return fs.readFileSync(this.p('archive.rev'), 'utf8').trim();
+    } catch (_) {
+      return '';
+    }
+  }
+
+  /**
+   * Another computer saved since this one last read or wrote: read its state – documents, users, keys,
+   * search index. Returns true when something was read. (Called at the start of every write transaction
+   * and every few seconds in between.)
+   */
+  async syncFromDisk() {
+    if (this.locked || !this.data) return false;
+    await this.saving;
+    const rev = this._readRev();
+    if (rev === (this._rev || '')) return false;
+    if (fs.existsSync(this.p('keyring.json'))) this.keyring = this._loadKeyring();
+    this.data = await this._readJson(this.p('archive.json'));
+    this._migrate();
+    this._rev = rev;
+    await this._refreshIndex();
+    return true;
   }
 
   _migrate() {
@@ -207,18 +249,49 @@ class Archive {
   /** Build the search index from stored text (call after open). */
   async buildIndex(onProgress) {
     this.index.reset();
+    this._indexed = new Map();
     const docs = this.data.docs;
     for (let i = 0; i < docs.length; i++) {
       const doc = docs[i];
       const pages = await this.loadText(doc.currentVersionId);
       this.index.setDocument(doc, chunkPages(pages));
+      this._indexed.set(doc.id, this._indexSig(doc));
       if (onProgress && i % 20 === 0) onProgress(i, docs.length);
     }
     this.indexReady = true;
   }
 
+  _indexSig(doc) {
+    return JSON.stringify([doc.currentVersionId, doc.code, doc.title, doc.type, doc.status, doc.department, doc.tags, (doc.versions.find((v) => v.id === doc.currentVersionId) || {}).ocr]);
+  }
+
+  /** After reading another computer's changes: index only the documents that changed. */
+  async _refreshIndex() {
+    if (!this.indexReady || !this._indexed) return;
+    const ids = new Set(this.data.docs.map((d) => d.id));
+    for (const id of [...this._indexed.keys()]) {
+      if (!ids.has(id)) {
+        this.index.removeDocument(id);
+        this._indexed.delete(id);
+      }
+    }
+    for (const doc of this.data.docs) {
+      const sig = this._indexSig(doc);
+      if (this._indexed.get(doc.id) === sig) continue;
+      this.index.setDocument(doc, chunkPages(await this.loadText(doc.currentVersionId)));
+      this._indexed.set(doc.id, sig);
+    }
+  }
+
   save() {
-    if (this.readOnly || this.locked) return this.saving; // never write while another computer holds the archive, or before unlocking
+    if (this.readOnly || this.locked) return this.saving; // never write to a read-only folder, or before unlocking
+    // With a shared folder, a save outside a write transaction could overwrite another computer's work.
+    if (this.shared && !this.inTx) {
+      const e = new Error('Archive saved outside a write transaction');
+      if (process.env.SOP_ARCHIV_STRICT_TX) throw e;
+      console.error(e);
+      if (this._readRev() !== (this._rev || '')) return this.saving; // someone else saved meanwhile: do not overwrite
+    }
     const content = this._seal(JSON.stringify(this.data, null, 1));
     const file = this.p('archive.json');
     this.saving = this.saving
@@ -228,6 +301,10 @@ class Archive {
         // Keep the previous state one save back, for recovery.
         if (fs.existsSync(file)) await fs.promises.copyFile(file, this.p('archive.prev.json')).catch(() => {});
         await fs.promises.rename(tmp, file);
+        // Other computers notice the change by this value.
+        const rev = crypto.randomBytes(8).toString('hex');
+        await fs.promises.writeFile(this.p('archive.rev'), rev);
+        this._rev = rev;
       })
       .catch((e) => console.error('save failed', e));
     return this.saving;
@@ -257,34 +334,24 @@ class Archive {
   }
 
   audit(action, details = {}) {
-    if (this.readOnly) return;
-    const json = JSON.stringify({ ts: new Date().toISOString(), user: this.user, userId: this.userId || undefined, action, ...details });
+    const rec = { ts: new Date().toISOString(), user: this.user, userId: this.userId || undefined, action, ...details };
     if (this.locked) {
-      this.pendingAudit.push(json); // written once someone signs in
+      this.pendingAudit.push(rec); // written once someone signs in
       return;
     }
-    const line = (this.key ? vault.encryptLine(this.key, json) : json) + '\n';
-    fs.promises.appendFile(this.p('audit.log'), line).catch((e) => console.error('audit failed', e));
+    this.auditLog.append(rec);
   }
 
-  /** Every record of the audit trail, oldest first. */
+  /** Every record of the audit trail (all computers), oldest first. */
   async allAudit() {
-    try {
-      const raw = await fs.promises.readFile(this.p('audit.log'), 'utf8');
-      return raw
-        .split('\n')
-        .filter(Boolean)
-        .map((l) => {
-          try {
-            return JSON.parse(this.key ? vault.decryptLine(this.key, l) : l);
-          } catch (_) {
-            return null;
-          }
-        })
-        .filter(Boolean);
-    } catch (_) {
-      return [];
-    }
+    if (this.locked) return [];
+    return (await this.auditLog.readAll()).rows;
+  }
+
+  /** Whether the trail is complete: { ok, records, files, problems } (see lib/auditlog.js). */
+  async auditIntegrity() {
+    if (this.locked) return null;
+    return (await this.auditLog.readAll()).integrity;
   }
 
   async readAudit({ docId, limit = 300 } = {}) {
@@ -440,9 +507,8 @@ class Archive {
       this.key = null;
       throw e;
     }
-    for (const json of this.pendingAudit.splice(0)) {
-      await fs.promises.appendFile(this.p('audit.log'), vault.encryptLine(this.key, json) + '\n').catch(() => {});
-    }
+    for (const rec of this.pendingAudit.splice(0)) this.auditLog.append(rec);
+    await this.auditLog.chain;
     await this._encryptRemaining(); // a conversion that was interrupted continues
     return true;
   }
@@ -524,7 +590,7 @@ class Archive {
       for (const ent of await fs.promises.readdir(dir, { withFileTypes: true }).catch(() => [])) {
         const f = path.join(dir, ent.name);
         if (ent.isDirectory()) {
-          if (f !== this.p('branding')) await walk(f);
+          if (f !== this.p('branding') && f !== this.p('audit')) await walk(f); // audit files: line by line, below
         } else if (!skip.has(f) && !ent.name.endsWith('.tmp')) {
           const buf = await fs.promises.readFile(f);
           if (!vault.isEncrypted(buf)) await writeAtomic(f, vault.encrypt(this.key, buf));
@@ -538,6 +604,7 @@ class Archive {
       const lines = (await fs.promises.readFile(log, 'utf8')).split('\n').filter(Boolean);
       if (lines.some((l) => !l.startsWith('E1:'))) await writeAtomic(log, lines.map((l) => (l.startsWith('E1:') ? l : vault.encryptLine(this.key, l))).join('\n') + '\n');
     }
+    await this.auditLog.reencrypt();
   }
 
   /** Forgotten passwords: the recovery code opens the archive and sets a new password for an administrator. */
@@ -909,6 +976,7 @@ class Archive {
     if (!m.reviewDate && m.effectiveDate && doc.reviewIntervalMonths) doc.reviewDate = addMonths(m.effectiveDate, doc.reviewIntervalMonths);
     if (!m.status && doc.status === 'review') doc.status = 'effective';
     doc.updatedAt = new Date().toISOString();
+    doc.updatedBy = this.user;
     this._refreshCitations(doc, a.text);
     if (this._watchCitedLaws()) await this._recomputeAllCitations();
     this.index.setDocument(doc, chunkPages(a.ex.pages));
@@ -917,8 +985,10 @@ class Archive {
     return this.decorate(doc);
   }
 
-  async updateDoc(docId, patch) {
+  /** expected: the time of the change the user saw – if someone changed the document since, nothing is overwritten. */
+  async updateDoc(docId, patch, { expected } = {}) {
     const doc = this._doc(docId);
+    if (expected && doc.updatedAt && expected !== doc.updatedAt) throw new Error(`CONFLICT:${doc.updatedBy || '?'}`);
     const m = this._cleanMeta(patch);
     const changes = {};
     for (const [k, v] of Object.entries(m)) {
@@ -926,6 +996,7 @@ class Archive {
     }
     Object.assign(doc, m);
     doc.updatedAt = new Date().toISOString();
+    doc.updatedBy = this.user;
     const pages = await this.loadText(doc.currentVersionId);
     this.index.setDocument(doc, chunkPages(pages));
     await this.save();
@@ -1016,6 +1087,7 @@ class Archive {
     if (review.outcome === 'update-needed') doc.status = 'review';
     else if (doc.status === 'review') doc.status = 'effective';
     doc.updatedAt = new Date().toISOString();
+    doc.updatedBy = this.user;
     await this.save();
     this.audit('doc.reviewed', { docId, code: doc.code, outcome: review.outcome, next: review.nextReviewDate, notes: review.notes });
     return this.decorate(doc);
@@ -1159,6 +1231,8 @@ class Archive {
       if (!doc.effectiveDate) doc.effectiveDate = today();
       if (!doc.reviewDate && doc.reviewIntervalMonths) doc.reviewDate = addMonths(doc.effectiveDate, doc.reviewIntervalMonths);
       doc.updatedAt = new Date().toISOString();
+      doc.updatedBy = this.user;
+    doc.updatedBy = this.user;
       this.audit('approval.approved', { docId, code: doc.code, version: doc.version, approvers });
     }
     await this.save();

@@ -9,8 +9,9 @@ class NoticesMonitor {
    * fetchText(url) → { text, url } (the final address after redirects)
    * base: in tests, a local server instead of the authorities' sites
    */
-  constructor(archive, { fetchText, isOffline = () => false, base = null, pauseMs = 800 }) {
+  constructor(archive, { fetchText, isOffline = () => false, base = null, pauseMs = 800, transact = (fn) => fn() }) {
     this.archive = archive;
+    this.transact = transact; // saving the result is a write transaction (the pages are read outside it)
     this.fetchText = fetchText;
     this.isOffline = isOffline;
     this.base = base;
@@ -43,7 +44,7 @@ class NoticesMonitor {
         }
         if (i < list.length - 1 && this.pauseMs) await new Promise((res) => setTimeout(res, this.pauseMs));
       }
-      const added = await this.archive.mergeNotices(batches);
+      const added = await this.transact(() => this.archive.mergeNotices(batches));
       return { added, errors: batches.filter((b) => b.error).map((b) => ({ source: b.src.id, error: b.error })) };
     } finally {
       this.running = false;

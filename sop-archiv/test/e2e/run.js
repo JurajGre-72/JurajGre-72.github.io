@@ -194,13 +194,14 @@ async function until(page, fn, what, arg = undefined, timeout = 30000) {
   }
 }
 
-function launch(tmp, userdata) {
+function launch(tmp, userdata, host = 'PC-QA') {
   // SOP_ARCHIV_EXE=path/to/packaged/binary tests a built app instead of the sources.
   const packaged = process.env.SOP_ARCHIV_EXE;
   return electron.launch({
     executablePath: packaged || require('electron'),
     args: packaged ? ['--no-sandbox'] : [ROOT, '--no-sandbox'],
-    env: { ...process.env, SOP_ARCHIV_USERDATA: path.join(tmp, userdata), SOP_ARCHIV_DATA: path.join(tmp, 'archive'), SOP_ARCHIV_NO_TIMERS: '1', LANG: process.env.LANG || 'sk_SK.UTF-8' }
+    // Two "computers" on one machine: each has its own name. STRICT_TX: a save outside a write transaction fails the test.
+    env: { ...process.env, SOP_ARCHIV_USERDATA: path.join(tmp, userdata), SOP_ARCHIV_DATA: path.join(tmp, 'archive'), SOP_ARCHIV_NO_TIMERS: '1', SOP_ARCHIV_HOST: host, SOP_ARCHIV_STRICT_TX: '1', LANG: process.env.LANG || 'sk_SK.UTF-8' }
   });
 }
 
@@ -953,32 +954,57 @@ async function main() {
     await signIn(page, ADMIN);
     console.log('  ✓ profiles: reader cannot change anything (UI and core), wrong password rejected and audited; reading confirmed with the own password');
 
-    // ---- A second computer opens the same archive: read-only ----
-    app2 = await launch(tmp, 'userdata-pc2');
+    // ---- A second computer opens the same archive: both work at the same time ----
+    const PETER = { name: 'Peter Novák', password: 'Docasne-heslo-1', next: 'Peter-vlastne-2' };
+    app2 = await launch(tmp, 'userdata-pc2', 'PC-SKLAD');
     const page2 = await app2.firstWindow();
     watch(page2);
     await page2.setViewportSize({ width: 1360, height: 860 });
     await signIn(page2, READER);
     const info2 = await page2.evaluate(() => window.api.app.info());
-    assert.ok(info2.readOnly, 'second computer is read-only');
+    assert.ok(!info2.readOnly, 'the second computer can work too (no read-only mode)');
     assert.ok(await page2.isVisible('#brand-logo img'), 'the second computer shows the logo too');
-    await page2.click('a.nav-item[href="#/documents"]');
-    await page2.waitForSelector('.ro-banner');
-    await shot(page2, '19-second-computer-read-only');
+    // Each computer sees who else is working.
+    await until(page, () => window.api.app.presence().then((p) => p.some((x) => x.name === 'Eva Nováková' && x.host === 'PC-SKLAD')), 'PC-QA sees Eva on PC-SKLAD');
+    await page.evaluate(() => window.__app.refreshSidebar());
+    await page.waitForSelector('#side-presence:has-text("Eva Nováková")');
+    // A new colleague (editor) is added on the first computer; the second computer knows them within seconds.
+    await page.evaluate((u) => window.api.users.create({ name: u.name, role: 'editor', password: u.password }), PETER);
+    await until(page2, () => window.api.auth.state().then((s) => s.users.some((u) => u.name === 'Peter Novák')), 'PC-SKLAD knows Peter');
+    await signOut(page2);
+    await signIn(page2, PETER);
+    // Both change the same document at the same moment – different things; nothing is lost.
+    const sk2 = byCode['SOP-SK-002'].id;
+    await Promise.all([
+      page.evaluate((id) => window.api.docs.markReviewed(id, { outcome: 'no-change', notes: 'Revízia z PC-QA' }), sk2),
+      page2.evaluate((id) => window.api.docs.update(id, { notes: 'Poznámka od Petra' }), sk2)
+    ]);
+    await until(page, (id) => window.api.docs.get(id).then((d) => d.notes === 'Poznámka od Petra' && d.reviews.some((r) => r.notes === 'Revízia z PC-QA')), 'PC-QA has both changes', sk2);
+    await until(page2, (id) => window.api.docs.get(id).then((d) => d.notes === 'Poznámka od Petra' && d.reviews.some((r) => r.notes === 'Revízia z PC-QA')), 'PC-SKLAD has both changes', sk2);
+    // Two people edit the details of one document from the same starting point: the second one is stopped, not overwritten.
+    const seen = (await page.evaluate((id) => window.api.docs.get(id), sk2)).updatedAt;
+    await page2.evaluate((id) => window.api.docs.update(id, { owner: 'Vedúci skladu' }), sk2);
+    await until(page, (id) => window.api.docs.get(id).then((d) => d.owner === 'Vedúci skladu'), 'PC-QA sees the new owner', sk2);
+    const conflict = await page.evaluate(([id, exp]) => window.api.docs.update(id, { owner: 'Niekto iný' }, exp).then(() => 'saved', (e) => e.message), [sk2, seen]);
+    assert.match(conflict, /Peter Novák.*medzitým|medzitým zmenil/, 'a stale edit is refused and says who changed it');
+    assert.equal((await page.evaluate((id) => window.api.docs.get(id), sk2)).owner, 'Vedúci skladu', 'Peter\'s change was kept');
+    // The name of who changed it is shown with the document.
+    await page.evaluate((id) => (location.hash = `#/documents/${id}`), sk2);
+    await page.waitForSelector('.panel:has-text("Naposledy zmenil(a)"):has-text("Peter Novák")');
+    await page2.evaluate((id) => (location.hash = `#/documents/${id}`), sk2);
+    await page2.waitForSelector('.panel:has-text("Naposledy zmenil(a)")');
+    await shot(page2, '19-second-computer');
+    // The audit trail has both computers and both people, and its chain is intact.
+    const both = (await page.evaluate((id) => window.api.audit.query({ docId: id, changesOnly: true }), sk2)).rows;
+    assert.ok(both.some((r) => r.host === 'PC-SKLAD' && r.user === 'Peter Novák') && both.some((r) => r.host === 'PC-QA'), 'who and on which computer');
+    assert.equal((await page.evaluate(() => window.api.audit.integrity())).ok, true, 'audit trail chain intact');
+    // The first computer closes; the second keeps working without any take-over.
     await signOut(page2);
     await signIn(page2, ADMIN);
-    const roErr = await page2.evaluate((id) => window.api.docs.update(id, { notes: 'x' }).then(() => 'allowed', (e) => e.message), byCode['SOP-SK-002'].id);
-    assert.match(roErr, /len na čítanie|read-only/, 'even an administrator cannot write while the other computer holds the archive');
-    // The first computer saves a change; the second sees it after the first closes and it takes over.
-    await page.evaluate((id) => window.api.docs.update(id, { notes: 'Zmena z PC1' }), byCode['SOP-SK-002'].id);
     await app.close();
     app = null;
-    await page2.click('#ro-retry');
-    await page2.waitForFunction(() => !document.querySelector('.ro-banner'));
-    const d2 = await page2.evaluate((id) => window.api.docs.get(id), byCode['SOP-SK-002'].id);
-    assert.equal(d2.notes, 'Zmena z PC1', 'changes of the first computer are visible');
-    assert.equal(await page2.evaluate((id) => window.api.docs.update(id, { notes: 'Zmena z PC2' }).then(() => 'ok'), byCode['SOP-SK-002'].id), 'ok');
-    console.log('  ✓ shared archive: second computer read-only, then takes over after the first closes');
+    assert.equal(await page2.evaluate((id) => window.api.docs.update(id, { notes: 'Zmena z PC2' }).then(() => 'ok'), sk2), 'ok');
+    console.log('  ✓ shared archive: two computers change it at the same time, see each other\'s changes with names, a stale edit is refused');
 
     // ---- Privacy: the UI cannot reach the internet ----
     const net = await page2.evaluate(() => fetch('https://example.com/').then(() => 'reached', () => 'blocked'));
@@ -1030,8 +1056,10 @@ async function main() {
     assert.ok(checked > 20);
     assert.equal(fs.readFileSync(path.join(dataDir, 'archive.json')).subarray(0, 7).toString('latin1'), 'SOPARC1', 'archive.json is encrypted');
     const keyring = JSON.parse(fs.readFileSync(path.join(dataDir, 'keyring.json'), 'utf8'));
-    assert.deepEqual(keyring.users.map((u) => u.name).sort(), [READER.name, ADMIN.name].sort());
-    assert.ok(fs.readFileSync(path.join(dataDir, 'audit.log'), 'utf8').split('\n').filter(Boolean).every((l) => l.startsWith('E1:')), 'audit log lines are encrypted');
+    assert.deepEqual(keyring.users.map((u) => u.name).sort(), [READER.name, ADMIN.name, 'Peter Novák'].sort());
+    const auditFiles = fs.readdirSync(path.join(dataDir, 'audit'));
+    assert.equal(auditFiles.length, 2, 'one audit file per computer');
+    for (const f of auditFiles) assert.ok(fs.readFileSync(path.join(dataDir, 'audit', f), 'utf8').split('\n').filter(Boolean).every((l) => l.startsWith('E1:')), 'audit log lines are encrypted');
     const auditRows = await page.evaluate(() => window.api.app.audit({ limit: 500 }));
     assert.ok(auditRows.some((r) => r.action === 'doc.reviewed') && auditRows.some((r) => r.action === 'auth.recovered'), 'the app still reads its audit log');
     console.log(`  ✓ archive folder encrypted: ${checked} files, no document text, titles or passwords readable`);

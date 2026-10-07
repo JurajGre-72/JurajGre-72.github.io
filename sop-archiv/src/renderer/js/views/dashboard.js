@@ -212,7 +212,7 @@ export async function render() {
       <section class="panel">
         <h3>${icon('history')}${t('dash.recent')}</h3>
         <ul class="rows">${recent.map(
-          (d) => html`<li class="row"><a class="row-main" href="#/documents/${d.id}"><span class="code">${d.code || '—'}</span><span class="row-title">${d.title}</span></a><span class="muted small">v${d.version}</span><span class="row-date">${fmtDateTime(d.updatedAt)}</span></li>`
+          (d) => html`<li class="row"><a class="row-main" href="#/documents/${d.id}"><span class="code">${d.code || '—'}</span><span class="row-title">${d.title}</span></a><span class="muted small">v${d.version}${d.updatedBy ? ` · ${d.updatedBy}` : ''}</span><span class="row-date">${fmtDateTime(d.updatedAt)}</span></li>`
         )}</ul>
       </section>`}
   </div>`;

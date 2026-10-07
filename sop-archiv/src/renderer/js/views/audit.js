@@ -11,6 +11,7 @@ const LIMIT = 1000;
 
 let res = null;
 let docs = [];
+let integrity = null;
 const f = { from: '', to: '', user: '', area: '', docId: '', q: '', changesOnly: false };
 
 function filters() {
@@ -37,7 +38,7 @@ function summary() {
 }
 
 export async function render() {
-  [res, docs] = await Promise.all([api.audit.query(filters()), api.docs.list().catch(() => [])]);
+  [res, docs, integrity] = await Promise.all([api.audit.query(filters()), api.docs.list().catch(() => []), api.audit.integrity().catch(() => null)]);
   return html`<div class="page audit">
     <header class="page-head">
       <div><h1>${t('au.title')}</h1><p class="muted">${t('au.intro')}</p></div>
@@ -57,6 +58,11 @@ export async function render() {
       <div class="field au-reset"><button type="button" class="btn btn-ghost" data-action="reset">${icon('x')}${t('au.reset')}</button></div>
     </form>
     <div id="au-results">${summary()}${rowsHtml()}</div>
+    ${integrity
+      ? integrity.ok
+        ? html`<div class="note note-good">${icon('shield')}<div>${t('au.chainOk', { n: integrity.records, files: integrity.files })}</div></div>`
+        : html`<div class="note note-bad">${icon('alert')}<div>${t('au.chainBroken', { n: integrity.problems.length })}<ul class="small">${integrity.problems.slice(0, 5).map((p) => html`<li>${p.kind === 'chain' ? t('au.pChain') : t('au.pUnreadable')} – ${p.ts ? fmtDateTime(p.ts) : `#${p.line}`}</li>`)}</ul></div></div>`
+      : ''}
     <p class="muted small">${t('au.integrity')}</p>
   </div>`;
 }

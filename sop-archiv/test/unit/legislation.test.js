@@ -602,7 +602,8 @@ test('encryption: nothing readable on disk, locked until sign-in, wrong password
     for (const w of words) assert.ok(!txt.includes(w), `${path.relative(arch, f)} contains "${w}"`);
     assert.ok(!/Reklam/i.test(name), `file name ${name} shows a title`);
   }
-  assert.ok(fs.readFileSync(path.join(arch, 'audit.log'), 'utf8').split('\n').filter(Boolean).every((l) => l.startsWith('E1:')));
+  const auditDir = path.join(arch, 'audit');
+  for (const f of fs.readdirSync(auditDir)) assert.ok(fs.readFileSync(path.join(auditDir, f), 'utf8').split('\n').filter(Boolean).every((l) => l.startsWith('E1:')));
 
   // A second program (another computer, or after a restart) sees a locked archive.
   const b = new Archive({ dataDir: arch, user: 'pc2' });

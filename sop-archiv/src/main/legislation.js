@@ -22,8 +22,11 @@ class LegislationMonitor {
   /**
    * fetchPage(url) -> { url, title, text, html, links:[{href,text}] }
    */
-  constructor(archive, { fetchPage, isOffline = () => false, pauseMs = 1500 }) {
+  constructor(archive, { fetchPage, isOffline = () => false, pauseMs = 1500, transact = (fn) => fn() }) {
     this.archive = archive;
+    // Saving a check's result is a short write transaction; the (slow) pages are read outside it, so
+    // colleagues on other computers are not kept waiting.
+    this.transact = transact;
     this.fetchPage = fetchPage;
     this.isOffline = isOffline;
     this.pauseMs = pauseMs;
@@ -100,8 +103,9 @@ class LegislationMonitor {
       const n = diff.mode === 'sections' ? diff.changed.length + diff.added.length + diff.removed.length : diff.added.length + diff.removed.length;
       if (!n) return null; // only formatting / footnote numbering differed
     }
-    return this.archive.addChange(
-      {
+    // Recorded when the result is saved (see checkLaw).
+    return {
+      change: {
         lawId: law.id,
         kind,
         fromKey: from ? from.key : null,
@@ -112,15 +116,18 @@ class LegislationMonitor {
         summary: diff ? { mode: diff.mode, stats: diff.stats, sections: touchedKeys(diff).slice(0, 80) } : null,
         ...extra
       },
-      diff || { mode: 'none', changed: [], added: [], removed: [], stats: {} },
-      toText || null
-    );
+      diff: diff || { mode: 'none', changed: [], added: [], removed: [], stats: {} },
+      toText: toText || null
+    };
   }
 
   /** Check one law. Returns { lawId, status, changes:[...], state }. Never throws. */
   async checkLaw(lawId) {
-    const law = this.archive.data.laws.find((l) => l.id === lawId);
-    if (!law) throw new Error('Law not found');
+    const found = this.archive.data.laws.find((l) => l.id === lawId);
+    if (!found) throw new Error('Law not found');
+    const law = { ...found }; // nothing in the archive changes until the result is saved
+    const startedAt = new Date().toISOString();
+    let named = null;
     const prev = law.state || {};
     const state = { ...prev, lastCheck: new Date().toISOString(), status: 'ok', error: null };
     const created = [];
@@ -144,8 +151,7 @@ class LegislationMonitor {
         const effText = eff.text;
         effective = eff.version;
         // An act added from a document citation gets its official name.
-        const named = law.autoTitle && source === 'slovlex' && slovlexActName(this.lastPageTitle);
-        if (named) Object.assign(law, named, { autoTitle: false });
+        named = (law.autoTitle && source === 'slovlex' && slovlexActName(this.lastPageTitle)) || null;
         const nw = newest.key <= effective.key ? eff : await this._versionText(law, versions, newest, fetched, source);
         const newText = nw.text;
         newest = nw.version;
@@ -218,10 +224,22 @@ class LegislationMonitor {
       state.status = 'error';
       state.error = String((e && e.message) || e);
     }
-    law.state = state;
-    await this.archive.save();
-    this.archive.audit('legislation.checked', { lawId: law.id, title: law.short || law.title, status: state.status, error: state.error, newChanges: created.length });
-    return { lawId: law.id, status: state.status, error: state.error, changes: created.map((c) => c.id), state };
+    return this.transact(async () => {
+      const fresh = this.archive.data.laws.find((l) => l.id === lawId);
+      if (!fresh) return { lawId, status: 'removed', error: null, changes: [], state };
+      // Checked meanwhile on another computer: its result stands (no duplicate changes).
+      if (fresh.state && fresh.state.lastCheck && fresh.state.lastCheck > startedAt) return { lawId, status: fresh.state.status, error: fresh.state.error, changes: [], state: fresh.state };
+      const ids = [];
+      for (const p of created) {
+        const c = await this.archive.addChange(p.change, p.diff, p.toText);
+        if (c) ids.push(c.id);
+      }
+      if (named) Object.assign(fresh, named, { autoTitle: false });
+      fresh.state = state;
+      await this.archive.save();
+      this.archive.audit('legislation.checked', { lawId, title: fresh.short || fresh.title, status: state.status, error: state.error, newChanges: ids.length });
+      return { lawId, status: state.status, error: state.error, changes: ids, state };
+    });
   }
 
   /**
@@ -235,7 +253,7 @@ class LegislationMonitor {
       const r = await this.checkLaw(lawId);
       if (r.status === 'error') throw new Error(r.error);
       if (r.changes.length) return { changeId: r.changes[0], newChanges: r.changes.length };
-      const ch = await this.archive.checkReport(lawId, source);
+      const ch = await this.transact(() => this.archive.checkReport(lawId, source));
       return { changeId: ch.id, newChanges: 0 };
     } finally {
       this.running = false;

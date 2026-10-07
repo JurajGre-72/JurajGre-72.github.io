@@ -92,7 +92,8 @@ function infoTab() {
         [t('f.department'), doc.department],
         [t('f.owner'), doc.owner],
         [t('f.approver'), doc.approver],
-        [t('f.tags'), (doc.tags || []).length ? html`${doc.tags.map((x) => html`<span class="chip chip-muted">${x}</span>`)}` : '']
+        [t('f.tags'), (doc.tags || []).length ? html`${doc.tags.map((x) => html`<span class="chip chip-muted">${x}</span>`)}` : ''],
+        [t('doc.lastChange'), doc.updatedAt ? html`${doc.updatedBy || '—'} <span class="muted small">· ${fmtDateTime(doc.updatedAt)}</span>` : '']
       ])}
     </section>
     <section class="panel">
@@ -349,7 +350,8 @@ async function editDialog() {
     ]
   });
   if (r !== 'ok') return;
-  await api.docs.update(doc.id, vals);
+  // If a colleague changed this document in the meantime, nothing is overwritten (the app says who).
+  await api.docs.update(doc.id, vals, doc.updatedAt || null);
   toast(t('saved'), 'good');
   app.refreshSidebar();
   app.rerender();

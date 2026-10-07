@@ -154,7 +154,7 @@ test('monitor: first read keeps older notices as a baseline, new ones are to ass
   assert.equal(b.companyProfile().watchTerms, 'Imaginex');
   assert.ok(b.companyProfile().updatedAt, 'when the profile was changed is kept');
 
-  const audit = fs.readFileSync(path.join(dir, 'arch', 'audit.log'), 'utf8');
+  const audit = JSON.stringify(await b.allAudit());
   assert.match(audit, /notice\.handled/);
   assert.match(audit, /Liek nemáme v sortimente/);
 
