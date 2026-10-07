@@ -46,3 +46,27 @@ test('audit trail: one file per computer, encrypted, chained – a removed or ch
   r = await new AuditLog(dir, 'PC-X', crypt).readAll();
   assert.ok(r.integrity.problems.some((p) => p.kind === 'unreadable' && p.line === 2));
 });
+
+test('audit trail: a line that cannot be written is kept and written with the next one, in order, chain intact', async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'sop-al-'));
+  const plain = { encrypt: (j) => j, decrypt: (l) => l };
+  const a = new AuditLog(dir, 'PC-QA', plain);
+  await a.append({ ts: '2026-10-07T08:00:00.000Z', user: 'Juraj', action: 'doc.updated' });
+  assert.equal(await a.flush(), null);
+  // The file cannot be written (here a folder stands in its place; in practice the network folder is gone).
+  const file = fileFor(dir, 'PC-QA');
+  const kept = fs.readFileSync(file);
+  fs.rmSync(file);
+  fs.mkdirSync(file);
+  await a.append({ ts: '2026-10-07T08:01:00.000Z', user: 'Juraj', action: 'doc.deleted', reason: 'Omyl' });
+  assert.ok(await a.flush(), 'the failure is reported');
+  assert.equal(a.queue.length, 1, 'the record is kept');
+  fs.rmSync(file, { recursive: true });
+  fs.writeFileSync(file, kept);
+  await a.append({ ts: '2026-10-07T08:02:00.000Z', user: 'Juraj', action: 'doc.opened' });
+  assert.equal(await a.flush(), null, 'written now');
+  const r = await a.readAll();
+  assert.deepEqual(r.rows.map((x) => x.action), ['doc.updated', 'doc.deleted', 'doc.opened'], 'nothing lost, original order and times');
+  assert.equal(r.rows[1].ts, '2026-10-07T08:01:00.000Z');
+  assert.equal(r.integrity.ok, true, 'chain intact');
+});

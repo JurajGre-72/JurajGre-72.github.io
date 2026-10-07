@@ -10,7 +10,7 @@
 // Lines are encrypted one by one when the archive is encrypted (lib/vault.js).
 
 const fs = require('fs');
-const { replaceFile } = require('./fsretry');
+const { replaceFile, retryBusy } = require('./fsretry');
 const path = require('path');
 const crypto = require('crypto');
 
@@ -29,6 +29,8 @@ class AuditLog {
     this.file = fileFor(dir, host);
     this.last = null; // fingerprint of the last line of this computer's file (read once)
     this.chain = Promise.resolve();
+    this.queue = []; // records not on disk yet (kept and written with the next record when a write fails)
+    this.error = null; // why the last write failed, until a write succeeds again
   }
 
   async _lastLine() {
@@ -50,19 +52,39 @@ class AuditLog {
 
   /** Append one record (an object). Records are written in the order they were given. */
   append(record) {
-    this.chain = this.chain
-      .then(async () => {
-        if (this.last === null) {
-          const l = await this._lastLine();
-          this.last = l ? fp(l) : '';
-        }
-        const line = this.crypt.encrypt(JSON.stringify({ ...record, host: record.host || this.host, prev: this.last }));
-        await fs.promises.mkdir(path.dirname(this.file), { recursive: true });
-        await fs.promises.appendFile(this.file, line + '\n');
-        this.last = fp(line);
-      })
-      .catch((e) => console.error('audit failed', e));
+    this.queue.push(record);
+    this.chain = this.chain.then(() => this._write()).catch((e) => {
+      this.error = e;
+      console.error('audit failed', e);
+    });
     return this.chain;
+  }
+
+  async _write() {
+    if (!this.queue.length) return;
+    if (this.last === null) {
+      const l = await this._lastLine();
+      this.last = l ? fp(l) : '';
+    }
+    await fs.promises.mkdir(path.dirname(this.file), { recursive: true });
+    while (this.queue.length) {
+      const record = this.queue[0];
+      const line = this.crypt.encrypt(JSON.stringify({ ...record, host: record.host || this.host, prev: this.last }));
+      // Windows: the file may be held for a moment by another program (antivirus, backup): try again.
+      await retryBusy(() => fs.promises.appendFile(this.file, line + '\n'));
+      this.last = fp(line);
+      this.queue.shift();
+    }
+    this.error = null;
+  }
+
+  /**
+   * Waits until every record given so far is on disk. Returns the error when some could not be written
+   * (they stay queued, with their original time, and are written together with the next record).
+   */
+  async flush() {
+    await this.chain;
+    return this.queue.length ? this.error || new Error('audit not written') : null;
   }
 
   /**

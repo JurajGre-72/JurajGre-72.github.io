@@ -287,6 +287,8 @@ function withWrite(fn, { waitMs = 90000 } = {}) {
       const result = await txContext.run(me, fn);
       await a.saving;
       if (a.saveError) throw new UserError(tr('err.saveFailed'));
+      // Done only once the change is in the audit trail too.
+      if (await a.auditLog.flush()) throw new UserError(tr('err.auditFailed'));
       return result;
     } finally {
       await a.saving;

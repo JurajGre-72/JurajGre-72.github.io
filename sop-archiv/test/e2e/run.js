@@ -850,9 +850,10 @@ async function main() {
     // Second step: a separate confirmation; "Cancel" there keeps the document.
     await page.waitForSelector('.modal:has-text("Posledné potvrdenie")');
     await page.click('.modal-foot .btn-danger');
-    await until(page, (id) => window.api.docs.list().then((l) => !l.some((d) => d.id === id)), 'document deleted', pp07.id);
+    await page.waitForSelector('.toast:has-text("Dokument bol odstránený")'); // shown when the deletion is saved and in the audit trail
+    assert.ok(!(await page.evaluate(() => window.api.docs.list())).some((d) => d.id === pp07.id), 'document deleted');
     const delAudit = (await page.evaluate(() => window.api.app.audit({ limit: 30 }))).find((x) => x.action === 'doc.deleted');
-    assert.equal(delAudit.reason, 'Omylom importovaný súbor.');
+    assert.equal(delAudit && delAudit.reason, 'Omylom importovaný súbor.', 'the deletion and its reason are in the audit trail');
     // A document with training records, signatures and reviews cannot be deleted – only withdrawn.
     const qa1 = (await page.evaluate(() => window.api.docs.list())).find((d) => d.code === 'SOP-QA-001');
     await page.evaluate((id) => (location.hash = `#/documents/${id}`), qa1.id);
