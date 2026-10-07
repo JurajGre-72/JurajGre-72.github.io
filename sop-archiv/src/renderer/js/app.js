@@ -382,7 +382,7 @@ function bindGlobalEvents() {
   let waitToast = null;
   api.on('lock:waiting', (holder) => {
     if (waitToast) waitToast.remove();
-    waitToast = holder ? toast(t('lock.waiting', { user: holder.user || '?', host: holder.host || '?' }), 'info', 120000) : null;
+    waitToast = holder ? toast(holder.user ? t('lock.waiting', { user: holder.user, host: holder.host || '?' }) : t('lock.waitingAny'), 'info', 120000) : null;
   });
   setInterval(() => app.info && app.info.session && renderPresence(), 20000);
   api.on('lock:changed', async () => {

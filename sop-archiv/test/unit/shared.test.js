@@ -1,0 +1,136 @@
+'use strict';
+// Several computers working with one archive folder: what one computer reads in the background must
+// never undo what it has just changed itself, and the folder's lock has only one holder.
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const fs = require('fs');
+const os = require('os');
+const path = require('path');
+
+const { Archive } = require('../../src/main/archive');
+const { ArchiveLock } = require('../../src/main/lib/lock');
+
+const tmpDir = () => fs.mkdtempSync(path.join(os.tmpdir(), 'sop-shared-'));
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+async function computer(dir, host) {
+  const a = new Archive({ dataDir: dir, user: host, host });
+  await a.open();
+  a.shared = true;
+  return a;
+}
+
+/** A write transaction as main.js runs it (without the folder lock, which is tested below). */
+async function tx(a, fn) {
+  a.inTx = true;
+  try {
+    await a.syncFromDisk();
+    await fn();
+    await a.save();
+  } finally {
+    a.inTx = false;
+  }
+}
+
+test('a background reload that is still reading does not undo a change made meanwhile', async () => {
+  const dir = tmpDir();
+  const qa = await computer(dir, 'PC-QA');
+  const sklad = await computer(dir, 'PC-SKLAD');
+  await tx(sklad, () => {
+    sklad.data.settings.zoSkladu = 'Poznámka od Petra';
+  });
+
+  // The background reload on PC-QA reads slowly (a network drive): it ends after PC-QA's own change.
+  const read = qa._readJson.bind(qa);
+  let slow = true;
+  qa._readJson = async (file) => {
+    const r = await read(file);
+    if (slow) {
+      slow = false;
+      await sleep(150);
+    }
+    return r;
+  };
+  const background = qa.syncFromDisk();
+  await tx(qa, () => {
+    qa.data.settings.zQa = 'Revízia z PC-QA';
+  });
+  await background;
+  assert.equal(qa.data.settings.zQa, 'Revízia z PC-QA', 'own change still there');
+  assert.equal(qa.data.settings.zoSkladu, 'Poznámka od Petra', 'colleague’s change there too');
+  await qa.syncFromDisk();
+  assert.equal(qa.data.settings.zQa, 'Revízia z PC-QA', 'and after the next reload');
+
+  const check = await computer(dir, 'PC-3');
+  assert.equal(check.data.settings.zQa, 'Revízia z PC-QA');
+  assert.equal(check.data.settings.zoSkladu, 'Poznámka od Petra');
+});
+
+test('the next change after a slow background reload keeps everything saved before', async () => {
+  const dir = tmpDir();
+  const qa = await computer(dir, 'PC-QA');
+  const sklad = await computer(dir, 'PC-SKLAD');
+  await tx(sklad, () => {
+    sklad.data.settings.prva = 1;
+  });
+  const read = qa._readJson.bind(qa);
+  let slow = true;
+  qa._readJson = async (file) => {
+    const r = await read(file);
+    if (slow) {
+      slow = false;
+      await sleep(150);
+    }
+    return r;
+  };
+  const background = qa.syncFromDisk(); // reads the first change, slowly
+  await tx(sklad, () => {
+    sklad.data.settings.druha = 2; // a second change on the other computer meanwhile
+  });
+  await tx(qa, () => {
+    qa.data.settings.tretia = 3;
+  });
+  await background;
+  const check = await computer(dir, 'PC-3');
+  assert.deepEqual([check.data.settings.prva, check.data.settings.druha, check.data.settings.tretia], [1, 2, 3]);
+});
+
+test('folder lock: a lock file that is still being written counts as taken', () => {
+  const dir = tmpDir();
+  const file = path.join(dir, '.sop-archiv.lock');
+  fs.writeFileSync(file, ''); // another computer has just created it and not written it yet
+  const b = new ArchiveLock(dir, { host: 'pc2', user: 'Eva', pid: 4242 });
+  assert.equal(b.tryAcquire().ok, false, 'not overwritten');
+  fs.writeFileSync(file, '{"host":"pc1","us'); // half written
+  assert.equal(b.tryAcquire().ok, false);
+  // A broken lock file that nobody refreshes (a crash in the middle of writing it) is taken over later.
+  const old = (Date.now() - 10 * 60 * 1000) / 1000;
+  fs.utimesSync(file, old, old);
+  assert.equal(b.tryAcquire().ok, true);
+  b.release();
+  assert.equal(fs.existsSync(file), false);
+});
+
+test('folder lock: only one of many computers holds it at a time', async () => {
+  const dir = tmpDir();
+  const locks = Array.from({ length: 6 }, (_, i) => new ArchiveLock(dir, { host: `pc${i}`, user: `u${i}`, pid: 1000 + i }));
+  let inside = 0;
+  let most = 0;
+  let done = 0;
+  await Promise.all(
+    locks.map(async (l) => {
+      for (let n = 0; n < 15; n++) {
+        while (!l.tryAcquire().ok) await sleep(1);
+        inside++;
+        most = Math.max(most, inside);
+        await sleep(2);
+        inside--;
+        done++;
+        l.release();
+        await sleep(Math.random() * 3);
+      }
+    })
+  );
+  assert.equal(done, 90);
+  assert.equal(most, 1, 'never two holders at once');
+});

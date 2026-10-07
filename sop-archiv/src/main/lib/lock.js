@@ -1,7 +1,7 @@
 'use strict';
-// Single-writer lock for an archive folder that may be shared (e.g. a company network drive).
-// The first computer to open the archive can change it; others open it read-only and refresh
-// automatically. A lock not refreshed for STALE_MS (crash, sleeping laptop) can be taken over.
+// Write lock for an archive folder that may be shared (e.g. a company network drive). A computer holds it
+// only while it saves a change (a write transaction in main.js); the others wait for it. A lock not
+// refreshed for STALE_MS (crash, sleeping laptop, network gone in the middle of a save) can be taken over.
 
 const fs = require('fs');
 const path = require('path');
@@ -18,12 +18,28 @@ class ArchiveLock {
     this.owned = false;
   }
 
+  /** The holder, or null when nobody holds the lock. A lock file another computer is still writing (empty or
+   *  half written) counts as held, by an unknown holder, until it is as old as a stale lock. */
   read() {
+    let text;
     try {
-      return JSON.parse(fs.readFileSync(this.file, 'utf8'));
+      text = fs.readFileSync(this.file, 'utf8');
     } catch (_) {
       return null;
     }
+    try {
+      const h = JSON.parse(text);
+      if (h && typeof h === 'object') return h;
+    } catch (_) {
+      /* being written */
+    }
+    let ts = Date.now();
+    try {
+      ts = fs.statSync(this.file).mtimeMs;
+    } catch (_) {
+      return null; // removed meanwhile
+    }
+    return { host: '', user: '', pid: 0, ts, unreadable: true };
   }
 
   isMine(h) {
@@ -52,9 +68,23 @@ class ArchiveLock {
       this.owned = false;
       return { ok: false, holder: { host: h.host, user: h.user, since: h.since } };
     }
+    if (h && !this.isMine(h)) {
+      // Stale, or left by a program on this computer that crashed: remove it and create a new one, so that
+      // of several computers taking it over at the same moment only one succeeds. Removed only if it is
+      // still the same old lock (another computer may have just taken it over).
+      const again = this.read();
+      if (again && again.ts === h.ts && again.host === h.host && again.pid === h.pid) {
+        try {
+          fs.unlinkSync(this.file);
+        } catch (e) {
+          if (e.code !== 'ENOENT') throw e;
+        }
+      }
+      return this.tryAcquire();
+    }
     try {
-      if (!h && !fs.existsSync(this.file)) fs.writeFileSync(this.file, this._payload(), { flag: 'wx' });
-      else fs.writeFileSync(this.file, this._payload(h && this.isMine(h) ? h.since : null));
+      if (!h) fs.writeFileSync(this.file, this._payload(), { flag: 'wx' });
+      else fs.writeFileSync(this.file, this._payload(h.since));
     } catch (e) {
       if (e.code === 'EEXIST') return this.tryAcquire(); // another computer was faster: look again
       throw e;

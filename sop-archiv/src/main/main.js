@@ -273,7 +273,8 @@ function withWrite(fn, { waitMs = 90000 } = {}) {
       }
       if (Date.now() - started > waitMs) {
         send('lock:waiting', null);
-        throw new UserError(tr('err.busyOther', { user: (got.holder && got.holder.user) || '?', host: (got.holder && got.holder.host) || '?' }));
+        const h = got.holder || {};
+        throw new UserError(h.user ? tr('err.busyOther', { user: h.user, host: h.host || '?' }) : tr('err.busyAny'));
       }
       await new Promise((r) => setTimeout(r, 250));
     }

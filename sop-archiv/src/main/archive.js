@@ -86,9 +86,11 @@ class Archive {
     this.index = new SearchIndex();
     this.analyzed = new Map(); // filePath -> analysis (reused by import)
     this.saving = Promise.resolve();
+    this._syncing = Promise.resolve();
+    this._saves = 0; // changes saved by this program (a reading from disk started before one is out of date)
     this.indexReady = false;
     this.userId = null;
-    this.readOnly = false; // another computer has the archive open for changes
+    this.readOnly = false; // this computer may not write to the archive folder
     this.key = null; // data key, only in memory, after a user signed in
     this.keyring = null; // keyring.json when the archive is encrypted
     this.pendingAudit = []; // audit entries made while locked, written after unlocking
@@ -206,13 +208,27 @@ class Archive {
    * search index. Returns true when something was read. (Called at the start of every write transaction
    * and every few seconds in between.)
    */
-  async syncFromDisk() {
+  syncFromDisk() {
+    // One reading at a time: a transaction's reading waits for a background one still in progress.
+    const run = () => this._sync();
+    const p = this._syncing.then(run, run);
+    this._syncing = p.catch(() => {});
+    return p;
+  }
+
+  async _sync() {
     if (this.locked || !this.data) return false;
     await this.saving;
     const rev = this._readRev();
     if (rev === (this._rev || '')) return false;
-    if (fs.existsSync(this.p('keyring.json'))) this.keyring = this._loadKeyring();
-    this.data = await this._readJson(this.p('archive.json'));
+    const saves = this._saves;
+    const keyring = fs.existsSync(this.p('keyring.json')) ? this._loadKeyring() : null;
+    const data = await this._readJson(this.p('archive.json'));
+    // This computer saved a change while the file was being read: what was read is older than what is in
+    // memory now, so it is not used (a write transaction reads the colleagues' changes before it changes anything).
+    if (saves !== this._saves) return false;
+    if (keyring) this.keyring = keyring;
+    this.data = data;
     this._migrate();
     this._rev = rev;
     await this._refreshIndex();
@@ -292,6 +308,7 @@ class Archive {
       console.error(e);
       if (this._readRev() !== (this._rev || '')) return this.saving; // someone else saved meanwhile: do not overwrite
     }
+    this._saves++;
     const content = this._seal(JSON.stringify(this.data, null, 1));
     const file = this.p('archive.json');
     this.saving = this.saving
