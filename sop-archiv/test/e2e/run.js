@@ -194,15 +194,23 @@ async function until(page, fn, what, arg = undefined, timeout = 30000) {
   }
 }
 
-function launch(tmp, userdata, host = 'PC-QA') {
+// What the app itself reported (main process), printed when the test fails.
+const appLog = [];
+
+async function launch(tmp, userdata, host = 'PC-QA') {
   // SOP_ARCHIV_EXE=path/to/packaged/binary tests a built app instead of the sources.
   const packaged = process.env.SOP_ARCHIV_EXE;
-  return electron.launch({
+  const app = await electron.launch({
     executablePath: packaged || require('electron'),
     args: packaged ? ['--no-sandbox'] : [ROOT, '--no-sandbox'],
     // Two "computers" on one machine: each has its own name. STRICT_TX: a save outside a write transaction fails the test.
     env: { ...process.env, SOP_ARCHIV_USERDATA: path.join(tmp, userdata), SOP_ARCHIV_DATA: path.join(tmp, 'archive'), SOP_ARCHIV_NO_TIMERS: '1', SOP_ARCHIV_HOST: host, SOP_ARCHIV_STRICT_TX: '1', LANG: 'sk_SK.UTF-8', LANGUAGE: 'sk' }
   });
+  app.process().stderr.on('data', (d) => {
+    for (const line of String(d).split('\n')) if (line.trim()) appLog.push(`[${host}] ${line}`);
+    if (appLog.length > 400) appLog.splice(0, appLog.length - 400);
+  });
+  return app;
 }
 
 async function signIn(page, who) {
@@ -247,10 +255,12 @@ async function main() {
   let app = await launch(tmp, 'userdata-pc1');
   let app2 = null;
   const errors = [];
+  const watched = []; // every window (both computers), for the evidence when a check fails
   let page = null;
   try {
     page = await app.firstWindow();
     const watch = (p) => {
+      watched.push(p);
       p.on('pageerror', (e) => errors.push(String(e)));
       p.on('console', (m) => m.type() === 'error' && !/ERR_BLOCKED_BY_CLIENT|Refused to connect|Failed to fetch|Content Security Policy/.test(m.text()) && errors.push(m.text()));
     };
@@ -1090,10 +1100,17 @@ async function main() {
     console.log(`\nAll e2e checks passed. Screenshots: ${OUT}`);
   } catch (e) {
     // Leave evidence for CI: a screenshot and any message the app showed.
-    if (page) {
-      await page.screenshot({ path: path.join(OUT, 'zz-failure.png') }).catch(() => {});
-      const shown = await page.evaluate(() => [...document.querySelectorAll('.modal .err, #login-err, .toast')].map((x) => x.textContent.trim()).filter(Boolean)).catch(() => []);
-      if (shown.length) console.error('Messages on screen:', shown);
+    for (const [i, p] of watched.entries()) {
+      if (p.isClosed()) continue;
+      await p.screenshot({ path: path.join(OUT, `zz-failure-${i + 1}.png`) }).catch(() => {});
+      const shown = await p
+        .evaluate(() => ({
+          at: location.hash,
+          messages: [...document.querySelectorAll('.modal .err, #login-err, .toast')].map((x) => x.textContent.trim()).filter(Boolean),
+          main: ((document.getElementById('main') || {}).innerText || '').replace(/\s+/g, ' ').slice(0, 400)
+        }))
+        .catch(() => null);
+      if (shown) console.error(`Window ${i + 1} on screen:`, shown);
     }
     if (errors.length) console.error('Renderer errors:', errors);
     throw e;
@@ -1107,5 +1124,6 @@ async function main() {
 
 main().catch((e) => {
   console.error('E2E FAILED:', e);
+  if (appLog.length) console.error('--- the app reported (last lines) ---\n' + appLog.slice(-80).join('\n'));
   process.exit(1);
 });

@@ -87,6 +87,12 @@ class ArchiveLock {
       else fs.writeFileSync(this.file, this._payload(h.since));
     } catch (e) {
       if (e.code === 'EEXIST') return this.tryAcquire(); // another computer was faster: look again
+      // Windows: the lock file of a colleague who has just finished is still being removed, or another
+      // program has it open for a moment. Not free yet: the caller tries again shortly.
+      if (e.code === 'EBUSY' || (process.platform === 'win32' && (e.code === 'EPERM' || e.code === 'EACCES'))) {
+        this.owned = false;
+        return { ok: false, holder: null };
+      }
       throw e;
     }
     // Confirm nobody overwrote it at the same moment.

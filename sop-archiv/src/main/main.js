@@ -282,10 +282,19 @@ function withWrite(fn, { waitMs = 90000 } = {}) {
     const me = { active: true };
     a.inTx = true;
     try {
+      a.takeSaveError(); // an earlier failed save (outside a transaction): the reading below reloads what is saved
       if (await a.syncFromDisk()) send('data:changed', { what: 'reload' });
-      return await txContext.run(me, fn);
+      const result = await txContext.run(me, fn);
+      await a.saving;
+      if (a.saveError) throw new UserError(tr('err.saveFailed'));
+      return result;
     } finally {
       await a.saving;
+      // A change that did not reach the disk is not shown as done: read back what is really saved.
+      if (a.takeSaveError()) {
+        await a.syncFromDisk().catch(() => {});
+        send('data:changed', { what: 'reload' });
+      }
       me.active = false;
       a.inTx = false;
       l.release();

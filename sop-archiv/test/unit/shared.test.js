@@ -20,6 +20,20 @@ async function computer(dir, host) {
   return a;
 }
 
+/** The next reading of archive.json takes long (a slow network drive). */
+function slowFirstRead(a) {
+  const read = a._readFile.bind(a);
+  let slow = true;
+  a._readFile = async (file) => {
+    const r = await read(file);
+    if (slow && file.endsWith('archive.json')) {
+      slow = false;
+      await sleep(150);
+    }
+    return r;
+  };
+}
+
 /** A write transaction as main.js runs it (without the folder lock, which is tested below). */
 async function tx(a, fn) {
   a.inTx = true;
@@ -41,16 +55,7 @@ test('a background reload that is still reading does not undo a change made mean
   });
 
   // The background reload on PC-QA reads slowly (a network drive): it ends after PC-QA's own change.
-  const read = qa._readJson.bind(qa);
-  let slow = true;
-  qa._readJson = async (file) => {
-    const r = await read(file);
-    if (slow) {
-      slow = false;
-      await sleep(150);
-    }
-    return r;
-  };
+  slowFirstRead(qa);
   const background = qa.syncFromDisk();
   await tx(qa, () => {
     qa.data.settings.zQa = 'Revízia z PC-QA';
@@ -73,16 +78,7 @@ test('the next change after a slow background reload keeps everything saved befo
   await tx(sklad, () => {
     sklad.data.settings.prva = 1;
   });
-  const read = qa._readJson.bind(qa);
-  let slow = true;
-  qa._readJson = async (file) => {
-    const r = await read(file);
-    if (slow) {
-      slow = false;
-      await sleep(150);
-    }
-    return r;
-  };
+  slowFirstRead(qa);
   const background = qa.syncFromDisk(); // reads the first change, slowly
   await tx(sklad, () => {
     sklad.data.settings.druha = 2; // a second change on the other computer meanwhile
@@ -133,4 +129,51 @@ test('folder lock: only one of many computers holds it at a time', async () => {
   );
   assert.equal(done, 90);
   assert.equal(most, 1, 'never two holders at once');
+});
+
+test('a file kept busy for a moment (Windows) is tried again instead of failing the save', async () => {
+  const { retryBusy } = require('../../src/main/lib/fsretry');
+  const busy = () => Object.assign(new Error('operation not permitted, rename'), { code: 'EPERM' });
+  let n = 0;
+  const flaky = async () => {
+    if (++n < 3) throw busy();
+    return 'ok';
+  };
+  assert.equal(await retryBusy(flaky, { win: true }), 'ok');
+  assert.equal(n, 3);
+  n = 0;
+  await assert.rejects(retryBusy(flaky, { win: false }), /not permitted/, 'elsewhere EPERM is a real refusal');
+  await assert.rejects(
+    retryBusy(async () => {
+      throw busy();
+    }, { win: true, totalMs: 100 }),
+    /not permitted/,
+    'and it gives up after a while'
+  );
+});
+
+test('a save that does not reach the disk is reported once, audited, and what is saved is read back', async () => {
+  const dir = tmpDir();
+  const a = await computer(dir, 'PC-QA');
+  await tx(a, () => {
+    a.data.settings.x = 'uložené';
+  });
+  // archive.json cannot be replaced (here a folder stands in its place; in practice the network folder is gone).
+  const file = path.join(dir, 'archive.json');
+  const kept = fs.readFileSync(file);
+  fs.rmSync(file);
+  fs.mkdirSync(file);
+  fs.writeFileSync(path.join(file, 'x'), '');
+  await tx(a, () => {
+    a.data.settings.x = 'neuložené';
+  });
+  assert.ok(a.saveError, 'the failure is known');
+  assert.ok(a.takeSaveError());
+  assert.equal(a.takeSaveError(), null, 'reported once');
+  fs.rmSync(file, { recursive: true });
+  fs.writeFileSync(file, kept);
+  assert.equal(await a.syncFromDisk(), true, 'read back');
+  assert.equal(a.data.settings.x, 'uložené', 'the screen shows what is really saved');
+  await sleep(50);
+  assert.ok((await a.allAudit()).some((r) => r.action === 'archive.saveFailed'), 'in the audit trail');
 });

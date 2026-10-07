@@ -231,6 +231,7 @@ async function render() {
     main.scrollTop = 0;
     if (view.mount) await view.mount(main, route);
   } catch (e) {
+    if (seq !== renderSeq) return; // an older drawing failed after a newer one was shown: keep the newer one
     console.error(e);
     main.innerHTML = String(html`<div class="page"><div class="empty">${icon('alert')}<p>${String(e.message || e)}</p></div></div>`);
   }

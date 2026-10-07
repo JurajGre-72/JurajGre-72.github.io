@@ -10,6 +10,7 @@
 // Lines are encrypted one by one when the archive is encrypted (lib/vault.js).
 
 const fs = require('fs');
+const { replaceFile } = require('./fsretry');
 const path = require('path');
 const crypto = require('crypto');
 
@@ -88,7 +89,7 @@ class AuditLog {
       }
       const tmp = `${f}.${process.pid}.tmp`;
       await fs.promises.writeFile(tmp, out.join('\n') + '\n');
-      await fs.promises.rename(tmp, f);
+      await replaceFile(tmp, f);
     }
     this.last = null;
   }

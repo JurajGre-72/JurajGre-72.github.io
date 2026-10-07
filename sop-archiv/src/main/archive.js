@@ -36,6 +36,7 @@ const { DEFAULT_LAWS, DOC_TYPES, defaultArchive } = require('./lib/defaults');
 const { ROLES, hashPassword, verifyPassword, validPassword } = require('./lib/auth');
 const { pagesWithoutText } = require('./ocr');
 const vault = require('./lib/vault');
+const { replaceFile, writeFileRetry, retryBusy } = require('./lib/fsretry');
 const training = require('./lib/training');
 const approval = require('./lib/approval');
 const company = require('./lib/company');
@@ -73,7 +74,7 @@ async function sha256File(file) {
 async function writeAtomic(file, data) {
   const tmp = `${file}.${process.pid}.tmp`;
   await fs.promises.writeFile(tmp, data);
-  await fs.promises.rename(tmp, file);
+  await replaceFile(tmp, file);
 }
 
 class Archive {
@@ -88,6 +89,7 @@ class Archive {
     this.saving = Promise.resolve();
     this._syncing = Promise.resolve();
     this._saves = 0; // changes saved by this program (a reading from disk started before one is out of date)
+    this.saveError = null; // the last save that did not reach the disk (see takeSaveError)
     this.indexReady = false;
     this.userId = null;
     this.readOnly = false; // this computer may not write to the archive folder
@@ -222,8 +224,13 @@ class Archive {
     const rev = this._readRev();
     if (rev === (this._rev || '')) return false;
     const saves = this._saves;
-    const keyring = fs.existsSync(this.p('keyring.json')) ? this._loadKeyring() : null;
-    const data = await this._readJson(this.p('archive.json'));
+    // Both files exactly as saved: a file a colleague is just replacing (Windows refuses to open it for a
+    // moment) is read again; if it still cannot be read, nothing is taken over (no mix of old and new).
+    let keyring = null;
+    if (fs.existsSync(this.p('keyring.json'))) {
+      keyring = JSON.parse(await retryBusy(() => fs.promises.readFile(this.p('keyring.json'), 'utf8')));
+    }
+    const data = JSON.parse((await retryBusy(() => this._readFile(this.p('archive.json')))).toString('utf8'));
     // This computer saved a change while the file was being read: what was read is older than what is in
     // memory now, so it is not used (a write transaction reads the colleagues' changes before it changes anything).
     if (saves !== this._saves) return false;
@@ -316,15 +323,32 @@ class Archive {
         const tmp = `${file}.${process.pid}.tmp`;
         await fs.promises.writeFile(tmp, content);
         // Keep the previous state one save back, for recovery.
-        if (fs.existsSync(file)) await fs.promises.copyFile(file, this.p('archive.prev.json')).catch(() => {});
-        await fs.promises.rename(tmp, file);
+        if (fs.existsSync(file)) await retryBusy(() => fs.promises.copyFile(file, this.p('archive.prev.json'))).catch(() => {});
+        await replaceFile(tmp, file);
         // Other computers notice the change by this value.
         const rev = crypto.randomBytes(8).toString('hex');
-        await fs.promises.writeFile(this.p('archive.rev'), rev);
+        await writeFileRetry(this.p('archive.rev'), rev);
         this._rev = rev;
       })
-      .catch((e) => console.error('save failed', e));
+      .catch((e) => {
+        console.error('save failed', e);
+        this.saveError = e;
+        this.audit('archive.saveFailed', { error: String(e.code || e.message || e) });
+      });
     return this.saving;
+  }
+
+  /**
+   * A save of this program failed (folder gone, disk full, file kept busy by another program): returns the
+   * error once. What is in memory then differs from the disk, so the next reading reloads what is really saved.
+   */
+  takeSaveError() {
+    const e = this.saveError;
+    if (e) {
+      this.saveError = null;
+      this._rev = '(not saved)';
+    }
+    return e;
   }
 
   async _dailyBackup() {
