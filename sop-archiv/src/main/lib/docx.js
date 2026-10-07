@@ -105,6 +105,8 @@ function dataTable(tb, scale = 1) {
 async function buildDocx({ doc = {}, sections = [], logoPng = null, lang = 'sk', landscape = false }) {
   const t = L[lang] || L.sk;
   const logo = pngSize(logoPng);
+  const k = landscape ? 14570 / 9638 : 1; // tables fill the width of a turned page too
+  const W2 = (arr) => arr.map((w) => Math.round(w * k));
   const zip = new JSZip();
 
   zip.file(
@@ -146,7 +148,7 @@ async function buildDocx({ doc = {}, sections = [], logoPng = null, lang = 'sk',
   const right = para(`${t.code}: ${doc.code || '—'}`, { style: 'Small' }) + para(`${t.version}: ${doc.version || '1'}`, { style: 'Small' }) + `<w:p><w:pPr><w:pStyle w:val="Small"/></w:pPr><w:r><w:t xml:space="preserve">${t.page} </w:t></w:r>${field('PAGE')}<w:r><w:t xml:space="preserve"> ${t.of} </w:t></w:r>${field('NUMPAGES')}</w:p>`;
   zip.file(
     'word/header1.xml',
-    `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:hdr xmlns:w="${W}" xmlns:r="${R}">${table([[cell(left, { width: 2700 }), cell(mid, { width: 4500 }), cell(right, { width: 2438 })]], [2700, 4500, 2438])}<w:p/></w:hdr>`
+    `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:hdr xmlns:w="${W}" xmlns:r="${R}">${table([[cell(left, { width: Math.round(2700 * k) }), cell(mid, { width: Math.round(4500 * k) }), cell(right, { width: Math.round(2438 * k) })]], W2([2700, 4500, 2438]))}<w:p/></w:hdr>`
   );
   zip.file('word/_rels/header1.xml.rels', `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">${logo ? '<Relationship Id="rIdLogo" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="media/logo.png"/>' : ''}</Relationships>`);
   if (logo) zip.file('word/media/logo.png', logoPng);
@@ -161,7 +163,7 @@ async function buildDocx({ doc = {}, sections = [], logoPng = null, lang = 'sk',
       [t.code, t.version, t.effective, t.dept].map((h) => cell(para(h, { style: 'Small', bold: true }), { shade: 'EAF0F3' })),
       [doc.code || '', doc.version || '1', doc.effectiveDate || '[DOPLNIŤ]', doc.department || ''].map((v) => cell(para(v, { style: 'Small' })))
     ],
-    [2400, 2400, 2400, 2438]
+    W2([2400, 2400, 2400, 2438])
   );
   const sign = table(
     [
@@ -172,7 +174,7 @@ async function buildDocx({ doc = {}, sections = [], logoPng = null, lang = 'sk',
         [t.approved, doc.approvedBy || '']
       ].map(([role, name]) => [cell(para(role, { style: 'Small', bold: true })), cell(para(name, { style: 'Small' })), cell(para('', { style: 'Small' })), cell(para('', { style: 'Small' })), cell(para('', { style: 'Small' }))])
     ],
-    [1700, 2600, 2000, 1500, 1838]
+    W2([1700, 2600, 2000, 1500, 1838])
   );
   const body = [
     doc.org ? para(doc.org, { align: 'center', bold: true, color: '003A5B' }) : '',
