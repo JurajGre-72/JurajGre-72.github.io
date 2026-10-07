@@ -50,7 +50,7 @@
 4. Pri prvom spustení zvoľte jazyk, meno, organizáciu a priečinok archívu; vytlačte si kód na obnovenie. Zvolený jazyk je jazykom archívu: kolegovia ho uvidia na každom počítači (aj s anglickým Windows), kým si v nastaveniach nezvolia vlastný.
 5. Ak chcete AI: *Nastavenia → AI asistent → Vstavaná AI* – stiahnite odporúčaný model (niekoľko GB, raz) alebo vyberte súbor modelu z počítača, a kliknite *Vyskúšať model*.
 
-*macOS:* `SOP-Archiv-Mac` (.dmg) – pri prvom otvorení pravým tlačidlom → **Otvoriť**. *Linux:* AppImage.
+*macOS:* `…-mac-arm64.dmg` (Mac s čipom Apple M1–M4) alebo `…-mac-x64.dmg` (Mac s procesorom Intel) – aplikáciu presuňte do Aplikácií a otvorte; macOS ju prvýkrát zastaví („Apple nemohol overiť…“) → **Systémové nastavenia → Súkromie a bezpečnosť → Napriek tomu otvoriť** (na macOS 14 a staršom: pravé tlačidlo → **Otvoriť**). *Linux:* AppImage.
 
 ### Ako funguje kontrola legislatívy
 
@@ -101,7 +101,7 @@ No server, no cloud, no account, no telemetry. All data lives in one ordinary fo
 
 ### Install
 
-Download **SOP-Archiv-Windows** from *Actions → SOP Archiv → latest run → Artifacts* (or from *Releases* once a version is tagged): `…-Setup.exe` (installer) or `…-portable.exe`. The build is unsigned: on "Windows protected your PC" choose **More info → Run anyway**. macOS (.dmg: right-click → Open) and Linux (AppImage) builds are produced too.
+Download **SOP-Archiv-Windows** from *Actions → SOP Archiv → latest run → Artifacts* (or from *Releases* once a version is tagged): `…-Setup.exe` (installer) or `…-portable.exe`. The build is unsigned: on "Windows protected your PC" choose **More info → Run anyway**. macOS (.dmg for Apple silicon or Intel; first opening: System Settings → Privacy & Security → Open Anyway, or right-click → Open on macOS 14 and older) and Linux (AppImage) builds are produced too.
 
 ### Limitations
 

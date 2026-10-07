@@ -85,7 +85,7 @@ jobs:
       - name: End-to-end test on the packaged Windows app
         if: runner.os == 'Windows'
         run: |
-          npx electron-builder --win dir --publish never -c.electronFuses.enableNodeCliInspectArguments=true -c.extraMetadata.soparchivTestBuild=true
+          npx electron-builder --win dir --publish never '-c.electronFuses.enableNodeCliInspectArguments=true' '-c.extraMetadata.soparchivTestBuild=true'
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           $env:SOP_ARCHIV_EXE = (Resolve-Path 'dist/win-unpacked/SOP Archiv.exe').Path
           node test/e2e/run.js e2e-screenshots/packaged
@@ -93,10 +93,19 @@ jobs:
           Remove-Item -Recurse -Force dist
         env:
           CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+      # macOS: the whole end-to-end test on the packaged Mac app (Apple silicon), the same way.
+      - name: End-to-end test on the packaged Mac app
+        if: runner.os == 'macOS'
+        run: |
+          npx electron-builder --mac dir --arm64 --publish never '-c.electronFuses.enableNodeCliInspectArguments=true' '-c.extraMetadata.soparchivTestBuild=true'
+          SOP_ARCHIV_EXE="$PWD/dist/mac-arm64/SOP Archiv.app/Contents/MacOS/SOP Archiv" node test/e2e/run.js e2e-screenshots/packaged-mac
+          rm -rf dist
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: 'false'
       - uses: actions/upload-artifact@v4
-        if: runner.os == 'Windows' && always()
+        if: runner.os != 'Linux' && always()
         with:
-          name: e2e-screenshots-windows
+          name: e2e-screenshots-${{ matrix.name }}
           path: sop-archiv/e2e-screenshots
           if-no-files-found: ignore
       - name: Build installer
@@ -111,6 +120,23 @@ jobs:
           if (-not $p.WaitForExit(60000)) { $p.Kill(); throw 'The installed app started with a debugger attached' }
           if ($p.ExitCode -ne 1) { throw "Unexpected exit code $($p.ExitCode)" }
           'Refused, as it should.'
+      # No Apple certificate: the Mac app carries an ad-hoc signature (without one, Macs with Apple silicon
+      # refuse to start it). Checked here, and that the real build refuses a debugging mode.
+      - name: The Mac app is signed (ad hoc) and refuses a debugging mode
+        if: runner.os == 'macOS'
+        run: |
+          for app in "dist/mac-arm64/SOP Archiv.app" "dist/mac/SOP Archiv.app"; do
+            codesign --verify --deep --strict --verbose=2 "$app"
+          done
+          set +e
+          "dist/mac-arm64/SOP Archiv.app/Contents/MacOS/SOP Archiv" --inspect=0 > refuse.log 2>&1 &
+          pid=$!
+          for i in $(seq 1 60); do kill -0 $pid 2>/dev/null || break; sleep 1; done
+          if kill -0 $pid 2>/dev/null; then kill $pid; echo 'The Mac app started with a debugger attached'; exit 1; fi
+          wait $pid
+          code=$?
+          cat refuse.log
+          test $code -eq 1 && grep -q 'debugging mode' refuse.log && echo 'Refused, as it should.'
       - uses: actions/upload-artifact@v4
         with:
           name: SOP-Archiv-${{ matrix.name }}

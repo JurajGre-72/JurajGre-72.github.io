@@ -114,7 +114,8 @@
       ],
       "category": "public.app-category.business",
       "icon": "build/icon.png",
-      "identity": null
+      "identity": "-",
+    "hardenedRuntime": false
     },
     "linux": {
       "target": [
