@@ -2,6 +2,13 @@
 
 Každá zverejnená verzia má tu svoj odsek (zobrazí sa v aplikácii pri aktualizácii a na stránke verzie).
 
+## 1.0.3
+
+- Vzhľad (Podľa systému, Svetlý, Tmavý) sa zmení hneď po kliknutí, bez tlačidla Uložiť. Tmavý vzhľad dostanú aj časti okna (horná lišta na Macu, ponuky, rozbaľovacie zoznamy).
+- Pri „Podľa systému“ aplikácia ukáže, či je počítač práve vo svetlom alebo tmavom režime, a mení sa spolu s ním.
+- Prihlasovacia obrazovka si pamätá naposledy zvolený vzhľad na tomto počítači.
+- Jazyk sa tiež prepne hneď po výbere.
+
 ## 1.0.2
 
 - Aktualizácia jedným kliknutím: Nastavenia → O aplikácii → Skontrolovať aktualizácie → Stiahnuť a nainštalovať. Aplikácia stiahne novú verziu, pred inštaláciou overí jej odtlačok (SHA-256) a sama sa reštartuje. Dokumenty, profily a nastavenia zostanú. Inštaláciu môže spustiť správca a zapíše sa do auditného záznamu.

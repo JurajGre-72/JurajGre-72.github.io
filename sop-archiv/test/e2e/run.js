@@ -609,6 +609,28 @@ async function main() {
     await page.$eval('#set-users', (el) => el.scrollIntoView());
     await shot(page, '16-users');
 
+    // ---- Appearance and language: a click changes them at once, the window's own parts too ----
+    await page.$eval('#set-me', (el) => el.scrollIntoView());
+    const BG = { dark: 'rgb(10, 20, 28)', light: 'rgb(242, 245, 247)' };
+    for (const th of ['dark', 'light', 'system']) {
+      await page.click(`[data-action="setTheme"][data-theme="${th}"]`);
+      await page.waitForFunction((x) => (document.documentElement.dataset.theme || 'system') === x && document.querySelector(`.seg-btn.on[data-theme="${x}"]`), th);
+      if (BG[th]) assert.equal(await page.evaluate(() => getComputedStyle(document.body).backgroundColor), BG[th], `the page is ${th}`);
+      const end = Date.now() + 10000;
+      while ((await app.evaluate(({ nativeTheme }) => nativeTheme.themeSource)) !== th) {
+        assert.ok(Date.now() < end, `the window's own parts are ${th}`);
+        await page.waitForTimeout(100);
+      }
+      assert.equal((await page.evaluate(() => window.api.app.info())).settings.theme, th, 'remembered');
+      if (th === 'dark') await shot(page, '16-appearance-dark');
+    }
+    assert.match(await page.textContent('#theme-hint'), /teraz je (svetlý|tmavý)/, '"like the system" says what the system shows now');
+    await page.selectOption('#set-prefs [name=lang]', 'en');
+    await page.waitForSelector('.page-head h1:has-text("Settings")');
+    await page.selectOption('#set-prefs [name=lang]', 'sk');
+    await page.waitForSelector('.page-head h1:has-text("Nastavenia")');
+    console.log('  ✓ appearance (light, dark, like the system) and language change at once on a click');
+
     // ---- Company logo: stored in the archive folder, shown in the sidebar and at sign-in ----
     const logoFile = path.join(tmp, 'firemne-logo.svg');
     fs.writeFileSync(logoFile, '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60"><rect width="240" height="60" rx="8" fill="#ffffff"/><circle cx="30" cy="30" r="18" fill="#1d4f91"/><text x="58" y="39" font-family="Arial" font-size="24" font-weight="700" fill="#1d4f91">TEST LOGO</text></svg>');

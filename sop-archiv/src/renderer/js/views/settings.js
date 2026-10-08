@@ -1,7 +1,7 @@
 // Settings: my profile (everyone), users and archive settings (administrator), privacy logs.
 import { t, setLang, lang } from '../i18n.js';
 import { html, icon, fmtDateTime, fmtSize, toast, errorToast, formValues, openModal, confirmDialog } from '../ui.js';
-import { app } from '../app.js';
+import { app, applyTheme } from '../app.js';
 import { auditDetails } from './document.js';
 import { showRecoveryCode } from './recovery.js';
 import { cloudNote, confirmLocalFolder } from './cloudnote.js';
@@ -18,6 +18,17 @@ let trash = null; // deleted documents kept in the archive (administrators)
 const aiProgress = {}; // model id -> { phase, done, total }
 let offProgress = null;
 
+const THEME_ICON = { system: 'monitor', light: 'sun', dark: 'moon' };
+const systemDark = () => window.matchMedia('(prefers-color-scheme: dark)').matches;
+/** "Like the system" says what the system shows now – otherwise choosing light on a light Mac looks like nothing happened. */
+function themeHint(th) {
+  return th === 'system' ? t(systemDark() ? 'set.theme.systemNowDark' : 'set.theme.systemNowLight') : '';
+}
+// The system switches between light and dark while Settings are open (or once "like the system" is saved).
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+  const hint = document.getElementById('theme-hint');
+  if (hint && app.info) hint.textContent = themeHint(app.info.settings.theme);
+});
 // What the company does and does not do (see lib/company.js); administrators edit it.
 function companySection() {
   const p = company.profile;
@@ -179,11 +190,12 @@ export async function render() {
       t('set.me'),
       'user',
       html`<div class="me-card"><span class="avatar">${me.name.split(/\s+/).slice(0, 2).map((w) => w[0].toUpperCase()).join('')}</span><div><b>${me.name}</b><div class="muted small">${t(`role.${me.role}`)}</div></div></div>
-      <form class="form-grid" data-submit="savePrefs">
-        <div class="field"><label>${t('set.lang')}</label><select name="lang"><option value="sk" ${s.lang === 'sk' ? 'selected' : ''}>Slovenčina</option><option value="en" ${s.lang === 'en' ? 'selected' : ''}>English</option></select></div>
-        <div class="field"><label>${t('set.theme')}</label><select name="theme">${['system', 'light', 'dark'].map((x) => html`<option value="${x}" ${s.theme === x ? 'selected' : ''}>${t(`set.theme.${x}`)}</option>`)}</select></div>
-        <div class="field full btn-row"><button class="btn btn-primary">${t('save')}</button></div>
-      </form>
+      <div class="form-grid" id="set-prefs">
+        <div class="field"><label>${t('set.lang')}</label><select name="lang" data-change="setLang"><option value="sk" ${s.lang === 'sk' ? 'selected' : ''}>Slovenčina</option><option value="en" ${s.lang === 'en' ? 'selected' : ''}>English</option></select></div>
+        <div class="field"><label>${t('set.theme')}</label><div class="seg" role="radiogroup" aria-label="${t('set.theme')}">${['system', 'light', 'dark'].map((x) => html`<button type="button" role="radio" class="seg-btn ${s.theme === x ? 'on' : ''}" aria-checked="${s.theme === x ? 'true' : 'false'}" data-action="setTheme" data-theme="${x}">${icon(THEME_ICON[x])}${t(`set.theme.${x}`)}</button>`)}</div>
+          <div class="hint" id="theme-hint">${themeHint(s.theme)}</div></div>
+        <p class="field full muted small">${t('set.prefsHint')}</p>
+      </div>
       <h4>${t('usr.changePw')}</h4>
       <form class="form-grid" data-submit="changePw" autocomplete="off" data-perm="reader">
         <div class="field"><label>${t('usr.oldPw')}</label><input type="password" name="old" required></div>
@@ -407,11 +419,23 @@ async function resetDialog(user) {
 }
 
 export const actions = {
-  async savePrefs(form) {
-    const v = formValues(form);
-    await api.auth.setPrefs({ lang: v.lang, theme: v.theme });
-    setLang(v.lang);
+  // Language and appearance take effect at once (and are remembered for this user).
+  async setLang(el) {
+    await api.auth.setPrefs({ lang: el.value });
+    setLang(el.value);
     await saveAndReload(Promise.resolve());
+  },
+  async setTheme(el) {
+    const th = el.dataset.theme;
+    document.querySelectorAll('[data-action="setTheme"]').forEach((b) => {
+      b.classList.toggle('on', b === el);
+      b.setAttribute('aria-checked', b === el ? 'true' : 'false');
+    });
+    applyTheme(th); // the page at once; the window's own parts once it is saved
+    await api.auth.setPrefs({ theme: th });
+    await app.reloadInfo();
+    const hint = document.getElementById('theme-hint');
+    if (hint) hint.textContent = themeHint(th);
   },
   async changePw(form) {
     const v = formValues(form);

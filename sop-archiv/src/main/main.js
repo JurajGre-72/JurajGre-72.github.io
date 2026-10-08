@@ -5,7 +5,7 @@
 // (b) an optional AI assistant, which is allowed only on this computer or the internal network.
 // Every such request is listed in Settings → Privacy → Network activity.
 
-const { app, BrowserWindow, ipcMain, dialog, shell, protocol, net, session: electronSession, Notification, Tray, Menu, nativeImage, safeStorage } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog, shell, protocol, net, session: electronSession, Notification, Tray, Menu, nativeImage, nativeTheme, safeStorage } = require('electron');
 const crypto = require('crypto');
 const { AsyncLocalStorage } = require('async_hooks');
 const fs = require('fs');
@@ -160,6 +160,13 @@ function lang() {
 function theme() {
   return (session && session.prefs && session.prefs.theme) || settings.theme;
 }
+/** The window's own parts (title bar, menus, lists, scroll bars) take the chosen appearance too, not only the page. */
+const WINDOW_BG = { light: '#f2f5f7', dark: '#0a141c' };
+function applyTheme() {
+  const th = ['light', 'dark'].includes(theme()) ? theme() : 'system';
+  if (nativeTheme.themeSource !== th) nativeTheme.themeSource = th;
+  if (mainWindow && !mainWindow.isDestroyed()) mainWindow.setBackgroundColor(WINDOW_BG[nativeTheme.shouldUseDarkColors ? 'dark' : 'light']);
+}
 const tr = (key, vars) => mainText(lang(), key, vars);
 
 function sessionPublic() {
@@ -183,6 +190,7 @@ function setSession(u) {
   if (lock) lock.setUser(session ? session.name : osUser());
   if (session) writePresence();
   else clearPresence();
+  applyTheme();
   buildMenu();
   refreshTrayMenu();
 }
@@ -584,7 +592,7 @@ function createWindow() {
     show: false,
     title: 'SOP Archív',
     icon: fs.existsSync(ICON) ? ICON : undefined,
-    backgroundColor: '#f4f6f6',
+    backgroundColor: WINDOW_BG[nativeTheme.shouldUseDarkColors ? 'dark' : 'light'],
     autoHideMenuBar: process.platform !== 'darwin',
     webPreferences: { preload: path.join(__dirname, 'preload.js'), contextIsolation: true, nodeIntegration: false, sandbox: true, spellcheck: false, webSecurity: true, devTools: !app.isPackaged }
   });
@@ -1056,6 +1064,11 @@ function registerIpc() {
     if (['system', 'light', 'dark'].includes(prefs.theme)) p.theme = prefs.theme;
     session.prefs = { ...session.prefs, ...p };
     if (!archive.readOnly) await withWrite(() => archive.setPrefs(session.userId, p));
+    if (p.theme && settings.theme !== p.theme) {
+      settings.theme = p.theme; // the sign-in screen on this computer keeps the appearance chosen last
+      saveSettings();
+    }
+    applyTheme();
     buildMenu();
     refreshTrayMenu();
     return publicSettings();
@@ -1114,6 +1127,7 @@ function registerIpc() {
         if (clearKey) setApiKey('');
       }
       saveSettings();
+      if (patch.theme) applyTheme();
       if (patch.lang) {
         buildMenu();
         refreshTrayMenu();
@@ -1799,6 +1813,8 @@ if (!app.requestSingleInstanceLock()) {
     settings.lastVersion = app.getVersion();
     saveSettings();
     registerIpc();
+    applyTheme();
+    nativeTheme.on('updated', () => applyTheme()); // the system switches between light and dark (e.g. in the evening)
     buildMenu();
     createWindow();
     if (settings.runInBackground) ensureTray();
