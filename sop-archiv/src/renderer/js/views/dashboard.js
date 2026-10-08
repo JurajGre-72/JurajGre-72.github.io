@@ -4,6 +4,7 @@ import { html, raw, icon, reviewChip, fmtDate, fmtDateTime, fmtMonth, todayIso, 
 import { app } from '../app.js';
 import { reportButton } from './report.js';
 import { recordReview } from './review-dialog.js';
+import { authShort, authChip } from './notices.js';
 
 const api = window.api;
 let state = { docs: [], laws: [], changes: [] };
@@ -185,7 +186,7 @@ export async function render() {
       : ''}
     ${noticesToAssess.length
       ? html`<section class="panel panel-warn"><h3>${icon('bell')}${t('dash.notices')} <span class="count">${noticesToAssess.length}</span></h3>
-          <ul class="rows">${noticesToAssess.slice(0, 5).map((n) => html`<li class="row"><a class="row-main" href="#/notices"><span class="chip chip-${n.authority === 'sukl' ? 'info' : 'vet'}">${n.authority === 'sukl' ? 'ŠÚKL' : 'ÚŠKVBL'}</span><span class="row-title">${n.title}</span></a>${n.rel.watch.length ? html`<span class="chip chip-bad">${n.rel.watch.join(', ')}</span>` : ''}<span class="row-date">${fmtDate(n.date)}</span></li>`)}</ul>
+          <ul class="rows">${noticesToAssess.slice(0, 5).map((n) => html`<li class="row"><a class="row-main" href="#/notices"><span class="chip chip-${authChip(n.authority)}">${authShort(n.authority)}</span><span class="row-title">${n.title}</span></a>${n.rel.watch.length ? html`<span class="chip chip-bad">${n.rel.watch.join(', ')}</span>` : ''}<span class="row-date">${fmtDate(n.date)}</span></li>`)}</ul>
           ${noticesToAssess.length > 5 ? html`<a class="small" href="#/notices">${t('dash.noticesAll')} →</a>` : ''}</section>`
       : ''}
     ${toWithdraw.length ? html`<div class="note note-warn">${icon('alert')}<div>${t('cp.toWithdrawAll', { n: toWithdraw.length, list: Array.from(new Set(toWithdraw.map((c) => c.code || c.title))).join(', ') })}</div></div>` : ''}

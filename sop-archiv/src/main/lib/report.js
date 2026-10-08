@@ -4,6 +4,7 @@
 // training, approvals, controlled copies and how recalls announced by the authorities were assessed. As a printable page (PDF) and as an Excel workbook.
 
 const training = require('./training');
+const { AUTHORITIES } = require('./notices');
 
 function inPeriod(iso, from, to) {
   const d = String(iso || '').slice(0, 10);
@@ -72,7 +73,7 @@ function reportData(data, { from = '', to = '', today = new Date().toISOString()
   for (const d of data.docs) for (const c of d.copies || []) copies.push({ code: d.code || '', title: d.title, no: c.no, version: c.version, to: [c.issuedTo, c.location].filter(Boolean).join(' – '), issued: c.issuedAt.slice(0, 10), status: c.status === 'withdrawn' ? 'withdrawn' : c.versionId !== d.currentVersionId || d.status === 'obsolete' ? 'withdraw' : 'valid', withdrawn: c.withdrawnAt ? c.withdrawnAt.slice(0, 10) : '' });
   const noticeRows = notices
     .filter((n) => n.rel && n.rel.forUs && (n.category === 'recall' || n.rel.watch.length) && (!n.handled ? true : n.handled.outcome !== 'baseline' && inPeriod(n.handled.at, from, to)))
-    .map((n) => ({ date: n.date, authority: n.authority === 'sukl' ? 'ŠÚKL' : 'ÚŠKVBL', title: n.title, outcome: n.handled ? n.handled.outcome : 'open', note: n.handled ? n.handled.note : '', by: n.handled ? n.handled.by : '', at: n.handled ? n.handled.at.slice(0, 10) : '' }))
+    .map((n) => ({ date: n.date, authority: (AUTHORITIES[n.authority] || { short: n.authority }).short, title: n.title, outcome: n.handled ? n.handled.outcome : 'open', note: n.handled ? n.handled.note : '', by: n.handled ? n.handled.by : '', at: n.handled ? n.handled.at.slice(0, 10) : '' }))
     .sort((a, b) => (b.outcome === 'open') - (a.outcome === 'open') || String(b.date).localeCompare(String(a.date))); // waiting ones first
   return {
     org: data.org || '',

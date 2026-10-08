@@ -1,7 +1,10 @@
 'use strict';
-// Notices of the Slovak medicines authorities: ŠÚKL (human medicines) and ÚŠKVBL (veterinary
-// medicines). Only their public pages are read: recalls and quality defects, safety information,
-// availability, new legislation and guidance. Nothing about the archive is sent anywhere.
+// Notices of the medicines authorities: ŠÚKL (human medicines), ÚŠKVBL (veterinary medicines), the
+// Ministry of Health (categorised medicines and prices), SOOL (the medicines verification system) and the
+// Czech ÚSKVBL (veterinary quality defects – many packs are shared CZ/SK). Only their public pages are
+// read: recalls and quality defects, safety information, availability, new legislation and guidance.
+// The EU veterinary medicines database (UPD) is read only for the products the company watches: the page
+// of each one, compared with the last reading. Nothing about the archive is sent anywhere.
 //
 // The parsers here are pure (text in, items out) so they can be tested without the network.
 
@@ -43,6 +46,17 @@ function rssDate(s) {
   if (m && MONTHS[m[2].toLowerCase()]) return `${m[3]}-${pad(MONTHS[m[2].toLowerCase()])}-${pad(m[1])}`;
   const iso = String(s || '').match(/(\d{4})-(\d{2})-(\d{2})/);
   return iso ? `${iso[1]}-${iso[2]}-${iso[3]}` : null;
+}
+
+const SK_MONTHS = ['januar', 'februar', 'marc', 'april', 'maj', 'jun', 'jul', 'august', 'septemb', 'oktob', 'novemb', 'decemb'];
+
+/** "30. septembra 2026" → "2026-09-30" (the Ministry of Health's lists) */
+function skLongDate(s) {
+  const m = fold(s).match(/(\d{1,2})\.\s*([a-z]+)\s+(\d{4})/);
+  if (!m) return null;
+  const mo = SK_MONTHS.findIndex((x) => m[2].startsWith(x)) + 1;
+  const d = +m[1];
+  return mo && d >= 1 && d <= 31 ? `${m[3]}-${pad(mo)}-${pad(d)}` : null;
 }
 
 /** "26.06.2026" / "4. 6. 2024" → "2026-06-26" */
@@ -129,21 +143,53 @@ function parseLinkList(html, base) {
   return out;
 }
 
-const CATEGORIES = ['recall', 'safety', 'availability', 'legislation', 'other'];
+/**
+ * A list of articles with the date they were published (Ministry of Health):
+ *   <ul class="page-article-list"><li><a href="…">Zoznam kategorizovaných liekov 1.11.2026 – 30.11.2026</a>&nbsp;(30. septembra 2026)</li>
+ * → [{ title, link, date, key }]. The list for a month is first published "for information" and later as
+ * the valid one at the same address – each is a notice of its own (key).
+ */
+function parseArticleList(html, base) {
+  const out = [];
+  for (const ul of String(html || '').matchAll(/<ul[^>]+class="[^"]*\bpage-article-list\b[^"]*"[^>]*>([\s\S]*?)<\/ul>/gi)) {
+    for (const li of ul[1].matchAll(/<li\b[^>]*>([\s\S]*?)<\/li>/gi)) {
+      const a = li[1].match(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>([\s\S]*)$/i);
+      if (!a) continue;
+      const title = textOf(a[2]);
+      const link = absUrl(a[1], base);
+      if (!title || !link) continue;
+      out.push({ title, link, date: skLongDate(textOf(a[3])), key: `${link}#${/informativ/.test(fold(title)) ? 'info' : 'final'}` });
+    }
+  }
+  return out;
+}
+
+const CATEGORIES = ['recall', 'safety', 'availability', 'prices', 'legislation', 'other'];
 
 /** What a notice is about – from its title and its address on the authority's site. */
 function categorize({ title = '', link = '', summary = '' }, fallback = null) {
   const t = fold(`${title} ${summary}`);
   const u = String(link).toLowerCase();
-  if (/oznamy-o-stiahnuti|rapid-alert|stiahnut|zakaz\w* (dodavan|uvadzan|predaj|pouzivan)|pozastaven\w* (dodav|predaj|uvadzan|platnost)|falsovan|falsifik|nedostat\w* v kvalit|chyb\w* v kvalit|kvalitativn\w* chyb/.test(`${u} ${t}`)) return 'recall';
-  if (/bezpecnost-liekov|dhpc|informacie-z-prac|farmakovigil/.test(u) || /\bdhpc\b|\bprac\b|riziko|neziaduc|bezpecnost\w* lieku|minimalizaci\w* riz/.test(t)) return 'safety';
+  // Slovak and Czech (ÚSKVBL ČR): recalls, quality defects, falsified medicines, GMP non-compliance.
+  if (/oznamy-o-stiahnuti|rapid-alert|stiahnut|zakaz\w* (dodavan|uvadzan|predaj|pouzivan)|pozastaven\w* (dodav|predaj|uvadzan|platnost)|falsovan|falsifik|nedostat\w* v kvalit|chyb\w* v kvalit|kvalitativn\w* chyb|stazen\w* (sarz|z trhu|pripravk|vlp)|padel|zavad\w* v jakost|non-compliance/.test(`${u} ${t}`)) return 'recall';
+  if (/bezpecnost-liekov|dhpc|informacie-z-prac|farmakovigil/.test(u) || /\bdhpc\b|\bprac\b|riziko|neziaduc|nezadouc|bezpecnost\w* lieku|minimalizaci\w* riz/.test(t)) return 'safety';
   // Supply and marketing authorisation: interruptions, sell-off after a change, cancelled authorisations.
-  if (/dostupnost-liekov|msc-komunik/.test(u) || /prerusen\w* dodav|ukoncen\w* dodav|obnoven\w* dodav|zrusen\w* dodav|nedostupn|vypadok|nedostatok lieku|dopredaj|zrusen\w* registraci|pozastaven\w* registraci|zanik\w* registraci/.test(t)) return 'availability';
+  if (/dostupnost-liekov|msc-komunik/.test(u) || /prerusen\w* dodav|ukoncen\w* dodav|obnoven\w* dodav|zrusen\w* dodav|nedostupn|vypadok|nedostatok lieku|dopredaj|zrusen\w* registraci|pozastaven\w* registraci|zanik\w* registraci|informace o dostupnost/.test(t)) return 'availability';
   // Conferences, jobs, office hours, press releases.
   if (/podujatia|kariera|tlacove-spravy/.test(u) || /konferenci|seminar|pozvank|pracovn\w* ponuk|podateln|vyrocn\w* sprav/.test(fold(title))) return 'other';
   if (/legislativ|usmernen|guideline|metodick|vyhlask|zakon\w* c\.|nariaden|regulation|novel|smernic|pokyn|vykonavac|delegovan|subezn\w* (dovoz|obchod)/.test(`${u} ${t}`)) return 'legislation';
   return fallback && CATEGORIES.includes(fallback) ? fallback : 'other';
 }
+
+/** Who publishes what; `kind`: whether it concerns human or veterinary medicines (company profile). */
+const AUTHORITIES = {
+  sukl: { short: 'ŠÚKL', kind: 'human' },
+  uskvbl: { short: 'ÚŠKVBL', kind: 'vet' },
+  mzsr: { short: 'MZ SR', kind: 'human' },
+  sool: { short: 'SOOL', kind: 'human' },
+  uskvblcz: { short: 'ÚSKVBL ČR', kind: 'vet' },
+  upd: { short: 'EÚ UPD', kind: 'vet' }
+};
 
 // The pages read. `base` lets the tests point them at a local server.
 function sources(base = null) {
@@ -152,22 +198,29 @@ function sources(base = null) {
     { id: 'sukl-recalls', authority: 'sukl', kind: 'rss', url: at('https://www.sukl.sk/sk/rss?page_id=1355&pid=208&days=365'), page: 'https://www.sukl.sk/pre-odbornikov-a-firmy/dostupnost-a-kvalita-liekov/kvalita-liekov/oznamy-o-stiahnuti-liekov', category: 'recall' },
     { id: 'sukl-news', authority: 'sukl', kind: 'rss', url: at('https://www.sukl.sk/sk/rss?page_id=1355&days=365'), page: 'https://www.sukl.sk/aktuality' },
     { id: 'uskvbl-notices', authority: 'uskvbl', kind: 'dated', url: at('https://www.uskvbl.sk/?page_id=115'), page: 'https://www.uskvbl.sk/?page_id=115', category: 'recall' },
-    { id: 'uskvbl-legislation', authority: 'uskvbl', kind: 'links', url: at('https://www.uskvbl.sk/?page_id=4702'), page: 'https://www.uskvbl.sk/?page_id=4702', category: 'legislation' }
+    { id: 'uskvbl-legislation', authority: 'uskvbl', kind: 'links', url: at('https://www.uskvbl.sk/?page_id=4702'), page: 'https://www.uskvbl.sk/?page_id=4702', category: 'legislation' },
+    // Every month since 2016 is listed: the last two years are enough.
+    { id: 'mzsr-categorized', authority: 'mzsr', kind: 'articles', url: at('https://www.health.gov.sk/?zoznam-kategorizovanych-liekov'), page: 'https://www.health.gov.sk/?zoznam-kategorizovanych-liekov', category: 'prices', limit: 24 },
+    { id: 'mzsr-categorization', authority: 'mzsr', kind: 'articles', url: at('https://www.health.gov.sk/?kategorizacia-liekov-1'), page: 'https://www.health.gov.sk/?kategorizacia-liekov', category: 'prices' },
+    { id: 'sool-news', authority: 'sool', kind: 'rss', url: at('https://sool.sk/feed/'), page: 'https://sool.sk/aktuality/' },
+    { id: 'uskvblcz-alerts', authority: 'uskvblcz', kind: 'rss', url: at('https://www.uskvbl.cz/cs/uskvbl/dulezita-upozorneni?format=feed&type=rss'), page: 'https://www.uskvbl.cz/cs/uskvbl/dulezita-upozorneni' }
   ];
 }
 
-const HOSTS = ['www.sukl.sk', 'sukl.sk', 'www.uskvbl.sk', 'uskvbl.sk'];
+const HOSTS = ['www.sukl.sk', 'sukl.sk', 'www.uskvbl.sk', 'uskvbl.sk', 'www.health.gov.sk', 'health.gov.sk', 'sool.sk', 'www.sool.sk', 'www.uskvbl.cz', 'uskvbl.cz', 'medicines.health.europa.eu'];
 
 function parseSource(src, text, finalUrl) {
   const base = finalUrl || src.url;
-  const items = src.kind === 'rss' ? parseRss(text, base) : src.kind === 'dated' ? parseDatedList(text, base) : parseLinkList(text, base);
-  return items.map((it) => ({ ...it, category: src.kind === 'links' ? src.category : categorize(it, src.category === 'recall' && src.kind === 'rss' ? 'recall' : null) }));
+  const items = src.kind === 'rss' ? parseRss(text, base) : src.kind === 'dated' ? parseDatedList(text, base) : src.kind === 'articles' ? parseArticleList(text, base) : parseLinkList(text, base);
+  const fixed = src.kind === 'links' || src.kind === 'articles';
+  return items.slice(0, src.limit || items.length).map((it) => ({ ...it, category: fixed ? src.category : categorize(it, src.category === 'recall' && src.kind === 'rss' ? 'recall' : null) }));
 }
 
 /** A stable id: the same notice from two feeds (ŠÚKL recalls and all news) is one item. */
-function noticeId(authority, link, title) {
-  const key = link ? String(link).replace(/^https?:\/\/(www\.)?/i, '').replace(/[?#].*$/, (q) => (/page_id|p=|id=/.test(q) ? q : '')) : fold(title);
-  return crypto.createHash('sha1').update(`${authority}|${key}`).digest('hex').slice(0, 16);
+function noticeId(authority, link, title, key = null) {
+  if (key) return crypto.createHash('sha1').update(`${authority}|${key}`).digest('hex').slice(0, 16);
+  const k = link ? String(link).replace(/^https?:\/\/(www\.)?/i, '').replace(/[?#].*$/, (q) => (/page_id|p=|id=/.test(q) ? q : '')) : fold(title);
+  return crypto.createHash('sha1').update(`${authority}|${k}`).digest('hex').slice(0, 16);
 }
 
 /** Watched names (one per line) found in the notice's title or summary. */
@@ -190,10 +243,13 @@ function watchHits(item, watchTerms) {
  */
 function relevance(item, company, activityHints) {
   const acts = (company && company.activities) || {};
+  // A change of a product the company watches in the EU database concerns it by definition.
+  if (item.authority === 'upd') return { forUs: true, reason: null, watch: [item.product || item.title] };
   const watch = watchHits(item, company && company.watchTerms);
   if (watch.length) return { forUs: true, reason: null, watch };
-  if (item.authority === 'sukl' && acts.human === 'no' && item.category !== 'legislation') return { forUs: false, reason: 'human', watch };
-  if (item.authority === 'uskvbl' && acts.vet === 'no') return { forUs: false, reason: 'vet', watch };
+  const kind = (AUTHORITIES[item.authority] || {}).kind;
+  if (kind === 'human' && acts.human === 'no' && item.category !== 'legislation') return { forUs: false, reason: 'human', watch };
+  if (kind === 'vet' && acts.vet === 'no') return { forUs: false, reason: 'vet', watch };
   const hints = activityHints ? activityHints(`${item.title} ${item.summary || ''}`, company, item.title) : [];
   if (hints.length) return { forUs: false, reason: hints[0].id, watch };
   return { forUs: true, reason: null, watch };
@@ -201,4 +257,4 @@ function relevance(item, company, activityHints) {
 
 const OUTCOMES = ['not-ours', 'done', 'noted'];
 
-module.exports = { fold, decodeEntities, textOf, rssDate, skDate, parseRss, parseDatedList, parseLinkList, categorize, sources, parseSource, noticeId, watchHits, relevance, CATEGORIES, OUTCOMES, HOSTS };
+module.exports = { fold, decodeEntities, textOf, rssDate, skDate, skLongDate, parseRss, parseDatedList, parseLinkList, parseArticleList, categorize, sources, parseSource, noticeId, watchHits, relevance, CATEGORIES, OUTCOMES, HOSTS, AUTHORITIES };

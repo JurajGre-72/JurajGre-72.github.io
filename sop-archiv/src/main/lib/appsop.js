@@ -33,7 +33,7 @@ Platí pre aplikáciu SOP Archív vo verzii 1.x nainštalovanú na počítačoch
 - Auditný záznam – záznam každej akcie v aplikácii s menom používateľa, počítačom a časom; nedá sa upraviť ani zmazať.
 - Kód na obnovenie – kód vytvorený pri založení archívu, ktorým správca obnoví prístup, ak sú zabudnuté všetky heslá.
 - Čitateľ, Editor, Správca – roly používateľov v aplikácii (pozri kap. 4).
-- ŠÚKL – Štátny ústav pre kontrolu liečiv; ÚŠKVBL – Ústav štátnej kontroly veterinárnych biopreparátov a liečiv.
+- ŠÚKL – Štátny ústav pre kontrolu liečiv; ÚŠKVBL – Ústav štátnej kontroly veterinárnych biopreparátov a liečiv; MZ SR – Ministerstvo zdravotníctva SR; SOOL – Slovenská organizácia pre overovanie liekov; ÚSKVBL ČR – Ústav pro státní kontrolu veterinárních biopreparátů a léčiv (Česká republika); EÚ databáza veterinárnych liekov – Union Product Database (UPD).
 - SDP – správna veľkodistribučná prax; AI asistent – voliteľný jazykový model, ktorý beží len v počítači spoločnosti.`
   },
   {
@@ -98,8 +98,9 @@ Platí pre aplikáciu SOP Archív vo verzii 1.x nainštalovanú na počítačoch
 - Odborný zástupca alebo poverená osoba zmenu posúdi pri každom dotknutom dokumente (upraviť / netýka sa / poznámka). Ak sa ustanovenie na spoločnosť nevzťahuje alebo platí zámerne iný postup spoločnosti, zaznamená sa rozhodnutie s dôvodom.
 - Analýza aplikácie je pomôcka; o dopade zmeny rozhoduje odborný zástupca.
 
-5.10 Oznamy ŠÚKL a ÚŠKVBL
-- Aplikácia načítava verejné oznamy ŠÚKL a ÚŠKVBL (stiahnutia liekov z trhu, bezpečnosť, dostupnosť, legislatíva) každé 4 hodiny počas behu aplikácie.
+5.10 Oznamy úradov
+- Aplikácia načítava verejné oznamy ŠÚKL a ÚŠKVBL (stiahnutia liekov z trhu, bezpečnosť, dostupnosť, legislatíva), MZ SR (zoznam kategorizovaných liekov a dokumenty ku kategorizácii a cenám), SOOL (overovanie liekov) a ÚSKVBL ČR (závady v kvalite, falzifikáty) každé 4 hodiny počas behu aplikácie.
+- Lieky, ktoré spoločnosť sleduje v EÚ databáze veterinárnych liekov (zoznam v Nastaveniach → Profil spoločnosti), aplikácia kontroluje raz denne; zmenu stavu registrácie, krajín registrácie a dostupnosti alebo novú verziu SPC, písomnej informácie či obalu ukáže ako oznam na posúdenie.
 - Oznam o stiahnutí, ktorý sa týka spoločnosti, posúdi poverená osoba do [DOPLNIŤ: lehota, napr. 24 hodín] a zaznamená výsledok: netýka sa nás / opatrenia vykonané (s popisom) / na vedomie.
 - Pri stiahnutí výrobku, ktorý spoločnosť distribuovala, sa postupuje podľa [DOPLNIŤ: kód a názov SOP pre stiahnutie z trhu].
 
@@ -123,7 +124,7 @@ Platí pre aplikáciu SOP Archív vo verzii 1.x nainštalovanú na počítačoch
 
 5.15 Bezpečnosť a ochrana údajov
 - Archív je zašifrovaný; bez prihlásenia sa nedá čítať ani skopírovaný.
-- Aplikácia sa pripája na internet len na stiahnutie verejných textov predpisov a oznamov ŠÚKL a ÚŠKVBL (a jednorazovo na stiahnutie modelu AI). Každé spojenie je v Nastaveniach → Sieťová aktivita.
+- Aplikácia sa pripája na internet len na stiahnutie verejných textov predpisov, oznamov úradov a stránok sledovaných liekov v EÚ databáze (a jednorazovo na stiahnutie modelu AI). Každé spojenie je v Nastaveniach → Sieťová aktivita.
 - Záznamy o školeniach obsahujú osobné údaje zamestnancov; spracúvajú sa podľa [DOPLNIŤ: interný predpis o ochrane osobných údajov].
 
 5.16 Validácia a zmeny aplikácie

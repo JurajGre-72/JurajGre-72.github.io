@@ -41,6 +41,7 @@ const training = require('./lib/training');
 const approval = require('./lib/approval');
 const company = require('./lib/company');
 const notices = require('./lib/notices');
+const updLib = require('./lib/upd');
 const { AuditLog } = require('./lib/auditlog');
 const os = require('os');
 
@@ -2046,9 +2047,24 @@ class Archive {
         N.sources[b.src.id] = st;
         continue;
       }
+      // The EU database: the products' pages read now against the readings kept (inside the transaction,
+      // so two computers checking at once do not report a change twice).
+      if (b.upd) {
+        const r = updLib.compare(N.upd || {}, b.upd, { lang: this.data.settings.lang === 'en' ? 'en' : 'sk', today: todayIso, base: b.base || null });
+        N.upd = r.snapshots;
+        N.updLastCheck = nowIso;
+        if (b.upd.length && r.failed === b.upd.length) {
+          Object.assign(st, { ok: false, error: String((b.upd.find((x) => x.error) || {}).error || 'FORMAT').slice(0, 300) });
+          N.sources[b.src.id] = st;
+          continue;
+        }
+        b.items = r.items;
+        st.failed = r.failed;
+        st.watched = b.upd.length;
+      }
       const first = !st.firstCheck;
       for (const it of b.items) {
-        const id = notices.noticeId(b.src.authority, it.link, it.title);
+        const id = notices.noticeId(b.src.authority, it.link, it.title, it.key);
         const ex = byId.get(id);
         if (ex) {
           if (ex.category === 'other' && it.category !== 'other') ex.category = it.category;
@@ -2067,6 +2083,7 @@ class Archive {
           date: it.date || todayIso,
           dateKnown: !!it.date,
           category: it.category,
+          ...(it.product ? { product: String(it.product).slice(0, 300) } : {}),
           firstSeen: nowIso,
           seen: old,
           handled: old ? { outcome: 'baseline', note: '', by: '', at: nowIso } : null
@@ -2075,7 +2092,7 @@ class Archive {
         N.items.push(n);
         if (!old) added.push(n);
       }
-      Object.assign(st, { ok: true, error: null, count: b.items.length, firstCheck: st.firstCheck || nowIso });
+      Object.assign(st, { ok: true, error: null, count: b.upd ? b.upd.length : b.items.length, firstCheck: st.firstCheck || nowIso });
       N.sources[b.src.id] = st;
     }
     // Keep the list from growing without end: the newest 3000 (assessed notices are kept first).
@@ -2101,7 +2118,23 @@ class Archive {
       .map((n) => this._noticeView(n))
       .sort((a, b) => sortDate(b).localeCompare(sortDate(a)) || String(b.firstSeen).localeCompare(String(a.firstSeen)));
     const activities = company.ACTIVITIES.map(({ id, sk, en }) => ({ id, sk, en }));
-    return { items, sources: this.data.notices.sources, lastCheck: this.data.notices.lastCheck || null, counts: this.noticeCounts(items), activities };
+    // The products watched in the EU database and what their pages said at the last reading.
+    const kept = this.data.notices.upd || {};
+    const watched = updLib.updIds(this.data.company.updWatch).map((id) => {
+      const p = kept[id];
+      return {
+        id,
+        url: updLib.updUrl(id),
+        name: p ? p.name : null,
+        status: p ? p.statusLabel || p.status : null,
+        authStatus: p ? p.authStatus : null,
+        authorisedSk: p ? (p.authorisedIn || []).includes('SK') : null,
+        availableSk: p ? (p.availableIn || []).includes('SK') : null,
+        gone: !!(p && p.gone),
+        checkedAt: p ? p.checkedAt : null
+      };
+    });
+    return { items, sources: this.data.notices.sources, lastCheck: this.data.notices.lastCheck || null, counts: this.noticeCounts(items), activities, watched };
   }
 
   /** toAssess: recalls (and watched names) that concern the company and wait for an assessment; unseen: new and not yet looked at. */

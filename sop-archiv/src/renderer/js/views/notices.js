@@ -1,12 +1,19 @@
-// Notices of ŠÚKL (human medicines) and ÚŠKVBL (veterinary medicines): recalls, safety information,
-// availability and new legislation, read from their public pages. Recalls that concern the company are
+// Notices of the authorities – ŠÚKL (human medicines), ÚŠKVBL (veterinary medicines), the Ministry of Health
+// (categorised medicines), SOOL (medicines verification), the Czech ÚSKVBL – and changes of the products
+// watched in the EU veterinary medicines database: recalls, safety information, availability, prices and
+// new legislation, read from their public pages. Recalls and watched products that concern the company are
 // assessed here (not our product / measures taken / noted) – the record is kept for inspections.
 import { t, lang } from '../i18n.js';
 import { html, icon, openModal, formValues, toast, errorToast, confirmDialog, fmtDate, fmtDateTime } from '../ui.js';
 import { app } from '../app.js';
 
 const api = window.api;
-const CATS = ['recall', 'safety', 'availability', 'legislation', 'other'];
+const CATS = ['recall', 'safety', 'availability', 'prices', 'legislation', 'other'];
+// Who publishes what (as in lib/notices.js): the short name and whether it concerns human or veterinary medicines.
+export const AUTHORITIES = { sukl: ['ŠÚKL', 'human'], uskvbl: ['ÚŠKVBL', 'vet'], mzsr: ['MZ SR', 'human'], sool: ['SOOL', 'human'], uskvblcz: ['ÚSKVBL ČR', 'vet'], upd: ['EÚ UPD', 'vet'] };
+export const authShort = (a) => (AUTHORITIES[a] || [a])[0];
+export const authChip = (a) => ((AUTHORITIES[a] || [])[1] === 'vet' ? 'vet' : 'info');
+const SOURCES = ['sukl-recalls', 'sukl-news', 'uskvbl-notices', 'uskvbl-legislation', 'mzsr-categorized', 'mzsr-categorization', 'sool-news', 'uskvblcz-alerts', 'upd-watch'];
 const OUTCOMES = ['not-ours', 'done', 'noted'];
 const PAGE = 150;
 
@@ -60,7 +67,7 @@ function card(n) {
   return html`<article class="nt-card ${urgent ? 'nt-urgent' : ''} ${n.rel.forUs ? '' : 'nt-dim'}" data-id="${n.id}">
     <div class="nt-meta">
       <span class="nt-date">${n.dateKnown ? fmtDate(n.date) : t('nt.found', { date: fmtDate(n.date) })}</span>
-      <span class="chip chip-${n.authority === 'sukl' ? 'info' : 'vet'}">${t(`nt.auth.${n.authority}`)}</span>
+      <span class="chip chip-${authChip(n.authority)}">${t(`nt.auth.${n.authority}`)}</span>
       <span class="chip chip-${n.category === 'recall' ? 'bad' : n.category === 'safety' ? 'warn' : 'muted'}">${t(`nt.cat.${n.category}`)}</span>
       ${!n.seen ? html`<span class="chip chip-new">${t('nt.new')}</span>` : ''}
     </div>
@@ -76,12 +83,31 @@ function card(n) {
 }
 
 function sourcesLine() {
-  const names = ['sukl-recalls', 'sukl-news', 'uskvbl-notices', 'uskvbl-legislation'];
-  return html`<ul class="nt-sources">${names.map((id) => {
+  return html`<ul class="nt-sources">${SOURCES.map((id) => {
     const s = data.sources[id];
-    const state = !s ? html`<span class="muted">${t('nt.notYet')}</span>` : s.ok ? html`<span class="ok">${icon('check')}${fmtDateTime(s.lastCheck)}</span>` : html`<span class="warn">${icon('alert')}${s.error === 'FORMAT' ? t('nt.srcFormat') : t('nt.srcError', { error: s.error })}</span>`;
+    let state;
+    if (id === 'upd-watch' && !data.watched.length) state = html`<span class="muted">${t('nt.updNone')}</span>`;
+    else if (!s) state = html`<span class="muted">${t('nt.notYet')}</span>`;
+    else if (!s.ok) state = html`<span class="warn">${icon('alert')}${s.error === 'FORMAT' ? t('nt.srcFormat') : t('nt.srcError', { error: s.error })}</span>`;
+    else if (id === 'upd-watch' && s.failed) state = html`<span class="warn">${icon('alert')}${fmtDateTime(s.lastCheck)} · ${t('nt.updFailed', { failed: s.failed, n: s.watched })}</span>`;
+    else state = html`<span class="ok">${icon('check')}${fmtDateTime(s.lastCheck)}${id === 'upd-watch' ? ` · ${t('nt.updRead', { n: s.watched })}` : ''}</span>`;
     return html`<li><span>${t(`nt.src.${id}`)}</span>${state}</li>`;
   })}</ul>`;
+}
+
+/** The products watched in the EU database and what their pages said at the last reading. */
+function watchedList() {
+  if (!data.watched.length) return '';
+  const yn = (v) => (v === null ? '–' : t(v ? 'nt.yes' : 'nt.no'));
+  return html`<h4>${t('nt.updTitle')}</h4><ul class="nt-sources nt-watched">${data.watched.map(
+    (w) => html`<li><a href="#" data-action="open" data-url="${w.url}">${w.name || w.id}${icon('external', 'nt-ext')}</a>${
+      !w.checkedAt
+        ? html`<span class="muted">${t('nt.updNotYet')}</span>`
+        : w.gone
+          ? html`<span class="warn">${icon('alert')}${t('nt.updGone')}</span>`
+          : html`<span class="${w.authorisedSk === false ? 'warn' : 'muted'}">${[w.status, w.authStatus].filter(Boolean).join(' · ')} · ${t('nt.updSk', { a: yn(w.authorisedSk), b: yn(w.availableSk) })}</span>`
+    }</li>`
+  )}</ul>`;
 }
 
 export async function render() {
@@ -103,7 +129,7 @@ export async function render() {
     </header>
     ${offline ? html`<div class="note note-warn">${icon('wifiOff')}${t('nt.offline')}</div>` : ''}
     ${!data.lastCheck && !offline ? html`<div class="note">${icon('info')}${t('nt.never')}</div>` : ''}
-    <details class="how"><summary>${icon('info')}${t('nt.howTitle')}</summary><p>${t('nt.privacy')}</p>${sourcesLine()}</details>
+    <details class="how"><summary>${icon('info')}${t('nt.howTitle')}</summary><p>${t('nt.privacy')}</p>${sourcesLine()}${watchedList()}</details>
 
     <div class="tabs nt-tabs" role="tablist">${tabs.map(
       (f) => html`<button class="tab ${ui.filter === f ? 'active' : ''}" role="tab" aria-selected="${ui.filter === f}" data-action="filter" data-f="${f}">${f === 'assess' ? t('nt.f.assess') : f === 'all' ? t('nt.f.all') : t(`nt.cat.${f}`)}${f === 'assess' && data.counts.toAssess ? html` <span class="badge badge-warn">${data.counts.toAssess}</span>` : ''}</button>`
@@ -111,7 +137,7 @@ export async function render() {
     ${ui.filter !== 'assess'
       ? html`<div class="nt-filters">
           <input type="search" placeholder="${t('nt.search')}" value="${ui.q}" data-input="search" aria-label="${t('nt.search')}">
-          <select data-change="authority" aria-label="${t('nt.allAuth')}"><option value="">${t('nt.allAuth')}</option><option value="sukl" ${ui.authority === 'sukl' ? 'selected' : ''}>ŠÚKL</option><option value="uskvbl" ${ui.authority === 'uskvbl' ? 'selected' : ''}>ÚŠKVBL</option></select>
+          <select data-change="authority" aria-label="${t('nt.allAuth')}"><option value="">${t('nt.allAuth')}</option>${Object.keys(AUTHORITIES).map((a) => html`<option value="${a}" ${ui.authority === a ? 'selected' : ''}>${authShort(a)}</option>`)}</select>
           <label class="check small"><input type="checkbox" data-change="showAll" ${ui.showAll ? 'checked' : ''}> ${t('nt.showNotForUs')}</label>
         </div>`
       : ''}

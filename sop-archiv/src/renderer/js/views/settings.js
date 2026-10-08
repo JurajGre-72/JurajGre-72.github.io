@@ -45,6 +45,7 @@ function companySection() {
       )}</div></div>
       <div class="field full"><label>${t('co.notes')}</label><textarea name="notes" rows="3" placeholder="${t('co.notesPh')}" ${app.can('admin') ? '' : 'readonly'}>${p.notes || ''}</textarea></div>
       <div class="field full"><label>${t('co.watch')}</label><textarea name="watchTerms" rows="4" placeholder="${t('co.watchPh')}" ${app.can('admin') ? '' : 'readonly'}>${p.watchTerms || ''}</textarea><span class="hint">${t('co.watchHint')}</span></div>
+      <div class="field full"><label>${t('co.upd')}</label><textarea name="updWatch" rows="3" placeholder="${t('co.updPh')}" spellcheck="false" ${app.can('admin') ? '' : 'readonly'}>${p.updWatch || ''}</textarea><span class="hint">${t('co.updHint')}</span></div>
       ${p.updatedAt ? html`<p class="field full muted small">${p.updatedBy} · ${fmtDateTime(p.updatedAt)}</p>` : ''}
       <div class="field full btn-row" data-perm="admin"><button class="btn btn-primary">${t('save')}</button></div>
     </form>`;
@@ -460,7 +461,7 @@ export const actions = {
     const v = formValues(form);
     const activities = {};
     for (const a of company.activities) activities[a.id] = v[`act-${a.id}`] || '';
-    await api.company.update({ activities, notes: v.notes, watchTerms: v.watchTerms });
+    await api.company.update({ activities, notes: v.notes, watchTerms: v.watchTerms, updWatch: v.updWatch });
     toast(t('co.saved'), 'good');
     app.rerender();
   },

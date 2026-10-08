@@ -83,7 +83,7 @@ test('inspection report: recall assessments and the Excel sheets', async () => {
     assert.equal(typeof laws.rows[0][4], 'number', 'counts stay numbers');
   }
   const html = R.reportHtml(r, labels('sk'));
-  assert.match(html, /Oznamy ŠÚKL a ÚŠKVBL o stiahnutí liekov a ich posúdenie/);
+  assert.match(html, /Oznamy úradov o stiahnutí liekov, zmeny sledovaných liekov a ich posúdenie/);
   assert.match(html, /čaká na posúdenie/);
   assert.match(html, /Šarža A1 v karanténe\./);
 });

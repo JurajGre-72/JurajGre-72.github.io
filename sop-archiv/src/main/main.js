@@ -1522,7 +1522,7 @@ function registerIpc() {
     'notices:check',
     async () => {
       if (settings.offline) throw new UserError(tr('err.offline'));
-      const r = await noticesMonitor.checkAll();
+      const r = await noticesMonitor.checkAll({ force: true });
       notifyNotices(r.added);
       return { added: r.added.length, errors: r.errors };
     },

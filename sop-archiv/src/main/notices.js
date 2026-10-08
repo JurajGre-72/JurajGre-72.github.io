@@ -1,8 +1,14 @@
 'use strict';
-// Reads the notices of ŠÚKL and ÚŠKVBL (public pages only) and adds new ones to the archive.
-// Only these two sites are contacted; nothing about the archive is sent.
+// Reads the notices of the authorities (public pages only) and adds new ones to the archive; and the pages
+// of the products the company watches in the EU veterinary medicines database. Only these sites are
+// contacted; nothing about the archive is sent.
 
 const N = require('./lib/notices');
+const U = require('./lib/upd');
+
+/** The EU database: the products' pages change rarely – read once a day, or when asked to. */
+const UPD_SOURCE = { id: 'upd-watch', authority: 'upd', kind: 'upd', page: 'https://medicines.health.europa.eu/veterinary/sk' };
+const UPD_EVERY_MS = 20 * 60 * 60 * 1000;
 
 class NoticesMonitor {
   /**
@@ -19,12 +25,16 @@ class NoticesMonitor {
     this.running = false;
   }
 
+  pause() {
+    return new Promise((res) => setTimeout(res, this.pauseMs));
+  }
+
   get sources() {
     return N.sources(this.base);
   }
 
-  /** Read every page; returns { added: [notices], errors: [{ source, error }] }. */
-  async checkAll() {
+  /** Read every page; returns { added: [notices], errors: [{ source, error }] }. force: the EU database too. */
+  async checkAll({ force = false } = {}) {
     if (this.isOffline()) throw new Error('OFFLINE');
     if (this.running) throw new Error('BUSY');
     this.running = true;
@@ -42,10 +52,31 @@ class NoticesMonitor {
         } catch (e) {
           batches.push({ src, error: (e && e.message) || String(e) });
         }
-        if (i < list.length - 1 && this.pauseMs) await new Promise((res) => setTimeout(res, this.pauseMs));
+        if (i < list.length - 1 && this.pauseMs) await this.pause();
+      }
+      const ids = U.updIds(this.archive.companyProfile().updWatch);
+      const last = Date.parse(this.archive.data.notices.updLastCheck || '') || 0;
+      if (ids.length && (force || Date.now() - last > UPD_EVERY_MS)) {
+        const readings = [];
+        for (const id of ids) {
+          if (this.pauseMs) await this.pause();
+          try {
+            const r = await this.fetchText(U.updUrl(id, this.base));
+            const product = U.parseProduct(r.text);
+            readings.push(product ? { id, product } : { id, error: 'FORMAT' });
+          } catch (e) {
+            const msg = (e && e.message) || String(e);
+            readings.push(/^HTTP 404\b/.test(msg) ? { id, gone: true } : { id, error: msg });
+          }
+        }
+        batches.push({ src: UPD_SOURCE, upd: readings, base: this.base, items: [] });
       }
       const added = await this.transact(() => this.archive.mergeNotices(batches));
-      return { added, errors: batches.filter((b) => b.error).map((b) => ({ source: b.src.id, error: b.error })) };
+      const errors = batches.filter((b) => b.error).map((b) => ({ source: b.src.id, error: b.error }));
+      const upd = batches.find((b) => b.upd);
+      const failed = upd ? upd.upd.filter((x) => x.error) : [];
+      if (failed.length) errors.push({ source: UPD_SOURCE.id, error: failed.length === upd.upd.length ? failed[0].error : `${failed.length}/${upd.upd.length}` });
+      return { added, errors };
     } finally {
       this.running = false;
     }

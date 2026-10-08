@@ -2,6 +2,12 @@
 
 Každá zverejnená verzia má tu svoj odsek (zobrazí sa v aplikácii pri aktualizácii a na stránke verzie).
 
+## 1.0.4
+
+- Oznamy úradov majú nové zdroje: MZ SR – nový zoznam kategorizovaných liekov (aj informatívny materiál vopred) a dokumenty ku kategorizácii a cenám; SOOL – oznamy systému overovania liekov; ÚSKVBL ČR – závady v kvalite, stiahnutia šarží a falzifikáty veterinárnych liekov.
+- EÚ databáza veterinárnych liekov: v Nastaveniach → Profil spoločnosti zadáte odkazy na lieky, ktoré distribuujete. Aplikácia ich raz denne skontroluje a upozorní na zmenu stavu registrácie, krajín registrácie a dostupnosti (Slovensko) alebo na novú verziu SPC, písomnej informácie či obalu – ako oznam na posúdenie.
+- Nová kategória „Kategorizácia a ceny“ a výber podľa úradu; v časti „Odkiaľ oznamy sú“ je stav každého zdroja aj zoznam sledovaných liekov.
+
 ## 1.0.3
 
 - Vzhľad (Podľa systému, Svetlý, Tmavý) sa zmení hneď po kliknutí, bez tlačidla Uložiť. Tmavý vzhľad dostanú aj časti okna (horná lišta na Macu, ponuky, rozbaľovacie zoznamy).

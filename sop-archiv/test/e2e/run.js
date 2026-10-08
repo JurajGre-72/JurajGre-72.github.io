@@ -129,6 +129,13 @@ function startLawServer() {
       }
       if (req.url.startsWith('/?page_id=115')) return res.end(NP.uskvblNotices(NOTICE_VET));
       if (req.url.startsWith('/?page_id=4702')) return res.end(NP.uskvblLegislation([{ title: 'NARIADENIE (EÚ) 2019/6 o veterinárnych liekoch', file: 'r2019-6.pdf' }]));
+      // Ministry of Health, SOOL, ÚSKVBL ČR (older notices only: they start as the baseline)
+      const here = `http://127.0.0.1:${port}`;
+      if (req.url.startsWith('/?zoznam-kategorizovanych-liekov') || req.url.startsWith('/?kategorizacia-liekov-1')) return res.end(NP.mzList('Zoznam kategorizovaných liekov', [{ title: 'Zoznam kategorizovaných liekov 1.6.2026 – 30.6.2026', slug: 'lieky202606', date: NP.isoDaysAgo(100) }], here));
+      if (req.url.startsWith('/feed/')) return res.end(NP.suklRss('SOOL', [{ title: 'EMVS Master Data Guide – aktualizovaná verzia', path: '/emvs/', date: NP.isoDaysAgo(120) }], here));
+      if (req.url.startsWith('/cs/uskvbl/dulezita-upozorneni')) return res.end(NP.suklRss('Důležitá upozornění', [{ title: 'Upozornění - Padělky VLP Vymyslín', path: '/cs/a', date: NP.isoDaysAgo(90) }], here));
+      // A product page of the EU veterinary medicines database; its authorisation is suspended on request
+      if (req.url.startsWith('/veterinary/sk/600000012345')) return res.end(NP.updProduct({ name: 'FIKTIVET 50 mg tablety pre psy', authStatus: srv.updSuspended ? 'Suspended' : 'Valid', authorisedIn: ['CZ', 'SK'], availableIn: ['SK'], docs: { 'Súhrn charakteristických vlastností lieku': '2026-05-02' } }));
       if (req.url.startsWith('/spa')) {
         res.end(`<!doctype html><html><body><div id="app">Načítavam…</div><script>setTimeout(()=>{document.getElementById('app').innerText='ŠÚKL oznamy\\nNové usmernenie k správnej distribučnej praxi platné od 1. 1. 2027\\nZmena formulára hlásenia nežiaducich účinkov\\n'+'Ďalší text oznamu. '.repeat(20)},900)</script></body></html>`);
         return;
@@ -841,9 +848,10 @@ async function main() {
     assert.match(freeText, /Platná len v deň tlače/);
     await shot(page, '26-controlled-copy');
     console.log('  ✓ approval signed with the own password makes the version effective; controlled copy stamped on every page; other copies marked uncontrolled');
-    // ---- ŠÚKL / ÚŠKVBL notices: recalls to assess, watched product names ----
+    // ---- Authority notices: recalls to assess, watched product names, a product watched in the EU database ----
     await page.evaluate(() => (location.hash = '#/settings'));
     await page.fill('textarea[name=watchTerms]', 'Imaginex\nIný výrobok');
+    await page.fill('textarea[name=updWatch]', 'https://medicines.health.europa.eu/veterinary/sk/600000012345');
     await page.click('form[data-submit="saveCompany"] button.btn-primary');
     await page.waitForSelector('.toast:has-text("Profil spoločnosti uložený")');
     await clearToasts(page);
@@ -868,11 +876,24 @@ async function main() {
     await page.waitForSelector('.nt-card:has-text("Fiktivol") .nt-handled:has-text("20 bal. v karanténe")');
     await shot(page, '27-notices');
     const netNt = (await page.evaluate(() => window.api.app.networkLog())).filter((e) => e.purpose === 'notices');
-    assert.equal(netNt.length, 4, 'four public pages read');
+    assert.equal(netNt.length, 9, 'eight public pages of five authorities and the page of the watched product');
     assert.ok(netNt.every((e) => e.url.startsWith(lawBase)), 'only the (test) authority sites');
+    assert.deepEqual(nt.watched.map((w) => [w.name, w.authStatus, w.authorisedSk]), [['FIKTIVET 50 mg tablety pre psy', 'Valid', true]], 'the first reading of the product is remembered');
+    // The product's authorisation is suspended: the next check shows it as a notice to assess.
+    lawSrv.updSuspended = true;
+    await clearToasts(page);
+    await page.click('.notices button[data-action="check"]');
+    await page.waitForSelector('.toast:has-text("nových: 1")');
+    await page.waitForSelector('.nt-card:has-text("EÚ databáza – FIKTIVET 50 mg tablety pre psy: stav registrácie: Valid → Suspended") .nt-watch');
+    assert.equal((await page.evaluate(() => window.api.notices.counts())).toAssess, 3);
+    await page.click('.notices details.how summary');
+    await page.waitForSelector('.nt-watched li:has-text("FIKTIVET 50 mg"):has-text("Suspended")');
+    await shot(page, '27b-notices-sources');
     await page.evaluate(() => (location.hash = '#/dashboard'));
-    await page.waitForSelector('.panel:has-text("Oznamy ŠÚKL / ÚŠKVBL na posúdenie") .row:has-text("Imaginex")');
-    console.log('  ✓ ŠÚKL / ÚŠKVBL notices: read from the public pages only, recall assessed with measures, watched product highlighted');
+    await page.waitForSelector('.panel:has-text("Oznamy úradov na posúdenie") .row:has-text("Imaginex")');
+    await page.waitForSelector('.panel:has-text("Oznamy úradov na posúdenie") .row:has-text("EÚ UPD")');
+    console.log('  ✓ authority notices (ŠÚKL, ÚŠKVBL, MZ SR, SOOL, ÚSKVBL ČR): read from the public pages only, recall assessed with measures, watched product highlighted');
+    console.log('  ✓ EU database: a watched product’s page read, a suspended authorisation shown as a notice to assess');
 
     // ---- Inspection report: PDF and Excel ----
     for (const format of ['pdf', 'xlsx']) {
@@ -890,7 +911,7 @@ async function main() {
       for (const re of [/SOP-QA-001/, /Fiktivol/, /Šarža A123/, /Juraj\s+Gregus/, /platí dokument\s+spoločnosti/]) assert.match(text, re, `${format}: ${re}`);
       if (format === 'pdf') {
         assert.match(text, /Správa o riadenej dokumentácii/);
-        assert.match(text, /Oznamy ŠÚKL a ÚŠKVBL o stiahnutí liekov a ich posúdenie/);
+        assert.match(text, /Oznamy úradov o stiahnutí liekov, zmeny sledovaných liekov a ich posúdenie/);
         fs.copyFileSync(out, path.join(OUT, 'inspection-report.pdf'));
       }
     }

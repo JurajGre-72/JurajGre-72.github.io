@@ -747,7 +747,7 @@ body.role-reader .perm-ro, body.read-only .perm-ro { display: inline-flex !impor
 
 /* ---------- Authority notices (ŠÚKL / ÚŠKVBL) ---------- */
 .badge-bad { background: #e5534b; color: #fff; }
-.nt-tabs { margin: 8px 0 12px; }
+.nt-tabs { margin: 8px 0 12px; flex-wrap: wrap; overflow-x: visible; }
 .nt-tabs .tab { padding: 9px 11px; }
 .nt-tabs .tab { background: none; border: 0; border-bottom: 2px solid transparent; font: inherit; font-weight: 550; cursor: pointer; }
 .nt-tabs .tab.active { border-bottom-color: var(--primary); }
