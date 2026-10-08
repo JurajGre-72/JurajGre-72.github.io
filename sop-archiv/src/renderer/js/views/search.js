@@ -18,7 +18,7 @@ function resultsHtml() {
       (g) => html`<li class="result">
         <div class="result-head">
           <a href="#/documents/${g.doc.id}" class="result-title"><span class="code">${g.doc.code || ''}</span> ${g.doc.title}</a>
-          <span class="chip chip-muted">v${g.doc.version}</span>${statusChip(g.doc.status)}
+          <span class="chip chip-muted">v${g.doc.version}</span>${statusChip(g.doc.status, g.doc.review)}
           <button class="btn btn-sm btn-ghost" data-action="open" data-id="${g.doc.id}" title="${t('doc.openFile')}">${icon('external')}</button>
         </div>
         ${g.hits.length

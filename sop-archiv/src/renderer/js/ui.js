@@ -136,7 +136,9 @@ export function relDays(daysLeft) {
 
 // --- Chips -------------------------------------------------------------------------
 const STATUS_TONE = { draft: 'info', effective: 'good', review: 'warn', obsolete: 'muted' };
-export function statusChip(status) {
+/** A valid document whose review is overdue stays valid (a review date is not an expiry), but is not shown as "all fine". */
+export function statusChip(status, review) {
+  if (status === 'effective' && review && review.state === 'overdue') return html`<span class="chip chip-warn">${t('status.effectiveOverdue')}</span>`;
   return html`<span class="chip chip-${STATUS_TONE[status] || 'muted'}">${t(`status.${status}`)}</span>`;
 }
 

@@ -20,7 +20,8 @@ const URS = [
   ['URS-15', 'Obnova: kód na obnovenie prístupu; obnova poškodeného súboru archívu z predchádzajúceho uloženia; zálohovanie priečinka (IT).', 'kritická', 'SDP 3.3.1'],
   ['URS-16', 'Vyhľadávanie v obsahu dokumentov (slovenčina, diakritika), čítanie naskenovaných PDF (OCR).', 'stredná', '—'],
   ['URS-17', 'AI asistent (voliteľný) len v počítači spoločnosti, bez prístupu na sieť; jeho výstup je len návrh, ktorý overí autor.', 'vysoká', 'SDP 3.3.1'],
-  ['URS-18', 'Postup pri poruche alebo nedostupnosti aplikácie (riadené kópie, záznam odchýlky).', 'vysoká', 'SDP 3.3.1 (posledný odsek)']
+  ['URS-18', 'Postup pri poruche alebo nedostupnosti aplikácie (riadené kópie, záznam odchýlky).', 'vysoká', 'SDP 3.3.1 (posledný odsek)'],
+  ['URS-19', 'Nová verzia programu sa inštaluje len overená (odtlačok SHA-256 zverejnenej verzie), len správcom, so zápisom do auditného záznamu; údaje archívu zostanú nezmenené.', 'vysoká', 'SDP 3.3.1, 3.3.2 (riadenie zmien)']
 ];
 
 // [id, what can go wrong, impact, P, D, risk, in the app, procedure, tests]
@@ -42,7 +43,8 @@ const RISKS = [
   ['URS-15', 'Strata údajov (disk, chyba).', 'Strata dokumentácie.', 'nízka', 'vysoká', 'vysoké', 'Predchádzajúce uloženie a denné kópie súboru archívu; kód na obnovenie.', 'Zálohovanie priečinka IT; ročný test obnovy.', 'OQ-18, IQ-05'],
   ['URS-16', 'Dokument sa nenájde.', 'Zdržanie.', 'stredná', 'vysoká', 'nízke', 'Fulltext so slovenčinou, OCR.', '—', 'OQ-19'],
   ['URS-17', 'AI vymyslí alebo zmení obsah; únik cez AI.', 'Nesprávny postup v dokumente.', 'stredná', 'stredná', 'stredné', 'AI len lokálne bez siete (overené); výstup len návrh so zvýraznenými zmenami; [DOPLNIŤ] miesta.', 'Overenie autorom a schvaľovateľom.', 'OQ-20'],
-  ['URS-18', 'Aplikácia nedostupná.', 'Nemožnosť pracovať s dokumentmi.', 'nízka', 'vysoká', 'stredné', '—', 'Riadené kópie; záznam odchýlky.', 'PQ-05']
+  ['URS-18', 'Aplikácia nedostupná.', 'Nemožnosť pracovať s dokumentmi.', 'nízka', 'vysoká', 'stredné', '—', 'Riadené kópie; záznam odchýlky.', 'PQ-05'],
+  ['URS-19', 'Nainštaluje sa podvrhnutá alebo poškodená verzia; neodsúhlasená zmena programu.', 'Nesprávne fungovanie systému, únik údajov.', 'nízka', 'vysoká', 'stredné', 'Len zverejnené verzie; odtlačok SHA-256 overený pred inštaláciou; len správca; zápis do auditného záznamu; archív sa nemení.', 'SOP-SA-01 kap. 5.16 – posúdenie zmeny pred inštaláciou.', 'OQ-21']
 ];
 
 // [id, test, steps, expected, automated evidence]
@@ -66,7 +68,8 @@ const OQ = [
   ['OQ-17', 'Čitateľný export', 'Vytvoriť čitateľný export; otvoriť súbory bez aplikácie; overiť odtlačok SHA-256 jedného súboru.', 'Všetky súbory, register s odtlačkami, správa a auditný záznam.', 'E2E: „readable export…“; unit export'],
   ['OQ-18', 'Obnova', 'Obnoviť heslo správcu kódom na obnovenie (nesprávny a správny kód).', 'Nesprávny kód odmietnutý; správny nastaví nové heslo.', 'E2E: „recovery code…“; unit „damaged archive.json is restored“'],
   ['OQ-19', 'Vyhľadávanie a OCR', 'Hľadať slovo bez diakritiky; importovať naskenované PDF.', 'Nájdené aj tvary slov; text skenu sa dá vyhľadať.', 'E2E: vyhľadávanie; „scanned PDF: text recognised…“'],
-  ['OQ-20', 'AI asistent', 'Zapnúť vstavanú AI; Test v Nastaveniach; navrhnúť kapitolu a úpravu odseku.', 'Proces AI bez siete (overené); návrh so zvýraznenými zmenami; nič sa nezmení bez uloženia autorom.', 'E2E: „built-in AI: … no network in the AI process“, „rewrite with AI“']
+  ['OQ-20', 'AI asistent', 'Zapnúť vstavanú AI; Test v Nastaveniach; navrhnúť kapitolu a úpravu odseku.', 'Proces AI bez siete (overené); návrh so zvýraznenými zmenami; nič sa nezmení bez uloženia autorom.', 'E2E: „built-in AI: … no network in the AI process“, „rewrite with AI“'],
+  ['OQ-21', 'Aktualizácia programu', 'Ako správca: Nastavenia → O aplikácii → Skontrolovať aktualizácie → Stiahnuť a nainštalovať; po reštarte skontrolovať verziu a auditný záznam.', 'Nová verzia nainštalovaná; zmenený súbor by bol odmietnutý; dokumenty a profily nezmenené; inštalácia a zmena verzie v auditnom zázname.', 'E2E: „one-click update … altered file refused“; CI: aktualizácia na Macu a Windows']
 ];
 
 const IQ = [

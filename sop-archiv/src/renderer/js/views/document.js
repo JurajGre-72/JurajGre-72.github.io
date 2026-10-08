@@ -88,7 +88,7 @@ function infoTab() {
         [t('f.title'), doc.title],
         [t('f.type'), typeLabel(types, doc.type)],
         [t('f.version'), doc.version],
-        [t('f.status'), statusChip(doc.status)],
+        [t('f.status'), statusChip(doc.status, doc.review)],
         [t('f.department'), doc.department],
         [t('f.owner'), doc.owner],
         [t('f.approver'), doc.approver],
@@ -295,7 +295,7 @@ export async function render(route) {
       <div>
         <div class="doc-code">${doc.code || ''} <span class="type-tag">${doc.type}</span></div>
         <h1>${doc.title}</h1>
-        <div class="chips">${statusChip(doc.status)} <span class="chip chip-muted">v${doc.version}</span> ${doc.status !== 'obsolete' ? (doc.annexOf && !doc.reviewDate ? html`<span class="chip chip-muted">${t('doc.reviewWith', { code: doc.annexOf })}</span>` : reviewChip(doc.review)) : ''}${(doc.tags || []).includes('EN') ? html` <span class="chip chip-muted">EN</span>` : ''}</div>
+        <div class="chips">${statusChip(doc.status, doc.review)} <span class="chip chip-muted">v${doc.version}</span> ${doc.status !== 'obsolete' ? (doc.annexOf && !doc.reviewDate ? html`<span class="chip chip-muted">${t('doc.reviewWith', { code: doc.annexOf })}</span>` : reviewChip(doc.review)) : ''}${(doc.tags || []).includes('EN') ? html` <span class="chip chip-muted">EN</span>` : ''}</div>
         ${doc.annexOf ? html`<p class="annex-of">${icon('layers')}${t('doc.annexOf')} ${doc.parent ? html`<a href="#/documents/${doc.parent.id}"><b>${doc.parent.code}</b> ${doc.parent.title}</a>` : html`<b>${doc.annexOf}</b> <span class="muted">(${t('doc.parentMissing')})</span>`}</p>` : ''}
         ${approvalBanner(doc)}
         ${(doc.annexes || []).length ? html`<div class="annex-list"><span class="muted">${icon('layers')}${t('doc.annexes', { n: doc.annexes.length })}:</span> ${doc.annexes.map((x) => html`<a class="chip chip-link" href="#/documents/${x.id}">${x.code.replace(/^.*?(Príloha)/, '$1')} – ${x.title}</a>`)}</div>` : ''}

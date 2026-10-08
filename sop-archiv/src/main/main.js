@@ -18,8 +18,11 @@ const { LegislationMonitor, createElectronFetcher } = require('./legislation');
 const { NoticesMonitor, createTextFetcher, allowedUrl: noticeUrlAllowed } = require('./notices');
 const { createOcr } = require('./ocr');
 const updates = require('./lib/updates');
+const selfupdate = require('./lib/selfupdate');
+const { execFile, spawn } = require('child_process');
 const ai = require('./ai');
 const { BuiltinAi } = require('./llm/builtin');
+const { downloadFile } = require('./llm/download');
 const { summarize, buildIcs, buildCsv } = require('./lib/reviews');
 const report = require('./lib/report');
 const { buildXlsx } = require('./lib/xlsx');
@@ -89,6 +92,7 @@ function loadSettings() {
     ai: ai0,
     lastNotify: s.lastNotify || null,
     lastUserId: s.lastUserId || null,
+    lastVersion: s.lastVersion || null,
     bounds: s.bounds || null
   };
 }
@@ -234,6 +238,7 @@ let lastArchiveMtime = 0;
 let mainWindow = null;
 let tray = null;
 let quitting = false;
+let lastUpdateCheck = null; // { latest, file } of the last "Check for updates" that found a newer version
 
 /** This computer's name (the tests run two "computers" on one machine). */
 function hostName() {
@@ -828,6 +833,89 @@ async function lawTextOf(p) {
   return r;
 }
 
+// ---------------------------------------------------------------------------
+// One-click update. The new version comes only from the published releases of this app (GitHub, or the
+// test server), is accepted only with the published SHA-256 fingerprint, and only replaces the program:
+// the archive folder is not touched.
+
+function updateHostAllowed(host) {
+  if (process.env.SOP_ARCHIV_UPDATE_URL) {
+    try {
+      if (host === new URL(process.env.SOP_ARCHIV_UPDATE_URL).hostname) return true;
+    } catch (_) {
+      /* not an address */
+    }
+  }
+  return selfupdate.UPDATE_HOSTS.includes(host);
+}
+
+function updateTarget() {
+  return { platform: process.platform, arch: process.arch, portable: !!process.env.PORTABLE_EXECUTABLE_FILE, appImage: !!process.env.APPIMAGE };
+}
+
+const run = (cmd, args) =>
+  new Promise((resolve, reject) => execFile(cmd, args, { timeout: 5 * 60 * 1000 }, (e, out, err) => (e ? reject(new Error(`${cmd}: ${String(err || e.message).trim()}`)) : resolve(String(out).trim()))));
+
+/** Everything saved and recorded, then the app quits so the new version can take its place. */
+async function quitForUpdate(from, to) {
+  if (archive && !archive.locked) {
+    archive.audit('app.update', { from, to });
+    await archive.saving;
+    await archive.auditLog.flush();
+  }
+  setTimeout(() => {
+    quitting = true;
+    app.quit();
+  }, 400);
+}
+
+async function installUpdate(file, version) {
+  const from = app.getVersion();
+  if (process.platform === 'darwin') {
+    const appPath = selfupdate.macAppPath(process.execPath);
+    let writable = false;
+    try {
+      fs.accessSync(path.dirname(appPath || '/'), fs.constants.W_OK);
+      writable = true;
+    } catch (_) {
+      /* e.g. a user without the right to change Applications */
+    }
+    if (selfupdate.macCannotReplace(appPath) || !writable) {
+      await shell.openPath(file); // the .dmg opens: drag the app to Applications (Replace)
+      return { manual: true };
+    }
+    // The new app is copied out of the .dmg next to the old one, checked, and swapped in after quitting.
+    let staged;
+    try {
+      staged = await selfupdate.macStage({ run, fs, path, dmg: file, appPath, version, mount: fs.mkdtempSync(path.join(os.tmpdir(), 'sop-archiv-update-')) });
+    } catch (e) {
+      if (e.message === 'UPDATE_VERSION') throw new UserError(tr('err.updateChecksum'));
+      throw new UserError(tr('err.updateDownload', { msg: e.message }));
+    }
+    const script = path.join(os.tmpdir(), `sop-archiv-update-${process.pid}.sh`);
+    fs.writeFileSync(script, selfupdate.MAC_SWAP_SCRIPT, { mode: 0o700 });
+    spawn('/bin/bash', [script, String(process.pid), appPath, staged, 'open'], { detached: true, stdio: 'ignore' }).unref();
+    await quitForUpdate(from, version);
+    return { installing: true };
+  }
+  if (process.platform === 'win32') {
+    // The installer runs without questions, replaces the program where it is installed, and starts it again.
+    spawn(file, ['/S', '--updated', '--force-run'], { detached: true, stdio: 'ignore' }).unref();
+    await quitForUpdate(from, version);
+    return { installing: true };
+  }
+  if (process.env.APPIMAGE) {
+    const target = process.env.APPIMAGE;
+    fs.copyFileSync(file, `${target}.new`);
+    fs.chmodSync(`${target}.new`, 0o755);
+    fs.renameSync(`${target}.new`, target);
+    spawn(target, [], { detached: true, stdio: 'ignore' }).unref();
+    await quitForUpdate(from, version);
+    return { installing: true };
+  }
+  return { manual: true };
+}
+
 function registerIpc() {
   // --- app & sign-in ---------------------------------------------------------
   handle(
@@ -1115,7 +1203,59 @@ function registerIpc() {
     if (!res.ok) throw new UserError(tr('err.updateCheck', { status: res.status }));
     const latest = updates.newestRelease(await res.json());
     const current = app.getVersion();
-    return { current, latest, newer: !!latest && updates.compareVersions(latest.version, current) > 0 };
+    const newer = !!latest && updates.compareVersions(latest.version, current) > 0;
+    const file = newer ? selfupdate.assetFor(latest.assets, updateTarget()) : null;
+    // Kept here: the install below uses this release, never an address handed over by the window.
+    lastUpdateCheck = newer ? { latest, file } : null;
+    const { assets, ...shown } = latest || {};
+    return { current, latest: latest ? shown : null, newer, canInstall: !!file && !!session && session.role === 'admin' };
+  });
+  // One click: download the new version, check its fingerprint, install it and start again (administrators).
+  handle(
+    'app:installUpdate',
+    async () => {
+      const u = lastUpdateCheck;
+      if (!u || !u.file) throw new UserError(tr('err.updateNone'));
+      if (settings.offline) throw new UserError(tr('err.offline'));
+      const ses = electronSession.fromPartition('update-check');
+      const fetchFn = (url, init) => ses.fetch(url, { ...init, headers: { 'user-agent': 'SOP-Archiv', ...((init && init.headers) || {}) }, cache: 'no-store' });
+      let sha256 = u.file.sha256;
+      if (!sha256) {
+        // Older releases: the fingerprints are in SHA256SUMS.txt published with the files.
+        const sums = selfupdate.sumsAsset(u.latest.assets);
+        if (sums) {
+          logNet({ purpose: 'update', url: sums });
+          const r = await fetchFn(sums, { redirect: 'follow' });
+          if (r.ok && updateHostAllowed(new URL(r.url || sums).hostname)) sha256 = selfupdate.parseSums(await r.text()).get(u.file.name) || null;
+        }
+      }
+      if (!sha256) throw new UserError(tr('err.updateNoChecksum'));
+      const dir = path.join(app.getPath('userData'), 'updates');
+      fs.mkdirSync(dir, { recursive: true });
+      const dest = path.join(dir, u.file.name);
+      logNet({ purpose: 'update', url: u.file.url });
+      try {
+        await downloadFile({ url: u.file.url, dest, sha256, size: u.file.size, fetchFn, allowHost: updateHostAllowed, onProgress: (p) => send('update:progress', p) });
+      } catch (e) {
+        const code = String((e && e.message) || e);
+        if (code === 'MODEL_CHECKSUM' || code === 'MODEL_INCOMPLETE') throw new UserError(tr('err.updateChecksum'));
+        if (code === 'MODEL_HOST') throw new UserError(tr('err.updateHost'));
+        throw new UserError(tr('err.updateDownload', { msg: code }));
+      }
+      if (process.env.SOP_ARCHIV_UPDATE_DRYRUN) return { ready: true, file: dest, version: u.latest.version };
+      return installUpdate(dest, u.latest.version);
+    },
+    { perm: 'admin' }
+  );
+  // What changed in each version (bundled NOVINKY.md) and when each was installed on this archive.
+  handle('app:versionHistory', async () => {
+    let md = '';
+    try {
+      md = fs.readFileSync(path.join(__dirname, '..', '..', 'NOVINKY.md'), 'utf8');
+    } catch (_) {
+      /* not bundled (should not happen) */
+    }
+    return { current: app.getVersion(), versions: updates.parseChangelog(md), installed: updates.installHistory(await archive.allAudit()) };
   });
   handle('app:networkLog', () => readNetLog());
   handle('app:audit', (opts) => archive.readAudit(opts || {}));
@@ -1653,6 +1793,10 @@ if (!app.requestSingleInstanceLock()) {
       settings.dataDir = defaultDataDir();
       await openArchive(settings.dataDir);
     }
+    // A new version of the program on this computer is part of the audit trail (written after the next
+    // sign-in when the archive is encrypted).
+    if (settings.lastVersion && settings.lastVersion !== app.getVersion() && archive) archive.audit('app.updated', { from: settings.lastVersion, to: app.getVersion() });
+    settings.lastVersion = app.getVersion();
     saveSettings();
     registerIpc();
     buildMenu();

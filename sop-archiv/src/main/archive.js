@@ -1010,7 +1010,9 @@ class Archive {
       trainingFor: m.trainingFor || [],
       trainingSeq: 1,
       createdAt: now,
-      updatedAt: now
+      updatedAt: now,
+      createdBy: this.user,
+      updatedBy: this.user
     };
     if (!doc.reviewDate && doc.effectiveDate && doc.reviewIntervalMonths) doc.reviewDate = addMonths(doc.effectiveDate, doc.reviewIntervalMonths);
     this._ensureType(doc.type);

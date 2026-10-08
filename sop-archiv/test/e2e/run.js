@@ -92,6 +92,8 @@ function staticVersion(body, key) {
   </div></body></html>`;
 }
 
+const UPDATE_FILE = Buffer.from('SOP Archív 9.9.0 – test file standing for the installer'.repeat(2000));
+
 function startLawServer() {
   return new Promise((resolve) => {
     const versions = ['20240601', '20250101', '20270101'];
@@ -109,9 +111,17 @@ function startLawServer() {
         return res.end(staticVersion(st[1] === '20270101' ? LAW_2027 : LAW_2025, st[1]));
       }
       if (req.url.startsWith('/releases')) {
-        // Fake GitHub release list for "Check for updates"
+        // Fake GitHub release list for "Check for updates", with a file for every kind of computer
         res.setHeader('content-type', 'application/json');
-        return res.end(JSON.stringify([{ tag_name: 'sop-archiv-v9.9.0', html_url: 'https://github.com/example/releases/tag/sop-archiv-v9.9.0', published_at: '2027-01-15T09:00:00Z', body: 'Novinky' }, { tag_name: 'sop-archiv-v9.10.0-beta', prerelease: true }]));
+        const base = `http://${req.headers.host}/download/sop-archiv-v9.9.0/`;
+        const digest = `sha256:${require('crypto').createHash('sha256').update(UPDATE_FILE).digest('hex')}`;
+        const assets = ['SOP-Archiv-9.9.0-mac-arm64.dmg', 'SOP-Archiv-9.9.0-mac-x64.dmg', 'SOP-Archiv-9.9.0-Setup.exe', 'SOP-Archiv-9.9.0-linux-x86_64.AppImage'].map((name) => ({ name, browser_download_url: base + name, size: UPDATE_FILE.length, digest }));
+        return res.end(JSON.stringify([{ tag_name: 'sop-archiv-v9.9.0', html_url: 'https://github.com/example/releases/tag/sop-archiv-v9.9.0', published_at: '2027-01-15T09:00:00Z', body: 'Novinky', assets }, { tag_name: 'sop-archiv-v9.10.0-beta', prerelease: true }]));
+      }
+      if (req.url.startsWith('/download/')) {
+        // The new version's file; altered on request (the app must refuse it)
+        res.setHeader('content-type', 'application/octet-stream');
+        return res.end(srv.tamperUpdate ? Buffer.from(UPDATE_FILE.toString().replace('9.9.0', '6.6.6')) : UPDATE_FILE);
       }
       if (req.url.startsWith('/sk/rss')) {
         res.setHeader('content-type', 'application/rss+xml; charset=utf-8');
@@ -204,7 +214,7 @@ async function launch(tmp, userdata, host = 'PC-QA', locale = 'sk_SK.UTF-8') {
     executablePath: packaged || require('electron'),
     args: packaged ? ['--no-sandbox'] : [ROOT, '--no-sandbox'],
     // Two "computers" on one machine: each has its own name. STRICT_TX: a save outside a write transaction fails the test.
-    env: { ...process.env, SOP_ARCHIV_USERDATA: path.join(tmp, userdata), SOP_ARCHIV_DATA: path.join(tmp, 'archive'), SOP_ARCHIV_NO_TIMERS: '1', SOP_ARCHIV_HOST: host, SOP_ARCHIV_STRICT_TX: '1', LANG: locale, LANGUAGE: locale.slice(0, 2) }
+    env: { ...process.env, SOP_ARCHIV_USERDATA: path.join(tmp, userdata), SOP_ARCHIV_DATA: path.join(tmp, 'archive'), SOP_ARCHIV_NO_TIMERS: '1', SOP_ARCHIV_HOST: host, SOP_ARCHIV_STRICT_TX: '1', LANG: locale, LANGUAGE: locale.slice(0, 2), SOP_ARCHIV_UPDATE_DRYRUN: '1', ...(process.platform === 'linux' ? { APPIMAGE: path.join(tmp, 'SOP-Archiv.AppImage') } : {}) }
   });
   app.process().stderr.on('data', (d) => {
     for (const line of String(d).split('\n')) if (line.trim()) appLog.push(`[${host}] ${line}`);
@@ -619,6 +629,33 @@ async function main() {
     const netUpd = await page.evaluate(() => window.api.app.networkLog());
     assert.ok(netUpd.some((e) => e.purpose === 'update' && e.url.endsWith('/releases')), 'the update check is in the network log');
     console.log('  ✓ check for updates: newer version shown, logged, nothing else sent');
+    // One click: the file for this computer is downloaded and accepted only with the published fingerprint
+    // (the tests stop before installing).
+    lawSrv.tamperUpdate = true;
+    await page.click('#upd-result button[data-action="installUpdate"]');
+    await page.waitForSelector('#upd-progress.err:has-text("nezhoduje")');
+    lawSrv.tamperUpdate = false;
+    await page.click('#upd-result button[data-action="installUpdate"]');
+    await page.waitForSelector('#upd-progress:has-text("stiahnutá a overená")');
+    const netDl = await page.evaluate(() => window.api.app.networkLog());
+    assert.ok(netDl.some((e) => e.purpose === 'update' && /\/download\/sop-archiv-v9\.9\.0\/SOP-Archiv-9\.9\.0-/.test(e.url)), 'the download is in the network log');
+    console.log('  ✓ one-click update: the file for this computer downloaded; an altered file refused by its fingerprint');
+    // What changed in each version is in the app, the version in use is marked
+    const appVersion = require(path.join(ROOT, 'package.json')).version;
+    await page.click('.ver-history summary');
+    await page.waitForSelector(`.ver-history .ver-head:has-text("${appVersion}") .chip`);
+    assert.ok((await page.$$('.ver-history .ver')).length >= 3, 'every version is listed');
+    await page.$eval('#set-about', (el) => el.scrollIntoView());
+    await shot(page, '16d-update-history');
+    // Drawn again (a saved setting, a colleague's change): the page stays where it was
+    await page.click('.ver-history summary'); // collapsed again: the page has its usual length
+    await page.$eval('#set-archive', (el) => el.scrollIntoView());
+    const before = await page.$eval('#main', (m) => m.scrollTop);
+    assert.ok(before > 200, 'scrolled down');
+    await page.evaluate(() => window.__app.rerender());
+    await page.waitForFunction((b) => document.querySelector('#set-about') && Math.abs(document.getElementById('main').scrollTop - b) < 5, before);
+    console.log('  ✓ a page drawn again keeps its place (no jump to the top)');
+    console.log('  ✓ version history: what changed in every version, the one in use marked');
 
     // ---- Built-in AI: a model file from this computer, runs in a process without network ----
     const tinyModel = makeTinyModel(path.join(tmp, 'tiny-test-model.gguf'));

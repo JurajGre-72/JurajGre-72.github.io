@@ -13,6 +13,7 @@ let audit = [];
 let users = [];
 let company = { profile: { activities: {}, notes: '' }, activities: [] };
 let aiModels = null; // the built-in AI's models (administrators)
+let versions = { current: '', versions: [], installed: [] }; // what changed in each version, and when installed
 let trash = null; // deleted documents kept in the archive (administrators)
 const aiProgress = {}; // model id -> { phase, done, total }
 let offProgress = null;
@@ -145,10 +146,27 @@ function usersSection() {
     </ul>`;
 }
 
+/** Every version with what changed in it, and when it was installed on this archive (audit trail). */
+function versionHistory() {
+  if (!versions.versions.length) return '';
+  return html`<details class="ver-history">
+    <summary>${t('upd.history')}</summary>
+    <p class="muted small">${t('upd.historyHint')}</p>
+    ${versions.versions.map((v) => {
+      const inst = versions.installed.filter((i) => i.to === v.version);
+      return html`<div class="ver">
+        <div class="ver-head"><b>${v.version}</b>${v.version === versions.current ? html` <span class="chip chip-good">${t('upd.thisVersion')}</span>` : ''}</div>
+        ${inst.map((i) => html`<div class="muted small">${t('upd.installedOn', { date: fmtDateTime(i.ts), user: i.user || '—', host: i.host || '—' })}${i.from ? html` · ${t('upd.fromVersion', { v: i.from })}` : ''}</div>`)}
+        <ul>${v.items.map((it) => html`<li>${it}</li>`)}</ul>
+      </div>`;
+    })}
+  </details>`;
+}
+
 export async function render() {
   await app.reloadInfo();
   const admin = app.info.session.role === 'admin';
-  [netLog, audit, users, company, aiModels, trash] = await Promise.all([api.app.networkLog(), api.app.audit({ limit: 150 }), admin ? api.users.list() : Promise.resolve([]), api.company.get(), admin ? api.ai.models() : Promise.resolve(null), admin ? api.archive.trash().catch(() => null) : Promise.resolve(null)]);
+  [netLog, audit, users, company, aiModels, trash, versions] = await Promise.all([api.app.networkLog(), api.app.audit({ limit: 150 }), admin ? api.users.list() : Promise.resolve([]), api.company.get(), admin ? api.ai.models() : Promise.resolve(null), admin ? api.archive.trash().catch(() => null) : Promise.resolve(null), api.app.versionHistory().catch(() => versions)]);
   const s = app.info.settings;
   const a = app.info.archiveSettings;
   const me = app.info.session;
@@ -295,7 +313,8 @@ export async function render() {
       html`<p>${t('appName')} – ${t('set.version', { v: app.info.version })}</p><p class="muted small">${t('tagline')}</p>
       <div class="btn-row"><button class="btn" data-action="checkUpdate">${icon('refresh')}${t('upd.check')}</button></div>
       <div id="upd-result" class="small"></div>
-      <p class="muted small">${t('upd.privacy')}</p>`
+      <p class="muted small">${t('upd.privacy')}</p>
+      ${versionHistory()}`
     )}
   </div>`;
 }
@@ -565,7 +584,17 @@ export const actions = {
       const r = await api.app.checkUpdate();
       if (r.newer) {
         out.className = 'small';
-        out.innerHTML = String(html`<div class="note note-good">${icon('download')}<div>${t('upd.available', { v: r.latest.version, date: r.latest.publishedAt ? fmtDateTime(r.latest.publishedAt) : '' })}<div class="btn-row"><button class="btn btn-primary btn-sm" data-action="openUpdate" data-url="${r.latest.url}">${t('upd.download')}</button></div><div class="muted">${t('upd.keepData')}</div></div></div>`);
+        const notes = (r.latest.notes || '').trim();
+        out.innerHTML = String(html`<div class="note note-good">${icon('download')}<div>
+          <div>${t('upd.available', { v: r.latest.version, date: r.latest.publishedAt ? fmtDateTime(r.latest.publishedAt) : '' })}</div>
+          ${notes ? html`<details class="upd-notes"><summary>${t('upd.notes')}</summary><pre>${notes}</pre></details>` : ''}
+          <div class="btn-row">
+            ${r.canInstall ? html`<button class="btn btn-primary btn-sm" data-action="installUpdate">${icon('download')}${t('upd.install')}</button>` : ''}
+            <button class="btn btn-sm" data-action="openUpdate" data-url="${r.latest.url}">${t('upd.download')}</button>
+          </div>
+          <div id="upd-progress" class="muted"></div>
+          <div class="muted">${r.canInstall ? t('upd.installHint') : app.can('admin') ? t('upd.keepData') : t('upd.adminOnly')}</div>
+        </div></div>`);
       } else {
         out.className = 'small ok';
         out.textContent = r.latest ? t('upd.upToDate', { v: r.current }) : t('upd.noneYet', { v: r.current });
@@ -576,6 +605,27 @@ export const actions = {
     }
   },
   openUpdate: (el) => api.app.openExternal(el.dataset.url),
+  async installUpdate(el) {
+    const prog = document.getElementById('upd-progress');
+    if (prog) prog.className = 'muted';
+    el.disabled = true;
+    const off = api.on('update:progress', (p) => {
+      const pct = p.total ? Math.floor((p.done / p.total) * 100) : 0;
+      if (prog) prog.textContent = t(p.phase === 'verify' ? 'upd.verifying' : 'upd.downloading', { pct });
+    });
+    try {
+      const r = await api.app.installUpdate();
+      if (prog) prog.textContent = r.installing ? t('upd.installing') : r.manual ? t('upd.manual') : t('upd.ready');
+    } catch (e) {
+      el.disabled = false;
+      if (prog) {
+        prog.className = 'err';
+        prog.textContent = errText(e);
+      }
+    } finally {
+      if (typeof off === 'function') off();
+    }
+  },
   openFolder: () => api.app.openDataDir(),
   async exportAll() {
     let opts = null;

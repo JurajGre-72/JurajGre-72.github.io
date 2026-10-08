@@ -61,7 +61,7 @@ function tableBody() {
       <td class="title-cell">${d.annexOf ? html`<span class="annex-mark" title="${t('doc.annexOf')} ${d.annexOf}">↳</span>` : ''}${d.title}${(d.tags || []).includes('EN') ? html` <span class="chip chip-muted chip-xs">EN</span>` : ''}${d.pendingChanges ? html` <span class="flag" title="${t('docs.legisFlag')}">${icon('scale')}</span>` : ''}${d.current && d.current.ocr && d.current.ocr.status === 'pending' ? html` <span class="chip chip-muted chip-xs" title="${t('ocr.pendingHint')}">OCR…</span>` : d.current && d.current.textStatus !== 'ok' ? html` <span class="flag warn" title="${t('doc.noText')}">${icon('alert')}</span>` : ''}</td>
       <td><span class="type-tag" title="${(types.find((x) => x.id === d.type) || {}).sk || ''}">${d.type}</span></td>
       <td class="num">${d.version}</td>
-      <td>${statusChip(d.status)}</td>
+      <td>${statusChip(d.status, d.review)}</td>
       <td class="muted">${d.department || ''}</td>
       <td class="nowrap">${fmtDate(d.reviewDate)}</td>
       <td>${d.status !== 'obsolete' && d.reviewDate ? reviewChip(d.review) : d.annexOf ? html`<span class="muted small">${t('doc.reviewWith', { code: d.annexOf })}</span>` : ''}</td>

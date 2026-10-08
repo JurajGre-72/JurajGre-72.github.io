@@ -1,7 +1,8 @@
 name: SOP Archiv
 
 # Tests the app and builds the installers (Windows, macOS, Linux).
-# Downloads: open the workflow run → "Artifacts". Pushing a tag sop-archiv-vX.Y.Z also publishes a GitHub Release.
+# Downloads: open the workflow run → "Artifacts". A version number (package.json) that has no GitHub
+# Release yet is published as one once everything passed (see the release job); the app updates from there.
 
 on:
   push:
@@ -137,6 +138,27 @@ jobs:
           code=$?
           cat refuse.log
           test $code -eq 1 && grep -q 'debugging mode' refuse.log && echo 'Refused, as it should.'
+      - name: One-click update on a Mac (real disk image, swap after quitting)
+        if: runner.os == 'macOS'
+        run: node test/mac-selfupdate.js
+      - name: The Windows installer installs and updates without questions
+        if: runner.os == 'Windows'
+        run: |
+          $setup = (Get-ChildItem dist -Filter '*-Setup.exe' | Select-Object -First 1).FullName
+          foreach ($round in 1..2) {
+            $p = Start-Process -FilePath $setup -ArgumentList '/S' -PassThru
+            $null = $p.Handle
+            if (-not $p.WaitForExit(300000)) { $p.Kill(); throw 'The installer did not finish' }
+            if ($p.ExitCode -ne 0) { throw "Installer exit code $($p.ExitCode) (round $round)" }
+          }
+          $exe = Get-ChildItem "$env:LOCALAPPDATA\Programs", "$env:ProgramFiles" -Recurse -Filter 'SOP Archiv.exe' -ErrorAction SilentlyContinue | Select-Object -First 1
+          if (-not $exe) { throw 'Not installed' }
+          "Installed: $($exe.FullName)"
+          $q = Start-Process -FilePath $exe.FullName -ArgumentList '--inspect=0' -PassThru
+          $null = $q.Handle
+          if (-not $q.WaitForExit(60000)) { $q.Kill(); throw 'The installed app started with a debugger attached' }
+          if ($q.ExitCode -ne 1) { throw "Unexpected exit code $($q.ExitCode)" }
+          'Installed, updated in place, and the installed app runs.'
       - uses: actions/upload-artifact@v4
         with:
           name: SOP-Archiv-${{ matrix.name }}
@@ -145,16 +167,62 @@ jobs:
 
   release:
     name: Publish release
-    if: startsWith(github.ref, 'refs/tags/sop-archiv-v')
+    # A version number (package.json) not published yet is published once, after every test and build
+    # passed, with its fingerprints (SHA256SUMS.txt) and what is new (NOVINKY.md). The app downloads its
+    # updates from here. Later pushes with the same number publish nothing.
+    if: github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+      - name: Version, and whether it is published already
+        id: v
+        env:
+          REF: ${{ github.ref }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          v=$(node -p "require('./package.json').version")
+          case "$REF" in
+            refs/tags/sop-archiv-v*) if [ "${REF#refs/tags/sop-archiv-v}" != "$v" ]; then echo "The tag does not match the app version $v"; exit 1; fi ;;
+          esac
+          echo "version=$v" >> "$GITHUB_OUTPUT"
+          if gh release view "sop-archiv-v$v" --repo "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
+            echo "new=false" >> "$GITHUB_OUTPUT"
+            echo "sop-archiv-v$v is published already: nothing to do."
+          else
+            echo "new=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: What is new (NOVINKY.md)
+        if: steps.v.outputs.new == 'true'
+        env:
+          V: ${{ steps.v.outputs.version }}
+        run: |
+          awk -v head="## $V" '$0 == head { f = 1; next } /^## / { if (f) exit } f' NOVINKY.md | sed '/./,$!d' > ../release-notes.md
+          if ! grep -q '[^[:space:]]' ../release-notes.md; then echo "NOVINKY.md has no section '## $V'"; exit 1; fi
+          cat >> ../release-notes.md <<'TXT'
+
+          Ktorý súbor / Which file:
+          - Windows: SOP-Archiv-<verzia>-Setup.exe (inštalátor) alebo -portable.exe
+          - Mac s čipom Apple M1–M4: -mac-arm64.dmg; Mac s procesorom Intel: -mac-x64.dmg
+          Aktualizácia z aplikácie: Nastavenia → O aplikácii → Skontrolovať aktualizácie → Stiahnuť a nainštalovať.
+          Program neobsahuje žiadne dokumenty – SOP a OS zostávajú v počítači alebo na firemnom serveri.
+          TXT
+          cat ../release-notes.md
       - uses: actions/download-artifact@v4
+        if: steps.v.outputs.new == 'true'
         with:
           pattern: SOP-Archiv-*
           path: artifacts
           merge-multiple: true
+      - name: Fingerprints of the files
+        if: steps.v.outputs.new == 'true'
+        working-directory: artifacts
+        run: sha256sum * > SHA256SUMS.txt && cat SHA256SUMS.txt
       - uses: softprops/action-gh-release@v2
+        if: steps.v.outputs.new == 'true'
         with:
-          name: SOP Archív ${{ github.ref_name }}
+          tag_name: sop-archiv-v${{ steps.v.outputs.version }}
+          target_commitish: ${{ github.sha }}
+          name: SOP Archív ${{ steps.v.outputs.version }}
+          body_path: release-notes.md
           files: artifacts/*

@@ -129,6 +129,7 @@ Platí pre aplikáciu SOP Archív vo verzii 1.x nainštalovanú na počítačoch
 5.16 Validácia a zmeny aplikácie
 - Pred použitím aplikácie na riadenie dokumentácie sa vykoná validácia (požiadavky používateľa, analýza rizík, testy, záverečná správa).
 - Nová verzia aplikácie sa pred nasadením posúdi v rámci riadenia zmien; rozsah opätovného testovania určí manažér kvality podľa rizika.
+- Novú verziu inštaluje správca v aplikácii (Nastavenia → O aplikácii → Skontrolovať aktualizácie → Stiahnuť a nainštalovať) až po prečítaní časti „Čo je nové“ a posúdení zmeny. Aplikácia pred inštaláciou overí odtlačok (SHA-256) stiahnutého súboru; inštalácia a zmena verzie sa zapíšu do auditného záznamu. Ak archív používa viac počítačov, aktualizujú sa všetky [DOPLNIŤ: v ten istý deň].
 
 5.17 Porucha alebo nedostupnosť aplikácie
 - Ak aplikácia alebo archív nie sú dostupné, pracuje sa podľa vydaných riadených kópií. Nedostupnosť dlhšia ako [DOPLNIŤ: napr. 1 pracovný deň] sa zaznamená ako odchýlka a oznámi správcovi a IT.`

@@ -6,7 +6,7 @@ const { contextBridge, ipcRenderer, webUtils } = require('electron');
 const call = (channel) => (...args) => ipcRenderer.invoke(channel, ...args);
 
 const CHANNELS = {
-  app: ['info', 'setSettings', 'chooseFolder', 'switchDataDir', 'retryLock', 'openDataDir', 'backup', 'openExternal', 'networkLog', 'audit', 'remindNow', 'logo', 'checkUpdate', 'cloudSync', 'presence'],
+  app: ['info', 'setSettings', 'chooseFolder', 'switchDataDir', 'retryLock', 'openDataDir', 'backup', 'openExternal', 'networkLog', 'audit', 'remindNow', 'logo', 'checkUpdate', 'installUpdate', 'versionHistory', 'cloudSync', 'presence'],
   auth: ['state', 'setup', 'login', 'logout', 'changePassword', 'setPrefs', 'recover', 'pendingRecovery', 'recoveryKept'],
   users: ['list', 'create', 'update', 'resetPassword', 'roles'],
   legis: ['pickFile', 'inspectFile', 'importFile', 'resolve', 'check'],
@@ -37,7 +37,7 @@ for (const [ns, names] of Object.entries(CHANNELS)) {
   for (const n of names) api[ns][n] = call(`${ns}:${n}`);
 }
 
-const EVENTS = ['legis:progress', 'navigate', 'data:changed', 'index:ready', 'lock:changed', 'lock:waiting', 'ocr:progress', 'ai:progress', 'ai:chunk'];
+const EVENTS = ['legis:progress', 'navigate', 'data:changed', 'index:ready', 'lock:changed', 'lock:waiting', 'ocr:progress', 'ai:progress', 'ai:chunk', 'update:progress'];
 api.on = (event, cb) => {
   if (!EVENTS.includes(event)) throw new Error('unknown event');
   const listener = (_e, payload) => cb(payload);

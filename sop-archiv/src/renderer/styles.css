@@ -797,3 +797,15 @@ body.role-reader .perm-ro, body.read-only .perm-ro { display: inline-flex !impor
 .sop-doc h3 { font-size: 14.5px; margin: 14px 0 4px; }
 .sop-doc ul { margin: 4px 0 8px 18px; padding: 0; }
 .sop-doc mark { background: #fff3a0; color: #3a2502; padding: 0 2px; border-radius: 3px; }
+
+/* "Check for updates": what is new in the version, and the download progress */
+.upd-notes { margin: 6px 0; }
+.upd-notes summary { cursor: pointer; font-weight: 600; }
+.upd-notes pre { white-space: pre-wrap; font: inherit; margin: 6px 0 0; max-height: 220px; overflow: auto; }
+#upd-progress { margin-top: 6px; }
+#upd-progress.err { color: var(--bad); }
+.ver-history { margin-top: 10px; }
+.ver-history summary { cursor: pointer; font-weight: 600; }
+.ver-history .ver { margin: 10px 0 0; padding-top: 8px; border-top: 1px solid var(--border); }
+.ver-history ul { margin: 4px 0 0 18px; padding: 0; }
+.ver-history li { margin: 2px 0; }

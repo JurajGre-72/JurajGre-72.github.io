@@ -214,6 +214,7 @@ async function renderSidebar() {
 }
 
 let renderSeq = 0;
+let shownRoute = ''; // the page on screen: drawn again (a saved setting, a colleague's change) it keeps its place
 async function render() {
   if (!app.info || !app.info.session) return;
   const seq = ++renderSeq;
@@ -221,6 +222,8 @@ async function render() {
   app.route = route;
   const view = viewFor(route);
   const main = document.getElementById('main');
+  const samePage = location.hash === shownRoute;
+  const scroll = samePage ? main.scrollTop : 0;
   if (app.view && app.view !== view && app.view.unmount) app.view.unmount();
   app.view = view;
   renderSidebar();
@@ -228,7 +231,8 @@ async function render() {
     const content = await view.render(route);
     if (seq !== renderSeq) return; // a newer navigation won
     main.innerHTML = String(content);
-    main.scrollTop = 0;
+    shownRoute = location.hash;
+    main.scrollTop = scroll; // another page starts at the top, the same page stays where it was
     if (view.mount) await view.mount(main, route);
   } catch (e) {
     if (seq !== renderSeq) return; // an older drawing failed after a newer one was shown: keep the newer one
