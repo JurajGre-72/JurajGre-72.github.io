@@ -220,9 +220,12 @@ export async function render() {
       <div class="btn-row">
         <button class="btn" data-action="openFolder">${icon('external')}${t('set.openFolder')}</button>
         <button class="btn" data-action="backup" data-perm="editor">${icon('download')}${t('set.backup')}</button>
-        <button class="btn" data-action="copyArchive" data-perm="admin">${icon('layers')}${t('set.copyFolder')}</button>
-        <button class="btn btn-ghost" data-action="switchArchive" data-perm="admin">${icon('folder')}${t('set.switchFolder')}</button>
+        ${app.info.managed && app.info.managed.dataDir
+          ? ''
+          : html`<button class="btn" data-action="copyArchive" data-perm="admin">${icon('layers')}${t('set.copyFolder')}</button>
+            <button class="btn btn-ghost" data-action="switchArchive" data-perm="admin">${icon('folder')}${t('set.switchFolder')}</button>`}
       </div>
+      ${app.info.managed && app.info.managed.dataDir ? html`<p class="muted small">${t('set.dataDirByIt')}</p>` : ''}
       ${trash
         ? html`<div class="trash-row" data-perm="admin">${icon('trash')}<span>${trash.count ? t('set.trash', { n: trash.count, size: fmtSize(trash.bytes) }) : t('set.trashEmpty')}</span>
             ${trash.count ? html`<button class="btn btn-sm danger" data-action="emptyTrash">${t('set.trashEmptyBtn')}</button>` : ''}</div>`
@@ -324,7 +327,8 @@ export async function render() {
       t('set.about'),
       'info',
       html`<p>${t('appName')} – ${t('set.version', { v: app.info.version })}</p><p class="muted small">${t('tagline')}</p>
-      <div class="btn-row"><button class="btn" data-action="checkUpdate">${icon('refresh')}${t('upd.check')}</button></div>
+      ${app.info.managed && app.info.managed.updates !== 'app' ? html`<p class="note">${icon('info')}<span>${t('upd.byIt')}</span></p>` : ''}
+      ${app.info.managed && app.info.managed.updates === 'off' ? '' : html`<div class="btn-row"><button class="btn" data-action="checkUpdate">${icon('refresh')}${t('upd.check')}</button></div>`}
       <div id="upd-result" class="small"></div>
       <p class="muted small">${t('upd.privacy')}</p>
       ${versionHistory()}`
@@ -618,7 +622,7 @@ export const actions = {
             <button class="btn btn-sm" data-action="openUpdate" data-url="${r.latest.url}">${t('upd.download')}</button>
           </div>
           <div id="upd-progress" class="muted"></div>
-          <div class="muted">${r.canInstall ? t('upd.installHint') : app.can('admin') ? t('upd.keepData') : t('upd.adminOnly')}</div>
+          <div class="muted">${r.canInstall ? t('upd.installHint') : r.byIt ? t('upd.byIt') : app.can('admin') ? t('upd.keepData') : t('upd.adminOnly')}</div>
         </div></div>`);
       } else {
         out.className = 'small ok';

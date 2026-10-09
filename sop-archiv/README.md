@@ -73,6 +73,10 @@ Automatická kontrola: predvolene raz týždenne (dá sa vypnúť alebo zmeniť)
 
 ---
 
+### Pre IT (Citrix, terminálový server)
+
+Inštalácia pre všetkých používateľov, nastavenie priečinka archívu a aktualizácií od IT, údaje a sieťové spojenia: [docs/it/IT-01 Inštalácia SOP Archív – Citrix a terminálový server.docx](docs/it/). Tichá inštalácia: `SOP-Archiv-<verzia>-Setup.exe /S /allusers`.
+
 ## English
 
 ### What it does

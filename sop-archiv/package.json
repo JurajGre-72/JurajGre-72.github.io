@@ -1,7 +1,7 @@
 {
   "name": "sop-archiv",
   "productName": "SOP Archiv",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Offline intelligent archive for SOPs, organizational directives (OS) and other controlled documents, with review reminders and legislation change monitoring.",
   "main": "src/main/main.js",
   "author": "Juraj Gregus",

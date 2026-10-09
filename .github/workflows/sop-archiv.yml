@@ -159,6 +159,29 @@ jobs:
           if (-not $q.WaitForExit(60000)) { $q.Kill(); throw 'The installed app started with a debugger attached' }
           if ($q.ExitCode -ne 1) { throw "Unexpected exit code $($q.ExitCode)" }
           'Installed, updated in place, and the installed app runs.'
+      # As IT installs it on a terminal server (Citrix): for all users, silently – and removes it again.
+      - name: Installed for all users (Citrix / terminal server) and removed, without questions
+        if: runner.os == 'Windows'
+        run: |
+          $setup = (Get-ChildItem dist -Filter '*-Setup.exe' | Select-Object -First 1).FullName
+          $p = Start-Process -FilePath $setup -ArgumentList '/S', '/allusers' -PassThru -Wait
+          if ($p.ExitCode -ne 0) { throw "Installer exit code $($p.ExitCode)" }
+          $dir = Join-Path $env:ProgramFiles 'SOP Archiv'
+          $exe = Join-Path $dir 'SOP Archiv.exe'
+          if (-not (Test-Path $exe)) { Get-ChildItem $env:ProgramFiles | Out-String | Write-Host; throw "Not installed for all users: $exe" }
+          "Installed for all users: $exe"
+          $q = Start-Process -FilePath $exe -ArgumentList '--inspect=0' -PassThru
+          $null = $q.Handle
+          if (-not $q.WaitForExit(60000)) { $q.Kill(); throw 'The installed app started with a debugger attached' }
+          if ($q.ExitCode -ne 1) { throw "Unexpected exit code $($q.ExitCode)" }
+          $un = Get-ChildItem $dir -Filter 'Uninstall*.exe' | Select-Object -First 1
+          if (-not $un) { throw 'No uninstaller' }
+          "Uninstaller: $($un.FullName)"
+          $u = Start-Process -FilePath $un.FullName -ArgumentList '/S', '/allusers' -PassThru -Wait
+          if ($u.ExitCode -ne 0) { throw "Uninstaller exit code $($u.ExitCode)" }
+          foreach ($i in 1..60) { if (-not (Test-Path $exe)) { break }; Start-Sleep -Seconds 1 }
+          if (Test-Path $exe) { throw 'Still installed after the silent uninstall' }
+          'Installed for all users silently, runs, removed silently.'
       - uses: actions/upload-artifact@v4
         with:
           name: SOP-Archiv-${{ matrix.name }}

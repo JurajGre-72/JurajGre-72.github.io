@@ -2,6 +2,12 @@
 
 Každá zverejnená verzia má tu svoj odsek (zobrazí sa v aplikácii pri aktualizácii a na stránke verzie).
 
+## 1.0.8
+
+- Citrix a terminálový server: inštalácia pre všetkých používateľov (Setup.exe /S /allusers, do Program Files). Takto nainštalovanú aplikáciu aktualizuje IT – aplikácia nič neinštaluje sama a v Nastaveniach to oznámi.
+- Nastavenie od IT pre všetkých používateľov (C:\ProgramData\SOP Archiv\policy.json): priečinok archívu (používatelia ho nemôžu zmeniť), aktualizácie („it“ alebo „off“) a vypnutie grafickej akcelerácie pre servery bez grafickej karty.
+- Dokument pre IT: docs/it/IT-01 Inštalácia SOP Archív – Citrix a terminálový server.docx (požiadavky, inštalácia, overenie, údaje, sieťové spojenia, kontrolný zoznam).
+
 ## 1.0.7
 
 - Pri každej osobe si vyberiete, či podpisuje v aplikácii, alebo ručne. Pri odoslaní na schválenie má každý preskúmavateľ a schvaľovateľ voľbu „v aplikácii / ručne“ a dajú sa pridať aj ľudia bez aplikácie (napr. konateľ).

@@ -35,7 +35,7 @@ function setupHtml(info) {
       <div class="field"><label>${t('auth.role')}</label><div class="readonly">${t('role.admin')}</div></div>
       <div class="field"><label>${t('auth.password')}</label><input type="password" name="password" required></div>
       <div class="field"><label>${t('auth.password2')}</label><input type="password" name="password2" required></div>
-      <div class="field full"><label>${t('ob.folder')}</label><div class="path-box">${icon('folder')}<code id="setup-folder">${info.dataDir}</code><button type="button" class="btn btn-sm" id="setup-change">${t('ob.change')}</button></div><span class="hint">${t('auth.folderHint')}</span>${cloudNote(info.dataDirCloud)}</div>
+      <div class="field full"><label>${t('ob.folder')}</label><div class="path-box">${icon('folder')}<code id="setup-folder">${info.dataDir}</code>${info.managed && info.managed.dataDir ? '' : html`<button type="button" class="btn btn-sm" id="setup-change">${t('ob.change')}</button>`}</div><span class="hint">${t('auth.folderHint')}</span>${cloudNote(info.dataDirCloud)}</div>
       <div class="field full"><label>${t('ob.reminders')}</label>
         <label class="check"><input type="checkbox" name="launchAtLogin"> ${t('set.launchAtLogin')}</label>
         <label class="check"><input type="checkbox" name="runInBackground"> ${t('set.background')}</label>

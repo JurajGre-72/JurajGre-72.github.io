@@ -62,6 +62,15 @@ if (app.isPackaged && !require('../../package.json').soparchivTestBuild) {
 if (process.env.SOP_ARCHIV_USERDATA) app.setPath('userData', process.env.SOP_ARCHIV_USERDATA);
 const startHidden = process.argv.includes('--hidden');
 
+// What IT set for every user of this computer or terminal server (lib/policy.js). SOP_ARCHIV_POLICY points
+// to another file (tests).
+const policy = require('./lib/policy').readPolicy(process.env.SOP_ARCHIV_POLICY ? { readFile: () => fs.readFileSync(process.env.SOP_ARCHIV_POLICY, 'utf8') } : {});
+if (process.env.SOP_ARCHIV_POLICY) policy.file = process.env.SOP_ARCHIV_POLICY;
+if (policy.error) console.error(`policy ${policy.file}: ${policy.error}`);
+if (policy.disableGpu) app.disableHardwareAcceleration();
+/** New versions installed by IT: by the policy, or because the app is installed for all users. */
+const updatesByIt = () => policy.updates !== 'app' || require('./lib/policy').installedForAll(process.execPath);
+
 protocol.registerSchemesAsPrivileged([{ scheme: 'app', privileges: { standard: true, secure: true, supportFetchAPI: true, codeCache: true } }]);
 
 // ---------------------------------------------------------------------------
@@ -82,7 +91,7 @@ function loadSettings() {
   const ai0 = { provider: 'none', baseUrl: '', model: '', budget: 0, apiKeyEnc: '', gpu: true, contextSize: 0, ...(s.ai || {}) };
   if (!ai.PROVIDERS.includes(ai0.provider)) ai0.provider = 'none'; // cloud providers were removed
   settings = {
-    dataDir: process.env.SOP_ARCHIV_DATA || s.dataDir || defaultDataDir(),
+    dataDir: process.env.SOP_ARCHIV_DATA || policy.dataDir || s.dataDir || defaultDataDir(),
     lang: s.lang || (locale.startsWith('sk') || locale.startsWith('cs') ? 'sk' : 'en'),
     theme: s.theme || 'system',
     offline: !!s.offline,
@@ -944,7 +953,9 @@ function registerIpc() {
       indexReady: archive.indexReady,
       ocr: ocrState,
       supported: SUPPORTED,
-      encryptionAvailable: safeStorage.isEncryptionAvailable()
+      encryptionAvailable: safeStorage.isEncryptionAvailable(),
+      // Set by IT: the archive folder for everyone, and who installs new versions.
+      managed: { dataDir: !!policy.dataDir, updates: policy.updates === 'off' ? 'off' : updatesByIt() ? 'it' : 'app' }
     }),
     { perm: 'public' }
   );
@@ -1153,6 +1164,7 @@ function registerIpc() {
     'app:switchDataDir',
     async (dirIn, mode) => {
       if (!(needsSetup() && !session) && !(session && session.role === 'admin')) throw new UserError(tr('err.permission'));
+      if (policy.dataDir) throw new UserError(tr('err.policyDataDir'));
       if (!dirIn) throw new Error('No folder');
       // A folder that is not empty and is not an archive (e.g. "Documents") gets an SOP-Archiv subfolder.
       let dir = dirIn;
@@ -1210,6 +1222,7 @@ function registerIpc() {
   // Only on request: the list of published versions of this app. Nothing about the archive is sent.
   handle('app:checkUpdate', async () => {
     if (settings.offline) throw new UserError(tr('err.offline'));
+    if (policy.updates === 'off') throw new UserError(tr('err.updatesOff'));
     const url = process.env.SOP_ARCHIV_UPDATE_URL || `https://api.github.com/repos/${UPDATE_REPO}/releases?per_page=30`;
     logNet({ purpose: 'update', url });
     const ses = electronSession.fromPartition('update-check');
@@ -1222,13 +1235,14 @@ function registerIpc() {
     // Kept here: the install below uses this release, never an address handed over by the window.
     lastUpdateCheck = newer ? { latest, file } : null;
     const { assets, ...shown } = latest || {};
-    return { current, latest: latest ? shown : null, newer, canInstall: !!file && !!session && session.role === 'admin' };
+    return { current, latest: latest ? shown : null, newer, byIt: updatesByIt(), canInstall: !!file && !updatesByIt() && !!session && session.role === 'admin' };
   });
   // One click: download the new version, check its fingerprint, install it and start again (administrators).
   handle(
     'app:installUpdate',
     async () => {
       const u = lastUpdateCheck;
+      if (updatesByIt()) throw new UserError(tr('err.updatesByIt'));
       if (!u || !u.file) throw new UserError(tr('err.updateNone'));
       if (settings.offline) throw new UserError(tr('err.offline'));
       const ses = electronSession.fromPartition('update-check');
@@ -1867,7 +1881,7 @@ if (!app.requestSingleInstanceLock()) {
     // A folder where no archive was set up yet that a cloud service synchronises (e.g. Documents in iCloud):
     // the local folder is offered instead – the archive is not to leave the computer or company server.
     const hasArchive = (d) => fs.existsSync(path.join(d, 'archive.json')) || fs.existsSync(path.join(d, 'keyring.json'));
-    if (!process.env.SOP_ARCHIV_DATA && !hasArchive(settings.dataDir) && cloudSyncProvider(settings.dataDir)) settings.dataDir = defaultDataDir();
+    if (!process.env.SOP_ARCHIV_DATA && !policy.dataDir && !hasArchive(settings.dataDir) && cloudSyncProvider(settings.dataDir)) settings.dataDir = defaultDataDir();
     try {
       await openArchive(settings.dataDir);
     } catch (e) {

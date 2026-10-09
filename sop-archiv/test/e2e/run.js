@@ -214,14 +214,14 @@ async function until(page, fn, what, arg = undefined, timeout = 30000) {
 // What the app itself reported (main process), printed when the test fails.
 const appLog = [];
 
-async function launch(tmp, userdata, host = 'PC-QA', locale = 'sk_SK.UTF-8') {
+async function launch(tmp, userdata, host = 'PC-QA', locale = 'sk_SK.UTF-8', extraEnv = {}) {
   // SOP_ARCHIV_EXE=path/to/packaged/binary tests a built app instead of the sources.
   const packaged = process.env.SOP_ARCHIV_EXE;
   const app = await electron.launch({
     executablePath: packaged || require('electron'),
     args: packaged ? ['--no-sandbox'] : [ROOT, '--no-sandbox'],
     // Two "computers" on one machine: each has its own name. STRICT_TX: a save outside a write transaction fails the test.
-    env: { ...process.env, SOP_ARCHIV_USERDATA: path.join(tmp, userdata), SOP_ARCHIV_DATA: path.join(tmp, 'archive'), SOP_ARCHIV_NO_TIMERS: '1', SOP_ARCHIV_HOST: host, SOP_ARCHIV_STRICT_TX: '1', LANG: locale, LANGUAGE: locale.slice(0, 2), SOP_ARCHIV_UPDATE_DRYRUN: '1', ...(process.platform === 'linux' ? { APPIMAGE: path.join(tmp, 'SOP-Archiv.AppImage') } : {}) }
+    env: { ...process.env, SOP_ARCHIV_USERDATA: path.join(tmp, userdata), SOP_ARCHIV_DATA: path.join(tmp, 'archive'), SOP_ARCHIV_NO_TIMERS: '1', SOP_ARCHIV_HOST: host, SOP_ARCHIV_STRICT_TX: '1', LANG: locale, LANGUAGE: locale.slice(0, 2), SOP_ARCHIV_UPDATE_DRYRUN: '1', ...(process.platform === 'linux' ? { APPIMAGE: path.join(tmp, 'SOP-Archiv.AppImage') } : {}), ...extraEnv }
   });
   app.process().stderr.on('data', (d) => {
     for (const line of String(d).split('\n')) if (line.trim()) appLog.push(`[${host}] ${line}`);
@@ -1136,13 +1136,18 @@ async function main() {
     // ---- A second computer opens the same archive: both work at the same time ----
     const PETER = { name: 'Peter Novák', password: 'Docasne-heslo-1', next: 'Peter-vlastne-2' };
     // The warehouse computer has an English system (as on the Windows test machines): the archive is still in Slovak.
-    app2 = await launch(tmp, 'userdata-pc2', 'PC-SKLAD', 'en_US.UTF-8');
+    // The second computer is a terminal server set up by IT (policy file): archive folder and updates by IT.
+    const policyFile = path.join(tmp, 'policy.json');
+    fs.writeFileSync(policyFile, JSON.stringify({ dataDir: path.join(tmp, 'archive'), updates: 'off' }));
+    app2 = await launch(tmp, 'userdata-pc2', 'PC-SKLAD', 'en_US.UTF-8', { SOP_ARCHIV_POLICY: policyFile });
     const page2 = await app2.firstWindow();
     watch(page2);
     await page2.setViewportSize({ width: 1360, height: 860 });
     await signIn(page2, READER);
     const info2 = await page2.evaluate(() => window.api.app.info());
     assert.ok(!info2.readOnly, 'the second computer can work too (no read-only mode)');
+    assert.deepEqual(info2.managed, { dataDir: true, updates: 'off' }, 'what IT set is known to the app');
+    await assert.rejects(page2.evaluate(() => window.api.app.checkUpdate()), /IT/, 'no update checks where IT turned them off');
     assert.ok(await page2.isVisible('#brand-logo img'), 'the second computer shows the logo too');
     // Each computer sees who else is working.
     await until(page, () => window.api.app.presence().then((p) => p.some((x) => x.name === 'Eva Nováková' && x.host === 'PC-SKLAD')), 'PC-QA sees Eva on PC-SKLAD');
