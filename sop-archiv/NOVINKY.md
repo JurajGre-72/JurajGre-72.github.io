@@ -2,6 +2,12 @@
 
 Každá zverejnená verzia má tu svoj odsek (zobrazí sa v aplikácii pri aktualizácii a na stránke verzie).
 
+## 1.0.6
+
+- Podpisový hárok: dokument → Schválenie a kópie → Podpisy → Podpisový hárok. Posledná strana dokumentu s elektronickými podpismi z aplikácie (preskúmanie a schválenie heslom, kto potvrdil „prečítal som a rozumiem“) a s riadkami na vlastnoručné podpisy pre ľudí bez aplikácie – na schválenie (vypracoval, preskúmal, schválil) aj na oboznámenie zamestnancov. Zamestnanci, ktorí dokument musia poznať, nepracujú v aplikácii a ešte nepotvrdili oboznámenie, sú na hárku vopred vypísaní.
+- Hárok sa dá pridať aj na koniec riadenej kópie PDF; dostane pečiatku „Riadená kópia č.“ ako ostatné strany.
+- Zaznamenať podpísaný hárok: kto podpísal, kedy a sken (PDF, JPG, PNG). Zamestnancom sa zapíše oboznámenie s platnou verziou (spôsob „vlastnoručný podpis na hárku“), sken sa uloží k dokumentu zašifrovaný a je aj v čitateľnom exporte pre audítora.
+
 ## 1.0.5
 
 - SOP pre používanie aplikácie (Pomoc) je úplná – bez miest „DOPLNIŤ“. Zodpovednosti sú uvedené funkciou (správca, odborný zástupca, IT), lehoty a pravidlá sú doplnené (posúdenie oznamu o stiahnutí do 24 hodín, zálohovanie denne, uchovávanie 5 rokov, uloženie kódu na obnovenie).

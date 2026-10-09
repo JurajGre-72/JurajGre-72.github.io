@@ -848,6 +848,41 @@ async function main() {
     assert.match(freeText, /Platná len v deň tlače/);
     await shot(page, '26-controlled-copy');
     console.log('  ✓ approval signed with the own password makes the version effective; controlled copy stamped on every page; other copies marked uncontrolled');
+
+    // ---- Signature sheet: the electronic signature on it, an employee without the app signs by hand ----
+    // (another department than the reader's, so the reading list checked later stays as it is)
+    const transport = (await page.evaluate(() => window.__app.info.archiveSettings.departments)).find((d) => d !== warehouse && /doprav|transport/i.test(d));
+    const skladnik = await page.evaluate((dep) => window.api.people.save({ name: 'Ján Skladník', department: dep, position: 'vodič' }), transport);
+    await page.evaluate(([id, dep]) => window.api.docs.update(id, { trainingFor: [dep] }), [newDoc.id, transport]);
+    await page.evaluate((id) => (location.hash = `#/documents/${id}?tab=control`), newDoc.id);
+    await page.click('button[data-action="shPrint"]');
+    await page.waitForSelector('.modal .sh-form:has-text("ešte nepotvrdili oboznámenie (1)")');
+    const sheetFile = path.join(tmp, 'podpisovy-harok.pdf');
+    await app.evaluate(({ dialog }, p) => {
+      dialog.showSaveDialog = async () => ({ canceled: false, filePath: p });
+    }, sheetFile);
+    await page.click('.modal-foot button:has-text("Uložiť PDF")');
+    await page.waitForSelector('.toast:has-text("podpisovy-harok.pdf")');
+    const sheetText = (await readPdf(sheetFile)).pages.map((p) => p.text).join('\n').replace(/\s+/g, ' ');
+    for (const s of ['PODPISOVÝ HÁROK', `Schválil(a) ${ADMIN.name}`, 'elektronicky (heslom)', 'Ján Skladník', 'Svojím podpisom potvrdzujem']) assert.ok(sheetText.includes(s), `signature sheet: ${s}`);
+    // The signed paper comes back, with its scan.
+    const scanFile = path.join(tmp, 'sken-harku.pdf');
+    fs.copyFileSync(sheetFile, scanFile);
+    await app.evaluate(({ dialog }, p) => {
+      dialog.showOpenDialog = async () => ({ canceled: false, filePaths: [p] });
+    }, scanFile);
+    await clearToasts(page);
+    await page.click('button[data-action="shRecord"]');
+    await page.check(`.modal [data-person="${skladnik.id}"]`);
+    await page.click('#sh-pick');
+    await page.waitForSelector('#sh-file:has-text("sken-harku.pdf")');
+    await page.click('.modal-foot .btn-primary');
+    await page.waitForSelector('.sh-table td:has-text("Ján Skladník")');
+    await page.waitForSelector('.sh-table button[data-action="shOpenScan"]');
+    const sheetTr = await page.evaluate((id) => window.api.training.doc(id), newDoc.id);
+    assert.equal(sheetTr.rows.find((r) => r.person.id === skladnik.id).record.method, 'signed', 'acknowledged by the signature on the sheet');
+    await shot(page, '26b-signature-sheet');
+    console.log('  ✓ signature sheet: electronic signatures on it, an employee without the app pre-filled; the signed sheet recorded with its scan');
     // ---- Authority notices: recalls to assess, watched product names, a product watched in the EU database ----
     await page.evaluate(() => (location.hash = '#/settings'));
     await page.fill('textarea[name=watchTerms]', 'Imaginex\nIný výrobok');
@@ -1060,7 +1095,9 @@ async function main() {
     await page.fill('#tr-pw', READER.password);
     await page.click('.modal-foot .btn-primary');
     await page.waitForSelector('.training .panel:not(.panel-warn) p:has-text("prečítané")');
-    assert.equal((await page.evaluate(() => window.api.training.overview())).missing, 0);
+    const ovRead = await page.evaluate(() => window.api.training.overview());
+    assert.equal(ovRead.people.find((p) => p.name === READER.name).missing.length, 0, 'the reader has read everything');
+    assert.deepEqual(ovRead.people.filter((p) => p.missing.length).map((p) => [p.name, p.missing.map((d) => d.code)]), [['Ján Skladník', ['SOP-SK-002']]], 'only the employee without the app, who signs on paper');
     await shot(page, '25-read-confirmed');
     const audit2 = await page.evaluate(() => window.api.app.audit({ limit: 20 }));
     assert.ok(audit2.some((r) => r.action === 'auth.failed'), 'failed sign-in is audited');

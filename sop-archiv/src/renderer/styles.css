@@ -723,6 +723,9 @@ body.role-reader .perm-ro, body.read-only .perm-ro { display: inline-flex !impor
 .tr-bar .progress { flex: 1; }
 .progress-bar.full { background: var(--good); }
 .tr-people { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 2px 16px; max-height: 260px; overflow: auto; border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px; }
+.sh-signer { display: grid; grid-template-columns: 110px 1fr 1fr; gap: 8px; align-items: center; margin-bottom: 6px; }
+.sh-table td { vertical-align: top; }
+.cp-sub { padding-left: 24px; }
 .tf-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 2px 16px; }
 .training tr.muted td { color: var(--muted); }
 .tr-card-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }

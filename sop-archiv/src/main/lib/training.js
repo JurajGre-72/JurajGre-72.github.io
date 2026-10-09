@@ -7,7 +7,7 @@
 //   doc:      { id, status, trainingFor: ['*'] | [departments], trainingSeq, versions, currentVersionId }
 //   training: { personId, docId, versionSeq, date, method }
 
-const METHODS = ['session', 'self', 'reading', 'onjob'];
+const METHODS = ['session', 'self', 'reading', 'onjob', 'signed']; // signed: own signature on the document's signature sheet
 
 /** Does this person have to be trained on this document? */
 function isRequired(doc, person) {

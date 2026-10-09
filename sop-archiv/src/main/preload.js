@@ -20,6 +20,7 @@ const CHANNELS = {
   people: ['list', 'save'],
   approval: ['request', 'sign', 'cancel', 'mine'],
   copies: ['issue', 'withdraw', 'toWithdraw'],
+  sheets: ['pdf', 'pickScan', 'record', 'openScan'],
   notices: ['list', 'counts', 'check', 'seen', 'handle', 'reopen', 'open'],
   report: ['inspection'],
   audit: ['query', 'export', 'integrity'],

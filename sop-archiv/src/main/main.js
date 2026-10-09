@@ -1607,11 +1607,78 @@ function registerIpc() {
   );
   handle('approval:cancel', (docId) => archive.cancelApproval(docId), { perm: 'editor', write: true });
   handle('approval:mine', () => archive.approvalsFor(session.userId));
+  // --- signature sheet: signed in the app, and rows to sign by hand (lib/signsheet.js) ---
+  const signSheet = (docId, o = {}) => {
+    const d = archive.signSheetData(docId);
+    const { buildSignSheet } = require('./lib/signsheet');
+    return buildSignSheet({ ...d, lang: lang(), printedAt: new Date(), handApproval: !!o.handApproval, people: o.people === false ? [] : d.people, emptyRows: Math.max(0, Math.min(100, parseInt(o.emptyRows, 10) || 0)) });
+  };
+  /** A read-only working copy opened in the default program (removed when the app quits). */
+  async function openWorkCopy(name, data) {
+    const dir = workDir();
+    await fs.promises.mkdir(dir, { recursive: true, mode: 0o700 });
+    const dest = path.join(dir, name.replace(/[<>:"/\\|?*]+/g, '_'));
+    await fs.promises.chmod(dest, 0o644).catch(() => {});
+    await fs.promises.writeFile(dest, data, { mode: 0o600 });
+    await fs.promises.chmod(dest, 0o444).catch(() => {});
+    const err = await shell.openPath(dest);
+    if (err) throw new Error(err);
+  }
+  handle(
+    'sheets:pdf',
+    async (docId, o = {}, mode = 'open') => {
+      const doc = archive.getDoc(docId);
+      const data = await signSheet(docId, o);
+      const name = `${[doc.code, `v${doc.version}`, tr('sheet.file')].filter(Boolean).join('_').replace(/[<>:"/\\|?*\s]+/g, '_')}.pdf`;
+      let file = null;
+      if (mode === 'save') {
+        const sd = await dialog.showSaveDialog(mainWindow, { defaultPath: name, filters: [{ name: 'PDF', extensions: ['pdf'] }] });
+        if (sd.canceled || !sd.filePath) return null;
+        await fs.promises.writeFile(sd.filePath, data);
+        file = sd.filePath;
+      } else await openWorkCopy(name, data);
+      archive.audit('sheet.printed', { docId, code: doc.code, version: doc.version, handApproval: !!o.handApproval || undefined, rows: (o.people === false ? 0 : archive.signSheetData(docId).people.length) + (parseInt(o.emptyRows, 10) || 0) });
+      return { file };
+    },
+    { perm: 'editor' }
+  );
+  // The scan of the signed sheet: only a file the user has just picked here can be stored.
+  let pickedScan = null;
+  handle(
+    'sheets:pickScan',
+    async () => {
+      const r = await dialog.showOpenDialog(mainWindow, { properties: ['openFile'], filters: [{ name: tr('sheet.scanFilter'), extensions: ['pdf', 'jpg', 'jpeg', 'png'] }] });
+      if (r.canceled || !r.filePaths.length) return null;
+      pickedScan = r.filePaths[0];
+      return { path: pickedScan, name: path.basename(pickedScan), size: (await fs.promises.stat(pickedScan)).size };
+    },
+    { perm: 'editor' }
+  );
+  handle(
+    'sheets:record',
+    async (docId, r = {}) => {
+      const filePath = r.scan && r.scan === pickedScan ? pickedScan : null;
+      const out = await archive.recordSignedSheet(docId, { ...r, filePath });
+      if (filePath) pickedScan = null;
+      return out;
+    },
+    { perm: 'editor', write: true }
+  );
+  handle('sheets:openScan', async (docId, sheetId) => {
+    const doc = archive.getDoc(docId);
+    const c = await archive.sheetContent(docId, sheetId);
+    await openWorkCopy(`${(doc.code || 'doc').replace(/[<>:"/\\|?*\s]+/g, '_')}_${c.name}`, c.data);
+    archive.audit('sheet.scan-opened', { docId, code: doc.code, file: c.name });
+    return true;
+  });
+
   handle(
     'copies:issue',
     async (docId, r) => {
       const labels = { title: tr('stamp.title'), to: tr('stamp.to'), version: tr('stamp.version'), back: tr('stamp.back') };
-      const out = await archive.issueCopy(docId, { ...(r || {}), labels });
+      // A PDF copy can carry the signature sheet as its last page(s).
+      const sheetPdf = r && r.signSheet ? await signSheet(docId, { handApproval: !!r.handApproval, emptyRows: 6 }) : null;
+      const out = await archive.issueCopy(docId, { ...(r || {}), labels, sheetPdf });
       if (out.copy.format === 'pdf') {
         const sd = await dialog.showSaveDialog(mainWindow, { defaultPath: out.name });
         if (!sd.canceled && sd.filePath) await fs.promises.writeFile(sd.filePath, out.data);

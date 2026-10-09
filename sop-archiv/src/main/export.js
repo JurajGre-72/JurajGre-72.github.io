@@ -24,6 +24,7 @@ const TEXT = {
     cols: ['Kód', 'Názov', 'Druh', 'Stav dokumentu', 'Verzia', 'Stav verzie', 'Účinnosť od', 'Revízia do', 'Útvar', 'Vlastník', 'Schválil', 'Nahrané', 'Nahral', 'Súbor', 'SHA-256 (kontrola, že súbor je nezmenený)'],
     vCurrent: 'platná (aktuálna)',
     vOld: 'staršia, nahradená',
+    sheet: 'Podpísaný hárok',
     status: { draft: 'návrh', effective: 'platný', review: 'na revízii', obsolete: 'neplatný' },
     readmeText: (x) =>
       [
@@ -51,6 +52,7 @@ const TEXT = {
     cols: ['Code', 'Title', 'Type', 'Document status', 'Version', 'Version status', 'Effective from', 'Review by', 'Department', 'Owner', 'Approved by', 'Uploaded', 'Uploaded by', 'File', 'SHA-256 (proof the file is unchanged)'],
     vCurrent: 'valid (current)',
     vOld: 'older, superseded',
+    sheet: 'Signed sheet',
     status: { draft: 'draft', effective: 'effective', review: 'under review', obsolete: 'obsolete' },
     readmeText: (x) =>
       [
@@ -119,6 +121,15 @@ async function exportArchive(archive, dest, opts) {
       await fs.promises.writeFile(path.join(dest, folder, name), content.data);
       files++;
       rows.push([d.code || '', d.title, opts.typeLabel ? opts.typeLabel(d.type) : d.type, T.status[d.status] || d.status, v.label, current ? T.vCurrent : T.vOld, current ? d.effectiveDate || '' : '', current ? d.reviewDate || '' : '', d.department || '', d.owner || '', (current && d.approver) || '', String(v.importedAt || '').slice(0, 10), v.importedBy || '', path.join(folder, name), v.sha256 || '']);
+    }
+    // Scans of the signature sheets signed by hand, next to the document.
+    for (const sh of d.sheets || []) {
+      if (!sh.file) continue;
+      const c = await archive.sheetContent(d.id, sh.id);
+      const name = unique(folder, safe(`${T.sheet} ${sh.date} – v${sh.version} – ${sh.file.name}`, 120), used);
+      await fs.promises.mkdir(path.join(dest, folder), { recursive: true });
+      await fs.promises.writeFile(path.join(dest, folder, name), c.data);
+      files++;
     }
   }
   const widths = [14, 44, 14, 14, 8, 18, 12, 12, 18, 18, 20, 12, 18, 70, 66];

@@ -10,7 +10,7 @@ let mine = null;
 let people = [];
 let users = [];
 
-const METHODS = ['session', 'reading', 'onjob', 'self'];
+const METHODS = ['session', 'reading', 'onjob', 'self', 'signed'];
 
 function bar(done, total) {
   const pct = total ? Math.round((done / total) * 100) : 0;
@@ -136,7 +136,7 @@ export async function recordTrainingDialog(docId = '') {
     body: html`<form class="form-grid tr-form">
       <div class="field full"><label>${t('tr.doc')}</label><select name="docId" id="tr-doc">${candidates.map((d) => html`<option value="${d.id}" ${d.id === docId ? 'selected' : ''}>${d.code || ''} ${d.title} (v${d.version})</option>`)}</select><span class="hint" id="tr-req"></span></div>
       <div class="field"><label>${t('rv.date')}</label><input type="date" name="date" value="${todayIso()}"></div>
-      <div class="field"><label>${t('tr.method')}</label><select name="method">${METHODS.filter((m) => m !== 'self').map((m) => html`<option value="${m}">${t(`tr.m.${m}`)}</option>`)}</select></div>
+      <div class="field"><label>${t('tr.method')}</label><select name="method">${METHODS.filter((m) => m !== 'self' && m !== 'signed').map((m) => html`<option value="${m}">${t(`tr.m.${m}`)}</option>`)}</select></div>
       <div class="field full"><label>${t('tr.trainer')}</label><input name="trainer" placeholder="${t('tr.trainerPh')}"></div>
       <div class="field full"><label>${t('tr.participants')}</label><div class="tr-people" id="tr-people"></div>
         <div class="btn-row"><button type="button" class="btn btn-sm btn-ghost" id="tr-all">${t('tr.selectAll')}</button><button type="button" class="btn btn-sm btn-ghost" id="tr-none">${t('tr.selectNone')}</button></div></div>

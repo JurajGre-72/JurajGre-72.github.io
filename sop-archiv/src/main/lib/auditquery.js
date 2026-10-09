@@ -3,7 +3,7 @@
 
 const AREAS = {
   documents: /^(doc|copy|version)\./,
-  approval: /^approval\./,
+  approval: /^(approval|sheet)\./,
   training: /^training\./,
   legislation: /^(law|legislation|decision|company)\./,
   notices: /^notices?\./,
@@ -13,7 +13,7 @@ const AREAS = {
 };
 
 // Reading, signing in and out: left out by "changes only".
-const NOT_CHANGES = new Set(['doc.opened', 'doc.copy-saved', 'auth.login', 'auth.logout', 'ai.question', 'report.exported', 'audit.exported', 'training.exported', 'doc.proposals-exported']);
+const NOT_CHANGES = new Set(['doc.opened', 'doc.copy-saved', 'sheet.printed', 'sheet.scan-opened', 'auth.login', 'auth.logout', 'ai.question', 'report.exported', 'audit.exported', 'training.exported', 'doc.proposals-exported']);
 
 function fold(s) {
   return String(s || '')

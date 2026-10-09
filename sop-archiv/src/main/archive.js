@@ -1084,6 +1084,7 @@ class Archive {
     if ((doc.reviews || []).length) out.push('reviews');
     if (this.data.changes.some((c) => (c.affected || []).some((a) => a.docId === docId && (a.status === 'done' || a.status === 'na' || a.note)))) out.push('assessed');
     if (this.data.decisions.some((d) => d.docId === docId)) out.push('decisions');
+    if ((doc.sheets || []).length) out.push('sheets');
     return out;
   }
 
@@ -1328,7 +1329,7 @@ class Archive {
   }
 
   /** Register a controlled copy of the current version: { copy, name, data, stamped }. PDFs get the stamp on every page. */
-  async issueCopy(docId, { issuedTo, location = '', format = 'print', note = '', labels = {} }) {
+  async issueCopy(docId, { issuedTo, location = '', format = 'print', note = '', labels = {}, sheetPdf = null }) {
     const doc = this._doc(docId);
     const to = String(issuedTo || '').trim();
     if (!to) throw new Error('RECIPIENT_REQUIRED');
@@ -1338,7 +1339,13 @@ class Archive {
     const content = await this.versionContent(docId);
     let data = content.data;
     let stamped = false;
+    let withSheet = false;
     if (/\.pdf$/i.test(content.name)) {
+      // The signature sheet goes at the end, and is stamped with the copy number like every other page.
+      if (sheetPdf) {
+        data = await require('./lib/signsheet').appendSheet(data, sheetPdf);
+        withSheet = true;
+      }
       const { stampPdf } = require('./lib/stamp');
       const L = { title: 'RIADENÁ KÓPIA č. {no}', to: 'Vydané pre: {to}', version: 'Verzia {v} · vydané {date}', back: 'Pri novej verzii kópiu vráťte.', ...labels };
       const fill = (s) => s.replace('{no}', no).replace('{to}', [copy.issuedTo, copy.location].filter(Boolean).join(' – ')).replace('{v}', doc.version).replace('{date}', new Date().toLocaleDateString('sk-SK'));
@@ -1346,6 +1353,7 @@ class Archive {
       stamped = true;
     }
     copy.stamped = stamped;
+    if (withSheet) copy.withSheet = true;
     (doc.copies = doc.copies || []).push(copy);
     await this.save();
     this.audit('copy.issued', { docId, code: doc.code, version: doc.version, no, to: copy.issuedTo, location: copy.location || undefined, format: copy.format });
@@ -1444,6 +1452,81 @@ class Archive {
     await this.save();
     this.audit(confirmedByUser ? 'training.confirmed' : 'training.recorded', { docId: doc.id, code: doc.code, version: doc.version, people: recs.map((r) => r.personName), date: day, method: m, trainer: recs[0].trainer || undefined });
     return recs;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Signature sheet: signatures in the app, and signatures by hand of people who do not use it
+
+  /** What the signature sheet of the current version shows (see lib/signsheet.js). */
+  signSheetData(docId) {
+    const doc = this._doc(docId);
+    const cur = doc.versions.find((v) => v.id === doc.currentVersionId);
+    const reqs = (doc.approvals || []).filter((a) => a.versionId === doc.currentVersionId && (a.status === 'approved' || a.status === 'pending'));
+    const req = reqs[reqs.length - 1] || null;
+    const electronic = req ? req.steps.filter((s) => s.decision !== 'rejected').map((s) => ({ role: s.role, name: s.name, at: s.decision === 'approved' ? s.at : null })) : [];
+    const need = training.requiredSeq(doc);
+    const recs = this.data.trainings.filter((t) => t.docId === doc.id && (t.versionSeq || 0) >= need).sort((a, b) => String(a.date).localeCompare(String(b.date)) || String(a.personName).localeCompare(String(b.personName), 'sk'));
+    const done = new Set(recs.map((t) => t.personId));
+    // Who must know the document, does not use the app and has not confirmed it yet: listed to sign by hand.
+    const people = this.data.people
+      .filter((p) => !p.userId && training.isRequired(doc, p) && !done.has(p.id))
+      .sort((a, b) => String(a.department).localeCompare(String(b.department), 'sk') || a.name.localeCompare(b.name, 'sk'))
+      .map((p) => ({ id: p.id, name: p.name, position: [p.position, p.department].filter(Boolean).join(', ') }));
+    return {
+      org: this.data.org || '',
+      doc: { id: doc.id, code: doc.code || '', title: doc.title, version: doc.version, effectiveDate: doc.status === 'draft' ? null : doc.effectiveDate || null, status: doc.status, pdf: !!(cur && /\.pdf$/i.test(cur.fileName)) },
+      submitted: req ? { name: req.requestedBy, at: req.requestedAt } : null,
+      electronic,
+      read: recs.map((t) => ({ name: t.personName, date: t.date, method: t.confirmedByUser ? 'reading' : t.method })),
+      people
+    };
+  }
+
+  /**
+   * A signature sheet signed by hand, recorded: kind 'reading' – the employees who signed (training
+   * records, method "signed"); kind 'approval' – who prepared / reviewed / approved by hand. The scan
+   * (PDF or picture) is kept with the document, encrypted like its files.
+   */
+  async recordSignedSheet(docId, { kind = 'reading', personIds = [], signers = [], date, note = '', filePath = null } = {}) {
+    const doc = this._doc(docId);
+    const cur = doc.versions.find((v) => v.id === doc.currentVersionId);
+    if (!cur) throw new Error('Version not found');
+    const k = kind === 'approval' ? 'approval' : 'reading';
+    const dayIso = /^\d{4}-\d{2}-\d{2}$/.test(date || '') ? date : today();
+    const people = k === 'reading' ? [...new Set(personIds || [])].map((pid) => this.data.people.find((p) => p.id === pid)).filter(Boolean) : [];
+    const signed = k === 'approval' ? (signers || []).map((x) => ({ role: ['prepared', 'review', 'approve'].includes(x.role) ? x.role : 'approve', name: String(x.name || '').trim().slice(0, 200), position: String(x.position || '').trim().slice(0, 200) })).filter((x) => x.name) : [];
+    if (k === 'reading' && !people.length) throw new Error('PEOPLE_REQUIRED');
+    if (k === 'approval' && !signed.some((x) => x.role === 'approve')) throw new Error('APPROVER_REQUIRED');
+    let file = null;
+    if (filePath) {
+      const ext = path.extname(filePath).toLowerCase();
+      if (!['.pdf', '.jpg', '.jpeg', '.png'].includes(ext)) throw new Error('SCAN_TYPE');
+      const st = await fs.promises.stat(filePath);
+      if (st.size > 25 * 1024 * 1024) throw new Error('SCAN_TOO_BIG');
+      const buf = await fs.promises.readFile(filePath);
+      const no = (doc.sheets || []).length + 1;
+      const rel = path.join('files', doc.id, this.key ? `s${no}.bin` : `s${no}-${safeName(path.basename(filePath))}`);
+      await fs.promises.mkdir(this.p('files', doc.id), { recursive: true });
+      await this._write(this.p(rel), buf);
+      file = { path: rel.split(path.sep).join('/'), name: path.basename(filePath).slice(0, 200), size: st.size, sha256: crypto.createHash('sha256').update(buf).digest('hex') };
+    }
+    const sheet = { id: id(), kind: k, versionId: cur.id, versionSeq: cur.seq, version: doc.version, date: dayIso, note: String(note || '').trim().slice(0, 2000), people: people.map((p) => ({ id: p.id, name: p.name })), signers: signed, file, by: this.user, at: new Date().toISOString() };
+    (doc.sheets = doc.sheets || []).push(sheet);
+    if (people.length) {
+      const recs = await this.recordTraining({ docId: doc.id, personIds: people.map((p) => p.id), date: dayIso, method: 'signed', notes: sheet.note });
+      for (const r of recs) r.sheetId = sheet.id;
+    }
+    await this.save();
+    this.audit('sheet.recorded', { docId: doc.id, code: doc.code, version: doc.version, kind: k, date: dayIso, people: sheet.people.map((p) => p.name), signers: signed.map((x) => `${x.name} (${x.role})`), scan: file ? file.name : undefined });
+    return sheet;
+  }
+
+  /** The scan of a recorded signature sheet. */
+  async sheetContent(docId, sheetId) {
+    const doc = this._doc(docId);
+    const sh = (doc.sheets || []).find((x) => x.id === sheetId);
+    if (!sh || !sh.file) throw new Error('NOT_FOUND');
+    return { name: sh.file.name, data: await this._readFile(this.p(sh.file.path)) };
   }
 
   async removeTraining(trainingId) {

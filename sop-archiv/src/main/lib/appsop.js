@@ -136,11 +136,13 @@ Platí pre aplikáciu SOP Archív vo verzii 1.x nainštalovanú na počítačoch
 - Novú verziu editor odošle na schválenie určeným osobám v poradí (preskúmanie, schválenie).
 - Každý podpisuje vlastným heslom. Zamietnutie musí obsahovať dôvod.
 - Po poslednom schválení je verzia platná. Kto a kedy podpísal, je pri dokumente aj v auditnom zázname.
+- Osoba, ktorá nepracuje v aplikácii, podpisuje vlastnoručne na podpisovom hárku (dokument → Schválenie a kópie → Podpisy → Podpisový hárok). Editor podpísaný hárok zaznamená v aplikácii („Zaznamenať podpísaný hárok“, so skenom); originál sa uchová v uzamknutej skrini oddelenia kvality.
 - Dokumenty schválené pred zavedením aplikácie na papieri sa evidujú s menom schvaľovateľa; originál s podpismi sa uchováva v uzamknutej skrini oddelenia kvality; za jeho uloženie zodpovedá odborný zástupca. Aplikácia obsahuje naskenovanú alebo elektronickú kópiu.
 
 5.6 Školenia
 - Pri každom dokumente editor určí, kto ho musí poznať (všetci alebo vybrané úseky).
 - Školenie sa zaznamená v aplikácii (dátum, spôsob, školiteľ). Pri čítaní dokumentu zamestnanec potvrdí „prečítal som a rozumiem“ vlastným heslom.
+- Zamestnanci bez prístupu do aplikácie potvrdzujú oboznámenie vlastnoručným podpisom na podpisovom hárku; hárok sa vytlačí s ich menami (alebo sa pripojí na koniec riadenej kópie) a po podpise ho editor zaznamená v aplikácii aj so skenom. Tým sa zamestnancom zapíše oboznámenie s platnou verziou.
 - Nová verzia dokumentu vyžaduje nové zaškolenie; pri drobnej oprave, ktorá nemení postup, sa to dá pri nahratí verzie vypnúť.
 - Prehľad chýbajúcich školení je v časti Školenia; karta školení zamestnanca sa dá vytlačiť.
 
