@@ -188,9 +188,10 @@ function register({ handle, getArchive, ai, aiConfig, send, logNet, lang, tr, Us
   );
 
   // --- The company's SOP for using this app (Help) -----------------------------------------------
-  handle('help:sop', () => ({ doc: appSop.DOC, sections: appSop.SECTIONS }));
-  const sopDocx = (logoPng) =>
-    docxFor({ logoPng, doc: { ...appSop.DOC, owner: getArchive().user }, sections: appSop.SECTIONS });
+  // Filled in from this archive: its settings and the company's own procedures the SOP refers to.
+  const sopSections = () => appSop.sections(appSop.context(getArchive().data));
+  handle('help:sop', () => ({ doc: appSop.DOC, sections: sopSections() }));
+  const sopDocx = (logoPng) => docxFor({ logoPng, doc: { ...appSop.DOC, owner: getArchive().user }, sections: sopSections() });
   handle('help:saveSop', async ({ logoPng } = {}) => {
     const r = await dialog.showSaveDialog(getWindow(), { defaultPath: fileNameFor(appSop.DOC), filters: [{ name: 'Word', extensions: ['docx'] }] });
     if (r.canceled || !r.filePath) return null;
@@ -205,11 +206,15 @@ function register({ handle, getArchive, ai, aiConfig, send, logNet, lang, tr, Us
       const a = getArchive();
       const d = appSop.DOC;
       const existing = a.data.docs.find((x) => x.code === d.code && x.status !== 'obsolete');
-      if (existing) return existing;
+      // Already in the archive: a draft nobody is signing yet takes the current text (e.g. one added
+      // before the SOP was completed); a valid one, or one being approved, is left as it is.
+      const replace = existing && existing.status === 'draft' && !(existing.approvals || []).some((x) => x.status === 'pending');
+      if (existing && !replace) return { ...existing, unchanged: true };
       const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'sop-help-'));
       const file = path.join(dir, fileNameFor(d));
       try {
         fs.writeFileSync(file, await sopDocx(logoPng), { mode: 0o600 });
+        if (replace) return { ...(await a.addVersion(existing.id, file, { version: d.version, retrain: false })), replaced: true };
         const doc = await a.importFile(file, { type: d.type, code: d.code, title: d.title, department: d.department, version: d.version, status: 'draft' });
         a.audit('doc.created', { docId: doc.id, code: doc.code, title: doc.title, from: 'help' });
         return doc;

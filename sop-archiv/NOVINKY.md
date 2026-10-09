@@ -2,6 +2,12 @@
 
 Každá zverejnená verzia má tu svoj odsek (zobrazí sa v aplikácii pri aktualizácii a na stránke verzie).
 
+## 1.0.5
+
+- SOP pre používanie aplikácie (Pomoc) je úplná – bez miest „DOPLNIŤ“. Zodpovednosti sú uvedené funkciou (správca, odborný zástupca, IT), lehoty a pravidlá sú doplnené (posúdenie oznamu o stiahnutí do 24 hodín, zálohovanie denne, uchovávanie 5 rokov, uloženie kódu na obnovenie).
+- Nastavenia aplikácie (automatické odhlásenie, kontrola legislatívy, lehoty revízií podľa typu dokumentu) a vaše postupy, na ktoré SOP odkazuje (stiahnutie z trhu, riadenie dokumentácie, školenia, IT, osobné údaje), sa doplnia z archívu.
+- Návrh SOP-SA-01, ktorý už je v archíve a nikto ho zatiaľ neschvaľuje, dostane po kliknutí na „Pridať do archívu ako návrh“ úplný text ako novú verziu návrhu.
+
 ## 1.0.4
 
 - Oznamy úradov majú nové zdroje: MZ SR – nový zoznam kategorizovaných liekov (aj informatívny materiál vopred) a dokumenty ku kategorizácii a cenám; SOOL – oznamy systému overovania liekov; ÚSKVBL ČR – závady v kvalite, stiahnutia šarží a falzifikáty veterinárnych liekov.

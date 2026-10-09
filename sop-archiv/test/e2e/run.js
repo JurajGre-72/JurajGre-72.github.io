@@ -1007,7 +1007,8 @@ async function main() {
     // ---- Help: the SOP for using the app – read in the app, saved as Word, added to the archive as a draft ----
     await page.click('a.side-help');
     await page.waitForSelector('.sop-doc h2:has-text("Používanie aplikácie SOP Archív")');
-    assert.ok((await page.$$('.sop-doc mark')).length > 5, 'the places the company fills in are highlighted');
+    assert.equal((await page.$$('.sop-doc mark')).length, 0, 'nothing left to fill in');
+    await page.waitForSelector('.sop-doc li:has-text("postupuje podľa SOP-SK-002 Reklamácie, vratky a stiahnutie liekov z trhu")'); // the company's own recall SOP
     await shot(page, '29-help-sop');
     const sopFile = path.join(OUT, 'SOP-SA-01 Používanie aplikácie SOP Archív.docx');
     await app.evaluate(({ dialog }, p) => {
@@ -1019,6 +1020,7 @@ async function main() {
     const sopText = (await readPdf(sopFile)).pages.map((p) => p.text).join('\n');
     assert.match(sopText, /Používanie aplikácie SOP Archív na riadenie dokumentácie/);
     assert.match(sopText, /5\.12 Auditný záznam, inšpekcia a audit/);
+    assert.doesNotMatch(sopText, /\[DOPLNIŤ/, 'complete, no places to fill in');
     await page.click('.help button[data-action="addDraft"]');
     await page.waitForSelector('.page-head:has-text("SOP-SA-01")');
     const sopDoc = (await page.evaluate(() => window.api.docs.list())).find((d) => d.code === 'SOP-SA-01');

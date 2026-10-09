@@ -72,7 +72,7 @@ export const actions = {
   },
   async addDraft() {
     const doc = await api.help.importSop({ logoPng: await logoPng() });
-    toast(t('help.added', { code: doc.code }), 'good', 6000);
+    toast(t(doc.unchanged ? 'help.exists' : doc.replaced ? 'help.replaced' : 'help.added', { code: doc.code }), doc.unchanged ? 'info' : 'good', 6000);
     app.navigate(`documents/${doc.id}`);
   }
 };
