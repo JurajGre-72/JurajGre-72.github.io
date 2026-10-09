@@ -100,3 +100,19 @@ test('archive: approval makes the version effective; controlled copies stamped, 
   const log = await a.readAudit({ limit: 100 });
   for (const action of ['approval.requested', 'approval.signed', 'approval.approved', 'approval.rejected', 'copy.issued', 'copy.withdrawn']) assert.ok(log.some((x) => x.action === action), action);
 });
+
+test('approval: each signer signs in the app or by hand; the sheet completes the hand steps in their turn', () => {
+  const req = A.createRequest({ doc, reviewers: ['u2'], approvers: [], hand: [{ role: 'approve', name: 'Konateľ Bez Aplikácie', position: 'konateľ' }, { role: 'review', userId: 'u1' }], by: 'x', users });
+  assert.deepEqual(req.steps.map((s) => [s.role, s.mode, s.name]), [['review', 'app', 'Eva QA'], ['review', 'hand', 'Ján Novák'], ['approve', 'hand', 'Konateľ Bez Aplikácie']]);
+  assert.equal(req.steps[2].position, 'konateľ');
+  assert.throws(() => A.signHand(req, { signedOn: '2026-10-09', by: 'QA' }), /ORDER/, 'the review in the app comes first');
+  A.sign(req, { userId: 'u2', decision: 'approved' });
+  assert.throws(() => A.sign(req, { userId: 'u1', decision: 'approved' }), /HAND_STEP/, 'a step by hand is not signed in the app');
+  const done = A.signHand(req, { signedOn: '2026-10-09', by: 'QA', sheetId: 's1' });
+  assert.deepEqual(done.map((s) => s.name), ['Ján Novák', 'Konateľ Bez Aplikácie'], 'both hand signatures next in order');
+  assert.equal(req.status, 'approved');
+  assert.equal(req.steps[2].signedOn, '2026-10-09');
+  assert.equal(req.steps[2].sheetId, 's1');
+  assert.ok(A.createRequest({ doc, hand: [{ role: 'approve', name: 'Len Ručne' }], by: 'x', users }).steps.length === 1, 'an approval only by hand is possible');
+  assert.throws(() => A.createRequest({ doc, hand: [{ role: 'review', name: 'Len Preskúmanie' }], by: 'x', users }), /APPROVER_REQUIRED/);
+});

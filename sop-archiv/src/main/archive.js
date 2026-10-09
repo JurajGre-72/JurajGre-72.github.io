@@ -1271,14 +1271,28 @@ class Archive {
     return (doc.approvals || []).find((a) => a.status === 'pending') || null;
   }
 
-  async requestApproval(docId, { reviewers = [], approvers = [], note = '' }) {
+  async requestApproval(docId, { reviewers = [], approvers = [], hand = [], note = '' }) {
     const doc = this._doc(docId);
     if (this._pendingApproval(doc)) throw new Error('APPROVAL_PENDING');
-    const req = approval.createRequest({ doc, reviewers, approvers, note, by: this.user, users: this.data.users });
+    const req = approval.createRequest({ doc, reviewers, approvers, hand, note, by: this.user, users: this.data.users });
     (doc.approvals = doc.approvals || []).push(req);
     await this.save();
-    this.audit('approval.requested', { docId, code: doc.code, version: doc.version, reviewers: req.steps.filter((x) => x.role === 'review').map((x) => x.name), approvers: req.steps.filter((x) => x.role === 'approve').map((x) => x.name) });
+    const who = (role) => req.steps.filter((x) => x.role === role).map((x) => (x.mode === 'hand' ? `${x.name} (ručne)` : x.name));
+    this.audit('approval.requested', { docId, code: doc.code, version: doc.version, reviewers: who('review'), approvers: who('approve') });
     return req;
+  }
+
+  /** The last signature: the version becomes effective. */
+  _approved(doc, req) {
+    const approvers = req.steps.filter((x) => x.role === 'approve').map((x) => x.name);
+    doc.approver = approvers.join(', ');
+    doc.approvedAt = req.closedAt;
+    doc.status = 'effective';
+    if (!doc.effectiveDate) doc.effectiveDate = today();
+    if (!doc.reviewDate && doc.reviewIntervalMonths) doc.reviewDate = addMonths(doc.effectiveDate, doc.reviewIntervalMonths);
+    doc.updatedAt = new Date().toISOString();
+    doc.updatedBy = this.user;
+    this.audit('approval.approved', { docId: doc.id, code: doc.code, version: doc.version, approvers });
   }
 
   /** Sign the next step (the password was checked by the caller). The last approval makes the version effective. */
@@ -1290,18 +1304,7 @@ class Archive {
     const step = approval.nextStep(req);
     approval.sign(req, { userId, decision, comment });
     this.audit(decision === 'approved' ? 'approval.signed' : 'approval.rejected', { docId, code: doc.code, version: doc.version, role: step.role, signer: step.name, comment: comment || undefined });
-    if (req.status === 'approved') {
-      const approvers = req.steps.filter((x) => x.role === 'approve').map((x) => x.name);
-      doc.approver = approvers.join(', ');
-      doc.approvedAt = req.closedAt;
-      doc.status = 'effective';
-      if (!doc.effectiveDate) doc.effectiveDate = today();
-      if (!doc.reviewDate && doc.reviewIntervalMonths) doc.reviewDate = addMonths(doc.effectiveDate, doc.reviewIntervalMonths);
-      doc.updatedAt = new Date().toISOString();
-      doc.updatedBy = this.user;
-    doc.updatedBy = this.user;
-      this.audit('approval.approved', { docId, code: doc.code, version: doc.version, approvers });
-    }
+    if (req.status === 'approved') this._approved(doc, req);
     await this.save();
     return req;
   }
@@ -1463,13 +1466,15 @@ class Archive {
     const cur = doc.versions.find((v) => v.id === doc.currentVersionId);
     const reqs = (doc.approvals || []).filter((a) => a.versionId === doc.currentVersionId && (a.status === 'approved' || a.status === 'pending'));
     const req = reqs[reqs.length - 1] || null;
-    const electronic = req ? req.steps.filter((s) => s.decision !== 'rejected').map((s) => ({ role: s.role, name: s.name, at: s.decision === 'approved' ? s.at : null })) : [];
+    const steps = req ? req.steps.filter((s) => s.decision !== 'rejected') : [];
+    const electronic = steps.filter((s) => s.mode !== 'hand').map((s) => ({ role: s.role, name: s.name, at: s.decision === 'approved' ? s.at : null }));
+    const handSigners = steps.filter((s) => s.mode === 'hand').map((s) => ({ role: s.role, name: s.name, position: s.position || '', signedOn: s.decision === 'approved' ? s.signedOn || String(s.at).slice(0, 10) : null }));
     const need = training.requiredSeq(doc);
     const recs = this.data.trainings.filter((t) => t.docId === doc.id && (t.versionSeq || 0) >= need).sort((a, b) => String(a.date).localeCompare(String(b.date)) || String(a.personName).localeCompare(String(b.personName), 'sk'));
     const done = new Set(recs.map((t) => t.personId));
-    // Who must know the document, does not use the app and has not confirmed it yet: listed to sign by hand.
+    // Who must know the document, signs by hand (no app, or chosen so) and has not confirmed it yet: listed on the sheet.
     const people = this.data.people
-      .filter((p) => !p.userId && training.isRequired(doc, p) && !done.has(p.id))
+      .filter((p) => this.signMode(doc, p) === 'hand' && this._mustKnow(doc, p) && !done.has(p.id))
       .sort((a, b) => String(a.department).localeCompare(String(b.department), 'sk') || a.name.localeCompare(b.name, 'sk'))
       .map((p) => ({ id: p.id, name: p.name, position: [p.position, p.department].filter(Boolean).join(', ') }));
     return {
@@ -1477,6 +1482,8 @@ class Archive {
       doc: { id: doc.id, code: doc.code || '', title: doc.title, version: doc.version, effectiveDate: doc.status === 'draft' ? null : doc.effectiveDate || null, status: doc.status, pdf: !!(cur && /\.pdf$/i.test(cur.fileName)) },
       submitted: req ? { name: req.requestedBy, at: req.requestedAt } : null,
       electronic,
+      handSigners,
+      waitingHand: !!(req && req.status === 'pending' && (approval.nextStep(req) || {}).mode === 'hand'),
       read: recs.map((t) => ({ name: t.personName, date: t.date, method: t.confirmedByUser ? 'reading' : t.method })),
       people
     };
@@ -1494,9 +1501,12 @@ class Archive {
     const k = kind === 'approval' ? 'approval' : 'reading';
     const dayIso = /^\d{4}-\d{2}-\d{2}$/.test(date || '') ? date : today();
     const people = k === 'reading' ? [...new Set(personIds || [])].map((pid) => this.data.people.find((p) => p.id === pid)).filter(Boolean) : [];
-    const signed = k === 'approval' ? (signers || []).map((x) => ({ role: ['prepared', 'review', 'approve'].includes(x.role) ? x.role : 'approve', name: String(x.name || '').trim().slice(0, 200), position: String(x.position || '').trim().slice(0, 200) })).filter((x) => x.name) : [];
+    // Approval by hand that the approval request waits for: its next signatures by hand are completed.
+    const req = k === 'approval' ? this._pendingApproval(doc) : null;
+    const forRequest = !!(req && req.versionId === doc.currentVersionId && (approval.nextStep(req) || {}).mode === 'hand');
+    let signed = k === 'approval' && !forRequest ? (signers || []).map((x) => ({ role: ['prepared', 'review', 'approve'].includes(x.role) ? x.role : 'approve', name: String(x.name || '').trim().slice(0, 200), position: String(x.position || '').trim().slice(0, 200) })).filter((x) => x.name) : [];
     if (k === 'reading' && !people.length) throw new Error('PEOPLE_REQUIRED');
-    if (k === 'approval' && !signed.some((x) => x.role === 'approve')) throw new Error('APPROVER_REQUIRED');
+    if (k === 'approval' && !forRequest && !signed.some((x) => x.role === 'approve')) throw new Error('APPROVER_REQUIRED');
     let file = null;
     if (filePath) {
       const ext = path.extname(filePath).toLowerCase();
@@ -1510,7 +1520,14 @@ class Archive {
       await this._write(this.p(rel), buf);
       file = { path: rel.split(path.sep).join('/'), name: path.basename(filePath).slice(0, 200), size: st.size, sha256: crypto.createHash('sha256').update(buf).digest('hex') };
     }
-    const sheet = { id: id(), kind: k, versionId: cur.id, versionSeq: cur.seq, version: doc.version, date: dayIso, note: String(note || '').trim().slice(0, 2000), people: people.map((p) => ({ id: p.id, name: p.name })), signers: signed, file, by: this.user, at: new Date().toISOString() };
+    const sheetId = id();
+    if (forRequest) {
+      const done = approval.signHand(req, { signedOn: dayIso, by: this.user, sheetId });
+      signed = done.map((s) => ({ role: s.role, name: s.name, position: s.position || '' }));
+      for (const s of done) this.audit('approval.signed', { docId: doc.id, code: doc.code, version: doc.version, role: s.role, signer: s.name, byHand: true, signedOn: dayIso });
+      if (req.status === 'approved') this._approved(doc, req);
+    }
+    const sheet = { id: sheetId, kind: k, versionId: cur.id, versionSeq: cur.seq, version: doc.version, date: dayIso, note: String(note || '').trim().slice(0, 2000), people: people.map((p) => ({ id: p.id, name: p.name })), signers: signed, file, by: this.user, at: new Date().toISOString(), forApproval: forRequest || undefined };
     (doc.sheets = doc.sheets || []).push(sheet);
     if (people.length) {
       const recs = await this.recordTraining({ docId: doc.id, personIds: people.map((p) => p.id), date: dayIso, method: 'signed', notes: sheet.note });
@@ -1519,6 +1536,40 @@ class Archive {
     await this.save();
     this.audit('sheet.recorded', { docId: doc.id, code: doc.code, version: doc.version, kind: k, date: dayIso, people: sheet.people.map((p) => p.name), signers: signed.map((x) => `${x.name} (${x.role})`), scan: file ? file.name : undefined });
     return sheet;
+  }
+
+  /**
+   * How this employee confirms this document: 'app' – "read and understood" in the app with the own
+   * password, or 'hand' – own signature on the signature sheet. Chosen per document; without a choice,
+   * whoever has an app profile signs in the app and everyone else by hand.
+   */
+  /** Must know the document – a draft too, as it will once approved (the sheet is often printed for both). */
+  _mustKnow(doc, person) {
+    return training.isRequired(doc.status === 'draft' ? { ...doc, status: 'effective' } : doc, person);
+  }
+
+  signMode(doc, person) {
+    const m = (doc.signModes || {})[person.id];
+    if (!person.userId) return 'hand';
+    return m === 'hand' ? 'hand' : 'app';
+  }
+
+  async setSignModes(docId, modes = {}) {
+    const doc = this._doc(docId);
+    const next = { ...(doc.signModes || {}) };
+    const changed = [];
+    for (const [pid, m] of Object.entries(modes || {})) {
+      const p = this.data.people.find((x) => x.id === pid);
+      if (!p) continue;
+      const v = m === 'hand' || !p.userId ? 'hand' : 'app';
+      if ((next[pid] || (p.userId ? 'app' : 'hand')) !== v) changed.push(`${p.name}: ${v === 'hand' ? 'ručne' : 'v aplikácii'}`);
+      if (p.userId && v === 'app') delete next[pid];
+      else next[pid] = v;
+    }
+    doc.signModes = next;
+    await this.save();
+    if (changed.length) this.audit('sheet.modes', { docId, code: doc.code, changes: changed });
+    return doc.signModes;
   }
 
   /** The scan of a recorded signature sheet. */
@@ -1564,8 +1615,8 @@ class Archive {
   /** Training of one document: who must know it, who is trained on its current version. */
   docTraining(docId) {
     const d = this._doc(docId);
-    const people = this.data.people.filter((p) => training.isRequired(d, p));
-    const rows = people.map((p) => ({ person: { id: p.id, name: p.name, department: p.department }, record: training.validRecord(d, p, this.data.trainings) }));
+    const people = this.data.people.filter((p) => this._mustKnow(d, p));
+    const rows = people.map((p) => ({ person: { id: p.id, name: p.name, department: p.department, userId: p.userId || null }, mode: this.signMode(d, p), record: training.validRecord(d, p, this.data.trainings) }));
     const history = this.data.trainings.filter((t) => t.docId === docId).sort((a, b) => `${b.date}${b.at}`.localeCompare(`${a.date}${a.at}`));
     return { trainingFor: d.trainingFor || [], requiredSeq: training.requiredSeq(d), rows, history };
   }
@@ -1574,7 +1625,9 @@ class Archive {
   readingList(userId) {
     const p = this.personOfUser(userId);
     if (!p) return { person: null, docs: [] };
-    return { person: { id: p.id, name: p.name }, docs: this.personCard(p.id).missing };
+    // A document this employee signs by hand (on the signature sheet) is not on the reading list in the app.
+    const byHand = new Set(this.data.docs.filter((d) => this.signMode(d, p) === 'hand').map((d) => d.id));
+    return { person: { id: p.id, name: p.name }, docs: this.personCard(p.id).missing.filter((d) => !byHand.has(d.id)) };
   }
 
   // ---------------------------------------------------------------------------

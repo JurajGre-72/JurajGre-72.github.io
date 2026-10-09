@@ -2,6 +2,12 @@
 
 Každá zverejnená verzia má tu svoj odsek (zobrazí sa v aplikácii pri aktualizácii a na stránke verzie).
 
+## 1.0.7
+
+- Pri každej osobe si vyberiete, či podpisuje v aplikácii, alebo ručne. Pri odoslaní na schválenie má každý preskúmavateľ a schvaľovateľ voľbu „v aplikácii / ručne“ a dajú sa pridať aj ľudia bez aplikácie (napr. konateľ).
+- Podpisový hárok je pripravený podľa toho: kto podpisuje ručne, je na ňom vypísaný menom (schválenie aj oboznámenie). Po zaznamenaní podpísaného hárku sa ručné podpisy zapíšu do schválenia s dátumom z hárku a po poslednom podpise je verzia platná.
+- Podpisy → Spôsob podpisu zamestnancov: pri každom zamestnancovi, ktorý dokument musí poznať, v aplikácii alebo ručne. Kto podpisuje ručne, je na hárku a v aplikácii ho dokument nečaká na prečítanie. Zamestnanci, ktorí musia poznať návrh, sú na hárku vypísaní už pred schválením.
+
 ## 1.0.6
 
 - Podpisový hárok: dokument → Schválenie a kópie → Podpisy → Podpisový hárok. Posledná strana dokumentu s elektronickými podpismi z aplikácie (preskúmanie a schválenie heslom, kto potvrdil „prečítal som a rozumiem“) a s riadkami na vlastnoručné podpisy pre ľudí bez aplikácie – na schválenie (vypracoval, preskúmal, schválil) aj na oboznámenie zamestnancov. Zamestnanci, ktorí dokument musia poznať, nepracujú v aplikácii a ešte nepotvrdili oboznámenie, sú na hárku vopred vypísaní.

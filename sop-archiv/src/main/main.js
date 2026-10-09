@@ -1664,6 +1664,7 @@ function registerIpc() {
     },
     { perm: 'editor', write: true }
   );
+  handle('sheets:modes', (docId, modes) => archive.setSignModes(docId, modes || {}), { perm: 'editor', write: true });
   handle('sheets:openScan', async (docId, sheetId) => {
     const doc = archive.getDoc(docId);
     const c = await archive.sheetContent(docId, sheetId);

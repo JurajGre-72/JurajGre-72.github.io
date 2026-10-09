@@ -723,6 +723,12 @@ body.role-reader .perm-ro, body.read-only .perm-ro { display: inline-flex !impor
 .tr-bar .progress { flex: 1; }
 .progress-bar.full { background: var(--good); }
 .tr-people { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 2px 16px; max-height: 260px; overflow: auto; border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px; }
+.apr-signer { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.apr-signer select { width: auto; padding: 2px 6px; font-size: 12px; }
+.apr-hands { margin-top: 6px; display: grid; gap: 4px; }
+.apr-hand { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.sh-queue { margin: 4px 0 6px 18px; }
+.sh-modes td { vertical-align: middle; }
 .sh-signer { display: grid; grid-template-columns: 110px 1fr 1fr; gap: 8px; align-items: center; margin-bottom: 6px; }
 .sh-table td { vertical-align: top; }
 .cp-sub { padding-left: 24px; }
@@ -740,7 +746,7 @@ body.role-reader .perm-ro, body.read-only .perm-ro { display: inline-flex !impor
 /* Approval and controlled copies */
 .apr-banner { margin-top: 10px; align-items: center; }
 .apr-banner > div:first-of-type { flex: 1; }
-.apr-pick { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 2px 14px; border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px; max-height: 180px; overflow: auto; }
+.apr-pick { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2px 14px; border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px; max-height: 180px; overflow: auto; }
 .apr-req { border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; margin: 8px 0; }
 .apr-req.st-cancelled, .apr-req.st-rejected { opacity: 0.8; }
 .apr-head { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }

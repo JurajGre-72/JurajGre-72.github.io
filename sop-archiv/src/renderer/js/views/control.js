@@ -23,19 +23,35 @@ export function approvalBanner(doc) {
   const req = pending(doc);
   if (!req) return '';
   const step = nextStep(req);
-  const mine = step && app.info.session && step.userId === app.info.session.userId;
-  return html`<div class="note ${mine ? 'note-warn' : 'note-info'} apr-banner">${icon('shield')}
-    <div><b>${t('apr.waiting', { v: req.version })}</b> ${step ? t(`apr.next.${step.role}`, { name: step.name }) : ''}
+  const mine = step && step.mode !== 'hand' && app.info.session && step.userId === app.info.session.userId;
+  const byHand = step && step.mode === 'hand';
+  const handNames = byHand ? handQueue(req).map((s) => s.name).join(', ') : '';
+  return html`<div class="note ${mine || byHand ? 'note-warn' : 'note-info'} apr-banner">${icon('shield')}
+    <div><b>${t('apr.waiting', { v: req.version })}</b> ${byHand ? t('apr.next.hand', { names: handNames }) : step ? t(`apr.next.${step.role}`, { name: step.name }) : ''}
       <div class="small muted">${t('apr.requested', { by: req.requestedBy, at: fmtDateTime(req.requestedAt) })}${req.note ? ` · ${req.note}` : ''}</div></div>
     <div class="btn-row">${mine ? html`<button class="btn btn-primary" data-action="aprSign">${icon('check')}${t('apr.sign')}</button>` : ''}
+      ${byHand ? html`<button class="btn" data-action="shPrint" data-perm="editor">${icon('file')}${t('sh.print')}</button><button class="btn btn-primary" data-action="shRecord" data-perm="editor">${icon('check')}${t('sh.record')}</button>` : ''}
       <button class="btn btn-ghost" data-action="aprCancel" data-perm="editor">${icon('x')}${t('apr.cancel')}</button></div>
   </div>`;
 }
 
+/** The signatures by hand the request waits for now (next in order). */
+function handQueue(req) {
+  const out = [];
+  for (const s of req.steps.slice(req.steps.findIndex((x) => !x.decision))) {
+    if (s.decision || s.mode !== 'hand') break;
+    out.push(s);
+  }
+  return out;
+}
+
 function stepsHtml(req) {
   return html`<ol class="apr-steps">${req.steps.map(
-    (s) => html`<li class="${s.decision || 'open'}"><span class="apr-role">${t(`apr.role.${s.role}`)}</span> <b>${s.name}</b>
-      ${s.decision ? html`<span class="chip chip-${s.decision === 'approved' ? 'good' : 'bad'}">${t(`apr.d.${s.decision}`)}</span> <span class="muted small">${fmtDateTime(s.at)}</span>${s.comment ? html`<div class="small">${s.comment}</div>` : ''}` : html`<span class="muted small">${t('apr.waitingSign')}</span>`}</li>`
+    (s) => html`<li class="${s.decision || 'open'}"><span class="apr-role">${t(`apr.role.${s.role}`)}</span> <b>${s.name}</b>${s.position ? html` <span class="muted small">${s.position}</span>` : ''}
+      <span class="chip chip-muted">${t(s.mode === 'hand' ? 'apr.mode.hand' : 'apr.mode.app')}</span>
+      ${s.decision
+        ? html`<span class="chip chip-${s.decision === 'approved' ? 'good' : 'bad'}">${t(`apr.d.${s.decision}`)}</span> <span class="muted small">${s.mode === 'hand' ? t('apr.handSigned', { date: fmtDate(s.signedOn), by: s.recordedBy }) : fmtDateTime(s.at)}</span>${s.comment ? html`<div class="small">${s.comment}</div>` : ''}`
+        : html`<span class="muted small">${t(s.mode === 'hand' ? 'apr.waitingHand' : 'apr.waitingSign')}</span>`}</li>`
   )}</ol>`;
 }
 
@@ -81,6 +97,7 @@ function sheetsPanel(doc) {
   return html`<section class="panel">
     <div class="panel-head"><h3>${icon('edit')}${t('sh.title')}</h3>
       <div class="btn-row" data-perm="editor">
+        <button class="btn" data-action="shModes">${icon('users')}${t('sh.modes')}</button>
         <button class="btn" data-action="shPrint">${icon('file')}${t('sh.print')}</button>
         <button class="btn" data-action="shRecord">${icon('check')}${t('sh.record')}</button>
       </div></div>
@@ -100,8 +117,11 @@ function sheetsPanel(doc) {
 /** Print the signature sheet: what goes on it. */
 export async function sheetPrintDialog(doc) {
   const tr = await api.training.doc(doc.id);
-  const without = tr.rows.filter((r) => !r.record && !r.person.userId).length;
+  const without = tr.rows.filter((r) => !r.record && r.mode === 'hand').length;
   const signedInApp = (doc.approvals || []).some((a) => a.versionId === doc.currentVersionId && a.status === 'approved');
+  // Who approves by hand in the request for this version: always on the sheet, by name.
+  const req = (doc.approvals || []).filter((a) => a.versionId === doc.currentVersionId && (a.status === 'pending' || a.status === 'approved')).pop();
+  const handNames = req ? req.steps.filter((s) => s.mode === 'hand').map((s) => `${s.name} (${t(`apr.role.${s.role}`).toLowerCase()})`) : [];
   let out = null;
   const go = (mode) => async (el) => {
     const v = formValues(el);
@@ -119,7 +139,9 @@ export async function sheetPrintDialog(doc) {
     size: 'md',
     body: html`<form class="form-grid sh-form">
       <p class="field full">${t('sh.printIntro')}</p>
-      <label class="check field full"><input type="checkbox" name="handApproval" ${signedInApp ? '' : 'checked'}> ${t('sh.optHand')}</label>
+      ${handNames.length
+        ? html`<p class="field full note">${icon('edit')}<span>${t('sh.handNamed', { names: handNames.join(', ') })}</span></p>`
+        : html`<label class="check field full"><input type="checkbox" name="handApproval" ${signedInApp ? '' : 'checked'}> ${t('sh.optHand')}</label>`}
       <label class="check field full"><input type="checkbox" name="people" checked> ${t('sh.optPeople', { n: without })}</label>
       <div class="field"><label>${t('sh.optEmpty')}</label><input type="number" name="emptyRows" min="0" max="100" value="8"></div>
       <p class="field full muted small">${doc.current && /\.pdf$/i.test(doc.current.fileName) ? t('sh.copyHint') : t('sh.copyHintNoPdf')}</p>
@@ -138,7 +160,11 @@ export async function sheetPrintDialog(doc) {
 export async function sheetRecordDialog(doc) {
   const [tr, all] = await Promise.all([api.training.doc(doc.id), api.people.list()]);
   const missing = new Set(tr.rows.filter((r) => !r.record).map((r) => r.person.id));
-  const people = all.filter((p) => p.active !== false).sort((a, b) => (missing.has(b.id) - missing.has(a.id)) || a.name.localeCompare(b.name, 'sk'));
+  const hand = new Set(tr.rows.filter((r) => r.mode === 'hand').map((r) => r.person.id));
+  const people = all.filter((p) => p.active !== false).sort((a, b) => (missing.has(b.id) && hand.has(b.id)) - (missing.has(a.id) && hand.has(a.id)) || missing.has(b.id) - missing.has(a.id) || a.name.localeCompare(b.name, 'sk'));
+  // The approval waits for signatures by hand: recording the sheet completes them.
+  const req = pending(doc);
+  const queue = req && (nextStep(req) || {}).mode === 'hand' ? handQueue(req) : [];
   let scan = null;
   let saved = null;
   const signerRow = (role) => html`<div class="sh-signer"><span>${t(`sh.role.${role}`)}</span><input data-signer="${role}" placeholder="${t('sh.signerName')}"><input data-pos="${role}" placeholder="${t('sh.signerPos')}"></div>`;
@@ -147,13 +173,15 @@ export async function sheetRecordDialog(doc) {
     size: 'lg',
     body: html`<form class="form-grid sh-form" autocomplete="off">
       <div class="field full radio-col">
-        <label class="radio"><input type="radio" name="kind" value="reading" checked> ${t('sh.k.reading')}</label>
-        <label class="radio"><input type="radio" name="kind" value="approval"> ${t('sh.k.approval')}</label>
+        <label class="radio"><input type="radio" name="kind" value="reading" ${queue.length ? '' : 'checked'}> ${t('sh.k.reading')}</label>
+        <label class="radio"><input type="radio" name="kind" value="approval" ${queue.length ? 'checked' : ''}> ${t('sh.k.approval')}</label>
       </div>
-      <div class="field full" id="sh-people"><label>${t('sh.whoSigned')}</label>
-        <div class="tr-people">${people.map((p) => html`<label class="check"><input type="checkbox" data-person="${p.id}"> ${p.name} <span class="muted small">${[p.position, p.department].filter(Boolean).join(', ')}</span>${missing.has(p.id) ? html` <span class="chip chip-warn">${t('tr.missing')}</span>` : ''}${p.userId ? '' : html` <span class="chip chip-muted">${t('sh.noApp')}</span>`}</label>`)}</div>
+      <div class="field full" id="sh-people" ${queue.length ? 'hidden' : ''}><label>${t('sh.whoSigned')}</label>
+        <div class="tr-people">${people.map((p) => html`<label class="check"><input type="checkbox" data-person="${p.id}"> ${p.name} <span class="muted small">${[p.position, p.department].filter(Boolean).join(', ')}</span>${missing.has(p.id) ? html` <span class="chip chip-warn">${t('tr.missing')}</span>` : ''}${hand.has(p.id) ? html` <span class="chip chip-muted">${t('sh.byHand')}</span>` : ''}</label>`)}</div>
         ${people.length ? '' : html`<p class="muted small">${t('tr.noPeople')}</p>`}</div>
-      <div class="field full" id="sh-signers" hidden><label>${t('sh.signers')}</label>${['prepared', 'review', 'approve'].map(signerRow)}<span class="hint">${t('sh.signersHint')}</span></div>
+      ${queue.length
+        ? html`<div class="field full" id="sh-signers" hidden><label>${t('sh.queue')}</label><ul class="sh-queue">${queue.map((s) => html`<li><b>${s.name}</b> – ${t(`apr.role.${s.role}`)}${s.position ? html` <span class="muted small">${s.position}</span>` : ''}</li>`)}</ul><span class="hint">${t('sh.queueHint')}</span></div>`
+        : html`<div class="field full" id="sh-signers" hidden><label>${t('sh.signers')}</label>${['prepared', 'review', 'approve'].map(signerRow)}<span class="hint">${t('sh.signersHint')}</span></div>`}
       <div class="field"><label>${t('sh.signedOn')}</label><input type="date" name="date" value="${todayIso()}"></div>
       <div class="field"><label>${t('sh.scanLabel')}</label><div class="btn-row"><button type="button" class="btn btn-sm" id="sh-pick">${icon('upload')}${t('sh.pick')}</button><span class="small" id="sh-file">${t('sh.noScanYet')}</span></div></div>
       <div class="field full"><label>${t('rv.notes')}</label><textarea name="note" rows="2" placeholder="${t('sh.notePh')}"></textarea></div>
@@ -161,6 +189,7 @@ export async function sheetRecordDialog(doc) {
       <div class="field full err small" id="sh-err"></div>
     </form>`,
     onMount: (el) => {
+      if (queue.length) el.querySelector('#sh-signers').hidden = false;
       el.addEventListener('change', (e) => {
         if (e.target.name !== 'kind') return;
         const approval = e.target.value === 'approval';
@@ -186,7 +215,7 @@ export async function sheetRecordDialog(doc) {
         value: 'ok',
         onClick: async (el) => {
           const v = formValues(el);
-          const signers = ['prepared', 'review', 'approve'].map((role) => ({ role, name: el.querySelector(`[data-signer="${role}"]`).value, position: el.querySelector(`[data-pos="${role}"]`).value })).filter((x) => x.name.trim());
+          const signers = queue.length ? [] : ['prepared', 'review', 'approve'].map((role) => ({ role, name: el.querySelector(`[data-signer="${role}"]`).value, position: el.querySelector(`[data-pos="${role}"]`).value })).filter((x) => x.name.trim());
           try {
             saved = await api.sheets.record(doc.id, {
               kind: v.kind,
@@ -205,20 +234,80 @@ export async function sheetRecordDialog(doc) {
       }
     ]
   });
-  if (saved) toast(t('sh.saved'), 'good');
+  if (saved) toast(t(saved.forApproval ? 'sh.savedApproval' : 'sh.saved'), 'good');
+  return saved;
+}
+
+/** How each employee who must know the document confirms it: in the app, or by hand on the sheet. */
+export async function sheetModesDialog(doc) {
+  const tr = await api.training.doc(doc.id);
+  let saved = false;
+  await openModal({
+    title: `${t('sh.modes')} – ${doc.code || doc.title}`,
+    size: 'md',
+    body: html`<form class="form-grid sh-form">
+      <p class="field full muted small">${t('sh.modesIntro')}</p>
+      ${tr.rows.length
+        ? html`<div class="field full"><table class="table compact sh-modes"><thead><tr><th>${t('tr.name')}</th><th>${t('f.department')}</th><th>${t('sh.mode')}</th></tr></thead>
+          <tbody>${tr.rows.map(
+            (r) => html`<tr><td>${r.person.name}${r.record ? html` <span class="chip chip-good">${icon('check')}</span>` : ''}</td><td class="small">${r.person.department}</td>
+              <td><div class="seg" role="radiogroup" aria-label="${r.person.name}">
+                <label class="seg-opt"><input type="radio" name="m-${r.person.id}" value="app" ${r.mode === 'app' ? 'checked' : ''} ${r.person.userId ? '' : 'disabled'}><span>${t('apr.mode.app')}</span></label>
+                <label class="seg-opt"><input type="radio" name="m-${r.person.id}" value="hand" ${r.mode === 'hand' ? 'checked' : ''}><span>${t('apr.mode.hand')}</span></label>
+              </div>${r.person.userId ? '' : html` <span class="muted small">${t('sh.noApp')}</span>`}</td></tr>`
+          )}</tbody></table></div>`
+        : html`<p class="field full muted">${t('tr.docNoPeople')}</p>`}
+      <div class="field full err small" id="sh-err"></div>
+    </form>`,
+    buttons: [
+      { label: t('cancel'), value: null },
+      {
+        label: t('save'),
+        kind: 'primary',
+        value: 'ok',
+        onClick: async (el) => {
+          const modes = {};
+          for (const r of tr.rows) {
+            const c = el.querySelector(`[name="m-${r.person.id}"]:checked`);
+            if (c) modes[r.person.id] = c.value;
+          }
+          try {
+            await api.sheets.modes(doc.id, modes);
+            saved = true;
+            return true;
+          } catch (e) {
+            el.querySelector('#sh-err').textContent = errText(e);
+            return false;
+          }
+        }
+      }
+    ]
+  });
+  if (saved) toast(t('saved'), 'good');
   return saved;
 }
 
 export async function requestDialog(doc) {
-  const active = ((await api.auth.state()).users || []).slice().sort((a, b) => a.name.localeCompare(b.name, 'sk'));
-  const opts = (role) => html`${active.map((u) => html`<label class="check"><input type="checkbox" data-${role}="${u.id}"> ${u.name} <span class="muted small">${t(`role.${u.role}`)}</span></label>`)}`;
+  const [state, all] = await Promise.all([api.auth.state(), api.people.list()]);
+  const active = (state.users || []).slice().sort((a, b) => a.name.localeCompare(b.name, 'sk'));
+  // Each signer: in the app (own password) or by hand on the signature sheet.
+  const opts = (role) => html`${active.map(
+    (u) => html`<div class="apr-signer"><label class="check"><input type="checkbox" data-${role}="${u.id}"> ${u.name} <span class="muted small">${t(`role.${u.role}`)}</span></label>
+      <select data-mode-${role}="${u.id}" aria-label="${t('sh.mode')}"><option value="app">${t('apr.mode.app')}</option><option value="hand">${t('apr.mode.hand')}</option></select></div>`
+  )}`;
+  // People without the app: typed, or picked from the employees.
+  const noApp = all.filter((p) => p.active !== false && !p.userId);
+  const handRows = (role) => html`${[0, 1].map((i) => html`<div class="apr-hand"><input data-hname-${role}="${i}" list="apr-people" placeholder="${t('apr.handName')}"><input data-hpos-${role}="${i}" placeholder="${t('sh.signerPos')}"></div>`)}`;
   let ok = false;
   await openModal({
     title: `${t('apr.request')} – ${doc.code || doc.title} v${doc.version}`,
     size: 'md',
     body: html`<form class="form-grid">
-      <div class="field full"><label>${t('apr.reviewers')}</label><div class="apr-pick">${opts('rev')}</div><span class="hint">${t('apr.reviewersHint')}</span></div>
-      <div class="field full"><label>${t('apr.approvers')}</label><div class="apr-pick">${opts('apr')}</div></div>
+      <datalist id="apr-people">${noApp.map((p) => html`<option value="${p.name}">${[p.position, p.department].filter(Boolean).join(', ')}</option>`)}</datalist>
+      <div class="field full"><label>${t('apr.reviewers')}</label><div class="apr-pick">${opts('rev')}</div>
+        <div class="apr-hands"><span class="small muted">${t('apr.handAdd')}</span>${handRows('rev')}</div><span class="hint">${t('apr.reviewersHint')}</span></div>
+      <div class="field full"><label>${t('apr.approvers')}</label><div class="apr-pick">${opts('apr')}</div>
+        <div class="apr-hands"><span class="small muted">${t('apr.handAdd')}</span>${handRows('apr')}</div><span class="hint">${t('apr.modeHint')}</span></div>
       <div class="field full"><label>${t('rv.notes')}</label><textarea name="note" rows="2" placeholder="${t('apr.notePh')}"></textarea></div>
       <div class="field full err small" id="apr-err"></div>
     </form>`,
@@ -230,9 +319,22 @@ export async function requestDialog(doc) {
         value: 'ok',
         onClick: async (el) => {
           try {
+            const picked = (role, key) =>
+              Array.from(el.querySelectorAll(`[data-${key}]:checked`)).map((x) => ({ userId: x.dataset[key], mode: el.querySelector(`[data-mode-${key}="${x.dataset[key]}"]`).value, role }));
+            const users = [...picked('review', 'rev'), ...picked('approve', 'apr')];
+            const typed = [];
+            for (const [role, key] of [['review', 'rev'], ['approve', 'apr']]) {
+              for (const i of [0, 1]) {
+                const name = el.querySelector(`[data-hname-${key}="${i}"]`).value.trim();
+                const pos = el.querySelector(`[data-hpos-${key}="${i}"]`).value.trim();
+                const known = noApp.find((p) => p.name === name);
+                if (name) typed.push({ role, name, position: pos || (known ? [known.position, known.department].filter(Boolean).join(', ') : '') });
+              }
+            }
             await api.approval.request(doc.id, {
-              reviewers: Array.from(el.querySelectorAll('[data-rev]:checked')).map((x) => x.dataset.rev),
-              approvers: Array.from(el.querySelectorAll('[data-apr]:checked')).map((x) => x.dataset.apr),
+              reviewers: users.filter((x) => x.role === 'review' && x.mode === 'app').map((x) => x.userId),
+              approvers: users.filter((x) => x.role === 'approve' && x.mode === 'app').map((x) => x.userId),
+              hand: [...users.filter((x) => x.mode === 'hand').map((x) => ({ role: x.role, userId: x.userId })), ...typed],
               note: formValues(el).note
             });
             ok = true;
@@ -350,6 +452,12 @@ export const controlActions = (getDoc) => ({
   },
   async cpIssue() {
     if (await issueCopyDialog(getDoc())) app.rerender();
+  },
+  async shModes() {
+    if (await sheetModesDialog(getDoc())) {
+      app.refreshSidebar();
+      app.rerender();
+    }
   },
   async shPrint() {
     await sheetPrintDialog(getDoc());

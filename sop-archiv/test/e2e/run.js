@@ -883,6 +883,34 @@ async function main() {
     assert.equal(sheetTr.rows.find((r) => r.person.id === skladnik.id).record.method, 'signed', 'acknowledged by the signature on the sheet');
     await shot(page, '26b-signature-sheet');
     console.log('  ✓ signature sheet: electronic signatures on it, an employee without the app pre-filled; the signed sheet recorded with its scan');
+
+    // ---- Approval by hand: the managing director signs on paper, the recorded sheet completes the approval ----
+    await page.click('section.panel button[data-action="aprRequest"]');
+    await page.fill('.modal [data-hname-apr="0"]', 'Konateľ Firmy');
+    await page.fill('.modal [data-hpos-apr="0"]', 'konateľ');
+    await shot(page, '26c-approval-who-signs');
+    await page.click('.modal-foot .btn-primary');
+    await page.waitForSelector('.apr-banner:has-text("Čaká na vlastnoručný podpis: Konateľ Firmy")');
+    await page.click('.apr-banner button[data-action="shPrint"]');
+    await page.waitForSelector('.modal .sh-form:has-text("Ručne schvaľujú: Konateľ Firmy")');
+    await page.click('.modal-foot button:has-text("Uložiť PDF")');
+    await page.waitForSelector('.toast:has-text("podpisovy-harok.pdf")');
+    const handSheet = (await readPdf(sheetFile)).pages.map((p) => p.text).join('\n').replace(/\s+/g, ' ');
+    assert.ok(handSheet.includes('Schválil(a) Konateľ Firmy konateľ'), 'the hand approver is named on the sheet');
+    await clearToasts(page);
+    await page.click('.apr-banner button[data-action="shRecord"]');
+    await page.waitForSelector('.modal .sh-queue li:has-text("Konateľ Firmy")');
+    await page.click('.modal-foot .btn-primary');
+    await page.waitForSelector('.toast:has-text("zapísané k schváleniu")');
+    await until(page, (id) => window.api.docs.get(id).then((d) => d.approvals[d.approvals.length - 1].status === 'approved'), 'approved by hand', newDoc.id);
+    const byHand = await page.evaluate((id) => window.api.docs.get(id), newDoc.id);
+    assert.deepEqual(byHand.approvals[byHand.approvals.length - 1].steps.map((x) => [x.mode, x.name, !!x.signedOn]), [['hand', 'Konateľ Firmy', true]]);
+    // How employees sign: someone without the app can only sign by hand.
+    await page.click('button[data-action="shModes"]');
+    await page.waitForSelector('.modal .sh-modes tr:has-text("Ján Skladník") input[value="app"][disabled]');
+    await shot(page, '26d-how-employees-sign');
+    await page.click('.modal-foot button:has-text("Zrušiť")');
+    console.log('  ✓ signing chosen per person: approval by hand named on the sheet, recorded from the signed sheet – the version approved');
     // ---- Authority notices: recalls to assess, watched product names, a product watched in the EU database ----
     await page.evaluate(() => (location.hash = '#/settings'));
     await page.fill('textarea[name=watchTerms]', 'Imaginex\nIný výrobok');

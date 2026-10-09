@@ -133,16 +133,18 @@ Platí pre aplikáciu SOP Archív vo verzii 1.x nainštalovanú na počítačoch
 - Dokumenty spoločnosti opisujú, ako spoločnosť skutočne pracuje, a majú prednosť pred doslovným znením predpisu; prísnejší postup spoločnosti je prípustný.
 
 5.5 Schvaľovanie
-- Novú verziu editor odošle na schválenie určeným osobám v poradí (preskúmanie, schválenie).
-- Každý podpisuje vlastným heslom. Zamietnutie musí obsahovať dôvod.
+- Novú verziu editor odošle na schválenie určeným osobám v poradí (preskúmanie, schválenie). Pri každej osobe určí, či podpisuje v aplikácii, alebo vlastnoručne na podpisovom hárku.
+- V aplikácii každý podpisuje vlastným heslom. Zamietnutie musí obsahovať dôvod.
+- Vlastnoručný podpis sa do schválenia zapíše zaznamenaním podpísaného hárku (s dátumom podpisu a skenom); poradie podpisov platí aj pre vlastnoručné podpisy.
 - Po poslednom schválení je verzia platná. Kto a kedy podpísal, je pri dokumente aj v auditnom zázname.
-- Osoba, ktorá nepracuje v aplikácii, podpisuje vlastnoručne na podpisovom hárku (dokument → Schválenie a kópie → Podpisy → Podpisový hárok). Editor podpísaný hárok zaznamená v aplikácii („Zaznamenať podpísaný hárok“, so skenom); originál sa uchová v uzamknutej skrini oddelenia kvality.
+- Osoba, ktorá nepracuje v aplikácii alebo bola určená na vlastnoručný podpis, podpisuje na podpisovom hárku (dokument → Schválenie a kópie → Podpisy → Podpisový hárok), kde je vopred vypísaná menom. Editor podpísaný hárok zaznamená v aplikácii („Zaznamenať podpísaný hárok“, so skenom); originál sa uchová v uzamknutej skrini oddelenia kvality.
 - Dokumenty schválené pred zavedením aplikácie na papieri sa evidujú s menom schvaľovateľa; originál s podpismi sa uchováva v uzamknutej skrini oddelenia kvality; za jeho uloženie zodpovedá odborný zástupca. Aplikácia obsahuje naskenovanú alebo elektronickú kópiu.
 
 5.6 Školenia
 - Pri každom dokumente editor určí, kto ho musí poznať (všetci alebo vybrané úseky).
 - Školenie sa zaznamená v aplikácii (dátum, spôsob, školiteľ). Pri čítaní dokumentu zamestnanec potvrdí „prečítal som a rozumiem“ vlastným heslom.
-- Zamestnanci bez prístupu do aplikácie potvrdzujú oboznámenie vlastnoručným podpisom na podpisovom hárku; hárok sa vytlačí s ich menami (alebo sa pripojí na koniec riadenej kópie) a po podpise ho editor zaznamená v aplikácii aj so skenom. Tým sa zamestnancom zapíše oboznámenie s platnou verziou.
+- Pri každom dokumente editor určí, ktorí zamestnanci potvrdzujú oboznámenie v aplikácii a ktorí vlastnoručne (Podpisy → Spôsob podpisu zamestnancov); zamestnanci bez prístupu do aplikácie podpisujú vždy vlastnoručne.
+- Zamestnanci, ktorí podpisujú vlastnoručne, potvrdzujú oboznámenie na podpisovom hárku; hárok sa vytlačí s ich menami (alebo sa pripojí na koniec riadenej kópie) a po podpise ho editor zaznamená v aplikácii aj so skenom. Tým sa zamestnancom zapíše oboznámenie s platnou verziou.
 - Nová verzia dokumentu vyžaduje nové zaškolenie; pri drobnej oprave, ktorá nemení postup, sa to dá pri nahratí verzie vypnúť.
 - Prehľad chýbajúcich školení je v časti Školenia; karta školení zamestnanca sa dá vytlačiť.
 

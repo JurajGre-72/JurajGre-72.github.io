@@ -119,3 +119,58 @@ test('archive: who still has to sign by hand, the signed sheet recorded with its
   assert.equal((text.match(/RIADENÁ KÓPIA č\. 1/g) || []).length, 2, 'the sheet carries the copy stamp too');
   a.inTx = false;
 });
+
+test('archive: who signs by hand is chosen – named on the sheet; the signed sheet makes the version effective', async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'sop-sheet-'));
+  const a = new Archive({ dataDir: path.join(dir, 'arch'), user: 'Juraj Gregus' });
+  await a.open();
+  await a.buildIndex();
+  a.inTx = true;
+  const qa = await a.createUser({ name: 'Eva QA', role: 'editor', password: 'heslo-12345' });
+  const reader = await a.createUser({ name: 'Peter Čitateľ', role: 'reader', password: 'heslo-11111' });
+  const d0 = await PDFDocument.create();
+  d0.addPage([595, 842]).drawText('SOP-QA-009', { x: 60, y: 760, size: 12, font: await d0.embedFont(StandardFonts.Helvetica) });
+  const file = path.join(dir, 'sop.pdf');
+  fs.writeFileSync(file, await d0.save());
+  const doc = await a.importFile(file, { status: 'draft', reviewIntervalMonths: 24 });
+  await a.updateDoc(doc.id, { trainingFor: ['*'] });
+  const peter = await a.savePerson({ name: 'Peter Čitateľ', department: 'Sklad', userId: reader.id });
+  await a.savePerson({ name: 'Mária Ručná', department: 'Sklad' });
+
+  // Eva reviews in the app, the managing director approves by hand.
+  await a.requestApproval(doc.id, { reviewers: [qa.id], hand: [{ role: 'approve', name: 'Konateľ Firmy', position: 'konateľ' }] });
+  await assert.rejects(() => a.recordSignedSheet(doc.id, { kind: 'approval' }), /ORDER|APPROVER_REQUIRED/, 'not before the review in the app');
+  await a.signApproval(doc.id, qa.id, { decision: 'approved' });
+  let s = a.signSheetData(doc.id);
+  assert.deepEqual(s.electronic.map((x) => x.name), ['Eva QA']);
+  assert.deepEqual(s.handSigners.map((x) => [x.role, x.name, x.position, x.signedOn]), [['approve', 'Konateľ Firmy', 'konateľ', null]]);
+  assert.equal(s.waitingHand, true);
+  assert.deepEqual(s.people.map((p) => p.name), ['Mária Ručná'], 'Peter confirms in the app');
+
+  // Peter is to sign on paper too: on the sheet, no longer on his reading list in the app.
+  assert.equal(a.readingList(reader.id).docs.length, 0, 'a draft is not read yet');
+  await a.setSignModes(doc.id, { [peter.id]: 'hand' });
+  assert.deepEqual(a.signSheetData(doc.id).people.map((p) => p.name), ['Mária Ručná', 'Peter Čitateľ']);
+  assert.deepEqual(a.docTraining(doc.id).rows.map((r) => [r.person.name, r.mode]).sort(), [['Mária Ručná', 'hand'], ['Peter Čitateľ', 'hand']]);
+
+  const sheetPdf = await buildSignSheet({ ...a.signSheetData(doc.id), lang: 'sk', emptyRows: 0 });
+  const { text } = await textOf(dir, sheetPdf, 'sheet.pdf');
+  assert.ok(text.includes('Schválil(a) Konateľ Firmy konateľ'), 'the hand approver named on the sheet');
+  assert.ok(text.includes('Preskúmal(a) Eva QA'), 'the review in the app');
+
+  // The signed sheet recorded: the hand approval completes the request – the version is effective.
+  const sh = await a.recordSignedSheet(doc.id, { kind: 'approval', date: '2026-10-09' });
+  assert.equal(sh.forApproval, true);
+  assert.deepEqual(sh.signers.map((x) => x.name), ['Konateľ Firmy']);
+  const d = a.getDoc(doc.id);
+  assert.equal(d.status, 'effective');
+  assert.equal(d.approver, 'Konateľ Firmy');
+  assert.equal(d.approvals[0].steps[1].signedOn, '2026-10-09');
+  assert.equal(a.readingList(reader.id).docs.length, 0, 'Peter signs on paper: nothing to read in the app');
+  await a.setSignModes(doc.id, { [peter.id]: 'app' });
+  assert.equal(a.readingList(reader.id).docs.length, 1, 'back to the app: the document waits for him');
+  const audit = JSON.stringify(await a.allAudit());
+  assert.match(audit, /"byHand":true/);
+  assert.match(audit, /sheet\.modes/);
+  a.inTx = false;
+});

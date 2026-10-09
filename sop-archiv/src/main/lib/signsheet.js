@@ -41,6 +41,8 @@ const TEXT = {
     howRead: { reading: 'potvrdené elektronicky (heslom)', signed: 'vlastnoručný podpis (hárok uložený)', session: 'školenie', onjob: 'zaškolenie na pracovisku', self: 'samoštúdium' },
     hand: 'Schválenie vlastnoručným podpisom',
     handNote: 'Pre osoby, ktoré dokument schvaľujú a nepracujú v aplikácii.',
+    handNamed: 'Tieto osoby podpisujú vlastnoručne; po podpise sa hárok zaznamená v aplikácii.',
+    signedHand: 'podpísané (zaznamenané)',
     ack: 'Oboznámenie zamestnancov s dokumentom',
     ackNote: 'Svojím podpisom potvrdzujem, že som sa oboznámil(a) s dokumentom {doc}, verzia {v}, porozumel(a) som mu a budem postupovať podľa neho.',
     footer: 'Vytvorené v aplikácii SOP Archív {printed}. Elektronické podpisy sú evidované v auditnom zázname aplikácie.',
@@ -70,6 +72,8 @@ const TEXT = {
     howRead: { reading: 'confirmed electronically (password)', signed: 'handwritten signature (sheet kept)', session: 'training session', onjob: 'on-the-job training', self: 'self-study' },
     hand: 'Approval by handwritten signature',
     handNote: 'For people who approve the document and do not use the app.',
+    handNamed: 'These people sign by hand; the signed sheet is then recorded in the app.',
+    signedHand: 'signed (recorded)',
     ack: 'Employees’ acknowledgement of the document',
     ackNote: 'With my signature I confirm that I have read the document {doc}, version {v}, understood it and will follow it.',
     footer: 'Created in SOP Archív {printed}. Electronic signatures are recorded in the app’s audit trail.',
@@ -239,10 +243,11 @@ async function buildSignSheet(data) {
     );
   }
 
-  // 2. Approval by hand
-  if (data.handApproval) {
+  // 2. Approval by hand: the people chosen to sign on paper, or empty rows
+  const named = data.handSigners || [];
+  if (named.length || data.handApproval) {
     heading(`${++n}. ${T.hand}`);
-    paragraph(T.handNote, { color: muted, size: 8.5 });
+    paragraph(named.length ? T.handNamed : T.handNote, { color: muted, size: 8.5 });
     table(
       [
         { label: T.colRole, w: 90 },
@@ -251,7 +256,7 @@ async function buildSignSheet(data) {
         { label: T.colDate, w: 70 },
         { label: T.colSign, w: width - 400 }
       ],
-      ['prepared', 'review', 'approve'].map((r) => [T.role[r]]),
+      named.length ? named.map((h) => [T.role[h.role] || h.role, h.name, h.position || '', h.signedOn ? day(h.signedOn, lang) : '', h.signedOn ? T.signedHand : '']) : ['prepared', 'review', 'approve'].map((r) => [T.role[r]]),
       28
     );
   }

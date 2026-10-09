@@ -33,7 +33,7 @@ function trainingTab(tr, mine) {
     </div>
     ${tr.rows.length
       ? html`<div class="table-wrap"><table class="table compact"><thead><tr><th>${t('tr.name')}</th><th>${t('f.department')}</th><th>${t('tr.status')}</th></tr></thead>
-        <tbody>${tr.rows.map((r) => html`<tr><td>${r.person.name}</td><td>${r.person.department}</td><td>${r.record ? html`<span class="chip chip-good">${icon('check')}${fmtDate(r.record.date)} · ${t(`tr.m.${r.record.method}`)}</span>` : html`<span class="chip chip-warn">${t('tr.missing')}</span>`}</td></tr>`)}</tbody></table></div>
+        <tbody>${tr.rows.map((r) => html`<tr><td>${r.person.name} <span class="chip chip-muted small">${t(r.mode === 'hand' ? 'apr.mode.hand' : 'apr.mode.app')}</span></td><td>${r.person.department}</td><td>${r.record ? html`<span class="chip chip-good">${icon('check')}${fmtDate(r.record.date)} · ${t(`tr.m.${r.record.method}`)}</span>` : html`<span class="chip chip-warn">${t('tr.missing')}</span>`}</td></tr>`)}</tbody></table></div>
         <p class="muted small">${missing.length ? t('tr.docMissing', { n: missing.length }) : t('tr.docComplete')}</p>`
       : html`<p class="muted small">${t('tr.docNoPeople')}</p>`}
     ${tr.history.length
