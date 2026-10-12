@@ -7,7 +7,8 @@
   "accent": "#FF7A59",
   "disclaimer": {
     "cs": "Ceny a dostupnost se mohou změnit dle aktuálního ceníku developera.",
-    "en": "Prices and availability are subject to change per the latest developer price list."
+    "en": "Prices and availability are subject to change per the latest developer price list.",
+    "sk": "Ceny a dostupnosť sa môžu zmeniť podľa aktuálneho cenníka developera."
   },
   "segments": [
     {
@@ -27,6 +28,11 @@
         "kicker": "AL AHYAA · HURGHADA",
         "headline": "MARVEL\nRESORT",
         "sub": "A resort with its own private beach"
+      },
+      "sk": {
+        "kicker": "AL AHYAA · HURGHADA",
+        "headline": "MARVEL\nRESORT",
+        "sub": "Resort s vlastnou súkromnou plážou"
       }
     },
     {
@@ -46,6 +52,11 @@
         "kicker": "LOCATION",
         "headline": "15 minutes\nfrom the airport",
         "sub": "10 minutes from central Hurghada"
+      },
+      "sk": {
+        "kicker": "POLOHA",
+        "headline": "15 minút\nod letiska",
+        "sub": "10 minút od centra Hurghady"
       }
     },
     {
@@ -65,6 +76,11 @@
         "kicker": "VIEWS",
         "headline": "Direct\nsea view",
         "sub": "Panoramic · side sea · pool & sea"
+      },
+      "sk": {
+        "kicker": "VÝHĽADY",
+        "headline": "Priamy výhľad\nna more",
+        "sub": "Panoramatický · bočný · bazén & more"
       }
     },
     {
@@ -84,6 +100,11 @@
         "kicker": "BUILD STATUS",
         "headline": "Structure\nalready stands",
         "sub": "Frame, plumbing and electrics complete"
+      },
+      "sk": {
+        "kicker": "STAV VÝSTAVBY",
+        "headline": "Hrubá stavba\nuž stojí",
+        "sub": "Konštrukcia, voda aj elektroinštalácie hotové"
       }
     },
     {
@@ -104,7 +125,12 @@
         "headline": "Hotel\nmanagement",
         "sub": "Professional rental management"
       },
-      "crop": "480:308:0:210"
+      "crop": "480:308:0:210",
+      "sk": {
+        "kicker": "HOTELOVÝ ŠTANDARD",
+        "headline": "Hotelový\nmanagement",
+        "sub": "Profesionálny rental management"
+      }
     },
     {
       "src": "shell",
@@ -138,7 +164,19 @@
           "Balconies & terraces"
         ]
       },
-      "crop": "480:302:0:216"
+      "crop": "480:302:0:216",
+      "sk": {
+        "kicker": "ZÁZEMIE",
+        "headline": "Reprezentatívna\nrecepcia",
+        "chips": [
+          "2 bazény",
+          "1 vyhrievaný",
+          "Súkromná pláž",
+          "2 reštaurácie",
+          "6 výťahov",
+          "Balkóny & terasy"
+        ]
+      }
     },
     {
       "src": "shore",
@@ -192,7 +230,29 @@
           ]
         ]
       },
-      "crop": "480:308:0:210"
+      "crop": "480:308:0:210",
+      "sk": {
+        "kicker": "DISPOZÍCIE",
+        "headline": "Štúdio až 3 spálne",
+        "rows": [
+          [
+            "Štúdio",
+            "od 34 m²"
+          ],
+          [
+            "1 spálňa",
+            "od 45 m²"
+          ],
+          [
+            "2 spálne",
+            "od 67 m²"
+          ],
+          [
+            "3 spálne",
+            "od 157 m²"
+          ]
+        ]
+      }
     },
     {
       "src": "shore",
@@ -245,6 +305,28 @@
             "11 700 000"
           ]
         ]
+      },
+      "sk": {
+        "kicker": "CENY PO 25% CASH ZĽAVE",
+        "headline": "od 1 823 250 EGP",
+        "rows": [
+          [
+            "Štúdio 34 m²",
+            "1 823 250"
+          ],
+          [
+            "1 spálňa 45 m²",
+            "2 413 125"
+          ],
+          [
+            "2 spálne 67 m²",
+            "6 030 000"
+          ],
+          [
+            "3 spálne 157 m²",
+            "11 700 000"
+          ]
+        ]
       }
     },
     {
@@ -270,6 +352,14 @@
         "note": "Delivery: April 2028 · 10% maintenance fee",
         "cta": true,
         "ctaText": "LIMITED AVAILABILITY"
+      },
+      "sk": {
+        "kicker": "PLATOBNÝ PLÁN",
+        "headline": "20 % + 80 %\nna 3 roky",
+        "sub": "Alebo 25% zľava pri platbe v hotovosti",
+        "note": "Odovzdanie: apríl 2028 · Poplatok za údržbu 10 %",
+        "cta": true,
+        "ctaText": "OBMEDZENÁ DOSTUPNOSŤ"
       }
     }
   ]
