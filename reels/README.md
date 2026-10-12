@@ -116,3 +116,47 @@ Every string lives in `edit.json` under a language key. A segment can carry
 `kicker`, `headline`, `sub`, `note`, `chips` (pill row), `rows` (two-column
 table, for sizes or prices) and `cta`. Adding a language is a new key plus
 `--lang`; no code changes.
+
+---
+
+## 3. Publishing to Instagram
+
+```bash
+export IG_USER_ID=...          # Instagram Business account id, not the @handle
+export IG_ACCESS_TOKEN=...     # long-lived token with instagram_content_publish
+
+# validate the file and the token without posting
+python3 -I src/publish_instagram.py out/<reel>.mp4 --check \
+    --caption-file projects/<id>/caption-short.txt
+
+# publish
+python3 -I src/publish_instagram.py out/<reel>.mp4 \
+    --video-url https://<public-host>/<reel>.mp4 \
+    --cover-url https://<public-host>/cover.jpg \
+    --caption-file projects/<id>/caption-short.txt
+```
+
+### What this needs before it can work
+
+1. **An Instagram Business or Creator account** linked to a Facebook Page. A
+   personal account cannot publish through the API at all.
+2. **A Meta app** with the `instagram_content_publish` and
+   `instagram_basic` permissions, and a long-lived access token. Short-lived
+   tokens expire in an hour; long-lived ones last 60 days and must be refreshed.
+3. **The mp4 reachable at a public HTTPS URL.** This is the part people are
+   surprised by: the Content Publishing API does not accept file uploads for
+   Reels. Instagram fetches the video itself, so it has to be hosted somewhere
+   public first — an S3/R2 bucket, or this GitHub Pages site if you are willing
+   for the file to be publicly downloadable.
+4. **Network access to `graph.facebook.com`.** Cloud sessions deny it by
+   default; see the environment's Network access setting.
+
+Credentials are read from the environment only. Never commit a token — it grants
+posting rights to the account for as long as it is valid.
+
+### Limits worth knowing
+
+- 50 published posts per rolling 24 hours, per account. `--check` prints current usage.
+- Caption maximum 2200 characters; `--check` verifies this before posting.
+- A container that stays `IN_PROGRESS` is Instagram still transcoding; the script
+  polls for up to 10 minutes, which is generous for a 45-second reel.
