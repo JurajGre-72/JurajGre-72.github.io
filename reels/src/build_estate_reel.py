@@ -31,27 +31,55 @@ def serve(root):
     return httpd, port
 
 
+VIDEO_EXT = (".mp4", ".mov", ".m4v", ".webm", ".mkv")
+IMAGE_EXT = (".jpg", ".jpeg", ".png", ".webp", ".avif")
+
+
+def resolve_source(pdir, name):
+    """A segment source may be a clip or a still; find whichever is on disk."""
+    d = pdir / "footage"
+    for ext in VIDEO_EXT:
+        if (d / (name + ext)).exists(): return d / (name + ext), "video"
+    for ext in IMAGE_EXT:
+        if (d / (name + ext)).exists(): return d / (name + ext), "image"
+    have = ", ".join(sorted(f.name for f in d.glob("*"))) or "(empty)"
+    raise SystemExit(f"no source named '{name}' in {d}\n  available: {have}")
+
+
+def probe_size(path):
+    r = run(["ffprobe", "-v", "error", "-select_streams", "v:0",
+             "-show_entries", "stream=width,height", "-of", "csv=p=0:s=x", str(path)])
+    w, h = r.stdout.strip().split("\n")[0].split("x")
+    return int(w), int(h)
+
+
 def build_base(edit, pdir, work, fps, W, H):
-    """Cut, fill-crop and Ken Burns each segment, then concatenate."""
+    """Cut or hold each segment, fit it to the frame, apply a slow push, concatenate."""
     parts = []
     for i, seg in enumerate(edit["segments"]):
-        src = pdir / "footage" / f"{seg['src']}.mp4"
-        if not src.exists():
-            raise SystemExit(f"missing footage: {src}")
+        src, kind = resolve_source(pdir, seg["src"])
         z0, z1 = seg.get("zoom", [1.0, 1.0])
         n = max(int(round(seg["dur"] * fps)) - 1, 1)
         out = work / f"seg{i:02d}.mp4"
         kb = (f"zoompan=z='{z0}+({z1}-{z0})*on/{n}':"
               f"x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=1:fps={fps}")
 
+        # source dimensions after any crop that strips baked-in letterboxing
         if seg.get("crop"):
-            # Source is 16:9 CGI letterboxed inside a vertical frame. Filling the
-            # frame with it would crop away most of the image, so instead show the
-            # strip sharp over a blurred, darkened copy of itself.
             cw, ch = (int(x) for x in seg["crop"].split(":")[:2])
+            pre = f"crop={seg['crop']},"
+        else:
+            cw, ch = probe_size(src)
+            pre = ""
+
+        # Landscape material in a vertical frame: filling would throw most of the
+        # image away, so show it sharp over a blurred, darkened copy of itself.
+        fit = seg.get("fit") or ("strip" if cw / ch > 0.72 else "fill")
+
+        if fit == "strip":
             fgh = int(round(W * ch / cw / 2)) * 2
-            y   = (H - fgh) // 2 - 190                 # sits above the caption block
-            vf = (f"fps={fps},crop={seg['crop']},split=2[a][b];"
+            y = (H - fgh) // 2 - 190                   # sits above the caption block
+            vf = (f"fps={fps},{pre}split=2[a][b];"
                   f"[b]scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},"
                   f"boxblur=30:2,eq=brightness=-0.14:saturation=0.72[bg];"
                   f"[a]scale={W*2}:-2:flags=lanczos,{kb}:s={W}x{fgh},setsar=1[fg];"
@@ -59,15 +87,21 @@ def build_base(edit, pdir, work, fps, W, H):
             args = ["-filter_complex", vf]
         else:
             # supersample before zoompan, otherwise the push-in visibly steps
-            vf = (f"fps={fps},scale=-2:{H}:flags=lanczos,crop={W}:{H},"
+            vf = (f"fps={fps},{pre}scale=-2:{H}:flags=lanczos,crop={W}:{H},"
                   f"scale={W*2}:{H*2}:flags=lanczos,{kb}:s={W}x{H},setsar=1")
             args = ["-vf", vf]
 
-        run(["ffmpeg", "-y", "-v", "error", "-ss", str(seg["in"]), "-t", str(seg["dur"]),
-             "-i", str(src), "-an", *args,
-             "-c:v", "libx264", "-crf", "16", "-preset", "veryfast", "-pix_fmt", "yuv420p", str(out)])
+        if kind == "image":
+            inp = ["-loop", "1", "-t", str(seg["dur"]), "-i", str(src)]
+        else:
+            inp = ["-ss", str(seg["in"]), "-t", str(seg["dur"]), "-i", str(src)]
+
+        run(["ffmpeg", "-y", "-v", "error", *inp, "-an", *args,
+             "-c:v", "libx264", "-crf", "16", "-preset", "veryfast",
+             "-pix_fmt", "yuv420p", str(out)])
         parts.append(out)
-        print(f"    seg {i+1}/{len(edit['segments'])}  {seg['src']} @{seg['in']}s +{seg['dur']}s")
+        where = f"@{seg['in']}s" if kind == "video" else "still"
+        print(f"    seg {i+1}/{len(edit['segments'])}  {seg['src']} ({kind}, {fit}) {where} +{seg['dur']}s")
 
     lst = work / "concat.txt"
     lst.write_text("".join(f"file '{p.name}'\n" for p in parts))

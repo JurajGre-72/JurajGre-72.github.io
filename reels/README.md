@@ -1,4 +1,14 @@
-# Reelwright — 3D story reels
+# Reelwright — reel pipelines
+
+Two renderers share this directory.
+
+1. **Story reels** — a generated 3D scene (below).
+2. **Property reels** — a client's own footage and photos, cut and branded
+   (`src/build_estate_reel.py`, see `projects/*/README.md`).
+
+---
+
+## 1. 3D story reels
 
 Renders a vertical 1080×1920 animated short from a JSON story file: a Three.js
 scene driven frame-by-frame in headless Chromium, encoded to H.264, scored with a
@@ -60,3 +70,49 @@ editing `src/scene.html` — the choreography lives in three small places:
 - **Software WebGL.** Chromium renders through SwiftShader here, which is why a
   full render takes minutes rather than seconds. On a GPU box the same code is
   far faster with no changes.
+
+---
+
+## 2. Property reels
+
+```bash
+python3 -I src/build_estate_reel.py --project <id> --lang en
+python3 -I src/build_estate_reel.py --project <id> --lang sk --keep-base
+python3 -I src/build_estate_reel.py --project <id> --preview 1.6,14,28.5
+```
+
+`projects/<id>/edit.json` is the whole edit — segment sources, in-points,
+durations, Ken Burns range, and the copy per language. `--keep-base` reuses the
+cut, so each extra language only re-renders the overlay.
+
+### Starting a new project
+
+1. `mkdir -p projects/<id>/footage` and drop the clips and stills in.
+2. Write `projects/<id>/edit.json`: one entry per segment with `src` (the filename
+   without extension), `dur`, `zoom`, and a copy block per language.
+3. Preview, adjust in-points, then render.
+
+### Segment sources
+
+A segment's `src` may be a video (`.mp4 .mov .m4v .webm .mkv`) or a still
+(`.jpg .jpeg .png .webp .avif`); the builder resolves whichever is present.
+Videos take an `in` time, stills are held for `dur`.
+
+`fit` controls how a source meets the 9:16 frame, and is chosen automatically
+from its aspect unless set:
+
+- **`fill`** — crop to fill. Picked for vertical sources.
+- **`strip`** — the image sharp at full width over a blurred, darkened copy of
+  itself. Picked for landscape sources, where filling would crop most of the
+  picture away. This is what makes 16:9 renders and photos usable in a vertical
+  reel without butchering them.
+
+`crop` (`w:h:x:y`) runs first, to strip letterboxing that is baked into a source.
+Find it with `ffmpeg -ss T -i clip.mp4 -vf cropdetect -f null -`.
+
+### Copy
+
+Every string lives in `edit.json` under a language key. A segment can carry
+`kicker`, `headline`, `sub`, `note`, `chips` (pill row), `rows` (two-column
+table, for sizes or prices) and `cta`. Adding a language is a new key plus
+`--lang`; no code changes.
