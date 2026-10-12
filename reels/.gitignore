@@ -1,5 +1,8 @@
 node_modules/
 
-# Render outputs: regenerable from src/ + stories/, and large (~18 MB per 45s reel).
-# Keeping them out of git history avoids permanent repo bloat.
+# Render outputs: regenerable from src/ + stories/ + projects/, and large.
 out/
+
+# Client footage. Kept out of git deliberately: this repository is a PUBLIC
+# GitHub Pages site, and these are a developer's unreleased project files.
+projects/*/footage/

@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<title>Estate reel overlay</title>
+<link rel="stylesheet" href="../vendor/estate-fonts.css">
+<style>
+  html,body{margin:0;padding:0;background:transparent}
+  #stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:transparent;
+         font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+
+  /* legibility scrims — the footage underneath is bright sky and sea */
+  #scrimB{position:absolute;left:0;right:0;bottom:0;height:62%;
+    background:linear-gradient(to top,rgba(3,18,26,.90) 0%,rgba(3,18,26,.74) 26%,rgba(3,18,26,.46) 58%,rgba(3,18,26,0) 100%)}
+  #scrimT{position:absolute;left:0;right:0;top:0;height:16%;
+    background:linear-gradient(to bottom,rgba(3,18,26,.62),rgba(3,18,26,0))}
+
+  /* top bar */
+  #brand{position:absolute;top:62px;left:76px;font-weight:600;font-size:23px;
+    letter-spacing:.30em;color:rgba(255,255,255,.94)}
+  #prog{position:absolute;top:116px;left:76px;right:76px;height:3px;background:rgba(255,255,255,.22);border-radius:2px}
+  #prog i{display:block;height:100%;width:0;background:var(--accent);border-radius:2px}
+
+  /* content */
+  #block{position:absolute;left:76px;right:188px;bottom:286px}
+  #kicker{font-weight:700;font-size:25px;letter-spacing:.20em;color:var(--accent);margin-bottom:20px;
+    text-shadow:0 2px 14px rgba(0,0,0,.85),0 0 30px rgba(0,0,0,.6)}
+  #headline{font-family:'Outfit',sans-serif;font-weight:800;font-size:86px;line-height:1.06;
+    color:#fff;white-space:pre-line;letter-spacing:-.015em;text-shadow:0 4px 30px rgba(0,0,0,.55)}
+  #sub{font-weight:400;font-size:33px;line-height:1.38;color:rgba(255,255,255,.92);margin-top:22px;max-width:19ch;
+    text-shadow:0 2px 16px rgba(0,0,0,.8)}
+
+  #chips{display:flex;flex-wrap:wrap;gap:13px;margin-top:30px;max-width:800px}
+  #chips span{font-weight:600;font-size:27px;color:#fff;padding:12px 24px;border-radius:999px;
+    border:1.5px solid rgba(255,255,255,.34);background:rgba(255,255,255,.10)}
+
+  #rows{margin-top:30px;max-width:830px}
+  #rows div{display:flex;justify-content:space-between;align-items:baseline;gap:24px;
+    padding:15px 0;border-bottom:1px solid rgba(255,255,255,.17)}
+  #rows b{font-weight:500;font-size:32px;color:rgba(255,255,255,.90)}
+  #rows s{font-family:'Outfit',sans-serif;text-decoration:none;font-weight:700;font-size:34px;color:#fff;white-space:nowrap}
+
+  #note{font-weight:400;font-size:26px;color:rgba(255,255,255,.74);margin-top:26px}
+  #cta{display:none;margin-top:30px;align-items:center;gap:18px}
+  #cta u{text-decoration:none;font-weight:700;font-size:26px;letter-spacing:.06em;color:#06212e;
+    background:var(--accent);padding:15px 30px;border-radius:999px}
+
+  #disc{position:absolute;left:76px;right:188px;bottom:196px;font-size:19px;line-height:1.45;
+    color:rgba(255,255,255,.58);opacity:0}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="scrimT"></div><div id="scrimB"></div>
+  <div id="brand"></div>
+  <div id="prog"><i></i></div>
+  <div id="block">
+    <div id="kicker"></div>
+    <div id="headline"></div>
+    <div id="sub"></div>
+    <div id="chips"></div>
+    <div id="rows"></div>
+    <div id="note"></div>
+    <div id="cta"><u></u></div>
+  </div>
+  <div id="disc"></div>
+</div>
+
+<script>
+const Q = new URLSearchParams(location.search);
+const LANG = Q.get('lang') || 'cs';
+const PROJ = Q.get('project') || 'marvel-resort';
+let EDIT = null, BOUNDS = [], TOTAL = 0;
+
+const clamp01 = v => v < 0 ? 0 : v > 1 ? 1 : v;
+const outCubic = x => 1 - Math.pow(1 - x, 3);
+const el = id => document.getElementById(id);
+
+function layout(seg, c){
+  el('kicker').textContent   = c.kicker || '';
+  el('headline').textContent = c.headline || '';
+  el('sub').textContent      = c.sub || '';
+  el('sub').style.display    = c.sub ? 'block' : 'none';
+  el('note').textContent     = c.note || '';
+  el('note').style.display   = c.note ? 'block' : 'none';
+
+  const chips = el('chips');
+  chips.innerHTML = '';
+  chips.style.display = c.chips ? 'flex' : 'none';
+  (c.chips || []).forEach(x => { const s = document.createElement('span'); s.textContent = x; chips.appendChild(s); });
+
+  const rows = el('rows');
+  rows.innerHTML = '';
+  rows.style.display = c.rows ? 'block' : 'none';
+  (c.rows || []).forEach(([l, r]) => {
+    const d = document.createElement('div');
+    const b = document.createElement('b'); b.textContent = l;
+    const s = document.createElement('s'); s.textContent = r;
+    d.append(b, s); rows.appendChild(d);
+  });
+
+  el('cta').style.display = c.cta ? 'flex' : 'none';
+  if (c.cta) el('cta').querySelector('u').textContent = c.ctaText || '';
+}
+
+function renderFrame(t){
+  if (!EDIT) return;
+  let i = BOUNDS.findIndex(b => t < b.end);
+  if (i < 0) i = BOUNDS.length - 1;
+  const b = BOUNDS[i], seg = EDIT.segments[i], c = seg[LANG] || seg.cs;
+  const tl = t - b.start;
+
+  layout(seg, c);
+
+  // in/out animation for the whole content block
+  const fin  = outCubic(clamp01(tl / 0.55));
+  const fout = 1 - clamp01((tl - (seg.dur - 0.34)) / 0.34);
+  const a = Math.min(fin, fout);
+  const block = el('block');
+  block.style.opacity   = a.toFixed(3);
+  block.style.transform = `translateY(${((1 - fin) * 34).toFixed(2)}px)`;
+
+  el('prog').querySelector('i').style.width = (clamp01(t / TOTAL) * 100).toFixed(2) + '%';
+  el('brand').textContent = EDIT.brand;
+
+  // disclaimer rides the final segment only
+  const last = i === EDIT.segments.length - 1;
+  el('disc').textContent = last ? (EDIT.disclaimer[LANG] || EDIT.disclaimer.cs) : '';
+  el('disc').style.opacity = last ? (a * 0.95).toFixed(3) : '0';
+}
+
+window.renderFrame = renderFrame;
+
+fetch(`../projects/${PROJ}/edit.json`)
+  .then(r => { if (!r.ok) throw new Error('edit.json HTTP ' + r.status); return r.json(); })
+  .then(j => {
+    EDIT = j;
+    document.documentElement.style.setProperty('--accent', j.accent || '#FF7A59');
+    let acc = 0;
+    BOUNDS = j.segments.map(s => { const o = { start: acc, end: acc + s.dur }; acc += s.dur; return o; });
+    TOTAL = acc;
+    window.__total = acc;
+    return document.fonts.ready;
+  })
+  .then(() => { renderFrame(0); window.__ready = true; })
+  .catch(e => { window.__error = String(e); });
+</script>
+</body>
+</html>

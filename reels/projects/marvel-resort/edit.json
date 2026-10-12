@@ -1,0 +1,276 @@
+{
+  "id": "marvel-resort",
+  "brand": "CORALCOVES ESTATES",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "accent": "#FF7A59",
+  "disclaimer": {
+    "cs": "Ceny a dostupnost se mohou změnit dle aktuálního ceníku developera.",
+    "en": "Prices and availability are subject to change per the latest developer price list."
+  },
+  "segments": [
+    {
+      "src": "shore",
+      "in": 14.5,
+      "dur": 4.0,
+      "zoom": [
+        1.0,
+        1.1
+      ],
+      "cs": {
+        "kicker": "AL AHYAA · HURGHADA",
+        "headline": "MARVEL\nRESORT",
+        "sub": "Resort s vlastní soukromou pláží"
+      },
+      "en": {
+        "kicker": "AL AHYAA · HURGHADA",
+        "headline": "MARVEL\nRESORT",
+        "sub": "A resort with its own private beach"
+      }
+    },
+    {
+      "src": "shore",
+      "in": 2.4,
+      "dur": 3.8,
+      "zoom": [
+        1.1,
+        1.0
+      ],
+      "cs": {
+        "kicker": "POLOHA",
+        "headline": "15 minut\nod letiště",
+        "sub": "10 minut od centra Hurghady"
+      },
+      "en": {
+        "kicker": "LOCATION",
+        "headline": "15 minutes\nfrom the airport",
+        "sub": "10 minutes from central Hurghada"
+      }
+    },
+    {
+      "src": "shell",
+      "in": 0.3,
+      "dur": 4.2,
+      "zoom": [
+        1.0,
+        1.09
+      ],
+      "cs": {
+        "kicker": "VÝHLEDY",
+        "headline": "Přímý výhled\nna moře",
+        "sub": "Panoramatický · boční · bazén & moře"
+      },
+      "en": {
+        "kicker": "VIEWS",
+        "headline": "Direct\nsea view",
+        "sub": "Panoramic · side sea · pool & sea"
+      }
+    },
+    {
+      "src": "build",
+      "in": 8.5,
+      "dur": 4.5,
+      "zoom": [
+        1.08,
+        1.0
+      ],
+      "cs": {
+        "kicker": "STAV VÝSTAVBY",
+        "headline": "Hrubá stavba\nuž stojí",
+        "sub": "Konstrukce, voda i elektroinstalace hotové"
+      },
+      "en": {
+        "kicker": "BUILD STATUS",
+        "headline": "Structure\nalready stands",
+        "sub": "Frame, plumbing and electrics complete"
+      }
+    },
+    {
+      "src": "shore",
+      "in": 24.3,
+      "dur": 4.5,
+      "zoom": [
+        1.0,
+        1.1
+      ],
+      "cs": {
+        "kicker": "HOTELOVÝ STANDARD",
+        "headline": "Hotelový\nmanagement",
+        "sub": "Profesionální rental management"
+      },
+      "en": {
+        "kicker": "HOTEL STANDARD",
+        "headline": "Hotel\nmanagement",
+        "sub": "Professional rental management"
+      },
+      "crop": "480:308:0:210"
+    },
+    {
+      "src": "shell",
+      "in": 11.5,
+      "dur": 5.0,
+      "zoom": [
+        1.06,
+        1.0
+      ],
+      "cs": {
+        "kicker": "ZÁZEMÍ",
+        "headline": "Reprezentativní\nrecepce",
+        "chips": [
+          "2 bazény",
+          "1 vyhřívaný",
+          "Soukromá pláž",
+          "2 restaurace",
+          "6 výtahů",
+          "Balkony & terasy"
+        ]
+      },
+      "en": {
+        "kicker": "FACILITIES",
+        "headline": "Grand\nreception",
+        "chips": [
+          "2 pools",
+          "1 heated",
+          "Private beach",
+          "2 restaurants",
+          "6 elevators",
+          "Balconies & terraces"
+        ]
+      },
+      "crop": "480:302:0:216"
+    },
+    {
+      "src": "shore",
+      "in": 30.2,
+      "dur": 5.0,
+      "zoom": [
+        1.0,
+        1.08
+      ],
+      "cs": {
+        "kicker": "DISPOZICE",
+        "headline": "Studio až 3 ložnice",
+        "rows": [
+          [
+            "Studio",
+            "od 34 m²"
+          ],
+          [
+            "1 ložnice",
+            "od 45 m²"
+          ],
+          [
+            "2 ložnice",
+            "od 67 m²"
+          ],
+          [
+            "3 ložnice",
+            "od 157 m²"
+          ]
+        ]
+      },
+      "en": {
+        "kicker": "LAYOUTS",
+        "headline": "Studio to 3 bedrooms",
+        "rows": [
+          [
+            "Studio",
+            "from 34 m²"
+          ],
+          [
+            "1 bedroom",
+            "from 45 m²"
+          ],
+          [
+            "2 bedrooms",
+            "from 67 m²"
+          ],
+          [
+            "3 bedrooms",
+            "from 157 m²"
+          ]
+        ]
+      },
+      "crop": "480:308:0:210"
+    },
+    {
+      "src": "shore",
+      "in": 18.2,
+      "dur": 6.0,
+      "zoom": [
+        1.09,
+        1.0
+      ],
+      "cs": {
+        "kicker": "CENY PO 25% CASH SLEVĚ",
+        "headline": "od 1 823 250 EGP",
+        "rows": [
+          [
+            "Studio 34 m²",
+            "1 823 250"
+          ],
+          [
+            "1 ložnice 45 m²",
+            "2 413 125"
+          ],
+          [
+            "2 ložnice 67 m²",
+            "6 030 000"
+          ],
+          [
+            "3 ložnice 157 m²",
+            "11 700 000"
+          ]
+        ]
+      },
+      "en": {
+        "kicker": "PRICES AFTER 25% CASH DISCOUNT",
+        "headline": "from 1 823 250 EGP",
+        "rows": [
+          [
+            "Studio 34 m²",
+            "1 823 250"
+          ],
+          [
+            "1 bedroom 45 m²",
+            "2 413 125"
+          ],
+          [
+            "2 bedrooms 67 m²",
+            "6 030 000"
+          ],
+          [
+            "3 bedrooms 157 m²",
+            "11 700 000"
+          ]
+        ]
+      }
+    },
+    {
+      "src": "shore",
+      "in": 5.0,
+      "dur": 5.5,
+      "zoom": [
+        1.0,
+        1.1
+      ],
+      "cs": {
+        "kicker": "PLATEBNÍ PLÁN",
+        "headline": "20 % + 80 %\nna 3 roky",
+        "sub": "Nebo 25% sleva při platbě v hotovosti",
+        "note": "Dodání: duben 2028 · Poplatek za údržbu 10 %",
+        "cta": true,
+        "ctaText": "OMEZENÁ DOSTUPNOST"
+      },
+      "en": {
+        "kicker": "PAYMENT PLAN",
+        "headline": "20% + 80%\nover 3 years",
+        "sub": "Or a 25% discount when paying cash",
+        "note": "Delivery: April 2028 · 10% maintenance fee",
+        "cta": true,
+        "ctaText": "LIMITED AVAILABILITY"
+      }
+    }
+  ]
+}
