@@ -22,6 +22,12 @@ API = "https://graph.facebook.com/v21.0"
 SPEC = dict(min_dur=3.0, max_dur=900.0, max_w=1920, max_bytes=1_000_000_000,
             min_fps=23, max_fps=60, vcodec={"h264", "hevc"}, acodec={"aac"})
 
+# Feed images are far stricter than reels about shape: anything taller than 4:5
+# is rejected, so a 1080x1920 story/reel frame is NOT a valid feed image.
+IMG_SPEC = dict(min_ratio=0.8, max_ratio=1.91, max_bytes=8_000_000,
+                fmt={"jpeg", "jpg", "mjpeg"})
+CAROUSEL_MIN, CAROUSEL_MAX = 2, 10
+
 
 def api(path, params=None, data=None, timeout=60):
     url = f"{API}/{path}"
@@ -84,6 +90,23 @@ def validate(path):
     return problems
 
 
+def validate_image(path):
+    m = probe(path)
+    problems, ratio = [], m["w"] / m["h"]
+    if m["vcodec"] not in IMG_SPEC["fmt"]:
+        problems.append(f"{m['vcodec']} is not JPEG")
+    if not IMG_SPEC["min_ratio"] <= ratio <= IMG_SPEC["max_ratio"]:
+        problems.append(
+            f"aspect {ratio:.3f} outside Instagram's feed range "
+            f"{IMG_SPEC['min_ratio']}–{IMG_SPEC['max_ratio']} "
+            f"({m['w']}x{m['h']}; 1080x1350 is the tallest a feed post may be)")
+    if m["size"] > IMG_SPEC["max_bytes"]:
+        problems.append(f"{m['size']/1e6:.1f} MB exceeds 8 MB")
+    print(f"  {path.name}: {m['w']}x{m['h']} {m['vcodec']} "
+          f"ratio {ratio:.3f} {m['size']/1e6:.2f}MB")
+    return problems
+
+
 def creds():
     uid, tok = os.environ.get("IG_USER_ID"), os.environ.get("IG_ACCESS_TOKEN")
     missing = [n for n, v in (("IG_USER_ID", uid), ("IG_ACCESS_TOKEN", tok)) if not v]
@@ -95,8 +118,12 @@ def creds():
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("video", type=pathlib.Path, help="the rendered mp4 (for local validation)")
+    ap.add_argument("media", type=pathlib.Path, nargs="+",
+                    help="local file(s) to validate: one mp4, one jpg, or 2-10 jpgs")
+    ap.add_argument("--type", choices=("reels", "image", "carousel"), default="reels")
     ap.add_argument("--video-url", help="public HTTPS URL Instagram will fetch the mp4 from")
+    ap.add_argument("--image-urls", default="",
+                    help="comma-separated public HTTPS URLs, in carousel order")
     ap.add_argument("--cover-url", help="public HTTPS URL of the cover image (optional)")
     ap.add_argument("--caption-file", type=pathlib.Path)
     ap.add_argument("--caption", default="")
@@ -106,15 +133,27 @@ def main():
     ap.add_argument("--poll-timeout", type=int, default=600)
     args = ap.parse_args()
 
-    if not args.video.exists():
-        raise SystemExit(f"no such file: {args.video}")
+    for f in args.media:
+        if not f.exists():
+            raise SystemExit(f"no such file: {f}")
 
-    print("  [1/4] validating against the Reels spec")
-    problems = validate(args.video)
+    if args.type == "reels":
+        if len(args.media) != 1:
+            raise SystemExit("a reel takes exactly one mp4")
+        print("  [1/4] validating against the Reels spec")
+        problems = validate(args.media[0])
+    else:
+        n = len(args.media)
+        if args.type == "image" and n != 1:
+            raise SystemExit("an image post takes exactly one jpg")
+        if args.type == "carousel" and not CAROUSEL_MIN <= n <= CAROUSEL_MAX:
+            raise SystemExit(f"a carousel takes {CAROUSEL_MIN}-{CAROUSEL_MAX} images, got {n}")
+        print(f"  [1/4] validating {n} image(s) against the feed spec")
+        problems = [p for f in args.media for p in validate_image(f)]
     if problems:
         for p in problems:
             print(f"    ✗ {p}")
-        raise SystemExit("file does not meet the Reels spec; not publishing")
+        raise SystemExit(f"media does not meet the {args.type} spec; not publishing")
     print("    ✓ spec OK")
 
     caption = args.caption
@@ -137,17 +176,36 @@ def main():
     if args.check:
         print("  --check given: stopping before publishing. Nothing was posted.")
         return
-    if not args.video_url:
+    urls = [u.strip() for u in args.image_urls.split(",") if u.strip()]
+    if args.type == "reels" and not args.video_url:
         raise SystemExit("--video-url is required to publish: Instagram fetches the file "
                          "itself and cannot be handed local bytes.")
+    if args.type != "reels" and len(urls) != len(args.media):
+        raise SystemExit(f"--image-urls must list {len(args.media)} URL(s), in carousel order; "
+                         "Instagram fetches each image itself.")
 
     print("  [3/4] creating the media container")
-    fields = {"media_type": "REELS", "video_url": args.video_url,
-              "caption": caption, "share_to_feed": str(bool(args.share_to_feed)).lower(),
-              "access_token": tok}
-    if args.cover_url:
-        fields["cover_url"] = args.cover_url
-    cid = api(f"{uid}/media", data=fields)["id"]
+    if args.type == "reels":
+        fields = {"media_type": "REELS", "video_url": args.video_url,
+                  "caption": caption, "share_to_feed": str(bool(args.share_to_feed)).lower(),
+                  "access_token": tok}
+        if args.cover_url:
+            fields["cover_url"] = args.cover_url
+        cid = api(f"{uid}/media", data=fields)["id"]
+    elif args.type == "image":
+        cid = api(f"{uid}/media", data={"image_url": urls[0], "caption": caption,
+                                        "access_token": tok})["id"]
+    else:
+        # each slide is its own container first, then one parent ties them together
+        children = []
+        for i, u in enumerate(urls, 1):
+            ch = api(f"{uid}/media", data={"image_url": u, "is_carousel_item": "true",
+                                           "access_token": tok})["id"]
+            print(f"    slide {i}/{len(urls)} -> {ch}")
+            children.append(ch)
+        cid = api(f"{uid}/media", data={"media_type": "CAROUSEL",
+                                        "children": ",".join(children),
+                                        "caption": caption, "access_token": tok})["id"]
     print(f"    container {cid}")
 
     deadline = time.time() + args.poll_timeout
