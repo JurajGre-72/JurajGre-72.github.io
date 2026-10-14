@@ -1,0 +1,64 @@
+name: Regulatory monitor
+
+on:
+  schedule:
+    # 04:17 and 13:17 UTC = 06:17 / 15:17 Bratislava summer time (05:17 / 14:17 in winter)
+    - cron: "17 4,13 * * *"
+  workflow_dispatch:
+    inputs:
+      sources:
+        description: "Comma-separated sources (empty = all): slovlex,sukl,sukl_recall,mzsr,uskvbl"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: pharma-monitor
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check Slovak sources
+        env:
+          # Optional direct e-mail; leave the secrets unset to rely on GitHub issue notifications.
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+          SOURCES: ${{ inputs.sources }}
+        run: |
+          args=(--notify-out "$RUNNER_TEMP/digest.md")
+          if [ -n "$SOURCES" ]; then args+=(--sources "$SOURCES"); fi
+          python3 pharma-monitor/monitor.py "${args[@]}"
+
+      - name: Save results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pharma-monitor/data
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "Regulatory monitor: update data"
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push
+          fi
+
+      - name: Open notification issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          digest="$RUNNER_TEMP/digest.md"
+          [ -s "$digest" ] || { echo "Nothing new to report"; exit 0; }
+          gh label create regulatory-update --color C2362B --description "New Slovak regulatory item" 2>/dev/null || true
+          tail -n +2 "$digest" > "$RUNNER_TEMP/body.md"
+          gh issue create --title "$(head -n 1 "$digest")" --body-file "$RUNNER_TEMP/body.md" --label regulatory-update

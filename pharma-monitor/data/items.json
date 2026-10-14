@@ -1,0 +1,1148 @@
+{
+ "items": [
+  {
+   "id": "slovlex:249/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "249/2026 Z. z. – Zákon, ktorým sa mení a dopĺňa zákon č. 106/2018 Z. z. o prevádzke vozidiel v cestnej premávke a o zmene a doplnení niektorých zákonov v znení neskorších predpisov a ktorým sa menia a dopĺňajú niektoré zákony",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/249/",
+   "date": "2026-10-09T08:00:00Z",
+   "detected": "2026-10-09T08:00:00Z",
+   "category": "Legislation",
+   "priority": "low",
+   "tags": [
+    "Amends 79/2015"
+   ],
+   "summary": "Amends: 79/2015 Z. z. – Waste Act · Effective from: 01.01.2027",
+   "doc_type": "Zákon,",
+   "effective": [
+    "2027-01-01"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/249/ZZ_2026_249.pdf"
+  },
+  {
+   "id": "https://www.health.gov.sk/Clanok?mzsr-nrsr-reforma-liekova",
+   "source": "mzsr",
+   "source_name": "Ministerstvo zdravotníctva SR",
+   "title": "Lieková reforma je definitívne schválená. Pacientom prinesie viacero benefitov.",
+   "url": "https://www.health.gov.sk/Clanok?mzsr-nrsr-reforma-liekova",
+   "date": "2026-10-08T13:54:52Z",
+   "detected": "2026-10-08T13:54:52Z",
+   "category": "Ministry of Health",
+   "priority": "high",
+   "tags": [
+    "Medicines"
+   ],
+   "summary": ""
+  },
+  {
+   "id": "uskvbl:319:2026-10-08T09:28:26",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Veterinárne lieky",
+   "title": "Updated page: INFORMÁCIE O LIEKU",
+   "url": "https://www.uskvbl.sk/?page_id=319",
+   "date": "2026-10-08T09:28:26Z",
+   "detected": "2026-10-08T09:28:26Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "medium",
+   "tags": [
+    "Veterinary medicines",
+    "Medicines",
+    "Veterinary care",
+    "Waste & packaging"
+   ],
+   "summary": "Komplexné informácie o veterinárnych liekoch v Slovenskej republike a Európskom spoločenstve sú dostupné v databáze liekov Únie : ( https://medicines.health.europa.eu/veterinary ) – umožňuje vyhľadávanie podľa názvu lieku, účinných látok, druhov zvierat, členského štátu v ktorom je liek registrovaný, aktuálny stav…"
+  },
+  {
+   "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/bezpecnost-liekov/oznamy-drzitelov-dhpc/ocrevus-okrelizumab-nove-riziko-liekom-indukovaneho-poskodenia-pecene-a-odporucania-na-monitorovanie-funkcie-pecene-pred-liecbou-a-pocas-liecby",
+   "source": "sukl",
+   "source_name": "ŠÚKL · Aktuality",
+   "title": "Ocrevus (okrelizumab): Nové riziko liekom indukovaného poškodenia pečene a odporúčania na monitorovanie funkcie pečene pred liečbou a počas liečby",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/bezpecnost-liekov/oznamy-drzitelov-dhpc/ocrevus-okrelizumab-nove-riziko-liekom-indukovaneho-poskodenia-pecene-a-odporucania-na-monitorovanie-funkcie-pecene-pred-liecbou-a-pocas-liecby",
+   "date": "2026-10-08T08:02:08Z",
+   "detected": "2026-10-08T08:02:08Z",
+   "category": "Drug safety",
+   "priority": "medium",
+   "tags": [
+    "Medicines",
+    "Drug safety"
+   ],
+   "summary": "DHPC (Direct Healthcare Professional Communication) predstavuje priamu komunikáciu zdravotníckym pracovníkom, prostredníctvom ktorej sú poskytované nové dôležité informácie týkajúce sa bezpečnosti, účinnosti alebo správneho používania lieku."
+  },
+  {
+   "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/postregistracne-procesy/prevod-registracie-humanneho-lieku/prevod-registracie-humanneho-lieku",
+   "source": "sukl",
+   "source_name": "ŠÚKL · Aktuality",
+   "title": "Požiadavky a predkladanie dokumentácie k prevodu registrácie humánneho lieku",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/postregistracne-procesy/prevod-registracie-humanneho-lieku/prevod-registracie-humanneho-lieku",
+   "date": "2026-10-07T11:31:34Z",
+   "detected": "2026-10-07T11:31:34Z",
+   "category": "ŠÚKL notice",
+   "priority": "low",
+   "tags": [
+    "Medicines"
+   ],
+   "summary": "Postup a požiadavky pri prevode registrácie humánneho lieku na nového držiteľa registrácie."
+  },
+  {
+   "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/podavanie-ziadosti-a-dokumentacie-na-srl/podavanie-ziadosti",
+   "source": "sukl",
+   "source_name": "ŠÚKL · Aktuality",
+   "title": "Spôsob a podmienky podania žiadostí",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/podavanie-ziadosti-a-dokumentacie-na-srl/podavanie-ziadosti",
+   "date": "2026-10-07T09:06:06Z",
+   "detected": "2026-10-07T09:06:06Z",
+   "category": "ŠÚKL notice",
+   "priority": "low",
+   "tags": [
+    "Medicines"
+   ],
+   "summary": "Informácie pre žiadateľov a držiteľov registrácie humánnych liekov o náležitostiach, ako podať žiadosť."
+  },
+  {
+   "id": "slovlex:241/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "241/2026 Z. z. – Zákon, ktorým sa mení a dopĺňa zákon Národnej rady Slovenskej republiky č. 152/1995 Z. z. o potravinách v znení neskorších predpisov",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/241/",
+   "date": "2026-10-06T08:00:00Z",
+   "detected": "2026-10-06T08:00:00Z",
+   "category": "Legislation",
+   "priority": "medium",
+   "tags": [
+    "Amends 152/1995"
+   ],
+   "summary": "Amends: 152/1995 Z. z. – Act on Foodstuffs · Effective from: 01.12.2026",
+   "doc_type": "Zákon,",
+   "effective": [
+    "2026-12-01"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/241/ZZ_2026_241.pdf"
+  },
+  {
+   "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/liekopis/slovensky-farmaceuticky-kodex/prieskum-k-tretiemu-vydaniu-slovenskeho-farmaceutickeho-kodexu",
+   "source": "sukl",
+   "source_name": "ŠÚKL · Aktuality",
+   "title": "Prieskum k tretiemu vydaniu Slovenského farmaceutického kódexu",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/liekopis/slovensky-farmaceuticky-kodex/prieskum-k-tretiemu-vydaniu-slovenskeho-farmaceutickeho-kodexu",
+   "date": "2026-10-02T13:39:44Z",
+   "detected": "2026-10-02T13:39:44Z",
+   "category": "ŠÚKL notice",
+   "priority": "low",
+   "tags": [
+    "Pharmacy"
+   ],
+   "summary": "Prieskum pre odborníkov s cieľom zozbierať spätnú väzbu ohľadne používania Slovenského farmaceutického kódexu v praxi."
+  },
+  {
+   "id": "https://www.sukl.sk/pre-verejnost-pacientov-a-media/uzitocne-informacie/vakciny-a-ockovanie/prehlad-vakcin-proti-chripke-pre-sezonu-2026-2027",
+   "source": "sukl",
+   "source_name": "ŠÚKL · Aktuality",
+   "title": "Prehľad vakcín proti chrípke pre sezónu 2026/2027",
+   "url": "https://www.sukl.sk/pre-verejnost-pacientov-a-media/uzitocne-informacie/vakciny-a-ockovanie/prehlad-vakcin-proti-chripke-pre-sezonu-2026-2027",
+   "date": "2026-09-29T09:46:19Z",
+   "detected": "2026-09-29T09:46:19Z",
+   "category": "ŠÚKL notice",
+   "priority": "medium",
+   "tags": [
+    "Vaccines"
+   ],
+   "summary": "Aktuálne informácie a najčastejšie otázky o vakcínach proti chrípke."
+  },
+  {
+   "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/dostupnost-a-kvalita-liekov/kvalita-liekov/oznamy-o-stiahnuti-liekov/stiahnutie-liekov-plenvu-a-moviprep-ztrhu",
+   "source": "sukl_recall",
+   "source_name": "ŠÚKL · Stiahnutia liekov z trhu",
+   "title": "Stiahnutie liekov Plenvu a  Moviprep z trhu",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/dostupnost-a-kvalita-liekov/kvalita-liekov/oznamy-o-stiahnuti-liekov/stiahnutie-liekov-plenvu-a-moviprep-ztrhu",
+   "date": "2026-09-25T13:14:37Z",
+   "detected": "2026-09-25T13:14:37Z",
+   "category": "Recall / quality",
+   "priority": "high",
+   "tags": [
+    "Recall / quality defect",
+    "Medicines",
+    "Healthcare providers"
+   ],
+   "summary": "Liek y sa sťahuj ú II. triedou urgentnosti z úrovne distribučných spoločností, lekární a zdravotníckych zariadení"
+  },
+  {
+   "id": "slovlex:233/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "233/2026 Z. z. – Oznámenie Ministerstva práce, sociálnych vecí a rodiny Slovenskej republiky o sumách minimálnych mzdových nárokov na rok 2027",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/233/",
+   "date": "2026-09-23T08:00:00Z",
+   "detected": "2026-09-23T08:00:00Z",
+   "category": "Legislation",
+   "priority": "low",
+   "tags": [
+    "Labour law"
+   ],
+   "summary": "Effective from: 23.09.2026",
+   "doc_type": "Oznámenie",
+   "effective": [
+    "2026-09-23"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/233/ZZ_2026_233.pdf"
+  },
+  {
+   "id": "slovlex:232/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "232/2026 Z. z. – Oznámenie Ministerstva práce, sociálnych vecí a rodiny Slovenskej republiky o sume minimálnej mzdy na rok 2027",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/232/",
+   "date": "2026-09-23T08:00:00Z",
+   "detected": "2026-09-23T08:00:00Z",
+   "category": "Legislation",
+   "priority": "low",
+   "tags": [
+    "Labour law"
+   ],
+   "summary": "Effective from: 23.09.2026",
+   "doc_type": "Oznámenie",
+   "effective": [
+    "2026-09-23"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/232/ZZ_2026_232.pdf"
+  },
+  {
+   "id": "https://www.sukl.sk/pre-verejnost-pacientov-a-media/pre-media/tlacove-spravy/svetovy-den-bezpecnosti-pacientov-slovenske-dominanty-sa-rozsvietia-na-oranzovo",
+   "source": "sukl",
+   "source_name": "ŠÚKL · Aktuality",
+   "title": "Svetový deň bezpečnosti pacientov: Slovenské dominanty sa rozsvietia na oranžovo",
+   "url": "https://www.sukl.sk/pre-verejnost-pacientov-a-media/pre-media/tlacove-spravy/svetovy-den-bezpecnosti-pacientov-slovenske-dominanty-sa-rozsvietia-na-oranzovo",
+   "date": "2026-09-16T07:06:13Z",
+   "detected": "2026-09-16T07:06:13Z",
+   "category": "ŠÚKL notice",
+   "priority": "low",
+   "tags": [],
+   "summary": "Svetový deň bezpečnosti pacientov každoročne pripadá na 17. septembra. Vyhlasuje ho Svetová zdravotnícka organizácia (WHO) a tento rok sa celosvetová pozornosť sústredí na bezpečnosť pacientov s chronickými neprenosnými ochoreniami (NCDs), ako sú kardiovaskulárne choroby, diabetes, onkologické či respiračné ochorenia."
+  },
+  {
+   "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/dostupnost-a-kvalita-liekov/kvalita-liekov/oznamy-o-stiahnuti-liekov/stiahnutie-lieku-tyverb-250-mg-ztrhu",
+   "source": "sukl_recall",
+   "source_name": "ŠÚKL · Stiahnutia liekov z trhu",
+   "title": "Stiahnutie lieku Tyverb 250 mg z trhu",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/dostupnost-a-kvalita-liekov/kvalita-liekov/oznamy-o-stiahnuti-liekov/stiahnutie-lieku-tyverb-250-mg-ztrhu",
+   "date": "2026-09-10T12:10:27Z",
+   "detected": "2026-09-10T12:10:27Z",
+   "category": "Recall / quality",
+   "priority": "high",
+   "tags": [
+    "Recall / quality defect",
+    "Medicines",
+    "Healthcare providers"
+   ],
+   "summary": "Liek sa sťahuje II. triedou urgentnosti z úrovne distribučných spoločností, lekární a zdravotníckych zariadení"
+  },
+  {
+   "id": "https://www.sukl.sk/pre-verejnost-pacientov-a-media/oznamy-a-upozornenia/dna-15.-9.-2026-bude-podatelna-zatvorena",
+   "source": "sukl",
+   "source_name": "ŠÚKL · Aktuality",
+   "title": "Dňa 15. 9. 2026 bude podateľňa zatvorená",
+   "url": "https://www.sukl.sk/pre-verejnost-pacientov-a-media/oznamy-a-upozornenia/dna-15.-9.-2026-bude-podatelna-zatvorena",
+   "date": "2026-09-07T07:53:45Z",
+   "detected": "2026-09-07T07:53:45Z",
+   "category": "ŠÚKL notice",
+   "priority": "low",
+   "tags": [
+    "Medicines"
+   ],
+   "summary": "Štátny ústav pre kontrolu liečiv informuje, že dňa 15. 9. 2026 bude podateľňa ŠÚKL zatvorená . V ostatných pracovných dňoch bude podateľňa otvorená v štandardných úradných hodinách."
+  },
+  {
+   "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/bezpecnost-liekov/informacie-z-prac/zavery-z-vyboru-pre-hodnotenie-rizik-liekov-prac-31.8.-3.9.2026",
+   "source": "sukl",
+   "source_name": "ŠÚKL · Aktuality",
+   "title": "Závery z Výboru pre hodnotenie rizík liekov (PRAC) 31.8.-3.9.2026",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/bezpecnost-liekov/informacie-z-prac/zavery-z-vyboru-pre-hodnotenie-rizik-liekov-prac-31.8.-3.9.2026",
+   "date": "2026-09-04T11:10:53Z",
+   "detected": "2026-09-04T11:10:53Z",
+   "category": "Drug safety",
+   "priority": "medium",
+   "tags": [
+    "Medicines"
+   ],
+   "summary": "Stručné zhrnutie záverov zo zasadania Výboru pre hodnotenie rizík liekov (PRAC), ktoré sa uskutočnilo 31.8.-3.9.2026. Plné znenie tlačovej správy sa nachádza na webovej stránke Európskej liekovej agentúry."
+  },
+  {
+   "id": "https://www.sukl.sk/o-nas/podujatia-a-udalosti/konferencia-sarap-2026-pozvanka-modul-2",
+   "source": "sukl",
+   "source_name": "ŠÚKL · Aktuality",
+   "title": "Konferencia SARAP 2026: Pozvánka - MODUL 2",
+   "url": "https://www.sukl.sk/o-nas/podujatia-a-udalosti/konferencia-sarap-2026-pozvanka-modul-2",
+   "date": "2026-09-02T09:20:02Z",
+   "detected": "2026-09-02T09:20:02Z",
+   "category": "ŠÚKL notice",
+   "priority": "medium",
+   "tags": [
+    "Medicines",
+    "Drug safety"
+   ],
+   "summary": "Registrácia liekov a farmakovigilančná činnosť. Prebiehajúce zmeny v národnej legislatíve (zákon 362/2011)."
+  },
+  {
+   "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/dostupnost-a-kvalita-liekov/dostupnost-liekov/msc-komunikacia-tykajuca-sa-prerusenia-zrusenia-dodavok-lieku/msc-emend-aprepitant-tvrde-kapsuly-cps-dur-1x125-mg-2x80-mg-blis.al-al-zrusenie-dodavok-lieku",
+   "source": "sukl",
+   "source_name": "ŠÚKL · Aktuality",
+   "title": "MSC: EMEND (aprepitant, tvrdé kapsuly, cps dur 1x125 mg+ 2x80 mg (blis.Al/Al)): zrušenie dodávok lieku",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/dostupnost-a-kvalita-liekov/dostupnost-liekov/msc-komunikacia-tykajuca-sa-prerusenia-zrusenia-dodavok-lieku/msc-emend-aprepitant-tvrde-kapsuly-cps-dur-1x125-mg-2x80-mg-blis.al-al-zrusenie-dodavok-lieku",
+   "date": "2026-09-01T06:40:37Z",
+   "detected": "2026-09-01T06:40:37Z",
+   "category": "Supply disruption",
+   "priority": "high",
+   "tags": [
+    "Medicines"
+   ],
+   "summary": "MSC (Medicine Shortage Comunication) - priama komunikácia určená zdravotníckym pracovníkom, prostredníctvom ktorej držiteľ rozhodnutia o registrácii lieku poskytuje dôležité informácie týkajúce sa dostupnosti lieku."
+  },
+  {
+   "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/dostupnost-a-kvalita-liekov/kvalita-liekov/oznamy-o-stiahnuti-liekov/stiahnutie-lieku-rowatinex-ztrhu",
+   "source": "sukl_recall",
+   "source_name": "ŠÚKL · Stiahnutia liekov z trhu",
+   "title": "Stiahnutie lieku Rowatinex z trhu",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/dostupnost-a-kvalita-liekov/kvalita-liekov/oznamy-o-stiahnuti-liekov/stiahnutie-lieku-rowatinex-ztrhu",
+   "date": "2026-08-18T12:42:46Z",
+   "detected": "2026-08-18T12:42:46Z",
+   "category": "Recall / quality",
+   "priority": "high",
+   "tags": [
+    "Recall / quality defect",
+    "Medicines",
+    "Healthcare providers"
+   ],
+   "summary": "Liek sa sťahuje II. triedou urgentnosti z úrovne distribučných spoločností, lekární a zdravotníckych zariadení"
+  },
+  {
+   "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/dostupnost-a-kvalita-liekov/kvalita-liekov/oznamy-o-stiahnuti-liekov/stiahnutie-lieku-fingolimod-zentiva-ztrhu",
+   "source": "sukl_recall",
+   "source_name": "ŠÚKL · Stiahnutia liekov z trhu",
+   "title": "Stiahnutie lieku Fingolimod Zentiva z trhu",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/dostupnost-a-kvalita-liekov/kvalita-liekov/oznamy-o-stiahnuti-liekov/stiahnutie-lieku-fingolimod-zentiva-ztrhu",
+   "date": "2026-08-18T12:37:17Z",
+   "detected": "2026-08-18T12:37:17Z",
+   "category": "Recall / quality",
+   "priority": "high",
+   "tags": [
+    "Recall / quality defect",
+    "Medicines",
+    "Healthcare providers"
+   ],
+   "summary": "Liek sa sťahuje II. triedou urgentnosti z úrovne distribučných spoločností, lekární a zdravotníckych zariadení ."
+  },
+  {
+   "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/dostupnost-a-kvalita-liekov/dostupnost-liekov/msc-komunikacia-tykajuca-sa-prerusenia-zrusenia-dodavok-lieku/msc-tamoxifen-tamoxifen-10-mg-a-20-mg-tablety-prerusenie-dodavky-liekov",
+   "source": "sukl",
+   "source_name": "ŠÚKL · Aktuality",
+   "title": "MSC: Tamoxifen (tamoxifén, 10 mg a 20 mg tablety): prerušenie dodávky liekov",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/dostupnost-a-kvalita-liekov/dostupnost-liekov/msc-komunikacia-tykajuca-sa-prerusenia-zrusenia-dodavok-lieku/msc-tamoxifen-tamoxifen-10-mg-a-20-mg-tablety-prerusenie-dodavky-liekov",
+   "date": "2026-08-18T10:52:01Z",
+   "detected": "2026-08-18T10:52:01Z",
+   "category": "Supply disruption",
+   "priority": "high",
+   "tags": [
+    "Medicines"
+   ],
+   "summary": "MSC (Medicine Shortage Comunication) predstavuje formu priamej komunikácie zdravotníckym pracovníkom, prostredníctvom ktorej držiteľ rozhodnutia o registrácii lieku poskytuje dôležité informácie týkajúce sa obmedzenej dostupnosti lieku, prerušenia alebo ukončenia dodávok lieku, napríklad ak sa pre daný liek na…"
+  },
+  {
+   "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/dostupnost-a-kvalita-liekov/kvalita-liekov/oznamy-o-stiahnuti-liekov/stiahnutie-lieku-zoely-ztrhu",
+   "source": "sukl_recall",
+   "source_name": "ŠÚKL · Stiahnutia liekov z trhu",
+   "title": "Stiahnutie lieku Zoely z trhu",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/dostupnost-a-kvalita-liekov/kvalita-liekov/oznamy-o-stiahnuti-liekov/stiahnutie-lieku-zoely-ztrhu",
+   "date": "2026-08-13T13:08:12Z",
+   "detected": "2026-08-13T13:08:12Z",
+   "category": "Recall / quality",
+   "priority": "high",
+   "tags": [
+    "Recall / quality defect",
+    "Medicines",
+    "Healthcare providers"
+   ],
+   "summary": "Liek sa sťahuje II. triedou urgentnosti z úrovne distribučných spoločností, lekární a zdravotníckych zariadení"
+  },
+  {
+   "id": "uskvbl:62:2026-08-13T08:01:38",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Veterinárne lieky",
+   "title": "Updated page: ZOZNAMY",
+   "url": "https://www.uskvbl.sk/?page_id=62",
+   "date": "2026-08-13T08:01:38Z",
+   "detected": "2026-08-13T08:01:38Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "medium",
+   "tags": [
+    "Veterinary medicines",
+    "Medicines",
+    "Veterinary care"
+   ],
+   "summary": "Zoznam registrovaných veterinárnych liekov · Zoznam schválených veterinárnych prípravkov · Zoznam veterinárnych technických pomôcok · Zoznam veterinárnych liekov určených pre ryby · Zoznam veterinárnych liekov – antiparazitík určených pre ovce a kozy"
+  },
+  {
+   "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/bezpecnost-liekov/oznamy-drzitelov-dhpc/litfulo-ritlecitinib-aktualizovane-odporucania-na-minimalizaciu-rizik-zavaznych-neziaducich-kardiovaskularnych-udalosti-malignity-venozneho-tromboembolizmu-zavaznych-infekcii-a-mortality",
+   "source": "sukl",
+   "source_name": "ŠÚKL · Aktuality",
+   "title": "Litfulo▼ (ritlecitinib): aktualizované odporúčania na minimalizáciu rizík závažných nežiaducich kardiovaskulárnych udalostí, malignity, venózneho tromboembolizmu, závažných infekcií a mortality",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/bezpecnost-liekov/oznamy-drzitelov-dhpc/litfulo-ritlecitinib-aktualizovane-odporucania-na-minimalizaciu-rizik-zavaznych-neziaducich-kardiovaskularnych-udalosti-malignity-venozneho-tromboembolizmu-zavaznych-infekcii-a-mortality",
+   "date": "2026-08-10T09:50:26Z",
+   "detected": "2026-08-10T09:50:26Z",
+   "category": "Drug safety",
+   "priority": "medium",
+   "tags": [
+    "Medicines",
+    "Drug safety"
+   ],
+   "summary": "DHPC (Direct Healthcare Professional Communication) predstavuje priamu komunikáciu zdravotníckym pracovníkom, prostredníctvom ktorej sú poskytované nové dôležité informácie týkajúce sa bezpečnosti, účinnosti alebo správneho používania lieku"
+  },
+  {
+   "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/bezpecnost-liekov/oznamy-drzitelov-dhpc/lieky-s-obsahom-dezogestrelu-a-etonogestrelu-riziko-meningiomu-a-opatrenia-na-minimalizaciu-rizika",
+   "source": "sukl",
+   "source_name": "ŠÚKL · Aktuality",
+   "title": "Lieky s obsahom dezogestrelu a etonogestrelu: riziko meningiómu a opatrenia na minimalizáciu rizika",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/bezpecnost-liekov/oznamy-drzitelov-dhpc/lieky-s-obsahom-dezogestrelu-a-etonogestrelu-riziko-meningiomu-a-opatrenia-na-minimalizaciu-rizika",
+   "date": "2026-08-06T08:48:05Z",
+   "detected": "2026-08-06T08:48:05Z",
+   "category": "Drug safety",
+   "priority": "medium",
+   "tags": [
+    "Medicines",
+    "Drug safety"
+   ],
+   "summary": "DHPC (Direct Healthcare Professional Communication) predstavuje priamu komunikáciu zdravotníckym pracovníkom, prostredníctvom ktorej sú poskytované nové dôležité informácie týkajúce sa bezpečnosti, účinnosti alebo správneho používania lieku."
+  },
+  {
+   "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/drogove-prekurzory/aktualne-informacie-a-legislativa/usmernenie-pre-drzitelov-povolenia-na-poskytovanie-lekarenskej-starostlivosti-vo-verejnych-a-nemocnicnych-lekarnach-v-oblasti-drogovych-prekurzorov-urcenych-latok",
+   "source": "sukl",
+   "source_name": "ŠÚKL · Aktuality",
+   "title": "Usmernenie pre držiteľov povolenia na poskytovanie lekárenskej starostlivosti vo verejných a nemocničných lekárňach v oblasti drogových prekurzorov (určených látok)",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/drogove-prekurzory/aktualne-informacie-a-legislativa/usmernenie-pre-drzitelov-povolenia-na-poskytovanie-lekarenskej-starostlivosti-vo-verejnych-a-nemocnicnych-lekarnach-v-oblasti-drogovych-prekurzorov-urcenych-latok",
+   "date": "2026-08-03T09:08:15Z",
+   "detected": "2026-08-03T09:08:15Z",
+   "category": "Distribution & pharmacies",
+   "priority": "high",
+   "tags": [
+    "Medicines",
+    "Pharmacy",
+    "Narcotics & precursors"
+   ],
+   "summary": "Usmernenie je určené pre poskytovateľov lekárenskej starostlivosti pri nakladaní s drogovými prekurzormi kategórie 1 v individuálnej príprave liekov vrátane podmienok na vydanie, zmenu alebo zrušenie osobitného povolenia v súvislosti s pripravovanou zmenou európskej legislatívy."
+  },
+  {
+   "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/liekopis/europsky-liekopis/pripomienkovanie-clankov-europskeho-liekopisu-pharmeuropa-38.3",
+   "source": "sukl",
+   "source_name": "ŠÚKL · Aktuality",
+   "title": "Pripomienkovanie článkov Európskeho liekopisu, Pharmeuropa 38.3",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/liekopis/europsky-liekopis/pripomienkovanie-clankov-europskeho-liekopisu-pharmeuropa-38.3",
+   "date": "2026-07-28T11:15:02Z",
+   "detected": "2026-07-28T11:15:02Z",
+   "category": "ŠÚKL notice",
+   "priority": "low",
+   "tags": [
+    "Medicines"
+   ],
+   "summary": "Aktuálne vydanie Pharmeuropa (38.3) je možné pripomienkovať do 30.09.2026."
+  },
+  {
+   "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/bezpecnost-liekov/oznamy-drzitelov-dhpc/enditril-racekadotril-upozornenie-na-nesulad-pisomnej-informacie-pre-pouzivatela-pil",
+   "source": "sukl",
+   "source_name": "ŠÚKL · Aktuality",
+   "title": "ENDITRIL (racekadotril): Upozornenie na nesúlad písomnej informácie pre používateľa (PIL)",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/bezpecnost-liekov/oznamy-drzitelov-dhpc/enditril-racekadotril-upozornenie-na-nesulad-pisomnej-informacie-pre-pouzivatela-pil",
+   "date": "2026-07-28T10:42:58Z",
+   "detected": "2026-07-28T10:42:58Z",
+   "category": "Drug safety",
+   "priority": "medium",
+   "tags": [
+    "Medicines",
+    "Drug safety"
+   ],
+   "summary": "DHPC (Direct Healthcare Professional Communication) predstavuje priamu komunikáciu zdravotníckym pracovníkom, prostredníctvom ktorej sú poskytované nové dôležité informácie týkajúce sa bezpečnosti, účinnosti alebo správneho používania lieku."
+  },
+  {
+   "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/dostupnost-a-kvalita-liekov/kvalita-liekov/oznamy-o-stiahnuti-liekov/stiahnutie-lieku-libtayo-350-mg-koncentrat-na-infuzny-roztok-ztrhu",
+   "source": "sukl_recall",
+   "source_name": "ŠÚKL · Stiahnutia liekov z trhu",
+   "title": "Stiahnutie lieku LIBTAYO 350 mg koncentrát na infúzny roztok z trhu",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/dostupnost-a-kvalita-liekov/kvalita-liekov/oznamy-o-stiahnuti-liekov/stiahnutie-lieku-libtayo-350-mg-koncentrat-na-infuzny-roztok-ztrhu",
+   "date": "2026-07-24T08:59:43Z",
+   "detected": "2026-07-24T08:59:43Z",
+   "category": "Recall / quality",
+   "priority": "high",
+   "tags": [
+    "Recall / quality defect",
+    "Medicines"
+   ],
+   "summary": ""
+  },
+  {
+   "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/dostupnost-a-kvalita-liekov/kvalita-liekov/oznamy-o-stiahnuti-liekov/stiahnutie-lieku-levosimendan-fmk-z-trhu",
+   "source": "sukl_recall",
+   "source_name": "ŠÚKL · Stiahnutia liekov z trhu",
+   "title": "Stiahnutie lieku Levosimendan FMK z trhu",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/dostupnost-a-kvalita-liekov/kvalita-liekov/oznamy-o-stiahnuti-liekov/stiahnutie-lieku-levosimendan-fmk-z-trhu",
+   "date": "2026-07-17T10:13:54Z",
+   "detected": "2026-07-17T10:13:54Z",
+   "category": "Recall / quality",
+   "priority": "high",
+   "tags": [
+    "Recall / quality defect",
+    "Medicines"
+   ],
+   "summary": ""
+  },
+  {
+   "id": "uskvbl:376:2026-07-17T07:21:16",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Veterinárne lieky",
+   "title": "Updated page: KVALITA VETERINÁRNYCH LIEKOV",
+   "url": "https://www.uskvbl.sk/?page_id=376",
+   "date": "2026-07-17T07:21:16Z",
+   "detected": "2026-07-17T07:21:16Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "high",
+   "tags": [
+    "Veterinary medicines",
+    "Medicines",
+    "Medical devices",
+    "Veterinary care"
+   ],
+   "summary": "ÚŠKVBL na základe § 134 ods. 2 písm. c) zákona č. 362/2011 Z.z. o liekoch a zdravotníckych pomôckach a o zmene a doplnení niektorých zákonov a v zmysle § 108 tohto zákona vykonáva laboratórnu kontrolu liečiv, pomocných látok a veterinárnych liekov ako úradné laboratórium na kontrolu veterinárnych liekov. · V zmysle…"
+  },
+  {
+   "id": "slovlex:183/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "183/2026 Z. z. – Nariadenie vlády Slovenskej republiky, ktorým sa ustanovujú pravidlá poskytovania podpory na vykonávanie opatrení Strategického plánu spoločnej poľnohospodárskej politiky v sektore včelárstva",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/183/",
+   "date": "2026-07-09T08:00:00Z",
+   "detected": "2026-07-09T08:00:00Z",
+   "category": "Legislation",
+   "priority": "medium",
+   "tags": [
+    "Medical devices",
+    "Medicines",
+    "Veterinary medicines"
+   ],
+   "summary": "Effective from: 15.07.2026 · 15 mentions of medicines / medical devices in the text",
+   "doc_type": "Nariadenie",
+   "effective": [
+    "2026-07-15"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/183/ZZ_2026_183.pdf"
+  },
+  {
+   "id": "slovlex:179/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "179/2026 Z. z. – Oznámenie Ministerstva zdravotníctva Slovenskej republiky o vydaní opatrenia z 24. júna 2026 č. S14903-2026-OL, ktorým sa vydáva Slovenský farmaceutický kódex, tretie vydanie",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/179/",
+   "date": "2026-07-03T08:00:00Z",
+   "detected": "2026-07-03T08:00:00Z",
+   "category": "Legislation",
+   "priority": "high",
+   "tags": [
+    "Pharmacy",
+    "Ministry of Health"
+   ],
+   "summary": "Effective from: 03.07.2026 · 8 mentions of medicines / medical devices in the text",
+   "doc_type": "Oznámenie",
+   "effective": [
+    "2026-07-03"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/179/ZZ_2026_179.pdf"
+  },
+  {
+   "id": "slovlex:174/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "174/2026 Z. z. – Vyhláška Ministerstva hospodárstva Slovenskej republiky, ktorou sa dopĺňa vyhláška Ministerstva hospodárstva Slovenskej republiky č. 225/2013 Z. z., ktorou sa vykonávajú niektoré ustanovenia zákona č. 78/2012 Z. z. o bezpečnosti hračiek a o zmene a doplnení zákona č. 128/2002 Z. z. o štátnej kontrole vnútorného trhu vo veciach ochrany spotrebiteľa a o zmene a doplnení niektorých zákonov v znení neskorších predpisov v znení zákona č. 140/2013 Z. z. v znení neskorších predpisov",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/174/",
+   "date": "2026-07-02T08:00:00Z",
+   "detected": "2026-07-02T08:00:00Z",
+   "category": "Legislation",
+   "priority": "low",
+   "tags": [
+    "Consumer protection"
+   ],
+   "summary": "Effective from: 29.08.2026",
+   "doc_type": "Vyhláška",
+   "effective": [
+    "2026-08-29"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/174/ZZ_2026_174.pdf"
+  },
+  {
+   "id": "slovlex:154/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "154/2026 Z. z. – Vyhláška Ministerstva dopravy Slovenskej republiky, ktorou sa mení a dopĺňa vyhláška Ministerstva dopravy, výstavby a regionálneho rozvoja Slovenskej republiky č. 124/2012 Z. z., ktorou sa vykonáva zákon č. 56/2012 Z. z. o cestnej doprave v znení neskorších predpisov",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/154/",
+   "date": "2026-06-25T08:00:00Z",
+   "detected": "2026-06-25T08:00:00Z",
+   "category": "Legislation",
+   "priority": "low",
+   "tags": [
+    "Transport of goods"
+   ],
+   "summary": "Effective from: 01.07.2026",
+   "doc_type": "Vyhláška",
+   "effective": [
+    "2026-07-01"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/154/ZZ_2026_154.pdf"
+  },
+  {
+   "id": "slovlex:153/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "153/2026 Z. z. – Vyhláška Ministerstva financií Slovenskej republiky, ktorou sa mení vyhláška Ministerstva financií Slovenskej republiky č. 161/2016 Z. z., ktorou sa vykonávajú niektoré ustanovenia zákona č. 199/2004 Z. z. Colný zákon a o zmene a doplnení niektorých zákonov v znení neskorších predpisov v znení neskorších predpisov",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/153/",
+   "date": "2026-06-25T08:00:00Z",
+   "detected": "2026-06-25T08:00:00Z",
+   "category": "Legislation",
+   "priority": "low",
+   "tags": [
+    "Customs"
+   ],
+   "summary": "Effective from: 01.07.2026",
+   "doc_type": "Vyhláška",
+   "effective": [
+    "2026-07-01"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/153/ZZ_2026_153.pdf"
+  },
+  {
+   "id": "slovlex:147/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "147/2026 Z. z. – Vyhláška Ministerstva zdravotníctva Slovenskej republiky, ktorou sa mení vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 420/2025 Z. z., ktorou sa mení a dopĺňa vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 321/2005 Z. z. o rozsahu praxe v niektorých zdravotníckych povolaniach v znení neskorších predpisov",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/147/",
+   "date": "2026-06-24T08:00:00Z",
+   "detected": "2026-06-24T08:00:00Z",
+   "category": "Legislation",
+   "priority": "medium",
+   "tags": [
+    "Ministry of Health"
+   ],
+   "summary": "Effective from: 30.06.2026",
+   "doc_type": "Vyhláška",
+   "effective": [
+    "2026-06-30"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/147/ZZ_2026_147.pdf"
+  },
+  {
+   "id": "slovlex:146/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "146/2026 Z. z. – Vyhláška Ministerstva zdravotníctva Slovenskej republiky, ktorou sa dopĺňa vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 266/2012 Z. z., ktorou sa ustanovujú podrobnosti o výpočte indexu rizika nákladov v znení neskorších predpisov",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/146/",
+   "date": "2026-06-24T08:00:00Z",
+   "detected": "2026-06-24T08:00:00Z",
+   "category": "Legislation",
+   "priority": "medium",
+   "tags": [
+    "Ministry of Health"
+   ],
+   "summary": "Effective from: 25.06.2026 · 4 mentions of medicines / medical devices in the text",
+   "doc_type": "Vyhláška",
+   "effective": [
+    "2026-06-25"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/146/ZZ_2026_146.pdf"
+  },
+  {
+   "id": "slovlex:138/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "138/2026 Z. z. – Zákon, ktorým sa mení a dopĺňa zákon č. 207/2009 Z. z. o podmienkach vývozu a dovozu predmetu kultúrnej hodnoty a o doplnení zákona č. 652/2004 Z. z. o orgánoch štátnej správy v colníctve a o zmene a doplnení niektorých zákonov v znení neskorších predpisov v znení neskorších predpisov",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/138/",
+   "date": "2026-06-23T08:00:00Z",
+   "detected": "2026-06-23T08:00:00Z",
+   "category": "Legislation",
+   "priority": "low",
+   "tags": [
+    "Customs"
+   ],
+   "summary": "Effective from: 01.08.2026",
+   "doc_type": "Zákon,",
+   "effective": [
+    "2026-08-01"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/138/ZZ_2026_138.pdf"
+  },
+  {
+   "id": "slovlex:136/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "136/2026 Z. z. – Zákon, ktorým sa mení a dopĺňa zákon č. 581/2004 Z. z. o zdravotných poisťovniach, dohľade nad zdravotnou starostlivosťou a o zmene a doplnení niektorých zákonov v znení neskorších predpisov a ktorým sa menia a dopĺňajú niektoré zákony",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/136/",
+   "date": "2026-06-23T08:00:00Z",
+   "detected": "2026-06-23T08:00:00Z",
+   "category": "Legislation",
+   "priority": "medium",
+   "tags": [
+    "Health insurance",
+    "Amends 581/2004"
+   ],
+   "summary": "Amends: 581/2004 Z. z. – Act on Health Insurance Companies · Effective from: 23.06.2026, 30.06.2026, 01.07.2026, 01.08.2026 · 1 mentions of medicines / medical devices in the text",
+   "doc_type": "Zákon,",
+   "effective": [
+    "2026-06-23",
+    "2026-06-30",
+    "2026-07-01",
+    "2026-08-01",
+    "2027-07-01"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/136/ZZ_2026_136.pdf"
+  },
+  {
+   "id": "slovlex:130/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "130/2026 Z. z. – Zákon, ktorým sa dopĺňa zákon č. 343/2015 Z. z. o verejnom obstarávaní a o zmene a doplnení niektorých zákonov v znení neskorších predpisov",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/130/",
+   "date": "2026-06-18T08:00:00Z",
+   "detected": "2026-06-18T08:00:00Z",
+   "category": "Legislation",
+   "priority": "medium",
+   "tags": [
+    "Public procurement"
+   ],
+   "summary": "Effective from: 02.08.2026",
+   "doc_type": "Zákon,",
+   "effective": [
+    "2026-08-02"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/130/ZZ_2026_130.pdf"
+  },
+  {
+   "id": "slovlex:113/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "113/2026 Z. z. – Vyhláška Ministerstva zdravotníctva Slovenskej republiky, ktorou sa ustanovujú minimálne požiadavky na personálne zabezpečenie a materiálno-technické vybavenie ambulancie asistenčnej zdravotnej služby, podrobnosti o označovaní ambulancie asistenčnej zdravotnej služby a o označovaní ochranných odevov zamestnancov ambulancie asistenčnej zdravotnej služby",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/113/",
+   "date": "2026-06-04T08:00:00Z",
+   "detected": "2026-06-04T08:00:00Z",
+   "category": "Legislation",
+   "priority": "medium",
+   "tags": [
+    "Ministry of Health"
+   ],
+   "summary": "Effective from: 01.07.2026",
+   "doc_type": "Vyhláška",
+   "effective": [
+    "2026-07-01"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/113/ZZ_2026_113.pdf"
+  },
+  {
+   "id": "slovlex:110/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "110/2026 Z. z. – Oznámenie Ministerstva zdravotníctva Slovenskej republiky o vydaní opatrenia z 26. mája 2026 č. S17801-2026-OL o ustanovení výšky náhrady za bolesť a výšky náhrady za sťaženie spoločenského uplatnenia na rok 2026",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/110/",
+   "date": "2026-05-29T08:00:00Z",
+   "detected": "2026-05-29T08:00:00Z",
+   "category": "Legislation",
+   "priority": "medium",
+   "tags": [
+    "Ministry of Health"
+   ],
+   "summary": "Effective from: 29.05.2026",
+   "doc_type": "Oznámenie",
+   "effective": [
+    "2026-05-29"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/110/ZZ_2026_110.pdf"
+  },
+  {
+   "id": "slovlex:108/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "108/2026 Z. z. – Vyhláška Ministerstva zdravotníctva Slovenskej republiky, ktorou sa mení a dopĺňa vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 158/2015 Z. z. o požiadavkách na správnu prax prípravy transfúznych liekov v znení vyhlášky č. 334/2015 Z. z.",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/108/",
+   "date": "2026-05-29T08:00:00Z",
+   "detected": "2026-05-29T08:00:00Z",
+   "category": "Legislation",
+   "priority": "high",
+   "tags": [
+    "Medicines",
+    "Ministry of Health"
+   ],
+   "summary": "Effective from: 01.06.2026, 01.09.2027 · 184 mentions of medicines / medical devices in the text",
+   "doc_type": "Vyhláška",
+   "effective": [
+    "2026-06-01",
+    "2027-09-01"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/108/ZZ_2026_108.pdf"
+  },
+  {
+   "id": "slovlex:100/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "100/2026 Z. z. – Zákon, ktorým sa mení a dopĺňa zákon č. 343/2015 Z. z. o verejnom obstarávaní a o zmene a doplnení niektorých zákonov v znení neskorších predpisov",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/100/",
+   "date": "2026-05-21T08:00:00Z",
+   "detected": "2026-05-21T08:00:00Z",
+   "category": "Legislation",
+   "priority": "medium",
+   "tags": [
+    "Public procurement"
+   ],
+   "summary": "Effective from: 21.05.2026, 01.07.2026",
+   "doc_type": "Zákon,",
+   "effective": [
+    "2026-05-21",
+    "2026-07-01"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/100/ZZ_2026_100.pdf"
+  },
+  {
+   "id": "slovlex:88/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "88/2026 Z. z. – Zákon, ktorým sa mení a dopĺňa zákon č. 56/2018 Z. z. o posudzovaní zhody výrobku, sprístupňovaní určeného výrobku na trhu a o zmene a doplnení niektorých zákonov v znení neskorších predpisov a ktorým sa menia a dopĺňajú niektoré zákony",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/88/",
+   "date": "2026-05-20T08:00:00Z",
+   "detected": "2026-05-20T08:00:00Z",
+   "category": "Legislation",
+   "priority": "high",
+   "tags": [
+    "Amends 362/2011"
+   ],
+   "summary": "Amends: 362/2011 Z. z. – Act on Medicinal Products and Medical Devices (zákon o liekoch) · Effective from: 30.05.2026 · 19 mentions of medicines / medical devices in the text",
+   "doc_type": "Zákon,",
+   "effective": [
+    "2026-05-30"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/88/ZZ_2026_88.pdf"
+  },
+  {
+   "id": "slovlex:85/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "85/2026 Z. z. – Zákon, ktorým sa mení a dopĺňa zákon č. 203/2011 Z. z. o kolektívnom investovaní v znení neskorších predpisov a ktorým sa dopĺňajú niektoré zákony",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/85/",
+   "date": "2026-05-13T08:00:00Z",
+   "detected": "2026-05-13T08:00:00Z",
+   "category": "Legislation",
+   "priority": "low",
+   "tags": [
+    "Amends 431/2002"
+   ],
+   "summary": "Amends: 431/2002 Z. z. – Accounting Act · Effective from: 13.05.2026, 01.06.2026, 25.06.2026, 16.04.2027",
+   "doc_type": "Zákon,",
+   "effective": [
+    "2026-05-13",
+    "2026-06-01",
+    "2026-06-25",
+    "2027-04-16"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/85/ZZ_2026_85.pdf"
+  },
+  {
+   "id": "slovlex:76/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "76/2026 Z. z. – Zákon o rovnakom odmeňovaní mužov a žien za rovnakú prácu alebo za prácu rovnakej hodnoty a o zmene a doplnení niektorých zákonov",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/76/",
+   "date": "2026-05-08T08:00:00Z",
+   "detected": "2026-05-08T08:00:00Z",
+   "category": "Legislation",
+   "priority": "low",
+   "tags": [
+    "Amends 311/2001"
+   ],
+   "summary": "Amends: 311/2001 Z. z. – Labour Code · Effective from: 07.06.2026",
+   "doc_type": "Zákon",
+   "effective": [
+    "2026-06-07"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/76/ZZ_2026_76.pdf"
+  },
+  {
+   "id": "slovlex:70/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "70/2026 Z. z. – Zákon, ktorým sa mení a dopĺňa zákon Národnej rady Slovenskej republiky č. 154/1994 Z. z. o matrikách v znení neskorších predpisov a ktorým sa menia a dopĺňajú niektoré zákony",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/70/",
+   "date": "2026-05-05T08:00:00Z",
+   "detected": "2026-05-05T08:00:00Z",
+   "category": "Legislation",
+   "priority": "medium",
+   "tags": [
+    "Amends 581/2004"
+   ],
+   "summary": "Amends: 581/2004 Z. z. – Act on Health Insurance Companies · Effective from: 15.05.2026, 01.06.2026, 23.06.2026, 01.08.2026",
+   "doc_type": "Zákon,",
+   "effective": [
+    "2026-05-15",
+    "2026-06-01",
+    "2026-06-23",
+    "2026-08-01"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/70/ZZ_2026_70.pdf"
+  },
+  {
+   "id": "slovlex:69/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "69/2026 Z. z. – Zákon o medzinárodnej ochrane a o zmene a doplnení niektorých zákonov",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/69/",
+   "date": "2026-05-05T08:00:00Z",
+   "detected": "2026-05-05T08:00:00Z",
+   "category": "Legislation",
+   "priority": "medium",
+   "tags": [
+    "Amends 577/2004"
+   ],
+   "summary": "Amends: 577/2004 Z. z. – Act on Scope of Healthcare Covered by Public Health Insurance · Effective from: 05.05.2026, 12.06.2026",
+   "doc_type": "Zákon",
+   "effective": [
+    "2026-05-05",
+    "2026-06-12"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/69/ZZ_2026_69.pdf"
+  },
+  {
+   "id": "slovlex:46/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "46/2026 Z. z. – Vyhláška Ministerstva zdravotníctva Slovenskej republiky, ktorou sa mení a dopĺňa vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 42/2025 Z. z. o verejnej optimálnej sieti poskytovateľov všeobecnej ambulantnej starostlivosti, poskytovateľov primárnej špecializovanej gynekologickej ambulantnej starostlivosti a poskytovateľov špecializovanej ambulantnej starostlivosti poskytovanej v špecializovanej ambulancii",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/46/",
+   "date": "2026-03-28T08:00:00Z",
+   "detected": "2026-03-28T08:00:00Z",
+   "category": "Legislation",
+   "priority": "medium",
+   "tags": [
+    "Ministry of Health"
+   ],
+   "summary": "Effective from: 01.04.2026",
+   "doc_type": "Vyhláška",
+   "effective": [
+    "2026-04-01"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/46/ZZ_2026_46.pdf"
+  },
+  {
+   "id": "slovlex:44/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "44/2026 Z. z. – Zákon, ktorým sa mení a dopĺňa zákon č. 300/2005 Z. z. Trestný zákon v znení neskorších predpisov a ktorým sa menia a dopĺňajú niektoré zákony",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/44/",
+   "date": "2026-03-24T08:00:00Z",
+   "detected": "2026-03-24T08:00:00Z",
+   "category": "Legislation",
+   "priority": "medium",
+   "tags": [
+    "Amends 581/2004"
+   ],
+   "summary": "Amends: 581/2004 Z. z. – Act on Health Insurance Companies · Effective from: 24.03.2026, 30.03.2026, 01.04.2026, 23.06.2026",
+   "doc_type": "Zákon,",
+   "effective": [
+    "2026-03-24",
+    "2026-03-30",
+    "2026-04-01",
+    "2026-06-23",
+    "2026-08-01"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/44/ZZ_2026_44.pdf"
+  },
+  {
+   "id": "slovlex:39/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "39/2026 Z. z. – Vyhláška Ministerstva financií Slovenskej republiky, ktorou sa dopĺňa vyhláška Ministerstva financií Slovenskej republiky č. 161/2016 Z. z., ktorou sa vykonávajú niektoré ustanovenia zákona č. 199/2004 Z. z. Colný zákon a o zmene a doplnení niektorých zákonov v znení neskorších predpisov v znení neskorších predpisov",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/39/",
+   "date": "2026-03-13T08:00:00Z",
+   "detected": "2026-03-13T08:00:00Z",
+   "category": "Legislation",
+   "priority": "low",
+   "tags": [
+    "Customs"
+   ],
+   "summary": "Effective from: 13.03.2026",
+   "doc_type": "Vyhláška",
+   "effective": [
+    "2026-03-13"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/39/ZZ_2026_39.pdf"
+  },
+  {
+   "id": "slovlex:30/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "30/2026 Z. z. – Zákon, ktorým sa mení a dopĺňa zákon č. 483/2001 Z. z. o bankách a o zmene a doplnení niektorých zákonov v znení neskorších predpisov a ktorým sa menia a dopĺňajú niektoré zákony",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/30/",
+   "date": "2026-02-27T08:00:00Z",
+   "detected": "2026-02-27T08:00:00Z",
+   "category": "Legislation",
+   "priority": "medium",
+   "tags": [
+    "Amends 581/2004"
+   ],
+   "summary": "Amends: 581/2004 Z. z. – Act on Health Insurance Companies · Effective from: 27.02.2026, 28.02.2026, 01.03.2026, 01.04.2026",
+   "doc_type": "Zákon,",
+   "effective": [
+    "2026-02-27",
+    "2026-02-28",
+    "2026-03-01",
+    "2026-04-01",
+    "2026-05-01",
+    "2026-06-25",
+    "2027-01-11",
+    "2030-12-31"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/30/ZZ_2026_30.pdf"
+  },
+  {
+   "id": "slovlex:29/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "29/2026 Z. z. – Zákon o obchodnom registri a o zmene a doplnení niektorých zákonov (zákon o obchodnom registri)",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/29/",
+   "date": "2026-02-27T08:00:00Z",
+   "detected": "2026-02-27T08:00:00Z",
+   "category": "Legislation",
+   "priority": "low",
+   "tags": [
+    "Amends 595/2003",
+    "Amends 513/1991"
+   ],
+   "summary": "Amends: 595/2003 Z. z. – Income Tax Act; 513/1991 Z. z. – Commercial Code · Effective from: 27.02.2026, 01.03.2026, 01.06.2026, 17.08.2026",
+   "doc_type": "Zákon",
+   "effective": [
+    "2026-02-27",
+    "2026-03-01",
+    "2026-06-01",
+    "2026-08-17"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/29/ZZ_2026_29.pdf"
+  },
+  {
+   "id": "slovlex:17/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "17/2026 Z. z. – Vyhláška Ministerstva zdravotníctva Slovenskej republiky o rozdelení výdavkov verejného zdravotného poistenia podľa jednotlivých typov zdravotnej starostlivosti na rok 2026",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/17/",
+   "date": "2026-02-14T08:00:00Z",
+   "detected": "2026-02-14T08:00:00Z",
+   "category": "Legislation",
+   "priority": "medium",
+   "tags": [
+    "Ministry of Health",
+    "Health insurance"
+   ],
+   "summary": "Effective from: 15.02.2026 · 4 mentions of medicines / medical devices in the text",
+   "doc_type": "Vyhláška",
+   "effective": [
+    "2026-02-15"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/17/ZZ_2026_17.pdf"
+  },
+  {
+   "id": "slovlex:12/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "12/2026 Z. z. – Oznámenie Ministerstva zdravotníctva Slovenskej republiky o vydaní opatrenia z 30. januára 2026 č. S14882-2026-OL, ktorým sa mení a dopĺňa opatrenie Ministerstva zdravotníctva Slovenskej republiky č. 07045/2003 z 30. decembra 2003, ktorým sa ustanovuje rozsah regulácie cien v oblasti zdravotníctva v znení neskorších predpisov",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/12/",
+   "date": "2026-01-31T08:00:00Z",
+   "detected": "2026-01-31T08:00:00Z",
+   "category": "Legislation",
+   "priority": "high",
+   "tags": [
+    "Price regulation",
+    "Ministry of Health"
+   ],
+   "summary": "Effective from: 31.01.2026",
+   "doc_type": "Oznámenie",
+   "effective": [
+    "2026-01-31"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/12/ZZ_2026_12.pdf"
+  },
+  {
+   "id": "slovlex:11/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "11/2026 Z. z. – Vyhláška Ministerstva zdravotníctva Slovenskej republiky, ktorou sa dopĺňa vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 84/2016 Z. z., ktorou sa ustanovujú určujúce znaky jednotlivých druhov zdravotníckych zariadení v znení neskorších predpisov",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/11/",
+   "date": "2026-01-30T08:00:00Z",
+   "detected": "2026-01-30T08:00:00Z",
+   "category": "Legislation",
+   "priority": "medium",
+   "tags": [
+    "Ministry of Health",
+    "Healthcare providers"
+   ],
+   "summary": "Effective from: 01.02.2026",
+   "doc_type": "Vyhláška",
+   "effective": [
+    "2026-02-01"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/11/ZZ_2026_11.pdf"
+  },
+  {
+   "id": "slovlex:2/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "2/2026 Z. z. – Nariadenie vlády Slovenskej republiky, ktorým sa mení nariadenie vlády Slovenskej republiky č. 115/2018 Z. z., ktorým sa ustanovuje výška úhrad zdravotnej poisťovne za poskytovanie zubno-lekárskej pohotovostnej služby a ambulantnej pohotovostnej služby, spôsob výpočtu a pravidlá výpočtu týchto úhrad v znení neskorších predpisov",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/2/",
+   "date": "2026-01-13T08:00:00Z",
+   "detected": "2026-01-13T08:00:00Z",
+   "category": "Legislation",
+   "priority": "medium",
+   "tags": [
+    "Health insurance"
+   ],
+   "summary": "Effective from: 15.01.2026",
+   "doc_type": "Nariadenie",
+   "effective": [
+    "2026-01-15"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/2/ZZ_2026_2.pdf"
+  }
+ ],
+ "sources": {
+  "slovlex": {
+   "name": "Slov-Lex · Zbierka zákonov SR",
+   "ok": true,
+   "checked": "2026-10-14T07:24:40Z",
+   "new": 3,
+   "error": null
+  },
+  "sukl": {
+   "name": "ŠÚKL · Aktuality",
+   "ok": true,
+   "checked": "2026-10-14T06:44:48Z",
+   "new": 16,
+   "error": null
+  },
+  "sukl_recall": {
+   "name": "ŠÚKL · Stiahnutia liekov z trhu",
+   "ok": true,
+   "checked": "2026-10-14T06:44:48Z",
+   "new": 7,
+   "error": null
+  },
+  "mzsr": {
+   "name": "Ministerstvo zdravotníctva SR",
+   "ok": true,
+   "checked": "2026-10-14T06:44:48Z",
+   "new": 1,
+   "error": null
+  },
+  "uskvbl": {
+   "name": "ÚŠKVBL · Veterinárne lieky",
+   "ok": true,
+   "checked": "2026-10-14T06:44:48Z",
+   "new": 3,
+   "error": null
+  }
+ },
+ "updated": "2026-10-14T07:24:40Z"
+}
