@@ -109,10 +109,13 @@ jobs:
           name: e2e-screenshots-${{ matrix.name }}
           path: sop-archiv/e2e-screenshots
           if-no-files-found: ignore
+      # In a pull request electron-builder skips signing unless told otherwise; the Mac signature is ad hoc
+      # (identity "-", no certificate or secret involved), so the app is built the same as on a push.
       - name: Build installer
         run: npx electron-builder ${{ matrix.target }} --publish never
         env:
           CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+          CSC_FOR_PULL_REQUEST: ${{ matrix.name == 'macOS' }}
       - name: The installed app refuses a debugging mode
         if: runner.os == 'Windows'
         run: |
