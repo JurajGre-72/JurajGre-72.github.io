@@ -81,4 +81,16 @@ Data is saved in `data/items.json` (dashboard) and `data/state.json`
 (what has already been seen). Delete `state.json` to start a source from scratch; the first run of a source
 loads recent history without sending a notification.
 
+## Tests
+
+`tests/dashboard.test.mjs` clicks through every control of the dashboard (search, filters, "Show more",
+"Mark all read", dark mode, all "what changed" views, and the full "Check for updates now" flow with the GitHub
+API mocked) and fails on any broken control or browser error. It runs automatically on pull requests
+(`.github/workflows/pharma-monitor-check.yml`); a manual run of that workflow also tests the published site.
+
+```bash
+npm install --no-save playwright@1.56.1 && npx playwright install chromium
+node pharma-monitor/tests/dashboard.test.mjs
+```
+
 > Monitoring aid, not legal advice. Always check the official text.

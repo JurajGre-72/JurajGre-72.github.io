@@ -30,19 +30,16 @@ jobs:
 
   dashboard:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
+    env:
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
+      PW_CHANNEL: chrome          # use the Google Chrome that is preinstalled on the runner
     steps:
       - uses: actions/checkout@v4
-      - name: Render the dashboard in headless Chrome
-        run: |
-          python3 -m http.server 8000 >/dev/null 2>&1 &
-          sleep 2
-          check() {
-            google-chrome --headless=new --disable-gpu --no-sandbox --virtual-time-budget=15000 --dump-dom "$1" > dom.html 2>/dev/null
-            n=$(grep -o 'class="item p-' dom.html | wc -l)
-            echo "$1 -> $n items rendered"
-            grep -q 'Could not load' dom.html && { echo "::error::dashboard could not load its data"; exit 1; }
-            [ "$n" -ge 5 ] || { echo "::error::dashboard rendered only $n items"; exit 1; }
-          }
-          check "http://localhost:8000/pharma-monitor/"
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then check "https://jurajgre-72.github.io/pharma-monitor/"; fi
+      - name: Install Playwright (library only)
+        run: npm install --no-save --no-package-lock --prefix "$RUNNER_TEMP/pw" playwright@1.56.1
+      - name: Click through every control of the dashboard
+        run: NODE_PATH="$RUNNER_TEMP/pw/node_modules" node pharma-monitor/tests/dashboard.test.mjs
+      - name: Same test against the published site
+        if: github.event_name == 'workflow_dispatch'
+        run: NODE_PATH="$RUNNER_TEMP/pw/node_modules" DASHBOARD_URL=https://jurajgre-72.github.io/pharma-monitor/ node pharma-monitor/tests/dashboard.test.mjs
