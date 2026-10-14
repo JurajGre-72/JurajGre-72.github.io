@@ -4446,7 +4446,7 @@
     "tags": []
    },
    "LPEU/2026/701": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -4456,7 +4456,7 @@
     "tags": []
    },
    "LPEU/2026/700": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -4586,7 +4586,7 @@
     "tags": []
    },
    "LPEU/2026/699": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -4697,7 +4697,7 @@
     "tags": []
    },
    "LP/2026/496": {
-    "stage": "SPRACOVANIE_PREDKLADATEL",
+    "stage": "ROKOVANIE_POV",
     "rel": 0,
     "tags": []
    },
@@ -5107,7 +5107,7 @@
     "stage_name": "Zápis predbežného stanoviska k návrhu aktu EÚ"
    },
    "LP/2026/468": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 0,
     "tags": []
    },
@@ -5385,7 +5385,7 @@
     "tags": []
    },
    "LP/2026/473": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "ROKOVANIE_VLADA",
     "rel": 0,
     "tags": []
    },
@@ -5637,7 +5637,7 @@
     "stage_name": "Vyhodnotenie pripomienkového konania"
    },
    "LP/2026/455": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 0,
     "tags": []
    },
@@ -6773,9 +6773,17 @@
     "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
+   },
+   "LP/2026/534": {
+    "stage": "MPK",
+    "rel": 2,
+    "tags": [
+     "Ministry of Health"
+    ],
+    "stage_name": "Pripomienkové konanie"
    }
   },
-  "last_run": "2026-10-14T11:08:23Z"
+  "last_run": "2026-10-14T18:01:56Z"
  },
  "eurlex": {
   "seen": {
