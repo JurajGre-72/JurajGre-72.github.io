@@ -6775,7 +6775,7 @@
     "tags": []
    }
   },
-  "last_run": "2026-10-14T10:24:50Z"
+  "last_run": "2026-10-14T11:08:23Z"
  },
  "eurlex": {
   "seen": {
@@ -8083,6 +8083,35 @@
     "2026-07-31",
     "2026-09-27"
    ]
+  }
+ },
+ "ema": {
+  "seen": {
+   "https://www.ema.europa.eu/en/news/meeting-highlights-committee-veterinary-medicinal-products-cvmp-6-8-october-2026": "2026-10-14T11:10:03Z",
+   "https://www.ema.europa.eu/en/news/clinical-trial-applications-advice-pilot-becomes-permanent": "2026-10-14T11:10:03Z",
+   "https://www.ema.europa.eu/en/news/meeting-highlights-pharmacovigilance-risk-assessment-committee-prac-28-september-1-october": "2026-10-14T11:10:03Z",
+   "https://www.ema.europa.eu/en/news/advice-end-year-submission-dates-type-i-variations-2026": "2026-10-14T11:10:03Z",
+   "https://www.ema.europa.eu/en/news/ema-management-board-highlights-september-2026-meeting": "2026-10-14T11:10:03Z",
+   "https://www.ema.europa.eu/en/news/global-regulators-call-advancing-alternatives-animal-testing-across-medicine-lifecycle": "2026-10-14T11:10:03Z",
+   "https://www.ema.europa.eu/en/news/executive-director-speech-ema-womens-health-multi-stakeholder-workshop": "2026-10-14T11:10:03Z",
+   "https://www.ema.europa.eu/en/news/women-are-missing-medicines-development-emas-roadmap-change": "2026-10-14T11:10:03Z",
+   "https://www.ema.europa.eu/en/news/meeting-highlights-committee-medicinal-products-human-use-chmp-14-17-september-2026": "2026-10-14T11:10:03Z"
+  }
+ },
+ "svps": {
+  "seen": {
+   "https://svps.sk/?p=17185": "2026-10-14T11:10:05Z",
+   "https://svps.sk/?p=17132": "2026-10-14T11:10:05Z",
+   "https://svps.sk/?p=17167": "2026-10-14T11:10:05Z",
+   "https://svps.sk/?p=17122": "2026-10-14T11:10:05Z",
+   "https://svps.sk/?p=17105": "2026-10-14T11:10:05Z",
+   "https://svps.sk/?p=17017": "2026-10-14T11:10:05Z",
+   "https://svps.sk/?p=17077": "2026-10-14T11:10:05Z",
+   "https://svps.sk/?p=17072": "2026-10-14T11:10:05Z",
+   "https://svps.sk/?p=17065": "2026-10-14T11:10:05Z",
+   "https://svps.sk/?p=16925": "2026-10-14T11:10:05Z",
+   "https://svps.sk/?p=16915": "2026-10-14T11:10:05Z",
+   "https://svps.sk/?p=16853": "2026-10-14T11:10:05Z"
   }
  }
 }

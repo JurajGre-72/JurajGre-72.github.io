@@ -233,6 +233,38 @@
    "summary": "Stage: Proces ukončený (since 12.10.2026) · Submitted by: Ministerstvo životného prostredia Slovenskej republiky"
   },
   {
+   "id": "https://svps.sk/?p=17185",
+   "source": "svps",
+   "source_name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
+   "title": "Nevyhovujúci výrobok – Fazuľa biela",
+   "url": "https://svps.sk/nevyhovujuci-vyrobok-fazula-biela/",
+   "date": "2026-10-12T07:01:15Z",
+   "detected": "2026-10-12T07:01:15Z",
+   "category": "ŠVPS notice",
+   "priority": "medium",
+   "tags": [
+    "Veterinary care"
+   ],
+   "summary": "RVPS Dunajská Streda na základe podnetu odobrala v prevádzkarni Biedronka č. 5071, Kostolné Kračany č. 450, 930 03 Kostolné Kračany úradnú vzorku potraviny: Identifikácia výrobku Zistenie Laboratórnym vyšetrením vo VPÚ Bratislava podľa Protokolu o skúške č. 10011/2026 bolo zistené, že potravina NIE JE V SÚLADE s…"
+  },
+  {
+   "id": "https://www.ema.europa.eu/en/news/meeting-highlights-committee-veterinary-medicinal-products-cvmp-6-8-october-2026",
+   "source": "ema",
+   "source_name": "EMA · European Medicines Agency",
+   "title": "Meeting highlights from the Committee for Veterinary Medicinal Products (CVMP) 6-8 October 2026",
+   "url": "https://www.ema.europa.eu/en/news/meeting-highlights-committee-veterinary-medicinal-products-cvmp-6-8-october-2026",
+   "date": "2026-10-09T13:30:00Z",
+   "detected": "2026-10-09T13:30:00Z",
+   "category": "EU agency (EMA)",
+   "priority": "high",
+   "tags": [
+    "Medicines",
+    "Veterinary medicines",
+    "Authorisation opinions"
+   ],
+   "summary": "CVMP opinions on veterinary medicinal productsThe Committee adopted a positive opinion, in exceptional circumstances, for a marketing authorisation for Bovilis Lumpyvax (lumpy…"
+  },
+  {
    "id": "slovlex:249/2026",
    "source": "slovlex",
    "source_name": "Slov-Lex · Zbierka zákonov SR",
@@ -252,6 +284,21 @@
    ],
    "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/249/ZZ_2026_249.pdf",
    "details": "data/changes/slovlex_249_2026.json"
+  },
+  {
+   "id": "https://www.ema.europa.eu/en/news/clinical-trial-applications-advice-pilot-becomes-permanent",
+   "source": "ema",
+   "source_name": "EMA · European Medicines Agency",
+   "title": "Clinical trial applications advice pilot becomes permanent",
+   "url": "https://www.ema.europa.eu/en/news/clinical-trial-applications-advice-pilot-becomes-permanent",
+   "date": "2026-10-08T15:09:00Z",
+   "detected": "2026-10-08T15:09:00Z",
+   "category": "EU agency (EMA)",
+   "priority": "medium",
+   "tags": [
+    "Clinical trials"
+   ],
+   "summary": "The Accelerating Clinical Trials in the EU (ACT EU) advice pilot, which helps sponsors prepare clinical trial applications, will become a permanent initiative from January 2027…"
   },
   {
    "id": "https://www.health.gov.sk/Clanok?mzsr-nrsr-reforma-liekova",
@@ -417,6 +464,21 @@
    "summary": "Stage: Zápis predbežného stanoviska k návrhu aktu EÚ (since 07.10.2026)"
   },
   {
+   "id": "https://svps.sk/?p=17132",
+   "source": "svps",
+   "source_name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
+   "title": "Preverenie incidentu s pramenitou vodou",
+   "url": "https://svps.sk/preverenie-incidentu-s-pramenitou-vodou/",
+   "date": "2026-10-07T06:29:38Z",
+   "detected": "2026-10-07T06:29:38Z",
+   "category": "ŠVPS notice",
+   "priority": "medium",
+   "tags": [
+    "Veterinary care"
+   ],
+   "summary": "ŠVPS SR sa podieľala na šetrení incidentu zo dňa 11.09.2026, ku ktorému došlo v zariadení verejného stravovania, kedy došlo k požitiu neznámej tekutiny z PET fľašky 500 ml, označenej ako pramenitá voda Natura, maloletou osobou a táto utrpela bezprostredne po požití zdravotné ťažkosti. Predmetné zistenia Úradu…"
+  },
+  {
    "id": "slovlex:241/2026",
    "source": "slovlex",
    "source_name": "Slov-Lex · Zbierka zákonov SR",
@@ -472,6 +534,22 @@
    "summary": "Stage: Vyhlásené v Zbierke zákonov SR (since 06.10.2026) · Submitted by: Ministerstvo pôdohospodárstva a rozvoja vidieka Slovenskej republiky · Main act amended: 152/1995 Z. z."
   },
   {
+   "id": "https://svps.sk/?p=17167",
+   "source": "svps",
+   "source_name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
+   "title": "Výskyt katarálnej horúčky oviec (Bluetongue, BT) na Slovensku",
+   "url": "https://svps.sk/vyskyt-kataralnej-horucky-oviec-bluetongue-bt-na-slovensku/",
+   "date": "2026-10-05T10:05:23Z",
+   "detected": "2026-10-05T10:05:23Z",
+   "category": "Animal health (ŠVPS)",
+   "priority": "medium",
+   "tags": [
+    "Animal diseases",
+    "Veterinary care"
+   ],
+   "summary": "na Slovensku sme v uplynulom týdni po konfirmačných vyšetreniach Štátneho veterinárního a potravinového ústavu – Veterinárneho ústavu Zvolen potvrdili prvé 2 prípady BT u hovädzieho dobytka v SR – jeden v okrese Čadca a druhý v okrese Žarnovica. Zvieratá neprejavovali žiadne klinické príznaky ochorenia, choroba bola…"
+  },
+  {
    "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/liekopis/slovensky-farmaceuticky-kodex/prieskum-k-tretiemu-vydaniu-slovenskeho-farmaceutickeho-kodexu",
    "source": "sukl",
    "source_name": "ŠÚKL · Aktuality",
@@ -485,6 +563,23 @@
     "Pharmacy"
    ],
    "summary": "Prieskum pre odborníkov s cieľom zozbierať spätnú väzbu ohľadne používania Slovenského farmaceutického kódexu v praxi."
+  },
+  {
+   "id": "https://www.ema.europa.eu/en/news/meeting-highlights-pharmacovigilance-risk-assessment-committee-prac-28-september-1-october",
+   "source": "ema",
+   "source_name": "EMA · European Medicines Agency",
+   "title": "Meeting highlights from the Pharmacovigilance Risk Assessment Committee (PRAC) 28 September - 1 October",
+   "url": "https://www.ema.europa.eu/en/news/meeting-highlights-pharmacovigilance-risk-assessment-committee-prac-28-september-1-october",
+   "date": "2026-10-02T11:00:00Z",
+   "detected": "2026-10-02T11:00:00Z",
+   "category": "EU agency (EMA)",
+   "priority": "medium",
+   "tags": [
+    "Medicines",
+    "Medicines (general)",
+    "Drug safety"
+   ],
+   "summary": "At its monthly meeting, EMA’s safety committee (PRAC) carried out its broad range of responsibilities to manage the safety of medicines, including the assessment of safety…, Agenda Agenda of the PRAC meeting 28 September - 1 October 2026Draft Reference Number: EMA/PRAC/204838/2026…, PRAC statistics: October 2026…"
   },
   {
    "id": "lp:LPEU/2026/659:ZAPIS_PREDBEZNEHO_STANOVISKA",
@@ -533,6 +628,62 @@
     "Zápis predbežného stanoviska k návrhu aktu EÚ"
    ],
    "summary": "Stage: Zápis predbežného stanoviska k návrhu aktu EÚ (since 02.10.2026)"
+  },
+  {
+   "id": "https://www.ema.europa.eu/en/news/advice-end-year-submission-dates-type-i-variations-2026",
+   "source": "ema",
+   "source_name": "EMA · European Medicines Agency",
+   "title": "Advice on ‘end-of-year’ submission dates for type I variations in 2026",
+   "url": "https://www.ema.europa.eu/en/news/advice-end-year-submission-dates-type-i-variations-2026",
+   "date": "2026-10-01T14:00:00Z",
+   "detected": "2026-10-01T14:00:00Z",
+   "category": "EU agency (EMA)",
+   "priority": "low",
+   "tags": [
+    "Authorisation opinions"
+   ],
+   "summary": "Marketing authorisation holders wishing to receive an outcome in 2026 should submit type IA annual updates, individual type IA and type IAIN variations, and super-groupings…"
+  },
+  {
+   "id": "https://www.ema.europa.eu/en/news/ema-management-board-highlights-september-2026-meeting",
+   "source": "ema",
+   "source_name": "EMA · European Medicines Agency",
+   "title": "EMA Management Board: highlights of September 2026 meeting",
+   "url": "https://www.ema.europa.eu/en/news/ema-management-board-highlights-september-2026-meeting",
+   "date": "2026-10-01T13:49:00Z",
+   "detected": "2026-10-01T13:49:00Z",
+   "category": "EU agency (EMA)",
+   "priority": "low",
+   "tags": [],
+   "summary": "Mid-year report 2026 from the Executive DirectorEMA presented results and achievements of its operations for the first half of 2026 to the Management Board. Between January and…"
+  },
+  {
+   "id": "https://www.ema.europa.eu/en/news/global-regulators-call-advancing-alternatives-animal-testing-across-medicine-lifecycle",
+   "source": "ema",
+   "source_name": "EMA · European Medicines Agency",
+   "title": "Global regulators call for advancing alternatives to animal testing across the medicine lifecycle",
+   "url": "https://www.ema.europa.eu/en/news/global-regulators-call-advancing-alternatives-animal-testing-across-medicine-lifecycle",
+   "date": "2026-10-01T11:00:00Z",
+   "detected": "2026-10-01T11:00:00Z",
+   "category": "EU agency (EMA)",
+   "priority": "low",
+   "tags": [
+    "Medicines (general)"
+   ],
+   "summary": "EMA has endorsed a joint statement from the International Coalition of Medicines Regulatory Authorities (ICMRA) calling on medicine developers, manufacturers, regulators and…"
+  },
+  {
+   "id": "https://www.ema.europa.eu/en/news/executive-director-speech-ema-womens-health-multi-stakeholder-workshop",
+   "source": "ema",
+   "source_name": "EMA · European Medicines Agency",
+   "title": "Executive Director speech at EMA women’s health multi-stakeholder workshop",
+   "url": "https://www.ema.europa.eu/en/news/executive-director-speech-ema-womens-health-multi-stakeholder-workshop",
+   "date": "2026-10-01T08:37:00Z",
+   "detected": "2026-10-01T08:37:00Z",
+   "category": "EU agency (EMA)",
+   "priority": "low",
+   "tags": [],
+   "summary": "Amsterdam, 28 September 2026Check against delivery (The published text is based on the prepared speech. Minor differences may have occurred during delivery)Good morning,…"
   },
   {
    "id": "lp:LP/2026/508:MPK",
@@ -590,6 +741,21 @@
    "details": "data/changes/kat_202610_780e88f778ea.json"
   },
   {
+   "id": "https://www.ema.europa.eu/en/news/women-are-missing-medicines-development-emas-roadmap-change",
+   "source": "ema",
+   "source_name": "EMA · European Medicines Agency",
+   "title": "Women are missing from medicines development: EMA’s roadmap for change",
+   "url": "https://www.ema.europa.eu/en/news/women-are-missing-medicines-development-emas-roadmap-change",
+   "date": "2026-09-30T09:32:50Z",
+   "detected": "2026-09-30T09:32:50Z",
+   "category": "EU agency (EMA)",
+   "priority": "low",
+   "tags": [
+    "Medicines (general)"
+   ],
+   "summary": "By the end of 2026, EMA will develop a regulatory roadmap to help drive decisive change on how women’s health is considered across medicines development and regulation. This…, Women are still missing: from research and data, prevention, diagnosis and treatment. But the momentum to improve support for women’s health…"
+  },
+  {
    "id": "https://www.sukl.sk/pre-verejnost-pacientov-a-media/uzitocne-informacie/vakciny-a-ockovanie/prehlad-vakcin-proti-chripke-pre-sezonu-2026-2027",
    "source": "sukl",
    "source_name": "ŠÚKL · Aktuality",
@@ -620,6 +786,21 @@
    ],
    "summary": "Stage: Pripomienkové konanie (since 29.09.2026) · Comments can be submitted until 19.10.2026 · Submitted by: Ministerstvo životného prostredia Slovenskej republiky · Main act amended: 365/2015 Z. z.",
    "deadline": "2026-10-19"
+  },
+  {
+   "id": "https://svps.sk/?p=17017",
+   "source": "svps",
+   "source_name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
+   "title": "Správa z úradnej kontroly za mesiac august 2026",
+   "url": "https://svps.sk/sprava-z-uradnej-kontroly-za-mesiac-august-2026/",
+   "date": "2026-09-29T07:16:00Z",
+   "detected": "2026-09-29T07:16:00Z",
+   "category": "ŠVPS notice",
+   "priority": "medium",
+   "tags": [
+    "Veterinary care"
+   ],
+   "summary": "V období od 1.8. do 31.8. 2026 vykonali inšpektori regionálnych veterinárnych a potravinových správ 2 515 úradných kontrol potravín rastlinného a živočíšneho pôvodu. Úradná kontrola bola vykonaná u 1 000 právnych subjektov a 1 498 prevádzok. Nedostatky boli zistené pri 115 kontrolách (Tabuľka č.1). Z uvedeného počtu…"
   },
   {
    "id": "law:108/2024:2026-09-27",
@@ -732,6 +913,25 @@
    "summary": "Stage: Vyhodnotenie pripomienkového konania (since 22.09.2026) · Submitted by: Ministerstvo hospodárstva Slovenskej republiky · Main act amended: 67/2010 Z. z."
   },
   {
+   "id": "https://www.ema.europa.eu/en/news/meeting-highlights-committee-medicinal-products-human-use-chmp-14-17-september-2026",
+   "source": "ema",
+   "source_name": "EMA · European Medicines Agency",
+   "title": "Meeting highlights from the Committee for Medicinal Products for Human Use (CHMP) 14-17 September 2026",
+   "url": "https://www.ema.europa.eu/en/news/meeting-highlights-committee-medicinal-products-human-use-chmp-14-17-september-2026",
+   "date": "2026-09-18T10:00:00Z",
+   "detected": "2026-09-18T10:00:00Z",
+   "category": "EU agency (EMA)",
+   "priority": "high",
+   "tags": [
+    "Medicines",
+    "Medicines (general)",
+    "Drug safety",
+    "Authorisation opinions",
+    "Vaccines"
+   ],
+   "summary": "12 new medicines recommended for approvalEMA’s human medicines committee (CHMP) recommended 12 medicines for approval at its September 2026 meeting.The committee recommended…, CHMP statistics Key figures from the September 2026 CHMP meeting are represented in the graphic below. © European Medicines Agency, CHMP…"
+  },
+  {
    "id": "lp:LP/2026/449:VYHODNOTENIE_MPK",
    "source": "slovlex_lp",
    "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
@@ -808,6 +1008,38 @@
     "Rokovanie Národnej rady SR"
    ],
    "summary": "Stage: Rokovanie Národnej rady SR (since 14.09.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky · Main act amended: 139/1998 Z. z."
+  },
+  {
+   "id": "https://svps.sk/?p=17072",
+   "source": "svps",
+   "source_name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
+   "title": "Oznámenie o začatí jesennej kampane 2026 orálnej vakcinácie líšok proti besnote",
+   "url": "https://svps.sk/oznamenie-o-zacati-jesennej-kampane-2026-oralnej-vakcinacie-lisok-proti-besnote/",
+   "date": "2026-09-14T06:35:01Z",
+   "detected": "2026-09-14T06:35:01Z",
+   "category": "Animal health (ŠVPS)",
+   "priority": "medium",
+   "tags": [
+    "Animal diseases",
+    "Veterinary care",
+    "Vaccines"
+   ],
+   "summary": "Štátna veterinárna a potravinová správa Slovenskej republiky oznamuje, že v dňoch od 5. októbra do 23. októbra 2026 bude prebiehať päťdesiata štvrtá kampaň orálnej vakcinácie líšok proti besnote leteckou pokládkou na území Slovenskej republiky spolufinancovaná Európskou úniou. Na orálnu vakcináciu líšok proti besnote…"
+  },
+  {
+   "id": "https://svps.sk/?p=17065",
+   "source": "svps",
+   "source_name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
+   "title": "Voľné pracovné miesta na RVPS Topoľčany – oddelenie úradnej kontroly a hygieny potravín živočíšneho pôvodu (ukončené / archív)",
+   "url": "https://svps.sk/volne-pracovne-miesto-rvps-topolcany-oddelenie-uradnej-kontroly-a-hygieny-potravin-zivocisneho-povodu/",
+   "date": "2026-09-14T06:23:42Z",
+   "detected": "2026-09-14T06:23:42Z",
+   "category": "ŠVPS notice",
+   "priority": "medium",
+   "tags": [
+    "Veterinary care"
+   ],
+   "summary": "1. Voľné pracovné miesto vo verejnej službe 2. Voľné štátnozamestnanecké miesto Nástup možný od 01.10.2026 Žiadosť o zamestnanie a štruktúrovaný životopis, vrátane súhlasu so spracovaním osobných údajov posielajte na adresu: The post Voľné pracovné miesta na RVPS Topoľčany – oddelenie úradnej kontroly a hygieny…"
   },
   {
    "id": "lp:LP/2026/442:VYHODNOTENIE_MPK",
@@ -1141,6 +1373,21 @@
    "details": "data/changes/law_513_1991_2026-08-17.json"
   },
   {
+   "id": "https://svps.sk/?p=16925",
+   "source": "svps",
+   "source_name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
+   "title": "Správa z úradnej kontroly za mesiac júl 2026",
+   "url": "https://svps.sk/sprava-z-uradnej-kontroly-za-mesiac-jul-2026/",
+   "date": "2026-08-17T07:54:33Z",
+   "detected": "2026-08-17T07:54:33Z",
+   "category": "ŠVPS notice",
+   "priority": "medium",
+   "tags": [
+    "Veterinary care"
+   ],
+   "summary": "V období od 1.7. do 31.7. 2026 vykonali inšpektori regionálnych veterinárnych a potravinových správ 2 995 úradných kontrol potravín rastlinného a živočíšneho pôvodu. Úradná kontrola bola vykonaná u 1 125 právnych subjektov a 1 746 prevádzok. Nedostatky boli zistené pri 175 kontrolách (Tabuľka č.1). Z uvedeného počtu…"
+  },
+  {
    "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/dostupnost-a-kvalita-liekov/kvalita-liekov/oznamy-o-stiahnuti-liekov/stiahnutie-lieku-zoely-ztrhu",
    "source": "sukl_recall",
    "source_name": "ŠÚKL · Stiahnutia liekov z trhu",
@@ -1301,6 +1548,21 @@
    "details": "data/changes/law_108_2024_2026-07-31.json"
   },
   {
+   "id": "https://svps.sk/?p=16915",
+   "source": "svps",
+   "source_name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
+   "title": "Prázdne misky a neskutočný zápach: úradní veterinárni lekári vyslobodili z katastrofálenho bytu 18 zvierat",
+   "url": "https://svps.sk/prazdne-misky-a-neskutocny-zapach-uradni-veterinarni-lekari-vyslobodili-z-katastrofalenho-bytu-18-zvierat/",
+   "date": "2026-07-30T09:36:42Z",
+   "detected": "2026-07-30T09:36:42Z",
+   "category": "ŠVPS notice",
+   "priority": "medium",
+   "tags": [
+    "Veterinary care"
+   ],
+   "summary": "Byt, ktorý mal byť pre zvieratá domovom pre život, sa napokon stal miestom boja o život. Prostredie bolo natoľko zanedbané, že aj samotná kontrola zo strany RVPS Nitra bola pre úradných veterinárnych lekárov mimoriadne náročná. V čase kontroly sa v byte v Zlatých Moravciach nachádzalo 18 zvierat – 13 mačiek, 2 psy a…"
+  },
+  {
    "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/liekopis/europsky-liekopis/pripomienkovanie-clankov-europskeho-liekopisu-pharmeuropa-38.3",
    "source": "sukl",
    "source_name": "ŠÚKL · Aktuality",
@@ -1346,6 +1608,21 @@
     "Medicines"
    ],
    "summary": ""
+  },
+  {
+   "id": "https://svps.sk/?p=16853",
+   "source": "svps",
+   "source_name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
+   "title": "Nevyhovujúci výrobok – Sójová omáčka 185 ml",
+   "url": "https://svps.sk/nevyhovujuci-vyrobok-sojova-omacka-185-ml/",
+   "date": "2026-07-21T07:52:14Z",
+   "detected": "2026-07-21T07:52:14Z",
+   "category": "ŠVPS notice",
+   "priority": "medium",
+   "tags": [
+    "Veterinary care"
+   ],
+   "summary": "V rámci úradnej kontroly potravín vykonala RVPS Nitra v prevádzke Tempo Supermarket 406, Chrenovská 30, 949 01 Nitra odber vzorky výrobku : Identifikácia výrobku Zistenie Analýzou vzorky v ŠVPU-VPÚ Bratislava bola metódou ELISA zistená prítomnosť proteínov vlčieho bôbu v obsahu 5,05 mg/kg. Zistený alergén nie je…"
   },
   {
    "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/dostupnost-a-kvalita-liekov/kvalita-liekov/oznamy-o-stiahnuti-liekov/stiahnutie-lieku-levosimendan-fmk-z-trhu",
@@ -2071,66 +2348,80 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-10-14T07:24:40Z",
-   "new": 3,
+   "checked": "2026-10-14T11:08:02Z",
+   "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-10-14T06:44:48Z",
-   "new": 16,
+   "checked": "2026-10-14T11:08:02Z",
+   "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-10-14T06:44:48Z",
-   "new": 7,
+   "checked": "2026-10-14T11:08:02Z",
+   "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-10-14T06:44:48Z",
-   "new": 1,
+   "checked": "2026-10-14T11:08:02Z",
+   "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-10-14T06:44:48Z",
-   "new": 3,
+   "checked": "2026-10-14T11:08:02Z",
+   "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-10-14T10:33:36Z",
-   "new": 19,
+   "checked": "2026-10-14T11:08:02Z",
+   "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-10-14T10:21:50Z",
-   "new": 31,
+   "checked": "2026-10-14T11:08:02Z",
+   "new": 0,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-10-14T10:21:50Z",
-   "new": 1,
+   "checked": "2026-10-14T11:08:02Z",
+   "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-10-14T10:21:50Z",
-   "new": 2,
+   "checked": "2026-10-14T11:08:02Z",
+   "new": 0,
+   "error": null
+  },
+  "ema": {
+   "name": "EMA · European Medicines Agency",
+   "ok": true,
+   "checked": "2026-10-14T11:08:02Z",
+   "new": 9,
+   "error": null
+  },
+  "svps": {
+   "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
+   "ok": true,
+   "checked": "2026-10-14T11:08:02Z",
+   "new": 9,
    "error": null
   }
  },
- "updated": "2026-10-14T10:33:36Z"
+ "updated": "2026-10-14T11:08:02Z"
 }
