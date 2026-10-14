@@ -1,0 +1,152 @@
+{
+  "name": "sop-archiv",
+  "productName": "SOP Archiv",
+  "version": "1.0.8",
+  "description": "Offline intelligent archive for SOPs, organizational directives (OS) and other controlled documents, with review reminders and legislation change monitoring.",
+  "main": "src/main/main.js",
+  "author": "Juraj Gregus",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test test/unit/*.test.js",
+    "test:e2e": "node test/e2e/run.js",
+    "dist": "electron-builder",
+    "dist:win": "electron-builder --win",
+    "dist:mac": "electron-builder --mac",
+    "dist:linux": "electron-builder --linux"
+  },
+  "dependencies": {
+    "@pdf-lib/fontkit": "1.1.1",
+    "@tesseract.js-data/eng": "^1.0.0",
+    "@tesseract.js-data/slk": "^1.0.0",
+    "diff": "^9.0.0",
+    "jszip": "^3.10.2",
+    "mammoth": "^1.13.0",
+    "minisearch": "^7.2.0",
+    "node-llama-cpp": "3.22.1",
+    "pdf-lib": "1.17.1",
+    "pdfjs-dist": "^6.4.299",
+    "tesseract.js": "^7.0.0",
+    "word-extractor": "^1.0.4"
+  },
+  "devDependencies": {
+    "electron": "^44.5.1",
+    "electron-builder": "^26.15.3",
+    "playwright": "^1.63.0"
+  },
+  "homepage": "https://github.com/JurajGre-72/JurajGre-72.github.io/tree/main/sop-archiv",
+  "build": {
+    "appId": "sk.soparchiv.app",
+    "productName": "SOP Archiv",
+    "copyright": "Juraj Gregus",
+    "asar": true,
+    "npmRebuild": false,
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "package.json",
+      "NOVINKY.md",
+      "src/**/*",
+      "build/icon.png",
+      "!**/*.map",
+      "!**/*.d.ts",
+      "!**/*.d.mts",
+      "!**/*.d.cts",
+      "!node_modules/@napi-rs/**",
+      "!node_modules/pdfjs-dist/build/**",
+      "!node_modules/pdfjs-dist/web/**",
+      "!node_modules/pdfjs-dist/image_decoders/**",
+      "!node_modules/pdfjs-dist/legacy/web/**",
+      "!node_modules/pdfjs-dist/legacy/image_decoders/**",
+      "!node_modules/pdfjs-dist/types/**",
+      "!node_modules/**/{README,CHANGELOG,HISTORY}*",
+      "!node_modules/**/{test,tests,docs,example,examples}/**",
+      "!node_modules/tesseract.js/dist/**",
+      "!node_modules/tesseract.js-core/*.wasm.js",
+      "!node_modules/@tesseract.js-data/*/4.0.0/**",
+      "!node_modules/node-llama-cpp/llama/gitRelease.bundle",
+      "!node_modules/node-llama-cpp/llama/{addon,toolchains,cmake,profiles}/**",
+      "!node_modules/node-llama-cpp/templates/**",
+      "!node_modules/@node-llama-cpp/*cuda*/**",
+      "!node_modules/@node-llama-cpp/{linux-arm64,linux-armv7l,linux-riscv64,win-arm64}/**"
+    ],
+    "artifactName": "SOP-Archiv-${version}-${os}-${arch}.${ext}",
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "SOP Archív",
+      "artifactName": "SOP-Archiv-${version}-Setup.${ext}"
+    },
+    "portable": {
+      "artifactName": "SOP-Archiv-${version}-portable.${ext}"
+    },
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64",
+            "x64"
+          ]
+        }
+      ],
+      "category": "public.app-category.business",
+      "icon": "build/icon.png",
+      "identity": "-",
+    "hardenedRuntime": false
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "category": "Office",
+      "icon": "build/icon.png"
+    },
+    "publish": null,
+    "asarUnpack": [
+      "node_modules/tesseract.js/**",
+      "node_modules/tesseract.js-core/**",
+      "node_modules/@tesseract.js-data/**",
+      "node_modules/node-llama-cpp/**",
+      "node_modules/@node-llama-cpp/**"
+    ],
+    "electronFuses": {
+      "runAsNode": false,
+      "enableCookieEncryption": true,
+      "enableNodeOptionsEnvironmentVariable": false,
+      "enableNodeCliInspectArguments": false,
+      "enableEmbeddedAsarIntegrityValidation": true,
+      "onlyLoadAppFromAsar": true,
+      "loadBrowserProcessSpecificV8Snapshot": false,
+      "grantFileProtocolExtraPrivileges": false
+    }
+  }
+}
