@@ -1,0 +1,47 @@
+{
+ "kind": "law_diff",
+ "law": "311/2001",
+ "law_name": "Labour Code",
+ "from": "2026-06-07",
+ "to": "2026-09-01",
+ "amended_by": "300/2025 Z. z.",
+ "amended_by_url": "https://static.slov-lex.sk/static/SK/ZZ/2025/300/20260901.html",
+ "old_url": "https://static.slov-lex.sk/static/SK/ZZ/2001/311/20260607.html",
+ "new_url": "https://static.slov-lex.sk/static/SK/ZZ/2001/311/20260901.html",
+ "changes": [
+  {
+   "loc": "§ 48 ods. 6",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Pracovný pomer na určitú dobu s vysokoškolským učiteľom, tvorivým zamestnancom výskumu a "
+    ],
+    [
+     "-",
+     "vývoja, rektorom "
+    ],
+    [
+     "+",
+     "vývoja "
+    ],
+    [
+     "=",
+     "alebo s prorektorom možno dohodnúť, predĺžiť alebo opätovne dohodnúť aj na dobu ustanovenú v osobitnom predpise, ak je na to objektívny dôvod vyplývajúci z povahy činnosti vysokoškolského učiteľa, tvorivého zamestnanca výskumu a "
+    ],
+    [
+     "-",
+     "vývoja, rektora "
+    ],
+    [
+     "+",
+     "vývoja "
+    ],
+    [
+     "=",
+     "alebo prorektora ustanovený osobitným predpisom."
+    ]
+   ]
+  }
+ ]
+}

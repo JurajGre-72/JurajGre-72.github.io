@@ -1,0 +1,163 @@
+{
+ "kind": "law_diff",
+ "law": "311/2001",
+ "law_name": "Labour Code",
+ "from": "2026-01-01",
+ "to": "2026-06-07",
+ "amended_by": "76/2026 Z. z.",
+ "amended_by_url": "https://static.slov-lex.sk/static/SK/ZZ/2026/76/20260607.html",
+ "old_url": "https://static.slov-lex.sk/static/SK/ZZ/2001/311/20260101.html",
+ "new_url": "https://static.slov-lex.sk/static/SK/ZZ/2001/311/20260607.html",
+ "changes": [
+  {
+   "loc": "§ 82 písm. c)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "zabezpečovať odmeňovanie zamestnancov podľa všeobecne záväzných právnych predpisov, kolektívnych zmlúv a pracovných zmlúv a dodržiavať "
+    ],
+    [
+     "-",
+     "zásadu poskytovania rovnakej mzdy "
+    ],
+    [
+     "+",
+     "rovnaké odmeňovanie "
+    ],
+    [
+     "=",
+     "za rovnakú prácu alebo za prácu rovnakej hodnoty podľa § 119a,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 119a (nadpis)",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Mzda "
+    ],
+    [
+     "+",
+     "Odmeňovanie "
+    ],
+    [
+     "=",
+     "za rovnakú prácu "
+    ],
+    [
+     "-",
+     "a "
+    ],
+    [
+     "+",
+     "alebo "
+    ],
+    [
+     "=",
+     "za prácu rovnakej hodnoty"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 119a ods. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Mzdové podmienky musia byť dohodnuté bez akejkoľvek diskriminácie podľa pohlavia. Ustanovenie prvej vety sa vzťahuje na každé plnenie "
+    ],
+    [
+     "+",
+     "Rovnaké odmeňovanie mužov a žien "
+    ],
+    [
+     "=",
+     "za "
+    ],
+    [
+     "-",
+     "prácu, ako aj na plnenia, ktoré sa vyplácajú "
+    ],
+    [
+     "+",
+     "rovnakú prácu "
+    ],
+    [
+     "=",
+     "alebo "
+    ],
+    [
+     "-",
+     "sa budú vyplácať v súvislosti so zamestnaním podľa iných ustanovení tohto zákona "
+    ],
+    [
+     "+",
+     "za prácu rovnakej hodnoty ustanovuje osobitný predpis o rovnakom odmeňovaní mužov a žien za rovnakú prácu "
+    ],
+    [
+     "=",
+     "alebo "
+    ],
+    [
+     "-",
+     "podľa osobitných predpisov."
+    ],
+    [
+     "+",
+     "za prácu rovnakej hodnoty."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 119a ods. 2",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Ženy "
+    ],
+    [
+     "+",
+     "Právo na rovnaké odmeňovanie majú aj zamestnanci rovnakého pohlavia, ak vykonávajú rovnakú prácu alebo prácu rovnakej hodnoty; rovnaká práca alebo práca rovnakej hodnoty sa určuje na základe kritérií ustanovených osobitným predpisom o rovnakom odmeňovaní mužov "
+    ],
+    [
+     "=",
+     "a "
+    ],
+    [
+     "-",
+     "muži majú právo na rovnakú mzdu "
+    ],
+    [
+     "+",
+     "žien "
+    ],
+    [
+     "=",
+     "za rovnakú prácu alebo za prácu rovnakej "
+    ],
+    [
+     "-",
+     "hodnoty. Za rovnakú prácu alebo prácu rovnakej hodnoty sa považuje práca rovnakej alebo porovnateľnej zložitosti, zodpovednosti a namáhavosti, ktorá je vykonávaná v rovnakých alebo porovnateľných pracovných podmienkach a pri dosahovaní rovnakej alebo porovnateľnej výkonnosti a výsledkov práce v pracovnom pomere u toho istého zamestnávateľa."
+    ],
+    [
+     "+",
+     "hodnoty."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 119a ods. 3",
+   "type": "removed",
+   "text": "Ak zamestnávateľ uplatňuje systém hodnotenia pracovných miest, hodnotenie musí vychádzať z rovnakých kritérií pre mužov a ženy bez akejkoľvek diskriminácie podľa pohlavia. Pri posudzovaní hodnoty práce ženy a muža môže zamestnávateľ okrem kritérií uvedených v odseku 2 uplatniť ďalšie objektívne merateľné kritériá, ktoré sa dajú uplatniť na všetkých zamestnancov bez rozdielu pohlavia."
+  },
+  {
+   "loc": "§ 119a ods. 4",
+   "type": "removed",
+   "text": "Odseky 1 až 3 sa vzťahujú aj na zamestnancov rovnakého pohlavia, ak vykonávajú rovnakú prácu alebo prácu rovnakej hodnoty."
+  }
+ ]
+}

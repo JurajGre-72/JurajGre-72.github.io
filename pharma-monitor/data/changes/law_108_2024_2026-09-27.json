@@ -1,0 +1,1625 @@
+{
+ "kind": "law_diff",
+ "law": "108/2024",
+ "law_name": "Consumer Protection Act",
+ "from": "2026-07-31",
+ "to": "2026-09-27",
+ "amended_by": "310/2025 Z. z.",
+ "amended_by_url": "https://static.slov-lex.sk/static/SK/ZZ/2025/310/20260927.html",
+ "old_url": "https://static.slov-lex.sk/static/SK/ZZ/2024/108/20260731.html",
+ "new_url": "https://static.slov-lex.sk/static/SK/ZZ/2024/108/20260927.html",
+ "changes": [
+  {
+   "loc": "§ 2 ods. 1 písm. m)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "spotrebiteľskou organizáciou právnická osoba založená alebo zriadená na účely ochrany "
+    ],
+    [
+     "-",
+     "spotrebiteľa."
+    ],
+    [
+     "+",
+     "spotrebiteľa,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 5 ods. 1 písm. f)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "existenciu a "
+    ],
+    [
+     "-",
+     "dĺžku trvania "
+    ],
+    [
+     "+",
+     "hlavné informácie o "
+    ],
+    [
+     "=",
+     "zákonnej zodpovednosti obchodníka za vady "
+    ],
+    [
+     "-",
+     "tovaru, digitálneho obsahu alebo digitálnej služby "
+    ],
+    [
+     "+",
+     "tovaru vrátane dĺžky jej trvania, "
+    ],
+    [
+     "=",
+     "a "
+    ],
+    [
+     "-",
+     "dostupnosť spotrebiteľskej záruky, ak ju obchodník alebo výrobca poskytuje,"
+    ],
+    [
+     "+",
+     "to zreteľným spôsobom aspoň v podobe a v rozsahu podľa osobitného predpisu upravujúceho harmonizované oznámenie,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 5 ods. 1 písm. g)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "existenciu a dĺžku trvania "
+    ],
+    [
+     "+",
+     "spotrebiteľskej záruky na životnosť tovaru, ak ju výrobca alebo dovozca bezplatne poskytuje spotrebiteľovi na celý tovar s dĺžkou trvania viac ako dva roky a tieto informácie sprístupnil obchodníkovi, a existenciu zákonnej "
+    ],
+    [
+     "=",
+     "zodpovednosti "
+    ],
+    [
+     "+",
+     "obchodníka "
+    ],
+    [
+     "=",
+     "za vady "
+    ],
+    [
+     "-",
+     "služby "
+    ],
+    [
+     "+",
+     "tovaru, "
+    ],
+    [
+     "=",
+     "a "
+    ],
+    [
+     "-",
+     "postup pri uplatnení práv zo zodpovednosti za vady služby,"
+    ],
+    [
+     "+",
+     "to zreteľným spôsobom aspoň v podobe a v rozsahu podľa osobitného predpisu upravujúceho harmonizované označenie,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 5 ods. 1 písm. h)",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "podmienky popredajného servisu, ak ho obchodník "
+    ],
+    [
+     "+",
+     "existenciu a dĺžku trvania zodpovednosti za vady digitálneho obsahu "
+    ],
+    [
+     "=",
+     "alebo "
+    ],
+    [
+     "-",
+     "výrobca poskytuje,"
+    ],
+    [
+     "+",
+     "digitálnej služby,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 5 ods. 1 písm. i)",
+   "type": "changed",
+   "diff": [
+    [
+     "+",
+     "existenciu a "
+    ],
+    [
+     "=",
+     "dĺžku trvania "
+    ],
+    [
+     "-",
+     "zmluvy, ak ide o zmluvu uzavretú na určitý čas, alebo podmienky vypovedania zmluvy, ak ide o zmluvu uzavretú na neurčitý čas alebo o zmluvu, ktorej platnosť sa predlžuje automaticky,"
+    ],
+    [
+     "+",
+     "zodpovednosti za vady služby a postup pri uplatnení práv zo zodpovednosti za vady služby,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 5 ods. 1 písm. j)",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "údaje o funkčnosti veci s digitálnymi prvkami, digitálneho obsahu "
+    ],
+    [
+     "+",
+     "podmienky popredajného servisu "
+    ],
+    [
+     "=",
+     "a "
+    ],
+    [
+     "-",
+     "digitálnej služby vrátane dostupných technických ochranných opatrení,"
+    ],
+    [
+     "+",
+     "iných typov spotrebiteľských záruk, ako je spotrebiteľská záruka na životnosť tovaru podľa písmena g), ak ich obchodník, výrobca alebo dovozca poskytuje,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 5 ods. 1 písm. k)",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "údaje "
+    ],
+    [
+     "+",
+     "informáciu "
+    ],
+    [
+     "=",
+     "o "
+    ],
+    [
+     "-",
+     "kompatibilite a interoperabilite veci s digitálnymi prvkami, digitálneho obsahu a digitálnej služby, ktoré sú obchodníkovi známe alebo pri ktorých možno rozumne očakávať, že sú obchodníkovi známe,"
+    ],
+    [
+     "+",
+     "bodovom hodnotení opraviteľnosti tovaru, ktorým sa vyjadruje možnosť opravy tovaru,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 5 ods. 1 písm. l)",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "poučenie "
+    ],
+    [
+     "+",
+     "informáciu "
+    ],
+    [
+     "=",
+     "o "
+    ],
+    [
+     "-",
+     "práve spotrebiteľa podať obchodníkovi žiadosť "
+    ],
+    [
+     "+",
+     "dostupnosti, predpokladaných nákladoch a postupe objednania náhradných dielov, ktoré sú potrebné na opravu tovaru, pokynoch potrebných na opravu a údržbu tovaru a "
+    ],
+    [
+     "=",
+     "o "
+    ],
+    [
+     "-",
+     "nápravu "
+    ],
+    [
+     "+",
+     "obmedzeniach opravy, ak nebola poskytnutá informácia "
+    ],
+    [
+     "=",
+     "podľa "
+    ],
+    [
+     "-",
+     "osobitného predpisu s uvedením odkazu na webové sídlo, na ktorom sú zverejnené "
+    ],
+    [
+     "+",
+     "písmena k), a ak tieto "
+    ],
+    [
+     "=",
+     "informácie "
+    ],
+    [
+     "-",
+     "o príslušnom subjekte alternatívneho riešenia sporov."
+    ],
+    [
+     "+",
+     "výrobca alebo dovozca sprístupnil obchodníkovi,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 5 ods. 3",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Informácie podľa odseku 1 písm. "
+    ],
+    [
+     "-",
+     "l) "
+    ],
+    [
+     "+",
+     "q) "
+    ],
+    [
+     "=",
+     "obchodník zverejní najmä vo všeobecných obchodných podmienkach a na svojom webovom sídle, ak ho má zriadené."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 5 ods. 5",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Odsek 1 písm. a), b), d) až "
+    ],
+    [
+     "-",
+     "k) "
+    ],
+    [
+     "+",
+     "p) "
+    ],
+    [
+     "=",
+     "sa nevzťahuje na zmluvu o dodávaní elektriny alebo plynu, ktoré nie sú na predaj v obmedzenom objeme alebo v určenom množstve."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 5 ods. 6",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Odsek 1 písm. a) až "
+    ],
+    [
+     "-",
+     "k) "
+    ],
+    [
+     "+",
+     "p) "
+    ],
+    [
+     "=",
+     "a odseky 2 a 4 sa nevzťahujú na"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 10 ods. 1 písm. b)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "hlavným vlastnostiam produktu, ako sú jeho dostupnosť, výhody, riziká, vyhotovenie, zloženie, príslušenstvo, "
+    ],
+    [
+     "+",
+     "environmentálne alebo sociálne vlastnosti, aspekty obehovosti, ako sú životnosť, opraviteľnosť alebo recyklovateľnosť, "
+    ],
+    [
+     "=",
+     "pomoc a služby poskytované po predaji produktu, zodpovednosť za vady, výrobný postup, dátum výroby alebo dodania, spôsob dodania, účel použitia, možnosti využitia, množstvo, špecifikácia, zemepisný pôvod alebo obchodný pôvod, očakávané výsledky použitia alebo výsledky a podstatné ukazovatele skúšok alebo kontrol vykonaných na produkte,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 10 ods. 2 písm. b)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "neplnenie záväzkov obsiahnutých v kódexe správania, k dodržiavaniu ktorých sa obchodník zaviazal, ak nejde len o snahu zaviazať sa, ale o jednoznačný záväzok, ktorý môže byť preverený, a obchodník v obchodnej praktike uvedie, že je viazaný kódexom "
+    ],
+    [
+     "-",
+     "správania, alebo"
+    ],
+    [
+     "+",
+     "správania,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 10 ods. 2 písm. c)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "marketing tovaru spôsobom, ktorý prezentuje tovar ako identický s tovarom uvádzaným na trh v iných členských štátoch Európskej únie alebo v štátoch, ktoré sú zmluvnou stranou Dohody o Európskom hospodárskom priestore (ďalej len „členský štát“), hoci tovar má podstatne odlišné zloženie alebo vlastnosti; obchodná praktika sa nepovažuje za klamlivú, ak odlišné zloženie a vlastnosti tovaru sú odôvodnené legitímnymi alebo objektívnymi "
+    ],
+    [
+     "-",
+     "faktormi."
+    ],
+    [
+     "+",
+     "faktormi,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 11 ods. 6 písm. b)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "hlavných parametroch, ktoré určujú poradie produktov vo výsledku vyhľadávania v online rozhraní, a o význame týchto parametrov vo vzťahu k iným parametrom vyhľadávania, ak spotrebitelia majú možnosť v online rozhraní vyhľadávať pomocou kľúčového slova, frázy alebo iného vstupu produkty v ponuke rôznych obchodníkov alebo iných osôb bez ohľadu na to, či sa zmluva uzatvára v rovnakom online rozhraní; informácie sa poskytujú v osobitnej časti online rozhrania, ktorá je priamo a ľahko dostupná z online rozhrania, v ktorom sú prezentované výsledky "
+    ],
+    [
+     "-",
+     "vyhľadávania."
+    ],
+    [
+     "+",
+     "vyhľadávania,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 14 ods. 5 písm. f)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "zmluvu o dodávaní elektriny alebo plynu, ktoré nie sú na predaj v obmedzenom objeme alebo v určenom množstve, okrem § 15 ods. 1 písm. c), f) až i), "
+    ],
+    [
+     "+",
+     "l), "
+    ],
+    [
+     "=",
+     "§ 19, § 20, § 21 a 22."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 14 ods. 7",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Na zmluvu uzavretú mimo prevádzkových priestorov obchodníka sa nevzťahuje § 5 ods. 1 písm. c), f) až "
+    ],
+    [
+     "-",
+     "k), "
+    ],
+    [
+     "+",
+     "p), "
+    ],
+    [
+     "=",
+     "§ 15, § 17, § 19 až 22, ak celková cena vrátane nákladov na dopravu, dodanie, poštovné a iných nákladov a poplatkov, ktoré má spotrebiteľ podľa zmluvy zaplatiť, nepresiahne 25 eur a obchodník o tom pred uzavretím zmluvy informuje spotrebiteľa. Do celkovej ceny sa zarátavajú všetky plnenia spotrebiteľa podľa závislých zmlúv a všetkých zmlúv, ktoré spotrebiteľ a obchodník uzavreli súčasne."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 15 ods. 1 písm. k)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "poučenie o povinnosti spotrebiteľa zaplatiť preddavok alebo poskytnúť inú finančnú zábezpeku na žiadosť obchodníka a o podmienkach ich poskytnutia, ak zo zmluvy vyplýva pre spotrebiteľa taká "
+    ],
+    [
+     "-",
+     "povinnosť."
+    ],
+    [
+     "+",
+     "povinnosť,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 15 ods. 5",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Obchodník poskytne spotrebiteľovi pred uzavretím zmluvy najmä informácie podľa odseku 1 písm. f) alebo podľa osobitného predpisu, okrem vzorového formulára na odstúpenie od zmluvy podľa prílohy č. 2 alebo podľa osobitného predpisu, a informácie podľa § 5 ods. 1 písm. a), b), d) a "
+    ],
+    [
+     "-",
+     "i), "
+    ],
+    [
+     "+",
+     "m), "
+    ],
+    [
+     "=",
+     "ak obchodník so spotrebiteľom uzatvárajú zmluvu prostredníctvom prostriedku diaľkovej komunikácie s obmedzeným časom alebo priestorom na poskytnutie všetkých informácií podľa odseku 1 a podľa § 5 ods. 1, najmä telefonicky alebo textovou správou. Obchodník poskytne informácie podľa prvej vety prostredníctvom použitého prostriedku diaľkovej komunikácie. Ďalšie informácie podľa odseku 1, podľa § 5 ods. 1 a podľa osobitného predpisu, vrátane vzorového formulára na odstúpenie od zmluvy podľa prílohy č. 2 alebo podľa osobitného predpisu, poskytne obchodník podľa odseku 4 písm. a)."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 17 ods. 3",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Obchodník je povinný pri zmluve uzavretej na diaľku prostredníctvom elektronických prostriedkov bezprostredne pred odoslaním objednávky spotrebiteľom výslovne, jednoznačne a zrozumiteľne uviesť informácie podľa § 5 ods. 1 písm. a), "
+    ],
+    [
+     "-",
+     "d) "
+    ],
+    [
+     "+",
+     "d), g) "
+    ],
+    [
+     "=",
+     "a i) a § 15 ods. 1 písm. j), ak sa spotrebiteľ podľa zmluvy zaväzuje zaplatiť cenu. Tým nie sú dotknuté informačné povinnosti obchodníka podľa § 5 ods. 1 a § 15 ods. 1."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 26 ods. 3",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Úrad pre reguláciu sieťových odvetví vykonáva dohľad nad dodržiavaním povinností podľa § 4 ods. 2 písm. a), b), f) až h), § 5 ods. 1 písm. c) a "
+    ],
+    [
+     "-",
+     "l) "
+    ],
+    [
+     "+",
+     "q) "
+    ],
+    [
+     "=",
+     "a ods. 2 a 3, § 15 ods. 1 písm. a), b), d), e), j) a k), ods. 3 až 5, § 17 a 20a, povinnosti podľa § 4 ods. 2 písm. c) v spojení s § 3 ods. 1 písm. d) a ods. 2 osobou, ktorá vykonáva regulovanú činnosť podľa osobitného predpisu."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 43 ods. 1 písm. a)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "§ 4 ods. 1 písm. g), ods. 2 písm. a), b), f) a g), § 5 ods. 1 písm. a) až "
+    ],
+    [
+     "-",
+     "k), "
+    ],
+    [
+     "+",
+     "p), "
+    ],
+    [
+     "=",
+     "ods. 2, § 15 ods. 1, 3 až 5, 7 až 9, § 16 ods. 1 a 2, § 17 ods. 1 až 5, 10 až 13, § 20 ods. 9 a 13, § 20a ods. 1 až 5, § 22 ods. 1, 2, 4 až 9 alebo za porušenie povinnosti podľa § 4 ods. 2 písm. c) v spojení s § 3 ods. 2, § 19 ods. 1 a 2, § 20 ods. 1 až 3, 5, 6 a 10 a § 21 ods. 3 až 6 pokutu vo výške od 200 eur do 2 % obratu dohliadanej osoby za predchádzajúce účtovné obdobie, najviac 200 000 eur,"
+    ]
+   ]
+  },
+  {
+   "loc": "predpis Čl. 13 bod 5",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "V § 20c ods. 3 písm. b) sa nad slovom „predpisov“ odkaz „22k)“ nahrádza odkazom "
+    ],
+    [
+     "-",
+     "„22a)“."
+    ],
+    [
+     "+",
+     "„“."
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Tvrdenie, že kódex správania "
+    ],
+    [
+     "+",
+     "Zobrazenie značky udržateľnosti, ktorá nie "
+    ],
+    [
+     "=",
+     "je "
+    ],
+    [
+     "-",
+     "schválený orgánom "
+    ],
+    [
+     "+",
+     "založená na certifikačnom systéme alebo ktorú nezaviedli orgány "
+    ],
+    [
+     "=",
+     "verejnej "
+    ],
+    [
+     "-",
+     "moci alebo iným orgánom, pričom tomu tak nie je."
+    ],
+    [
+     "+",
+     "moci."
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Tvrdenie, že "
+    ],
+    [
+     "-",
+     "obchodník (vrátane jeho obchodných praktík) alebo produkt bol schválený, potvrdený alebo povolený "
+    ],
+    [
+     "+",
+     "kódex správania je schválený "
+    ],
+    [
+     "=",
+     "orgánom verejnej moci alebo "
+    ],
+    [
+     "-",
+     "inou osobou, "
+    ],
+    [
+     "+",
+     "iným orgánom, "
+    ],
+    [
+     "=",
+     "pričom tomu tak nie "
+    ],
+    [
+     "-",
+     "je, alebo takéto tvrdenie bez toho, že by produkt spĺňal podmienky schválenia, potvrdenia alebo povolenia."
+    ],
+    [
+     "+",
+     "je."
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Výzva na kúpu produktu za určitú cenu "
+    ],
+    [
+     "+",
+     "Tvrdenie, že obchodník (vrátane jeho obchodných praktík) alebo produkt bol schválený, potvrdený alebo povolený orgánom verejnej moci alebo inou osobou, pričom tomu tak nie je, alebo takéto tvrdenie "
+    ],
+    [
+     "=",
+     "bez toho, že by "
+    ],
+    [
+     "-",
+     "obchodník zverejnil akékoľvek rozumné dôvody, pre ktoré môže predpokladať, že nebude schopný dodať "
+    ],
+    [
+     "=",
+     "produkt "
+    ],
+    [
+     "+",
+     "spĺňal podmienky schválenia, potvrdenia "
+    ],
+    [
+     "=",
+     "alebo "
+    ],
+    [
+     "-",
+     "rovnocenný produkt, alebo zariadiť, aby dodávku uskutočnil iný obchodník, za túto cenu, v čase a v množstve, ktoré sú rozumné vzhľadom na produkt, rozsah reklamy produktu a ponúknutú cenu (vábivá reklama)."
+    ],
+    [
+     "+",
+     "povolenia."
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Reklama typu nalákať "
+    ],
+    [
+     "+",
+     "Všeobecné environmentálne tvrdenie v písomnej forme, ústnej forme alebo audiovizuálnej forme, ktoré sa neuvádza na značke udržateľnosti, "
+    ],
+    [
+     "=",
+     "a "
+    ],
+    [
+     "-",
+     "zmeniť, ktorou "
+    ],
+    [
+     "+",
+     "pri ktorom "
+    ],
+    [
+     "=",
+     "sa "
+    ],
+    [
+     "-",
+     "rozumie reklama s úmyslom podporiť predaj produktu výzvou na kúpu iného produktu za určitú cenu "
+    ],
+    [
+     "+",
+     "v tom istom komunikačnom prostriedku jasne "
+    ],
+    [
+     "=",
+     "a "
+    ],
+    [
+     "-",
+     "následné"
+    ],
+    [
+     "+",
+     "dôrazne neuvádza špecifikácia tvrdenia, ak obchodník nie je schopný preukázať uznané vynikajúce environmentálne vlastnosti (napríklad „šetrný ku klíme“, „šetrný k životnému prostrediu“, „zelený“, „ekologický“)."
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "removed",
+   "text": "odmietnutie ukázať produkt z reklamy spotrebiteľom,"
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "removed",
+   "text": "odmietnutie prevziať objednávky na tento produkt alebo jeho dodanie v rozumnom čase, alebo"
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "removed",
+   "text": "predvedenie jeho chybnej vzorky."
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Nepravdivé vyhlásenie, že produkt je k dispozícii "
+    ],
+    [
+     "+",
+     "Environmentálne tvrdenie o celom produkte alebo o celom podniku obchodníka, ak sa týka "
+    ],
+    [
+     "=",
+     "len "
+    ],
+    [
+     "-",
+     "veľmi obmedzený čas "
+    ],
+    [
+     "+",
+     "určitého aspektu produktu "
+    ],
+    [
+     "=",
+     "alebo "
+    ],
+    [
+     "-",
+     "že je k dispozícii za špecifických podmienok len veľmi obmedzený čas, s cieľom vyvolať okamžité rozhodnutie a znemožniť spotrebiteľovi, aby mal dostatočnú príležitosť alebo čas na informované rozhodnutie."
+    ],
+    [
+     "+",
+     "konkrétnej činnosti obchodníka."
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Záväzok obchodníka, ktorý komunikoval so spotrebiteľom pred uskutočnením obchodnej transakcie v jazyku, ktorý nie je úradným jazykom členského štátu, v ktorom "
+    ],
+    [
+     "+",
+     "Tvrdenie založené na kompenzácii emisií skleníkových plynov, že produkt "
+    ],
+    [
+     "=",
+     "má "
+    ],
+    [
+     "-",
+     "obchodník sídlo "
+    ],
+    [
+     "+",
+     "neutrálny, znížený "
+    ],
+    [
+     "=",
+     "alebo "
+    ],
+    [
+     "-",
+     "miesto podnikania, že poskytne spotrebiteľovi službu po predaji produktu, a následné poskytnutie tejto služby len v inom jazyku bez toho, že by to bolo spotrebiteľovi jasne oznámené pred tým, ako sa zaviazal k obchodnej transakcii."
+    ],
+    [
+     "+",
+     "pozitívny vplyv na životné prostredie z hľadiska emisií skleníkových plynov."
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Vyhlásenie "
+    ],
+    [
+     "+",
+     "Výzva na kúpu produktu za určitú cenu bez toho, že by obchodník zverejnil akékoľvek rozumné dôvody, pre ktoré môže predpokladať, že nebude schopný dodať produkt "
+    ],
+    [
+     "=",
+     "alebo "
+    ],
+    [
+     "-",
+     "iným spôsobom vytvorenie dojmu, že produkt možno legálne predávať, pričom tomu tak nie je."
+    ],
+    [
+     "+",
+     "rovnocenný produkt, alebo zariadiť, aby dodávku uskutočnil iný obchodník, za túto cenu, v čase a v množstve, ktoré sú rozumné vzhľadom na produkt, rozsah reklamy produktu a ponúknutú cenu (vábivá reklama)."
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Prezentovanie práv, ktoré spotrebiteľovi prislúchajú podľa právnych predpisov, ako charakteristickej črty ponuky obchodníka."
+    ],
+    [
+     "+",
+     "Reklama typu nalákať a zmeniť, ktorou sa rozumie reklama s úmyslom podporiť predaj produktu výzvou na kúpu iného produktu za určitú cenu a následné"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Využívanie redakčného priestoru v médiách "
+    ],
+    [
+     "+",
+     "Nepravdivé vyhlásenie, že produkt je k dispozícii len veľmi obmedzený čas alebo že je k dispozícii za špecifických podmienok len veľmi obmedzený čas, s cieľom vyvolať okamžité rozhodnutie a znemožniť spotrebiteľovi, aby mal dostatočnú príležitosť alebo čas "
+    ],
+    [
+     "=",
+     "na "
+    ],
+    [
+     "-",
+     "podporu produktu, keď obchodník zaplatil za podporu predaja, bez toho, aby to bolo vysvetlené v obsahu alebo obrazom, alebo jasne identifikovateľné zvukom pre spotrebiteľa (skrytá reklama)."
+    ],
+    [
+     "+",
+     "informované rozhodnutie."
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Poskytovanie výsledkov vyhľadávania "
+    ],
+    [
+     "+",
+     "Záväzok obchodníka, ktorý komunikoval so spotrebiteľom pred uskutočnením obchodnej transakcie "
+    ],
+    [
+     "=",
+     "v "
+    ],
+    [
+     "-",
+     "reakcii na online dopyt vyhľadávania spotrebiteľa "
+    ],
+    [
+     "+",
+     "jazyku, ktorý nie je úradným jazykom členského štátu, v ktorom má obchodník sídlo alebo miesto podnikania, že poskytne spotrebiteľovi službu po predaji produktu, a následné poskytnutie tejto služby len v inom jazyku "
+    ],
+    [
+     "=",
+     "bez "
+    ],
+    [
+     "-",
+     "jasného zverejnenia akejkoľvek platenej reklamy alebo platby konkrétne za dosiahnutie vyššieho umiestnenia produktov v poradí v rámci výsledkov vyhľadávania."
+    ],
+    [
+     "+",
+     "toho, že by to bolo spotrebiteľovi jasne oznámené pred tým, ako sa zaviazal k obchodnej transakcii."
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Vecne nesprávne tvrdenie o povahe a rozsahu rizika pre osobnú bezpečnosť spotrebiteľa "
+    ],
+    [
+     "+",
+     "Vyhlásenie "
+    ],
+    [
+     "=",
+     "alebo "
+    ],
+    [
+     "-",
+     "jeho rodiny, ak si spotrebiteľ "
+    ],
+    [
+     "+",
+     "iným spôsobom vytvorenie dojmu, že "
+    ],
+    [
+     "=",
+     "produkt "
+    ],
+    [
+     "-",
+     "nekúpi."
+    ],
+    [
+     "+",
+     "možno legálne predávať, pričom tomu tak nie je."
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Propagovanie podobného produktu, "
+    ],
+    [
+     "+",
+     "Prezentovanie práv, ktoré spotrebiteľovi prislúchajú podľa právnych predpisov, "
+    ],
+    [
+     "=",
+     "ako "
+    ],
+    [
+     "-",
+     "je produkt vyrobený konkrétnym výrobcom, a to spôsobom, ktorý úmyselne zavádza spotrebiteľa, aby sa domnieval, že produkt vyrobil rovnaký výrobca, pričom tomu tak nie je."
+    ],
+    [
+     "+",
+     "charakteristickej črty ponuky obchodníka."
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Vytvorenie, prevádzkovanie alebo podporovanie pyramídovej schémy, "
+    ],
+    [
+     "+",
+     "Prezentovanie požiadaviek, ktoré sa podľa právnych predpisov vzťahujú na všetky produkty "
+    ],
+    [
+     "=",
+     "v "
+    ],
+    [
+     "-",
+     "ktorej spotrebiteľ poskytne plnenie za možnosť získať kompenzáciu, ktorá vyplýva hlavne zo zapojenia ďalších spotrebiteľov do tejto schémy, a nie z predaja alebo spotreby produktov."
+    ],
+    [
+     "+",
+     "príslušnej kategórii produktov na trhu Európskej únie, ako charakteristickej črty ponuky obchodníka."
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Tvrdenie obchodníka, že sa chystá ukončiť svoju činnosť "
+    ],
+    [
+     "+",
+     "Využívanie redakčného priestoru v médiách na podporu produktu, keď obchodník zaplatil za podporu predaja, bez toho, aby to bolo vysvetlené v obsahu "
+    ],
+    [
+     "=",
+     "alebo "
+    ],
+    [
+     "-",
+     "premiestniť svoju prevádzkareň, pričom tomu tak nie je."
+    ],
+    [
+     "+",
+     "obrazom, alebo jasne identifikovateľné zvukom pre spotrebiteľa (skrytá reklama)."
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Tvrdenie, že produkt je schopný uľahčiť výhru "
+    ],
+    [
+     "+",
+     "Poskytovanie výsledkov vyhľadávania "
+    ],
+    [
+     "=",
+     "v "
+    ],
+    [
+     "-",
+     "hazardných hrách."
+    ],
+    [
+     "+",
+     "reakcii na online dopyt vyhľadávania spotrebiteľa bez jasného zverejnenia akejkoľvek platenej reklamy alebo platby konkrétne za dosiahnutie vyššieho umiestnenia produktov v poradí v rámci výsledkov vyhľadávania."
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Nepravdivé tvrdenie, že "
+    ],
+    [
+     "+",
+     "Vecne nesprávne tvrdenie o povahe a rozsahu rizika pre osobnú bezpečnosť spotrebiteľa alebo jeho rodiny, ak si spotrebiteľ "
+    ],
+    [
+     "=",
+     "produkt "
+    ],
+    [
+     "-",
+     "je schopný liečiť chorobu, dysfunkciu alebo postihnutie."
+    ],
+    [
+     "+",
+     "nekúpi."
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Poskytnutie vecne nesprávnej informácie o podmienkach na trhu alebo o možnosti nájsť "
+    ],
+    [
+     "+",
+     "Propagovanie podobného produktu, ako je "
+    ],
+    [
+     "=",
+     "produkt "
+    ],
+    [
+     "-",
+     "s úmyslom donútiť "
+    ],
+    [
+     "+",
+     "vyrobený konkrétnym výrobcom, a to spôsobom, ktorý úmyselne zavádza "
+    ],
+    [
+     "=",
+     "spotrebiteľa, aby "
+    ],
+    [
+     "-",
+     "získal "
+    ],
+    [
+     "+",
+     "sa domnieval, že "
+    ],
+    [
+     "=",
+     "produkt "
+    ],
+    [
+     "-",
+     "za menej výhodných podmienok, ako sú bežné podmienky na trhu."
+    ],
+    [
+     "+",
+     "vyrobil rovnaký výrobca, pričom tomu tak nie je."
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Tvrdenie "
+    ],
+    [
+     "+",
+     "Vytvorenie, prevádzkovanie alebo podporovanie pyramídovej schémy, "
+    ],
+    [
+     "=",
+     "v "
+    ],
+    [
+     "-",
+     "obchodnej praktike, že obchodník ponúkne súťaž "
+    ],
+    [
+     "+",
+     "ktorej spotrebiteľ poskytne plnenie za možnosť získať kompenzáciu, ktorá vyplýva hlavne zo zapojenia ďalších spotrebiteľov do tejto schémy, a nie z predaja "
+    ],
+    [
+     "=",
+     "alebo "
+    ],
+    [
+     "-",
+     "vypíše cenu bez toho, že by opísanú cenu udelil alebo poskytol zodpovedajúcu náhradu."
+    ],
+    [
+     "+",
+     "spotreby produktov."
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Opísanie produktu ako „gratis“, „zadarmo“, „bez poplatku“ "
+    ],
+    [
+     "+",
+     "Tvrdenie obchodníka, že sa chystá ukončiť svoju činnosť "
+    ],
+    [
+     "=",
+     "alebo "
+    ],
+    [
+     "-",
+     "podobne, "
+    ],
+    [
+     "+",
+     "premiestniť svoju prevádzkareň, "
+    ],
+    [
+     "=",
+     "pričom "
+    ],
+    [
+     "-",
+     "spotrebiteľ musí zaplatiť čokoľvek iné okrem nevyhnutných nákladov na odpovedanie na obchodnú praktiku a vyzdvihnutie produktu alebo zaplatenie za jeho doručenie."
+    ],
+    [
+     "+",
+     "tomu tak nie je."
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Zahrnutie do reklamného materiálu faktúry alebo obdobného dokumentu, ktorý požaduje zaplatenie sumy a ktorý vzbudzuje u spotrebiteľa dojem, "
+    ],
+    [
+     "+",
+     "Tvrdenie, "
+    ],
+    [
+     "=",
+     "že "
+    ],
+    [
+     "-",
+     "si už objednal predávaný produkt, pričom tomu tak nie je."
+    ],
+    [
+     "+",
+     "produkt je schopný uľahčiť výhru v hazardných hrách."
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Nepravdivé "
+    ],
+    [
+     "-",
+     "tvrdenie "
+    ],
+    [
+     "+",
+     "tvrdenie, že produkt je schopný liečiť chorobu, dysfunkciu "
+    ],
+    [
+     "=",
+     "alebo "
+    ],
+    [
+     "-",
+     "vytvorenie dojmu, že obchodník nekoná v zámere súvisiacom s jeho podnikateľskou činnosťou alebo povolaním, alebo nepravdivé prezentovanie sa ako spotrebiteľ."
+    ],
+    [
+     "+",
+     "postihnutie."
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Vytvorenie falošného dojmu, že servis produktu po jeho predaji je dostupný v členskom štáte inom "
+    ],
+    [
+     "+",
+     "Poskytnutie vecne nesprávnej informácie o podmienkach na trhu alebo o možnosti nájsť produkt s úmyslom donútiť spotrebiteľa, aby získal produkt za menej výhodných podmienok, "
+    ],
+    [
+     "=",
+     "ako "
+    ],
+    [
+     "-",
+     "ten, v ktorom sa produkt predáva."
+    ],
+    [
+     "+",
+     "sú bežné podmienky na trhu."
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Druhotný predaj vstupeniek spotrebiteľom na podujatia, ak ich "
+    ],
+    [
+     "+",
+     "Tvrdenie v obchodnej praktike, že "
+    ],
+    [
+     "=",
+     "obchodník "
+    ],
+    [
+     "-",
+     "získal pomocou automatizovaných prostriedkov s cieľom obísť akýkoľvek stanovený limit týkajúci sa počtu vstupeniek, ktoré si jednotlivec môže kúpiť, "
+    ],
+    [
+     "+",
+     "ponúkne súťaž "
+    ],
+    [
+     "=",
+     "alebo "
+    ],
+    [
+     "-",
+     "akékoľvek iné pravidlá týkajúce sa nákupu vstupeniek."
+    ],
+    [
+     "+",
+     "vypíše cenu bez toho, že by opísanú cenu udelil alebo poskytol zodpovedajúcu náhradu."
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Vyhlásenie, že hodnotenia "
+    ],
+    [
+     "+",
+     "Opísanie "
+    ],
+    [
+     "=",
+     "produktu "
+    ],
+    [
+     "-",
+     "poskytujú spotrebitelia, ktorí tento produkt skutočne použili "
+    ],
+    [
+     "+",
+     "ako „gratis“, „zadarmo“, „bez poplatku“ "
+    ],
+    [
+     "=",
+     "alebo "
+    ],
+    [
+     "-",
+     "kúpili, bez prijatia náležitých "
+    ],
+    [
+     "+",
+     "podobne, pričom spotrebiteľ musí zaplatiť čokoľvek iné okrem nevyhnutných nákladov na odpovedanie na obchodnú praktiku "
+    ],
+    [
+     "=",
+     "a "
+    ],
+    [
+     "-",
+     "primeraných krokov na kontrolu toho, že hodnotenia pochádzajú od takýchto spotrebiteľov."
+    ],
+    [
+     "+",
+     "vyzdvihnutie produktu alebo zaplatenie za jeho doručenie."
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Predloženie "
+    ],
+    [
+     "+",
+     "Zahrnutie do reklamného materiálu faktúry "
+    ],
+    [
+     "=",
+     "alebo "
+    ],
+    [
+     "-",
+     "poverenie inej osoby, aby poskytla falošné spotrebiteľské hodnotenia alebo odporúčania, alebo skresľovanie spotrebiteľských hodnotení alebo odporúčaní v sociálnych médiách s cieľom propagovať produkty."
+    ],
+    [
+     "+",
+     "obdobného dokumentu, ktorý požaduje zaplatenie sumy a ktorý vzbudzuje u spotrebiteľa dojem, že si už objednal predávaný produkt, pričom tomu tak nie je."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 2 ods. 1 písm. n)",
+   "type": "added",
+   "text": "environmentálnym tvrdením dobrovoľné vyhlásenie alebo zobrazenie v akejkoľvek forme, vrátane textového, obrazového, grafického alebo symbolického zobrazenia, ako je etiketa, obchodná značka, názov spoločnosti, názov produktu alebo iné označenie použité v obchodnej komunikácii, ktoré uvádza alebo naznačuje, že produkt, kategória produktu, značka alebo obchodník"
+  },
+  {
+   "loc": "§ 2 ods. 1 písm. n) bod 1",
+   "type": "added",
+   "text": "má pozitívny vplyv na životné prostredie,"
+  },
+  {
+   "loc": "§ 2 ods. 1 písm. n) bod 2",
+   "type": "added",
+   "text": "má menej škodlivý vplyv na životné prostredie ako iný produkt, značka alebo obchodník,"
+  },
+  {
+   "loc": "§ 2 ods. 1 písm. n) bod 3",
+   "type": "added",
+   "text": "nemá vplyv na životné prostredie, alebo"
+  },
+  {
+   "loc": "§ 2 ods. 1 písm. n) bod 4",
+   "type": "added",
+   "text": "zmiernil za určitý čas svoj vplyv na životné prostredie,"
+  },
+  {
+   "loc": "§ 2 ods. 1 písm. o)",
+   "type": "added",
+   "text": "značkou udržateľnosti akákoľvek dobrovoľná verejná alebo súkromná známka dôveryhodnosti, známka kvality alebo ich ekvivalent, ktorej cieľom je odlíšiť a propagovať produkt, postup alebo obchodníka s odkazom na určité environmentálne vlastnosti, sociálne vlastnosti alebo oboje, okrem povinnej značky podľa osobitných predpisov,"
+  },
+  {
+   "loc": "§ 2 ods. 1 písm. p)",
+   "type": "added",
+   "text": "certifikačným systémom nezávislý systém overovania, ktorým sa osvedčuje, že produkt, postup alebo obchodník spĺňa požiadavky na používanie značky udržateľnosti, a ktorý spĺňa tieto požiadavky:"
+  },
+  {
+   "loc": "§ 2 ods. 1 písm. p) bod 1",
+   "type": "added",
+   "text": "systém je za transparentných, spravodlivých a nediskriminačných podmienok prístupný všetkým obchodníkom,"
+  },
+  {
+   "loc": "§ 2 ods. 1 písm. p) bod 2",
+   "type": "added",
+   "text": "požiadavky systému vypracúva vlastník systému po konzultácii s príslušnými odborníkmi a zainteresovanými stranami a sú verejne dostupné,"
+  },
+  {
+   "loc": "§ 2 ods. 1 písm. p) bod 3",
+   "type": "added",
+   "text": "systém určuje postupy riešenia nesúladu s požiadavkami systému a predpokladá odňatie alebo pozastavenie používania značky udržateľnosti, ak obchodník nedodrží požiadavky systému, a"
+  },
+  {
+   "loc": "§ 2 ods. 1 písm. p) bod 4",
+   "type": "added",
+   "text": "monitorovanie dodržiavania požiadaviek systému vykonáva tretia osoba, ktorá je nezávislá od vlastníka systému a obchodníka; spôsobilosť tretej osoby na výkon tejto činnosti sa preukazuje podľa technických noriem alebo podľa osobitných predpisov,"
+  },
+  {
+   "loc": "§ 2 ods. 1 písm. q)",
+   "type": "added",
+   "text": "uznanými vynikajúcimi environmentálnymi vlastnosťami environmentálne vlastnosti v súlade s požiadavkami podľa osobitného predpisu alebo podľa technických noriem alebo environmentálne vlastnosti s najvyššou úrovňou vlastností podľa osobitných predpisov."
+  },
+  {
+   "loc": "§ 5 ods. 1 písm. m)",
+   "type": "added",
+   "text": "dĺžku trvania zmluvy, ak ide o zmluvu uzavretú na určitý čas, alebo podmienky vypovedania zmluvy, ak ide o zmluvu uzavretú na neurčitý čas alebo o zmluvu, ktorej platnosť sa predlžuje automaticky,"
+  },
+  {
+   "loc": "§ 5 ods. 1 písm. n)",
+   "type": "added",
+   "text": "údaje o funkčnosti veci s digitálnymi prvkami, digitálneho obsahu a digitálnej služby vrátane dostupných technických ochranných opatrení,"
+  },
+  {
+   "loc": "§ 5 ods. 1 písm. o)",
+   "type": "added",
+   "text": "údaje o kompatibilite a interoperabilite veci s digitálnymi prvkami, digitálneho obsahu a digitálnej služby, ktoré sú obchodníkovi známe alebo pri ktorých možno rozumne očakávať, že sú obchodníkovi známe,"
+  },
+  {
+   "loc": "§ 5 ods. 1 písm. p)",
+   "type": "added",
+   "text": "minimálnu dobu, počas ktorej výrobca, dovozca alebo poskytovateľ digitálneho obsahu alebo digitálnej služby poskytuje bezplatné aktualizácie vrátane bezpečnostných aktualizácií, ktoré sú potrebné na zachovanie súladu veci s digitálnymi prvkami, digitálneho obsahu alebo digitálnej služby s požiadavkami podľa osobitného predpisu, ak výrobca, dovozca alebo poskytovateľ digitálneho obsahu alebo digitálnej služby túto informáciu sprístupnil obchodníkovi,"
+  },
+  {
+   "loc": "§ 5 ods. 1 písm. q)",
+   "type": "added",
+   "text": "poučenie o práve spotrebiteľa podať obchodníkovi žiadosť o nápravu podľa osobitného predpisu s uvedením odkazu na webové sídlo, na ktorom sú zverejnené informácie o príslušnom subjekte alternatívneho riešenia sporov."
+  },
+  {
+   "loc": "§ 10 ods. 2 písm. d)",
+   "type": "added",
+   "text": "environmentálne tvrdenie týkajúce sa budúceho vplyvu produktu na životné prostredie bez jasných, objektívnych, verejne dostupných a overiteľných záväzkov obchodníka uvedených v podrobnom a realistickom pláne vykonávania, ktorý obsahuje merateľné a časovo ohraničené ciele a opatrenia potrebné na podporu jeho realizácie a ktorý pravidelne overuje nezávislý odborník tretej strany, ktorého zistenia sa sprístupnia spotrebiteľom, alebo"
+  },
+  {
+   "loc": "§ 10 ods. 2 písm. e)",
+   "type": "added",
+   "text": "propagáciu výhody produktu, ktorá je pre spotrebiteľa bezvýznamná a nesúvisí so žiadnou vlastnosťou produktu alebo obchodníka."
+  },
+  {
+   "loc": "§ 11 ods. 6 písm. c)",
+   "type": "added",
+   "text": "metóde porovnávania produktov, produktoch, ktoré sú predmetom porovnávania, ich dodávateľoch a o opatreniach na zabezpečenie aktualizácie informácií, ak obchodník poskytuje službu, v rámci ktorej sa porovnávajú produkty, a spotrebiteľovi poskytuje informácie o environmentálnych alebo sociálnych vlastnostiach produktov, aspektoch obehovosti, ako sú životnosť, opraviteľnosť alebo recyklovateľnosť produktov, alebo o ich dodávateľoch."
+  },
+  {
+   "loc": "§ 15 ods. 1 písm. l)",
+   "type": "added",
+   "text": "možnosti dodania tovaru šetrné k životnému prostrediu, ak sú dostupné."
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "added",
+   "text": "odmietnutie ukázať produkt z reklamy spotrebiteľom,"
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "added",
+   "text": "odmietnutie prevziať objednávky na tento produkt alebo jeho dodanie v rozumnom čase, alebo"
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "added",
+   "text": "predvedenie jeho chybnej vzorky."
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "added",
+   "text": "Nepravdivé tvrdenie alebo vytvorenie dojmu, že obchodník nekoná v zámere súvisiacom s jeho podnikateľskou činnosťou alebo povolaním, alebo nepravdivé prezentovanie sa ako spotrebiteľ."
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "added",
+   "text": "Vytvorenie falošného dojmu, že servis produktu po jeho predaji je dostupný v členskom štáte inom ako ten, v ktorom sa produkt predáva."
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "added",
+   "text": "Druhotný predaj vstupeniek spotrebiteľom na podujatia, ak ich obchodník získal pomocou automatizovaných prostriedkov s cieľom obísť akýkoľvek stanovený limit týkajúci sa počtu vstupeniek, ktoré si jednotlivec môže kúpiť, alebo akékoľvek iné pravidlá týkajúce sa nákupu vstupeniek."
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "added",
+   "text": "Vyhlásenie, že hodnotenia produktu poskytujú spotrebitelia, ktorí tento produkt skutočne použili alebo kúpili, bez prijatia náležitých a primeraných krokov na kontrolu toho, že hodnotenia pochádzajú od takýchto spotrebiteľov."
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "added",
+   "text": "Predloženie alebo poverenie inej osoby, aby poskytla falošné spotrebiteľské hodnotenia alebo odporúčania, alebo skresľovanie spotrebiteľských hodnotení alebo odporúčaní v sociálnych médiách s cieľom propagovať produkty."
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "added",
+   "text": "Zamlčanie informácie, že aktualizácia softvéru vrátane bezpečnostnej aktualizácie, ktorá je potrebná na zachovanie súladu veci s digitálnymi prvkami, digitálneho obsahu alebo digitálnej služby s požiadavkami podľa osobitného predpisu, alebo aktualizácia funkcií budú mať negatívny vplyv na fungovanie veci s digitálnymi prvkami alebo na používanie digitálneho obsahu alebo digitálnej služby."
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "added",
+   "text": "Prezentovanie aktualizácie softvéru vrátane bezpečnostnej aktualizácie alebo aktualizácie funkcií ako potrebnej na zachovanie súladu veci s digitálnymi prvkami, digitálneho obsahu alebo digitálnej služby s požiadavkami podľa osobitného predpisu, ak sa ňou zlepšia len vlastnosti funkcií."
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "added",
+   "text": "Každá obchodná komunikácia o tovare s vlastnosťou zavedenou na obmedzenie jeho životnosti, napriek tomu, že obchodník má k dispozícii informáciu o tejto vlastnosti a jej účinkoch na životnosť tovaru."
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "added",
+   "text": "Nepravdivé tvrdenie, že za bežných podmienok používania má tovar určitú životnosť z hľadiska času alebo intenzity používania."
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "added",
+   "text": "Prezentovanie tovaru ako tovaru, ktorý možno opraviť, pričom tomu tak nie je."
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "added",
+   "text": "Navádzanie spotrebiteľa nahradiť alebo doplniť komponent tovaru, ktorý sa opakovane opotrebúva a na zabezpečenie zamýšľanej funkčnosti tovaru je potrebné ho vymieňať alebo dopĺňať (spotrebný materiál), skôr ako je nevyhnutné z technických dôvodov."
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_108_2024_z_z",
+   "type": "added",
+   "text": "Zamlčanie informácie o poškodení funkčnosti tovaru pri použití komponentu tovaru, ktorý sa opakovane opotrebúva a na zabezpečenie zamýšľanej funkčnosti tovaru je potrebné ho vymieňať alebo dopĺňať (spotrebný materiál), náhradných dielov alebo príslušenstva, ktoré neboli dodané pôvodným výrobcom, alebo nepravdivé tvrdenie, že k takémuto poškodeniu dôjde."
+  },
+  {
+   "loc": "Príloha priloha_c_4_k_zakonu_c_108_2024_z_z",
+   "type": "added",
+   "text": "Smernica Európskeho parlamentu a Rady (EÚ) 2024/825 z 28. februára 2024, ktorou sa menia smernice 2005/29/ES a 2011/83/EÚ, pokiaľ ide o posilnenie postavenia spotrebiteľov v rámci zelenej transformácie prostredníctvom lepšej ochrany pred nekalými praktikami a prostredníctvom lepšieho informovania (Ú. v. EÚ L, 2024/825, 6. 3. 2024)."
+  }
+ ]
+}

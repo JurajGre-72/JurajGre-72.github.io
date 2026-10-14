@@ -1,0 +1,35 @@
+{
+ "kind": "law_diff",
+ "law": "578/2004",
+ "law_name": "Act on Healthcare Providers",
+ "from": "2026-08-01",
+ "to": "2027-01-01",
+ "amended_by": "309/2024 Z. z.",
+ "amended_by_url": "https://static.slov-lex.sk/static/SK/ZZ/2024/309/20270101.html",
+ "old_url": "https://static.slov-lex.sk/static/SK/ZZ/2004/578/20260801.html",
+ "new_url": "https://static.slov-lex.sk/static/SK/ZZ/2004/578/20270101.html",
+ "changes": [
+  {
+   "loc": "§ 80aj ods. 2",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Základná zložka mzdy zdravotníckeho záchranára [§ 27 ods. 1 písm. l)], ktorý získal odbornú spôsobilosť na výkon špecializovaných pracovných činností (§ 33 ods. 5) v špecializačnom odbore a vykonáva špecializované pracovné činnosti v príslušnom špecializačnom odbore v pracovnom pomere na ustanovený týždenný pracovný čas v zdravotníckom zariadení podľa § 7 ods. 2 u poskytovateľa, ktorý prevádzkuje zariadenie ústavnej zdravotnej starostlivosti, a u poskytovateľa, ktorý prevádzkuje ambulanciu záchrannej zdravotnej služby, je najmenej "
+    ],
+    [
+     "-",
+     "1,13-násobok "
+    ],
+    [
+     "+",
+     "1,15-násobok "
+    ],
+    [
+     "=",
+     "priemernej mesačnej mzdy zamestnanca v hospodárstve Slovenskej republiky zistenej Štatistickým úradom Slovenskej republiky za kalendárny rok, ktorý dva roky predchádza kalendárnemu roku, v ktorom sa priznáva základná zložka mzdy ak v odseku 3 nie je ustanovené inak."
+    ]
+   ]
+  }
+ ]
+}
