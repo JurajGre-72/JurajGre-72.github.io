@@ -27,3 +27,19 @@ jobs:
               print(f"  {'OK ' if s['ok'] else 'ERR'} {k:14} new={s['new']:<4} {s.get('error') or ''}")
           PY
           if [ -s "$RUNNER_TEMP/digest.md" ]; then echo; echo "Digest that would be sent:"; cat "$RUNNER_TEMP/digest.md"; fi
+
+  dashboard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
+      PW_CHANNEL: chrome          # use the Google Chrome that is preinstalled on the runner
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Playwright (library only)
+        run: npm install --no-save --no-package-lock --prefix "$RUNNER_TEMP/pw" playwright@1.56.1
+      - name: Click through every control of the dashboard
+        run: NODE_PATH="$RUNNER_TEMP/pw/node_modules" node pharma-monitor/tests/dashboard.test.mjs
+      - name: Same test against the published site
+        if: github.event_name == 'workflow_dispatch'
+        run: NODE_PATH="$RUNNER_TEMP/pw/node_modules" DASHBOARD_URL=https://jurajgre-72.github.io/pharma-monitor/ node pharma-monitor/tests/dashboard.test.mjs

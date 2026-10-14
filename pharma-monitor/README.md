@@ -1,5 +1,7 @@
 # PHARMACOPOLA Regulatory Monitor
 
+Styled in the PHARMACOPOLA brand colours (navy `#003A5B`, teal `#00A78F`) with the company logo from pharmacopola.sk.
+
 Watches official Slovak sources and tells you when something new appears that matters
 to a distributor of human and veterinary medicines, medical devices and related products.
 
@@ -39,6 +41,20 @@ are still covered through Slov-Lex eLegislatíva, which tracks them through the 
 
 The dashboard shows everything found, with filters, search and "NEW" markers.
 
+### "Check for updates now" button
+
+The button in the dashboard header starts the same GitHub Actions check immediately, follows it, and reloads the
+page when the new results are published (usually 2–5 minutes). GitHub Pages is a static site, so starting a
+workflow needs a GitHub token. The first click asks for one:
+
+1. GitHub → *Settings → Developer settings → Fine-grained tokens → Generate new token*
+   (direct link: https://github.com/settings/personal-access-tokens/new).
+2. *Repository access*: only `JurajGre-72.github.io`. *Permissions → Repository → Actions*: **Read and write**. Nothing else.
+3. Paste it into the dialog. It is stored only in that browser (local storage) and sent only to `api.github.com`;
+   "Forget the saved token" removes it. Each person/browser uses their own token.
+
+Without a token, "Run it on GitHub instead" opens the workflow page, where *Run workflow* does the same.
+
 ## Tuning relevance
 
 Edit `config.json`:
@@ -64,5 +80,17 @@ written to `data/changes/*.json` and loaded by the dashboard when you open an it
 Data is saved in `data/items.json` (dashboard) and `data/state.json`
 (what has already been seen). Delete `state.json` to start a source from scratch; the first run of a source
 loads recent history without sending a notification.
+
+## Tests
+
+`tests/dashboard.test.mjs` clicks through every control of the dashboard (search, filters, "Show more",
+"Mark all read", dark mode, all "what changed" views, and the full "Check for updates now" flow with the GitHub
+API mocked) and fails on any broken control or browser error. It runs automatically on pull requests
+(`.github/workflows/pharma-monitor-check.yml`); a manual run of that workflow also tests the published site.
+
+```bash
+npm install --no-save playwright@1.56.1 && npx playwright install chromium
+node pharma-monitor/tests/dashboard.test.mjs
+```
 
 > Monitoring aid, not legal advice. Always check the official text.
