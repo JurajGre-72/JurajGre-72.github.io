@@ -1,0 +1,15 @@
+name: Regulatory monitor – source probe (temporary)
+
+on:
+  push:
+    branches: ["claude/**"]
+    paths: ["pharma-monitor/probe.py", ".github/workflows/pharma-monitor-probe.yml"]
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 pharma-monitor/probe.py
