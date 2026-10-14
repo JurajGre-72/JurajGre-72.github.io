@@ -1,0 +1,311 @@
+{
+ "kind": "law_diff",
+ "law": "108/2024",
+ "law_name": "Consumer Protection Act",
+ "from": "2026-06-19",
+ "to": "2026-07-31",
+ "amended_by": "310/2025 Z. z.",
+ "amended_by_url": "https://static.slov-lex.sk/static/SK/ZZ/2025/310/20260731.html",
+ "old_url": "https://static.slov-lex.sk/static/SK/ZZ/2024/108/20260619.html",
+ "new_url": "https://static.slov-lex.sk/static/SK/ZZ/2024/108/20260731.html",
+ "changes": [
+  {
+   "loc": "§ 4 ods. 2 písm. e)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "porušiť alebo obchádzať povinnosti obchodníka pri uplatnení práv spotrebiteľa zo zodpovednosti za vady podľa § 622 ods. 3 a "
+    ],
+    [
+     "-",
+     "4 "
+    ],
+    [
+     "+",
+     "4, § 623 ods. 2 "
+    ],
+    [
+     "=",
+     "a § 852h ods. 6 a 7 Občianskeho zákonníka,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 24 ods. 1 písm. j)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "plní "
+    ],
+    [
+     "-",
+     "ďalšie "
+    ],
+    [
+     "=",
+     "povinnosti "
+    ],
+    [
+     "-",
+     "podľa osobitných predpisov."
+    ],
+    [
+     "+",
+     "národného kontaktného miesta pre európsku online platformu pre opravy, najmä"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 26 ods. 8 písm. b)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "podľa § 4 až 8, § "
+    ],
+    [
+     "-",
+     "13, "
+    ],
+    [
+     "+",
+     "13 až 13b, "
+    ],
+    [
+     "=",
+     "§ 15 až 17, § 20 ods. 9 a 13, § 20a a § 22, nad ktorými nevykonávajú dohľad orgány dohľadu podľa odsekov 2 až 7 a pri ponuke a predaji zmiešaného tovaru, ak sa porušenie povinnosti nevzťahuje výlučne na druh tovaru, nad ktorým vykonáva dohľad orgán dohľadu podľa odsekov 4 až 6,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 13a (nadpis)",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Výzva na úhradu poplatku za začatie alternatívneho riešenia sporu"
+    ],
+    [
+     "+",
+     "Informácie o oprave tovaru"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 13a ods. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Subjekt alternatívneho riešenia sporov po doručení úplného návrhu "
+    ],
+    [
+     "+",
+     "Osoba, ktorá v rámci svojho povolania alebo podnikateľskej činnosti poskytuje opravu, "
+    ],
+    [
+     "=",
+     "a "
+    ],
+    [
+     "-",
+     "zistení, že "
+    ],
+    [
+     "+",
+     "to aj prostredníctvom inej osoby, ktorá koná v jej mene alebo na jej účet (ďalej len „opravovňa“), môže pred uzavretím zmluvy o oprave poskytnúť spotrebiteľovi európsky formulár pre informácie o oprave podľa prílohy č. 3a (ďalej len „európsky formulár o oprave“). Poskytnutím európskeho formulára o oprave sa informačná povinnosť podľa § 5 ods. 1 písm. a) až e), § 15 ods. 1 písm. a) a b) a ods. 3 a podľa osobitných predpisov považuje za splnenú. Požiadavka na jasnosť a zrozumiteľnosť informácií tým "
+    ],
+    [
+     "=",
+     "nie je "
+    ],
+    [
+     "-",
+     "daný dôvod na odmietnutie návrhu podľa § 13 ods. 2 alebo ak neodmietne návrh podľa § 13 ods. 5, písomne vyzve spotrebiteľa na úhradu poplatku za začatie alternatívneho riešenia sporu, ak subjekt alternatívneho riešenia sporov účtuje spotrebiteľovi poplatok."
+    ],
+    [
+     "+",
+     "dotknutá."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 13a ods. 2",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Subjekt alternatívneho riešenia sporov odloží návrh, "
+    ],
+    [
+     "+",
+     "Opravovňa poskytne spotrebiteľovi európsky formulár o oprave na trvanlivom médiu bezodkladne od podania žiadosti o poskytnutie európskeho formulára o oprave spotrebiteľom a bezplatne. Ak je na určenie povahy vady, druhu opravy a odhad ceny opravy potrebná diagnostická služba vrátane fyzického skontrolovania tovaru alebo skontrolovania tovaru na diaľku, opravovňa pred poskytnutím európskeho formulára o oprave informuje spotrebiteľa o nákladoch na diagnostickú službu alebo o spôsobe, akým sa tieto náklady vypočítajú a o najvyššej možnej výške nákladov na diagnostickú službu, "
+    ],
+    [
+     "=",
+     "ak "
+    ],
+    [
+     "-",
+     "spotrebiteľ neuhradí poplatok za začatie alternatívneho riešenia sporu v lehote, ktorú určí subjekt alternatívneho riešenia sporov vo výzve podľa odseku 1, ktorá nesmie byť kratšia ako 15 dní odo dňa doručenia výzvy.“."
+    ],
+    [
+     "+",
+     "vzhľadom na povahu diagnostickej služby nemožno náklady primerane určiť vopred. Opravovňa môže žiadať od spotrebiteľa úhradu účelne vynaložených nákladov na diagnostickú službu."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 13a ods. 3",
+   "type": "added",
+   "text": "Podmienky opravy uvedené v európskom formulári o oprave sú pre opravovňu záväzné minimálne po dobu 30 dní odo dňa poskytnutia európskeho formulára o oprave spotrebiteľovi; tým nie je dotknuté právo spotrebiteľa a opravovne dohodnúť sa na dlhšej dobe viazanosti podmienok opravy uvedených v európskom formulári o oprave. Ak spotrebiteľ počas doby viazanosti európskym formulárom o oprave súhlasí s podmienkami opravy uvedenými v európskom formulári o oprave, opravovňa je povinná vykonať opravu za týchto podmienok. Informácie poskytnuté v európskom formulári o oprave tvoria neoddeliteľnú súčasť zmluvy o oprave a môžu sa zmeniť len s výslovným súhlasom oboch strán."
+  },
+  {
+   "loc": "§ 13b (nadpis)",
+   "type": "added",
+   "text": "Povinnosť vykonať opravu"
+  },
+  {
+   "loc": "§ 13b ods. 1",
+   "type": "added",
+   "text": "Nad rozsah zákonnej zodpovednosti obchodníka za vady tovaru je výrobca povinný na žiadosť spotrebiteľa opraviť tovar, ak právny predpis v prílohe II smernice Európskeho parlamentu a Rady (EÚ) 2024/1799 z 13. júna 2024 o spoločných pravidlách na podporu opravy tovaru a o zmene nariadenia (EÚ) 2017/2394 a smerníc (EÚ) 2019/771 a (EÚ) 2020/1828 ustanovuje požiadavky na opraviteľnosť tovaru alebo časti tovaru, vrátane požiadaviek na zjednodušenie demontáže, prístup k náhradným dielom, informáciám a nástrojom súvisiacim s opravou, ktoré sa vzťahujú na tovar alebo časť tovaru (ďalej len „požiadavka na opraviteľnosť“)."
+  },
+  {
+   "loc": "§ 13b ods. 2",
+   "type": "added",
+   "text": "Výrobca vykoná alebo zabezpečí vykonanie opravy podľa odseku 1 bezplatne alebo za primeranú cenu, v primeranej lehote od odovzdania tovaru spotrebiteľom alebo od sprístupnenia tovaru výrobcovi v rozsahu požiadavky na opraviteľnosť podľa právneho predpisu v prílohe II smernice (EÚ) 2024/1799, to neplatí, ak oprava nie je možná. Výrobca nesmie odmietnuť vykonať opravu len z dôvodu výšky nákladov na náhradné diely a nástroje potrebné na opravu alebo z dôvodu, že predchádzajúcu opravu vykonala opravovňa alebo iná osoba."
+  },
+  {
+   "loc": "§ 13b ods. 3",
+   "type": "added",
+   "text": "Ak výrobca nemá sídlo alebo miesto podnikania v Slovenskej republike alebo v inom členskom štáte, má povinnosť vykonať alebo zabezpečiť vykonanie opravy tovaru podľa odsekov 1 a 2"
+  },
+  {
+   "loc": "§ 13b ods. 3 písm. a)",
+   "type": "added",
+   "text": "splnomocnený zástupca so sídlom alebo miestom podnikania v členskom štáte,"
+  },
+  {
+   "loc": "§ 13b ods. 3 písm. b)",
+   "type": "added",
+   "text": "dovozca, ak výrobca nemá splnomocneného zástupcu so sídlom alebo miestom podnikania v členskom štáte,"
+  },
+  {
+   "loc": "§ 13b ods. 3 písm. c)",
+   "type": "added",
+   "text": "distribútor, ak dovozca nemá sídlo alebo miesto podnikania v členskom štáte."
+  },
+  {
+   "loc": "§ 13b ods. 4",
+   "type": "added",
+   "text": "Výrobca alebo osoba podľa odseku 3 môže počas opravy zapožičať spotrebiteľovi bezplatne alebo za primeraný poplatok dočasný náhradný tovar."
+  },
+  {
+   "loc": "§ 13b ods. 5",
+   "type": "added",
+   "text": "Výrobca alebo osoba podľa odseku 3 môže spotrebiteľovi ponúknuť renovovaný tovar, ak oprava nie je možná."
+  },
+  {
+   "loc": "§ 13b ods. 6",
+   "type": "added",
+   "text": "Výrobca, ktorý poskytuje náhradné diely a nástroje na opravu tovaru podľa právneho predpisu v prílohe II smernice (EÚ) 2024/1799, je povinný ponúkať tieto náhradné diely a nástroje na opravu za primeranú cenu, ktorá neodrádza od opravy."
+  },
+  {
+   "loc": "§ 13b ods. 7",
+   "type": "added",
+   "text": "Výrobca a osoba podľa odseku 3 počas trvania povinnosti vykonať opravu podľa právneho predpisu v prílohe II smernice (EÚ) 2024/1799"
+  },
+  {
+   "loc": "§ 13b ods. 7 písm. a)",
+   "type": "added",
+   "text": "bezplatne, jasným a zrozumiteľným spôsobom sprístupní informácie o opravárenských službách,"
+  },
+  {
+   "loc": "§ 13b ods. 7 písm. b)",
+   "type": "added",
+   "text": "zverejní na svojom webovom sídle informatívnu cenu za bežnú opravu tovaru, na ktorý sa vzťahuje požiadavka na opraviteľnosť."
+  },
+  {
+   "loc": "§ 13b ods. 8",
+   "type": "added",
+   "text": "Výrobca nesmie používať zmluvné ustanovenia, hardvérové alebo softvérové techniky, ktoré bránia oprave tovaru, ak to nie je odôvodnené legitímnymi alebo objektívnymi faktormi vrátane ochrany práv duševného vlastníctva. Výrobca nesmie brániť opravovniam v používaní originálnych alebo použitých náhradných dielov, kompatibilných náhradných dielov alebo náhradných dielov vyrobených trojrozmernou tlačou, ak sú v súlade s požiadavkami podľa osobitných predpisov."
+  },
+  {
+   "loc": "§ 13b ods. 9",
+   "type": "added",
+   "text": "Povinnosťou vykonať opravu podľa odsekov 1 až 3 nie je dotknuté právo spotrebiteľa uzavrieť zmluvu o oprave s inou opravovňou."
+  },
+  {
+   "loc": "§ 24 ods. 1 písm. j) bod 1",
+   "type": "added",
+   "text": "poskytuje podporu Európskej komisii pri prevádzkovaní vnútroštátnej sekcie európskej online platformy pre opravy,"
+  },
+  {
+   "loc": "§ 24 ods. 1 písm. j) bod 2",
+   "type": "added",
+   "text": "poskytuje a spravuje prístup do vnútroštátnej sekcie európskej online platformy pre opravy,"
+  },
+  {
+   "loc": "§ 24 ods. 1 písm. j) bod 3",
+   "type": "added",
+   "text": "informuje spotrebiteľov o dostupnosti a bezplatnom používaní európskej online platformy pre opravy,"
+  },
+  {
+   "loc": "§ 24 ods. 1 písm. j) bod 4",
+   "type": "added",
+   "text": "informuje hospodárske subjekty o dostupnosti a dobrovoľnej registrácii na európskej online platforme pre opravy,"
+  },
+  {
+   "loc": "§ 24 ods. 1 písm. k)",
+   "type": "added",
+   "text": "plní ďalšie povinnosti podľa osobitných predpisov."
+  },
+  {
+   "loc": "§ 13a~1 (nadpis)",
+   "type": "added",
+   "text": "Výzva na úhradu poplatku za začatie alternatívneho riešenia sporu"
+  },
+  {
+   "loc": "§ 13a~1 ods. 1",
+   "type": "added",
+   "text": "Subjekt alternatívneho riešenia sporov po doručení úplného návrhu a zistení, že nie je daný dôvod na odmietnutie návrhu podľa § 13 ods. 2 alebo ak neodmietne návrh podľa § 13 ods. 5, písomne vyzve spotrebiteľa na úhradu poplatku za začatie alternatívneho riešenia sporu, ak subjekt alternatívneho riešenia sporov účtuje spotrebiteľovi poplatok."
+  },
+  {
+   "loc": "§ 13a~1 ods. 2",
+   "type": "added",
+   "text": "Subjekt alternatívneho riešenia sporov odloží návrh, ak spotrebiteľ neuhradí poplatok za začatie alternatívneho riešenia sporu v lehote, ktorú určí subjekt alternatívneho riešenia sporov vo výzve podľa odseku 1, ktorá nesmie byť kratšia ako 15 dní odo dňa doručenia výzvy.“."
+  },
+  {
+   "loc": "Príloha priloha_c_3a_k_zakonu_c_108_2024_z_z (nadpis)",
+   "type": "added",
+   "text": "Identifikačné a kontaktné údaje opravovne poskytujúcej opravu"
+  },
+  {
+   "loc": "Príloha priloha_c_3a_k_zakonu_c_108_2024_z_z",
+   "type": "added",
+   "text": "Opravovňa [Obchodné meno a sídlo alebo miesto podnikania opravovne alebo osoby, v ktorej mene alebo na ktorej účet opravovňa koná] Adresa [Poštová adresa, ktorú má použiť spotrebiteľ] Telefónne číslo E-mailová adresa Iný prostriedok online komunikácie, ktorý spotrebiteľovi umožňuje rýchlo kontaktovať opravovňu a účinne s ňou komunikovať, ak ho opravovňa poskytuje"
+  },
+  {
+   "loc": "Príloha priloha_c_3a_k_zakonu_c_108_2024_z_z (nadpis)",
+   "type": "added",
+   "text": "Informácie o oprave"
+  },
+  {
+   "loc": "Príloha priloha_c_3a_k_zakonu_c_108_2024_z_z",
+   "type": "added",
+   "text": "Tovar, ktorý sa má opraviť [Identifikácia tovaru] Povaha vady [Opis vady] Navrhovaný druh opravy [Aké opatrenia sa prijmú na opravu vady] Cena za opravu alebo ak ju nie je možné vypočítať, spôsob, akým sa cena vypočíta a najvyššia možná cena za opravu [Ide o celkovú sumu za opravu, ak ju nie je možné vypočítať, spôsob, akým sa cena vypočíta a najvyššiu možnú cenu za opravu, v eurách] Lehota na vykonanie opravy [Lehota, v ktorej sa opravovňa zaväzuje opraviť tovar, vyjadrená v dňoch] Dostupnosť dočasného náhradného tovaru [Dočasný náhradný tovar znamená, že spotrebiteľ dostane rovnocenný tovar na použitie počas opravy; opravovňa uvedie „áno“ alebo „nie“] Náklady na poskytnutie dočasného náhradného tovaru, ak sa dočasný náhradný tovar poskytuje [v eurách] Miesto odovzdania tovaru na opravu [Miesto, kde spotrebiteľ odovzdáva tovar na opravu] Dostupnosť doplnkových služieb [Ak sa ponúkajú doplnkové služby, ako je prevzatie, inštalácia a preprava, uveďte, v akom rozsahu. Uveďte „žiadne“, ak sa na príslušnú opravu neponúka žiadna doplnková služba] Náklady na doplnkovú službu, ak sa doplnková služba poskytuje [Náklady na každú ponúkanú doplnkovú službu v eurách] Obdobie viazanosti európskym formulárom pre informácie o oprave [Obdobie viazanosti najmenej 30 dní] Doplňujúce informácie [Doplňujúce informácie, ak sú vzhľadom na povahu opravy potrebné]"
+  },
+  {
+   "loc": "Príloha priloha_c_3a_k_zakonu_c_108_2024_z_z",
+   "type": "added",
+   "text": "Informácie v hranatých zátvorkách slúžia ako vysvetlenie pre opravovňu a opravovňa ich nahradí zodpovedajúcimi údajmi."
+  },
+  {
+   "loc": "Príloha priloha_c_4_k_zakonu_c_108_2024_z_z",
+   "type": "added",
+   "text": "Smernica Európskeho parlamentu a Rady (EÚ) 2024/1799 z 13. júna 2024 o spoločných pravidlách na podporu opravy tovaru a o zmene nariadenia (EÚ) 2017/2394 a smerníc (EÚ) 2019/771 a (EÚ) 2020/1828 (Ú. v. EÚ L, 2024/1799, 10. 7. 2024)."
+  }
+ ]
+}

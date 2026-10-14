@@ -1,0 +1,29 @@
+name: Regulatory monitor – check
+
+# Runs the monitor on a throw-away copy for pull requests, so changes are tested against the
+# live sources from GitHub's servers without committing data or sending notifications.
+on:
+  pull_request:
+    paths: ["pharma-monitor/**", ".github/workflows/pharma-monitor*.yml"]
+  workflow_dispatch:
+
+jobs:
+  dry-run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile
+        run: python3 -m py_compile pharma-monitor/*.py
+      - name: Run all sources on a copy
+        run: |
+          cp -r pharma-monitor "$RUNNER_TEMP/pm"
+          python3 "$RUNNER_TEMP/pm/monitor.py" --notify-out "$RUNNER_TEMP/digest.md"
+          python3 - "$RUNNER_TEMP/pm/data/items.json" <<'PY'
+          import json, sys
+          d = json.load(open(sys.argv[1]))
+          print("\nSource status:")
+          for k, s in d["sources"].items():
+              print(f"  {'OK ' if s['ok'] else 'ERR'} {k:14} new={s['new']:<4} {s.get('error') or ''}")
+          PY
+          if [ -s "$RUNNER_TEMP/digest.md" ]; then echo; echo "Digest that would be sent:"; cat "$RUNNER_TEMP/digest.md"; fi

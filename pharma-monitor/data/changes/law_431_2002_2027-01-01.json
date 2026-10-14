@@ -1,0 +1,83 @@
+{
+ "kind": "law_diff",
+ "law": "431/2002",
+ "law_name": "Accounting Act",
+ "from": "2026-06-01",
+ "to": "2027-01-01",
+ "amended_by": "385/2025 Z. z.",
+ "amended_by_url": "https://static.slov-lex.sk/static/SK/ZZ/2025/385/20270101.html",
+ "old_url": "https://static.slov-lex.sk/static/SK/ZZ/2002/431/20260601.html",
+ "new_url": "https://static.slov-lex.sk/static/SK/ZZ/2002/431/20270101.html",
+ "changes": [
+  {
+   "loc": "§ 31 ods. 2 písm. b) bod 1",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "v elektronickom "
+    ],
+    [
+     "-",
+     "formáte "
+    ],
+    [
+     "+",
+     "formáte, zaslaný "
+    ],
+    [
+     "=",
+     "a prijatý alebo sprístupnený v elektronickom formáte, pričom elektronický formát "
+    ],
+    [
+     "+",
+     "ustanovuje osobitný predpis, "
+    ],
+    [
+     "=",
+     "určuje vyhotoviteľ účtovného záznamu alebo je určený na základe dohody s prijímateľom účtovného záznamu,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 31 ods. 7",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Ak účtovná jednotka elektronický účtovný záznam zasiela alebo inak sprístupňuje inej "
+    ],
+    [
+     "-",
+     "osobe, "
+    ],
+    [
+     "+",
+     "osobe a osobitný predpis neustanovuje inak, "
+    ],
+    [
+     "=",
+     "použitie elektronického účtovného záznamu podlieha"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 35 ods. 2",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Účtovná jednotka je povinná uchovávať účtovnú dokumentáciu počas doby ustanovenej v odseku 3. "
+    ],
+    [
+     "+",
+     "Ak tento zákon alebo osobitný predpis ustanovuje elektronický formát, v ktorom je účtovná jednotka povinná účtovný záznam vyhotoviť a uložiť, v tomto elektronickom formáte je povinná účtovný záznam aj uchovávať. "
+    ],
+    [
+     "=",
+     "Na nakladanie s účtovnou dokumentáciou sa vzťahujú všeobecné predpisy o archívnictve."
+    ]
+   ]
+  }
+ ]
+}
