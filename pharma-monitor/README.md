@@ -1,5 +1,7 @@
 # PHARMACOPOLA Regulatory Monitor
 
+Styled in the PHARMACOPOLA brand colours (navy `#003A5B`, teal `#00A78F`) with the company logo from pharmacopola.sk.
+
 Watches official Slovak sources and tells you when something new appears that matters
 to a distributor of human and veterinary medicines, medical devices and related products.
 
@@ -38,6 +40,20 @@ are still covered through Slov-Lex eLegislatíva, which tracks them through the 
    (for Gmail, an [app password](https://myaccount.google.com/apppasswords)), `MAIL_TO` (comma-separated).
 
 The dashboard shows everything found, with filters, search and "NEW" markers.
+
+### "Check for updates now" button
+
+The button in the dashboard header starts the same GitHub Actions check immediately, follows it, and reloads the
+page when the new results are published (usually 2–5 minutes). GitHub Pages is a static site, so starting a
+workflow needs a GitHub token. The first click asks for one:
+
+1. GitHub → *Settings → Developer settings → Fine-grained tokens → Generate new token*
+   (direct link: https://github.com/settings/personal-access-tokens/new).
+2. *Repository access*: only `JurajGre-72.github.io`. *Permissions → Repository → Actions*: **Read and write**. Nothing else.
+3. Paste it into the dialog. It is stored only in that browser (local storage) and sent only to `api.github.com`;
+   "Forget the saved token" removes it. Each person/browser uses their own token.
+
+Without a token, "Run it on GitHub instead" opens the workflow page, where *Run workflow* does the same.
 
 ## Tuning relevance
 

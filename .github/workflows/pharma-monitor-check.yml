@@ -27,3 +27,22 @@ jobs:
               print(f"  {'OK ' if s['ok'] else 'ERR'} {k:14} new={s['new']:<4} {s.get('error') or ''}")
           PY
           if [ -s "$RUNNER_TEMP/digest.md" ]; then echo; echo "Digest that would be sent:"; cat "$RUNNER_TEMP/digest.md"; fi
+
+  dashboard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Render the dashboard in headless Chrome
+        run: |
+          python3 -m http.server 8000 >/dev/null 2>&1 &
+          sleep 2
+          check() {
+            google-chrome --headless=new --disable-gpu --no-sandbox --virtual-time-budget=15000 --dump-dom "$1" > dom.html 2>/dev/null
+            n=$(grep -o 'class="item p-' dom.html | wc -l)
+            echo "$1 -> $n items rendered"
+            grep -q 'Could not load' dom.html && { echo "::error::dashboard could not load its data"; exit 1; }
+            [ "$n" -ge 5 ] || { echo "::error::dashboard rendered only $n items"; exit 1; }
+          }
+          check "http://localhost:8000/pharma-monitor/"
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then check "https://jurajgre-72.github.io/pharma-monitor/"; fi
