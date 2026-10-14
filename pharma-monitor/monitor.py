@@ -10,6 +10,9 @@ Standard library only, so it runs on any GitHub runner without installs.
 
 Usage:
     python3 monitor.py [--notify-out PATH] [--sources slovlex,sukl,...]
+
+"What changed" details (law wording before/after, price-list differences, amendment text) are
+written to data/changes/*.json and shown on the dashboard when an item is opened.
 """
 
 from __future__ import annotations
@@ -19,23 +22,32 @@ import datetime as dt
 import email.utils
 import hashlib
 import html
+import http.client
 import json
 import os
 import re
+import shutil
 import smtplib
+import subprocess
 import sys
 import time
 import unicodedata
 import urllib.error
+import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 from email.message import EmailMessage
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import lawdiff  # noqa: E402
+import pricelist  # noqa: E402
+
 HERE = Path(__file__).resolve().parent
 DATA = HERE / "data"
 ITEMS_FILE = DATA / "items.json"
 STATE_FILE = DATA / "state.json"
+CHANGES_DIR = DATA / "changes"
 CONFIG_FILE = HERE / "config.json"
 DASHBOARD_URL = "https://jurajgre-72.github.io/pharma-monitor/"
 
@@ -45,10 +57,16 @@ LEVEL_NAMES = {v: k for k, v in LEVELS.items()}
 
 SOURCES = {
     "slovlex": "Slov-Lex · Zbierka zákonov SR",
+    "lawchanges": "Slov-Lex · Znenia kľúčových zákonov",
+    "slovlex_lp": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
     "sukl": "ŠÚKL · Aktuality",
     "sukl_recall": "ŠÚKL · Stiahnutia liekov z trhu",
     "mzsr": "Ministerstvo zdravotníctva SR",
+    "kategorizacia": "MZ SR · Zoznam kategorizovaných liekov",
     "uskvbl": "ÚŠKVBL · Veterinárne lieky",
+    "eurlex": "EUR-Lex · Úradný vestník EÚ",
+    "ema": "EMA · European Medicines Agency",
+    "svps": "ŠVPS SR · Štátna veterinárna a potravinová správa",
 }
 
 
@@ -92,19 +110,64 @@ def shorten(text: str, n: int = 320) -> str:
     return text if len(text) <= n else text[: n - 1].rsplit(" ", 1)[0] + "…"
 
 
-def fetch(url: str, timeout: int = 45, retries: int = 3) -> str:
+def fold1(text: str) -> str:
+    """Like fold() but keeps one character per input character, so match positions map back to the original."""
+    return "".join(unicodedata.normalize("NFKD", c)[0] for c in text).lower()
+
+
+def fetch_raw(url: str, timeout: int = 45, retries: int = 3, data: bytes | None = None,
+              headers: dict | None = None) -> tuple[bytes, str]:
     last = None
     for attempt in range(retries):
         try:
-            req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept-Language": "sk,en;q=0.8"})
+            h = {"User-Agent": UA, "Accept-Language": "sk,en;q=0.8", **(headers or {})}
+            req = urllib.request.Request(url, data=data, headers=h)
             with urllib.request.urlopen(req, timeout=timeout) as r:
-                raw = r.read()
-                charset = r.headers.get_content_charset() or "utf-8"
-            return raw.decode(charset, errors="replace").lstrip("﻿")
-        except (urllib.error.URLError, TimeoutError, ConnectionError) as e:
+                return r.read(), r.headers.get_content_charset() or "utf-8"
+        except urllib.error.HTTPError as e:
+            last = e
+            if 400 <= e.code < 500 and e.code != 429:
+                break  # retrying will not help
+            time.sleep(2 * (attempt + 1))
+        except (urllib.error.URLError, http.client.HTTPException, TimeoutError, ConnectionError) as e:
             last = e
             time.sleep(2 * (attempt + 1))
-    raise RuntimeError(f"{url}: {last}")
+    if data is None and shutil.which("curl"):
+        # Some servers (health.gov.sk) occasionally cut long responses short for urllib; curl copes better.
+        h = {"User-Agent": UA, "Accept-Language": "sk,en;q=0.8", **(headers or {})}
+        cmd = ["curl", "-sSL", "--fail", "--retry", "2", "--max-time", str(timeout * 2), url]
+        for k, v in h.items():
+            cmd[1:1] = ["-H", f"{k}: {v}"]
+        r = subprocess.run(cmd, capture_output=True, timeout=timeout * 2 + 30)
+        if r.returncode == 0 and r.stdout:
+            return r.stdout, "utf-8"
+    raise RuntimeError(f"{url}: {last!r}")
+
+
+def fetch(url: str, timeout: int = 45, retries: int = 3) -> str:
+    raw, charset = fetch_raw(url, timeout, retries)
+    return raw.decode(charset, errors="replace").lstrip("\ufeff")
+
+
+def fetch_json(url: str, body: dict | None = None, timeout: int = 60):
+    data = json.dumps(body).encode() if body is not None else None
+    raw, charset = fetch_raw(url, timeout, data=data, headers={"Content-Type": "application/json", "Accept": "application/json"})
+    return json.loads(raw.decode(charset, errors="replace"))
+
+
+def sk_date(d: str | dt.date | None) -> str:
+    if not d:
+        return ""
+    if isinstance(d, str):
+        d = dt.date.fromisoformat(d[:10])
+    return d.strftime("%d.%m.%Y")
+
+
+def save_details(item: dict, payload: dict) -> None:
+    """Store the 'what changed' payload next to the items and point the item at it."""
+    name = re.sub(r"[^A-Za-z0-9_-]+", "_", item["id"]).strip("_") + ".json"
+    save_json(CHANGES_DIR / name, payload)
+    item["details"] = f"data/changes/{name}"
 
 
 def load_json(path: Path, default):
@@ -134,7 +197,29 @@ class Rules:
         self.keep_days = cfg.get("keep_days", 730)
         self.generic = set(cfg.get("generic_labels", []))
         self.notify_min = LEVELS[cfg.get("notify_min_priority", "medium")]
+        self.eurlex_min = LEVELS[cfg.get("eurlex_min_priority", "medium")]
+        self.eu_keywords = [(k["label"], LEVELS[k["level"]], re.compile(k["pattern"], re.I)) for k in cfg.get("eu_keywords", [])]
 
+    def match_en(self, text: str) -> tuple[int, list[str]]:
+        level, tags = 0, []
+        for label, lvl, pat in self.eu_keywords:
+            if pat.search(text or ""):
+                tags.append(label)
+                level = max(level, lvl)
+        return level, tags
+
+    def amendment_text(self, text: str, num: str, limit: int = 15000) -> str | None:
+        """The article of an amending act that changes key law `num` ("Čl. II  Zákon č. 362/2011 Z. z. ... sa mení ...")."""
+        t = fold1(text)
+        n = re.escape(num)
+        m = re.search(rf"\b(zakon|vyhlaska|nariadenie vlady)( narodnej rady)?( slovenskej republiky)?\s+(c\.\s*)?{n}\s*(z\.\s*z\.|zb\.)", t)
+        if not m:
+            return None
+        start = t.rfind("\ncl. ", 0, m.start())
+        start = start + 1 if start != -1 and m.start() - start < 400 else m.start()
+        end = t.find("\ncl. ", m.end())
+        chunk = text[start:end if end != -1 else len(text)].strip()
+        return chunk if len(chunk) <= limit else chunk[:limit].rsplit("\n", 1)[0] + "\n…"
     def excluded(self, *texts: str) -> bool:
         t = fold(" ".join(texts))
         return any(p.search(t) for p in self.exclude)
@@ -382,7 +467,300 @@ def assess_regulation(rules: Rules, ref: str, title: str) -> dict | None:
     item["doc_type"] = kind
     item["effective"] = effective
     item["pdf"] = f"https://static.slov-lex.sk/static/pdf/SK/ZZ/{year}/{num}/ZZ_{year}_{num}.pdf"
+    sections = []
+    for n in amended:
+        chunk = rules.amendment_text(text, n)
+        if chunk:
+            sections.append({"law": n, "law_name": rules.key_laws[n], "text": chunk})
+    if sections:
+        save_details(item, {"kind": "amendment", "act": ref, "title": title, "url": base, "sections": sections})
     return item
+
+
+# --------------------------------------------------------------------------- key laws: new consolidated wording
+
+HIST_ROW = re.compile(r'<tr class="effectivenessHistoryItem" data-iri="([^"]+)" data-vyhlasene="0" data-ucinnostod="(\d{4}-\d{2}-\d{2})"'
+                      r'.*?</td><td>(?:<a href="([^"]*)">(.*?)</a>)?', re.S)
+
+
+def check_lawchanges(rules: Rules, state: dict) -> list[dict]:
+    """When Slov-Lex publishes a new consolidated wording of a key law (often ahead of its effective date),
+    compare it with the previous wording provision by provision."""
+    st = state.setdefault("lawchanges", {}).setdefault("laws", {})
+    results, today = [], now_utc().date()
+    for num, name in rules.key_laws.items():
+        n, year = num.split("/")
+        base = f"https://static.slov-lex.sk/static/SK/ZZ/{year}/{n}/"
+        versions = [{"iri": iri, "from": frm, "novela": html.unescape(re.sub(r"<[^>]+>", "", nov or "")).replace("\xa0", " ").strip(),
+                     "novela_url": urllib.parse.urljoin(base, href) if href else None}
+                    for iri, frm, href, nov in HIST_ROW.findall(fetch(base))]
+        versions.sort(key=lambda v: v["from"])
+        known = st.get(num)
+        if known is None:  # first time we see this law: show the most recent changes as backlog
+            targets = [v for v in versions if dt.date.fromisoformat(v["from"]) >= today - dt.timedelta(days=150)][-2:]
+            backlog = True
+        else:
+            targets = [v for v in versions if v["from"] not in known]
+            backlog = False
+        cache: dict[str, str] = {}
+        for v in targets:
+            idx = versions.index(v)
+            if idx == 0:
+                continue
+            prev = versions[idx - 1]
+            urls = [f"https://static.slov-lex.sk/static{x['iri']}.html" for x in (prev, v)]
+            for u in urls:
+                if u not in cache:
+                    cache[u] = fetch(u, timeout=90)
+            changes = lawdiff.compare(cache[urls[0]], cache[urls[1]])
+            if not changes:
+                continue
+            level = LEVELS[rules.key_law_levels.get(num, "low")]
+            eff = dt.date.fromisoformat(v["from"])
+            title = f"{num} Z. z. – {name}: new wording in force from {sk_date(eff)}"
+            by = v["novela"] or "an amending act"
+            summary = (f"Changed by {by}{'' if by.endswith('.') else '.'} {len(changes)} provision(s) changed: "
+                       f"{lawdiff.summarize(changes)}. Open the item to see the old and new wording.")
+            date = min(dt.datetime.combine(eff, dt.time(8), dt.timezone.utc), now_utc())
+            item = make_item("lawchanges", f"law:{num}:{v['from']}", title, urls[1], date, "Law change", level,
+                             [f"Amends {num}"], summary)
+            item["effective"] = [v["from"]]
+            if backlog:
+                item["_backlog"] = True
+            save_details(item, {"kind": "law_diff", "law": num, "law_name": name, "from": prev["from"], "to": v["from"],
+                                "amended_by": v["novela"], "amended_by_url": v["novela_url"],
+                                "old_url": urls[0], "new_url": urls[1], "changes": changes})
+            results.append(item)
+        st[num] = [v["from"] for v in versions]
+        time.sleep(0.3)
+    return results
+
+
+# --------------------------------------------------------------------------- draft legislation (eLegislatíva)
+
+LP_API = "https://api-gateway.slov-lex.sk/internal/elegislativa/legislativne-materialy"
+
+
+def check_slovlex_lp(rules: Rules, state: dict, bootstrap: bool) -> list[dict]:
+    """New drafts and stage changes in the legislative process (pripomienkové konanie, vláda, NR SR, …)."""
+    st = state.setdefault("slovlex_lp", {})
+    mats = st.setdefault("materials", {})
+    last = st.get("last_run")
+    cutoff = (dt.date.fromisoformat(last[:10]) - dt.timedelta(days=3)) if last and not bootstrap \
+        else now_utc().date() - dt.timedelta(days=60)
+    results = []
+    for page in range(1, 40):
+        data = fetch_json(f"{LP_API}/filter?page={page}&size=100", {})
+        batch = data.get("legMaterialList") or []
+        for m in batch:
+            if dt.date.fromisoformat(m["zaciatokStadia"]) < cutoff:
+                continue
+            num, stage = m["cisloLegislativnehoMaterialu"], m["stadium"]
+            prev = mats.get(num)
+            if prev and prev["stage"] == stage["hodnota"]:
+                continue
+            if prev is None:
+                level, tags = rules.match(m["nazov"])
+                refs = rules.law_refs(re.sub(r"(?i)v znen\w* .*", "", m["nazov"]))
+                for n in refs:
+                    level = max(level, LEVELS[rules.key_law_levels.get(n, "low")])
+                    tags.append(f"Amends {n}")
+                if m.get("typNazov") == "Akt EÚ" and level < LEVELS["medium"]:
+                    level = 0  # EU acts only when clearly about our products
+                rel = level
+            else:
+                rel, tags = prev["rel"], prev.get("tags", [])
+            mats[num] = {"stage": stage["hodnota"], "rel": rel, "tags": tags}
+            if not rel:
+                continue
+            try:
+                d = fetch_json(f"{LP_API}/{num}")
+            except Exception:
+                d = {}
+            inst = (d.get("zodpovednaInstitucia") or {}).get("nazov")
+            amends = (d.get("hlavnyNovelizovanyPredpis") or {}).get("menovka")
+            parts = [f"Stage: {stage['nazov']} (since {sk_date(m['zaciatokStadia'])})"]
+            if prev:
+                parts.insert(0, f"Moved from stage “{prev.get('stage_name', prev['stage'])}” to “{stage['nazov']}”")
+            if stage["hodnota"] == "MPK" and m.get("datumUkonceniaPkMpk"):
+                parts.append(f"Comments can be submitted until {sk_date(m['datumUkonceniaPkMpk'])}")
+            if inst:
+                parts.append(f"Submitted by: {inst}")
+            if amends:
+                parts.append(f"Main act amended: {amends}")
+            mats[num]["stage_name"] = stage["nazov"]
+            kind = m.get("typNazov") or "Návrh"
+            title = f"{num} · {kind}: {m['nazov']}"
+            category = "Bill in Parliament (NR SR)" if "narodnej rady" in fold(stage["nazov"]) else "Draft law"
+            url = f"https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/{num}"
+            item = make_item("slovlex_lp", f"lp:{num}:{stage['hodnota']}", title, url,
+                             dt.datetime.fromisoformat(m["zaciatokStadia"] + "T08:00:00+00:00"),
+                             category, rel, tags + [stage["nazov"]], " · ".join(parts))
+            if stage["hodnota"] == "MPK" and m.get("datumUkonceniaPkMpk"):
+                item["deadline"] = m["datumUkonceniaPkMpk"]
+            results.append(item)
+        if not batch or dt.date.fromisoformat(batch[-1]["zaciatokStadia"]) < cutoff:
+            break
+    st["last_run"] = iso(now_utc())
+    return results
+
+
+# --------------------------------------------------------------------------- monthly list of categorised medicines
+
+def check_kategorizacia(rules: Rules, state: dict, bootstrap: bool) -> list[dict]:
+    """Compare each month's list of categorised (reimbursed) medicines with the previous month."""
+    st = state.setdefault("kategorizacia", {}).setdefault("months", {})
+    page = fetch("https://www.health.gov.sk/?kategorizacia-a-ceny")
+    months = {}
+    for ym, label in re.findall(r'href="/Clanok\?lieky(\d{6})">([^<]+)<', page):
+        months.setdefault(ym, html.unescape(label).strip())
+    order = sorted(months)
+    results = []
+
+    def part_a(ym: str) -> bytes:
+        art = fetch(f"https://www.health.gov.sk/Clanok?lieky{ym}")
+        m = re.search(rf'href="(Zdroje\?/Sources/kategorizacia/zkl/{ym}/cast_A[^"]+\.xlsx)"', art)
+        if not m:
+            raise RuntimeError(f"Part A file not found for {ym}")
+        return fetch_raw("https://www.health.gov.sk/" + html.unescape(m.group(1)), timeout=120)[0]
+
+    for ym in order[-2:]:
+        data = part_a(ym)
+        digest_ = hashlib.sha1(data).hexdigest()[:12]
+        if st.get(ym, {}).get("hash") == digest_:
+            continue
+        idx = order.index(ym)
+        if idx == 0:
+            continue
+        prev_ym = order[idx - 1]
+        diff = pricelist.compare(pricelist.products(part_a(prev_ym)), pricelist.products(data))
+        c = diff["counts"]
+        y, mo = int(ym[:4]), int(ym[4:])
+        valid_from = dt.date(y, mo, 1)
+        revised = ym in st
+        title = (f"{months[ym]}{' (updated version)' if revised else ''}: "
+                 f"{c['added']} added, {c['removed']} removed, {c['changed']} price/reimbursement changes")
+        summary = (f"Compared with the list valid from {sk_date(dt.date(int(prev_ym[:4]), int(prev_ym[4:]), 1))}. "
+                   "Open the item for the full lists by ŠÚKL code.")
+        examples = list(dict.fromkeys(p["name"] for p in diff["added"]))[:3]
+        if examples:
+            summary += " New e.g.: " + ", ".join(examples) + "."
+        date = now_utc() if not bootstrap else min(dt.datetime.combine(valid_from, dt.time(8), dt.timezone.utc), now_utc())
+        item = make_item("kategorizacia", f"kat:{ym}:{digest_}", title, f"https://www.health.gov.sk/Clanok?lieky{ym}", date,
+                         "Reimbursement & prices", 3, ["Reimbursement / categorisation", "Price regulation"], summary)
+        item["effective"] = [valid_from.isoformat()]
+        save_details(item, {"kind": "price_list", "month": ym, "previous": prev_ym, "title": months[ym], **diff})
+        results.append(item)
+        st[ym] = {"hash": digest_, "title": months[ym]}
+    return results
+
+
+# --------------------------------------------------------------------------- EU: Official Journal via the Publications Office
+
+SPARQL = "https://publications.europa.eu/webapi/rdf/sparql"
+EU_TYPES = ("REG", "REG_IMPL", "REG_DEL", "DIR", "DIR_IMPL", "DIR_DEL", "DEC", "DEC_IMPL", "DEC_DEL")
+
+
+def check_eurlex(rules: Rules, state: dict, bootstrap: bool) -> list[dict]:
+    seen = state.setdefault("eurlex", {}).setdefault("seen", {})
+    since = now_utc().date() - dt.timedelta(days=75)
+    query = f"""PREFIX cdm: <http://publications.europa.eu/ontology/cdm#>
+SELECT ?celex ?date ?type ?lang ?title WHERE {{
+  ?work cdm:resource_legal_id_celex ?celex ; cdm:work_date_document ?date ; cdm:work_has_resource-type ?rt .
+  FILTER(?date >= "{since}"^^xsd:date)
+  FILTER(STRSTARTS(?celex, "3"))
+  BIND(STRAFTER(STR(?rt), "resource-type/") AS ?type)
+  FILTER(?type IN ({",".join(f'"{t}"' for t in EU_TYPES)}))
+  ?exp cdm:expression_belongs_to_work ?work ; cdm:expression_title ?title ; cdm:expression_uses_language ?lang .
+  FILTER(?lang IN (<http://publications.europa.eu/resource/authority/language/ENG>,
+                   <http://publications.europa.eu/resource/authority/language/SLK>))
+}}"""
+    url = SPARQL + "?" + urllib.parse.urlencode({"query": query})
+    raw, charset = fetch_raw(url, timeout=120, headers={"Accept": "application/sparql-results+json"})
+    acts: dict[str, dict] = {}
+    for r in json.loads(raw.decode(charset))["results"]["bindings"]:
+        a = acts.setdefault(r["celex"]["value"], {"date": r["date"]["value"], "type": r["type"]["value"]})
+        a["sk" if r["lang"]["value"].endswith("SLK") else "en"] = r["title"]["value"].replace("\xa0", " ")
+    results = []
+    for celex, a in acts.items():
+        if celex in seen or "en" not in a:
+            continue
+        seen[celex] = iso(now_utc())
+        level, tags = rules.match_en(a["en"])
+        if a["en"].lower().startswith("corrigendum"):
+            level = min(level, LEVELS["medium"])
+        if level < rules.eurlex_min:
+            continue  # feed additives, biocide approvals etc. are too frequent to be useful
+        amending = re.findall(r"amending (?:Implementing |Delegated )?(?:Regulation|Directive|Decision) \((?:EU|EC|EEC)\) (?:No )?[\d/]+", a["en"])
+        summary = a["en"] if a.get("sk") else ""
+        if amending:
+            summary = ("Changes: " + "; ".join(amending[:3]) + ". " + summary).strip()
+        item = make_item("eurlex", f"eu:{celex}", a.get("sk") or a["en"],
+                         f"https://eur-lex.europa.eu/legal-content/SK/TXT/?uri=CELEX:{celex}",
+                         dt.datetime.fromisoformat(a["date"] + "T08:00:00+00:00"), "EU legislation", level, tags, summary)
+        item["doc_type"] = a["type"]
+        results.append(item)
+    return results
+
+
+# --------------------------------------------------------------------------- ŠVPS (state veterinary & food administration)
+
+SVPS_CATEGORIES = {  # RSS category -> (our category, base level)
+    "veterinarne lieky": ("Veterinary (ŠVPS)", 3),
+    "mimoriadne nudzove opatrenia": ("Animal health (ŠVPS)", 2),
+    "nakazy a choroby zvierat": ("Animal health (ŠVPS)", 1),
+    "nevyhovujuce vyrobky": ("Product safety (ŠVPS)", 0),  # food recalls: only when keywords match (e.g. supplements)
+    "legislativa": ("Veterinary (ŠVPS)", 2),
+}
+
+
+def check_svps(rules: Rules, state: dict) -> list[dict]:
+    seen = state.setdefault("svps", {}).setdefault("seen", {})
+    raw = fetch("https://svps.sk/feed/")
+    root = ET.fromstring(raw.encode("utf-8"))
+    results = []
+    for it in root.iter("item"):
+        title = html.unescape(it.findtext("title") or "").strip()
+        link = (it.findtext("link") or "").strip()
+        uid = (it.findtext("guid") or link).strip()
+        if uid in seen:
+            continue
+        seen[uid] = iso(now_utc())
+        cats = [fold(c.text or "") for c in it.findall("category")]
+        text = strip_html(it.findtext("description") or "")
+        if rules.excluded(title, " ".join(cats)) or any("pracovnych miest" in c or "majetku" in c for c in cats):
+            continue
+        level, tags = rules.match(f"{title} {text}")
+        category, base = "ŠVPS notice", 0
+        for c in cats:
+            if c in SVPS_CATEGORIES and SVPS_CATEGORIES[c][1] > base:
+                category, base = SVPS_CATEGORIES[c]
+        level = max(level, base)
+        if not level:
+            continue  # food hygiene reports etc. without a link to our products
+        try:
+            pub = email.utils.parsedate_to_datetime(it.findtext("pubDate") or "")
+        except (TypeError, ValueError):
+            pub = None
+        results.append(make_item("svps", uid, title, link, pub, category, level, tags, text))
+    return results
+
+
+# --------------------------------------------------------------------------- EMA news
+
+def check_ema(rules: Rules, state: dict) -> list[dict]:
+    seen = state.setdefault("ema", {}).setdefault("seen", {})
+    results = []
+    for it in rss_items(fetch("https://www.ema.europa.eu/en/news.xml")):
+        uid = it["link"] or it["guid"]
+        if uid in seen:
+            continue
+        seen[uid] = iso(now_utc())
+        text = strip_html(it["description"])
+        _, tags = rules.match_en(f"{it['title']} {text}")
+        level = max(1, rules.match_en(it["title"])[0])  # the headline decides the priority
+        results.append(make_item("ema", uid, it["title"], it["link"], it["date"], "EU agency (EMA)", level, tags, text))
+    return results
 
 
 def make_item(source, uid, title, url, date, category, level, tags, summary) -> dict:
@@ -472,18 +850,32 @@ def main() -> int:
                 found = check_mzsr(rules, state)
             elif key == "uskvbl":
                 found = check_uskvbl(rules, state, bootstrap)
+            elif key == "lawchanges":
+                found = check_lawchanges(rules, state)
+            elif key == "slovlex_lp":
+                found = check_slovlex_lp(rules, state, bootstrap)
+            elif key == "kategorizacia":
+                found = check_kategorizacia(rules, state, bootstrap)
+            elif key == "eurlex":
+                found = check_eurlex(rules, state, bootstrap)
+            elif key == "ema":
+                found = check_ema(rules, state)
+            elif key == "svps":
+                found = check_svps(rules, state)
             else:
                 print(f"  unknown source {key}", file=sys.stderr)
                 continue
             if bootstrap:
-                cutoff = started - dt.timedelta(days=rules.bootstrap_days if key != "slovlex" else 400)
+                days = {"slovlex": 400, "lawchanges": 400, "kategorizacia": 400}.get(key, rules.bootstrap_days)
+                cutoff = started - dt.timedelta(days=days)
                 found = [i for i in found if parse_iso(i["date"]) >= cutoff]
-                for i in found:
-                    i["detected"] = i["date"]  # don't flag the backlog as "new"
+            for i in found:
+                if bootstrap or i.pop("_backlog", False):
+                    i["detected"] = min(i["date"], i["detected"])  # don't flag the backlog as "new"
+                    i["backlog"] = True
             fresh = [i for i in found if i["id"] not in known]
             store["items"].extend(fresh)
-            if not bootstrap:
-                new_items.extend(fresh)
+            new_items.extend(i for i in fresh if not i.pop("backlog", False))
             status[key] = {"name": SOURCES[key], "ok": True, "checked": iso(started), "new": len(fresh), "error": None}
             print(f"  {len(fresh)} relevant new item(s)")
         except Exception as e:  # keep other sources running
@@ -498,6 +890,10 @@ def main() -> int:
                             key=lambda i: (i["date"], i["id"]), reverse=True)
     store["updated"] = iso(started)
     save_json(ITEMS_FILE, store)
+    referenced = {Path(i["details"]).name for i in store["items"] if i.get("details")}
+    for f in CHANGES_DIR.glob("*.json"):
+        if f.name not in referenced:
+            f.unlink()  # detail files of items that were dropped or aged out
 
     new_items = [i for i in new_items if LEVELS[i["priority"]] >= rules.notify_min]
     print(f"Done: {len(new_items)} new item(s) to notify, {len(store['items'])} stored.")

@@ -1,0 +1,452 @@
+{
+ "kind": "law_diff",
+ "law": "513/1991",
+ "law_name": "Commercial Code",
+ "from": "2026-01-10",
+ "to": "2026-08-17",
+ "amended_by": "29/2026 Z. z.",
+ "amended_by_url": "https://static.slov-lex.sk/static/SK/ZZ/2026/29/20260817.html",
+ "old_url": "https://static.slov-lex.sk/static/SK/ZZ/1991/513/20260110.html",
+ "new_url": "https://static.slov-lex.sk/static/SK/ZZ/1991/513/20260817.html",
+ "changes": [
+  {
+   "loc": "§ 10 ods. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Obchodné meno nesmie byť zameniteľné s obchodným menom iného "
+    ],
+    [
+     "-",
+     "podnikateľa "
+    ],
+    [
+     "+",
+     "podnikateľa, s označením orgánu verejnej moci, verejného registra alebo inej evidencie vedenej na základe zákona "
+    ],
+    [
+     "=",
+     "a nesmie vzbudzovať klamlivú predstavu o podnikateľovi alebo o predmete podnikania."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 21 ods. 4 písm. b)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "zápisu podniku alebo organizačnej zložky podniku zahraničnej právnickej osoby do obchodného registra, a to v rozsahu zapísaného predmetu "
+    ],
+    [
+     "-",
+     "podnikania; návrh na zápis podáva zahraničná právnická osoba."
+    ],
+    [
+     "+",
+     "podnikania."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 21 ods. 5 písm. b)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "výmazu podniku alebo organizačnej zložky podniku zahraničnej právnickej osoby z obchodného "
+    ],
+    [
+     "-",
+     "registra; návrh na výmaz podáva zahraničná právnická osoba."
+    ],
+    [
+     "+",
+     "registra."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 27 ods. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Obchodný register "
+    ],
+    [
+     "-",
+     "je verejný zoznam zákonom ustanovených údajov (ďalej len „zapísané údaje“), ktorého súčasťou je zbierka zákonom ustanovených listín (ďalej len „zbierka listín“)."
+    ],
+    [
+     "+",
+     "upravuje osobitný predpis."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 27 ods. 2",
+   "type": "removed",
+   "text": "Do obchodného registra sa zapisujú"
+  },
+  {
+   "loc": "§ 27 ods. 2 písm. a)",
+   "type": "removed",
+   "text": "právnické osoby založené podľa tohto zákona, a to"
+  },
+  {
+   "loc": "§ 27 ods. 2 písm. a) bod 1",
+   "type": "removed",
+   "text": "verejná obchodná spoločnosť,"
+  },
+  {
+   "loc": "§ 27 ods. 2 písm. a) bod 2",
+   "type": "removed",
+   "text": "komanditná spoločnosť,"
+  },
+  {
+   "loc": "§ 27 ods. 2 písm. a) bod 3",
+   "type": "removed",
+   "text": "spoločnosť s ručením obmedzeným,"
+  },
+  {
+   "loc": "§ 27 ods. 2 písm. a) bod 4",
+   "type": "removed",
+   "text": "jednoduchá spoločnosť na akcie,"
+  },
+  {
+   "loc": "§ 27 ods. 2 písm. a) bod 5",
+   "type": "removed",
+   "text": "akciová spoločnosť,"
+  },
+  {
+   "loc": "§ 27 ods. 2 písm. a) bod 6",
+   "type": "removed",
+   "text": "družstvo,"
+  },
+  {
+   "loc": "§ 27 ods. 2 písm. b)",
+   "type": "removed",
+   "text": "právnické osoby založené podľa práva Európskej únie, a to"
+  },
+  {
+   "loc": "§ 27 ods. 2 písm. b) bod 1",
+   "type": "removed",
+   "text": "európske zoskupenie hospodárskych záujmov,"
+  },
+  {
+   "loc": "§ 27 ods. 2 písm. b) bod 2",
+   "type": "removed",
+   "text": "európske družstvo,"
+  },
+  {
+   "loc": "§ 27 ods. 2 písm. b) bod 3",
+   "type": "removed",
+   "text": "európska spoločnosť,"
+  },
+  {
+   "loc": "§ 27 ods. 2 písm. c)",
+   "type": "removed",
+   "text": "právnické osoby zriadené zákonom alebo na základe zákona, ak osobitný zákon ustanovuje, že sa zapisujú do obchodného registra,"
+  },
+  {
+   "loc": "§ 27 ods. 2 písm. d)",
+   "type": "removed",
+   "text": "štátne podniky,"
+  },
+  {
+   "loc": "§ 27 ods. 2 písm. e)",
+   "type": "removed",
+   "text": "organizačné zložky podnikov slovenských právnických osôb,"
+  },
+  {
+   "loc": "§ 27 ods. 2 písm. f)",
+   "type": "removed",
+   "text": "podniky zahraničných právnických osôb a organizačné zložky podnikov zahraničných právnických osôb"
+  },
+  {
+   "loc": "§ 27 ods. 3",
+   "type": "removed",
+   "text": "Zapísané údaje sú účinné voči tretím osobám odo dňa ich zverejnenia. Obsah listín, ktorých zverejnenie zákon ustanovuje, je účinný voči tretím osobám odo dňa, keď bolo zverejnené oznámenie o uložení listín do zbierky listín. To neplatí, ak zapísaná osoba preukáže, že tretia osoba o týchto údajoch alebo o obsahu listín vedela. Zapísaná osoba sa však nemôže na tieto údaje alebo obsah listín odvolávať voči tretím osobám do 15 dní odo dňa ich zverejnenia, ak tretie osoby preukážu, že o nich nemohli vedieť."
+  },
+  {
+   "loc": "§ 27 ods. 4",
+   "type": "removed",
+   "text": "Ak je nesúlad medzi zapísanými a zverejnenými údajmi alebo uloženými a zverejnenými listinami, nemožno voči tretím osobám namietať zverejnené znenie. Tretie osoby sa môžu odvolávať na zverejnené znenie, ak zapísaná osoba nepreukáže, že tretím osobám boli známe zapísané údaje alebo obsah listín uložených v zbierke listín."
+  },
+  {
+   "loc": "§ 27 ods. 5",
+   "type": "removed",
+   "text": "Tretie osoby sa vždy môžu odvolávať na obsah listín alebo údajov, ktoré ešte neboli zapísané do obchodného registra alebo uložené do zbierky listín, okrem prípadu, ak ich účinky nastanú až zápisom do obchodného registra."
+  },
+  {
+   "loc": "§ 27 ods. 6",
+   "type": "removed",
+   "text": "Od zverejnenia zápisu štatutárneho orgánu alebo jeho členov do obchodného registra sa zapísaná osoba nemôže voči tretím osobám domáhať porušenia právnych predpisov, spoločenskej zmluvy alebo stanov pri voľbe alebo vymenovaní štatutárnych orgánov alebo ich členov okrem prípadu, že sa preukáže, že tretia osoba o ich porušení vedela."
+  },
+  {
+   "loc": "§ 27 ods. 7",
+   "type": "removed",
+   "text": "Ak je nesúlad medzi údajmi a listinami zverejnenými o zapísanom podniku zahraničnej osoby alebo o zapísanej organizačnej zložke podniku zahraničnej osoby v Slovenskej republike a údajmi a listinami zverejnenými o zahraničnej osobe v štáte, v ktorom má sídlo, pre obchodný styk s podnikom zahraničnej osoby alebo s jeho organizačnou zložkou sú rozhodujúce údaje a listiny zverejnené o podniku zahraničnej osoby alebo o organizačnej zložke podniku zahraničnej osoby v Slovenskej republike."
+  },
+  {
+   "loc": "§ 27 ods. 8",
+   "type": "removed",
+   "text": "Ak je pri listinách uložených do zbierky listín nesúlad medzi znením listiny v štátnom jazyku a znením listiny v inom ako štátnom jazyku, nemožno voči tretím osobám namietať znenie listiny v inom ako štátnom jazyku. Tretie osoby sa môžu odvolávať na znenie listiny v inom ako štátnom jazyku, ak zapísaná osoba nepreukáže, že tretím osobám bolo známe znenie listiny v štátnom jazyku."
+  },
+  {
+   "loc": "§ 40 ods. 3",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Ak osobitný zákon zapísanej osobe ukladá povinnosť overiť účtovnú závierku audítorom, ukladá sa do zbierky listín účtovná závierka overená audítorom spolu "
+    ],
+    [
+     "-",
+     "s audítorskou správou, "
+    ],
+    [
+     "+",
+     "so správou audítora, "
+    ],
+    [
+     "=",
+     "menom, bydliskom fyzickej osoby alebo obchodným menom, sídlom a identifikačným číslom právnickej osoby a s evidenčným číslom zápisu overujúceho audítora v zozname audítorov. Ak sa do zbierky listín ukladá neoverená účtovná závierka, postupuje účtovná jednotka podľa osobitného predpisu. Ak je audítorom právnická osoba, uvádza sa aj meno a bydlisko fyzických osôb, ktoré za audítora vykonali audit. Ak osobitný zákon zapísanej osobe ukladá povinnosť vyhotoviť výročnú správu a táto výročná správa obsahuje účtovnú závierku overenú audítorom, účtovná závierka môže byť uložená ako súčasť výročnej správy."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 57 ods. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Ak z iných ustanovení tohto zákona nevyplýva niečo iné, zakladá sa spoločnosť spoločenskou zmluvou "
+    ],
+    [
+     "-",
+     "podpísanou všetkými zakladateľmi. Pravosť podpisov zakladateľov "
+    ],
+    [
+     "+",
+     "vyhotovenou vo forme notárskej zápisnice o právnom úkone alebo vo forme dokumentu autorizovaného advokátom a "
+    ],
+    [
+     "=",
+     "musí byť "
+    ],
+    [
+     "-",
+     "úradne overená."
+    ],
+    [
+     "+",
+     "podpísaná všetkými zakladateľmi."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 57 ods. 3",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Ak tento zákon pripúšťa, aby spoločnosť založil jediný zakladateľ, spoločenskú zmluvu nahrádza zakladateľská listina. Zakladateľská listina musí obsahovať rovnaké podstatné časti ako spoločenská zmluva alebo zakladateľská "
+    ],
+    [
+     "-",
+     "zmluva."
+    ],
+    [
+     "+",
+     "zmluva a musí byť vyhotovená vo forme notárskej zápisnice alebo vo forme dokumentu autorizovaného advokátom."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 63 ods. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Právne úkony týkajúce sa založenia, vzniku, zmeny, zrušenia alebo zániku spoločnosti musia mať písomnú formu; zákon ustanovuje, pre ktoré úkony sa vyžaduje forma notárskej "
+    ],
+    [
+     "-",
+     "zápisnice."
+    ],
+    [
+     "+",
+     "zápisnice alebo forma dokumentu autorizovaného advokátom."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 78 ods. 2",
+   "type": "removed",
+   "text": "Návrh na zápis spoločnosti do obchodného registra podávajú a podpisujú všetci spoločníci."
+  },
+  {
+   "loc": "§ 96 ods. 1",
+   "type": "removed",
+   "text": "Návrh na zápis komanditnej spoločnosti do obchodného registra podávajú a podpisujú všetci spoločníci."
+  },
+  {
+   "loc": "§ 105a ods. 1",
+   "type": "removed",
+   "text": "Spoločnosť s jedným spoločníkom nemôže byť jediným zakladateľom alebo jediným spoločníkom inej spoločnosti. Fyzická osoba môže byť jediným spoločníkom najviac v troch spoločnostiach."
+  },
+  {
+   "loc": "§ 112 ods. 1",
+   "type": "removed",
+   "text": "Návrh na zápis spoločnosti do obchodného registra podávajú a podpisujú všetci konatelia spoločnosti."
+  },
+  {
+   "loc": "§ 115 ods. 4",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Zmluva o prevode obchodného podielu musí "
+    ],
+    [
+     "-",
+     "mať písomnú formu a podpisy na zmluve sa musia osvedčiť. "
+    ],
+    [
+     "+",
+     "byť vyhotovená vo forme notárskej zápisnice alebo vo forme zmluvy autorizovanej advokátom. "
+    ],
+    [
+     "=",
+     "Nadobúdateľ, ktorý nie je spoločníkom, v nej musí vyhlásiť, že pristupuje k spoločenskej zmluve, prípadne stanovám, ak boli prijaté. Prevodca ručí za splácanie vkladu nadobúdateľom tohto podielu."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 127a ods. 3",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Zápisnicu o valnom zhromaždení podpisuje predseda valného zhromaždenia a zapisovateľ; pravosť podpisu predsedu valného zhromaždenia musí byť úradne osvedčená, ak programom valného zhromaždenia boli rozhodnutia podľa § 125 ods. 1 písm. e), "
+    ],
+    [
+     "-",
+     "f), "
+    ],
+    [
+     "=",
+     "i), j) a ods. 2 alebo ak sa na zasadnutí valného zhromaždenia člen orgánu spoločnosti vzdal funkcie. "
+    ],
+    [
+     "+",
+     "Pravosť podpisu predsedu valného zhromaždenia musí byť úradne osvedčená aj vtedy, ak programom valného zhromaždenia bolo rozhodnutie podľa § 125 ods. 1 písm. f), ak ide o odmeňovanie konateľov. "
+    ],
+    [
+     "=",
+     "K zápisnici sa priložia návrhy a vyhlásenia predložené na valnom zhromaždení na prerokovanie a listina prítomných spoločníkov."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 132 ods. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Ak má spoločnosť jediného spoločníka, vykonáva tento spoločník pôsobnosť valného zhromaždenia. Rozhodnutie jediného spoločníka urobené pri výkone pôsobnosti valného zhromaždenia musí mať písomnú formu a musí ho podpísať, ak tento zákon neustanovuje inak. Ak ide o rozhodnutie podľa § 125 ods. 1 písm. e), "
+    ],
+    [
+     "-",
+     "f), "
+    ],
+    [
+     "=",
+     "i), j) a ods. 2, pravosť podpisu jediného spoločníka na tomto rozhodnutí musí byť úradne "
+    ],
+    [
+     "-",
+     "osvedčená."
+    ],
+    [
+     "+",
+     "osvedčená; pravosť podpisu jediného spoločníka na rozhodnutí musí byť úradne osvedčená aj na rozhodnutí podľa § 125 ods. 1 písm. f), ak ide o odmeňovanie konateľov. Ak ide o rozhodnutie podľa § 127a ods. 4, rozhodnutie jediného spoločníka sa musí vyhotoviť vo forme notárskej zápisnice o právnom úkone alebo vo forme dokumentu autorizovaného advokátom."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 162 ods. 2",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Ak spoločnosť zakladajú dvaja alebo viacerí zakladatelia, uzavrú zakladateľskú zmluvu. Ak spoločnosť zakladá jeden zakladateľ, nahrádza zakladateľskú zmluvu zakladateľská listina. "
+    ],
+    [
+     "-",
+     "Zakladateľská zmluva alebo zakladateľská listina musí sa vyhotoviť vo forme notárskej zápisnice o právnom úkone. "
+    ],
+    [
+     "=",
+     "Súčasťou zakladateľskej zmluvy a zakladateľskej listiny je návrh stanov."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 175 ods. 2",
+   "type": "removed",
+   "text": "Návrh na zápis do obchodného registra podáva predstavenstvo a podpisujú ho všetci členovia predstavenstva."
+  },
+  {
+   "loc": "§ 220t ods. 5",
+   "type": "removed",
+   "text": "Zakladateľská zmluva alebo zakladateľská listina sa musí vyhotoviť vo forme notárskej zápisnice o právnom úkone."
+  },
+  {
+   "loc": "§ 220w ods. 3",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Právo pridať sa k prevodu akcií a právo požadovať prevod akcií môžu byť dohodnuté aj ako práva, ktoré vznikajú registráciou podľa osobitného predpisu. V takom prípade sa na ich zriadenie vyžaduje notárska "
+    ],
+    [
+     "-",
+     "zápisnica."
+    ],
+    [
+     "+",
+     "zápisnica alebo zmluva autorizovaná advokátom."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 225 ods. 2",
+   "type": "removed",
+   "text": "Návrh na zápis je povinné podať predstavenstvo. Návrh na zápis podpisujú všetci členovia predstavenstva."
+  },
+  {
+   "loc": "§ 127a ods. 4",
+   "type": "added",
+   "text": "Priebeh valného zhromaždenia musí byť osvedčený formou notárskej zápisnice, ak bolo jeho programom schválenie rozhodnutia podľa"
+  },
+  {
+   "loc": "§ 127a ods. 4 písm. a)",
+   "type": "added",
+   "text": "§ 125 ods. 1 písm. d), ak sa rozhodnutím valného zhromaždenia určuje iný pomer hlasov spoločníkov, ako je ustanovený v § 127 ods. 2,"
+  },
+  {
+   "loc": "§ 127a ods. 4 písm. b)",
+   "type": "added",
+   "text": "§ 125 ods. 1 písm. e), ak sa na jeho základe mení pomer obchodných podielov v spoločnosti a"
+  },
+  {
+   "loc": "§ 127a ods. 4 písm. c)",
+   "type": "added",
+   "text": "§ 125 ods. 1 písm. f), ak ide o vymenovanie alebo odvolanie konateľov."
+  }
+ ]
+}

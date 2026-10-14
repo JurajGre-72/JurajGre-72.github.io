@@ -27,6 +27,10 @@
     --low-bg: #eceff2;
     --new: #2459d6;
     --ok: #1d8a4e;
+    --ins-bg: #dcf3e4;
+    --ins-ink: #11603a;
+    --del-bg: #fbe3e1;
+    --del-ink: #9d2a21;
     --shadow: 0 1px 2px rgba(20, 30, 28, .06);
   }
   @media (prefers-color-scheme: dark) {
@@ -47,6 +51,10 @@
       --low-bg: #222a31;
       --new: #7ea4ff;
       --ok: #5fd08f;
+      --ins-bg: #173a27;
+      --ins-ink: #8fe3b0;
+      --del-bg: #43201d;
+      --del-ink: #ffaaa1;
       --shadow: none;
     }
   }
@@ -67,6 +75,10 @@
     --low-bg: #222a31;
     --new: #7ea4ff;
     --ok: #5fd08f;
+    --ins-bg: #173a27;
+    --ins-ink: #8fe3b0;
+    --del-bg: #43201d;
+    --del-ink: #ffaaa1;
     --shadow: none;
   }
 
@@ -158,6 +170,38 @@
     h1 { font-size: 21px; }
     .controls { position: static; }
   }
+
+  .pill.deadline { background: var(--medium-bg); color: var(--medium); }
+  .more-btn { margin-top: 10px; border: 1px solid var(--line); background: var(--surface-2); border-radius: 8px; padding: 6px 12px;
+    cursor: pointer; font-weight: 600; font-size: 13px; color: var(--accent); }
+  .more-btn:hover { border-color: var(--accent); }
+  .detail { margin-top: 12px; border-top: 1px solid var(--line); padding-top: 12px; font-size: 14px; }
+  .detail .hint { color: var(--muted); font-size: 13px; margin: 0 0 10px; }
+  .detail .hint a { color: var(--accent); }
+  .chg { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; margin-bottom: 8px; background: var(--bg); }
+  .chg-h { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-weight: 600; margin-bottom: 6px; }
+  .chg-h .t { font: 500 11px/1.4 'IBM Plex Mono', monospace; text-transform: uppercase; letter-spacing: .05em; padding: 1px 6px;
+    border-radius: 4px; background: var(--surface-2); color: var(--muted); }
+  .chg-h .t.added { background: var(--ins-bg); color: var(--ins-ink); }
+  .chg-h .t.removed { background: var(--del-bg); color: var(--del-ink); }
+  .chg-b { line-height: 1.6; overflow-wrap: anywhere; }
+  ins { background: var(--ins-bg); color: var(--ins-ink); text-decoration: none; border-radius: 3px; padding: 0 1px; }
+  del { background: var(--del-bg); color: var(--del-ink); border-radius: 3px; padding: 0 1px; }
+  .gap { color: var(--muted); }
+  .legend { display: flex; gap: 12px; font-size: 12px; color: var(--muted); margin-bottom: 10px; flex-wrap: wrap; }
+  pre.amend { white-space: pre-wrap; font: 13px/1.55 'IBM Plex Mono', monospace; background: var(--bg); border: 1px solid var(--line);
+    border-radius: 8px; padding: 10px 12px; max-height: 480px; overflow: auto; margin: 6px 0 12px; }
+  .tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; align-items: center; }
+  .tabs button { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 4px 12px; cursor: pointer; font-size: 13px; }
+  .tabs button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+  .tabs input { flex: 1 1 160px; min-width: 0; border: 1px solid var(--line); background: var(--surface); border-radius: 8px; padding: 5px 10px; font-size: 13px; }
+  .tbl-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; max-height: 520px; overflow-y: auto; }
+  table.pl { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.pl th, table.pl td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.pl th { position: sticky; top: 0; background: var(--surface-2); font-weight: 600; white-space: nowrap; }
+  table.pl td.num { white-space: nowrap; font-variant-numeric: tabular-nums; }
+  table.pl .sub { color: var(--muted); font-size: 12px; }
+  .up { color: var(--high); } .down { color: var(--ok); }
 </style>
 </head>
 <body>
@@ -171,7 +215,7 @@
           <h1>Regulatory Monitor</h1>
         </div>
       </div>
-      <p class="sub">New Slovak laws, decrees and regulator announcements relevant to the distribution of human and veterinary medicines, medical devices and related products. Checked automatically every day.</p>
+      <p class="sub">New Slovak and EU laws, draft legislation, regulator announcements and reimbursement-list changes relevant to the distribution of human and veterinary medicines, medical devices and related products. Checked automatically twice a day. Open an item to see exactly what changed.</p>
     </div>
     <div class="top-actions">
       <button class="btn" id="markRead" type="button" title="Clear the NEW markers">Mark all as read</button>
@@ -191,7 +235,7 @@
   <div class="controls" role="search">
     <div class="search">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-      <input id="q" type="search" placeholder="Search title, tag, law number… (e.g. 362/2011, Tyverb)" autocomplete="off">
+      <input id="q" type="search" placeholder="Search title, tag, law number… (e.g. 362/2011, Tyverb, LP/2026)" autocomplete="off">
     </div>
     <div class="seg" id="prio" role="group" aria-label="Priority">
       <button type="button" data-v="all" aria-pressed="true">All</button>
@@ -214,13 +258,16 @@
   <section class="how">
     <h2>How alerts work</h2>
     <ul>
-      <li>A GitHub Actions job runs every morning (and can be started manually). It reads the official sources above and keeps only items matching the rules in <code>pharma-monitor/config.json</code>.</li>
+      <li>A GitHub Actions job runs twice a day (and can be started manually). It reads the official sources above and keeps only items matching the rules in <code>pharma-monitor/config.json</code>.</li>
       <li>When something new is found, the job opens a GitHub issue labelled <code>regulatory-update</code>; GitHub e-mails it to you. Optional direct e-mail can be switched on with SMTP secrets (see README).</li>
-      <li>Laws in the Collection of Laws are read in full, so an omnibus act that quietly amends the Act on Medicinal Products (362/2011 Z. z.) is still flagged.</li>
+      <li><b>Law changes:</b> for 18 key laws (e.g. 362/2011, 363/2011, 39/2007) every new consolidated wording is compared with the previous one, provision by provision, with <del>removed</del> and <ins>added</ins> text highlighted.</li>
+      <li><b>Amending acts:</b> new acts in the Collection of Laws are read in full; the exact amendment points for key laws are shown, even inside omnibus acts.</li>
+      <li><b>Reimbursement list:</b> each monthly list of categorised medicines is compared with the previous month – added, removed and repriced medicines by ŠÚKL code.</li>
+      <li><b>Draft laws:</b> new drafts and every change of stage (comment procedure, government, Parliament) are tracked, with the comment deadline.</li>
     </ul>
   </section>
 
-  <footer>Monitoring aid only, not legal advice. Always rely on the official published text. Data: Slov-Lex (MS SR), ŠÚKL, ÚŠKVBL, MZ SR.</footer>
+  <footer>Monitoring aid only, not legal advice. Always rely on the official published text. Data: Slov-Lex (MS SR), ŠÚKL, ÚŠKVBL, MZ SR, ŠVPS SR, EUR-Lex (Publications Office of the EU), EMA.</footer>
 </div>
 
 <script>
@@ -301,14 +348,123 @@
         </div>
         <h3><a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.title)}</a></h3>
         ${i.summary ? `<p class="sum">${esc(i.summary)}</p>` : ''}
+        ${i.deadline ? `<p class="sum"><span class="pill deadline">Comments open until ${fmtDate(i.deadline)}</span></p>` : ''}
         ${(i.tags || []).length ? `<div class="tags">${i.tags.map((t) => `<span class="tag">${esc(t)}</span>`).join('')}</div>` : ''}
         ${i.pdf ? `<div class="links"><a href="${esc(i.url)}" target="_blank" rel="noopener">Slov-Lex page</a><a href="${esc(i.pdf)}" target="_blank" rel="noopener">Official PDF</a></div>` : ''}
+        ${i.details ? `<button class="more-btn" type="button" data-details="${esc(i.details)}" aria-expanded="false">${DETAIL_LABEL[i.source] || 'Show what changed'} ▾</button><div class="detail" hidden></div>` : ''}
       </article>`;
     });
     html += '</div>';
     out.innerHTML = html;
     $('#moreWrap').hidden = list.length <= state.limit;
   }
+
+
+  // ---------- "what changed" detail views
+  const DETAIL_LABEL = { lawchanges: 'Show what changed in the law', slovlex: 'Show the amendment text', kategorizacia: 'Show the changed medicines' };
+  const detailCache = {};
+  const words = (s) => s.split(/\s+/).filter(Boolean).length;
+
+  function diffHtml(ops) {
+    return ops.map(([op, text]) => {
+      if (op === '+') return `<ins>${esc(text)}</ins>`;
+      if (op === '-') return `<del>${esc(text)}</del>`;
+      if (words(text) > 50) {  // keep long unchanged passages short
+        const w = text.split(/(\s+)/);
+        return esc(w.slice(0, 40).join('')) + '<span class="gap"> … </span>' + esc(w.slice(-40).join(''));
+      }
+      return esc(text);
+    }).join('');
+  }
+
+  function renderLawDiff(d) {
+    const by = d.amended_by ? (d.amended_by_url ? `<a href="${esc(d.amended_by_url)}" target="_blank" rel="noopener">${esc(d.amended_by)}</a>` : esc(d.amended_by)) : 'an amending act';
+    let h = `<p class="hint">${esc(d.law)} Z. z. – ${esc(d.law_name)}. Wording in force from <b>${fmtDate(d.to)}</b> compared with the wording from ${fmtDate(d.from)}; changed by ${by}.
+      <a href="${esc(d.old_url)}" target="_blank" rel="noopener">Old wording</a> · <a href="${esc(d.new_url)}" target="_blank" rel="noopener">New wording</a></p>
+      <div class="legend"><span><del>removed text</del></span><span><ins>new text</ins></span><span>${d.changes.length} provision(s)</span></div>`;
+    h += d.changes.map((c) => `<div class="chg"><div class="chg-h">${esc(c.loc)} <span class="t ${c.type}">${c.type}</span></div>
+      <div class="chg-b">${c.type === 'changed' ? diffHtml(c.diff) : c.type === 'added' ? `<ins>${esc(c.text)}</ins>` : `<del>${esc(c.text)}</del>`}</div></div>`).join('');
+    return h;
+  }
+
+  function renderAmendment(d) {
+    return `<p class="hint">Exact amendment points from the published act <a href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.act)} Z. z.</a>. To see the resulting wording side by side, look for the matching “Law change” item.</p>` +
+      d.sections.map((s) => `<div class="chg-h">${esc(s.law)} Z. z. – ${esc(s.law_name)}</div><pre class="amend">${esc(s.text)}</pre>`).join('');
+  }
+
+  const money = (v) => (v === '' || v == null ? '–' : `${v} €`);
+  function arrow(a, b) {
+    const x = parseFloat(a), y = parseFloat(b);
+    if (isNaN(x) || isNaN(y) || x === y) return '';
+    return y > x ? ' <span class="up">▲</span>' : ' <span class="down">▼</span>';
+  }
+  function plRows(d, tab, q) {
+    const list = d[tab].filter((p) => !q || fold([p.code, p.name, p.substance, p.atc, p.mah, p.pack].join(' ')).includes(q));
+    if (!list.length) return '<p class="hint" style="padding:10px">No matching medicines.</p>';
+    const shown = list.slice(0, 400);
+    let h = '<table class="pl"><thead><tr><th>ŠÚKL code</th><th>Medicine</th>';
+    if (tab === 'changed') h += '<th>What changed</th>';
+    else h += '<th>Max. price</th><th>Reimbursement</th><th>Co-pay</th>';
+    h += '</tr></thead><tbody>';
+    for (const p of shown) {
+      h += `<tr><td class="num">${esc(p.code)}</td><td>${esc(p.name)}<div class="sub">${esc(p.pack)} · ${esc(p.substance)} (${esc(p.atc)}) · ${esc(p.mah)}</div></td>`;
+      if (tab === 'changed') {
+        h += '<td>' + Object.entries(p.changes).map(([f, [a, b]]) => {
+          const money_ = ['price', 'reimb', 'copay'].includes(f);
+          return `<div>${esc(d.fields[f] || f)}: <del>${esc(money_ ? money(a) : a || '–')}</del> → <ins>${esc(money_ ? money(b) : b || '–')}</ins>${money_ ? arrow(a, b) : ''}</div>`;
+        }).join('') + '</td>';
+      } else {
+        h += `<td class="num">${money(p.price)}</td><td class="num">${money(p.reimb)}</td><td class="num">${money(p.copay)}</td>`;
+      }
+      h += '</tr>';
+    }
+    h += '</tbody></table>';
+    if (list.length > shown.length) h += `<p class="hint" style="padding:8px 10px">Showing ${shown.length} of ${list.length} – use the search box to narrow down.</p>`;
+    return h;
+  }
+  function renderPriceList(d, box) {
+    const c = d.counts;
+    box.innerHTML = `<p class="hint">List valid from ${fmtDate(d.month.slice(0, 4) + '-' + d.month.slice(4) + '-01')} compared with ${fmtDate(d.previous.slice(0, 4) + '-' + d.previous.slice(4) + '-01')}. Source: Part A of the MZ SR list (cast_A_zoznam_liekov).</p>
+      <div class="tabs"><button type="button" data-tab="changed" aria-pressed="true">Price / reimbursement changes (${c.changed})</button>
+      <button type="button" data-tab="added" aria-pressed="false">Added (${c.added})</button>
+      <button type="button" data-tab="removed" aria-pressed="false">Removed (${c.removed})</button>
+      <input type="search" placeholder="Filter by name, code, substance, ATC…" aria-label="Filter medicines"></div>
+      <div class="tbl-wrap"></div>`;
+    let tab = 'changed', q = '';
+    const draw = () => { box.querySelector('.tbl-wrap').innerHTML = plRows(d, tab, q); };
+    box.querySelector('.tabs').addEventListener('click', (e) => {
+      const b = e.target.closest('button'); if (!b) return;
+      box.querySelectorAll('.tabs button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+      tab = b.dataset.tab; draw();
+    });
+    box.querySelector('.tabs input').addEventListener('input', (e) => { q = fold(e.target.value.trim()); draw(); });
+    draw();
+  }
+
+  async function toggleDetails(btn) {
+    const box = btn.nextElementSibling;
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    btn.textContent = btn.textContent.replace(open ? '▴' : '▾', open ? '▾' : '▴');
+    box.hidden = open;
+    if (open || box.dataset.loaded) return;
+    box.innerHTML = '<p class="hint">Loading…</p>';
+    try {
+      const url = btn.dataset.details;
+      const d = detailCache[url] || (detailCache[url] = await fetch(url, { cache: 'no-store' }).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }));
+      if (d.kind === 'law_diff') box.innerHTML = renderLawDiff(d);
+      else if (d.kind === 'amendment') box.innerHTML = renderAmendment(d);
+      else if (d.kind === 'price_list') renderPriceList(d, box);
+      else box.innerHTML = '<p class="hint">No details available.</p>';
+      box.dataset.loaded = '1';
+    } catch (e) {
+      box.innerHTML = `<p class="hint">Could not load the details (${esc(e.message)}).</p>`;
+    }
+  }
+  $('#out').addEventListener('click', (e) => {
+    const b = e.target.closest('.more-btn');
+    if (b) toggleDetails(b);
+  });
 
   function renderStats(data) {
     const items = data.items;

@@ -1,0 +1,209 @@
+{
+ "kind": "law_diff",
+ "law": "362/2011",
+ "law_name": "Act on Medicinal Products and Medical Devices (zákon o liekoch)",
+ "from": "2026-01-01",
+ "to": "2026-05-30",
+ "amended_by": "88/2026 Z. z.",
+ "amended_by_url": "https://static.slov-lex.sk/static/SK/ZZ/2026/88/20260530.html",
+ "old_url": "https://static.slov-lex.sk/static/SK/ZZ/2011/362/20260101.html",
+ "new_url": "https://static.slov-lex.sk/static/SK/ZZ/2011/362/20260530.html",
+ "changes": [
+  {
+   "loc": "§ 128 ods. 1 písm. g) bod 4",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "na základe riadne odôvodnenej žiadosti poskytovateľa zdravotnej starostlivosti "
+    ],
+    [
+     "+",
+     "o "
+    ],
+    [
+     "=",
+     "použitie zdravotníckej pomôcky pri poskytovaní zdravotnej starostlivosti pre jedného pacienta "
+    ],
+    [
+     "-",
+     "alebo skupinu pacientov, "
+    ],
+    [
+     "+",
+     "podľa osobitného predpisu, "
+    ],
+    [
+     "=",
+     "na ktorú sa neuplatnil postup posudzovania zhody, ak jej použitie pri poskytovaní zdravotnej starostlivosti je v záujme ochrany verejného zdravia a bezpečnosti alebo zdravia pacienta a nie je na trhu dostupná zdravotnícka pomôcka, ktorá spĺňa požiadavky na uvedenie na "
+    ],
+    [
+     "-",
+     "trh alebo "
+    ],
+    [
+     "+",
+     "trh, uvedenie "
+    ],
+    [
+     "=",
+     "do prevádzky "
+    ],
+    [
+     "+",
+     "alebo uvedenie do používania "
+    ],
+    [
+     "=",
+     "podľa osobitných "
+    ],
+    [
+     "-",
+     "predpisov; "
+    ],
+    [
+     "+",
+     "predpisov a môže požiadať o nezáväzné stanovisko štátny ústav alebo úrad, pričom "
+    ],
+    [
+     "=",
+     "zodpovednosť za použitie zdravotníckej pomôcky, na ktorú sa neuplatnil postup posudzovania zhody, pri poskytovaní zdravotnej starostlivosti má poskytovateľ zdravotnej starostlivosti, ktorý podal "
+    ],
+    [
+     "-",
+     "žiadosť,"
+    ],
+    [
+     "+",
+     "túto žiadosť; pre skupinu pacientov rozhoduje o uvedení zdravotníckej pomôcky na trh, do prevádzky alebo do používania bez posudzovania zhody úrad podľa osobitného predpisu,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 128 ods. 1 písm. g) bod 5",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "na základe riadne odôvodnenej žiadosti poskytovateľa zdravotnej starostlivosti "
+    ],
+    [
+     "+",
+     "o "
+    ],
+    [
+     "=",
+     "použitie diagnostickej zdravotníckej pomôcky in vitro pri poskytovaní zdravotnej starostlivosti pre jedného "
+    ],
+    [
+     "-",
+     "pacienta alebo skupinu pacientov, "
+    ],
+    [
+     "+",
+     "pacienta, podľa osobitného predpisu, "
+    ],
+    [
+     "=",
+     "na ktorú sa neuplatnil postup posudzovania zhody, ak jej použitie pri poskytovaní zdravotnej starostlivosti je v záujme ochrany verejného zdravia a bezpečnosti alebo zdravia pacienta a nie je na trhu dostupná diagnostická zdravotnícka pomôcka in vitro, ktorá spĺňa požiadavky na uvedenie na "
+    ],
+    [
+     "-",
+     "trh alebo "
+    ],
+    [
+     "+",
+     "trh, uvedenie "
+    ],
+    [
+     "=",
+     "do prevádzky "
+    ],
+    [
+     "+",
+     "alebo uvedenie do používania "
+    ],
+    [
+     "=",
+     "podľa osobitných "
+    ],
+    [
+     "-",
+     "predpisov; "
+    ],
+    [
+     "+",
+     "predpisov a môže požiadať o nezáväzné stanovisko štátny ústav alebo úrad, pričom "
+    ],
+    [
+     "=",
+     "zodpovednosť za použitie diagnostickej zdravotníckej pomôcky in vitro, na ktorú sa neuplatnil postup posudzovania zhody, pri poskytovaní zdravotnej starostlivosti má poskytovateľ zdravotnej starostlivosti, ktorý podal "
+    ],
+    [
+     "-",
+     "žiadosť,"
+    ],
+    [
+     "+",
+     "túto žiadosť; pre skupinu pacientov rozhoduje o uvedení diagnostickej zdravotníckej pomôcky in vitro na trh, do prevádzky alebo do používania bez posudzovania zhody úrad podľa osobitného predpisu,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 129 ods. 2 písm. g)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "vykonáva "
+    ],
+    [
+     "-",
+     "štátny "
+    ],
+    [
+     "=",
+     "dohľad nad "
+    ],
+    [
+     "-",
+     "trhom so "
+    ],
+    [
+     "+",
+     "bezpečnosťou a trhový dohľad nad "
+    ],
+    [
+     "=",
+     "zdravotníckymi "
+    ],
+    [
+     "-",
+     "pomôckami,"
+    ],
+    [
+     "+",
+     "pomôckami a nad zdravotníckymi pomôckami in vitro podľa osobitného predpisu a nad určeným výrobkom podľa osobitných predpisov v rozsahu ustanovenom osobitným predpisom,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 129 ods. 2 písm. af)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "plní úlohy členského štátu v oblasti klinického hodnotenia a klinického skúšania zdravotníckych pomôcok, hodnotenia klinických dôkazov a hodnotenia výkonu a štúdie výkonu diagnostických zdravotníckych pomôcok in "
+    ],
+    [
+     "-",
+     "vitro a dohľadu nad bezpečnosťou a trhového dohľadu nad zdravotníckymi pomôckami a nad diagnostickými zdravotníckymi pomôckami in vitro podľa osobitného predpisu,"
+    ],
+    [
+     "+",
+     "vitro,"
+    ]
+   ]
+  }
+ ]
+}

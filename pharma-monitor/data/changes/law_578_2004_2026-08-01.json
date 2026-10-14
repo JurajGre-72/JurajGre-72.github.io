@@ -1,0 +1,66 @@
+{
+ "kind": "law_diff",
+ "law": "578/2004",
+ "law_name": "Act on Healthcare Providers",
+ "from": "2026-07-01",
+ "to": "2026-08-01",
+ "amended_by": "44/2026 Z. z.",
+ "amended_by_url": "https://static.slov-lex.sk/static/SK/ZZ/2026/44/20260801.html",
+ "old_url": "https://static.slov-lex.sk/static/SK/ZZ/2004/578/20260701.html",
+ "new_url": "https://static.slov-lex.sk/static/SK/ZZ/2004/578/20260801.html",
+ "changes": [
+  {
+   "loc": "§ 79 ods. 1 písm. by)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "bez zbytočného odkladu prevziať mŕtve telo od poskytovateľa záchrannej zdravotnej služby, v ambulancii ktorého došlo k úmrtiu tejto osoby, ak ide o poskytovateľa ústavnej zdravotnej "
+    ],
+    [
+     "-",
+     "starostlivosti."
+    ],
+    [
+     "+",
+     "starostlivosti,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 79 ods. 1 písm. bz)",
+   "type": "added",
+   "text": "poskytovať národnému centru v elektronickej podobe podľa štandardov zdravotníckej informatiky na účely zdravotnej spôsobilosti dieťaťa na prijatie na predprimárne vzdelávanie podľa osobitného predpisu, pri vykonaní 10. preventívnej prehliadky podľa osobitného predpisu, stav zdravotnej spôsobilosti dieťaťa, ak nebola zistená odchýlka vo fyziologickom vývine dieťaťa, a následne stav zdravotnej spôsobilosti dieťaťa pri vykonaní 11. preventívnej prehliadky podľa osobitného predpisu, ak nebola zistená odchýlka vo fyziologickom vývine dieťaťa lekárom so špecializáciou v špecializačnom odbore pediatria, ktorý poskytuje všeobecnú ambulantnú zdravotnú starostlivosť pre deti a dorast, a ktorý má so zákonným zástupcom v mene dieťaťa uzatvorenú dohodu o poskytovaní zdravotnej starostlivosti a na žiadosť zákonného zástupcu vyhotoviť odpis z registra potvrdení,"
+  },
+  {
+   "loc": "§ 79 ods. 1 písm. ca)",
+   "type": "added",
+   "text": "poskytovať národnému centru v elektronickej podobe podľa štandardov zdravotníckej informatiky údaje do registra potvrdení podľa osobitného predpisu na účely zdravotnej spôsobilosti dieťaťa na prijatie na predprimárne vzdelávanie podľa osobitného predpisu na žiadosť zákonného zástupcu, ak neboli zapísané pri 10. alebo 11. preventívnej prehliadke, aktualizovať ich a na žiadosť zákonného zástupcu vyhotoviť odpis z registra potvrdení,"
+  },
+  {
+   "loc": "§ 79 ods. 1 písm. cb)",
+   "type": "added",
+   "text": "poskytovať národnému centru v elektronickej podobe podľa štandardov zdravotníckej informatiky údaje do registra potvrdení podľa osobitného predpisu, aktualizovať ich a na žiadosť osoby vyhotoviť odpis z registra potvrdení."
+  },
+  {
+   "loc": "§ 79 ods. 24",
+   "type": "added",
+   "text": "Poskytovateľ, ktorý plní povinnosť podľa odseku 1 písm. bj), je oprávnený si za účelom potvrdenia dohody rodičov o mene a priezvisku dieťaťa vyžiadať od rodičov dieťaťa preukaz totožnosti."
+  },
+  {
+   "loc": "§ 102bf (nadpis)",
+   "type": "added",
+   "text": "Prechodné ustanovenia k úpravám účinným od 1. augusta 2026"
+  },
+  {
+   "loc": "§ 102bf ods. 1",
+   "type": "added",
+   "text": "Ak poskytovateľ z technických príčin nemôže splniť povinnosť podľa § 79 ods. 1 písm. bz) alebo písm. ca), ustanovenie § 79 ods. 1 písm. bz) alebo písm. ca) sa do 31. januára 2027 neuplatňuje; o tejto skutočnosti je poskytovateľ povinný zákonného zástupcu dieťaťa informovať."
+  },
+  {
+   "loc": "§ 102bf ods. 2",
+   "type": "added",
+   "text": "Ak poskytovateľ z technických príčin nemôže splniť povinnosť podľa § 79 ods. 1 písm. cb), ustanovenie § 79 ods. 1 písm. cb) sa do 31. januára 2027 neuplatňuje; o tejto skutočnosti je poskytovateľ povinný osobu informovať."
+  }
+ ]
+}

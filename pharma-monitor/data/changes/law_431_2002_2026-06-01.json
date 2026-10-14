@@ -1,0 +1,38 @@
+{
+ "kind": "law_diff",
+ "law": "431/2002",
+ "law_name": "Accounting Act",
+ "from": "2026-02-04",
+ "to": "2026-06-01",
+ "amended_by": "85/2026 Z. z.",
+ "amended_by_url": "https://static.slov-lex.sk/static/SK/ZZ/2026/85/20260601.html",
+ "old_url": "https://static.slov-lex.sk/static/SK/ZZ/2002/431/20260204.html",
+ "new_url": "https://static.slov-lex.sk/static/SK/ZZ/2002/431/20260601.html",
+ "changes": [
+  {
+   "loc": "§ 39zg (nadpis)",
+   "type": "added",
+   "text": "Prechodné ustanovenie účinné od 1. júna 2026"
+  },
+  {
+   "loc": "§ 39zg ods. 1",
+   "type": "added",
+   "text": "Ustanovenia § 39zd ods. 1 až 3 sa nevzťahujú na vykazovanie informácií o udržateľnosti podľa § 20c alebo § 20g vo výročnej správe, ktorá sa ukladá po 31. máji 2026 za účtovné obdobia začínajúce v období od 1. januára 2025 do 31. decembra 2026"
+  },
+  {
+   "loc": "§ 39zg ods. 1 písm. a)",
+   "type": "added",
+   "text": "účtovnou jednotkou uvedenou v § 39zd ods. 1, ak ku dňu, ku ktorému sa zostavuje účtovná závierka, jej čistý obrat nepresiahol 450 000 000 eur alebo jej priemerný prepočítaný počet zamestnancov za účtovné obdobie nepresiahol 1 000 zamestnancov,"
+  },
+  {
+   "loc": "§ 39zg ods. 1 písm. b)",
+   "type": "added",
+   "text": "materskou účtovnou jednotkou uvedenou v § 39zd ods. 2 a 3, ak ku dňu, ku ktorému sa zostavuje konsolidovaná účtovná závierka, za konsolidovaný celok po konsolidácii kapitálu, konsolidácii vzájomných vzťahov medzi účtovnými jednotkami, konsolidácii výsledku hospodárenia a konsolidácii nákladov a výnosov čistý obrat materskej účtovnej jednotky a všetkých jej dcérskych účtovných jednotiek nepresiahol 450 000 000 eur alebo priemerný prepočítaný počet zamestnancov materskej účtovnej jednotky a všetkých jej dcérskych účtovných jednotiek za účtovné obdobie nepresiahol 1 000 zamestnancov."
+  },
+  {
+   "loc": "Príloha priloha_k_zakonu_c_431_2002_z_z_v_zneni_neskorsich_predpisov",
+   "type": "added",
+   "text": "Smernica Európskeho parlamentu a Rady (EÚ) 2026/470 z 24. februára 2026, ktorou sa menia smernice 2006/43/ES, 2013/34/EÚ, (EÚ) 2022/2464 a (EÚ) 2024/1760, pokiaľ ide o určité požiadavky na vykazovanie informácií o udržateľnosti podnikov a určité požiadavky na náležitú starostlivosť podnikov v oblasti udržateľnosti (Ú. v. EÚ L, 2026/470, 26. 2. 2026)."
+  }
+ ]
+}

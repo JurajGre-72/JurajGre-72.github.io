@@ -1,6 +1,238 @@
 {
  "items": [
   {
+   "id": "law:431/2002:2027-01-01",
+   "source": "lawchanges",
+   "source_name": "Slov-Lex · Znenia kľúčových zákonov",
+   "title": "431/2002 Z. z. – Accounting Act: new wording in force from 01.01.2027",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2002/431/20270101.html",
+   "date": "2026-10-14T10:35:08Z",
+   "detected": "2026-10-14T10:35:08Z",
+   "category": "Law change",
+   "priority": "low",
+   "tags": [
+    "Amends 431/2002"
+   ],
+   "summary": "Changed by 385/2025 Z. z. 3 provision(s) changed: § 31, § 35. Open the item to see the old and new wording.",
+   "effective": [
+    "2027-01-01"
+   ],
+   "_backlog": true,
+   "details": "data/changes/law_431_2002_2027-01-01.json"
+  },
+  {
+   "id": "law:595/2003:2027-01-01",
+   "source": "lawchanges",
+   "source_name": "Slov-Lex · Znenia kľúčových zákonov",
+   "title": "595/2003 Z. z. – Income Tax Act: new wording in force from 01.01.2027",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2003/595/20270101.html",
+   "date": "2026-10-14T10:34:45Z",
+   "detected": "2026-10-14T10:34:45Z",
+   "category": "Law change",
+   "priority": "low",
+   "tags": [
+    "Amends 595/2003"
+   ],
+   "summary": "Changed by 243/2026 Z. z. 5 provision(s) changed: § 29, § 26, § 52zzzn. Open the item to see the old and new wording.",
+   "effective": [
+    "2027-01-01"
+   ],
+   "_backlog": true,
+   "details": "data/changes/law_595_2003_2027-01-01.json"
+  },
+  {
+   "id": "law:595/2003:2026-12-31",
+   "source": "lawchanges",
+   "source_name": "Slov-Lex · Znenia kľúčových zákonov",
+   "title": "595/2003 Z. z. – Income Tax Act: new wording in force from 31.12.2026",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2003/595/20261231.html",
+   "date": "2026-10-14T10:34:42Z",
+   "detected": "2026-10-14T10:34:42Z",
+   "category": "Law change",
+   "priority": "low",
+   "tags": [
+    "Amends 595/2003"
+   ],
+   "summary": "Changed by 406/2025 Z. z. 7 provision(s) changed: § 9, § 11, § 52zzzm. Open the item to see the old and new wording.",
+   "effective": [
+    "2026-12-31"
+   ],
+   "_backlog": true,
+   "details": "data/changes/law_595_2003_2026-12-31.json"
+  },
+  {
+   "id": "law:222/2004:2030-07-01",
+   "source": "lawchanges",
+   "source_name": "Slov-Lex · Znenia kľúčových zákonov",
+   "title": "222/2004 Z. z. – VAT Act: new wording in force from 01.07.2030",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2004/222/20300701.html",
+   "date": "2026-10-14T10:34:38Z",
+   "detected": "2026-10-14T10:34:38Z",
+   "category": "Law change",
+   "priority": "low",
+   "tags": [
+    "Amends 222/2004"
+   ],
+   "summary": "Changed by 385/2025 Z. z. 252 provision(s) changed: § 17, § 19, § 20, § 43, § 45, § 68d +15 more. Open the item to see the old and new wording.",
+   "effective": [
+    "2030-07-01"
+   ],
+   "_backlog": true,
+   "details": "data/changes/law_222_2004_2030-07-01.json"
+  },
+  {
+   "id": "law:222/2004:2027-01-01",
+   "source": "lawchanges",
+   "source_name": "Slov-Lex · Znenia kľúčových zákonov",
+   "title": "222/2004 Z. z. – VAT Act: new wording in force from 01.01.2027",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2004/222/20270101.html",
+   "date": "2026-10-14T10:34:22Z",
+   "detected": "2026-10-14T10:34:22Z",
+   "category": "Law change",
+   "priority": "low",
+   "tags": [
+    "Amends 222/2004"
+   ],
+   "summary": "Changed by 385/2025 Z. z. 58 provision(s) changed: § 69b, § 69c, § 74, § 71, § 72, § 79 +2 more. Open the item to see the old and new wording.",
+   "effective": [
+    "2027-01-01"
+   ],
+   "_backlog": true,
+   "details": "data/changes/law_222_2004_2027-01-01.json"
+  },
+  {
+   "id": "law:79/2015:2030-01-01",
+   "source": "lawchanges",
+   "source_name": "Slov-Lex · Znenia kľúčových zákonov",
+   "title": "79/2015 Z. z. – Waste Act: new wording in force from 01.01.2030",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2015/79/20300101.html",
+   "date": "2026-10-14T10:34:15Z",
+   "detected": "2026-10-14T10:34:15Z",
+   "category": "Law change",
+   "priority": "low",
+   "tags": [
+    "Amends 79/2015"
+   ],
+   "summary": "Changed by 430/2021 Z. z. 1 provision(s) changed: § 75d. Open the item to see the old and new wording.",
+   "effective": [
+    "2030-01-01"
+   ],
+   "_backlog": true,
+   "details": "data/changes/law_79_2015_2030-01-01.json"
+  },
+  {
+   "id": "law:152/1995:2026-12-01",
+   "source": "lawchanges",
+   "source_name": "Slov-Lex · Znenia kľúčových zákonov",
+   "title": "152/1995 Z. z. – Act on Foodstuffs: new wording in force from 01.12.2026",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/1995/152/20261201.html",
+   "date": "2026-10-14T10:34:09Z",
+   "detected": "2026-10-14T10:34:09Z",
+   "category": "Law change",
+   "priority": "medium",
+   "tags": [
+    "Amends 152/1995"
+   ],
+   "summary": "Changed by 241/2026 Z. z. 72 provision(s) changed: § 2, § 23, § 31al. Open the item to see the old and new wording.",
+   "effective": [
+    "2026-12-01"
+   ],
+   "_backlog": true,
+   "details": "data/changes/law_152_1995_2026-12-01.json"
+  },
+  {
+   "id": "law:578/2004:2027-01-01",
+   "source": "lawchanges",
+   "source_name": "Slov-Lex · Znenia kľúčových zákonov",
+   "title": "578/2004 Z. z. – Act on Healthcare Providers: new wording in force from 01.01.2027",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2004/578/20270101.html",
+   "date": "2026-10-14T10:33:59Z",
+   "detected": "2026-10-14T10:33:59Z",
+   "category": "Law change",
+   "priority": "medium",
+   "tags": [
+    "Amends 578/2004"
+   ],
+   "summary": "Changed by 309/2024 Z. z. 1 provision(s) changed: § 80aj. Open the item to see the old and new wording.",
+   "effective": [
+    "2027-01-01"
+   ],
+   "_backlog": true,
+   "details": "data/changes/law_578_2004_2027-01-01.json"
+  },
+  {
+   "id": "law:577/2004:2026-12-31",
+   "source": "lawchanges",
+   "source_name": "Slov-Lex · Znenia kľúčových zákonov",
+   "title": "577/2004 Z. z. – Act on Scope of Healthcare Covered by Public Health Insurance: new wording in force from 31.12.2026",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2004/577/20261231.html",
+   "date": "2026-10-14T10:33:51Z",
+   "detected": "2026-10-14T10:33:51Z",
+   "category": "Law change",
+   "priority": "medium",
+   "tags": [
+    "Amends 577/2004"
+   ],
+   "summary": "Changed by 406/2025 Z. z. 2 provision(s) changed: Príloha priloha_c_2_k_zakonu_c_577_2004_z_z, § 44a. Open the item to see the old and new wording.",
+   "effective": [
+    "2026-12-31"
+   ],
+   "_backlog": true,
+   "details": "data/changes/law_577_2004_2026-12-31.json"
+  },
+  {
+   "id": "kat:202611:1a638dd0955b",
+   "source": "kategorizacia",
+   "source_name": "MZ SR · Zoznam kategorizovaných liekov",
+   "title": "Zoznam kategorizovaných liekov 1.11.2026 – 30.11.2026 – INFORMATÍVNY MATERIÁL: 49 added, 6 removed, 65 price/reimbursement changes",
+   "url": "https://www.health.gov.sk/Clanok?lieky202611",
+   "date": "2026-10-14T10:27:05Z",
+   "detected": "2026-10-14T10:27:05Z",
+   "category": "Reimbursement & prices",
+   "priority": "high",
+   "tags": [
+    "Reimbursement / categorisation",
+    "Price regulation"
+   ],
+   "summary": "Compared with the list valid from 01.10.2026. Open the item for the full lists by ŠÚKL code. New e.g.: Afqlir 40 mg/ml, injekčný roztok v injekčnej liekovke, Aboxoma 2,5 mg filmom obalené tablety, Aboxoma 5 mg filmom obalené tablety.",
+   "effective": [
+    "2026-11-01"
+   ],
+   "details": "data/changes/kat_202611_1a638dd0955b.json"
+  },
+  {
+   "id": "lp:LPEU/2026/649:PROCES_UKONCENY",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LPEU/2026/649 · Akt EÚ: COM(2026)508 SPRÁVA KOMISIE EURÓPSKEMU PARLAMENTU A RADE o dostupnosti ekologického rastlinného množiteľského materiálu, zvierat z ekologických chovov a bielkovinového krmiva z ekologickej poľnohospodárskej výroby na trhu Únie v súlade s článkom 53 ods. 7 nariadenia (EÚ) 2018/848",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LPEU/2026/649",
+   "date": "2026-10-14T08:00:00Z",
+   "detected": "2026-10-14T08:00:00Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Veterinary care",
+    "Proces ukončený"
+   ],
+   "summary": "Stage: Proces ukončený (since 14.10.2026)"
+  },
+  {
+   "id": "lp:LP/2025/706:PROCES_UKONCENY",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2025/706 · Nelegislatívny všeobecný materiál: Vyhodnotenie plnenia cieľov Programu odpadového hospodárstva Slovenskej republiky na roky 2021 — 2025",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2025/706",
+   "date": "2026-10-12T08:00:00Z",
+   "detected": "2026-10-12T08:00:00Z",
+   "category": "Draft law",
+   "priority": "low",
+   "tags": [
+    "Waste & packaging",
+    "Proces ukončený"
+   ],
+   "summary": "Stage: Proces ukončený (since 12.10.2026) · Submitted by: Ministerstvo životného prostredia Slovenskej republiky"
+  },
+  {
    "id": "slovlex:249/2026",
    "source": "slovlex",
    "source_name": "Slov-Lex · Zbierka zákonov SR",
@@ -18,7 +250,8 @@
    "effective": [
     "2027-01-01"
    ],
-   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/249/ZZ_2026_249.pdf"
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/249/ZZ_2026_249.pdf",
+   "details": "data/changes/slovlex_249_2026.json"
   },
   {
    "id": "https://www.health.gov.sk/Clanok?mzsr-nrsr-reforma-liekova",
@@ -70,6 +303,74 @@
    "summary": "DHPC (Direct Healthcare Professional Communication) predstavuje priamu komunikáciu zdravotníckym pracovníkom, prostredníctvom ktorej sú poskytované nové dôležité informácie týkajúce sa bezpečnosti, účinnosti alebo správneho používania lieku."
   },
   {
+   "id": "lp:LP/2026/523:MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/523 · Vyhláška: Návrh vyhlášky Ministerstva zdravotníctva Slovenskej republiky, ktorou sa mení a dopĺňa vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 422/2011 Z. z. o podrobnostiach farmako-ekonomického rozboru lieku v znení vyhlášky č. 177/2021 Z. z.",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/523",
+   "date": "2026-10-08T08:00:00Z",
+   "detected": "2026-10-08T08:00:00Z",
+   "category": "Draft law",
+   "priority": "high",
+   "tags": [
+    "Medicines",
+    "Ministry of Health",
+    "Pripomienkové konanie"
+   ],
+   "summary": "Stage: Pripomienkové konanie (since 08.10.2026) · Comments can be submitted until 28.10.2026 · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky",
+   "deadline": "2026-10-28"
+  },
+  {
+   "id": "lp:LP/2026/522:MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/522 · Vyhláška: Návrh vyhlášky Ministerstva zdravotníctva Slovenskej republiky, ktorou sa mení a dopĺňa vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 298/2022 Z. z., ktorou sa ustanovujú podrobnosti výpočtu príslušného násobku hrubého domáceho produktu pre stanovenie prahovej hodnoty posudzovaného lieku",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/522",
+   "date": "2026-10-08T08:00:00Z",
+   "detected": "2026-10-08T08:00:00Z",
+   "category": "Draft law",
+   "priority": "high",
+   "tags": [
+    "Medicines",
+    "Ministry of Health",
+    "Pripomienkové konanie"
+   ],
+   "summary": "Stage: Pripomienkové konanie (since 08.10.2026) · Comments can be submitted until 28.10.2026 · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky",
+   "deadline": "2026-10-28"
+  },
+  {
+   "id": "lp:LP/2026/482:VYHODNOTENIE_MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/482 · Vyhláška: Návrh vyhlášky Ministerstva zdravotníctva Slovenskej republiky o podrobnostiach o ochrane zdravia pred fyzickou záťažou pri práci",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/482",
+   "date": "2026-10-08T08:00:00Z",
+   "detected": "2026-10-08T08:00:00Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Ministry of Health",
+    "Vyhodnotenie pripomienkového konania"
+   ],
+   "summary": "Stage: Vyhodnotenie pripomienkového konania (since 08.10.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
+  },
+  {
+   "id": "lp:LP/2026/480:VYHODNOTENIE_MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/480 · Vyhláška: Návrh vyhlášky Ministerstva zdravotníctva Slovenskej republiky, ktorou sa mení a dopĺňa vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 448/2007 Z. z. o podrobnostiach o faktoroch práce a pracovného prostredia vo vzťahu ku kategorizácii prác z hľadiska zdravotných rizík a o náležitostiach návrhu na zaradenie prác do kategórií v znení neskorších predpisov",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/480",
+   "date": "2026-10-08T08:00:00Z",
+   "detected": "2026-10-08T08:00:00Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Ministry of Health",
+    "Vyhodnotenie pripomienkového konania"
+   ],
+   "summary": "Stage: Vyhodnotenie pripomienkového konania (since 08.10.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
+  },
+  {
    "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/postregistracne-procesy/prevod-registracie-humanneho-lieku/prevod-registracie-humanneho-lieku",
    "source": "sukl",
    "source_name": "ŠÚKL · Aktuality",
@@ -100,6 +401,22 @@
    "summary": "Informácie pre žiadateľov a držiteľov registrácie humánnych liekov o náležitostiach, ako podať žiadosť."
   },
   {
+   "id": "lp:LPEU/2026/676:ZAPIS_PREDBEZNEHO_STANOVISKA",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LPEU/2026/676 · Akt EÚ: C(2026)6940 ROZHODNUTIE KOMISIE o opatrení oznámenom Nemeckom podľa nariadenia (ES) č. 1223/2009, pokiaľ ide o kozmetický výrobok 4 Long Lashes Eyelash Serum Gold",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LPEU/2026/676",
+   "date": "2026-10-07T08:00:00Z",
+   "detected": "2026-10-07T08:00:00Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Cosmetics",
+    "Zápis predbežného stanoviska k návrhu aktu EÚ"
+   ],
+   "summary": "Stage: Zápis predbežného stanoviska k návrhu aktu EÚ (since 07.10.2026)"
+  },
+  {
    "id": "slovlex:241/2026",
    "source": "slovlex",
    "source_name": "Slov-Lex · Zbierka zákonov SR",
@@ -117,7 +434,42 @@
    "effective": [
     "2026-12-01"
    ],
-   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/241/ZZ_2026_241.pdf"
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/241/ZZ_2026_241.pdf",
+   "details": "data/changes/slovlex_241_2026.json"
+  },
+  {
+   "id": "lp:LP/2026/516:MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/516 · Poslanecký návrh zákona: Návrh poslancov Národnej rady Slovenskej republiky Ľubice LAŠŠÁKOVEJ, Aleny NOVÁKOVEJ, Zdenky MAČICOVEJ a017643 Jozefa CECHA na vydanie zákona, ktorým sa mení a dopĺňa zákon č. 595/2003 Z. z. o dani z príjmov v znení neskorších predpisov (tlač 1490)",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/516",
+   "date": "2026-10-06T08:00:00Z",
+   "detected": "2026-10-06T08:00:00Z",
+   "category": "Draft law",
+   "priority": "low",
+   "tags": [
+    "Taxes",
+    "Amends 595/2003",
+    "Pripomienkové konanie"
+   ],
+   "summary": "Stage: Pripomienkové konanie (since 06.10.2026) · Comments can be submitted until 14.10.2026 · Submitted by: Ministerstvo financií Slovenskej republiky · Main act amended: 595/2003 Z. z.",
+   "deadline": "2026-10-14"
+  },
+  {
+   "id": "lp:LP/2025/538:VYHLASENE_V_ZBIERKE",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2025/538 · Zákon: Návrh zákona, ktorým sa mení a dopĺňa zákon Národnej rady Slovenskej republiky č. 152/1995 Z. z. o potravinách v znení neskorších predpisov",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2025/538",
+   "date": "2026-10-06T08:00:00Z",
+   "detected": "2026-10-06T08:00:00Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Amends 152/1995",
+    "Vyhlásené v Zbierke zákonov SR"
+   ],
+   "summary": "Stage: Vyhlásené v Zbierke zákonov SR (since 06.10.2026) · Submitted by: Ministerstvo pôdohospodárstva a rozvoja vidieka Slovenskej republiky · Main act amended: 152/1995 Z. z."
   },
   {
    "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/liekopis/slovensky-farmaceuticky-kodex/prieskum-k-tretiemu-vydaniu-slovenskeho-farmaceutickeho-kodexu",
@@ -135,6 +487,109 @@
    "summary": "Prieskum pre odborníkov s cieľom zozbierať spätnú väzbu ohľadne používania Slovenského farmaceutického kódexu v praxi."
   },
   {
+   "id": "lp:LPEU/2026/659:ZAPIS_PREDBEZNEHO_STANOVISKA",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LPEU/2026/659 · Akt EÚ: COM(2026)527 OZNÁMENIE KOMISIE EURÓPSKEMU PARLAMENTU podľa článku 294 ods. 6 Zmluvy o fungovaní Európskej únie o pozícii Rady k prijatiu nariadenia Európskeho parlamentu a Rady, ktorým sa stanovujú postupy Únie pri povoľovaní liekov na humánne použitie a vykonávaní dozoru nad nimi a určujú pravidlá platné pre Európsku agentúru pre lieky a ktorým sa mení nariadenie (ES) č. 1394/2007 a nariadenie (EÚ) č. 536/2014 a zrušuje nariadenie (ES) č. 726/2004, nariadenie (ES) č. 141/2000 a nariadenie (ES) č. 1901/2006",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LPEU/2026/659",
+   "date": "2026-10-02T08:00:00Z",
+   "detected": "2026-10-02T08:00:00Z",
+   "category": "Draft law",
+   "priority": "high",
+   "tags": [
+    "Medicines",
+    "Zápis predbežného stanoviska k návrhu aktu EÚ"
+   ],
+   "summary": "Stage: Zápis predbežného stanoviska k návrhu aktu EÚ (since 02.10.2026)"
+  },
+  {
+   "id": "lp:LPEU/2026/658:ZAPIS_PREDBEZNEHO_STANOVISKA",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LPEU/2026/658 · Akt EÚ: COM(2026)526 OZNÁMENIE KOMISIE EURÓPSKEMU PARLAMENTU podľa článku 294 ods. 6 Zmluvy o fungovaní Európskej únie o pozícii Rady k prijatiu smernice Európskeho parlamentu a Rady o kódexe Únie o liekoch na humánne použitie a o zrušení smernice 2001/83/ES a smernice 2009/35/ES",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LPEU/2026/658",
+   "date": "2026-10-02T08:00:00Z",
+   "detected": "2026-10-02T08:00:00Z",
+   "category": "Draft law",
+   "priority": "high",
+   "tags": [
+    "Medicines",
+    "Zápis predbežného stanoviska k návrhu aktu EÚ"
+   ],
+   "summary": "Stage: Zápis predbežného stanoviska k návrhu aktu EÚ (since 02.10.2026)"
+  },
+  {
+   "id": "lp:LPEU/2026/655:ZAPIS_PREDBEZNEHO_STANOVISKA",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LPEU/2026/655 · Akt EÚ: *C(2026)6723 VYKONÁVACIE ROZHODNUTIE KOMISIE ktorým sa Slovensku povoľuje autorizovať biocídne výrobky s obsahom etylénoxidu na ochranu kultúrneho dedičstva",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LPEU/2026/655",
+   "date": "2026-10-02T08:00:00Z",
+   "detected": "2026-10-02T08:00:00Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Biocides & chemicals",
+    "Zápis predbežného stanoviska k návrhu aktu EÚ"
+   ],
+   "summary": "Stage: Zápis predbežného stanoviska k návrhu aktu EÚ (since 02.10.2026)"
+  },
+  {
+   "id": "lp:LP/2026/508:MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/508 · Vyhláška: Návrh vyhlášky Ministerstva zdravotníctva Slovenskej republiky o mechanizme tvorby úhrad, určení, forme, spôsobe a podrobnostiach úhrad v zmluve o poskytovaní zdravotnej starostlivosti a vzore zmluvy o poskytovaní zdravotnej starostlivosti",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/508",
+   "date": "2026-10-01T08:00:00Z",
+   "detected": "2026-10-01T08:00:00Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Ministry of Health",
+    "Pripomienkové konanie"
+   ],
+   "summary": "Stage: Pripomienkové konanie (since 01.10.2026) · Comments can be submitted until 21.10.2026 · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky",
+   "deadline": "2026-10-21"
+  },
+  {
+   "id": "lp:LP/2026/507:MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/507 · Zákon: Návrh zákona, ktorým sa mení a dopĺňa zákon č. 581/2004 Z. z. o zdravotných poisťovniach, dohľade nad zdravotnou starostlivosťou a o zmene a doplnení niektorých zákonov v znení neskorších predpisov",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/507",
+   "date": "2026-10-01T08:00:00Z",
+   "detected": "2026-10-01T08:00:00Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Health insurance",
+    "Amends 581/2004",
+    "Pripomienkové konanie"
+   ],
+   "summary": "Stage: Pripomienkové konanie (since 01.10.2026) · Comments can be submitted until 21.10.2026 · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky",
+   "deadline": "2026-10-21"
+  },
+  {
+   "id": "kat:202610:780e88f778ea",
+   "source": "kategorizacia",
+   "source_name": "MZ SR · Zoznam kategorizovaných liekov",
+   "title": "Zoznam kategorizovaných liekov 1.10.2026 – 31.10.2026: 44 added, 25 removed, 713 price/reimbursement changes",
+   "url": "https://www.health.gov.sk/Clanok?lieky202610",
+   "date": "2026-10-01T08:00:00Z",
+   "detected": "2026-10-01T08:00:00Z",
+   "category": "Reimbursement & prices",
+   "priority": "high",
+   "tags": [
+    "Reimbursement / categorisation",
+    "Price regulation"
+   ],
+   "summary": "Compared with the list valid from 01.09.2026. Open the item for the full lists by ŠÚKL code. New e.g.: Apremilast Belupo 10 mg, Apremilast Belupo 20 mg, Apremilast Belupo 30 mg, Apremilast Belupo 30 mg, Bendamustine Accord 25 mg/ml koncentrát na infúzny roztok.",
+   "effective": [
+    "2026-10-01"
+   ],
+   "details": "data/changes/kat_202610_780e88f778ea.json"
+  },
+  {
    "id": "https://www.sukl.sk/pre-verejnost-pacientov-a-media/uzitocne-informacie/vakciny-a-ockovanie/prehlad-vakcin-proti-chripke-pre-sezonu-2026-2027",
    "source": "sukl",
    "source_name": "ŠÚKL · Aktuality",
@@ -148,6 +603,43 @@
     "Vaccines"
    ],
    "summary": "Aktuálne informácie a najčastejšie otázky o vakcínach proti chrípke."
+  },
+  {
+   "id": "lp:LP/2026/499:MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/499 · Vyhláška: Návrh vyhlášky Ministerstva životného prostredia Slovenskej republiky, ktorou sa mení a dopĺňa vyhláška Ministerstva životného prostredia Slovenskej republiky č. 365/2015 Z. z., ktorou sa ustanovuje Katalóg odpadov v znení vyhlášky č. 320/2017 Z. z.",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/499",
+   "date": "2026-09-29T08:00:00Z",
+   "detected": "2026-09-29T08:00:00Z",
+   "category": "Draft law",
+   "priority": "low",
+   "tags": [
+    "Waste & packaging",
+    "Pripomienkové konanie"
+   ],
+   "summary": "Stage: Pripomienkové konanie (since 29.09.2026) · Comments can be submitted until 19.10.2026 · Submitted by: Ministerstvo životného prostredia Slovenskej republiky · Main act amended: 365/2015 Z. z.",
+   "deadline": "2026-10-19"
+  },
+  {
+   "id": "law:108/2024:2026-09-27",
+   "source": "lawchanges",
+   "source_name": "Slov-Lex · Znenia kľúčových zákonov",
+   "title": "108/2024 Z. z. – Consumer Protection Act: new wording in force from 27.09.2026",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2024/108/20260927.html",
+   "date": "2026-09-27T08:00:00Z",
+   "detected": "2026-09-27T08:00:00Z",
+   "category": "Law change",
+   "priority": "low",
+   "tags": [
+    "Amends 108/2024"
+   ],
+   "summary": "Changed by 310/2025 Z. z. 88 provision(s) changed: § 2, § 5, § 10, § 11, § 14, § 15 +6 more. Open the item to see the old and new wording.",
+   "effective": [
+    "2026-09-27"
+   ],
+   "_backlog": true,
+   "details": "data/changes/law_108_2024_2026-09-27.json"
   },
   {
    "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/dostupnost-a-kvalita-liekov/kvalita-liekov/oznamy-o-stiahnuti-liekov/stiahnutie-liekov-plenvu-a-moviprep-ztrhu",
@@ -165,6 +657,22 @@
     "Healthcare providers"
    ],
    "summary": "Liek y sa sťahuj ú II. triedou urgentnosti z úrovne distribučných spoločností, lekární a zdravotníckych zariadení"
+  },
+  {
+   "id": "lp:LP/2026/153:VYHLASENE_V_ZBIERKE",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/153 · Opatrenie: Opatrenie Ministerstva zdravotníctva Slovenskej republiky o ustanovení výšky náhrady za bolesť a výšky náhrady za sťaženie spoločenského uplatnenia na rok 2026",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/153",
+   "date": "2026-09-24T08:00:00Z",
+   "detected": "2026-09-24T08:00:00Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Ministry of Health",
+    "Vyhlásené v Zbierke zákonov SR"
+   ],
+   "summary": "Stage: Vyhlásené v Zbierke zákonov SR (since 24.09.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
   },
   {
    "id": "slovlex:233/2026",
@@ -207,6 +715,71 @@
    "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/232/ZZ_2026_232.pdf"
   },
   {
+   "id": "lp:LP/2026/454:VYHODNOTENIE_MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/454 · Zákon: Návrh zákona, ktorým sa mení a dopĺňa zákon č. 67/2010 Z. z. o podmienkach uvedenia chemických látok a chemických zmesí na trh a o zmene a doplnení niektorých zákonov (chemický zákon) v znení neskorších predpisov",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/454",
+   "date": "2026-09-22T08:00:00Z",
+   "detected": "2026-09-22T08:00:00Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Biocides & chemicals",
+    "Amends 67/2010",
+    "Vyhodnotenie pripomienkového konania"
+   ],
+   "summary": "Stage: Vyhodnotenie pripomienkového konania (since 22.09.2026) · Submitted by: Ministerstvo hospodárstva Slovenskej republiky · Main act amended: 67/2010 Z. z."
+  },
+  {
+   "id": "lp:LP/2026/449:VYHODNOTENIE_MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/449 · Vyhláška: Návrh vyhlášky Ministerstva zdravotníctva Slovenskej republiky, ktorou sa mení a dopĺňa vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 209/2014 Z. z., ktorou sa ustanovuje rozsah odbornej prípravy, rozsah požadovaných vedomostí pre skúšky odbornej spôsobilosti, podrobnosti o zriaďovaní a činnosti komisií na preskúšanie odbornej spôsobilosti, podrobnosti o skúške pred komisiou na preskúšanie odbornej spôsobilosti, obsah osvedčenia o odbornej spôsobilosti a rozsah aktualizačnej odbornej prípravy v znení vyhlášky č. 222/2018 Z. z.",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/449",
+   "date": "2026-09-17T08:00:00Z",
+   "detected": "2026-09-17T08:00:00Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Ministry of Health",
+    "Vyhodnotenie pripomienkového konania"
+   ],
+   "summary": "Stage: Vyhodnotenie pripomienkového konania (since 17.09.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
+  },
+  {
+   "id": "lp:LP/2026/448:VYHODNOTENIE_MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/448 · Vyhláška: Návrh vyhlášky Ministerstva zdravotníctva Slovenskej republiky o podrobnostiach o ochrane zdravia pred psychickou pracovnou záťažou",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/448",
+   "date": "2026-09-17T08:00:00Z",
+   "detected": "2026-09-17T08:00:00Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Ministry of Health",
+    "Vyhodnotenie pripomienkového konania"
+   ],
+   "summary": "Stage: Vyhodnotenie pripomienkového konania (since 17.09.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
+  },
+  {
+   "id": "lp:LP/2026/445:VYHODNOTENIE_MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/445 · Vyhláška: Návrh vyhlášky Ministerstva zdravotníctva Slovenskej republiky, ktorou sa mení vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 99/2016 Z. z. o podrobnostiach o ochrane zdravia pred záťažou teplom a chladom pri práci v znení neskorších predpisov",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/445",
+   "date": "2026-09-17T08:00:00Z",
+   "detected": "2026-09-17T08:00:00Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Ministry of Health",
+    "Vyhodnotenie pripomienkového konania"
+   ],
+   "summary": "Stage: Vyhodnotenie pripomienkového konania (since 17.09.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
+  },
+  {
    "id": "https://www.sukl.sk/pre-verejnost-pacientov-a-media/pre-media/tlacove-spravy/svetovy-den-bezpecnosti-pacientov-slovenske-dominanty-sa-rozsvietia-na-oranzovo",
    "source": "sukl",
    "source_name": "ŠÚKL · Aktuality",
@@ -218,6 +791,40 @@
    "priority": "low",
    "tags": [],
    "summary": "Svetový deň bezpečnosti pacientov každoročne pripadá na 17. septembra. Vyhlasuje ho Svetová zdravotnícka organizácia (WHO) a tento rok sa celosvetová pozornosť sústredí na bezpečnosť pacientov s chronickými neprenosnými ochoreniami (NCDs), ako sú kardiovaskulárne choroby, diabetes, onkologické či respiračné ochorenia."
+  },
+  {
+   "id": "lp:LP/2026/382:ROKOVANIE_NRSR",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/382 · Zákon: Návrh zákona, ktorým sa mení a dopĺňa zákon č. 139/1998 Z. z. o omamných látkach, psychotropných látkach a prípravkoch v znení neskorších predpisov",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/382",
+   "date": "2026-09-14T08:00:00Z",
+   "detected": "2026-09-14T08:00:00Z",
+   "category": "Bill in Parliament (NR SR)",
+   "priority": "high",
+   "tags": [
+    "Narcotics & precursors",
+    "Amends 139/1998",
+    "Rokovanie Národnej rady SR"
+   ],
+   "summary": "Stage: Rokovanie Národnej rady SR (since 14.09.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky · Main act amended: 139/1998 Z. z."
+  },
+  {
+   "id": "lp:LP/2026/442:VYHODNOTENIE_MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/442 · Vyhláška: Návrh vyhlášky Ministerstva zdravotníctva Slovenskej republiky o minimálnych požiadavkách na  materiálno-technické  vybavenie vybraných druhov ústavných zdravotníckych zariadení",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/442",
+   "date": "2026-09-12T08:00:00Z",
+   "detected": "2026-09-12T08:00:00Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Ministry of Health",
+    "Healthcare providers",
+    "Vyhodnotenie pripomienkového konania"
+   ],
+   "summary": "Stage: Vyhodnotenie pripomienkového konania (since 12.09.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
   },
   {
    "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/dostupnost-a-kvalita-liekov/kvalita-liekov/oznamy-o-stiahnuti-liekov/stiahnutie-lieku-tyverb-250-mg-ztrhu",
@@ -235,6 +842,22 @@
     "Healthcare providers"
    ],
    "summary": "Liek sa sťahuje II. triedou urgentnosti z úrovne distribučných spoločností, lekární a zdravotníckych zariadení"
+  },
+  {
+   "id": "lp:LP/2026/428:ROKOVANIE_POV",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/428 · Akt medzinárodného práva: Návrh na uzavretie Zmluvy medzi Slovenskou republikou a Rwandskou republikou o zamedzení dvojitého zdanenia v oblasti daní z príjmov a zabránení daňovým únikom a vyhýbaniu sa daňovým povinnostiam",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/428",
+   "date": "2026-09-07T08:00:00Z",
+   "detected": "2026-09-07T08:00:00Z",
+   "category": "Draft law",
+   "priority": "low",
+   "tags": [
+    "Taxes",
+    "Rokovanie poradných orgánov vlády SR"
+   ],
+   "summary": "Stage: Rokovanie poradných orgánov vlády SR (since 07.09.2026) · Submitted by: Ministerstvo financií Slovenskej republiky"
   },
   {
    "id": "https://www.sukl.sk/pre-verejnost-pacientov-a-media/oznamy-a-upozornenia/dna-15.-9.-2026-bude-podatelna-zatvorena",
@@ -267,6 +890,56 @@
    "summary": "Stručné zhrnutie záverov zo zasadania Výboru pre hodnotenie rizík liekov (PRAC), ktoré sa uskutočnilo 31.8.-3.9.2026. Plné znenie tlačovej správy sa nachádza na webovej stránke Európskej liekovej agentúry."
   },
   {
+   "id": "lp:LP/2026/361:ROKOVANIE_NRSR",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/361 · Zákon: Návrh zákona, ktorým sa mení a dopĺňa zákon č. 431/2002 Z. z. \no účtovníctve v znení neskorších predpisov a ktorým sa mení a dopĺňa zákon č. 423/2015 Z. z. o štatutárnom audite a o zmene a doplnení zákona \nč. 431/2002 Z. z. o účtovníctve v znení neskorších predpisov v znení neskorších predpisov",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/361",
+   "date": "2026-09-04T08:00:00Z",
+   "detected": "2026-09-04T08:00:00Z",
+   "category": "Bill in Parliament (NR SR)",
+   "priority": "low",
+   "tags": [
+    "Accounting",
+    "Amends 431/2002",
+    "Rokovanie Národnej rady SR"
+   ],
+   "summary": "Stage: Rokovanie Národnej rady SR (since 04.09.2026) · Submitted by: Ministerstvo financií Slovenskej republiky · Main act amended: 431/2002 Z. z."
+  },
+  {
+   "id": "lp:LP/2026/89:ROKOVANIE_NRSR",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/89 · Zákon: návrh zákona o Komore veterinárnych lekárov Slovenskej republiky a súkromných veterinárnych lekároch a o zmene a doplnení niektorých zákonov",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/89",
+   "date": "2026-09-03T08:00:00Z",
+   "detected": "2026-09-03T08:00:00Z",
+   "category": "Bill in Parliament (NR SR)",
+   "priority": "medium",
+   "tags": [
+    "Veterinary care",
+    "Rokovanie Národnej rady SR"
+   ],
+   "summary": "Stage: Rokovanie Národnej rady SR (since 03.09.2026) · Submitted by: Ministerstvo pôdohospodárstva a rozvoja vidieka Slovenskej republiky"
+  },
+  {
+   "id": "lp:LP/2026/282:ROKOVANIE_NRSR",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/282 · Zákon: Návrh zákona, ktorým sa mení a dopĺňa zákon č. 222/2004 Z. z. o dani z pridanej hodnoty v znení neskorších predpisov a ktorým sa menia a dopĺňajú niektoré zákony",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/282",
+   "date": "2026-09-03T08:00:00Z",
+   "detected": "2026-09-03T08:00:00Z",
+   "category": "Bill in Parliament (NR SR)",
+   "priority": "low",
+   "tags": [
+    "VAT",
+    "Amends 222/2004",
+    "Rokovanie Národnej rady SR"
+   ],
+   "summary": "Stage: Rokovanie Národnej rady SR (since 03.09.2026) · Submitted by: Ministerstvo financií Slovenskej republiky · Main act amended: 222/2004 Z. z."
+  },
+  {
    "id": "https://www.sukl.sk/o-nas/podujatia-a-udalosti/konferencia-sarap-2026-pozvanka-modul-2",
    "source": "sukl",
    "source_name": "ŠÚKL · Aktuality",
@@ -283,6 +956,59 @@
    "summary": "Registrácia liekov a farmakovigilančná činnosť. Prebiehajúce zmeny v národnej legislatíve (zákon 362/2011)."
   },
   {
+   "id": "lp:LP/2026/436:VYHODNOTENIE_MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/436 · Nelegislatívny všeobecný materiál: Návrh Dohody o cezhraničnej spolupráci v oblasti záchrannej zdravotnej služby medzi Ministerstvom zdravotníctva Slovenskej republiky a Spolkovou krajinou Dolné Rakúsko",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/436",
+   "date": "2026-09-02T08:00:00Z",
+   "detected": "2026-09-02T08:00:00Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Ministry of Health",
+    "Vyhodnotenie pripomienkového konania"
+   ],
+   "summary": "Stage: Vyhodnotenie pripomienkového konania (since 02.09.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
+  },
+  {
+   "id": "lp:LP/2026/130:ROKOVANIE_NRSR",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/130 · Zákon: Návrh zákona, ktorým sa mení a dopĺňa zákon č. 513/1991 Zb. Obchodný zákonník v znení neskorších predpisov a o zmene a doplnení niektorých predpisov",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/130",
+   "date": "2026-09-02T08:00:00Z",
+   "detected": "2026-09-02T08:00:00Z",
+   "category": "Bill in Parliament (NR SR)",
+   "priority": "low",
+   "tags": [
+    "Commercial law",
+    "Amends 513/1991",
+    "Rokovanie Národnej rady SR"
+   ],
+   "summary": "Stage: Rokovanie Národnej rady SR (since 02.09.2026) · Submitted by: Ministerstvo spravodlivosti Slovenskej republiky · Main act amended: 513/1991 Zb."
+  },
+  {
+   "id": "law:311/2001:2026-09-01",
+   "source": "lawchanges",
+   "source_name": "Slov-Lex · Znenia kľúčových zákonov",
+   "title": "311/2001 Z. z. – Labour Code: new wording in force from 01.09.2026",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2001/311/20260901.html",
+   "date": "2026-09-01T08:00:00Z",
+   "detected": "2026-09-01T08:00:00Z",
+   "category": "Law change",
+   "priority": "low",
+   "tags": [
+    "Amends 311/2001"
+   ],
+   "summary": "Changed by 300/2025 Z. z. 1 provision(s) changed: § 48. Open the item to see the old and new wording.",
+   "effective": [
+    "2026-09-01"
+   ],
+   "_backlog": true,
+   "details": "data/changes/law_311_2001_2026-09-01.json"
+  },
+  {
    "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/dostupnost-a-kvalita-liekov/dostupnost-liekov/msc-komunikacia-tykajuca-sa-prerusenia-zrusenia-dodavok-lieku/msc-emend-aprepitant-tvrde-kapsuly-cps-dur-1x125-mg-2x80-mg-blis.al-al-zrusenie-dodavok-lieku",
    "source": "sukl",
    "source_name": "ŠÚKL · Aktuality",
@@ -296,6 +1022,54 @@
     "Medicines"
    ],
    "summary": "MSC (Medicine Shortage Comunication) - priama komunikácia určená zdravotníckym pracovníkom, prostredníctvom ktorej držiteľ rozhodnutia o registrácii lieku poskytuje dôležité informácie týkajúce sa dostupnosti lieku."
+  },
+  {
+   "id": "lp:LP/2026/390:ROKOVANIE_VLADA",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/390 · Zákon: Návrh zákona, ktorým sa mení a dopĺňa zákon č. 582/2004 Z. z. o miestnych daniach a miestnom poplatku za komunálne odpady a drobné stavebné odpady",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/390",
+   "date": "2026-08-28T08:00:00Z",
+   "detected": "2026-08-28T08:00:00Z",
+   "category": "Draft law",
+   "priority": "low",
+   "tags": [
+    "Waste & packaging",
+    "Rokovanie vlády SR"
+   ],
+   "summary": "Stage: Rokovanie vlády SR (since 28.08.2026) · Submitted by: Ministerstvo financií Slovenskej republiky · Main act amended: 582/2004 Z. z."
+  },
+  {
+   "id": "lp:LP/2026/296:PROCES_UKONCENY",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/296 · Legislatívny zámer: Návrh zákona, ktorým sa mení a dopĺňa zákon č. 530/2011 Z. z. o spotrebnej dani z alkoholických nápojov v znení neskorších predpisov a ktorým sa menia a dopĺňajú niektoré zákony",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/296",
+   "date": "2026-08-28T08:00:00Z",
+   "detected": "2026-08-28T08:00:00Z",
+   "category": "Draft law",
+   "priority": "low",
+   "tags": [
+    "Customs",
+    "Proces ukončený"
+   ],
+   "summary": "Stage: Proces ukončený (since 28.08.2026) · Submitted by: Ministerstvo financií Slovenskej republiky"
+  },
+  {
+   "id": "lp:LPEU/2026/521:ZAPIS_PREDBEZNEHO_STANOVISKA",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LPEU/2026/521 · Akt EÚ: C(2026)5970 VYKONÁVACIE ROZHODNUTIE KOMISIE ktoré sa týka povolení na uvedenie na trh pre humánne lieky s obsahom účinnej látky „metotrexát“ v zmysle článku 107e smernice Európskeho parlamentu a Rady 2001/83/ES",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LPEU/2026/521",
+   "date": "2026-08-21T08:00:00Z",
+   "detected": "2026-08-21T08:00:00Z",
+   "category": "Draft law",
+   "priority": "high",
+   "tags": [
+    "Medicines",
+    "Zápis predbežného stanoviska k návrhu aktu EÚ"
+   ],
+   "summary": "Stage: Zápis predbežného stanoviska k návrhu aktu EÚ (since 21.08.2026)"
   },
   {
    "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/dostupnost-a-kvalita-liekov/kvalita-liekov/oznamy-o-stiahnuti-liekov/stiahnutie-lieku-rowatinex-ztrhu",
@@ -345,6 +1119,26 @@
     "Medicines"
    ],
    "summary": "MSC (Medicine Shortage Comunication) predstavuje formu priamej komunikácie zdravotníckym pracovníkom, prostredníctvom ktorej držiteľ rozhodnutia o registrácii lieku poskytuje dôležité informácie týkajúce sa obmedzenej dostupnosti lieku, prerušenia alebo ukončenia dodávok lieku, napríklad ak sa pre daný liek na…"
+  },
+  {
+   "id": "law:513/1991:2026-08-17",
+   "source": "lawchanges",
+   "source_name": "Slov-Lex · Znenia kľúčových zákonov",
+   "title": "513/1991 Z. z. – Commercial Code: new wording in force from 17.08.2026",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/1991/513/20260817.html",
+   "date": "2026-08-17T08:00:00Z",
+   "detected": "2026-08-17T08:00:00Z",
+   "category": "Law change",
+   "priority": "low",
+   "tags": [
+    "Amends 513/1991"
+   ],
+   "summary": "Changed by 29/2026 Z. z. 46 provision(s) changed: § 10, § 21, § 27, § 40, § 57, § 63 +12 more. Open the item to see the old and new wording.",
+   "effective": [
+    "2026-08-17"
+   ],
+   "_backlog": true,
+   "details": "data/changes/law_513_1991_2026-08-17.json"
   },
   {
    "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/dostupnost-a-kvalita-liekov/kvalita-liekov/oznamy-o-stiahnuti-liekov/stiahnutie-lieku-zoely-ztrhu",
@@ -413,6 +1207,23 @@
    "summary": "DHPC (Direct Healthcare Professional Communication) predstavuje priamu komunikáciu zdravotníckym pracovníkom, prostredníctvom ktorej sú poskytované nové dôležité informácie týkajúce sa bezpečnosti, účinnosti alebo správneho používania lieku."
   },
   {
+   "id": "eu:32019R0005R(03)",
+   "source": "eurlex",
+   "source_name": "EUR-Lex · Úradný vestník EÚ",
+   "title": "Corrigendum to Regulation (EU) 2019/5 of the European Parliament and of the Council of 11 December 2018 amending Regulation (EC) No 726/2004 laying down Community procedures for the authorisation and supervision of medicinal products for human and veterinary use and establishing a European Medicines Agency, Regulation (EC) No 1901/2006 on medicinal products for paediatric use and Directive 2001/83/EC on the Community code relating to medicinal products for human use (OJ L 4, 7.1.2019)",
+   "url": "https://eur-lex.europa.eu/legal-content/SK/TXT/?uri=CELEX:32019R0005R(03)",
+   "date": "2026-08-05T08:00:00Z",
+   "detected": "2026-08-05T08:00:00Z",
+   "category": "EU legislation",
+   "priority": "medium",
+   "tags": [
+    "Medicines",
+    "Medicines (general)"
+   ],
+   "summary": "Changes: amending Regulation (EC) No 726/2004.",
+   "doc_type": "REG"
+  },
+  {
    "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/drogove-prekurzory/aktualne-informacie-a-legislativa/usmernenie-pre-drzitelov-povolenia-na-poskytovanie-lekarenskej-starostlivosti-vo-verejnych-a-nemocnicnych-lekarnach-v-oblasti-drogovych-prekurzorov-urcenych-latok",
    "source": "sukl",
    "source_name": "ŠÚKL · Aktuality",
@@ -428,6 +1239,66 @@
     "Narcotics & precursors"
    ],
    "summary": "Usmernenie je určené pre poskytovateľov lekárenskej starostlivosti pri nakladaní s drogovými prekurzormi kategórie 1 v individuálnej príprave liekov vrátane podmienok na vydanie, zmenu alebo zrušenie osobitného povolenia v súvislosti s pripravovanou zmenou európskej legislatívy."
+  },
+  {
+   "id": "law:578/2004:2026-08-01",
+   "source": "lawchanges",
+   "source_name": "Slov-Lex · Znenia kľúčových zákonov",
+   "title": "578/2004 Z. z. – Act on Healthcare Providers: new wording in force from 01.08.2026",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2004/578/20260801.html",
+   "date": "2026-08-01T08:00:00Z",
+   "detected": "2026-08-01T08:00:00Z",
+   "category": "Law change",
+   "priority": "medium",
+   "tags": [
+    "Amends 578/2004"
+   ],
+   "summary": "Changed by 44/2026 Z. z. 8 provision(s) changed: § 79, § 102bf. Open the item to see the old and new wording.",
+   "effective": [
+    "2026-08-01"
+   ],
+   "_backlog": true,
+   "details": "data/changes/law_578_2004_2026-08-01.json"
+  },
+  {
+   "id": "law:577/2004:2026-08-01",
+   "source": "lawchanges",
+   "source_name": "Slov-Lex · Znenia kľúčových zákonov",
+   "title": "577/2004 Z. z. – Act on Scope of Healthcare Covered by Public Health Insurance: new wording in force from 01.08.2026",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2004/577/20260801.html",
+   "date": "2026-08-01T08:00:00Z",
+   "detected": "2026-08-01T08:00:00Z",
+   "category": "Law change",
+   "priority": "medium",
+   "tags": [
+    "Amends 577/2004"
+   ],
+   "summary": "Changed by 344/2025 Z. z. 1 provision(s) changed: Príloha priloha_c_2_k_zakonu_c_577_2004_z_z. Open the item to see the old and new wording.",
+   "effective": [
+    "2026-08-01"
+   ],
+   "_backlog": true,
+   "details": "data/changes/law_577_2004_2026-08-01.json"
+  },
+  {
+   "id": "law:108/2024:2026-07-31",
+   "source": "lawchanges",
+   "source_name": "Slov-Lex · Znenia kľúčových zákonov",
+   "title": "108/2024 Z. z. – Consumer Protection Act: new wording in force from 31.07.2026",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2024/108/20260731.html",
+   "date": "2026-07-31T08:00:00Z",
+   "detected": "2026-07-31T08:00:00Z",
+   "category": "Law change",
+   "priority": "low",
+   "tags": [
+    "Amends 108/2024"
+   ],
+   "summary": "Changed by 310/2025 Z. z. 36 provision(s) changed: § 4, § 24, § 26, § 13a, § 13b, § 13a~1 +2 more. Open the item to see the old and new wording.",
+   "effective": [
+    "2026-07-31"
+   ],
+   "_backlog": true,
+   "details": "data/changes/law_108_2024_2026-07-31.json"
   },
   {
    "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/liekopis/europsky-liekopis/pripomienkovanie-clankov-europskeho-liekopisu-pharmeuropa-38.3",
@@ -574,6 +1445,26 @@
    "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/174/ZZ_2026_174.pdf"
   },
   {
+   "id": "law:581/2004:2026-07-01",
+   "source": "lawchanges",
+   "source_name": "Slov-Lex · Znenia kľúčových zákonov",
+   "title": "581/2004 Z. z. – Act on Health Insurance Companies: new wording in force from 01.07.2026",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2004/581/20260701.html",
+   "date": "2026-07-01T08:00:00Z",
+   "detected": "2026-07-01T08:00:00Z",
+   "category": "Law change",
+   "priority": "medium",
+   "tags": [
+    "Amends 581/2004"
+   ],
+   "summary": "Changed by 344/2025 Z. z. 139 provision(s) changed: § 6, § 8, § 8aa, § 9, § 86zv, Príloha priloha_c_7_k_zakonu_c_581_2004_z_z. Open the item to see the old and new wording.",
+   "effective": [
+    "2026-07-01"
+   ],
+   "_backlog": true,
+   "details": "data/changes/law_581_2004_2026-07-01.json"
+  },
+  {
    "id": "slovlex:154/2026",
    "source": "slovlex",
    "source_name": "Slov-Lex · Zbierka zákonov SR",
@@ -696,7 +1587,8 @@
     "2026-08-01",
     "2027-07-01"
    ],
-   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/136/ZZ_2026_136.pdf"
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/136/ZZ_2026_136.pdf",
+   "details": "data/changes/slovlex_136_2026.json"
   },
   {
    "id": "slovlex:130/2026",
@@ -719,6 +1611,26 @@
    "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/130/ZZ_2026_130.pdf"
   },
   {
+   "id": "law:311/2001:2026-06-07",
+   "source": "lawchanges",
+   "source_name": "Slov-Lex · Znenia kľúčových zákonov",
+   "title": "311/2001 Z. z. – Labour Code: new wording in force from 07.06.2026",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2001/311/20260607.html",
+   "date": "2026-06-07T08:00:00Z",
+   "detected": "2026-06-07T08:00:00Z",
+   "category": "Law change",
+   "priority": "low",
+   "tags": [
+    "Amends 311/2001"
+   ],
+   "summary": "Changed by 76/2026 Z. z. 6 provision(s) changed: § 82, § 119a. Open the item to see the old and new wording.",
+   "effective": [
+    "2026-06-07"
+   ],
+   "_backlog": true,
+   "details": "data/changes/law_311_2001_2026-06-07.json"
+  },
+  {
    "id": "slovlex:113/2026",
    "source": "slovlex",
    "source_name": "Slov-Lex · Zbierka zákonov SR",
@@ -737,6 +1649,46 @@
     "2026-07-01"
    ],
    "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/113/ZZ_2026_113.pdf"
+  },
+  {
+   "id": "law:431/2002:2026-06-01",
+   "source": "lawchanges",
+   "source_name": "Slov-Lex · Znenia kľúčových zákonov",
+   "title": "431/2002 Z. z. – Accounting Act: new wording in force from 01.06.2026",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2002/431/20260601.html",
+   "date": "2026-06-01T08:00:00Z",
+   "detected": "2026-06-01T08:00:00Z",
+   "category": "Law change",
+   "priority": "low",
+   "tags": [
+    "Amends 431/2002"
+   ],
+   "summary": "Changed by 85/2026 Z. z. 5 provision(s) changed: § 39zg, Príloha priloha_k_zakonu_c_431_2002_z_z_v_zneni_neskorsich_predpisov. Open the item to see the old and new wording.",
+   "effective": [
+    "2026-06-01"
+   ],
+   "_backlog": true,
+   "details": "data/changes/law_431_2002_2026-06-01.json"
+  },
+  {
+   "id": "law:362/2011:2026-05-30",
+   "source": "lawchanges",
+   "source_name": "Slov-Lex · Znenia kľúčových zákonov",
+   "title": "362/2011 Z. z. – Act on Medicinal Products and Medical Devices (zákon o liekoch): new wording in force from 30.05.2026",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2011/362/20260530.html",
+   "date": "2026-05-30T08:00:00Z",
+   "detected": "2026-05-30T08:00:00Z",
+   "category": "Law change",
+   "priority": "high",
+   "tags": [
+    "Amends 362/2011"
+   ],
+   "summary": "Changed by 88/2026 Z. z. 4 provision(s) changed: § 128, § 129. Open the item to see the old and new wording.",
+   "effective": [
+    "2026-05-30"
+   ],
+   "_backlog": true,
+   "details": "data/changes/law_362_2011_2026-05-30.json"
   },
   {
    "id": "slovlex:110/2026",
@@ -819,7 +1771,8 @@
    "effective": [
     "2026-05-30"
    ],
-   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/88/ZZ_2026_88.pdf"
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/88/ZZ_2026_88.pdf",
+   "details": "data/changes/slovlex_88_2026.json"
   },
   {
    "id": "slovlex:85/2026",
@@ -842,7 +1795,8 @@
     "2026-06-25",
     "2027-04-16"
    ],
-   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/85/ZZ_2026_85.pdf"
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/85/ZZ_2026_85.pdf",
+   "details": "data/changes/slovlex_85_2026.json"
   },
   {
    "id": "slovlex:76/2026",
@@ -862,7 +1816,8 @@
    "effective": [
     "2026-06-07"
    ],
-   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/76/ZZ_2026_76.pdf"
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/76/ZZ_2026_76.pdf",
+   "details": "data/changes/slovlex_76_2026.json"
   },
   {
    "id": "slovlex:70/2026",
@@ -885,7 +1840,8 @@
     "2026-06-23",
     "2026-08-01"
    ],
-   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/70/ZZ_2026_70.pdf"
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/70/ZZ_2026_70.pdf",
+   "details": "data/changes/slovlex_70_2026.json"
   },
   {
    "id": "slovlex:69/2026",
@@ -906,7 +1862,8 @@
     "2026-05-05",
     "2026-06-12"
    ],
-   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/69/ZZ_2026_69.pdf"
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/69/ZZ_2026_69.pdf",
+   "details": "data/changes/slovlex_69_2026.json"
   },
   {
    "id": "slovlex:46/2026",
@@ -950,7 +1907,8 @@
     "2026-06-23",
     "2026-08-01"
    ],
-   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/44/ZZ_2026_44.pdf"
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/44/ZZ_2026_44.pdf",
+   "details": "data/changes/slovlex_44_2026.json"
   },
   {
    "id": "slovlex:39/2026",
@@ -997,7 +1955,8 @@
     "2027-01-11",
     "2030-12-31"
    ],
-   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/30/ZZ_2026_30.pdf"
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/30/ZZ_2026_30.pdf",
+   "details": "data/changes/slovlex_30_2026.json"
   },
   {
    "id": "slovlex:29/2026",
@@ -1021,7 +1980,8 @@
     "2026-06-01",
     "2026-08-17"
    ],
-   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/29/ZZ_2026_29.pdf"
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/29/ZZ_2026_29.pdf",
+   "details": "data/changes/slovlex_29_2026.json"
   },
   {
    "id": "slovlex:17/2026",
@@ -1142,7 +2102,35 @@
    "checked": "2026-10-14T06:44:48Z",
    "new": 3,
    "error": null
+  },
+  "lawchanges": {
+   "name": "Slov-Lex · Znenia kľúčových zákonov",
+   "ok": true,
+   "checked": "2026-10-14T10:33:36Z",
+   "new": 19,
+   "error": null
+  },
+  "slovlex_lp": {
+   "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "ok": true,
+   "checked": "2026-10-14T10:21:50Z",
+   "new": 31,
+   "error": null
+  },
+  "eurlex": {
+   "name": "EUR-Lex · Úradný vestník EÚ",
+   "ok": true,
+   "checked": "2026-10-14T10:21:50Z",
+   "new": 1,
+   "error": null
+  },
+  "kategorizacia": {
+   "name": "MZ SR · Zoznam kategorizovaných liekov",
+   "ok": true,
+   "checked": "2026-10-14T10:21:50Z",
+   "new": 2,
+   "error": null
   }
  },
- "updated": "2026-10-14T07:24:40Z"
+ "updated": "2026-10-14T10:33:36Z"
 }
