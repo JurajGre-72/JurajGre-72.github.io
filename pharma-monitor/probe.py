@@ -6,14 +6,11 @@ UA = "Mozilla/5.0 (compatible; PharmacopolaRegMonitor/1.0)"
 BROWSER_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36"
 # url || anchor filter regex || timeout || user agent
 URLS = sys.argv[1:] or [
-    "https://svps.sk/feed/",
-    "https://svps.sk/wp-json/wp/v2/posts?per_page=3&_fields=id,date,modified,title,link,categories",
-    "https://svps.sk/wp-json/wp/v2/categories?per_page=100&_fields=id,name,count",
-    "https://www.nrsr.sk/web/Default.aspx?sid=zakony/prehlad/predlozene||zakon|cpt|sid=||150",
-    "https://www.nrsr.sk/web/Default.aspx?sid=zakony/sslp||zakon|cpt|sid=||150",
-    "https://www.ema.europa.eu/en/news-events/rss-feeds||xml|rss",
-    "https://www.uvzsr.sk/||.||40||browser",
-    "https://www.uvzsr.sk/web/uvz||.||40||browser",
+    "https://www.nrsr.sk/web/Default.aspx?sid=zakony/prehlad/predlozene||ZakZakon|zakon&||150",
+    "https://www.nrsr.sk/web/Default.aspx?sid=zakony/prehlad/posledneSchvalene||ZakZakon|zakon&||150",
+    "https://uvzsr.sk/||.||40||browser",
+    "http://www.uvzsr.sk/||.||40||browser",
+    "https://www.uvzsr.sk/web/uvz/aktuality||.||40||browser",
 ]
 
 for spec in URLS:
@@ -22,14 +19,18 @@ for spec in URLS:
     print("=" * 100)
     print("URL", url)
     try:
-        req = urllib.request.Request(url, headers={"User-Agent": BROWSER_UA if ua == "browser" else UA,
-                                                   "Accept": "text/html,application/xhtml+xml,*/*", "Accept-Language": "sk,en;q=0.8"})
+        h = {"User-Agent": BROWSER_UA if ua == "browser" else UA, "Accept": "text/html,application/xhtml+xml,*/*",
+             "Accept-Language": "sk,en;q=0.8"}
+        if ua == "browser":
+            h.update({"Sec-Fetch-Dest": "document", "Sec-Fetch-Mode": "navigate", "Sec-Fetch-Site": "none",
+                      "Upgrade-Insecure-Requests": "1"})
+        req = urllib.request.Request(url, headers=h)
         with urllib.request.urlopen(req, timeout=int(timeout or 40)) as r:
             body = r.read()
             print("STATUS", r.status, "FINAL", r.geturl(), "TYPE", r.headers.get("Content-Type"), "LEN", len(body))
             text = body.decode(r.headers.get_content_charset() or "utf-8", errors="replace")
     except urllib.error.HTTPError as e:
-        print("HTTP ERROR", e.code, dict(e.headers)); print(e.read()[:800]); continue
+        print("HTTP ERROR", e.code, dict(e.headers)); print("BODY", e.read()[:800]); continue
     except Exception as e:
         print("ERROR", e); continue
     m = re.search(r"<title[^>]*>(.*?)</title>", text, re.S | re.I)
@@ -56,5 +57,11 @@ for spec in URLS:
             break
     tables = re.findall(r"<table.*?</table>", text, re.S | re.I)
     print("TABLES", len(tables))
-    for t in tables[:2]:
-        print("TABLE", re.sub(r"\s+", " ", t)[:2500])
+    for t in tables[:1]:
+        for row in re.findall(r"<tr.*?</tr>", t, re.S)[:40]:
+            if "pager" in row or "__doPostBack" in row:
+                continue
+            links = re.findall(r'href="([^"]+)"', row)
+            cells = [re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", c))).strip()
+                     for c in re.findall(r"<t[dh][^>]*>(.*?)</t[dh]>", row, re.S)]
+            print("ROW", cells, links[:3])
