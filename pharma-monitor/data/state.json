@@ -102,7 +102,8 @@
    "https://www.health.gov.sk/Clanok?lieky202508": "2026-10-14T07:02:24Z",
    "https://www.health.gov.sk/Clanok?zuuc-202508-lieky": "2026-10-14T07:02:24Z",
    "https://www.health.gov.sk/Clanok?nemocnica-kralovsky-chlmec": "2026-10-14T07:02:24Z",
-   "https://www.health.gov.sk/Clanok?ruzovy-oktober-skrining-mamograficky": "2026-10-14T07:02:24Z"
+   "https://www.health.gov.sk/Clanok?ruzovy-oktober-skrining-mamograficky": "2026-10-14T07:02:24Z",
+   "https://www.health.gov.sk/Clanok?zzs-udalosti-mimoriadne-auta-velkokapacitne": "2026-10-15T09:09:58Z"
   }
  },
  "uskvbl": {
@@ -4864,7 +4865,7 @@
     "stage_name": "Vyhodnotenie pripomienkového konania"
    },
    "LP/2026/396": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 0,
     "tags": []
    },
@@ -4962,13 +4963,13 @@
     "tags": []
    },
    "LP/2026/516": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 1,
     "tags": [
      "Taxes",
      "Amends 595/2003"
     ],
-    "stage_name": "Pripomienkové konanie"
+    "stage_name": "Vyhodnotenie pripomienkového konania"
    },
    "LP/2024/291": {
     "stage": "PROCES_UKONCENY",
@@ -6228,7 +6229,7 @@
     "tags": []
    },
    "LP/2026/440": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 0,
     "tags": []
    },
@@ -6781,9 +6782,34 @@
      "Ministry of Health"
     ],
     "stage_name": "Pripomienkové konanie"
+   },
+   "LPEU/2026/703": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/702": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/537": {
+    "stage": "SPRACOVANIE_PREDKLADATEL",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/538": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/536": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
    }
   },
-  "last_run": "2026-10-14T18:01:56Z"
+  "last_run": "2026-10-15T09:09:54Z"
  },
  "eurlex": {
   "seen": {
@@ -7199,7 +7225,17 @@
    "32026D2264": "2026-10-14T10:24:55Z",
    "32026R2263": "2026-10-14T10:24:55Z",
    "32026R2257": "2026-10-14T10:24:55Z",
-   "32026D2258": "2026-10-14T10:24:55Z"
+   "32026D2258": "2026-10-14T10:24:55Z",
+   "32026D2315": "2026-10-15T09:10:57Z",
+   "32026R2301": "2026-10-15T09:10:57Z",
+   "32026R2302": "2026-10-15T09:10:57Z",
+   "32026R2293": "2026-10-15T09:10:57Z",
+   "32026R2280": "2026-10-15T09:10:57Z",
+   "32026R2307": "2026-10-15T09:10:57Z",
+   "32026R2290": "2026-10-15T09:10:57Z",
+   "32026R2228": "2026-10-15T09:10:57Z",
+   "32026D05398": "2026-10-15T09:10:57Z",
+   "32017L2397R(03)": "2026-10-15T09:10:57Z"
   }
  },
  "kategorizacia": {
@@ -8119,7 +8155,8 @@
    "https://svps.sk/?p=17065": "2026-10-14T11:10:05Z",
    "https://svps.sk/?p=16925": "2026-10-14T11:10:05Z",
    "https://svps.sk/?p=16915": "2026-10-14T11:10:05Z",
-   "https://svps.sk/?p=16853": "2026-10-14T11:10:05Z"
+   "https://svps.sk/?p=16853": "2026-10-14T11:10:05Z",
+   "https://svps.sk/?p=17129": "2026-10-15T09:10:59Z"
   }
  }
 }

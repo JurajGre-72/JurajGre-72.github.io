@@ -1,6 +1,38 @@
 {
  "items": [
   {
+   "id": "https://svps.sk/?p=17129",
+   "source": "svps",
+   "source_name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
+   "title": "Správa z úradnej kontroly za mesiac september",
+   "url": "https://svps.sk/sprava-z-uradnej-kontroly-za-mesiac-september/",
+   "date": "2026-10-15T08:12:45Z",
+   "detected": "2026-10-15T09:10:59Z",
+   "category": "ŠVPS notice",
+   "priority": "medium",
+   "tags": [
+    "Veterinary care"
+   ],
+   "summary": "V období od 1.9. do 30.9. 2026 vykonali inšpektori regionálnych veterinárnych a potravinových správ 3 234 úradných kontrol potravín rastlinného a živočíšneho pôvodu. Úradná kontrola bola vykonaná u 1 275 právnych subjektov a 1 984 prevádzok. Nedostatky boli zistené pri 168 kontrolách (Tabuľka č.1). Z uvedeného počtu…"
+  },
+  {
+   "id": "lp:LP/2026/516:VYHODNOTENIE_MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/516 · Poslanecký návrh zákona: Návrh poslancov Národnej rady Slovenskej republiky Ľubice LAŠŠÁKOVEJ, Aleny NOVÁKOVEJ, Zdenky MAČICOVEJ a017643 Jozefa CECHA na vydanie zákona, ktorým sa mení a dopĺňa zákon č. 595/2003 Z. z. o dani z príjmov v znení neskorších predpisov (tlač 1490)",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/516",
+   "date": "2026-10-15T08:00:00Z",
+   "detected": "2026-10-15T09:09:54Z",
+   "category": "Draft law",
+   "priority": "low",
+   "tags": [
+    "Taxes",
+    "Amends 595/2003",
+    "Vyhodnotenie pripomienkového konania"
+   ],
+   "summary": "Moved from stage “Pripomienkové konanie” to “Vyhodnotenie pripomienkového konania” · Stage: Vyhodnotenie pripomienkového konania (since 15.10.2026) · Submitted by: Ministerstvo financií Slovenskej republiky · Main act amended: 595/2003 Z. z."
+  },
+  {
    "id": "law:431/2002:2027-01-01",
    "source": "lawchanges",
    "source_name": "Slov-Lex · Znenia kľúčových zákonov",
@@ -2365,80 +2397,80 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-10-14T18:01:35Z",
+   "checked": "2026-10-15T09:09:36Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-10-14T18:01:35Z",
+   "checked": "2026-10-15T09:09:36Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-10-14T18:01:35Z",
+   "checked": "2026-10-15T09:09:36Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-10-14T18:01:35Z",
+   "checked": "2026-10-15T09:09:36Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-10-14T18:01:35Z",
+   "checked": "2026-10-15T09:09:36Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-10-14T18:01:35Z",
+   "checked": "2026-10-15T09:09:36Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-10-14T18:01:35Z",
+   "checked": "2026-10-15T09:09:36Z",
    "new": 1,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-10-14T18:01:35Z",
+   "checked": "2026-10-15T09:09:36Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-10-14T18:01:35Z",
+   "checked": "2026-10-15T09:09:36Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-10-14T18:01:35Z",
+   "checked": "2026-10-15T09:09:36Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-10-14T18:01:35Z",
-   "new": 0,
+   "checked": "2026-10-15T09:09:36Z",
+   "new": 1,
    "error": null
   }
  },
- "updated": "2026-10-14T18:01:35Z"
+ "updated": "2026-10-15T09:09:36Z"
 }
