@@ -5702,7 +5702,7 @@
     "tags": []
    },
    "LP/2026/450": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "ROKOVANIE_POV",
     "rel": 0,
     "tags": []
    },
@@ -6807,9 +6807,29 @@
     "stage": "MPK",
     "rel": 0,
     "tags": []
+   },
+   "LP/2026/539": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/706": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/705": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/704": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": []
    }
   },
-  "last_run": "2026-10-15T09:09:54Z"
+  "last_run": "2026-10-15T17:46:58Z"
  },
  "eurlex": {
   "seen": {
@@ -7235,7 +7255,16 @@
    "32026R2290": "2026-10-15T09:10:57Z",
    "32026R2228": "2026-10-15T09:10:57Z",
    "32026D05398": "2026-10-15T09:10:57Z",
-   "32017L2397R(03)": "2026-10-15T09:10:57Z"
+   "32017L2397R(03)": "2026-10-15T09:10:57Z",
+   "32026D2284": "2026-10-15T17:48:02Z",
+   "32026M12537": "2026-10-15T17:48:02Z",
+   "32026M12583": "2026-10-15T17:48:02Z",
+   "32026M12551": "2026-10-15T17:48:02Z",
+   "32026M12596": "2026-10-15T17:48:02Z",
+   "32026M12632": "2026-10-15T17:48:02Z",
+   "32026M12633": "2026-10-15T17:48:02Z",
+   "32026D2332": "2026-10-15T17:48:02Z",
+   "32026R2333": "2026-10-15T17:48:02Z"
   }
  },
  "kategorizacia": {
@@ -8139,7 +8168,8 @@
    "https://www.ema.europa.eu/en/news/global-regulators-call-advancing-alternatives-animal-testing-across-medicine-lifecycle": "2026-10-14T11:10:03Z",
    "https://www.ema.europa.eu/en/news/executive-director-speech-ema-womens-health-multi-stakeholder-workshop": "2026-10-14T11:10:03Z",
    "https://www.ema.europa.eu/en/news/women-are-missing-medicines-development-emas-roadmap-change": "2026-10-14T11:10:03Z",
-   "https://www.ema.europa.eu/en/news/meeting-highlights-committee-medicinal-products-human-use-chmp-14-17-september-2026": "2026-10-14T11:10:03Z"
+   "https://www.ema.europa.eu/en/news/meeting-highlights-committee-medicinal-products-human-use-chmp-14-17-september-2026": "2026-10-14T11:10:03Z",
+   "https://www.ema.europa.eu/en/news/ema-recommends-authorisation-rasonque-metastatic-pancreatic-cancer": "2026-10-15T17:48:02Z"
   }
  },
  "svps": {
