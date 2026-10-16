@@ -1,6 +1,59 @@
 {
  "items": [
   {
+   "id": "https://www.ema.europa.eu/en/news/meeting-highlights-committee-medicinal-products-human-use-chmp-12-15-october-2026",
+   "source": "ema",
+   "source_name": "EMA · European Medicines Agency",
+   "title": "Meeting highlights from the Committee for Medicinal Products for Human Use (CHMP) 12-15 October 2026",
+   "url": "https://www.ema.europa.eu/en/news/meeting-highlights-committee-medicinal-products-human-use-chmp-12-15-october-2026",
+   "date": "2026-10-16T10:00:00Z",
+   "detected": "2026-10-16T15:34:18Z",
+   "category": "EU agency (EMA)",
+   "priority": "high",
+   "tags": [
+    "Medicines",
+    "Medicines (general)",
+    "Authorisation opinions",
+    "Vaccines"
+   ],
+   "summary": "Six new medicines recommended for approvalEMA’s human medicines committee (CHMP) recommended six medicines for approval at its October 2026 meeting.Rasonque (daraxonrasib)…, CHMP statistics Key figures from the October 2026 CHMP meeting are represented in the graphic below. © European Medicines Agency , CHMP…"
+  },
+  {
+   "id": "lp:LP/2026/547:MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/547 · Vyhláška: Návrh vyhlášky Ministerstva zdravotníctva Slovenskej republiky, ktorou sa mení a dopĺňa vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 531/2023 Z. z. o kategorizácii ústavnej zdravotnej starostlivosti v znení neskorších predpisov",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/547",
+   "date": "2026-10-16T08:00:00Z",
+   "detected": "2026-10-16T15:34:10Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Ministry of Health",
+    "Pripomienkové konanie"
+   ],
+   "summary": "Stage: Pripomienkové konanie (since 16.10.2026) · Comments can be submitted until 05.11.2026 · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky",
+   "deadline": "2026-11-05"
+  },
+  {
+   "id": "lp:LP/2026/545:MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/545 · Poslanecký návrh zákona: Návrh poslancov Národnej rady Slovenskej republiky Karola Farkašovského, Andreja Danka a Adama Lučanského na vydanie zákona, ktorým sa mení a dopĺňa zákon č. 595/2003 Z. z. o dani z príjmov v znení neskorších (tlač 1262)",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/545",
+   "date": "2026-10-16T08:00:00Z",
+   "detected": "2026-10-16T15:34:11Z",
+   "category": "Draft law",
+   "priority": "low",
+   "tags": [
+    "Taxes",
+    "Amends 595/2003",
+    "Pripomienkové konanie"
+   ],
+   "summary": "Stage: Pripomienkové konanie (since 16.10.2026) · Comments can be submitted until 26.10.2026 · Submitted by: Ministerstvo financií Slovenskej republiky · Main act amended: 595/2003 Z. z.",
+   "deadline": "2026-10-26"
+  },
+  {
    "id": "https://www.ema.europa.eu/en/news/ema-recommends-authorisation-rasonque-metastatic-pancreatic-cancer",
    "source": "ema",
    "source_name": "EMA · European Medicines Agency",
@@ -2413,35 +2466,35 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-10-16T09:01:43Z",
+   "checked": "2026-10-16T15:34:08Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-10-16T09:01:43Z",
+   "checked": "2026-10-16T15:34:08Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-10-16T09:01:43Z",
+   "checked": "2026-10-16T15:34:08Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-10-16T09:01:43Z",
+   "checked": "2026-10-16T15:34:08Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-10-16T09:01:43Z",
+   "checked": "2026-10-16T15:34:08Z",
    "new": 0,
    "error": null
   },
@@ -2455,8 +2508,8 @@
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-10-16T09:01:43Z",
-   "new": 0,
+   "checked": "2026-10-16T15:34:08Z",
+   "new": 2,
    "error": null
   },
   "eurlex": {
@@ -2476,17 +2529,17 @@
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-10-16T09:01:43Z",
-   "new": 0,
+   "checked": "2026-10-16T15:34:08Z",
+   "new": 1,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-10-16T09:01:43Z",
+   "checked": "2026-10-16T15:34:08Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-10-16T09:01:43Z"
+ "updated": "2026-10-16T15:34:08Z"
 }

@@ -103,7 +103,8 @@
    "https://www.health.gov.sk/Clanok?zuuc-202508-lieky": "2026-10-14T07:02:24Z",
    "https://www.health.gov.sk/Clanok?nemocnica-kralovsky-chlmec": "2026-10-14T07:02:24Z",
    "https://www.health.gov.sk/Clanok?ruzovy-oktober-skrining-mamograficky": "2026-10-14T07:02:24Z",
-   "https://www.health.gov.sk/Clanok?zzs-udalosti-mimoriadne-auta-velkokapacitne": "2026-10-15T09:09:58Z"
+   "https://www.health.gov.sk/Clanok?zzs-udalosti-mimoriadne-auta-velkokapacitne": "2026-10-15T09:09:58Z",
+   "https://www.health.gov.sk/Clanok?medzinarodna-konferencia-o-inovaciach-vo-verejnom-zdravotnictve": "2026-10-16T15:34:17Z"
   }
  },
  "uskvbl": {
@@ -5061,7 +5062,7 @@
     "tags": []
    },
    "LP/2026/469": {
-    "stage": "SPRACOVANIE_PREDKLADATEL",
+    "stage": "ROKOVANIE_VLADA",
     "rel": 0,
     "tags": []
    },
@@ -5489,7 +5490,7 @@
     "tags": []
    },
    "LPEU/2026/636": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -6850,9 +6851,47 @@
     "stage": "MPK",
     "rel": 0,
     "tags": []
+   },
+   "LPEU/2026/710": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": [
+     "VAT"
+    ]
+   },
+   "LP/2026/547": {
+    "stage": "MPK",
+    "rel": 2,
+    "tags": [
+     "Ministry of Health"
+    ],
+    "stage_name": "Pripomienkové konanie"
+   },
+   "LP/2026/546": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/545": {
+    "stage": "MPK",
+    "rel": 1,
+    "tags": [
+     "Taxes",
+     "Amends 595/2003"
+    ],
+    "stage_name": "Pripomienkové konanie"
+   },
+   "LPEU/2026/708": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/709": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": []
    }
-  },
-  "last_run": "2026-10-16T09:02:06Z"
+  }
  },
  "eurlex": {
   "seen": {
@@ -8201,7 +8240,8 @@
    "https://www.ema.europa.eu/en/news/executive-director-speech-ema-womens-health-multi-stakeholder-workshop": "2026-10-14T11:10:03Z",
    "https://www.ema.europa.eu/en/news/women-are-missing-medicines-development-emas-roadmap-change": "2026-10-14T11:10:03Z",
    "https://www.ema.europa.eu/en/news/meeting-highlights-committee-medicinal-products-human-use-chmp-14-17-september-2026": "2026-10-14T11:10:03Z",
-   "https://www.ema.europa.eu/en/news/ema-recommends-authorisation-rasonque-metastatic-pancreatic-cancer": "2026-10-15T17:48:02Z"
+   "https://www.ema.europa.eu/en/news/ema-recommends-authorisation-rasonque-metastatic-pancreatic-cancer": "2026-10-15T17:48:02Z",
+   "https://www.ema.europa.eu/en/news/meeting-highlights-committee-medicinal-products-human-use-chmp-12-15-october-2026": "2026-10-16T15:34:18Z"
   }
  },
  "svps": {
