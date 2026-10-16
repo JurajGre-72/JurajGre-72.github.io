@@ -29,8 +29,10 @@ are still covered through Slov-Lex eLegislatíva, which tracks them through the 
 
 ## How you get notified
 
-1. `.github/workflows/pharma-monitor.yml` runs twice a day (about 06:15 and 15:15 Bratislava time) and can also be started by hand
-   (**Actions → Regulatory monitor → Run workflow**).
+1. `.github/workflows/pharma-monitor.yml` checks all sources **every 15 minutes** from 07:00 to 22:00 Bratislava
+   summer time (05:00–19:59 UTC) and hourly at night. The slower sources (key law wordings, EUR-Lex, the
+   categorisation list) are read once an hour; a quiet run takes about 15 seconds and commits nothing. It can also be
+   started by hand (**Actions → Regulatory monitor → Run workflow**), which always checks everything.
 2. When it finds new relevant items it opens a **GitHub issue** labelled `regulatory-update` with a digest
    (🔴 high / 🟠 medium / ⚪ low). GitHub e-mails new issues to the repository owner. Check that
    *Settings → Notifications → Email* is on and that you are "watching" this repository.
@@ -43,15 +45,19 @@ The dashboard shows everything found, with filters, search and "NEW" markers.
 
 ### "Check for updates now" button
 
-The button in the dashboard header starts the same GitHub Actions check immediately, follows it, and reloads the
-page when the new results are published (usually 2–5 minutes). GitHub Pages is a static site, so starting a
-workflow needs a GitHub token. The first click asks for one:
+One click, no sign-in. The button loads the newest results straight away (bypassing the website cache). If a check
+of all sources is running at that moment, it waits for it to finish and for the results to be published, then
+shows how many new items were found (marked NEW). Otherwise it says when all sources were last checked – never more
+than about 15 minutes ago during the day. "Last check" in the header shows the same time.
+
+**Optional – "Start an extra check"** (link in *How it works*) starts a full check immediately, outside the schedule.
+GitHub only allows that with a token, so the first use asks for one:
 
 1. GitHub → *Settings → Developer settings → Fine-grained tokens → Generate new token*
    (direct link: https://github.com/settings/personal-access-tokens/new).
 2. *Repository access*: only `JurajGre-72.github.io`. *Permissions → Repository → Actions*: **Read and write**. Nothing else.
 3. Paste it into the dialog. It is stored only in that browser (local storage) and sent only to `api.github.com`;
-   "Forget the saved token" removes it. Each person/browser uses their own token.
+   "Forget the saved token" removes it. With a saved token, the main button also starts an extra check.
 
 Without a token, "Run it on GitHub instead" opens the workflow page, where *Run workflow* does the same.
 
@@ -104,8 +110,8 @@ loads recent history without sending a notification.
 ## Tests
 
 `tests/dashboard.test.mjs` clicks through every control of the dashboard (search, filters, "Show more",
-"Mark all read", dark mode, all "what changed" views, and the full "Check for updates now" flow with the GitHub
-API mocked) and fails on any broken control or browser error. It runs automatically on pull requests
+"Mark all read", dark mode, all "what changed" views, and the "Check for updates now" button and the optional extra check with the
+GitHub API mocked) and fails on any broken control or browser error. It runs automatically on pull requests
 (`.github/workflows/pharma-monitor-check.yml`); a manual run of that workflow also tests the published site.
 
 ```bash

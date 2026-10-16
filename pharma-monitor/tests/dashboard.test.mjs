@@ -22,6 +22,8 @@ const DATA = process.env.DASHBOARD_URL
   ? await (await fetch(new globalThis.URL('data/items.json', URL))).json()
   : JSON.parse(fs.readFileSync(path.join(ROOT, 'pharma-monitor/data/items.json'), 'utf8'));
 const TOKEN = 'github_pat_TEST_0123456789abcdefghijklmnop';
+// the dashboard's data file only (the GitHub commits query also mentions data/items.json)
+const ITEMS_URL = (u) => u.hostname !== 'api.github.com' && u.pathname.endsWith('/data/items.json');
 
 let failures = 0, passes = 0;
 function check(name, ok, detail = '') {
@@ -212,13 +214,88 @@ try {
   check('official PDF / Slov-Lex links are absolute', pdfs.every((h) => /^https:\/\//.test(h)));
   check('errors on the page', page.errors.length === 0, page.errors.join(' | '));
 
-  // ------------------------------------------------------------------ update button: setup dialog
-  console.log('"Check for updates now" – setup');
+  // ------------------------------------------------------------------ update button: no setup, nothing new
+  console.log('"Check for updates" – no sign-in, nothing new');
+  const iso = (msAgo) => new Date(Date.now() - msAgo).toISOString();
   page = await newPage();
+  let apiCalls = [];
+  await page.route('https://api.github.com/**', (route) => {
+    const req = route.request(), u = req.url();
+    apiCalls.push({ url: u, auth: req.headers().authorization || '', method: req.method() });
+    if (u.includes('/actions/workflows/pharma-monitor.yml/runs?')) {
+      return route.fulfill({ json: { workflow_runs: [{ id: 5, status: 'completed', conclusion: 'success',
+        run_started_at: iso(7 * 60000), updated_at: iso(5 * 60000), created_at: iso(7 * 60000), html_url: 'https://github.com/run/5' }] } });
+    }
+    if (u.includes('/commits?')) return route.fulfill({ json: [{ commit: { committer: { date: iso(3600000) } } }] });
+    return route.fulfill({ status: 404, body: '{}' });
+  });
   await page.goto(URL);
   await page.waitForSelector('article.item');
+  await page.waitForFunction(() => /min ago/.test(document.querySelector('#sChecked').innerText), null, { timeout: 5000 }).catch(() => {});
+  check('"Last check" shows the latest automatic check', (await page.locator('#sChecked').innerText()) === '5 min ago',
+    await page.locator('#sChecked').innerText());
   await page.click('#refresh');
-  check('no token → setup dialog opens', await page.evaluate(() => document.querySelector('#setup').open));
+  check('one click – no sign-in dialog', await page.evaluate(() => !document.querySelector('#setup').open));
+  await page.waitForFunction(() => !document.querySelector('#refresh').disabled && /Up to date/.test(document.querySelector('#updStatus').innerText),
+    null, { timeout: 15000 });
+  check('reports "Up to date" with the time of the last check', /checked 5 min ago/.test(await page.locator('#updStatus').innerText()),
+    await page.locator('#updStatus').innerText());
+  check('no token is sent and nothing is started', apiCalls.every((c) => c.auth === '' && c.method === 'GET'));
+  check('list still shown', (await count(page, 'article.item')) === shown);
+
+  // ------------------------------------------------------------------ update button: a check is running, finds something
+  console.log('"Check for updates" – a check is running and finds something');
+  page = await newPage();
+  apiCalls = [];
+  let polls = 0, published = false;
+  const runStart = iso(60000);
+  await page.route('https://api.github.com/**', (route) => {
+    const req = route.request(), u = req.url();
+    apiCalls.push({ url: u, auth: req.headers().authorization || '', method: req.method() });
+    if (u.includes('/actions/workflows/pharma-monitor.yml/runs?')) {
+      return route.fulfill({ json: { workflow_runs: [{ id: 8, status: 'in_progress', conclusion: null, run_started_at: runStart,
+        updated_at: runStart, created_at: runStart, html_url: 'https://github.com/run/8' }] } });
+    }
+    if (u.endsWith('/actions/runs/8')) {
+      polls += 1;
+      const done = polls >= 2;
+      return route.fulfill({ json: { id: 8, status: done ? 'completed' : 'in_progress', conclusion: done ? 'success' : null,
+        run_started_at: runStart, updated_at: new Date().toISOString(), html_url: 'https://github.com/run/8' } });
+    }
+    if (u.includes('/commits?')) { published = true; return route.fulfill({ json: [{ commit: { committer: { date: new Date().toISOString() } } }] }); }
+    return route.fulfill({ status: 404, body: '{}' });
+  });
+  await page.route(ITEMS_URL, (route) => {
+    if (!published) return route.continue();
+    const d = JSON.parse(JSON.stringify(DATA));
+    d.updated = new Date().toISOString();
+    d.items.unshift({ id: 'test:new', source: 'sukl_recall', source_name: 'ŠÚKL · Stiahnutia liekov z trhu', title: 'TEST recall',
+      url: 'https://www.sukl.sk/', date: d.updated, detected: d.updated, category: 'Recall / quality', priority: 'high', tags: [], summary: '' });
+    return route.fulfill({ json: d });
+  });
+  await page.goto(URL);
+  await page.waitForSelector('article.item');
+  await page.waitForFunction(() => /Checking now/.test(document.querySelector('#sChecked').innerText), null, { timeout: 5000 }).catch(() => {});
+  check('"Last check" says a check is running', (await page.locator('#sChecked').innerText()) === 'Checking now…');
+  await page.evaluate(() => { const st = window.setTimeout; window.setTimeout = (f, ms, ...a) => st(f, Math.min(ms, 30), ...a); });
+  await page.click('#refresh');
+  await page.waitForFunction(() => !document.querySelector('#refresh').disabled && /Done/.test(document.querySelector('#updStatus').innerText),
+    null, { timeout: 20000 });
+  check('waits for the running check to finish', polls >= 2);
+  check('reports the new item', (await page.locator('#updStatus').innerText()).includes('1 new item'));
+  check('reloads the list with the new item', (await page.locator('article.item h3').first().innerText()) === 'TEST recall');
+  check('stats updated after reload', (await page.locator('#sTotal').innerText()) === String(total + 1));
+  check('still no sign-in and nothing started', apiCalls.every((c) => c.auth === '' && c.method === 'GET'));
+  check('errors on the page', page.errors.length === 0, page.errors.join(' | '));
+
+  // ------------------------------------------------------------------ optional extra check: setup dialog
+  console.log('Optional "Start an extra check" – setup');
+  page = await newPage();
+  await page.route('https://api.github.com/**', (r) => r.fulfill({ json: { workflow_runs: [] } }));
+  await page.goto(URL);
+  await page.waitForSelector('article.item');
+  await page.click('#extraCheck');
+  check('"Start an extra check" opens the sign-in dialog', await page.evaluate(() => document.querySelector('#setup').open));
   check('"Run it on GitHub" points to the workflow',
     (await page.getAttribute('#runOnGithub', 'href')) === 'https://github.com/JurajGre-72/JurajGre-72.github.io/actions/workflows/pharma-monitor.yml');
   check('token link points to GitHub token page', (await page.locator('#setup a').first().getAttribute('href')).startsWith('https://github.com/settings/personal-access-tokens/new'));
@@ -227,14 +304,15 @@ try {
   check('invalid token is rejected', await page.evaluate(() => document.querySelector('#setup').open && !localStorage.getItem('pm-gh-token')));
   await page.click('#setupClose');
   check('× closes the dialog', await page.evaluate(() => !document.querySelector('#setup').open));
-  await page.click('#refresh');
+  await page.click('#extraCheck');
   await page.keyboard.press('Escape');
   check('Escape closes the dialog', await page.evaluate(() => !document.querySelector('#setup').open));
 
-  // ------------------------------------------------------------------ update button: full run (GitHub API mocked)
-  console.log('"Check for updates now" – run');
+  // ------------------------------------------------------------------ optional extra check: full run (GitHub API mocked)
+  console.log('Optional "Start an extra check" – run');
+  await page.unroute('https://api.github.com/**');
   const calls = [];
-  let polls = 0, published = false;
+  polls = 0; published = false;
   await page.route('https://api.github.com/**', async (route) => {
     const req = route.request(), u = req.url();
     calls.push({ method: req.method(), url: u, auth: req.headers().authorization || '', body: req.postData() });
@@ -248,7 +326,7 @@ try {
     }
     return route.fulfill({ status: 404, body: '{}' });
   });
-  await page.route('**/data/items.json*', (route) => {
+  await page.route(ITEMS_URL, (route) => {
     if (!published) return route.continue();
     const d = JSON.parse(JSON.stringify(DATA));
     d.updated = new Date().toISOString();
@@ -257,7 +335,7 @@ try {
     return route.fulfill({ json: d });
   });
   await page.evaluate(() => { const st = window.setTimeout; window.setTimeout = (f, ms, ...a) => st(f, Math.min(ms, 30), ...a); });
-  await page.click('#refresh');
+  await page.click('#extraCheck');
   await page.fill('#tokenInput', TOKEN);
   await page.click('#tokenSave');
   check('valid token saved in this browser', (await page.evaluate(() => localStorage.getItem('pm-gh-token'))) === TOKEN);
@@ -268,17 +346,16 @@ try {
   check('follows the run until it completes', polls >= 2);
   check('reports the result', (await page.locator('#updStatus').innerText()).includes('1 new item'));
   check('reloads the list with the new item', (await page.locator('article.item h3').first().innerText()) === 'TEST recall');
-  check('stats updated after reload', (await page.locator('#sTotal').innerText()) === String(total + 1));
 
-  // second click uses the saved token directly (no dialog)
+  // with a saved token the main button also starts an extra check
   calls.length = 0; polls = 0; published = false;
   await page.click('#refresh');
-  check('saved token → no dialog on next click', await page.evaluate(() => !document.querySelector('#setup').open));
+  check('saved token → no dialog on the button', await page.evaluate(() => !document.querySelector('#setup').open));
   await page.waitForFunction(() => !document.querySelector('#refresh').disabled, null, { timeout: 20000 });
-  check('second run dispatched', calls.some((c) => c.url.endsWith('/dispatches')));
+  check('button with a saved token dispatches', calls.some((c) => c.url.endsWith('/dispatches')));
 
-  // ------------------------------------------------------------------ update button: rejected token, forget token
-  console.log('"Check for updates now" – errors and forgetting the token');
+  // ------------------------------------------------------------------ optional extra check: rejected token, forget token
+  console.log('Optional "Start an extra check" – errors and forgetting the token');
   await page.unroute('https://api.github.com/**');
   await page.route('https://api.github.com/**', (r) => r.fulfill({ status: 401, body: '{}' }));
   await page.click('#refresh');
