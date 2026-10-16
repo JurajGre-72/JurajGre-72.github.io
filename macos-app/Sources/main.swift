@@ -319,10 +319,25 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
     func relaunch(_ app: URL) {
         print("UPDATE OK: replaced \(app.path), relaunching")
         fflush(stdout)
+        // A detached helper waits until this process has really exited, then starts the new copy
+        // (starting it while the old one is still quitting is unreliable). Its output goes to a log for diagnosis.
+        let log = FileManager.default.temporaryDirectory.appendingPathComponent("pharmacopola-relaunch.log").path
+        let script = """
+        pid=$1; app=$2
+        for i in $(seq 1 150); do kill -0 "$pid" 2>/dev/null || break; sleep 0.2; done
+        for attempt in 1 2 3; do
+          /usr/bin/open -n "$app" && { echo "relaunched $app (attempt $attempt)"; exit 0; }
+          sleep 2
+        done
+        echo "could not relaunch $app"; exit 1
+        """
         let task = Process()
-        task.executableURL = URL(fileURLWithPath: "/bin/sh")
-        task.arguments = ["-c", "sleep 1; /usr/bin/open -n \"$0\"", app.path]
-        try? task.run()
+        task.executableURL = URL(fileURLWithPath: "/usr/bin/nohup")
+        task.arguments = ["/bin/sh", "-c", script, "relaunch", String(ProcessInfo.processInfo.processIdentifier), app.path]
+        FileManager.default.createFile(atPath: log, contents: nil)
+        if let handle = FileHandle(forWritingAtPath: log) { task.standardOutput = handle; task.standardError = handle }
+        task.standardInput = FileHandle.nullDevice
+        do { try task.run() } catch { print("UPDATE WARN: could not start relaunch helper: \(error)") }
         NSApp.terminate(nil)
     }
 
