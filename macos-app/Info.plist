@@ -9,6 +9,7 @@
   <key>CFBundleExecutable</key><string>PHARMACOPOLA Monitor</string>
   <key>CFBundleIconFile</key><string>AppIcon</string>
   <key>CFBundlePackageType</key><string>APPL</string>
+  <key>NSPrincipalClass</key><string>NSApplication</string>
   <key>CFBundleShortVersionString</key><string>__VERSION__</string>
   <key>CFBundleVersion</key><string>__BUILD__</string>
   <key>LSMinimumSystemVersion</key><string>11.0</string>
