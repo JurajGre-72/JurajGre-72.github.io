@@ -58,7 +58,7 @@ Without a token, "Run it on GitHub instead" opens the workflow page, where *Run 
 ## Mac app
 
 `macos-app/` is a small native macOS app (Swift, WebKit) that shows the live dashboard in its own window with the
-PHARMACOPOLA icon. Download: https://github.com/JurajGre-72/JurajGre-72.github.io/releases/latest/download/PHARMACOPOLA-Monitor.dmg
+PHARMACOPOLA icon. Download: https://github.com/JurajGre-72/JurajGre-72.github.io/releases/download/monitor-mac-latest/PHARMACOPOLA-Monitor.dmg
 
 - Open the .dmg and drag **PHARMACOPOLA Monitor** into **Applications**. The app is not notarised by Apple, so the
   first start needs: double-click → *Done* → **System Settings → Privacy & Security → "Open Anyway"** (once).
@@ -66,7 +66,9 @@ PHARMACOPOLA icon. Download: https://github.com/JurajGre-72/JurajGre-72.github.i
   ⌘U, also checked quietly once a day) installs a newer app build and restarts.
 - To release a new app version: change the app, bump `macos-app/VERSION` (e.g. `1.0.1`), update
   `macos-app/RELEASE_NOTES.md`, merge to `main`. `.github/workflows/macos-app.yml` builds it on a Mac runner,
-  runs a smoke test (the app must render the dashboard) and publishes the release that the update button finds.
+  runs a smoke test (the app must render the dashboard) and publishes release `monitor-mac-v<version>` (found by the
+  update button) and refreshes the download release `monitor-mac-latest`. These tags never become the repository's
+  "latest" release, so other projects' releases in this repository are not affected.
 
 ## Tuning relevance
 

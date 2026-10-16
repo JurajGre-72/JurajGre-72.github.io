@@ -81,7 +81,7 @@ try {
     !Object.values(icons).includes('broken') && icons['apple-touch-icon.png'] === '180x180' && icons['icon-512.png'] === '512x512'
       && icons['icon-maskable-512.png'] === '512x512', JSON.stringify(icons));
   check('web app manifest', icons.manifest === 'PHARMACOPOLA Regulatory Monitor|standalone|3', icons.manifest);
-  check('Mac app download link', (await page.getAttribute('#macDownload', 'href')) === 'https://github.com/JurajGre-72/JurajGre-72.github.io/releases/latest/download/PHARMACOPOLA-Monitor.dmg');
+  check('Mac app download link', (await page.getAttribute('#macDownload', 'href')) === 'https://github.com/JurajGre-72/JurajGre-72.github.io/releases/download/monitor-mac-latest/PHARMACOPOLA-Monitor.dmg');
 
   // ------------------------------------------------------------------ search
   console.log('Search');

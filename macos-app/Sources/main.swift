@@ -10,8 +10,10 @@ import Cocoa
 import WebKit
 
 let dashboardURL = URL(string: "https://jurajgre-72.github.io/pharma-monitor/")!
-let latestReleaseAPI = URL(string: "https://api.github.com/repos/JurajGre-72/JurajGre-72.github.io/releases/latest")!
-let releasesPage = URL(string: "https://github.com/JurajGre-72/JurajGre-72.github.io/releases/latest")!
+// The repository also publishes releases for other projects, so this app only looks at tags "monitor-mac-v<version>".
+let releasesAPI = URL(string: "https://api.github.com/repos/JurajGre-72/JurajGre-72.github.io/releases?per_page=50")!
+let tagPrefix = "monitor-mac-v"
+let releasesPage = URL(string: "https://github.com/JurajGre-72/JurajGre-72.github.io/releases/tag/monitor-mac-latest")!
 let appName = "PHARMACOPOLA Monitor"
 let zipAssetSuffix = "-mac.zip"
 
@@ -40,19 +42,23 @@ struct Release {
 }
 
 func fetchLatestRelease(_ done: @escaping (Result<Release?, Error>) -> Void) {
-    var req = URLRequest(url: latestReleaseAPI, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 30)
+    var req = URLRequest(url: releasesAPI, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 30)
     req.setValue("application/vnd.github+json", forHTTPHeaderField: "Accept")
     req.setValue("\(appName)/\(currentVersion)", forHTTPHeaderField: "User-Agent")
     URLSession.shared.dataTask(with: req) { data, response, error in
         if let error = error { return done(.failure(error)) }
         let status = (response as? HTTPURLResponse)?.statusCode ?? 0
-        if status == 404 { return done(.success(nil)) }  // no release published yet
         guard status == 200, let data = data,
-              let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-              let tag = json["tag_name"] as? String else {
+              let list = try? JSONSerialization.jsonObject(with: data) as? [[String: Any]] else {
             return done(.failure(NSError(domain: appName, code: status,
                                          userInfo: [NSLocalizedDescriptionKey: "GitHub answered HTTP \(status)."])))
         }
+        let ours = list.filter {
+            ($0["tag_name"] as? String)?.hasPrefix(tagPrefix) == true && $0["draft"] as? Bool != true && $0["prerelease"] as? Bool != true
+        }
+        let version = { (r: [String: Any]) in String((r["tag_name"] as? String ?? "").dropFirst(tagPrefix.count)) }
+        guard let json = ours.max(by: { isNewer(version($1), than: version($0)) }) else { return done(.success(nil)) }
+        let tag = version(json)
         let assets = json["assets"] as? [[String: Any]] ?? []
         let zip = assets.first { ($0["name"] as? String)?.hasSuffix(zipAssetSuffix) == true }
         let zipURL = (zip?["browser_download_url"] as? String).flatMap(URL.init(string:))
