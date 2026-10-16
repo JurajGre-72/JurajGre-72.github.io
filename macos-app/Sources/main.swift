@@ -203,12 +203,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
         let item = NSToolbarItem(itemIdentifier: id)
         let button: NSButton
         if id == reloadID {
-            button = NSButton(image: NSImage(systemSymbolName: "arrow.clockwise", accessibilityDescription: "Reload")!,
+            button = NSButton(image: symbol("arrow.clockwise", fallback: NSImage.refreshTemplateName),
                               target: self, action: #selector(reload))
             item.label = "Reload"
             item.toolTip = "Reload the dashboard (⌘R)"
         } else {
-            button = NSButton(title: "Check for App Update", image: NSImage(systemSymbolName: "arrow.down.app", accessibilityDescription: nil)!,
+            button = NSButton(title: "Check for App Update", image: symbol("arrow.down.circle", fallback: NSImage.refreshTemplateName),
                               target: self, action: #selector(checkForUpdatesMenu))
             button.imagePosition = .imageLeading
             item.label = "App Update"
@@ -217,6 +217,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
         button.bezelStyle = .texturedRounded
         item.view = button
         return item
+    }
+
+    /// SF Symbol if this macOS has it, otherwise a built-in AppKit image – never crash because an icon is missing
+    func symbol(_ name: String, fallback: NSImage.Name) -> NSImage {
+        NSImage(systemSymbolName: name, accessibilityDescription: nil) ?? NSImage(named: fallback) ?? NSImage()
     }
 
     // MARK: actions
