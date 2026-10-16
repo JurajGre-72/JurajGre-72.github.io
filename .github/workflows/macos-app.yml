@@ -48,7 +48,8 @@ jobs:
           grep -q "UPDATE OK" update.log
           test "$(plutil -extract CFBundleShortVersionString raw "/tmp/inst/$NAME.app/Contents/Info.plist")" = "99.0.0"
           codesign --verify --deep --strict "/tmp/inst/$NAME.app"
-          sleep 5
+          for i in $(seq 1 30); do pgrep -f "/tmp/inst/$NAME.app/Contents/MacOS/$NAME" && break; sleep 1; done
+          cat "$TMPDIR/pharmacopola-relaunch.log" || true
           pgrep -fl "/tmp/inst/$NAME.app/Contents/MacOS/$NAME"                          # restarted copy is running
           pkill -f "/tmp/inst/$NAME.app/Contents/MacOS/$NAME" || true
 
@@ -71,7 +72,8 @@ jobs:
           PM_ZIP_URL="file://$PWD/macos-app/build/PHARMACOPOLA-Monitor-mac.zip" bash pharma-monitor/install-mac.sh
           ! xattr -p com.apple.quarantine "/Applications/$NAME.app" 2>/dev/null       # block flag removed
           test "$(defaults read "/Applications/$NAME.app/Contents/Info" CFBundleShortVersionString)" = "$(tr -d '[:space:]' < macos-app/VERSION)"
-          sleep 10
+          for i in $(seq 1 30); do pgrep -f "/Applications/$NAME.app/Contents/MacOS/$NAME" && break; sleep 1; done
+          sleep 5
           pgrep -fl "/Applications/$NAME.app/Contents/MacOS/$NAME"                      # started via LaunchServices and still running
           pkill -f "/Applications/$NAME.app/Contents/MacOS/$NAME" || true
 
