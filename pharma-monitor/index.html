@@ -6,7 +6,15 @@
 <title>PHARMACOPOLA Regulatory Monitor</title>
 <meta name="description" content="New Slovak laws and regulator announcements relevant to pharmaceutical and veterinary distribution.">
 <meta name="robots" content="noindex">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-6 -6 76 62'%3E%3Crect x='-6' y='-6' width='76' height='62' rx='12' fill='%23003A5B'/%3E%3Cpath d='M30.1368 0V16.6469H0L2.65786 19.9243H38.9577V23.2546H5.35869L8.05653 26.584L46.7624 26.54V29.8694L10.7604 29.9124L13.5002 33.2938H30.1368V49.9407H46.7734V33.2938H63.4111V16.6469H46.7734V0H30.1368Z' fill='%2300A78F'/%3E%3C/svg%3E">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="application-name" content="PHARMACOPOLA Monitor">
+<meta name="apple-mobile-web-app-title" content="PHARMACOPOLA Monitor">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#003A5B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -217,6 +225,7 @@
   .dot.bad { background: var(--high); }
   .how { margin-top: 16px; color: var(--muted); font-size: 14px; }
   .how ul { margin: 0; padding-left: 18px; }
+  .how a { color: var(--accent); font-weight: 600; }
   .how code { font-family: 'IBM Plex Mono', monospace; font-size: 13px; background: var(--surface-2); padding: 1px 5px; border-radius: 4px; }
   footer { margin-top: 28px; font-size: 12px; color: var(--muted); }
 
@@ -342,6 +351,7 @@
     <ul>
       <li>A GitHub Actions job runs twice a day (and can be started manually). It reads the official sources above and keeps only items matching the rules in <code>pharma-monitor/config.json</code>.</li>
       <li>When something new is found, the job opens a GitHub issue labelled <code>regulatory-update</code>; GitHub e-mails it to you. Optional direct e-mail can be switched on with SMTP secrets (see README).</li>
+      <li><b>Mac app:</b> <a id="macDownload" href="https://github.com/JurajGre-72/JurajGre-72.github.io/releases/latest/download/PHARMACOPOLA-Monitor.dmg">download PHARMACOPOLA Monitor for Mac</a> – the same dashboard in its own window, with a <b>Check for App Update</b> button that installs new versions.</li>
       <li><b>Check for updates now</b> starts the same check immediately and reloads this page when it is done (2–5 minutes). The first time, it asks for a GitHub token that is stored only in your browser.</li>
       <li><b>Law changes:</b> for 18 key laws (e.g. 362/2011, 363/2011, 39/2007) every new consolidated wording is compared with the previous one, provision by provision, with <del>removed</del> and <ins>added</ins> text highlighted.</li>
       <li><b>Amending acts:</b> new acts in the Collection of Laws are read in full; the exact amendment points for key laws are shown, even inside omnibus acts.</li>

@@ -1,0 +1,63 @@
+name: Mac app
+
+# Builds the macOS app on a Mac runner, checks that it starts and renders the live dashboard,
+# and – on main – publishes it as a GitHub Release when macos-app/VERSION has a new number.
+# Stable download link: https://github.com/JurajGre-72/JurajGre-72.github.io/releases/latest/download/PHARMACOPOLA-Monitor.dmg
+on:
+  push:
+    branches: [main]
+    paths: ["macos-app/**", ".github/workflows/macos-app.yml"]
+  pull_request:
+    paths: ["macos-app/**", ".github/workflows/macos-app.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: macos-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build app, zip and dmg
+        run: ./macos-app/build.sh
+
+      - name: Smoke test – launch the app, render the dashboard, check the update service
+        run: |
+          APP="macos-app/build/PHARMACOPOLA Monitor.app"
+          PM_SMOKE_TEST=1 "$APP/Contents/MacOS/PHARMACOPOLA Monitor" | tee smoke.log &
+          pid=$!
+          for i in $(seq 1 120); do kill -0 $pid 2>/dev/null || break; sleep 1; done
+          if kill -0 $pid 2>/dev/null; then kill $pid; echo "::error::app did not finish the smoke test"; exit 1; fi
+          wait $pid
+          grep -q "SMOKE OK" smoke.log
+
+      - name: Check the packages open
+        run: |
+          hdiutil attach -nobrowse -readonly macos-app/build/PHARMACOPOLA-Monitor.dmg -mountpoint /tmp/pmdmg
+          test -d "/tmp/pmdmg/PHARMACOPOLA Monitor.app" && test -L /tmp/pmdmg/Applications
+          hdiutil detach /tmp/pmdmg
+          mkdir /tmp/pmzip && ditto -x -k macos-app/build/PHARMACOPOLA-Monitor-mac.zip /tmp/pmzip
+          codesign --verify --deep --strict "/tmp/pmzip/PHARMACOPOLA Monitor.app"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: PHARMACOPOLA-Monitor-mac
+          path: |
+            macos-app/build/PHARMACOPOLA-Monitor.dmg
+            macos-app/build/PHARMACOPOLA-Monitor-mac.zip
+
+      - name: Publish release (main only, new version only)
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          V="v$(tr -d '[:space:]' < macos-app/VERSION)"
+          if gh release view "$V" >/dev/null 2>&1; then
+            echo "Release $V already exists – bump macos-app/VERSION to publish a new one."
+          else
+            gh release create "$V" macos-app/build/PHARMACOPOLA-Monitor.dmg macos-app/build/PHARMACOPOLA-Monitor-mac.zip \
+              --title "PHARMACOPOLA Monitor ${V#v} for Mac" --notes-file macos-app/RELEASE_NOTES.md --latest
+          fi
