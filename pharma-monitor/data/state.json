@@ -4431,7 +4431,8 @@
    "253/2026": "2026-10-14T07:19:24Z",
    "108/2026": "2026-10-14T07:24:41Z",
    "183/2026": "2026-10-14T07:24:44Z",
-   "241/2026": "2026-10-14T07:24:46Z"
+   "241/2026": "2026-10-14T07:24:46Z",
+   "254/2026": "2026-10-16T09:01:44Z"
   }
  },
  "slovlex_lp": {
@@ -4865,7 +4866,7 @@
     "stage_name": "Vyhodnotenie pripomienkového konania"
    },
    "LP/2026/396": {
-    "stage": "SPRACOVANIE_PREDKLADATEL",
+    "stage": "ROKOVANIE_POV",
     "rel": 0,
     "tags": []
    },
@@ -4923,7 +4924,7 @@
     "tags": []
    },
    "LPEU/2026/673": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -5408,7 +5409,7 @@
     ]
    },
    "LP/2026/494": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -5528,7 +5529,7 @@
     "tags": []
    },
    "LPEU/2026/624": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -5600,7 +5601,7 @@
     "tags": []
    },
    "LPEU/2026/625": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -5826,12 +5827,12 @@
     "tags": []
    },
    "LP/2026/477": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
    "LP/2026/475": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -6827,9 +6828,31 @@
     "stage": "SCHVALENIE_GESTORA",
     "rel": 0,
     "tags": []
+   },
+   "LPEU/2026/707": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": [
+     "Customs"
+    ]
+   },
+   "LP/2026/543": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/541": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/540": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
    }
   },
-  "last_run": "2026-10-15T17:46:58Z"
+  "last_run": "2026-10-16T09:02:06Z"
  },
  "eurlex": {
   "seen": {
@@ -7264,7 +7287,16 @@
    "32026M12632": "2026-10-15T17:48:02Z",
    "32026M12633": "2026-10-15T17:48:02Z",
    "32026D2332": "2026-10-15T17:48:02Z",
-   "32026R2333": "2026-10-15T17:48:02Z"
+   "32026R2333": "2026-10-15T17:48:02Z",
+   "32026D2260": "2026-10-16T09:03:30Z",
+   "32026D2331": "2026-10-16T09:03:30Z",
+   "32026D2316": "2026-10-16T09:03:30Z",
+   "32026R2299": "2026-10-16T09:03:30Z",
+   "32026R2289": "2026-10-16T09:03:30Z",
+   "32026R2270": "2026-10-16T09:03:30Z",
+   "32026D2308": "2026-10-16T09:03:30Z",
+   "32026D2321": "2026-10-16T09:03:30Z",
+   "32026D2320": "2026-10-16T09:03:30Z"
   }
  },
  "kategorizacia": {
