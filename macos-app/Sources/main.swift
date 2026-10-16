@@ -17,6 +17,22 @@ let releasesPage = URL(string: "https://github.com/JurajGre-72/JurajGre-72.githu
 let appName = "PHARMACOPOLA Monitor"
 let zipAssetSuffix = "-mac.zip"
 
+/// Launch log for diagnosis: ~/Library/Logs/PHARMACOPOLA-Monitor.log (kept small)
+let logURL = FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Library/Logs/PHARMACOPOLA-Monitor.log")
+func log(_ message: String) {
+    let line = "\(ISO8601DateFormatter().string(from: Date())) [\(ProcessInfo.processInfo.processIdentifier)] \(message)\n"
+    let fm = FileManager.default
+    if let attrs = try? fm.attributesOfItem(atPath: logURL.path), (attrs[.size] as? Int ?? 0) > 200_000 {
+        try? fm.removeItem(at: logURL)
+    }
+    if let handle = try? FileHandle(forWritingTo: logURL) {
+        handle.seekToEndOfFile(); handle.write(line.data(using: .utf8)!); try? handle.close()
+    } else {
+        try? fm.createDirectory(at: logURL.deletingLastPathComponent(), withIntermediateDirectories: true)
+        try? line.data(using: .utf8)!.write(to: logURL)
+    }
+}
+
 var currentVersion: String {
     Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "0.0.0"
 }
@@ -70,7 +86,7 @@ func fetchLatestRelease(_ done: @escaping (Result<Release?, Error>) -> Void) {
 final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, WKUIDelegate, NSToolbarDelegate {
     var window: NSWindow!
     var webView: WKWebView!
-    let smokeTest = ProcessInfo.processInfo.environment["PM_SMOKE_TEST"] == "1"
+    let smokeTest = ProcessInfo.processInfo.environment["PM_SMOKE_TEST"] == "1" || CommandLine.arguments.contains("--smoke-test")
     /// CI only: install this zip as if the update button had been pressed, without dialogs
     let updateTestZip = ProcessInfo.processInfo.environment["PM_UPDATE_TEST_ZIP"]
     var updateInProgress = false
@@ -78,6 +94,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
     // MARK: launch
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        log("launched: version \(currentVersion), macOS \(ProcessInfo.processInfo.operatingSystemVersionString), \(Bundle.main.bundlePath)")
         buildMenu()
 
         let config = WKWebViewConfiguration()
@@ -88,7 +105,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
         webView.uiDelegate = self
         webView.allowsBackForwardNavigationGestures = true
         webView.customUserAgent = nil
-        webView.setValue(false, forKey: "drawsBackground")  // no white flash before the page paints
+        if #available(macOS 12.0, *) {
+            webView.underPageBackgroundColor = NSColor(srgbRed: 0xEA / 255.0, green: 0xF0 / 255.0, blue: 0xF3 / 255.0, alpha: 1)
+        }
 
         window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 1180, height: 860),
                           styleMask: [.titled, .closable, .miniaturizable, .resizable],
@@ -106,7 +125,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
         window.toolbar = toolbar
         window.toolbarStyle = .unifiedCompact
         window.makeKeyAndOrderFront(nil)
-        NSApp.activate(ignoringOtherApps: true)
+        if #available(macOS 14.0, *) { NSApp.activate() } else { NSApp.activate(ignoringOtherApps: true) }
+        log("window shown")
 
         load()
 
@@ -380,8 +400,18 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
         completionHandler(alert.runModal() == .alertFirstButtonReturn)
     }
 
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        log("page loaded: \(webView.url?.absoluteString ?? "?")")
+    }
+
+    func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
+        log("web content process ended – reloading")
+        load()
+    }
+
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         let ns = error as NSError
+        log("page failed: \(ns.domain) \(ns.code) \(ns.localizedDescription)")
         if ns.domain == NSURLErrorDomain && ns.code == NSURLErrorCancelled { return }
         if ns.domain == NSURLErrorDomain && ns.code == NSURLErrorNotConnectedToInternet,
            webView.url == nil || webView.url?.host != dashboardURL.host {
@@ -402,6 +432,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
         var finished = false
         func finish(_ code: Int32, _ msg: String) {
             guard !finished else { return }
+            if code != 0 { log(msg) }
             finished = true
             print(msg)
             fflush(stdout)
@@ -422,7 +453,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
                         }
                         DispatchQueue.main.async {
                             let ok = isNewer("1.10.0", than: "1.9.2") && !isNewer("v1.0.0", than: "1.0.0") && isNewer("v2", than: "1.9.9")
-                            finish(ok ? 0 : 1, "SMOKE OK: version \(currentVersion), \(items) items rendered, title '\(arr.count > 2 ? arr[2] : "")', latest release: \(rel), version compare \(ok ? "ok" : "BROKEN")")
+                            let launched = NSRunningApplication.current.isFinishedLaunching
+                            let visible = self.window.isVisible
+                            let result = "SMOKE \(ok && launched && visible ? "OK" : "FAIL"): version \(currentVersion), finished launching \(launched), window visible \(visible), \(items) items rendered, title '\(arr.count > 2 ? arr[2] : "")', latest release: \(rel), version compare \(ok ? "ok" : "BROKEN")"
+                            log(result)
+                            finish(ok && launched && visible ? 0 : 1, result)
                         }
                     }
                 } else if attempt < 60 {

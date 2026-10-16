@@ -16,8 +16,12 @@ permissions:
 
 jobs:
   build:
-    runs-on: macos-latest
-    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-14, macos-15, macos-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
 
@@ -33,6 +37,16 @@ jobs:
           if kill -0 $pid 2>/dev/null; then kill $pid; echo "::error::app did not finish the smoke test"; exit 1; fi
           wait $pid
           grep -q "SMOKE OK" smoke.log
+
+      - name: Finder-style launch – started by LaunchServices, window shown, dashboard rendered
+        run: |
+          APP="$PWD/macos-app/build/PHARMACOPOLA Monitor.app"
+          LOG="$HOME/Library/Logs/PHARMACOPOLA-Monitor.log"
+          rm -f "$LOG"
+          open -n "$APP" --args --smoke-test
+          for i in $(seq 1 120); do grep -q "SMOKE" "$LOG" 2>/dev/null && break; sleep 1; done
+          cat "$LOG" || true
+          grep -q "SMOKE OK" "$LOG"
 
       - name: Update test – the app installs a newer build over itself and restarts
         run: |
@@ -84,13 +98,13 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: PHARMACOPOLA-Monitor-mac
+          name: PHARMACOPOLA-Monitor-mac-${{ matrix.os }}
           path: |
             macos-app/build/PHARMACOPOLA-Monitor.dmg
             macos-app/build/PHARMACOPOLA-Monitor-mac.zip
 
       - name: Publish release (main only, new version only)
-        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        if: matrix.os == 'macos-latest' && github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
