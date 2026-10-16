@@ -7342,11 +7342,15 @@
   "months": {
    "202610": {
     "hash": "780e88f778ea",
-    "title": "Zoznam kategorizovaných liekov 1.10.2026 – 31.10.2026"
+    "title": "Zoznam kategorizovaných liekov 1.10.2026 – 31.10.2026",
+    "url": "https://www.health.gov.sk/Zdroje?/Sources/kategorizacia/zkl/202610/cast_A_zoznam_liekov_N_k_01_10_2026.xlsx",
+    "stamp": "1077029||"
    },
    "202611": {
     "hash": "1a638dd0955b",
-    "title": "Zoznam kategorizovaných liekov 1.11.2026 – 30.11.2026 – INFORMATÍVNY MATERIÁL"
+    "title": "Zoznam kategorizovaných liekov 1.11.2026 – 30.11.2026 – INFORMATÍVNY MATERIÁL",
+    "url": "https://www.health.gov.sk/Zdroje?/Sources/kategorizacia/zkl/202611/cast_A_zoznam_liekov_N_k_01_11_2026.xlsx",
+    "stamp": "1082253||"
    }
   }
  },
