@@ -368,6 +368,66 @@ try {
   check('errors on the page', page.errors.length === 0, page.errors.join(' | '));
 
   // ------------------------------------------------------------------ phone width
+  console.log('The page loads its newest published version by itself');
+  {
+    const p2 = await newPage();
+    let deployed = false;
+    // simulate publishing a new dashboard version: from now on the server sends a page with a new build stamp
+    await p2.route((u) => /\/pharma-monitor\/(index\.html)?$/.test(u.pathname), async (route) => {
+      if (!deployed) return route.continue();
+      const resp = await route.fetch();
+      const body = (await resp.text()).replace(/(<meta name="pm-build" content=")[^"]*/, '$1TEST-NEW');
+      return route.fulfill({ response: resp, body });
+    });
+    await p2.route('https://api.github.com/**', (route) => {
+      const u = route.request().url();
+      if (u.includes('/runs?')) return route.fulfill({ json: { workflow_runs: [{ id: 9, status: 'completed', conclusion: 'success',
+        run_started_at: iso(300000), updated_at: iso(240000), created_at: iso(300000), html_url: 'https://github.com/run/9' }] } });
+      if (u.includes('/commits?')) return route.fulfill({ json: [{ commit: { committer: { date: iso(86400000) } } }] });
+      return route.fulfill({ status: 404, body: '{}' });
+    });
+    await p2.goto(URL);
+    await p2.waitForSelector('article.item');
+    const build = () => p2.evaluate(() => document.querySelector('meta[name="pm-build"]').content);
+    const oldBuild = await build();
+    await p2.evaluate(() => window.pmKeepCurrent());
+    await p2.waitForTimeout(500);
+    check('no reload while nothing new is published', (await build()) === oldBuild && !p2.url().includes('?v='));
+    deployed = true;
+    await Promise.all([p2.waitForURL(/\?v=\d+/, { timeout: 10000 }), p2.evaluate(() => window.pmKeepCurrent())]);
+    await p2.waitForSelector('article.item');
+    check('a newly published version is loaded automatically', (await build()) === 'TEST-NEW');
+    await p2.evaluate(() => window.pmKeepCurrent());
+    await p2.waitForTimeout(800);
+    check('no reload loop afterwards', (await build()) === 'TEST-NEW' && !/check=1/.test(p2.url()));
+
+    // "Check for updates" on an out-of-date page: loads the new version, then finishes the check
+    const p3 = await newPage();
+    let deployed3 = false;
+    await p3.route((u) => /\/pharma-monitor\/(index\.html)?$/.test(u.pathname), async (route) => {
+      if (!deployed3) return route.continue();
+      const resp = await route.fetch();
+      return route.fulfill({ response: resp, body: (await resp.text()).replace(/(<meta name="pm-build" content=")[^"]*/, '$1TEST-3') });
+    });
+    await p3.route('https://api.github.com/**', (route) => {
+      const u = route.request().url();
+      if (u.includes('/runs?')) return route.fulfill({ json: { workflow_runs: [{ id: 9, status: 'completed', conclusion: 'success',
+        run_started_at: iso(300000), updated_at: iso(240000), created_at: iso(300000), html_url: 'https://github.com/run/9' }] } });
+      if (u.includes('/commits?')) return route.fulfill({ json: [{ commit: { committer: { date: iso(86400000) } } }] });
+      return route.fulfill({ status: 404, body: '{}' });
+    });
+    await p3.goto(URL);
+    await p3.waitForSelector('article.item');
+    deployed3 = true;
+    await p3.click('#refresh');
+    await p3.waitForFunction(() => document.querySelector('meta[name="pm-build"]').content === 'TEST-3'
+      && /Up to date/.test(document.querySelector('#updStatus').innerText), null, { timeout: 15000 });
+    check('"Check for updates" loads the new page version and completes the check', true);
+    check('address is tidied after the reload', !/[?&](v|check)=/.test(p3.url()));
+    check('errors on the page', p2.errors.length === 0 && p3.errors.length === 0, p2.errors.concat(p3.errors).join(' | '));
+    await p2.context().close(); await p3.context().close();
+  }
+
   console.log('Phone layout');
   page = await newPage({ viewport: { width: 375, height: 800 } });
   await page.goto(URL);

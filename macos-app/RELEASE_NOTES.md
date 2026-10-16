@@ -1,9 +1,7 @@
-PHARMACOPOLA Monitor 1.0.2 for Mac
+PHARMACOPOLA Monitor 1.0.3 for Mac
 
-- Fixes the app staying in the Dock (bouncing, pale icon) without opening a window on some Macs:
-  removes a private WebKit setting, uses the current activation API on macOS 14+, declares the
-  application class explicitly.
-- Writes a launch log to ~/Library/Logs/PHARMACOPOLA-Monitor.log to help diagnose problems.
-- Tested on macOS 14, 15 and 26, including a launch through Finder/LaunchServices.
+- The dashboard inside the app is always the newest version: it is loaded fresh at every start, refreshed
+  when you come back to the app, and "Check for App Update" also reloads it.
+- The dashboard itself now notices when a newer version is published and loads it automatically.
 
 Install or update: `curl -fsSL https://jurajgre-72.github.io/pharma-monitor/install-mac.sh | bash`
