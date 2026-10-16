@@ -1,6 +1,6 @@
-First version of the PHARMACOPOLA Regulatory Monitor for Mac.
+PHARMACOPOLA Monitor 1.0.1 for Mac
 
-- Opens the live dashboard in its own window with the PHARMACOPOLA icon in the Dock.
-- Toolbar: Reload (⌘R) and **Check for App Update** (⌘U) – installs newer versions of this app with one click.
-- Links to laws, PDFs and GitHub open in your normal browser; ⌘F jumps to the search box.
-- Your settings (dark mode, "Mark all read", the GitHub token for "Check for updates now") are kept between launches.
+- Runs on macOS 11 (Big Sur) and newer (was 12).
+- Toolbar icons fall back to built-in images, so the app cannot quit at launch on macOS versions without them.
+- New one-line installer that avoids the "Apple could not verify…" block:
+  `curl -fsSL https://jurajgre-72.github.io/pharma-monitor/install-mac.sh | bash`

@@ -60,8 +60,13 @@ Without a token, "Run it on GitHub instead" opens the workflow page, where *Run 
 `macos-app/` is a small native macOS app (Swift, WebKit) that shows the live dashboard in its own window with the
 PHARMACOPOLA icon. Download: https://github.com/JurajGre-72/JurajGre-72.github.io/releases/download/monitor-mac-latest/PHARMACOPOLA-Monitor.dmg
 
-- Open the .dmg and drag **PHARMACOPOLA Monitor** into **Applications**. The app is not notarised by Apple, so the
-  first start needs: double-click → *Done* → **System Settings → Privacy & Security → "Open Anyway"** (once).
+- **Easiest install (recommended):** open *Terminal* and paste
+  `curl -fsSL https://jurajgre-72.github.io/pharma-monitor/install-mac.sh | bash` – it downloads the app into
+  Applications and starts it. Files fetched this way are not blocked by macOS, so no security prompts appear.
+- Or open the .dmg and drag **PHARMACOPOLA Monitor** into **Applications**. The app is not notarised by Apple, so macOS
+  blocks the first start; *System Settings → Privacy & Security → "Open Anyway"* is needed (on recent macOS this
+  sometimes fails – then use the Terminal command above, which also replaces the blocked copy).
+- Needs macOS 11 (Big Sur) or newer.
 - Dashboard and data changes appear automatically (the app loads the live site). **Check for App Update** (toolbar,
   ⌘U, also checked quietly once a day) installs a newer app build and restarts.
 - To release a new app version: change the app, bump `macos-app/VERSION` (e.g. `1.0.1`), update

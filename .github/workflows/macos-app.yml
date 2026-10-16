@@ -6,9 +6,9 @@ name: Mac app
 on:
   push:
     branches: [main]
-    paths: ["macos-app/**", ".github/workflows/macos-app.yml"]
+    paths: ["macos-app/**", "pharma-monitor/install-mac.sh", ".github/workflows/macos-app.yml"]
   pull_request:
-    paths: ["macos-app/**", ".github/workflows/macos-app.yml"]
+    paths: ["macos-app/**", "pharma-monitor/install-mac.sh", ".github/workflows/macos-app.yml"]
   workflow_dispatch:
 
 permissions:
@@ -56,9 +56,29 @@ jobs:
         run: |
           hdiutil attach -nobrowse -readonly macos-app/build/PHARMACOPOLA-Monitor.dmg -mountpoint /tmp/pmdmg
           test -d "/tmp/pmdmg/PHARMACOPOLA Monitor.app" && test -L /tmp/pmdmg/Applications
+          codesign --verify --deep --strict "/tmp/pmdmg/PHARMACOPOLA Monitor.app"
           hdiutil detach /tmp/pmdmg
           mkdir /tmp/pmzip && ditto -x -k macos-app/build/PHARMACOPOLA-Monitor-mac.zip /tmp/pmzip
           codesign --verify --deep --strict "/tmp/pmzip/PHARMACOPOLA Monitor.app"
+
+      - name: Installer test – replaces a blocked copy and starts the app like a double-click
+        run: |
+          set -x
+          NAME="PHARMACOPOLA Monitor"
+          # an earlier copy that macOS blocked (quarantined), as on a user's Mac
+          ditto "macos-app/build/$NAME.app" "/Applications/$NAME.app"
+          xattr -w com.apple.quarantine "0081;$(printf %x $(date +%s));Safari;" "/Applications/$NAME.app"
+          PM_ZIP_URL="file://$PWD/macos-app/build/PHARMACOPOLA-Monitor-mac.zip" bash pharma-monitor/install-mac.sh
+          ! xattr -p com.apple.quarantine "/Applications/$NAME.app" 2>/dev/null       # block flag removed
+          test "$(defaults read "/Applications/$NAME.app/Contents/Info" CFBundleShortVersionString)" = "$(tr -d '[:space:]' < macos-app/VERSION)"
+          sleep 10
+          pgrep -fl "/Applications/$NAME.app/Contents/MacOS/$NAME"                      # started via LaunchServices and still running
+          pkill -f "/Applications/$NAME.app/Contents/MacOS/$NAME" || true
+
+      - name: Installer test – the published download works
+        run: |
+          PM_NO_OPEN=1 bash pharma-monitor/install-mac.sh
+          codesign --verify --deep --strict "/Applications/PHARMACOPOLA Monitor.app"
 
       - uses: actions/upload-artifact@v4
         with:

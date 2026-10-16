@@ -351,7 +351,10 @@
     <ul>
       <li>A GitHub Actions job runs twice a day (and can be started manually). It reads the official sources above and keeps only items matching the rules in <code>pharma-monitor/config.json</code>.</li>
       <li>When something new is found, the job opens a GitHub issue labelled <code>regulatory-update</code>; GitHub e-mails it to you. Optional direct e-mail can be switched on with SMTP secrets (see README).</li>
-      <li><b>Mac app:</b> <a id="macDownload" href="https://github.com/JurajGre-72/JurajGre-72.github.io/releases/download/monitor-mac-latest/PHARMACOPOLA-Monitor.dmg">download PHARMACOPOLA Monitor for Mac</a> – the same dashboard in its own window, with a <b>Check for App Update</b> button that installs new versions.</li>
+      <li><b>Mac app:</b> the same dashboard in its own window, with a <b>Check for App Update</b> button that installs new versions.
+        Easiest install: open <i>Terminal</i> and paste <code>curl -fsSL https://jurajgre-72.github.io/pharma-monitor/install-mac.sh | bash</code>
+        (no security prompts). Or <a id="macDownload" href="https://github.com/JurajGre-72/JurajGre-72.github.io/releases/download/monitor-mac-latest/PHARMACOPOLA-Monitor.dmg">download the .dmg</a>
+        – macOS then asks for <i>System Settings → Privacy &amp; Security → Open Anyway</i>. Needs macOS 11 or newer.</li>
       <li><b>Check for updates now</b> starts the same check immediately and reloads this page when it is done (2–5 minutes). The first time, it asks for a GitHub token that is stored only in your browser.</li>
       <li><b>Law changes:</b> for 18 key laws (e.g. 362/2011, 363/2011, 39/2007) every new consolidated wording is compared with the previous one, provision by provision, with <del>removed</del> and <ins>added</ins> text highlighted.</li>
       <li><b>Amending acts:</b> new acts in the Collection of Laws are read in full; the exact amendment points for key laws are shown, even inside omnibus acts.</li>

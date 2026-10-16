@@ -15,7 +15,7 @@ mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 
 echo "→ compiling $VERSION ($BUILD)"
 for arch in arm64 x86_64; do
-  swiftc -O -swift-version 5 -target "$arch-apple-macos12.0" -framework Cocoa -framework WebKit \
+  swiftc -O -swift-version 5 -target "$arch-apple-macos11.0" -framework Cocoa -framework WebKit \
     Sources/main.swift -o "$OUT/main-$arch"
 done
 lipo -create "$OUT/main-arm64" "$OUT/main-x86_64" -output "$APP/Contents/MacOS/$NAME"
