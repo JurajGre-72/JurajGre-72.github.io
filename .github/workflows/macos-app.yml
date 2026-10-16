@@ -1,0 +1,92 @@
+name: Mac app
+
+# Builds the macOS app on a Mac runner, checks that it starts and renders the live dashboard,
+# and – on main – publishes it as a GitHub Release when macos-app/VERSION has a new number.
+# Stable download link: https://github.com/JurajGre-72/JurajGre-72.github.io/releases/download/monitor-mac-latest/PHARMACOPOLA-Monitor.dmg
+on:
+  push:
+    branches: [main]
+    paths: ["macos-app/**", ".github/workflows/macos-app.yml"]
+  pull_request:
+    paths: ["macos-app/**", ".github/workflows/macos-app.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: macos-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build app, zip and dmg
+        run: ./macos-app/build.sh
+
+      - name: Smoke test – launch the app, render the dashboard, check the update service
+        run: |
+          APP="macos-app/build/PHARMACOPOLA Monitor.app"
+          PM_SMOKE_TEST=1 "$APP/Contents/MacOS/PHARMACOPOLA Monitor" | tee smoke.log &
+          pid=$!
+          for i in $(seq 1 120); do kill -0 $pid 2>/dev/null || break; sleep 1; done
+          if kill -0 $pid 2>/dev/null; then kill $pid; echo "::error::app did not finish the smoke test"; exit 1; fi
+          wait $pid
+          grep -q "SMOKE OK" smoke.log
+
+      - name: Update test – the app installs a newer build over itself and restarts
+        run: |
+          set -x
+          NAME="PHARMACOPOLA Monitor"
+          mkdir -p /tmp/inst /tmp/upd/new
+          ditto "macos-app/build/$NAME.app" "/tmp/inst/$NAME.app"                       # installed copy, 1.0.0
+          ditto "macos-app/build/$NAME.app" "/tmp/upd/new/$NAME.app"                    # pretend newer build
+          plutil -replace CFBundleShortVersionString -string 99.0.0 "/tmp/upd/new/$NAME.app/Contents/Info.plist"
+          codesign --force --deep --sign - "/tmp/upd/new/$NAME.app"
+          ditto -c -k --keepParent "/tmp/upd/new/$NAME.app" /tmp/upd/update-mac.zip
+          PM_UPDATE_TEST_ZIP=/tmp/upd/update-mac.zip "/tmp/inst/$NAME.app/Contents/MacOS/$NAME" | tee update.log
+          grep -q "UPDATE OK" update.log
+          test "$(plutil -extract CFBundleShortVersionString raw "/tmp/inst/$NAME.app/Contents/Info.plist")" = "99.0.0"
+          codesign --verify --deep --strict "/tmp/inst/$NAME.app"
+          sleep 5
+          pgrep -fl "/tmp/inst/$NAME.app/Contents/MacOS/$NAME"                          # restarted copy is running
+          pkill -f "/tmp/inst/$NAME.app/Contents/MacOS/$NAME" || true
+
+      - name: Check the packages open
+        run: |
+          hdiutil attach -nobrowse -readonly macos-app/build/PHARMACOPOLA-Monitor.dmg -mountpoint /tmp/pmdmg
+          test -d "/tmp/pmdmg/PHARMACOPOLA Monitor.app" && test -L /tmp/pmdmg/Applications
+          hdiutil detach /tmp/pmdmg
+          mkdir /tmp/pmzip && ditto -x -k macos-app/build/PHARMACOPOLA-Monitor-mac.zip /tmp/pmzip
+          codesign --verify --deep --strict "/tmp/pmzip/PHARMACOPOLA Monitor.app"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: PHARMACOPOLA-Monitor-mac
+          path: |
+            macos-app/build/PHARMACOPOLA-Monitor.dmg
+            macos-app/build/PHARMACOPOLA-Monitor-mac.zip
+
+      - name: Publish release (main only, new version only)
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # The repository also hosts other projects' releases, so this app uses its own tag names and never marks
+          # a release as the repository's "latest". monitor-mac-latest is a rolling release that keeps the download
+          # link stable; monitor-mac-v<version> is the versioned release the in-app update button looks for.
+          V="$(tr -d '[:space:]' < macos-app/VERSION)"
+          FILES="macos-app/build/PHARMACOPOLA-Monitor.dmg macos-app/build/PHARMACOPOLA-Monitor-mac.zip"
+          if gh release view "monitor-mac-v$V" >/dev/null 2>&1; then
+            echo "Release monitor-mac-v$V already exists – bump macos-app/VERSION to publish a new one."
+            exit 0
+          fi
+          gh release create "monitor-mac-v$V" $FILES --target "$GITHUB_SHA" --latest=false \
+            --title "PHARMACOPOLA Monitor $V for Mac" --notes-file macos-app/RELEASE_NOTES.md
+          if ! gh release view monitor-mac-latest >/dev/null 2>&1; then
+            gh release create monitor-mac-latest --target "$GITHUB_SHA" --latest=false \
+              --title "PHARMACOPOLA Monitor for Mac – download" \
+              --notes "Always the newest Mac build. Versioned releases: tags starting with monitor-mac-v."
+          fi
+          gh release upload monitor-mac-latest $FILES --clobber
+          gh release edit monitor-mac-latest --title "PHARMACOPOLA Monitor for Mac – download (version $V)" --latest=false

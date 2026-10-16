@@ -64,6 +64,24 @@ try {
   check('sources list shows every source', (await count(page, '.src-row')) === Object.keys(DATA.sources).length);
   check('status strip hidden when idle', await page.locator('#updStatus').isHidden());
   check('logo loads', await page.locator('.bar .logo').evaluate((img) => img.complete && img.naturalWidth > 0));
+  const icons = await page.evaluate(async () => {
+    const out = {};
+    const manifestHref = document.querySelector('link[rel="manifest"]').href;
+    const m = await fetch(manifestHref).then((r) => r.json());
+    const urls = [...document.querySelectorAll('link[rel~="icon"], link[rel="apple-touch-icon"]')].map((l) => l.href)
+      .concat(m.icons.map((i) => new URL(i.src, manifestHref).href));
+    for (const u of urls) {
+      const img = new Image(); img.src = u;
+      out[u.split('/').pop()] = await img.decode().then(() => `${img.naturalWidth}x${img.naturalHeight}`, () => 'broken');
+    }
+    out.manifest = `${m.name}|${m.display}|${m.icons.length}`;
+    return out;
+  });
+  check('app icons load (favicon, apple-touch-icon, manifest icons)',
+    !Object.values(icons).includes('broken') && icons['apple-touch-icon.png'] === '180x180' && icons['icon-512.png'] === '512x512'
+      && icons['icon-maskable-512.png'] === '512x512', JSON.stringify(icons));
+  check('web app manifest', icons.manifest === 'PHARMACOPOLA Regulatory Monitor|standalone|3', icons.manifest);
+  check('Mac app download link', (await page.getAttribute('#macDownload', 'href')) === 'https://github.com/JurajGre-72/JurajGre-72.github.io/releases/download/monitor-mac-latest/PHARMACOPOLA-Monitor.dmg');
 
   // ------------------------------------------------------------------ search
   console.log('Search');
