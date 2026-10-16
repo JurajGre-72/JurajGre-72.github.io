@@ -2,8 +2,10 @@ name: Regulatory monitor
 
 on:
   schedule:
-    # 04:17 and 13:17 UTC = 06:17 / 15:17 Bratislava summer time (05:17 / 14:17 in winter)
-    - cron: "17 4,13 * * *"
+    # Every 15 minutes from 05:00 to 19:59 UTC (07:00–21:59 Bratislava summer time), hourly at night.
+    # Quiet runs take ~15 s and commit nothing; heavier sources run once an hour (see --heavy hourly).
+    - cron: "2,17,32,47 5-19 * * *"
+    - cron: "2 0-4,20-23 * * *"
   workflow_dispatch:
     inputs:
       sources:
@@ -37,6 +39,8 @@ jobs:
           SOURCES: ${{ inputs.sources }}
         run: |
           args=(--notify-out "$RUNNER_TEMP/digest.md")
+          # scheduled runs: heavy sources hourly; a manual run checks everything
+          if [ "${{ github.event_name }}" = "schedule" ]; then args+=(--heavy hourly); fi
           if [ -n "$SOURCES" ]; then args+=(--sources "$SOURCES"); fi
           python3 pharma-monitor/monitor.py "${args[@]}"
 

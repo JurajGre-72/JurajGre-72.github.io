@@ -277,7 +277,7 @@
       <img class="logo" src="assets/pharmacopola-logo-white.svg" alt="PHARMACOPOLA" width="183" height="30">
     </a>
     <div class="bar-actions">
-      <button class="btn primary" id="refresh" type="button" title="Run a check of all sources now">
+      <button class="btn primary" id="refresh" type="button" title="Show the newest results of the automatic checks">
         <svg id="refreshIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
         <span id="refreshLabel">Check for updates<span class="lbl-long"> now</span></span>
       </button>
@@ -293,7 +293,7 @@
   <header class="top">
     <p class="eyebrow">Regulatory intelligence · Slovensko &amp; EÚ</p>
     <h1>Regulatory Monitor</h1>
-    <p class="sub">New Slovak and EU laws, draft legislation, regulator announcements and reimbursement-list changes relevant to the distribution of human and veterinary medicines, medical devices and related products. Checked automatically twice a day. Open an item to see exactly what changed.</p>
+    <p class="sub">New Slovak and EU laws, draft legislation, regulator announcements and reimbursement-list changes relevant to the distribution of human and veterinary medicines, medical devices and related products. Checked automatically every 15 minutes. Open an item to see exactly what changed.</p>
     <div class="update-status" id="updStatus" role="status" aria-live="polite" hidden></div>
   </header>
 
@@ -349,13 +349,14 @@
   <section class="how">
     <h2>How alerts work</h2>
     <ul>
-      <li>A GitHub Actions job runs twice a day (and can be started manually). It reads the official sources above and keeps only items matching the rules in <code>pharma-monitor/config.json</code>.</li>
+      <li>All sources are checked automatically <b>every 15 minutes</b> (07:00–22:00, hourly at night). Only items matching the rules in <code>pharma-monitor/config.json</code> are kept.</li>
       <li>When something new is found, the job opens a GitHub issue labelled <code>regulatory-update</code>; GitHub e-mails it to you. Optional direct e-mail can be switched on with SMTP secrets (see README).</li>
       <li><b>Mac app:</b> the same dashboard in its own window, with a <b>Check for App Update</b> button that installs new versions.
         Easiest install: open <i>Terminal</i> and paste <code>curl -fsSL https://jurajgre-72.github.io/pharma-monitor/install-mac.sh | bash</code>
         (no security prompts). Or <a id="macDownload" href="https://github.com/JurajGre-72/JurajGre-72.github.io/releases/download/monitor-mac-latest/PHARMACOPOLA-Monitor.dmg">download the .dmg</a>
         – macOS then asks for <i>System Settings → Privacy &amp; Security → Open Anyway</i>. Needs macOS 11 or newer.</li>
-      <li><b>Check for updates now</b> starts the same check immediately and reloads this page when it is done (2–5 minutes). The first time, it asks for a GitHub token that is stored only in your browser.</li>
+      <li><b>Check for updates</b> shows the newest results at once – no sign-in needed. If a check is running at that moment, it waits for it and then shows what it found.
+        Need a check this very minute? <a href="#" id="extraCheck">Start an extra check</a> (needs a one-time GitHub sign-in).</li>
       <li><b>Law changes:</b> for 18 key laws (e.g. 362/2011, 363/2011, 39/2007) every new consolidated wording is compared with the previous one, provision by provision, with <del>removed</del> and <ins>added</ins> text highlighted.</li>
       <li><b>Amending acts:</b> new acts in the Collection of Laws are read in full; the exact amendment points for key laws are shown, even inside omnibus acts.</li>
       <li><b>Reimbursement list:</b> each monthly list of categorised medicines is compared with the previous month – added, removed and repriced medicines by ŠÚKL code.</li>
@@ -623,7 +624,7 @@
 
   // first visit: don't flag the whole backlog as new
   if (!store.get('pm-last-visit')) lastVisitShown = new Date(Date.now() - 7 * 864e5).toISOString();
-  loadData().catch((e) => { $('#out').innerHTML = `<div class="empty">Could not load data (${esc(e.message)}).</div>`; });
+  loadData().then(showLastCheck).catch((e) => { $('#out').innerHTML = `<div class="empty">Could not load data (${esc(e.message)}).</div>`; });
 
   // ---------- "Check for updates now": starts the GitHub Actions workflow and follows it
   const REPO = 'JurajGre-72/JurajGre-72.github.io';
@@ -655,6 +656,72 @@
       headers: { Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28',
                  ...(token ? { Authorization: `Bearer ${token}` } : {}), ...(opts.headers || {}) },
     });
+  }
+
+  /** Newest run of the automatic check (public information, no sign-in needed). */
+  async function latestRun(token) {
+    const r = await gh(`/workflows/${WORKFLOW}/runs?branch=main&per_page=1`, token);
+    if (!r.ok) throw new Error(`GitHub answered ${r.status}`);
+    return ((await r.json()).workflow_runs || [])[0] || null;
+  }
+
+  async function showLastCheck() {
+    try {
+      const run = await latestRun(store.get('pm-gh-token'));
+      if (!run) return;
+      const el = $('#sChecked');
+      if (run.status !== 'completed') { el.textContent = 'Checking now…'; el.title = 'A check of all sources is running'; }
+      else { el.textContent = relTime(run.updated_at); el.title = `Last automatic check finished ${fmtDateTime(run.updated_at)}`; }
+    } catch (e) { /* keep the time from the data file */ }
+  }
+
+  /** The button: show the newest results; if a check is running, wait for it first. No sign-in. */
+  async function refreshNow() {
+    if (running) return;
+    const started = Date.now();
+    const known = new Set(state.items.map((i) => i.id));
+    busy(true, 'Checking…');
+    setStatus('Getting the newest results…');
+    try {
+      let run = null;
+      try { run = await latestRun(); } catch (e) { run = null; }
+      if (run && run.status !== 'completed') {
+        while (run.status !== 'completed' && Date.now() - started < 15 * 60000) {
+          busy(true, `Checking… ${elapsed(started)}`);
+          setStatus(`All sources are being checked right now · ${elapsed(started)} ·
+            <a href="${esc(run.html_url)}" target="_blank" rel="noopener">details</a>`);
+          await sleep(8000);
+          run = await gh(`/runs/${run.id}`).then((x) => x.json());
+        }
+      }
+      // if that check saved new results, wait until the website serves them (about a minute)
+      let expect = null;
+      if (run && run.status === 'completed') {
+        try {
+          const c = await gh(`https://api.github.com/repos/${REPO}/commits?path=pharma-monitor/data/items.json&per_page=1`).then((x) => x.json());
+          const when = c[0] && c[0].commit && c[0].commit.committer.date;
+          if (when && when >= run.run_started_at) expect = run.run_started_at;
+        } catch (e) { expect = null; }
+      }
+      let data = await loadData();
+      for (let i = 0; expect && (!data.updated || data.updated < expect) && i < 18; i++) {
+        busy(true, 'Publishing…');
+        setStatus(`New results found – publishing them… ${elapsed(started)}`);
+        await sleep(10000);
+        data = await loadData();
+      }
+      busy(false);
+      await showLastCheck();
+      const fresh = state.items.filter((i) => !known.has(i.id)).length;
+      const last = run && run.status === 'completed' ? relTime(run.updated_at) : (data.updated ? relTime(data.updated) : 'recently');
+      setStatus(fresh
+        ? `Done. <b>${fresh}</b> new item${fresh === 1 ? '' : 's'} – marked NEW below.`
+        : `Up to date. All sources were checked ${esc(last)}; the next automatic check starts within 15 minutes.`);
+    } catch (e) {
+      busy(false);
+      try { await loadData(); } catch (err) { /* keep what is shown */ }
+      setStatus(`Could not reach GitHub just now (${esc(e.message)}). The list shows the latest results we have.`, true);
+    }
   }
 
   async function runCheck(token) {
@@ -726,6 +793,11 @@
     if (typeof setup.showModal === 'function') setup.showModal(); else window.open(RUN_PAGE, '_blank', 'noopener');
   }
   btn.addEventListener('click', () => {
+    const token = store.get('pm-gh-token');
+    if (token) runCheck(token); else refreshNow();  // no setup needed; a saved token additionally starts an extra check
+  });
+  $('#extraCheck').addEventListener('click', (e) => {
+    e.preventDefault();
     const token = store.get('pm-gh-token');
     if (token) runCheck(token); else openSetup();
   });

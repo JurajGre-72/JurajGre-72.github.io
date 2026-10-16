@@ -149,6 +149,17 @@ def fetch(url: str, timeout: int = 45, retries: int = 3) -> str:
     return raw.decode(charset, errors="replace").lstrip("\ufeff")
 
 
+def head_stamp(url: str) -> str | None:
+    """Size and modification date of a file, without downloading it (None if the server will not say)."""
+    try:
+        req = urllib.request.Request(url, method="HEAD", headers={"User-Agent": UA})
+        with urllib.request.urlopen(req, timeout=30) as r:
+            stamp = f"{r.headers.get('Content-Length', '')}|{r.headers.get('Last-Modified', '')}|{r.headers.get('ETag', '')}"
+        return stamp if stamp.strip("|") else None
+    except Exception:
+        return None
+
+
 def fetch_json(url: str, body: dict | None = None, timeout: int = 60):
     data = json.dumps(body).encode() if body is not None else None
     raw, charset = fetch_raw(url, timeout, data=data, headers={"Content-Type": "application/json", "Accept": "application/json"})
@@ -545,9 +556,8 @@ def check_slovlex_lp(rules: Rules, state: dict, bootstrap: bool) -> list[dict]:
     """New drafts and stage changes in the legislative process (pripomienkové konanie, vláda, NR SR, …)."""
     st = state.setdefault("slovlex_lp", {})
     mats = st.setdefault("materials", {})
-    last = st.get("last_run")
-    cutoff = (dt.date.fromisoformat(last[:10]) - dt.timedelta(days=3)) if last and not bootstrap \
-        else now_utc().date() - dt.timedelta(days=60)
+    st.pop("last_run", None)  # older versions stored a timestamp; a rolling window keeps quiet runs change-free
+    cutoff = now_utc().date() - dt.timedelta(days=60 if bootstrap else 14)
     results = []
     for page in range(1, 40):
         data = fetch_json(f"{LP_API}/filter?page={page}&size=100", {})
@@ -601,7 +611,6 @@ def check_slovlex_lp(rules: Rules, state: dict, bootstrap: bool) -> list[dict]:
             results.append(item)
         if not batch or dt.date.fromisoformat(batch[-1]["zaciatokStadia"]) < cutoff:
             break
-    st["last_run"] = iso(now_utc())
     return results
 
 
@@ -617,17 +626,28 @@ def check_kategorizacia(rules: Rules, state: dict, bootstrap: bool) -> list[dict
     order = sorted(months)
     results = []
 
-    def part_a(ym: str) -> bytes:
+    def part_a_url(ym: str) -> str:
         art = fetch(f"https://www.health.gov.sk/Clanok?lieky{ym}")
         m = re.search(rf'href="(Zdroje\?/Sources/kategorizacia/zkl/{ym}/cast_A[^"]+\.xlsx)"', art)
         if not m:
             raise RuntimeError(f"Part A file not found for {ym}")
-        return fetch_raw("https://www.health.gov.sk/" + html.unescape(m.group(1)), timeout=120)[0]
+        return "https://www.health.gov.sk/" + html.unescape(m.group(1))
+
+    def part_a(ym: str) -> bytes:
+        return fetch_raw(part_a_url(ym), timeout=120)[0]
 
     for ym in order[-2:]:
-        data = part_a(ym)
+        known = st.get(ym, {})
+        if known.get("url") and known.get("stamp") and now_utc().hour != 5:  # full download once a day regardless
+            # cheap check first: the file's size/date; only download when it changed (checks run every 15 min)
+            if head_stamp(known["url"]) == known["stamp"]:
+                continue
+        url = part_a_url(ym)
+        data = fetch_raw(url, timeout=120)[0]
+        stamp = head_stamp(url)
         digest_ = hashlib.sha1(data).hexdigest()[:12]
-        if st.get(ym, {}).get("hash") == digest_:
+        if known.get("hash") == digest_:
+            st[ym] = {**known, "url": url, "stamp": stamp}
             continue
         idx = order.index(ym)
         if idx == 0:
@@ -651,7 +671,7 @@ def check_kategorizacia(rules: Rules, state: dict, bootstrap: bool) -> list[dict
         item["effective"] = [valid_from.isoformat()]
         save_details(item, {"kind": "price_list", "month": ym, "previous": prev_ym, "title": months[ym], **diff})
         results.append(item)
-        st[ym] = {"hash": digest_, "title": months[ym]}
+        st[ym] = {"hash": digest_, "title": months[ym], "url": url, "stamp": stamp}
     return results
 
 
@@ -824,10 +844,26 @@ def send_email(subject: str, body_md: str) -> None:
 
 # --------------------------------------------------------------------------- main
 
+HEAVY_SOURCES = {"lawchanges", "eurlex", "kategorizacia"}
+
+
+def normalized(store: dict) -> str:
+    """The published data without the timestamps that change on every run."""
+    s = json.loads(json.dumps(store))
+    s.pop("updated", None)
+    for st in (s.get("sources") or {}).values():
+        st.pop("checked", None)
+        st.pop("new", None)
+    return json.dumps(s, sort_keys=True, ensure_ascii=False)
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--notify-out", help="write Markdown digest of new items here (first line = title)")
     ap.add_argument("--sources", default=",".join(SOURCES), help="comma-separated subset of: " + ",".join(SOURCES))
+    ap.add_argument("--heavy", choices=["always", "hourly"], default="always",
+                    help="'hourly': run the heavier sources (law wordings, EUR-Lex, price list) only in the first "
+                         "20 minutes of each hour – used by the 15-minute schedule")
     args = ap.parse_args()
 
     rules = Rules(load_json(CONFIG_FILE, None))
@@ -838,7 +874,11 @@ def main() -> int:
     new_items: list[dict] = []
     started = now_utc()
 
-    for key in [s.strip() for s in args.sources.split(",") if s.strip()]:
+    keys = [s.strip() for s in args.sources.split(",") if s.strip()]
+    if args.heavy == "hourly" and now_utc().minute >= 20:  # the :02 run, even when GitHub starts it late
+        keys = [k for k in keys if k not in HEAVY_SOURCES or k not in state]
+    before = normalized(load_json(ITEMS_FILE, {}))
+    for key in keys:
         bootstrap = key not in state
         print(f"→ {key}{' (first run – baseline)' if bootstrap else ''}")
         try:
@@ -888,8 +928,11 @@ def main() -> int:
     keep_after = started - dt.timedelta(days=rules.keep_days)
     store["items"] = sorted((i for i in store["items"] if parse_iso(i["date"]) >= keep_after),
                             key=lambda i: (i["date"], i["id"]), reverse=True)
-    store["updated"] = iso(started)
-    save_json(ITEMS_FILE, store)
+    if normalized(store) != before:  # only record a new version when something besides check times changed
+        store["updated"] = iso(started)
+        save_json(ITEMS_FILE, store)
+    else:
+        print("No changes to the published data.")
     referenced = {Path(i["details"]).name for i in store["items"] if i.get("details")}
     for f in CHANGES_DIR.glob("*.json"):
         if f.name not in referenced:
