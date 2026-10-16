@@ -71,6 +71,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
     var window: NSWindow!
     var webView: WKWebView!
     let smokeTest = ProcessInfo.processInfo.environment["PM_SMOKE_TEST"] == "1"
+    /// CI only: install this zip as if the update button had been pressed, without dialogs
+    let updateTestZip = ProcessInfo.processInfo.environment["PM_UPDATE_TEST_ZIP"]
     var updateInProgress = false
 
     // MARK: launch
@@ -108,7 +110,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
 
         load()
 
-        if smokeTest {
+        if let zip = updateTestZip {
+            print("UPDATE TEST: installing \(zip) over \(Bundle.main.bundlePath) (version \(currentVersion))")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { self.install(from: URL(fileURLWithPath: zip), fallback: releasesPage) }
+        } else if smokeTest {
             runSmokeTest()
         } else {
             // quiet daily check; only speaks up when there is something new
@@ -274,6 +279,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
         window.title = "\(appName) – downloading update…"
         URLSession.shared.downloadTask(with: zipURL) { tmp, _, error in
             let fail = { (why: String) in
+                if self.updateTestZip != nil { print("UPDATE FAIL: \(why)"); fflush(stdout); exit(1) }
                 DispatchQueue.main.async {
                     self.updateInProgress = false
                     self.window.title = appName
@@ -306,6 +312,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
     }
 
     func relaunch(_ app: URL) {
+        print("UPDATE OK: replaced \(app.path), relaunching")
+        fflush(stdout)
         let task = Process()
         task.executableURL = URL(fileURLWithPath: "/bin/sh")
         task.arguments = ["-c", "sleep 1; /usr/bin/open -n \"$0\"", app.path]
