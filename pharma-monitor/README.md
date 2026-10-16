@@ -73,8 +73,11 @@ PHARMACOPOLA icon. Download: https://github.com/JurajGre-72/JurajGre-72.github.i
   blocks the first start; *System Settings → Privacy & Security → "Open Anyway"* is needed (on recent macOS this
   sometimes fails – then use the Terminal command above, which also replaces the blocked copy).
 - Needs macOS 11 (Big Sur) or newer.
-- Dashboard and data changes appear automatically (the app loads the live site). **Check for App Update** (toolbar,
-  ⌘U, also checked quietly once a day) installs a newer app build and restarts.
+- Dashboard and data changes appear automatically: the app loads the live site fresh at every start, and the dashboard
+  loads a newly published version of itself (checked every 10 minutes, when you come back to the app and on
+  *Check for updates*). **Check for App Update** (toolbar, ⌘U, also checked quietly once a day) reloads the
+  dashboard and installs a newer app build if there is one.
+- When you change `index.html`, also change its `<meta name="pm-build">` value so open pages pick up the new version at once.
 - To release a new app version: change the app, bump `macos-app/VERSION` (e.g. `1.0.1`), update
   `macos-app/RELEASE_NOTES.md`, merge to `main`. `.github/workflows/macos-app.yml` builds it on a Mac runner,
   runs a smoke test (the app must render the dashboard) and publishes release `monitor-mac-v<version>` (found by the

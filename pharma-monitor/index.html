@@ -6,6 +6,8 @@
 <title>PHARMACOPOLA Regulatory Monitor</title>
 <meta name="description" content="New Slovak laws and regulator announcements relevant to pharmaceutical and veterinary distribution.">
 <meta name="robots" content="noindex">
+<!-- change on every dashboard change: open pages and the Mac app see it and load the new version -->
+<meta name="pm-build" content="2026-10-16.2">
 <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/icons/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
@@ -624,7 +626,7 @@
 
   // first visit: don't flag the whole backlog as new
   if (!store.get('pm-last-visit')) lastVisitShown = new Date(Date.now() - 7 * 864e5).toISOString();
-  loadData().then(showLastCheck).catch((e) => { $('#out').innerHTML = `<div class="empty">Could not load data (${esc(e.message)}).</div>`; });
+  const firstLoad = loadData().then(showLastCheck).catch((e) => { $('#out').innerHTML = `<div class="empty">Could not load data (${esc(e.message)}).</div>`; });
 
   // ---------- "Check for updates now": starts the GitHub Actions workflow and follows it
   const REPO = 'JurajGre-72/JurajGre-72.github.io';
@@ -678,6 +680,7 @@
   /** The button: show the newest results; if a check is running, wait for it first. No sign-in. */
   async function refreshNow() {
     if (running) return;
+    if (await newerPageAvailable()) { setStatus('Loading the newest version of this page…'); reloadPage(true); return; }
     const started = Date.now();
     const known = new Set(state.items.map((i) => i.id));
     busy(true, 'Checking…');
@@ -802,6 +805,42 @@
     if (token) runCheck(token); else openSetup();
   });
   $('#setupClose').addEventListener('click', () => setup.close());
+
+  // ---------- the page keeps itself current: a newly published version is loaded automatically (also in the Mac app)
+  const BUILD = (document.querySelector('meta[name="pm-build"]') || {}).content || '';
+  let firstSource = null;
+  async function newerPageAvailable() {
+    try {
+      const r = await fetch(`${location.pathname}?v=${Date.now()}`, { cache: 'no-store' });
+      if (!r.ok) return false;
+      const text = await r.text();
+      if (firstSource === null) firstSource = text;
+      const m = text.match(/<meta name="pm-build" content="([^"]*)"/);
+      return (!!m && m[1] !== BUILD) || text !== firstSource;
+    } catch (e) { return false; }
+  }
+  function reloadPage(thenCheck) {
+    // never loop: at most 3 automatic reloads a minute
+    let recent = [];
+    try { recent = JSON.parse(sessionStorage.getItem('pm-reloads') || '[]').filter((t) => Date.now() - t < 60000); } catch (e) { /* ignore */ }
+    if (recent.length >= 3) return false;
+    try { sessionStorage.setItem('pm-reloads', JSON.stringify(recent.concat(Date.now()))); } catch (e) { /* ignore */ }
+    location.replace(`${location.pathname}?v=${Date.now()}${thenCheck ? '&check=1' : ''}`);
+    return true;
+  }
+  async function keepCurrent() {
+    if (running || setup.open) return;
+    if (await newerPageAvailable()) reloadPage(false);
+  }
+  window.pmKeepCurrent = keepCurrent;  // called by the Mac app when it comes to the front
+  keepCurrent();
+  setInterval(keepCurrent, 10 * 60000);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) keepCurrent(); });
+  if (new URLSearchParams(location.search).has('check')) {
+    // reloaded by "Check for updates": tidy the address and finish what the click asked for
+    history.replaceState(null, '', location.pathname);
+    firstLoad.then(refreshNow);
+  }
   $('#runOnGithub').addEventListener('click', () => setup.close());
   $('#tokenSave').addEventListener('click', () => {
     const token = $('#tokenInput').value.trim();

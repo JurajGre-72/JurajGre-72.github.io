@@ -128,7 +128,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
         if #available(macOS 14.0, *) { NSApp.activate() } else { NSApp.activate(ignoringOtherApps: true) }
         log("window shown")
 
-        load()
+        load(cachePolicy: .reloadIgnoringLocalCacheData)
 
         if let zip = updateTestZip {
             print("UPDATE TEST: installing \(zip) over \(Bundle.main.bundlePath) (version \(currentVersion))")
@@ -146,8 +146,21 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
 
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool { true }
 
+    /// Back in front: let the dashboard load its newest published version if there is one (it keeps your place otherwise).
+    func applicationDidBecomeActive(_ notification: Notification) {
+        guard webView != nil, !smokeTest, updateTestZip == nil else { return }
+        webView.evaluateJavaScript("window.pmKeepCurrent && window.pmKeepCurrent()")
+    }
+
     func load(cachePolicy: URLRequest.CachePolicy = .reloadRevalidatingCacheData) {
-        webView.load(URLRequest(url: dashboardURL, cachePolicy: cachePolicy, timeoutInterval: 30))
+        var url = dashboardURL
+        if cachePolicy == .reloadIgnoringLocalCacheData,
+           var parts = URLComponents(url: dashboardURL, resolvingAgainstBaseURL: false) {
+            // a fresh address also skips the web server's 10-minute cache, so a just-published dashboard shows at once
+            parts.queryItems = [URLQueryItem(name: "v", value: String(Int(Date().timeIntervalSince1970)))]
+            url = parts.url ?? dashboardURL
+        }
+        webView.load(URLRequest(url: url, cachePolicy: cachePolicy, timeoutInterval: 30))
     }
 
     // MARK: menus
@@ -264,7 +277,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
 
     // MARK: app updates
 
-    @objc func checkForUpdatesMenu() { checkForUpdates(userInitiated: true) }
+    @objc func checkForUpdatesMenu() {
+        reload()  // the dashboard is part of the app too: always bring it up to date
+        checkForUpdates(userInitiated: true)
+    }
 
     func checkForUpdates(userInitiated: Bool) {
         guard !updateInProgress else { return }
@@ -276,7 +292,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
                     if userInitiated { self.info("Could not check for updates", error.localizedDescription) }
                 case .success(let release):
                     guard let release = release, isNewer(release.version, than: currentVersion) else {
-                        if userInitiated { self.info("You're up to date", "\(appName) \(currentVersion) is the newest version.") }
+                        if userInitiated { self.info("You're up to date", "\(appName) \(currentVersion) is the newest version, and the dashboard has been reloaded with its newest version.") }
                         return
                     }
                     self.offer(release)
