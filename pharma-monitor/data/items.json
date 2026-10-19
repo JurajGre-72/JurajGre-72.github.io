@@ -1,6 +1,22 @@
 {
  "items": [
   {
+   "id": "lp:LP/2026/499:VYHODNOTENIE_MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/499 · Vyhláška: Návrh vyhlášky Ministerstva životného prostredia Slovenskej republiky, ktorou sa mení a dopĺňa vyhláška Ministerstva životného prostredia Slovenskej republiky č. 365/2015 Z. z., ktorou sa ustanovuje Katalóg odpadov v znení vyhlášky č. 320/2017 Z. z.",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/499",
+   "date": "2026-10-20T08:00:00Z",
+   "detected": "2026-10-19T23:17:11Z",
+   "category": "Draft law",
+   "priority": "low",
+   "tags": [
+    "Waste & packaging",
+    "Vyhodnotenie pripomienkového konania"
+   ],
+   "summary": "Moved from stage “Pripomienkové konanie” to “Vyhodnotenie pripomienkového konania” · Stage: Vyhodnotenie pripomienkového konania (since 20.10.2026) · Submitted by: Ministerstvo životného prostredia Slovenskej republiky · Main act amended: 365/2015 Z. z."
+  },
+  {
    "id": "https://www.sukl.sk/o-nas/podujatia-a-udalosti/konferencia-sarap-2026-modul-2",
    "source": "sukl",
    "source_name": "ŠÚKL · Aktuality",
@@ -2516,80 +2532,80 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-10-19T17:10:27Z",
+   "checked": "2026-10-19T23:16:50Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-10-19T17:10:27Z",
-   "new": 1,
+   "checked": "2026-10-19T23:16:50Z",
+   "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-10-19T17:10:27Z",
+   "checked": "2026-10-19T23:16:50Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-10-19T17:10:27Z",
+   "checked": "2026-10-19T23:16:50Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-10-19T17:10:27Z",
+   "checked": "2026-10-19T23:16:50Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-10-19T17:10:27Z",
+   "checked": "2026-10-19T23:16:50Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-10-19T17:10:27Z",
-   "new": 2,
+   "checked": "2026-10-19T23:16:50Z",
+   "new": 1,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-10-19T17:10:27Z",
+   "checked": "2026-10-19T23:16:50Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-10-19T17:10:27Z",
+   "checked": "2026-10-19T23:16:50Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-10-19T17:10:27Z",
+   "checked": "2026-10-19T23:16:50Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-10-19T17:10:27Z",
+   "checked": "2026-10-19T23:16:50Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-10-19T17:10:27Z"
+ "updated": "2026-10-19T23:16:50Z"
 }

@@ -4530,7 +4530,7 @@
     "tags": []
    },
    "LP/2026/533": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -4759,7 +4759,7 @@
     "tags": []
    },
    "LP/2026/503": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -5253,20 +5253,20 @@
     "tags": []
    },
    "LP/2026/501": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
    "LP/2026/499": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 1,
     "tags": [
      "Waste & packaging"
     ],
-    "stage_name": "Pripomienkové konanie"
+    "stage_name": "Vyhodnotenie pripomienkového konania"
    },
    "LP/2026/500": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
