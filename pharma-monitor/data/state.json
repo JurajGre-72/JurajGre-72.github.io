@@ -64,7 +64,8 @@
    "https://www.sukl.sk/o-nas/podujatia-a-udalosti/seminar-conforum-pozvanka-registracia-liekov-sr": "2026-10-14T07:02:22Z",
    "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/doplnujuce-informacie-a-oznamy/usmernenie-k-uvadzaniu-hlaviciek-na-textoch-spc-pil-obl": "2026-10-14T07:02:22Z",
    "https://www.sukl.sk/pre-odbornikov-a-firmy/vyroba-distribucia-a-transfuziologia/povolenia-na-vyrobu-a-velkodistribuciu/pokyny-a-informacie/mp-134-2025-metodicky-pokyn-pre-ziadatelov-o-povolenie-na-zaobchadzanie-s-liekmi-v-druhu-cinnosti-vyroba-humannych-liekov": "2026-10-14T07:02:22Z",
-   "https://www.sukl.sk/pre-odbornikov-a-firmy/vyroba-distribucia-a-transfuziologia/povolenia-na-vyrobu-a-velkodistribuciu/pokyny-a-informacie/mp-133-2025-metodicky-pokyn-pre-ziadatelov-o-povolenie-na-zaobchadzanie-s-liekmi-v-druhu-cinnosti-velkodistribucia-humannych-liekov": "2026-10-14T07:02:22Z"
+   "https://www.sukl.sk/pre-odbornikov-a-firmy/vyroba-distribucia-a-transfuziologia/povolenia-na-vyrobu-a-velkodistribuciu/pokyny-a-informacie/mp-133-2025-metodicky-pokyn-pre-ziadatelov-o-povolenie-na-zaobchadzanie-s-liekmi-v-druhu-cinnosti-velkodistribucia-humannych-liekov": "2026-10-14T07:02:22Z",
+   "https://www.sukl.sk/o-nas/podujatia-a-udalosti/konferencia-sarap-2026-modul-2": "2026-10-19T17:10:57Z"
   }
  },
  "sukl_recall": {
@@ -4955,7 +4956,7 @@
     "tags": []
    },
    "LP/2026/456": {
-    "stage": "ROKOVANIE_POV",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 0,
     "tags": []
    },
@@ -6786,12 +6787,12 @@
     "stage_name": "Pripomienkové konanie"
    },
    "LPEU/2026/703": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/702": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -6816,17 +6817,17 @@
     "tags": []
    },
    "LPEU/2026/706": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/705": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/704": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -6918,6 +6919,47 @@
    },
    "LP/2026/548": {
     "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/550": {
+    "stage": "MPK",
+    "rel": 2,
+    "tags": [
+     "Public procurement"
+    ],
+    "stage_name": "Pripomienkové konanie"
+   },
+   "LP/2026/551": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/553": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/717": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/552": {
+    "stage": "ROKOVANIE_VLADA",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/549": {
+    "stage": "MPK",
+    "rel": 1,
+    "tags": [
+     "Taxes"
+    ],
+    "stage_name": "Pripomienkové konanie"
+   },
+   "LPEU/2026/716": {
+    "stage": "SCHVALENIE_GESTORA",
     "rel": 0,
     "tags": []
    }
@@ -7365,7 +7407,14 @@
    "32026R2270": "2026-10-16T09:03:30Z",
    "32026D2308": "2026-10-16T09:03:30Z",
    "32026D2321": "2026-10-16T09:03:30Z",
-   "32026D2320": "2026-10-16T09:03:30Z"
+   "32026D2320": "2026-10-16T09:03:30Z",
+   "32026R2298": "2026-10-19T17:11:18Z",
+   "32026R2337": "2026-10-19T17:11:18Z",
+   "32025L2450R(01)": "2026-10-19T17:11:18Z",
+   "32026D2344": "2026-10-19T17:11:18Z",
+   "32026R2328": "2026-10-19T17:11:18Z",
+   "32026R2309": "2026-10-19T17:11:18Z",
+   "32026D2304": "2026-10-19T17:11:18Z"
   }
  },
  "kategorizacia": {

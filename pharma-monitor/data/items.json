@@ -1,6 +1,56 @@
 {
  "items": [
   {
+   "id": "https://www.sukl.sk/o-nas/podujatia-a-udalosti/konferencia-sarap-2026-modul-2",
+   "source": "sukl",
+   "source_name": "ŠÚKL · Aktuality",
+   "title": "Konferencia SARAP 2026: MODUL 2",
+   "url": "https://www.sukl.sk/o-nas/podujatia-a-udalosti/konferencia-sarap-2026-modul-2",
+   "date": "2026-10-19T12:21:34Z",
+   "detected": "2026-10-19T17:10:57Z",
+   "category": "ŠÚKL notice",
+   "priority": "medium",
+   "tags": [
+    "Medicines",
+    "Drug safety"
+   ],
+   "summary": "Registrácia liekov a farmakovigilančná činnosť. Prebiehajúce zmeny v národnej legislatíve (zákon 362/2011)"
+  },
+  {
+   "id": "lp:LP/2026/550:MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/550 · Nelegislatívny všeobecný materiál: Návrh na určenie gestorstva ústredného orgánu štátnej správy k aktu EÚ o verejnom obstarávaní",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/550",
+   "date": "2026-10-19T08:00:00Z",
+   "detected": "2026-10-19T17:10:52Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Public procurement",
+    "Pripomienkové konanie"
+   ],
+   "summary": "Stage: Pripomienkové konanie (since 19.10.2026) · Comments can be submitted until 30.10.2026 · Submitted by: Úrad pre verejné obstarávanie",
+   "deadline": "2026-10-30"
+  },
+  {
+   "id": "lp:LP/2026/549:MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/549 · Nariadenie vlády Slovenskej republiky: Návrh nariadenia vlády Slovenskej republiky, ktorým sa mení nariadenie vlády Slovenskej republiky č. 668/2004 Z. z. o rozdeľovaní výnosu dane z príjmov územnej samospráve v znení neskorších predpisov",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/549",
+   "date": "2026-10-19T08:00:00Z",
+   "detected": "2026-10-19T17:10:53Z",
+   "category": "Draft law",
+   "priority": "low",
+   "tags": [
+    "Taxes",
+    "Pripomienkové konanie"
+   ],
+   "summary": "Stage: Pripomienkové konanie (since 19.10.2026) · Comments can be submitted until 06.11.2026 · Submitted by: Ministerstvo financií Slovenskej republiky · Main act amended: 668/2004 Z. z.",
+   "deadline": "2026-11-06"
+  },
+  {
    "id": "https://www.ema.europa.eu/en/news/meeting-highlights-committee-medicinal-products-human-use-chmp-12-15-october-2026",
    "source": "ema",
    "source_name": "EMA · European Medicines Agency",
@@ -2466,80 +2516,80 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-10-16T15:34:08Z",
+   "checked": "2026-10-19T17:10:27Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-10-16T15:34:08Z",
-   "new": 0,
+   "checked": "2026-10-19T17:10:27Z",
+   "new": 1,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-10-16T15:34:08Z",
+   "checked": "2026-10-19T17:10:27Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-10-16T15:34:08Z",
+   "checked": "2026-10-19T17:10:27Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-10-16T15:34:08Z",
+   "checked": "2026-10-19T17:10:27Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-10-16T09:01:43Z",
+   "checked": "2026-10-19T17:10:27Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-10-16T15:34:08Z",
+   "checked": "2026-10-19T17:10:27Z",
    "new": 2,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-10-16T09:01:43Z",
+   "checked": "2026-10-19T17:10:27Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-10-16T09:01:43Z",
+   "checked": "2026-10-19T17:10:27Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-10-16T15:34:08Z",
-   "new": 1,
+   "checked": "2026-10-19T17:10:27Z",
+   "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-10-16T15:34:08Z",
+   "checked": "2026-10-19T17:10:27Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-10-16T15:34:08Z"
+ "updated": "2026-10-19T17:10:27Z"
 }
