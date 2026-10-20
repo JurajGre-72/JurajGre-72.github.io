@@ -1,6 +1,39 @@
 {
  "items": [
   {
+   "id": "uskvbl:136:2026-10-20T09:01:31",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Veterinárne lieky",
+   "title": "Updated page: Úvodná stránka",
+   "url": "https://www.uskvbl.sk/",
+   "date": "2026-10-20T09:01:31Z",
+   "detected": "2026-10-20T09:05:49Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "medium",
+   "tags": [
+    "Veterinary medicines",
+    "Medicines",
+    "Veterinary care"
+   ],
+   "summary": "New on the page: Predloženie zmeny vyžadujúcej posúdenie – G.I.18 -Držitelia rozhodnutia o registrácii veterinárnych liekov s povolením na uvedenie na trh udeleným v súlade so smernicou 2001/82/3C alebo nariadením (ES) č. 726/2004 sú povinní aktualizovať informácie o lieku do 29. januára 2027, za účelom splnenia…"
+  },
+  {
+   "id": "https://svps.sk/?p=17239",
+   "source": "svps",
+   "source_name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
+   "title": "Derogations authorised by Slovakia regarding movements of animals in relation to bluetongue from 1 November 2026",
+   "url": "https://svps.sk/derogations-authorised-by-slovakia-regarding-movements-of-animals-in-relation-to-bluetongue-from-1-november-2026/",
+   "date": "2026-10-20T08:43:12Z",
+   "detected": "2026-10-20T09:06:00Z",
+   "category": "ŠVPS notice",
+   "priority": "medium",
+   "tags": [
+    "Animal diseases",
+    "Veterinary care"
+   ],
+   "summary": "Derogations for movements for kept animals belonging to species listed for infection with bluetongue virus (serotypes 1-24) in the Annex to Commission Implementing Regulation (EU) 2018/1882, from EU Member States to the Slovak Republic The State Veterinary and Food Administration of the Slovak Republic hereby would…"
+  },
+  {
    "id": "lp:LP/2026/499:VYHODNOTENIE_MPK",
    "source": "slovlex_lp",
    "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
@@ -2532,80 +2565,80 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-10-19T23:16:50Z",
+   "checked": "2026-10-20T09:05:20Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-10-19T23:16:50Z",
+   "checked": "2026-10-20T09:05:20Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-10-19T23:16:50Z",
+   "checked": "2026-10-20T09:05:20Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-10-19T23:16:50Z",
+   "checked": "2026-10-20T09:05:20Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-10-19T23:16:50Z",
-   "new": 0,
+   "checked": "2026-10-20T09:05:20Z",
+   "new": 1,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-10-19T23:16:50Z",
+   "checked": "2026-10-20T09:05:20Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-10-19T23:16:50Z",
-   "new": 1,
+   "checked": "2026-10-20T09:05:20Z",
+   "new": 0,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-10-19T23:16:50Z",
+   "checked": "2026-10-20T09:05:20Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-10-19T23:16:50Z",
+   "checked": "2026-10-20T09:05:20Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-10-19T23:16:50Z",
+   "checked": "2026-10-20T09:05:20Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-10-19T23:16:50Z",
-   "new": 0,
+   "checked": "2026-10-20T09:05:20Z",
+   "new": 1,
    "error": null
   }
  },
- "updated": "2026-10-19T23:16:50Z"
+ "updated": "2026-10-20T09:05:20Z"
 }

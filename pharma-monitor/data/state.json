@@ -105,7 +105,8 @@
    "https://www.health.gov.sk/Clanok?nemocnica-kralovsky-chlmec": "2026-10-14T07:02:24Z",
    "https://www.health.gov.sk/Clanok?ruzovy-oktober-skrining-mamograficky": "2026-10-14T07:02:24Z",
    "https://www.health.gov.sk/Clanok?zzs-udalosti-mimoriadne-auta-velkokapacitne": "2026-10-15T09:09:58Z",
-   "https://www.health.gov.sk/Clanok?medzinarodna-konferencia-o-inovaciach-vo-verejnom-zdravotnictve": "2026-10-16T15:34:17Z"
+   "https://www.health.gov.sk/Clanok?medzinarodna-konferencia-o-inovaciach-vo-verejnom-zdravotnictve": "2026-10-16T15:34:17Z",
+   "https://www.health.gov.sk/Clanok?VP-Office2024-DNS-MVSR-MZSR": "2026-10-20T09:05:45Z"
   }
  },
  "uskvbl": {
@@ -1629,7 +1630,7 @@
     ]
    },
    "136": {
-    "modified": "2026-06-11T08:56:56",
+    "modified": "2026-10-20T09:01:31",
     "lines": [
      "3318651004",
      "08af3cdf11",
@@ -1639,8 +1640,8 @@
      "b40b3808db",
      "3f1e62a9fb",
      "e494eee5dc",
-     "0d6825a75c",
-     "49a6e18358",
+     "d59c2be75a",
+     "a7d591ae3c",
      "aca283ee8a"
     ]
    },
@@ -5989,7 +5990,7 @@
     "tags": []
    },
    "LPEU/2026/583": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "ZAPIS_DOPLNENEHO_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -6832,7 +6833,7 @@
     "tags": []
    },
    "LPEU/2026/707": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": [
      "Customs"
@@ -6854,7 +6855,7 @@
     "tags": []
    },
    "LPEU/2026/710": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": [
      "VAT"
@@ -6883,37 +6884,37 @@
     "stage_name": "Pripomienkové konanie"
    },
    "LPEU/2026/708": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/709": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/715": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/714": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/713": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/712": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/711": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -6941,7 +6942,7 @@
     "tags": []
    },
    "LPEU/2026/717": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -6959,7 +6960,27 @@
     "stage_name": "Pripomienkové konanie"
    },
    "LPEU/2026/716": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/718": {
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/555": {
+    "stage": "PROCES_UKONCENY",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/92": {
+    "stage": "PROCES_UKONCENY",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/554": {
+    "stage": "MPK",
     "rel": 0,
     "tags": []
    }
@@ -7414,7 +7435,18 @@
    "32026D2344": "2026-10-19T17:11:18Z",
    "32026R2328": "2026-10-19T17:11:18Z",
    "32026R2309": "2026-10-19T17:11:18Z",
-   "32026D2304": "2026-10-19T17:11:18Z"
+   "32026D2304": "2026-10-19T17:11:18Z",
+   "32026D05457": "2026-10-20T09:05:58Z",
+   "32026D2326": "2026-10-20T09:05:58Z",
+   "32026D05446": "2026-10-20T09:05:58Z",
+   "32026D05445": "2026-10-20T09:05:58Z",
+   "32026D2352": "2026-10-20T09:05:58Z",
+   "32026D2322": "2026-10-20T09:05:58Z",
+   "32026R2311": "2026-10-20T09:05:58Z",
+   "32026D05523": "2026-10-20T09:05:58Z",
+   "32026D2334": "2026-10-20T09:05:58Z",
+   "32026D2267": "2026-10-20T09:05:58Z",
+   "32026R2319": "2026-10-20T09:05:58Z"
   }
  },
  "kategorizacia": {
@@ -8341,7 +8373,8 @@
    "https://svps.sk/?p=16925": "2026-10-14T11:10:05Z",
    "https://svps.sk/?p=16915": "2026-10-14T11:10:05Z",
    "https://svps.sk/?p=16853": "2026-10-14T11:10:05Z",
-   "https://svps.sk/?p=17129": "2026-10-15T09:10:59Z"
+   "https://svps.sk/?p=17129": "2026-10-15T09:10:59Z",
+   "https://svps.sk/?p=17239": "2026-10-20T09:06:00Z"
   }
  }
 }
