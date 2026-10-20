@@ -65,7 +65,9 @@
    "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/doplnujuce-informacie-a-oznamy/usmernenie-k-uvadzaniu-hlaviciek-na-textoch-spc-pil-obl": "2026-10-14T07:02:22Z",
    "https://www.sukl.sk/pre-odbornikov-a-firmy/vyroba-distribucia-a-transfuziologia/povolenia-na-vyrobu-a-velkodistribuciu/pokyny-a-informacie/mp-134-2025-metodicky-pokyn-pre-ziadatelov-o-povolenie-na-zaobchadzanie-s-liekmi-v-druhu-cinnosti-vyroba-humannych-liekov": "2026-10-14T07:02:22Z",
    "https://www.sukl.sk/pre-odbornikov-a-firmy/vyroba-distribucia-a-transfuziologia/povolenia-na-vyrobu-a-velkodistribuciu/pokyny-a-informacie/mp-133-2025-metodicky-pokyn-pre-ziadatelov-o-povolenie-na-zaobchadzanie-s-liekmi-v-druhu-cinnosti-velkodistribucia-humannych-liekov": "2026-10-14T07:02:22Z",
-   "https://www.sukl.sk/o-nas/podujatia-a-udalosti/konferencia-sarap-2026-modul-2": "2026-10-19T17:10:57Z"
+   "https://www.sukl.sk/o-nas/podujatia-a-udalosti/konferencia-sarap-2026-modul-2": "2026-10-19T17:10:57Z",
+   "https://www.sukl.sk/pre-verejnost-pacientov-a-media/pre-media/tlacove-spravy/ema-odporucila-schvalenie-noveho-lieku-rasonque-na-metastaticku-rakovinu-pankreasu": "2026-10-20T14:45:41Z",
+   "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/liekopis/europsky-liekopis/pripomienkovanie-clankov-europskeho-liekopisu-pharmeuropa-38.4": "2026-10-20T14:45:41Z"
   }
  },
  "sukl_recall": {
@@ -4740,7 +4742,7 @@
     "tags": []
    },
    "LPEU/2026/89": {
-    "stage": "VYHODNOTENIE_MPK_AKTY",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -5244,7 +5246,7 @@
     "tags": []
    },
    "LP/2026/502": {
-    "stage": "ROKOVANIE_VLADA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -5437,7 +5439,7 @@
     "tags": []
    },
    "LP/2026/467": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 0,
     "tags": []
    },
@@ -6899,7 +6901,7 @@
     "tags": []
    },
    "LPEU/2026/714": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "SCHVALENIE_GESTORA",
     "rel": 0,
     "tags": []
    },
@@ -6980,6 +6982,16 @@
     "tags": []
    },
    "LP/2026/554": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/91": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/556": {
     "stage": "MPK",
     "rel": 0,
     "tags": []

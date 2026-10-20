@@ -1,6 +1,21 @@
 {
  "items": [
   {
+   "id": "https://www.sukl.sk/pre-verejnost-pacientov-a-media/pre-media/tlacove-spravy/ema-odporucila-schvalenie-noveho-lieku-rasonque-na-metastaticku-rakovinu-pankreasu",
+   "source": "sukl",
+   "source_name": "ŠÚKL · Aktuality",
+   "title": "EMA odporučila schválenie nového lieku Rasonque na metastatickú rakovinu pankreasu",
+   "url": "https://www.sukl.sk/pre-verejnost-pacientov-a-media/pre-media/tlacove-spravy/ema-odporucila-schvalenie-noveho-lieku-rasonque-na-metastaticku-rakovinu-pankreasu",
+   "date": "2026-10-20T11:26:57Z",
+   "detected": "2026-10-20T14:45:41Z",
+   "category": "ŠÚKL notice",
+   "priority": "low",
+   "tags": [
+    "Medicines"
+   ],
+   "summary": "Liek má potenciál zaradiť sa medzi prelomové terapie."
+  },
+  {
    "id": "uskvbl:136:2026-10-20T09:01:31",
    "source": "uskvbl",
    "source_name": "ÚŠKVBL · Veterinárne lieky",
@@ -1780,6 +1795,21 @@
    "summary": "Byt, ktorý mal byť pre zvieratá domovom pre život, sa napokon stal miestom boja o život. Prostredie bolo natoľko zanedbané, že aj samotná kontrola zo strany RVPS Nitra bola pre úradných veterinárnych lekárov mimoriadne náročná. V čase kontroly sa v byte v Zlatých Moravciach nachádzalo 18 zvierat – 13 mačiek, 2 psy a…"
   },
   {
+   "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/liekopis/europsky-liekopis/pripomienkovanie-clankov-europskeho-liekopisu-pharmeuropa-38.4",
+   "source": "sukl",
+   "source_name": "ŠÚKL · Aktuality",
+   "title": "Pripomienkovanie článkov Európskeho liekopisu, Pharmeuropa 38.4",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/liekopis/europsky-liekopis/pripomienkovanie-clankov-europskeho-liekopisu-pharmeuropa-38.4",
+   "date": "2026-07-28T11:15:02Z",
+   "detected": "2026-10-20T14:45:41Z",
+   "category": "ŠÚKL notice",
+   "priority": "low",
+   "tags": [
+    "Medicines"
+   ],
+   "summary": "Aktuálne vydanie Pharmeuropa (38.4) je možné pripomienkovať 30.12.2026."
+  },
+  {
    "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/liekopis/europsky-liekopis/pripomienkovanie-clankov-europskeho-liekopisu-pharmeuropa-38.3",
    "source": "sukl",
    "source_name": "ŠÚKL · Aktuality",
@@ -2565,36 +2595,36 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-10-20T09:05:20Z",
+   "checked": "2026-10-20T14:45:37Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-10-20T09:05:20Z",
-   "new": 0,
+   "checked": "2026-10-20T14:45:37Z",
+   "new": 2,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-10-20T09:05:20Z",
+   "checked": "2026-10-20T14:45:37Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-10-20T09:05:20Z",
+   "checked": "2026-10-20T14:45:37Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-10-20T09:05:20Z",
-   "new": 1,
+   "checked": "2026-10-20T14:45:37Z",
+   "new": 0,
    "error": null
   },
   "lawchanges": {
@@ -2607,7 +2637,7 @@
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-10-20T09:05:20Z",
+   "checked": "2026-10-20T14:45:37Z",
    "new": 0,
    "error": null
   },
@@ -2628,17 +2658,17 @@
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-10-20T09:05:20Z",
+   "checked": "2026-10-20T14:45:37Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-10-20T09:05:20Z",
-   "new": 1,
+   "checked": "2026-10-20T14:45:37Z",
+   "new": 0,
    "error": null
   }
  },
- "updated": "2026-10-20T09:05:20Z"
+ "updated": "2026-10-20T14:45:37Z"
 }
