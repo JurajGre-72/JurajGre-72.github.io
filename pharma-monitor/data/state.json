@@ -108,7 +108,8 @@
    "https://www.health.gov.sk/Clanok?ruzovy-oktober-skrining-mamograficky": "2026-10-14T07:02:24Z",
    "https://www.health.gov.sk/Clanok?zzs-udalosti-mimoriadne-auta-velkokapacitne": "2026-10-15T09:09:58Z",
    "https://www.health.gov.sk/Clanok?medzinarodna-konferencia-o-inovaciach-vo-verejnom-zdravotnictve": "2026-10-16T15:34:17Z",
-   "https://www.health.gov.sk/Clanok?VP-Office2024-DNS-MVSR-MZSR": "2026-10-20T09:05:45Z"
+   "https://www.health.gov.sk/Clanok?VP-Office2024-DNS-MVSR-MZSR": "2026-10-20T09:05:45Z",
+   "https://www.health.gov.sk/Clanok?detencny-ustav-kremnica-otvorenie": "2026-10-21T14:55:05Z"
   }
  },
  "uskvbl": {
@@ -1521,28 +1522,37 @@
     ]
    },
    "3412": {
-    "modified": "2026-07-06T09:06:53",
+    "modified": "2026-10-21T11:31:45",
     "lines": [
-     "872069c71f",
-     "fb4de12ad2",
-     "b6aadff5d9",
-     "419d534f9a",
-     "91baa10fd8",
+     "1d2b5962bc",
+     "e468f4a6d5",
+     "f738e830c1",
      "e1688b989e",
-     "e7080ed451",
-     "3951683064",
-     "075ae6ce50",
-     "41d972cbf9",
-     "fc1df3f6e2",
-     "b1ab6ce7bf",
-     "156a144435",
-     "ec485dbee7",
-     "e1688b989e",
-     "d82248d94d",
-     "b6aadff5d9",
-     "e1688b989e",
-     "d2ade4339d",
-     "4a7e8f2c5c"
+     "dc79a4da44",
+     "a408309e6c",
+     "8c8a651be7",
+     "00ad90d8e3",
+     "2526b7fa6d",
+     "ae29ba19fd",
+     "90b6caa7d7",
+     "e468f4a6d5",
+     "76f2a5c37e",
+     "1357615167",
+     "9f114c63f2",
+     "3e3c1c196c",
+     "5467707fd9",
+     "b3190a3fe3",
+     "8c8a651be7",
+     "e0a4b20dda",
+     "a11d54918d",
+     "2b4e31efd9",
+     "cf792df6ae",
+     "580eacaf8c",
+     "98e241e235",
+     "d20a4a4adf",
+     "45e04f3530",
+     "b3190a3fe3",
+     "8c8a651be7"
     ]
    },
    "115": {
@@ -1980,109 +1990,70 @@
     ]
    },
    "3408": {
-    "modified": "2026-03-27T07:31:49",
+    "modified": "2026-10-21T11:55:07",
     "lines": [
-     "9ad6d1b0f0",
-     "ac89ff3e52",
-     "13aade1bfb",
-     "694776694c",
-     "fcb575f3b8",
-     "3f54a0bee0"
+     "1d2b5962bc",
+     "335e7acb52",
+     "a2cdf090a1",
+     "3f54a0bee0",
+     "cc6cc2921d",
+     "8ecb322751",
+     "f07d7bd819",
+     "d6de211803",
+     "fa4eea81a2",
+     "c4b12d40ad",
+     "6027daa15c",
+     "48c4bd27e0",
+     "453a5d41ea",
+     "63092cfb90",
+     "d840c837f8",
+     "b89b917a62",
+     "63092cfb90",
+     "d840c837f8",
+     "a4b40064c3",
+     "335e7acb52",
+     "d81b798804"
     ]
    },
    "3414": {
-    "modified": "2026-03-27T07:29:49",
+    "modified": "2026-10-21T10:35:00",
     "lines": [
-     "36a851905d",
-     "70673c9ed4",
-     "4173e6a12e",
-     "250d720ac7",
-     "b6669007ed",
-     "12ecc31e1c",
-     "700fcccd53",
-     "168da39ee5",
-     "d129e20c7e",
-     "7d473c935f",
-     "05e800edb3",
-     "57b5f8b61b",
-     "250da622bb",
-     "93acad692d",
-     "ac89ff3e52",
-     "13aade1bfb",
-     "e1391428f4",
-     "c8c44f81b2",
-     "c22289fc89",
-     "28f9aa7d5c",
-     "1e2e184e81",
-     "4be72d46d3",
-     "021513dd74",
+     "1d2b5962bc",
+     "dab1727546",
+     "3465237cbb",
      "241dab4ff8",
-     "a3463f546f",
-     "3240438313",
-     "b7d2d7299d",
-     "8f229e29df",
-     "898e78da9a",
-     "4d5e1baf61",
-     "d6de211803",
-     "e74587311a",
-     "a975548ec4",
-     "a3463f546f",
-     "3240438313",
-     "0830e6dca4",
-     "2168568d12",
-     "220ca85dfa",
-     "83acf8128a",
-     "05e800edb3",
-     "57b5f8b61b"
+     "39a8f13070",
+     "0bfa70b8dc",
+     "9fa3028841",
+     "06c12dee9f",
+     "8c1ac86bc6",
+     "b3b0d9b737",
+     "972dc2ab9c",
+     "a69340353c",
+     "9fa3028841",
+     "18d7c65ecb",
+     "4ea2240c07",
+     "4c10886e1e",
+     "fd9c95cba1",
+     "45e2d586bd",
+     "6b2dc4b775",
+     "b0c1584aa3",
+     "186bd98e1f"
     ]
    },
    "3420": {
-    "modified": "2026-03-27T07:24:55",
+    "modified": "2026-10-21T11:59:27",
     "lines": [
-     "7ed78960c9",
-     "4d8348088c",
-     "ff6e4ca990",
-     "3a5a72e032",
-     "44945bb56b",
-     "b36b83c0a8",
-     "4f4d77dbfd",
-     "18b66c6107",
+     "a90e58c5fb",
+     "47ec18ea2f",
+     "e86ec397be",
+     "220ca85dfa",
+     "1c0a6ac4c5",
      "047bf5690f",
-     "956de2dc34",
-     "f249f912d9",
-     "e1ac686532",
-     "3465237cbb",
-     "241dab4ff8",
-     "ce594c210b",
-     "b81267056d",
-     "a2cdf090a1",
-     "3f54a0bee0",
-     "3ec5705a5b",
-     "ec66ab1ac8",
-     "6fdc82e269",
-     "13aade1bfb",
-     "8f218bb62d",
-     "a5562bb134",
-     "dbaf8a83d6",
-     "e1688b989e",
-     "94c6f8b4e9",
-     "313395fb4c",
-     "075ae6ce50",
-     "cbc09ea7a8",
-     "f860df5bcd",
-     "f07d7bd819",
-     "d6de211803",
-     "60e3a459ff",
-     "5b4f507c42",
-     "458aae2e42",
-     "0aa6f7aac4",
-     "1355c8d621",
-     "f40b0a110a",
-     "ca355df118",
-     "5c1cfdd247",
-     "e06f504887",
-     "4a0e6c5c61",
-     "97619d6fda"
+     "53b1085cf0",
+     "e8ac3f92df",
+     "10277f0b89",
+     "66403fcf44"
     ]
    },
    "305": {
@@ -4178,6 +4149,55 @@
      "c8e7dbec3e",
      "8ec502f2b2"
     ]
+   },
+   "36": {
+    "modified": "2026-10-21T12:00:04",
+    "lines": [
+     "7ed78960c9",
+     "a35f946fd8",
+     "bde7bf0a90",
+     "f480b9abe1",
+     "a614be290e",
+     "7c7ea3f536",
+     "45b042af5f",
+     "d49785f45a",
+     "5ef4bf9815",
+     "31325755ff",
+     "a4369ab4c2",
+     "8b1615ac78",
+     "16edb9ee97",
+     "85f998eb06",
+     "b053c3d091"
+    ]
+   },
+   "3416": {
+    "modified": "2026-10-21T11:45:27",
+    "lines": [
+     "05a6a1dd9c",
+     "2b0b3f74a1",
+     "2ce46caeaf",
+     "664a46eaca",
+     "7130b1629f",
+     "eee92925da",
+     "e42ad8ff82",
+     "98e241e235",
+     "d20a4a4adf"
+    ]
+   },
+   "3418": {
+    "modified": "2026-10-21T11:40:15",
+    "lines": [
+     "1d2b5962bc",
+     "e22b0039f3",
+     "8d36c87c68",
+     "0aa6f7aac4",
+     "41608df100",
+     "55098bda77",
+     "5c87fca2a7",
+     "4ee1bba8c6",
+     "6d7b9b7acf",
+     "e07e3fbf48"
+    ]
    }
   }
  },
@@ -5250,7 +5270,7 @@
     "tags": []
    },
    "LP/2026/476": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 0,
     "tags": []
    },
@@ -5423,12 +5443,12 @@
     "tags": []
    },
    "LP/2026/389": {
-    "stage": "ROKOVANIE_VLADA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
    "LP/2026/457": {
-    "stage": "SPRACOVANIE_PREDKLADATEL",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -5438,7 +5458,7 @@
     "tags": []
    },
    "LP/2026/467": {
-    "stage": "SPRACOVANIE_PREDKLADATEL",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -6799,7 +6819,7 @@
     "tags": []
    },
    "LP/2026/537": {
-    "stage": "ROKOVANIE_VLADA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -6900,7 +6920,7 @@
     "tags": []
    },
    "LPEU/2026/714": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -6996,12 +7016,22 @@
     "tags": []
    },
    "LPEU/2026/720": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/719": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/560": {
+    "stage": "ROKOVANIE_VLADA",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/544": {
+    "stage": "MPK",
     "rel": 0,
     "tags": []
    }

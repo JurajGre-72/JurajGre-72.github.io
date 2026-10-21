@@ -1,6 +1,133 @@
 {
  "items": [
   {
+   "id": "https://www.health.gov.sk/Clanok?detencny-ustav-kremnica-otvorenie",
+   "source": "mzsr",
+   "source_name": "Ministerstvo zdravotníctva SR",
+   "title": "Slávnostné otvorenie detenčného pracoviska v Kremnici",
+   "url": "https://www.health.gov.sk/Clanok?detencny-ustav-kremnica-otvorenie",
+   "date": "2026-10-21T13:43:09Z",
+   "detected": "2026-10-21T14:55:05Z",
+   "category": "Ministry of Health",
+   "priority": "low",
+   "tags": [
+    "VAT"
+   ],
+   "summary": "Minister zdravotníctva Kamil Šaško spoločne s ministrom spravodlivosti Borisom Suskom dnes slávnostne otvorili nové priestory Detenčného ústavu Hronovce, pracovisko Kremnica, ktorý sa nachádza v areáli Psychiatrickej nemocnice prof. Ma tulaya. Celková cena stavby bola 32,8 milióna eur - 31,2 milióna eur s DPH sme…"
+  },
+  {
+   "id": "uskvbl:36:2026-10-21T12:00:04",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Veterinárne lieky",
+   "title": "Updated page: KONTAKTY",
+   "url": "https://www.uskvbl.sk/?page_id=36",
+   "date": "2026-10-21T12:00:04Z",
+   "detected": "2026-10-21T14:55:06Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "medium",
+   "tags": [
+    "Veterinary medicines",
+    "Medicines",
+    "Veterinary care"
+   ],
+   "summary": "Ústav štátnej kontroly veterinárnych biopreparátov a liečiv Nitra · Adresa: · Biovetská 34 · P.O.Box 52c · 949 01 Nitra"
+  },
+  {
+   "id": "uskvbl:3420:2026-10-21T11:59:27",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Veterinárne lieky",
+   "title": "Updated page: Útvar riaditeľa (GTSÚ)",
+   "url": "https://www.uskvbl.sk/?page_id=3420",
+   "date": "2026-10-21T11:59:27Z",
+   "detected": "2026-10-21T14:55:06Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "medium",
+   "tags": [
+    "Veterinary medicines"
+   ],
+   "summary": "New on the page: Generálny tajomník služobného úradu (Director) · MVDr. Katarína Massányiová, PhD. · +421-37-6933523 · katarina.massanyiova@uskvbl.sk · Sekretariát GTSÚ · +421-37-6933 511 tatiana.dvorska@uskvbl.sk"
+  },
+  {
+   "id": "uskvbl:3408:2026-10-21T11:55:07",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Veterinárne lieky",
+   "title": "Updated page: Odbor biopreparátov",
+   "url": "https://www.uskvbl.sk/?page_id=3408",
+   "date": "2026-10-21T11:55:07Z",
+   "detected": "2026-10-21T14:55:07Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "medium",
+   "tags": [
+    "Veterinary medicines",
+    "Medicines",
+    "Vaccines"
+   ],
+   "summary": "New on the page: Vedúca odboru · Mgr. Renáta Kováčová, PhD. · +421-37-6933521 · Oddelenie posudzovania biologických a imunologických liekov · MVDr. Tatiana Holková (vedúca oddelenia) · +421-37-6933541"
+  },
+  {
+   "id": "uskvbl:3416:2026-10-21T11:45:27",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Veterinárne lieky",
+   "title": "Updated page: Krízové situácie",
+   "url": "https://www.uskvbl.sk/?page_id=3416",
+   "date": "2026-10-21T11:45:27Z",
+   "detected": "2026-10-21T14:55:07Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "medium",
+   "tags": [
+    "Veterinary medicines",
+    "Medicines",
+    "Drug safety"
+   ],
+   "summary": "Systém rýchleho varovania · Tel.: +421 907 884 565 · Hlásenie nedostatkov v kvalite liekov · ras-vet_sk@uskvbl.sk · Hlásenie nežiaducich udalostí (nežiaducich účinkov) liekov"
+  },
+  {
+   "id": "uskvbl:3418:2026-10-21T11:40:15",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Veterinárne lieky",
+   "title": "Updated page: Odbor ekonomiky, hospodárskej správy a personalistiky",
+   "url": "https://www.uskvbl.sk/?page_id=3418",
+   "date": "2026-10-21T11:40:15Z",
+   "detected": "2026-10-21T14:55:08Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "medium",
+   "tags": [
+    "Veterinary medicines"
+   ],
+   "summary": "Vedúca odboru · Ing. Adriana Spodniaková · +421-37-6933528 · adriana.spodniakova@uskvbl.sk · Oddelenie personalistiky a správy majetku"
+  },
+  {
+   "id": "uskvbl:3412:2026-10-21T11:31:45",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Veterinárne lieky",
+   "title": "Updated page: Odbor inšpekcie",
+   "url": "https://www.uskvbl.sk/?page_id=3412",
+   "date": "2026-10-21T11:31:45Z",
+   "detected": "2026-10-21T14:55:08Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "high",
+   "tags": [
+    "Veterinary medicines"
+   ],
+   "summary": "New on the page: Vedúca odboru · Mgr. Mária Záhumenská · +421-37-6933 544 · Oddelenie výroby, distribúcie a OPL · Mgr. Zuzana Durániová (vedúca oddelenia) · +421-37-6933547 zuzana.duraniova@uskvbl.sk"
+  },
+  {
+   "id": "uskvbl:3414:2026-10-21T10:35:00",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Veterinárne lieky",
+   "title": "Updated page: Odbor registrácie a schvaľovania",
+   "url": "https://www.uskvbl.sk/?page_id=3414",
+   "date": "2026-10-21T10:35:00Z",
+   "detected": "2026-10-21T14:55:08Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "medium",
+   "tags": [
+    "Veterinary medicines",
+    "Medicines"
+   ],
+   "summary": "New on the page: Vedúca odboru · MVDr. Eva Chobotová, PhD. · +421-37-6933 517 · Oddelenie koordinácie registrácie liekov · MVDr. Marta Wagnerová (vedúca oddelenia) · +421-37-6933527 marta.wagnerova@uskvbl.sk"
+  },
+  {
    "id": "uskvbl:4303:2026-10-21T08:14:21",
    "source": "uskvbl",
    "source_name": "ÚŠKVBL · Veterinárne lieky",
@@ -2611,36 +2738,36 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-10-21T09:52:19Z",
+   "checked": "2026-10-21T14:54:59Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-10-21T09:52:19Z",
+   "checked": "2026-10-21T14:54:59Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-10-21T09:52:19Z",
+   "checked": "2026-10-21T14:54:59Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-10-21T09:52:19Z",
-   "new": 0,
+   "checked": "2026-10-21T14:54:59Z",
+   "new": 1,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-10-21T09:52:19Z",
-   "new": 1,
+   "checked": "2026-10-21T14:54:59Z",
+   "new": 7,
    "error": null
   },
   "lawchanges": {
@@ -2653,7 +2780,7 @@
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-10-21T09:52:19Z",
+   "checked": "2026-10-21T14:54:59Z",
    "new": 0,
    "error": null
   },
@@ -2674,17 +2801,17 @@
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-10-21T09:52:19Z",
+   "checked": "2026-10-21T14:54:59Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-10-21T09:52:19Z",
+   "checked": "2026-10-21T14:54:59Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-10-21T09:52:19Z"
+ "updated": "2026-10-21T14:54:59Z"
 }
