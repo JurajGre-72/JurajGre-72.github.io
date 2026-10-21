@@ -3663,13 +3663,12 @@
     ]
    },
    "4303": {
-    "modified": "2026-02-13T08:35:20",
+    "modified": "2026-10-21T08:14:21",
     "lines": [
-     "dfdd1a3e76",
-     "6bcb7802f1",
-     "63171a53bc",
-     "cec8aa9b69",
-     "cd2136fb9e"
+     "10e1e8a96e",
+     "d08b01c487",
+     "6ff4a88742",
+     "6d234a17fe"
     ]
    },
    "58": {
@@ -5086,7 +5085,7 @@
     "tags": []
    },
    "LPEU/2026/670": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -6993,6 +6992,16 @@
    },
    "LP/2026/556": {
     "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/720": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/719": {
+    "stage": "SCHVALENIE_GESTORA",
     "rel": 0,
     "tags": []
    }

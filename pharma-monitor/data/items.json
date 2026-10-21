@@ -1,6 +1,22 @@
 {
  "items": [
   {
+   "id": "uskvbl:4303:2026-10-21T08:14:21",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Veterinárne lieky",
+   "title": "Updated page: OZNÁMENIA",
+   "url": "https://www.uskvbl.sk/?page_id=4303",
+   "date": "2026-10-21T08:14:21Z",
+   "detected": "2026-10-21T09:52:27Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "medium",
+   "tags": [
+    "Veterinary medicines",
+    "Veterinary care"
+   ],
+   "summary": "New on the page: VET-PASS · Slovenská republika participuje na akcii COST (European Cooperation in Science and Technology) s názvom „European Veterinary Education and Training for Professional Advancement, Specialisation, and Skills (VET-PASS), ktorej cieľom je v priebehu štyroch rokov vybudovať transparentný,…"
+  },
+  {
    "id": "https://www.sukl.sk/pre-verejnost-pacientov-a-media/pre-media/tlacove-spravy/ema-odporucila-schvalenie-noveho-lieku-rasonque-na-metastaticku-rakovinu-pankreasu",
    "source": "sukl",
    "source_name": "ŠÚKL · Aktuality",
@@ -2595,36 +2611,36 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-10-20T14:45:37Z",
+   "checked": "2026-10-21T09:52:19Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-10-20T14:45:37Z",
-   "new": 2,
+   "checked": "2026-10-21T09:52:19Z",
+   "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-10-20T14:45:37Z",
+   "checked": "2026-10-21T09:52:19Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-10-20T14:45:37Z",
+   "checked": "2026-10-21T09:52:19Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-10-20T14:45:37Z",
-   "new": 0,
+   "checked": "2026-10-21T09:52:19Z",
+   "new": 1,
    "error": null
   },
   "lawchanges": {
@@ -2637,7 +2653,7 @@
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-10-20T14:45:37Z",
+   "checked": "2026-10-21T09:52:19Z",
    "new": 0,
    "error": null
   },
@@ -2658,17 +2674,17 @@
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-10-20T14:45:37Z",
+   "checked": "2026-10-21T09:52:19Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-10-20T14:45:37Z",
+   "checked": "2026-10-21T09:52:19Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-10-20T14:45:37Z"
+ "updated": "2026-10-21T09:52:19Z"
 }
