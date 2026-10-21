@@ -5172,21 +5172,21 @@
     ]
    },
    "LP/2026/508": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 2,
     "tags": [
      "Ministry of Health"
     ],
-    "stage_name": "Pripomienkové konanie"
+    "stage_name": "Vyhodnotenie pripomienkového konania"
    },
    "LP/2026/507": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 2,
     "tags": [
      "Health insurance",
      "Amends 581/2004"
     ],
-    "stage_name": "Pripomienkové konanie"
+    "stage_name": "Vyhodnotenie pripomienkového konania"
    },
    "LPEU/2026/618": {
     "stage": "PROCES_UKONCENY",
@@ -6830,7 +6830,7 @@
     "tags": []
    },
    "LP/2026/536": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -7032,6 +7032,11 @@
     "tags": []
    },
    "LP/2026/544": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/557": {
     "stage": "MPK",
     "rel": 0,
     "tags": []
