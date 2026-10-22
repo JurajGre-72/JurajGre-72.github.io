@@ -6114,12 +6114,12 @@
     "tags": []
    },
    "LPEU/2026/579": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/578": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -7073,6 +7073,11 @@
    },
    "LP/2026/557": {
     "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/277": {
+    "stage": "ROKOVANIE_VLADA",
     "rel": 0,
     "tags": []
    }
