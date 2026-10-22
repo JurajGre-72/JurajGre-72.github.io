@@ -7095,6 +7095,13 @@
     "stage": "MPK",
     "rel": 0,
     "tags": []
+   },
+   "LPEU/2026/721": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": [
+     "Animal diseases"
+    ]
    }
   }
  },
