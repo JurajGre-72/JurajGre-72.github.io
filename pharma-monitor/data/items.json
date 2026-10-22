@@ -34,6 +34,52 @@
    "summary": "Moved from stage “Pripomienkové konanie” to “Vyhodnotenie pripomienkového konania” · Stage: Vyhodnotenie pripomienkového konania (since 22.10.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
   },
   {
+   "id": "https://www.sukl.sk/pre-verejnost-pacientov-a-media/oznamy-a-upozornenia/upozornenie-z-bezpecnostnych-dovodov-je-docasne-pozastaveny-pristup-k-it-sluzbam-sukl-ako-aj-k-sluzbam-ema",
+   "source": "sukl",
+   "source_name": "ŠÚKL · Aktuality",
+   "title": "Upozornenie: Z bezpečnostných dôvodov je dočasne pozastavený prístup k IT službám ŠÚKL, ako aj k službám EMA",
+   "url": "https://www.sukl.sk/pre-verejnost-pacientov-a-media/oznamy-a-upozornenia/upozornenie-z-bezpecnostnych-dovodov-je-docasne-pozastaveny-pristup-k-it-sluzbam-sukl-ako-aj-k-sluzbam-ema",
+   "date": "2026-10-22T07:57:16Z",
+   "detected": "2026-10-22T09:52:39Z",
+   "category": "ŠÚKL notice",
+   "priority": "low",
+   "tags": [],
+   "summary": "Oznam priebežne aktualizujeme."
+  },
+  {
+   "id": "uskvbl:36:2026-10-22T07:38:20",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Veterinárne lieky",
+   "title": "Updated page: KONTAKTY",
+   "url": "https://www.uskvbl.sk/?page_id=36",
+   "date": "2026-10-22T07:38:20Z",
+   "detected": "2026-10-22T09:52:42Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "medium",
+   "tags": [
+    "Veterinary medicines",
+    "Medicines"
+   ],
+   "summary": "New on the page: Odbor liečiv"
+  },
+  {
+   "id": "uskvbl:9844:2026-10-22T07:24:52",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Veterinárne lieky",
+   "title": "Updated page: Odbor liečiv",
+   "url": "https://www.uskvbl.sk/?page_id=9844",
+   "date": "2026-10-22T07:24:52Z",
+   "detected": "2026-10-22T09:52:43Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "medium",
+   "tags": [
+    "Veterinary medicines",
+    "Medicines",
+    "Pharmacy"
+   ],
+   "summary": "Vedúca odboru · Ing. Zuzana Džupinová, PhD. · +421-37-6933546 · zuzana.dzupinova@uskvbl.sk · Oddelenie posudzovania farmaceutických liekov"
+  },
+  {
    "id": "https://www.health.gov.sk/Clanok?detencny-ustav-kremnica-otvorenie",
    "source": "mzsr",
    "source_name": "Ministerstvo zdravotníctva SR",
@@ -2771,36 +2817,36 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-10-21T22:22:50Z",
+   "checked": "2026-10-22T09:52:35Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-10-21T22:22:50Z",
-   "new": 0,
+   "checked": "2026-10-22T09:52:35Z",
+   "new": 1,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-10-21T22:22:50Z",
+   "checked": "2026-10-22T09:52:35Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-10-21T22:22:50Z",
+   "checked": "2026-10-22T09:52:35Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-10-21T22:22:50Z",
-   "new": 0,
+   "checked": "2026-10-22T09:52:35Z",
+   "new": 2,
    "error": null
   },
   "lawchanges": {
@@ -2813,8 +2859,8 @@
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-10-21T22:22:50Z",
-   "new": 2,
+   "checked": "2026-10-22T09:52:35Z",
+   "new": 0,
    "error": null
   },
   "eurlex": {
@@ -2834,17 +2880,17 @@
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-10-21T22:22:50Z",
+   "checked": "2026-10-22T09:52:35Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-10-21T22:22:50Z",
+   "checked": "2026-10-22T09:52:35Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-10-21T22:22:50Z"
+ "updated": "2026-10-22T09:52:35Z"
 }

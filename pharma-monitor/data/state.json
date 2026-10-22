@@ -67,7 +67,8 @@
    "https://www.sukl.sk/pre-odbornikov-a-firmy/vyroba-distribucia-a-transfuziologia/povolenia-na-vyrobu-a-velkodistribuciu/pokyny-a-informacie/mp-133-2025-metodicky-pokyn-pre-ziadatelov-o-povolenie-na-zaobchadzanie-s-liekmi-v-druhu-cinnosti-velkodistribucia-humannych-liekov": "2026-10-14T07:02:22Z",
    "https://www.sukl.sk/o-nas/podujatia-a-udalosti/konferencia-sarap-2026-modul-2": "2026-10-19T17:10:57Z",
    "https://www.sukl.sk/pre-verejnost-pacientov-a-media/pre-media/tlacove-spravy/ema-odporucila-schvalenie-noveho-lieku-rasonque-na-metastaticku-rakovinu-pankreasu": "2026-10-20T14:45:41Z",
-   "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/liekopis/europsky-liekopis/pripomienkovanie-clankov-europskeho-liekopisu-pharmeuropa-38.4": "2026-10-20T14:45:41Z"
+   "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/liekopis/europsky-liekopis/pripomienkovanie-clankov-europskeho-liekopisu-pharmeuropa-38.4": "2026-10-20T14:45:41Z",
+   "https://www.sukl.sk/pre-verejnost-pacientov-a-media/oznamy-a-upozornenia/upozornenie-z-bezpecnostnych-dovodov-je-docasne-pozastaveny-pristup-k-it-sluzbam-sukl-ako-aj-k-sluzbam-ema": "2026-10-22T09:52:39Z"
   }
  },
  "sukl_recall": {
@@ -110,7 +111,8 @@
    "https://www.health.gov.sk/Clanok?medzinarodna-konferencia-o-inovaciach-vo-verejnom-zdravotnictve": "2026-10-16T15:34:17Z",
    "https://www.health.gov.sk/Clanok?VP-Office2024-DNS-MVSR-MZSR": "2026-10-20T09:05:45Z",
    "https://www.health.gov.sk/Clanok?detencny-ustav-kremnica-otvorenie": "2026-10-21T14:55:05Z",
-   "https://www.health.gov.sk/Clanok?zoznam-zdravotnickych-pomocok-na-mieru": "2026-10-21T19:09:33Z"
+   "https://www.health.gov.sk/Clanok?zoznam-zdravotnickych-pomocok-na-mieru": "2026-10-21T19:09:33Z",
+   "https://www.health.gov.sk/Clanok?statny-tajomnik-svajciarsko-velvyslankyna": "2026-10-22T09:52:41Z"
   }
  },
  "uskvbl": {
@@ -4152,7 +4154,7 @@
     ]
    },
    "36": {
-    "modified": "2026-10-21T12:00:04",
+    "modified": "2026-10-22T07:38:20",
     "lines": [
      "7ed78960c9",
      "a35f946fd8",
@@ -4165,6 +4167,7 @@
      "5ef4bf9815",
      "31325755ff",
      "a4369ab4c2",
+     "682adf1106",
      "8b1615ac78",
      "16edb9ee97",
      "85f998eb06",
@@ -4198,6 +4201,38 @@
      "4ee1bba8c6",
      "6d7b9b7acf",
      "e07e3fbf48"
+    ]
+   },
+   "9844": {
+    "modified": "2026-10-22T07:24:52",
+    "lines": [
+     "1d2b5962bc",
+     "10277f0b89",
+     "6fdc82e269",
+     "13aade1bfb",
+     "b3a0379b98",
+     "db4b015f20",
+     "23128bbfb9",
+     "fa4eea81a2",
+     "93acad692d",
+     "10277f0b89",
+     "66403fcf44",
+     "3ece151479",
+     "23128bbfb9",
+     "c22289fc89",
+     "5fc1013ad8",
+     "67d2721574",
+     "4be72d46d3",
+     "dab1727546",
+     "7efec3866c",
+     "2b4e31efd9",
+     "cf792df6ae",
+     "c87e5770a1",
+     "3ece151479",
+     "23128bbfb9",
+     "773b2679fc",
+     "10277f0b89",
+     "66403fcf44"
     ]
    }
   }
@@ -5056,7 +5091,7 @@
     "tags": []
    },
    "LP/2026/493": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -5579,7 +5614,7 @@
     "tags": []
    },
    "LP/2026/466": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
