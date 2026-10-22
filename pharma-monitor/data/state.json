@@ -5306,7 +5306,7 @@
     "tags": []
    },
    "LP/2026/476": {
-    "stage": "SPRACOVANIE_PREDKLADATEL",
+    "stage": "ROKOVANIE_VLADA",
     "rel": 0,
     "tags": []
    },
@@ -6000,7 +6000,7 @@
     "stage_name": "Vyhodnotenie pripomienkového konania"
    },
    "LP/2026/452": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 0,
     "tags": []
    },
@@ -6171,7 +6171,7 @@
     "tags": []
    },
    "LP/2026/462": {
-    "stage": "ROKOVANIE_VLADA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -7078,6 +7078,21 @@
    },
    "LP/2026/277": {
     "stage": "ROKOVANIE_VLADA",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/564": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/184": {
+    "stage": "PROCES_UKONCENY",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/563": {
+    "stage": "MPK",
     "rel": 0,
     "tags": []
    }
