@@ -1,6 +1,22 @@
 {
  "items": [
   {
+   "id": "lp:LP/2026/534:VYHODNOTENIE_MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/534 · Vyhláška: Návrh vyhlášky Ministerstva zdravotníctva Slovenskej republiky, ktorou sa mení a dopĺňa vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 229/2011 Z. z. o postupe pri posudzovaní zdravotnej spôsobilosti a psychickej spôsobilosti na držanie alebo nosenie strelných zbraní a streliva a o náležitostiach lekárskeho posudku a psychologického posudku v znení vyhlášky č. 105/2012 Z. z.",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/534",
+   "date": "2026-10-23T08:00:00Z",
+   "detected": "2026-10-22T22:16:31Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Ministry of Health",
+    "Vyhodnotenie pripomienkového konania"
+   ],
+   "summary": "Moved from stage “Pripomienkové konanie” to “Vyhodnotenie pripomienkového konania” · Stage: Vyhodnotenie pripomienkového konania (since 23.10.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
+  },
+  {
    "id": "lp:LP/2026/508:VYHODNOTENIE_MPK",
    "source": "slovlex_lp",
    "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
@@ -2817,80 +2833,81 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-10-22T09:52:35Z",
+   "checked": "2026-10-22T22:16:06Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-10-22T09:52:35Z",
-   "new": 1,
+   "checked": "2026-10-22T22:16:06Z",
+   "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-10-22T09:52:35Z",
+   "checked": "2026-10-22T22:16:06Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-10-22T09:52:35Z",
+   "checked": "2026-10-22T22:16:06Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
-   "ok": true,
-   "checked": "2026-10-22T09:52:35Z",
-   "new": 2,
-   "error": null
+   "ok": false,
+   "checked": "2026-10-22T22:16:06Z",
+   "new": 0,
+   "error": "https://www.uskvbl.sk/index.php?rest_route=/wp/v2/pages&orderby=modified&order=desc&per_page=50&_fields=id,title,modified_gmt,link: <HTTPError 500: 'Internal Server Error'>",
+   "last_ok": "2026-10-22T09:52:35Z"
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-10-20T09:05:20Z",
+   "checked": "2026-10-22T22:16:06Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-10-22T09:52:35Z",
-   "new": 0,
+   "checked": "2026-10-22T22:16:06Z",
+   "new": 1,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-10-20T09:05:20Z",
+   "checked": "2026-10-22T22:16:06Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-10-20T09:05:20Z",
+   "checked": "2026-10-22T22:16:06Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-10-22T09:52:35Z",
+   "checked": "2026-10-22T22:16:06Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-10-22T09:52:35Z",
+   "checked": "2026-10-22T22:16:06Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-10-22T09:52:35Z"
+ "updated": "2026-10-22T22:16:06Z"
 }
