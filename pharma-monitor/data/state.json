@@ -6845,7 +6845,7 @@
     "stage_name": "Vyhodnotenie pripomienkového konania"
    },
    "LPEU/2026/703": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -7105,6 +7105,11 @@
    },
    "LP/2026/566": {
     "stage": "PROCES_UKONCENY",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/558": {
+    "stage": "MPK",
     "rel": 0,
     "tags": []
    }
@@ -7602,7 +7607,8 @@
    "32026R2340": "2026-10-23T07:23:23Z",
    "32026R2371": "2026-10-23T07:23:23Z",
    "32026D2373": "2026-10-23T07:23:23Z",
-   "32026R2358": "2026-10-23T07:23:23Z"
+   "32026R2358": "2026-10-23T07:23:23Z",
+   "32026R0338R(04)": "2026-10-23T08:17:25Z"
   }
  },
  "kategorizacia": {
