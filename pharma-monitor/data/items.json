@@ -2868,81 +2868,80 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-10-23T13:20:26Z",
+   "checked": "2026-10-23T14:22:03Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-10-23T13:20:26Z",
+   "checked": "2026-10-23T14:22:03Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-10-23T13:20:26Z",
+   "checked": "2026-10-23T14:22:03Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-10-23T13:20:26Z",
+   "checked": "2026-10-23T14:22:03Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
-   "ok": false,
-   "checked": "2026-10-23T13:20:26Z",
+   "ok": true,
+   "checked": "2026-10-23T14:22:03Z",
    "new": 0,
-   "error": "https://www.uskvbl.sk/index.php?rest_route=/wp/v2/pages&orderby=modified&order=desc&per_page=50&_fields=id,title,modified_gmt,link: URLError(gaierror(-3, 'Temporary failure in name resolution'))",
-   "last_ok": "2026-10-23T10:16:17Z"
+   "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-10-23T13:20:26Z",
+   "checked": "2026-10-23T14:22:03Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-10-23T13:20:26Z",
+   "checked": "2026-10-23T14:22:03Z",
    "new": 0,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-10-23T13:20:26Z",
+   "checked": "2026-10-23T14:22:03Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-10-23T13:20:26Z",
+   "checked": "2026-10-23T14:22:03Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-10-23T13:20:26Z",
+   "checked": "2026-10-23T14:22:03Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-10-23T13:20:26Z",
+   "checked": "2026-10-23T14:22:03Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-10-23T13:20:26Z"
+ "updated": "2026-10-23T14:22:03Z"
 }
