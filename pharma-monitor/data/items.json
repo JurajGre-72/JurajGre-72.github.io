@@ -2833,81 +2833,81 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-10-22T22:16:06Z",
+   "checked": "2026-10-23T07:18:24Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-10-22T22:16:06Z",
+   "checked": "2026-10-23T07:18:24Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-10-22T22:16:06Z",
+   "checked": "2026-10-23T07:18:24Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-10-22T22:16:06Z",
+   "checked": "2026-10-23T07:18:24Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": false,
-   "checked": "2026-10-22T22:16:06Z",
+   "checked": "2026-10-23T07:18:24Z",
    "new": 0,
-   "error": "https://www.uskvbl.sk/index.php?rest_route=/wp/v2/pages&orderby=modified&order=desc&per_page=50&_fields=id,title,modified_gmt,link: <HTTPError 500: 'Internal Server Error'>",
+   "error": "Command '['curl', '-H', 'Accept-Language: sk,en;q=0.8', '-H', 'User-Agent: Mozilla/5.0 (compatible; PharmacopolaRegMonitor/1.0; +https://jurajgre-72.github.io/pharma-monitor/)', '-sSL', '--fail',…",
    "last_ok": "2026-10-22T09:52:35Z"
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-10-22T22:16:06Z",
+   "checked": "2026-10-23T07:18:24Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-10-22T22:16:06Z",
-   "new": 1,
+   "checked": "2026-10-23T07:18:24Z",
+   "new": 0,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-10-22T22:16:06Z",
+   "checked": "2026-10-23T07:18:24Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-10-22T22:16:06Z",
+   "checked": "2026-10-23T07:18:24Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-10-22T22:16:06Z",
+   "checked": "2026-10-23T07:18:24Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-10-22T22:16:06Z",
+   "checked": "2026-10-23T07:18:24Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-10-22T22:16:06Z"
+ "updated": "2026-10-23T07:18:24Z"
 }
