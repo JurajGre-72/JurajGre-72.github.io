@@ -7132,6 +7132,11 @@
     "stage": "SCHVALENIE_GESTORA",
     "rel": 0,
     "tags": []
+   },
+   "LP/2026/569": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
    }
   }
  },
