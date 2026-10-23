@@ -7112,6 +7112,25 @@
     "stage": "MPK",
     "rel": 0,
     "tags": []
+   },
+   "LPEU/2026/723": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/568": {
+    "stage": "MPK",
+    "rel": 1,
+    "tags": [
+     "Waste & packaging",
+     "Transport of goods"
+    ],
+    "stage_name": "Pripomienkové konanie"
+   },
+   "LPEU/2026/722": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": []
    }
   }
  },

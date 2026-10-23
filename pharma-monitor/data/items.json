@@ -1,6 +1,24 @@
 {
  "items": [
   {
+   "id": "lp:LP/2026/568:MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/568 · Vyhláška: Návrh vyhlášky Úradu jadrového dozoru Slovenskej republiky č. .../2027 Z. z. , ktorou sa ustanovujú podrobnosti o požiadavkách pri preprave rádioaktívnych materiálov a o schválení typu prepravného obalového súboru",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/568",
+   "date": "2026-10-23T08:00:00Z",
+   "detected": "2026-10-23T09:46:30Z",
+   "category": "Draft law",
+   "priority": "low",
+   "tags": [
+    "Waste & packaging",
+    "Transport of goods",
+    "Pripomienkové konanie"
+   ],
+   "summary": "Stage: Pripomienkové konanie (since 23.10.2026) · Comments can be submitted until 12.11.2026 · Submitted by: Úrad jadrového dozoru Slovenskej republiky",
+   "deadline": "2026-11-12"
+  },
+  {
    "id": "lp:LP/2026/534:VYHODNOTENIE_MPK",
    "source": "slovlex_lp",
    "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
@@ -2833,35 +2851,35 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-10-23T08:16:52Z",
+   "checked": "2026-10-23T09:46:28Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-10-23T08:16:52Z",
+   "checked": "2026-10-23T09:46:28Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-10-23T08:16:52Z",
+   "checked": "2026-10-23T09:46:28Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-10-23T08:16:52Z",
+   "checked": "2026-10-23T09:46:28Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-10-23T08:16:52Z",
+   "checked": "2026-10-23T09:46:28Z",
    "new": 0,
    "error": null
   },
@@ -2875,8 +2893,8 @@
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-10-23T08:16:52Z",
-   "new": 0,
+   "checked": "2026-10-23T09:46:28Z",
+   "new": 1,
    "error": null
   },
   "eurlex": {
@@ -2896,17 +2914,17 @@
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-10-23T08:16:52Z",
+   "checked": "2026-10-23T09:46:28Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-10-23T08:16:52Z",
+   "checked": "2026-10-23T09:46:28Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-10-23T08:16:52Z"
+ "updated": "2026-10-23T09:46:28Z"
 }
