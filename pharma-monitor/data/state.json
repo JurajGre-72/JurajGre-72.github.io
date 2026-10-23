@@ -4892,7 +4892,7 @@
     "stage_name": "Pripomienkové konanie"
    },
    "LP/2026/521": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -5138,7 +5138,7 @@
     "tags": []
    },
    "LP/2026/510": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -6862,7 +6862,7 @@
     "tags": []
    },
    "LP/2026/538": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
