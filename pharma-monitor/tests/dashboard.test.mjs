@@ -428,6 +428,22 @@ try {
     await p2.context().close(); await p3.context().close();
   }
 
+  console.log('Check times come from status.json (written by every check)');
+  {
+    const p4 = await newPage();
+    const recent = new Date(Date.now() - 7 * 60000).toISOString();
+    await p4.route((u) => u.pathname.endsWith('/data/status.json'), (route) => route.fulfill({ json: {
+      checked: recent,
+      sources: Object.fromEntries(Object.entries(DATA.sources).map(([k, v]) => [k, { ...v, ok: true, checked: recent, error: null }])) } }));
+    await p4.route('https://api.github.com/**', (r) => r.fulfill({ status: 403, body: '{}' }));  // even without GitHub's API
+    await p4.goto(URL);
+    await p4.waitForSelector('article.item');
+    check('"Last check" shows the latest check, not the last data change', (await p4.locator('#sChecked').innerText()) === '7 min ago');
+    const rows = await p4.locator('.src-row .st').allInnerTexts();
+    check('every source shows the latest check time', rows.length > 0 && rows.every((t) => t === 'OK · checked 7 min ago'), rows.slice(0, 2).join(' | '));
+    await p4.context().close();
+  }
+
   console.log('Phone layout');
   page = await newPage({ viewport: { width: 375, height: 800 } });
   await page.goto(URL);

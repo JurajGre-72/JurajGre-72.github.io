@@ -29,10 +29,12 @@ are still covered through Slov-Lex eLegislatíva, which tracks them through the 
 
 ## How you get notified
 
-1. `.github/workflows/pharma-monitor.yml` checks all sources **every 15 minutes** from 07:00 to 22:00 Bratislava
-   summer time (05:00–19:59 UTC) and hourly at night. The slower sources (key law wordings, EUR-Lex, the
-   categorisation list) are read once an hour; a quiet run takes about 15 seconds and commits nothing. It can also be
-   started by hand (**Actions → Regulatory monitor → Run workflow**), which always checks everything.
+1. `.github/workflows/pharma-monitor.yml` checks all sources **every hour**. GitHub's own schedule (every 15 minutes
+   by day) is best-effort and in practice starts only a few runs a day, so a Claude scheduled task
+   ("PHARMACOPOLA monitor – hourly check", which messages the session "PHARMACOPOLA monitor – hourly starter")
+   starts the workflow once an hour. It can also be started by hand (**Actions → Regulatory monitor → Run workflow**).
+   Every run writes `data/status.json` (when each source was checked); `data/items.json` changes only when
+   something new is found.
 2. When it finds new relevant items it opens a **GitHub issue** labelled `regulatory-update` with a digest
    (🔴 high / 🟠 medium / ⚪ low). GitHub e-mails new issues to the repository owner. Check that
    *Settings → Notifications → Email* is on and that you are "watching" this repository.
@@ -48,7 +50,7 @@ The dashboard shows everything found, with filters, search and "NEW" markers.
 One click, no sign-in. The button loads the newest results straight away (bypassing the website cache). If a check
 of all sources is running at that moment, it waits for it to finish and for the results to be published, then
 shows how many new items were found (marked NEW). Otherwise it says when all sources were last checked – never more
-than about 15 minutes ago during the day. "Last check" in the header shows the same time.
+than about an hour ago. It also says since when nothing new has been published. "Last check" in the header shows the same time.
 
 **Optional – "Start an extra check"** (link in *How it works*) starts a full check immediately, outside the schedule.
 GitHub only allows that with a token, so the first use asks for one:
