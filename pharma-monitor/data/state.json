@@ -5856,12 +5856,12 @@
     "stage_name": "Vyhodnotenie pripomienkového konania"
    },
    "LP/2026/449": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 2,
     "tags": [
      "Ministry of Health"
     ],
-    "stage_name": "Vyhodnotenie pripomienkového konania"
+    "stage_name": "Spracovanie predkladateľom"
    },
    "LPEU/2026/608": {
     "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
@@ -6892,7 +6892,7 @@
     "tags": []
    },
    "LPEU/2026/707": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": [
      "Customs"
@@ -7099,7 +7099,7 @@
     "tags": []
    },
    "LPEU/2026/721": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": [
      "Animal diseases"
@@ -7116,7 +7116,7 @@
     "tags": []
    },
    "LPEU/2026/723": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -7130,7 +7130,7 @@
     "stage_name": "Pripomienkové konanie"
    },
    "LPEU/2026/722": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -7150,7 +7150,7 @@
     "tags": []
    },
    "LPEU/2026/724": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -7170,7 +7170,7 @@
     "tags": []
    },
    "LPEU/2026/725": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -7188,6 +7188,19 @@
     "stage": "MPK",
     "rel": 0,
     "tags": []
+   },
+   "LP/2026/572": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/728": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 2,
+    "tags": [
+     "Public procurement"
+    ],
+    "stage_name": "Schválenie gestora"
    }
   }
  },

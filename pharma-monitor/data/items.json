@@ -1,6 +1,38 @@
 {
  "items": [
   {
+   "id": "lp:LPEU/2026/728:SCHVALENIE_GESTORA",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LPEU/2026/728 · Akt EÚ: COM(2026)590 Návrh NARIADENIE EURÓPSKEHO PARLAMENTU A RADY o verejných zákazkách a koncesiách, ktorým sa zrušujú smernice 2014/23/EÚ, 2014/24/EÚ a 2014/25/EÚ a ktorým sa menia nariadenia (ES) č. 1370/2007, (EÚ) 2023/1542, (EÚ) 2024/1157, (EÚ) 2024/1252, (EÚ) 2024/1735, (EÚ) 2024/1781, (EÚ) 2024/2847, (EÚ) 2024/3110 a (EÚ) 2025/40 a smernice 2008/98/ES, (EÚ) 2019/882, (EÚ) 2022/2381, (EÚ) 2023/1791 a (EÚ) 2024/1760 (akt o verejnom obstarávaní)",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LPEU/2026/728",
+   "date": "2026-10-26T08:00:00Z",
+   "detected": "2026-10-26T13:37:07Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Public procurement",
+    "Schválenie gestora"
+   ],
+   "summary": "Stage: Schválenie gestora (since 26.10.2026)"
+  },
+  {
+   "id": "lp:LP/2026/449:SPRACOVANIE_PREDKLADATEL",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/449 · Vyhláška: Návrh vyhlášky Ministerstva zdravotníctva Slovenskej republiky, ktorou sa mení a dopĺňa vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 209/2014 Z. z., ktorou sa ustanovuje rozsah odbornej prípravy, rozsah požadovaných vedomostí pre skúšky odbornej spôsobilosti, podrobnosti o zriaďovaní a činnosti komisií na preskúšanie odbornej spôsobilosti, podrobnosti o skúške pred komisiou na preskúšanie odbornej spôsobilosti, obsah osvedčenia o odbornej spôsobilosti a rozsah aktualizačnej odbornej prípravy v znení vyhlášky č. 222/2018 Z. z.",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/449",
+   "date": "2026-10-26T08:00:00Z",
+   "detected": "2026-10-26T13:37:06Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Ministry of Health",
+    "Spracovanie predkladateľom"
+   ],
+   "summary": "Moved from stage “Vyhodnotenie pripomienkového konania” to “Spracovanie predkladateľom” · Stage: Spracovanie predkladateľom (since 26.10.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
+  },
+  {
    "id": "https://www.ema.europa.eu/en/news/ama-ema-issue-joint-guidance-ebola-vaccine-development",
    "source": "ema",
    "source_name": "EMA · European Medicines Agency",
@@ -2868,80 +2900,80 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-10-23T14:22:03Z",
+   "checked": "2026-10-26T13:36:41Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-10-23T14:22:03Z",
+   "checked": "2026-10-26T13:36:41Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-10-23T14:22:03Z",
+   "checked": "2026-10-26T13:36:41Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-10-23T14:22:03Z",
+   "checked": "2026-10-26T13:36:41Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-10-23T14:22:03Z",
+   "checked": "2026-10-26T13:36:41Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-10-23T14:22:03Z",
+   "checked": "2026-10-26T13:36:41Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-10-23T14:22:03Z",
-   "new": 0,
+   "checked": "2026-10-26T13:36:41Z",
+   "new": 2,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-10-23T14:22:03Z",
+   "checked": "2026-10-26T13:36:41Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-10-23T14:22:03Z",
+   "checked": "2026-10-26T13:36:41Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-10-23T14:22:03Z",
+   "checked": "2026-10-26T13:36:41Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-10-23T14:22:03Z",
+   "checked": "2026-10-26T13:36:41Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-10-23T14:22:03Z"
+ "updated": "2026-10-26T13:36:41Z"
 }
