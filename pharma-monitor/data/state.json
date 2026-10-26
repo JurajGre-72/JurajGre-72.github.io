@@ -68,7 +68,8 @@
    "https://www.sukl.sk/o-nas/podujatia-a-udalosti/konferencia-sarap-2026-modul-2": "2026-10-19T17:10:57Z",
    "https://www.sukl.sk/pre-verejnost-pacientov-a-media/pre-media/tlacove-spravy/ema-odporucila-schvalenie-noveho-lieku-rasonque-na-metastaticku-rakovinu-pankreasu": "2026-10-20T14:45:41Z",
    "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/liekopis/europsky-liekopis/pripomienkovanie-clankov-europskeho-liekopisu-pharmeuropa-38.4": "2026-10-20T14:45:41Z",
-   "https://www.sukl.sk/pre-verejnost-pacientov-a-media/oznamy-a-upozornenia/upozornenie-z-bezpecnostnych-dovodov-je-docasne-pozastaveny-pristup-k-it-sluzbam-sukl-ako-aj-k-sluzbam-ema": "2026-10-22T09:52:39Z"
+   "https://www.sukl.sk/pre-verejnost-pacientov-a-media/oznamy-a-upozornenia/upozornenie-z-bezpecnostnych-dovodov-je-docasne-pozastaveny-pristup-k-it-sluzbam-sukl-ako-aj-k-sluzbam-ema": "2026-10-22T09:52:39Z",
+   "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/doplnujuce-informacie-a-oznamy/informacia-o-aktualizacii-tlaciv-urcenych-na-podanie-ziadosti-o-prevod-registracie": "2026-10-26T14:31:41Z"
   }
  },
  "sukl_recall": {
@@ -4721,7 +4722,7 @@
     "tags": []
    },
    "LPEU/2026/677": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -6877,7 +6878,7 @@
     "tags": []
    },
    "LPEU/2026/706": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -6968,12 +6969,12 @@
     "tags": []
    },
    "LPEU/2026/712": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "SCHVALENIE_GESTORA",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/711": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "SCHVALENIE_GESTORA",
     "rel": 0,
     "tags": []
    },
@@ -7059,7 +7060,7 @@
     "tags": []
    },
    "LPEU/2026/719": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "SCHVALENIE_GESTORA",
     "rel": 0,
     "tags": []
    },
@@ -7155,17 +7156,17 @@
     "tags": []
    },
    "LPEU/2026/729": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/727": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/726": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -7175,7 +7176,7 @@
     "tags": []
    },
    "LPEU/2026/730": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -7195,12 +7196,17 @@
     "tags": []
    },
    "LPEU/2026/728": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 2,
     "tags": [
      "Public procurement"
     ],
-    "stage_name": "Schválenie gestora"
+    "stage_name": "Zápis predbežného stanoviska k návrhu aktu EÚ"
+   },
+   "LPEU/2026/731": {
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "rel": 0,
+    "tags": []
    }
   }
  },

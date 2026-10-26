@@ -1,6 +1,37 @@
 {
  "items": [
   {
+   "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/doplnujuce-informacie-a-oznamy/informacia-o-aktualizacii-tlaciv-urcenych-na-podanie-ziadosti-o-prevod-registracie",
+   "source": "sukl",
+   "source_name": "ŠÚKL · Aktuality",
+   "title": "Informácia o aktualizácii tlačív určených na podanie žiadosti o prevod registrácie",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/doplnujuce-informacie-a-oznamy/informacia-o-aktualizacii-tlaciv-urcenych-na-podanie-ziadosti-o-prevod-registracie",
+   "date": "2026-10-26T13:56:28Z",
+   "detected": "2026-10-26T14:31:41Z",
+   "category": "ŠÚKL notice",
+   "priority": "low",
+   "tags": [
+    "Medicines"
+   ],
+   "summary": "Štátny ústav informuje o zverejnení aktualizovaných tlačív určených na podanie žiadosti o prevod registrácie humánneho lieku."
+  },
+  {
+   "id": "lp:LPEU/2026/728:ZAPIS_PREDBEZNEHO_STANOVISKA",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LPEU/2026/728 · Akt EÚ: COM(2026)590 Návrh NARIADENIE EURÓPSKEHO PARLAMENTU A RADY o verejných zákazkách a koncesiách, ktorým sa zrušujú smernice 2014/23/EÚ, 2014/24/EÚ a 2014/25/EÚ a ktorým sa menia nariadenia (ES) č. 1370/2007, (EÚ) 2023/1542, (EÚ) 2024/1157, (EÚ) 2024/1252, (EÚ) 2024/1735, (EÚ) 2024/1781, (EÚ) 2024/2847, (EÚ) 2024/3110 a (EÚ) 2025/40 a smernice 2008/98/ES, (EÚ) 2019/882, (EÚ) 2022/2381, (EÚ) 2023/1791 a (EÚ) 2024/1760 (akt o verejnom obstarávaní)",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LPEU/2026/728",
+   "date": "2026-10-26T08:00:00Z",
+   "detected": "2026-10-26T14:31:37Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Public procurement",
+    "Zápis predbežného stanoviska k návrhu aktu EÚ"
+   ],
+   "summary": "Moved from stage “Schválenie gestora” to “Zápis predbežného stanoviska k návrhu aktu EÚ” · Stage: Zápis predbežného stanoviska k návrhu aktu EÚ (since 26.10.2026)"
+  },
+  {
    "id": "lp:LPEU/2026/728:SCHVALENIE_GESTORA",
    "source": "slovlex_lp",
    "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
@@ -2900,80 +2931,80 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-10-26T13:36:41Z",
+   "checked": "2026-10-26T14:31:05Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-10-26T13:36:41Z",
-   "new": 0,
+   "checked": "2026-10-26T14:31:05Z",
+   "new": 1,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-10-26T13:36:41Z",
+   "checked": "2026-10-26T14:31:05Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-10-26T13:36:41Z",
+   "checked": "2026-10-26T14:31:05Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-10-26T13:36:41Z",
+   "checked": "2026-10-26T14:31:05Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-10-26T13:36:41Z",
+   "checked": "2026-10-26T14:31:05Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-10-26T13:36:41Z",
-   "new": 2,
+   "checked": "2026-10-26T14:31:05Z",
+   "new": 1,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-10-26T13:36:41Z",
+   "checked": "2026-10-26T14:31:05Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-10-26T13:36:41Z",
+   "checked": "2026-10-26T14:31:05Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-10-26T13:36:41Z",
+   "checked": "2026-10-26T14:31:05Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-10-26T13:36:41Z",
+   "checked": "2026-10-26T14:31:05Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-10-26T13:36:41Z"
+ "updated": "2026-10-26T14:31:05Z"
 }
