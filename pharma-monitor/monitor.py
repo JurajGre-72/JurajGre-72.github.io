@@ -47,6 +47,7 @@ HERE = Path(__file__).resolve().parent
 DATA = HERE / "data"
 ITEMS_FILE = DATA / "items.json"
 STATE_FILE = DATA / "state.json"
+STATUS_FILE = DATA / "status.json"  # when each source was last checked; rewritten on every run
 CHANGES_DIR = DATA / "changes"
 CONFIG_FILE = HERE / "config.json"
 DASHBOARD_URL = "https://jurajgre-72.github.io/pharma-monitor/"
@@ -933,6 +934,8 @@ def main() -> int:
         save_json(ITEMS_FILE, store)
     else:
         print("No changes to the published data.")
+    # the dashboard reads this to show when the sources were really last checked, even when nothing changed
+    save_json(STATUS_FILE, {"checked": iso(started), "sources": status})
     referenced = {Path(i["details"]).name for i in store["items"] if i.get("details")}
     for f in CHANGES_DIR.glob("*.json"):
         if f.name not in referenced:

@@ -7,7 +7,7 @@
 <meta name="description" content="New Slovak laws and regulator announcements relevant to pharmaceutical and veterinary distribution.">
 <meta name="robots" content="noindex">
 <!-- change on every dashboard change: open pages and the Mac app see it and load the new version -->
-<meta name="pm-build" content="2026-10-16.2">
+<meta name="pm-build" content="2026-10-26.1">
 <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/icons/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
@@ -295,7 +295,7 @@
   <header class="top">
     <p class="eyebrow">Regulatory intelligence · Slovensko &amp; EÚ</p>
     <h1>Regulatory Monitor</h1>
-    <p class="sub">New Slovak and EU laws, draft legislation, regulator announcements and reimbursement-list changes relevant to the distribution of human and veterinary medicines, medical devices and related products. Checked automatically every 15 minutes. Open an item to see exactly what changed.</p>
+    <p class="sub">New Slovak and EU laws, draft legislation, regulator announcements and reimbursement-list changes relevant to the distribution of human and veterinary medicines, medical devices and related products. Checked automatically every hour. Open an item to see exactly what changed.</p>
     <div class="update-status" id="updStatus" role="status" aria-live="polite" hidden></div>
   </header>
 
@@ -351,7 +351,7 @@
   <section class="how">
     <h2>How alerts work</h2>
     <ul>
-      <li>All sources are checked automatically <b>every 15 minutes</b> (07:00–22:00, hourly at night). Only items matching the rules in <code>pharma-monitor/config.json</code> are kept.</li>
+      <li>All sources are checked automatically <b>every hour</b>, day and night. Only items matching the rules in <code>pharma-monitor/config.json</code> are kept.</li>
       <li>When something new is found, the job opens a GitHub issue labelled <code>regulatory-update</code>; GitHub e-mails it to you. Optional direct e-mail can be switched on with SMTP secrets (see README).</li>
       <li><b>Mac app:</b> the same dashboard in its own window, with a <b>Check for App Update</b> button that installs new versions.
         Easiest install: open <i>Terminal</i> and paste <code>curl -fsSL https://jurajgre-72.github.io/pharma-monitor/install-mac.sh | bash</code>
@@ -571,8 +571,9 @@
     $('#sNew').textContent = items.filter(isNew).length;
     $('#sHigh').textContent = items.filter((i) => i.priority === 'high' && i.date >= since).length;
     $('#sTotal').textContent = items.length;
-    $('#sChecked').textContent = data.updated ? relTime(data.updated) : '–';
-    if (data.updated) $('#sChecked').title = fmtDateTime(data.updated);
+    const checked = data.checked || data.updated;
+    $('#sChecked').textContent = checked ? relTime(checked) : '–';
+    if (checked) $('#sChecked').title = fmtDateTime(checked);
 
     const fill = (sel, values) => {
       const el = $(sel), keep = el.value;
@@ -613,9 +614,18 @@
 
   function loadData() {
     // the query string bypasses GitHub Pages' 10-minute cache, so a finished check shows up at once
-    return fetch(`data/items.json?t=${Date.now()}`, { cache: 'no-store' })
+    const bust = Date.now();
+    // status.json is rewritten by every check, items.json only when something changed
+    const status = fetch(`data/status.json?t=${bust}`, { cache: 'no-store' })
+      .then((r) => (r.ok ? r.json() : null)).catch(() => null);
+    return fetch(`data/items.json?t=${bust}`, { cache: 'no-store' })
       .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
-      .then((data) => {
+      .then(async (data) => {
+        const st = await status;
+        if (st && st.checked && (!data.updated || st.checked > data.updated)) {
+          data.checked = st.checked;
+          data.sources = { ...(data.sources || {}), ...(st.sources || {}) };
+        }
         state.items = (data.items || []).sort((a, b) => (b.date > a.date ? 1 : b.date < a.date ? -1 : RANK[b.priority] - RANK[a.priority]));
         state.updated = data.updated;
         renderStats(data);
@@ -716,10 +726,13 @@
       busy(false);
       await showLastCheck();
       const fresh = state.items.filter((i) => !known.has(i.id)).length;
-      const last = run && run.status === 'completed' ? relTime(run.updated_at) : (data.updated ? relTime(data.updated) : 'recently');
+      const checked = data.checked || data.updated;
+      const last = run && run.status === 'completed' ? relTime(run.updated_at) : (checked ? relTime(checked) : 'recently');
+      const newest = state.items.reduce((m, i) => (i.date > m ? i.date : m), '');
       setStatus(fresh
         ? `Done. <b>${fresh}</b> new item${fresh === 1 ? '' : 's'} – marked NEW below.`
-        : `Up to date. All sources were checked ${esc(last)}; the next automatic check starts within 15 minutes.`);
+        : `Up to date. All sources were checked ${esc(last)}${newest ? ` – nothing new has been published since ${esc(fmtDate(newest))}` : ''}.
+           The next automatic check runs within the hour.`);
     } catch (e) {
       busy(false);
       try { await loadData(); } catch (err) { /* keep what is shown */ }
