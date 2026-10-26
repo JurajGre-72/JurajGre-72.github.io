@@ -4663,7 +4663,7 @@
     ]
    },
    "LP/2026/531": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -6900,7 +6900,7 @@
     ]
    },
    "LP/2026/543": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -6935,13 +6935,13 @@
     "tags": []
    },
    "LP/2026/545": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 1,
     "tags": [
      "Taxes",
      "Amends 595/2003"
     ],
-    "stage_name": "Pripomienkové konanie"
+    "stage_name": "Vyhodnotenie pripomienkového konania"
    },
    "LPEU/2026/708": {
     "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
