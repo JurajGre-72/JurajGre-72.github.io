@@ -4804,7 +4804,7 @@
     "tags": []
    },
    "LP/2026/506": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 0,
     "tags": []
    },
@@ -7141,6 +7141,11 @@
    },
    "LP/2026/570": {
     "stage": "ROKOVANIE_VLADA",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/542": {
+    "stage": "MPK",
     "rel": 0,
     "tags": []
    }
