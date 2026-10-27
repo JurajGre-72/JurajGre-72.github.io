@@ -4935,7 +4935,7 @@
     "stage_name": "Vyhodnotenie pripomienkového konania"
    },
    "LP/2026/396": {
-    "stage": "ROKOVANIE_POV",
+    "stage": "ROKOVANIE_VLADA",
     "rel": 0,
     "tags": []
    },
@@ -7228,6 +7228,15 @@
     "stage": "SCHVALENIE_GESTORA",
     "rel": 0,
     "tags": []
+   },
+   "LP/2026/559": {
+    "stage": "MPK",
+    "rel": 3,
+    "tags": [
+     "Medicines",
+     "Ministry of Health"
+    ],
+    "stage_name": "Pripomienkové konanie"
    }
   }
  },
