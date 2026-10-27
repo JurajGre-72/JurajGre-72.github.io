@@ -21,6 +21,22 @@
    "details": "data/changes/kat_202611_0c30ea139b56.json"
   },
   {
+   "id": "lp:LPEU/2026/676:PROCES_UKONCENY",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LPEU/2026/676 · Akt EÚ: C(2026)6940 ROZHODNUTIE KOMISIE o opatrení oznámenom Nemeckom podľa nariadenia (ES) č. 1223/2009, pokiaľ ide o kozmetický výrobok 4 Long Lashes Eyelash Serum Gold",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LPEU/2026/676",
+   "date": "2026-10-27T08:00:00Z",
+   "detected": "2026-10-27T11:23:30Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Cosmetics",
+    "Proces ukončený"
+   ],
+   "summary": "Moved from stage “Zápis predbežného stanoviska k návrhu aktu EÚ” to “Proces ukončený” · Stage: Proces ukončený (since 27.10.2026)"
+  },
+  {
    "id": "lp:LP/2026/545:VYHODNOTENIE_MPK",
    "source": "slovlex_lp",
    "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
@@ -212,6 +228,19 @@
    "priority": "low",
    "tags": [],
    "summary": "Oznam priebežne aktualizujeme."
+  },
+  {
+   "id": "https://www.sukl.sk/pre-verejnost-pacientov-a-media/oznamy-a-upozornenia/aktualizacia-pristup-k-it-sluzbam-sukl-a-ema-bol-obnoveny",
+   "source": "sukl",
+   "source_name": "ŠÚKL · Aktuality",
+   "title": "Aktualizácia: Prístup k IT službám ŠÚKL a EMA bol obnovený",
+   "url": "https://www.sukl.sk/pre-verejnost-pacientov-a-media/oznamy-a-upozornenia/aktualizacia-pristup-k-it-sluzbam-sukl-a-ema-bol-obnoveny",
+   "date": "2026-10-22T07:57:16Z",
+   "detected": "2026-10-27T11:23:34Z",
+   "category": "ŠÚKL notice",
+   "priority": "low",
+   "tags": [],
+   "summary": "Aktualizovaný oznam"
   },
   {
    "id": "uskvbl:36:2026-10-22T07:38:20",
@@ -3016,80 +3045,80 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-10-27T09:16:48Z",
+   "checked": "2026-10-27T11:22:57Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-10-27T09:16:48Z",
-   "new": 0,
+   "checked": "2026-10-27T11:22:57Z",
+   "new": 1,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-10-27T09:16:48Z",
+   "checked": "2026-10-27T11:22:57Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-10-27T09:16:48Z",
-   "new": 2,
+   "checked": "2026-10-27T11:22:57Z",
+   "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-10-27T09:16:48Z",
+   "checked": "2026-10-27T11:22:57Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-10-27T09:16:48Z",
+   "checked": "2026-10-27T11:22:57Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-10-27T09:16:48Z",
+   "checked": "2026-10-27T11:22:57Z",
    "new": 1,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-10-27T09:16:48Z",
+   "checked": "2026-10-27T11:22:57Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-10-27T09:16:48Z",
-   "new": 1,
+   "checked": "2026-10-27T11:22:57Z",
+   "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-10-27T09:16:48Z",
+   "checked": "2026-10-27T11:22:57Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-10-27T09:16:48Z",
+   "checked": "2026-10-27T11:22:57Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-10-27T09:16:48Z"
+ "updated": "2026-10-27T11:22:57Z"
 }
