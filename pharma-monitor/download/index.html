@@ -4,11 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PHARMACOPOLA Monitor – stiahnuť</title>
-<meta name="description" content="Stiahnite si PHARMACOPOLA Regulatory Monitor pre Mac alebo ho otvorte v prehliadači.">
+<meta name="description" content="Stiahnite si PHARMACOPOLA Regulatory Monitor pre Windows alebo Mac.">
 <meta name="robots" content="noindex">
 <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../manifest.webmanifest">
 <meta name="theme-color" content="#003A5B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -58,6 +59,7 @@
   .big { display: inline-flex; align-items: center; gap: 10px; background: var(--accent-fill); color: var(--accent-ink); text-decoration: none;
          font-weight: 800; font-size: 17px; padding: 13px 22px; border-radius: 10px; margin: 2px 0 16px; }
   .big:hover { background: var(--accent-fill-hover); }
+  button.big { border: 0; font-family: inherit; cursor: pointer; }
   .big.secondary { background: var(--surface-2); color: var(--heading); border: 1px solid var(--line); }
   ol { margin: 0; padding-left: 22px; }
   ol li { margin: 0 0 9px; padding-left: 4px; }
@@ -66,7 +68,16 @@
   .note b { color: inherit; }
   .small { font-size: 14px; color: var(--muted); }
   [data-lang] { display: none; }
-  html[lang="sk"] [data-lang="sk"], html[lang="en"] [data-lang="en"] { display: revert; }
+  html[lang="sk"] [data-lang="sk"], html[lang="en"] [data-lang="en"] { display: flex; flex-direction: column; }
+  /* the visitor's own system first: Windows card on Windows, Mac cards elsewhere */
+  .card.mac { order: 2; } .card.win { order: 3; } .small.end { order: 4; }
+  html[data-os="win"] .card.win { order: 1; }
+  .big[disabled] { opacity: .6; cursor: default; }
+  .installed { display: none; }
+  html[data-installed] .installed { display: block; }
+  .manual { margin-top: 14px; }
+  .manual.flash { animation: flash 1.2s ease-out 1; }
+  @keyframes flash { from { background: var(--note-bg); } to { background: transparent; } }
   @media (max-width: 520px) { h1 { font-size: 23px; } .card { padding: 18px 16px 14px; } .big { width: 100%; justify-content: center; } }
 </style>
 </head>
@@ -87,8 +98,8 @@
     <h1>Regulačný monitor PHARMACOPOLA</h1>
     <p class="lead">Upozorní na nové zákony, zmeny zákonov a oznámenia ŠÚKL, MZ SR, ÚŠKVBL, ŠVPS, EÚ a EMA, ktoré sa týkajú distribúcie humánnych a veterinárnych liekov.</p>
 
-    <div class="card">
-      <h2>Možnosť 1: Ikona v Docku <span class="tag">Najjednoduchšie</span></h2>
+    <div class="card mac">
+      <h2>Mac – možnosť 1: Ikona v Docku <span class="tag">Najjednoduchšie</span></h2>
       <p>Nič sa neinštaluje a nezobrazí sa žiadne bezpečnostné upozornenie. Funguje na Macu s macOS 14 (Sonoma) alebo novším aj na telefóne.</p>
       <a class="big" href="../" id="openSk">Otvoriť monitor</a>
       <ol>
@@ -99,8 +110,8 @@
       <p class="small" style="margin-top:10px">Na iPhone: v Safari klepnite na <b>Zdieľať</b> → <b>Pridať na plochu</b>. Na starších Macoch si monitor uložte do záložiek.</p>
     </div>
 
-    <div class="card">
-      <h2>Možnosť 2: Aplikácia pre Mac</h2>
+    <div class="card mac">
+      <h2>Mac – možnosť 2: Aplikácia pre Mac</h2>
       <p>Samostatná aplikácia s tlačidlom na aktualizáciu. Pri prvom spustení si ju treba raz povoliť (krok 4).</p>
       <a class="big secondary" id="dmgSk" href="https://github.com/JurajGre-72/JurajGre-72.github.io/releases/download/monitor-mac-latest/PHARMACOPOLA-Monitor.dmg">Stiahnuť pre Mac (.dmg)</a>
       <ol>
@@ -115,7 +126,21 @@
       <div class="note">Upozornenie v kroku 4 je bežné pri aplikáciách mimo App Store. Robí sa iba raz.</div>
     </div>
 
-    <p class="small">Potrebný je macOS 11 alebo novší. Monitor sa aktualizuje sám – nové verzie netreba sťahovať znova.</p>
+    <div class="card win">
+      <h2>Windows <span class="tag">1 klik</span></h2>
+      <p>Monitor sa nainštaluje ako aplikácia – s ikonou v ponuke Štart a na pracovnej ploche, vo vlastnom okne. Bez bezpečnostných upozornení, aktualizuje sa sám.</p>
+      <button class="big install" type="button" id="installSk">Nainštalovať aplikáciu</button>
+      <p class="installed"><b>Hotovo – aplikácia je nainštalovaná.</b> Nájdete ju v ponuke Štart ako PHARMACOPOLA.</p>
+      <div class="manual">
+        <p style="margin-bottom:8px">Ak sa po kliknutí nič neotvorí, otvorte túto stránku v <b>Microsoft Edge</b> alebo <b>Google Chrome</b> a:</p>
+        <ol>
+          <li><b>Edge:</b> vpravo hore <b>⋯</b> → <b>Aplikácie</b> (Apps) → <b>Nainštalovať túto lokalitu ako aplikáciu</b> (Install this site as an app) → <b>Nainštalovať</b>.</li>
+          <li><b>Chrome:</b> vpravo hore <b>⋮</b> → <b>Prenášať, uložiť a zdieľať</b> (Cast, save and share) → <b>Nainštalovať stránku ako aplikáciu</b> (Install page as app) → <b>Nainštalovať</b>.</li>
+        </ol>
+      </div>
+    </div>
+
+    <p class="small end">Mac: potrebný je macOS 11 alebo novší. Windows: Windows 10 alebo 11. Monitor sa aktualizuje sám – nové verzie netreba sťahovať znova.</p>
   </section>
 
   <!-- ======================================================== ENGLISH -->
@@ -123,8 +148,8 @@
     <h1>PHARMACOPOLA Regulatory Monitor</h1>
     <p class="lead">Tells you about new laws, law changes and announcements from ŠÚKL, the Ministry of Health, ÚŠKVBL, ŠVPS, the EU and EMA that matter for distributing human and veterinary medicines.</p>
 
-    <div class="card">
-      <h2>Option 1: Icon in the Dock <span class="tag">Easiest</span></h2>
+    <div class="card mac">
+      <h2>Mac – option 1: Icon in the Dock <span class="tag">Easiest</span></h2>
       <p>Nothing to install and no security warnings. Works on Macs with macOS 14 (Sonoma) or newer and on phones.</p>
       <a class="big" href="../" id="openEn">Open the monitor</a>
       <ol>
@@ -135,8 +160,8 @@
       <p class="small" style="margin-top:10px">On iPhone: in Safari tap <b>Share</b> → <b>Add to Home Screen</b>. On older Macs, bookmark the monitor instead.</p>
     </div>
 
-    <div class="card">
-      <h2>Option 2: Mac app</h2>
+    <div class="card mac">
+      <h2>Mac – option 2: Mac app</h2>
       <p>A separate app with its own update button. The first time, you allow it once (step 4).</p>
       <a class="big secondary" id="dmgEn" href="https://github.com/JurajGre-72/JurajGre-72.github.io/releases/download/monitor-mac-latest/PHARMACOPOLA-Monitor.dmg">Download for Mac (.dmg)</a>
       <ol>
@@ -151,7 +176,21 @@
       <div class="note">The warning in step 4 is normal for apps from outside the App Store. You only do it once.</div>
     </div>
 
-    <p class="small">Needs macOS 11 or newer. The monitor updates itself – no need to download new versions.</p>
+    <div class="card win">
+      <h2>Windows <span class="tag">1 click</span></h2>
+      <p>The monitor installs as an app – with an icon in the Start menu and on the desktop, in its own window. No security warnings, and it updates itself.</p>
+      <button class="big install" type="button" id="installEn">Install the app</button>
+      <p class="installed"><b>Done – the app is installed.</b> Find it in the Start menu as PHARMACOPOLA.</p>
+      <div class="manual">
+        <p style="margin-bottom:8px">If nothing opens when you click, open this page in <b>Microsoft Edge</b> or <b>Google Chrome</b> and:</p>
+        <ol>
+          <li><b>Edge:</b> top right <b>⋯</b> → <b>Apps</b> → <b>Install this site as an app</b> → <b>Install</b>.</li>
+          <li><b>Chrome:</b> top right <b>⋮</b> → <b>Cast, save and share</b> → <b>Install page as app</b> → <b>Install</b>.</li>
+        </ol>
+      </div>
+    </div>
+
+    <p class="small end">Mac: needs macOS 11 or newer. Windows: Windows 10 or 11. The monitor updates itself – no need to download new versions.</p>
   </section>
 </main>
 
@@ -170,6 +209,29 @@
     const browser = /^(sk|cs)/i.test(navigator.language || '') ? 'sk' : 'en';
     setLang(['sk', 'en'].includes(fromUrl) ? fromUrl : saved || browser);
     document.querySelectorAll('[data-set-lang]').forEach((b) => b.addEventListener('click', () => setLang(b.dataset.setLang)));
+
+    // Windows visitors see the Windows card first
+    const ua = navigator.userAgentData && navigator.userAgentData.platform || navigator.platform || navigator.userAgent || '';
+    if (/win/i.test(ua)) root.dataset.os = 'win';
+
+    // "Install the app": Edge and Chrome hand the page an install prompt once they consider the monitor installable
+    let prompt = null;
+    try { navigator.serviceWorker && navigator.serviceWorker.register('../sw.js').catch(() => {}); } catch (e) { /* not available */ }
+    window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); prompt = e; });
+    window.addEventListener('appinstalled', () => { root.dataset.installed = '1'; });
+    document.querySelectorAll('.install').forEach((btn) => btn.addEventListener('click', async () => {
+      if (prompt) {
+        prompt.prompt();
+        const choice = await prompt.userChoice.catch(() => null);
+        prompt = null;
+        if (choice && choice.outcome === 'accepted') root.dataset.installed = '1';
+        return;
+      }
+      // no prompt from this browser (or already installed): point to the manual steps
+      const manual = btn.closest('.card').querySelector('.manual');
+      manual.classList.remove('flash'); void manual.offsetWidth; manual.classList.add('flash');
+      manual.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }));
   })();
 </script>
 </body>

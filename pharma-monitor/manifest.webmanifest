@@ -1,6 +1,6 @@
 {
   "name": "PHARMACOPOLA Regulatory Monitor",
-  "short_name": "Reg. Monitor",
+  "short_name": "PHARMACOPOLA",
   "description": "New Slovak and EU laws, drafts, regulator notices and reimbursement-list changes relevant to PHARMACOPOLA.",
   "id": "./",
   "start_url": "./",

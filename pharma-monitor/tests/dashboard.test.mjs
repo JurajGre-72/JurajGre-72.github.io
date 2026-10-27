@@ -460,6 +460,24 @@ try {
     check('dashboard links to the download page', (await p5.getAttribute('#shareLink', 'href')) === 'download/');
     check('errors on the page', p5.errors.length === 0, p5.errors.join(' | '));
     await p5.context().close();
+
+    // Windows: the install card comes first and Edge/Chrome can install the monitor as an app
+    const p6 = await newPage({ locale: 'en-US', userAgent:
+      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 Edg/141.0.0.0' });
+    await p6.goto(new globalThis.URL('download/?lang=en', URL).href);
+    await p6.waitForFunction(() => navigator.serviceWorker && navigator.serviceWorker.controller, null, { timeout: 10000 }).catch(() => {});
+    const first = await p6.evaluate(() => [...document.querySelectorAll('section[data-lang="en"] .card')]
+      .sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top)[0].querySelector('h2').textContent.trim());
+    check('Windows visitors see the Windows card first', first.startsWith('Windows'), first);
+    if (!process.env.DASHBOARD_URL || URL.startsWith('https:')) {
+      const cdp = await p6.context().newCDPSession(p6);
+      const { installabilityErrors } = await cdp.send('Page.getInstallabilityErrors');
+      check('the browser can install the monitor as an app', installabilityErrors.length === 0, JSON.stringify(installabilityErrors));
+    }
+    await p6.click('#installEn');  // no install prompt in a test browser: falls back to the manual steps
+    check('without a prompt, "Install the app" points to the manual steps', await p6.locator('section[data-lang="en"] .manual.flash').count() === 1);
+    check('errors on the page', p6.errors.length === 0, p6.errors.join(' | '));
+    await p6.context().close();
   }
 
   console.log('Phone layout');

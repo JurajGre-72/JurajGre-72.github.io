@@ -66,8 +66,10 @@ Without a token, "Run it on GitHub instead" opens the workflow page, where *Run 
 ## Mac app
 
 **To share with a colleague**, send https://jurajgre-72.github.io/pharma-monitor/download/ – a simple page in Slovak and
-English (`download/index.html`) with a download button and step-by-step instructions, plus a no-install option
-(Safari → *File → Add to Dock*). E-mail services block app files as attachments, so send this link instead.
+English (`download/index.html`). **Windows:** an *Install the app* button installs the monitor from Edge or Chrome as an
+app (Start menu and desktop icon, own window, no security warnings; `sw.js` is a pass-through service worker that only
+makes this possible – nothing is cached). **Mac:** add it to the Dock from Safari (no install) or download the Mac app,
+with step-by-step instructions. E-mail services block app files as attachments, so send this link instead.
 
 `macos-app/` is a small native macOS app (Swift, WebKit) that shows the live dashboard in its own window with the
 PHARMACOPOLA icon. Download: https://github.com/JurajGre-72/JurajGre-72.github.io/releases/download/monitor-mac-latest/PHARMACOPOLA-Monitor.dmg
