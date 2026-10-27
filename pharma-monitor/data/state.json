@@ -5881,12 +5881,12 @@
     "tags": []
    },
    "LPEU/2026/605": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/604": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
