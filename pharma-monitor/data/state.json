@@ -70,7 +70,8 @@
    "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/liekopis/europsky-liekopis/pripomienkovanie-clankov-europskeho-liekopisu-pharmeuropa-38.4": "2026-10-20T14:45:41Z",
    "https://www.sukl.sk/pre-verejnost-pacientov-a-media/oznamy-a-upozornenia/upozornenie-z-bezpecnostnych-dovodov-je-docasne-pozastaveny-pristup-k-it-sluzbam-sukl-ako-aj-k-sluzbam-ema": "2026-10-22T09:52:39Z",
    "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/doplnujuce-informacie-a-oznamy/informacia-o-aktualizacii-tlaciv-urcenych-na-podanie-ziadosti-o-prevod-registracie": "2026-10-26T14:31:41Z",
-   "https://www.sukl.sk/pre-verejnost-pacientov-a-media/oznamy-a-upozornenia/aktualizacia-pristup-k-it-sluzbam-sukl-a-ema-bol-obnoveny": "2026-10-27T11:23:34Z"
+   "https://www.sukl.sk/pre-verejnost-pacientov-a-media/oznamy-a-upozornenia/aktualizacia-pristup-k-it-sluzbam-sukl-a-ema-bol-obnoveny": "2026-10-27T11:23:34Z",
+   "https://www.sukl.sk/pre-verejnost-pacientov-a-media/oznamy-a-upozornenia/aktualizacia-niektore-it-sluzby-sukl-su-nadalej-nedostupne": "2026-10-27T13:33:46Z"
   }
  },
  "sukl_recall": {
@@ -6888,7 +6889,7 @@
     "tags": []
    },
    "LPEU/2026/705": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -7214,7 +7215,7 @@
     "tags": []
    },
    "LP/2026/573": {
-    "stage": "SPRACOVANIE_PREDKLADATEL",
+    "stage": "ROKOVANIE_VLADA",
     "rel": 0,
     "tags": []
    },

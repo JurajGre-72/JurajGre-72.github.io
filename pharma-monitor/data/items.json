@@ -243,6 +243,19 @@
    "summary": "Aktualizovaný oznam"
   },
   {
+   "id": "https://www.sukl.sk/pre-verejnost-pacientov-a-media/oznamy-a-upozornenia/aktualizacia-niektore-it-sluzby-sukl-su-nadalej-nedostupne",
+   "source": "sukl",
+   "source_name": "ŠÚKL · Aktuality",
+   "title": "Aktualizácia: Niektoré IT služby ŠÚKL sú naďalej nedostupné",
+   "url": "https://www.sukl.sk/pre-verejnost-pacientov-a-media/oznamy-a-upozornenia/aktualizacia-niektore-it-sluzby-sukl-su-nadalej-nedostupne",
+   "date": "2026-10-22T07:57:16Z",
+   "detected": "2026-10-27T13:33:46Z",
+   "category": "ŠÚKL notice",
+   "priority": "low",
+   "tags": [],
+   "summary": "Aktualizovaný oznam"
+  },
+  {
    "id": "uskvbl:36:2026-10-22T07:38:20",
    "source": "uskvbl",
    "source_name": "ÚŠKVBL · Veterinárne lieky",
@@ -3045,80 +3058,80 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-10-27T11:22:57Z",
+   "checked": "2026-10-27T13:33:15Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-10-27T11:22:57Z",
+   "checked": "2026-10-27T13:33:15Z",
    "new": 1,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-10-27T11:22:57Z",
+   "checked": "2026-10-27T13:33:15Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-10-27T11:22:57Z",
+   "checked": "2026-10-27T13:33:15Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-10-27T11:22:57Z",
+   "checked": "2026-10-27T13:33:15Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-10-27T11:22:57Z",
+   "checked": "2026-10-27T13:33:15Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-10-27T11:22:57Z",
-   "new": 1,
+   "checked": "2026-10-27T13:33:15Z",
+   "new": 0,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-10-27T11:22:57Z",
+   "checked": "2026-10-27T13:33:15Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-10-27T11:22:57Z",
+   "checked": "2026-10-27T13:33:15Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-10-27T11:22:57Z",
+   "checked": "2026-10-27T13:33:15Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-10-27T11:22:57Z",
+   "checked": "2026-10-27T13:33:15Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-10-27T11:22:57Z"
+ "updated": "2026-10-27T13:33:15Z"
 }
