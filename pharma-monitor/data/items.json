@@ -1,6 +1,26 @@
 {
  "items": [
   {
+   "id": "kat:202611:0c30ea139b56",
+   "source": "kategorizacia",
+   "source_name": "MZ SR · Zoznam kategorizovaných liekov",
+   "title": "Zoznam kategorizovaných liekov 1.11.2026 – 30.11.2026 – INFORMATÍVNY MATERIÁL (updated version): 49 added, 25 removed, 65 price/reimbursement changes",
+   "url": "https://www.health.gov.sk/Clanok?lieky202611",
+   "date": "2026-10-27T09:18:20Z",
+   "detected": "2026-10-27T09:18:20Z",
+   "category": "Reimbursement & prices",
+   "priority": "high",
+   "tags": [
+    "Reimbursement / categorisation",
+    "Price regulation"
+   ],
+   "summary": "Compared with the list valid from 01.10.2026. Open the item for the full lists by ŠÚKL code. New e.g.: Afqlir 40 mg/ml, injekčný roztok v injekčnej liekovke, Aboxoma 2,5 mg filmom obalené tablety, Aboxoma 5 mg filmom obalené tablety.",
+   "effective": [
+    "2026-11-01"
+   ],
+   "details": "data/changes/kat_202611_0c30ea139b56.json"
+  },
+  {
    "id": "lp:LP/2026/545:VYHODNOTENIE_MPK",
    "source": "slovlex_lp",
    "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
@@ -16,6 +36,22 @@
     "Vyhodnotenie pripomienkového konania"
    ],
    "summary": "Moved from stage “Pripomienkové konanie” to “Vyhodnotenie pripomienkového konania” · Stage: Vyhodnotenie pripomienkového konania (since 27.10.2026) · Submitted by: Ministerstvo financií Slovenskej republiky · Main act amended: 595/2003 Z. z."
+  },
+  {
+   "id": "lp:LP/2026/534:SPRACOVANIE_PREDKLADATEL",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/534 · Vyhláška: Návrh vyhlášky Ministerstva zdravotníctva Slovenskej republiky, ktorou sa mení a dopĺňa vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 229/2011 Z. z. o postupe pri posudzovaní zdravotnej spôsobilosti a psychickej spôsobilosti na držanie alebo nosenie strelných zbraní a streliva a o náležitostiach lekárskeho posudku a psychologického posudku v znení vyhlášky č. 105/2012 Z. z.",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/534",
+   "date": "2026-10-27T08:00:00Z",
+   "detected": "2026-10-27T09:17:12Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Ministry of Health",
+    "Spracovanie predkladateľom"
+   ],
+   "summary": "Moved from stage “Vyhodnotenie pripomienkového konania” to “Spracovanie predkladateľom” · Stage: Spracovanie predkladateľom (since 27.10.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
   },
   {
    "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/doplnujuce-informacie-a-oznamy/informacia-o-aktualizacii-tlaciv-urcenych-na-podanie-ziadosti-o-prevod-registracie",
@@ -1339,6 +1375,38 @@
     "Medicines (general)"
    ],
    "summary": "By the end of 2026, EMA will develop a regulatory roadmap to help drive decisive change on how women’s health is considered across medicines development and regulation. This…, Women are still missing: from research and data, prevention, diagnosis and treatment. But the momentum to improve support for women’s health…"
+  },
+  {
+   "id": "https://www.health.gov.sk/Clanok?lieky202611",
+   "source": "mzsr",
+   "source_name": "Ministerstvo zdravotníctva SR",
+   "title": "Zoznam kategorizovaných liekov 1.11.2026 – 30.11.2026 – INFORMATÍVNY MATERIÁL",
+   "url": "https://www.health.gov.sk/Clanok?lieky202611",
+   "date": "2026-09-30T08:49:55Z",
+   "detected": "2026-10-27T09:17:16Z",
+   "category": "Ministry of Health",
+   "priority": "high",
+   "tags": [
+    "Medicines",
+    "Reimbursement / categorisation"
+   ],
+   "summary": ""
+  },
+  {
+   "id": "https://www.health.gov.sk/Clanok?zuuc-202611-lieky",
+   "source": "mzsr",
+   "source_name": "Ministerstvo zdravotníctva SR",
+   "title": "Zoznam liekov s úradne určenou cenou 1.11.2026 - 30.11.2026 – INFORMATÍVNY MATERIÁL",
+   "url": "https://www.health.gov.sk/Clanok?zuuc-202611-lieky",
+   "date": "2026-09-30T08:38:13Z",
+   "detected": "2026-10-27T09:17:16Z",
+   "category": "Ministry of Health",
+   "priority": "high",
+   "tags": [
+    "Medicines",
+    "Reimbursement / categorisation"
+   ],
+   "summary": ""
   },
   {
    "id": "https://www.sukl.sk/pre-verejnost-pacientov-a-media/uzitocne-informacie/vakciny-a-ockovanie/prehlad-vakcin-proti-chripke-pre-sezonu-2026-2027",
@@ -2948,80 +3016,80 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-10-26T23:16:32Z",
+   "checked": "2026-10-27T09:16:48Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-10-26T23:16:32Z",
+   "checked": "2026-10-27T09:16:48Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-10-26T23:16:32Z",
+   "checked": "2026-10-27T09:16:48Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-10-26T23:16:32Z",
-   "new": 0,
+   "checked": "2026-10-27T09:16:48Z",
+   "new": 2,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-10-26T23:16:32Z",
+   "checked": "2026-10-27T09:16:48Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-10-26T23:16:32Z",
+   "checked": "2026-10-27T09:16:48Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-10-26T23:16:32Z",
+   "checked": "2026-10-27T09:16:48Z",
    "new": 1,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-10-26T23:16:32Z",
+   "checked": "2026-10-27T09:16:48Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-10-26T23:16:32Z",
-   "new": 0,
+   "checked": "2026-10-27T09:16:48Z",
+   "new": 1,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-10-26T23:16:32Z",
+   "checked": "2026-10-27T09:16:48Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-10-26T23:16:32Z",
+   "checked": "2026-10-27T09:16:48Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-10-26T23:16:32Z"
+ "updated": "2026-10-27T09:16:48Z"
 }

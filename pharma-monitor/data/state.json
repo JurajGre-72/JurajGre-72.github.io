@@ -116,7 +116,10 @@
    "https://www.health.gov.sk/Clanok?statny-tajomnik-svajciarsko-velvyslankyna": "2026-10-22T09:52:41Z",
    "https://www.health.gov.sk/Clanok?skrining-odbornici-zahranicni": "2026-10-23T10:16:43Z",
    "https://www.health.gov.sk/Clanok?minister-opatrenia-zdravotnici-utoky": "2026-10-23T15:21:32Z",
-   "https://www.health.gov.sk/Clanky": "2026-10-27T08:17:16Z"
+   "https://www.health.gov.sk/Clanky": "2026-10-27T08:17:16Z",
+   "https://www.health.gov.sk/Clanok?zuuc-202611-lieky": "2026-10-27T09:17:16Z",
+   "https://www.health.gov.sk/Clanok?lieky202611": "2026-10-27T09:17:16Z",
+   "https://www.health.gov.sk/Clanok?memorandum-zdravotnici-ochrana": "2026-10-27T09:17:16Z"
   }
  },
  "uskvbl": {
@@ -4689,7 +4692,7 @@
     "tags": []
    },
    "LP/2026/489": {
-    "stage": "SPRACOVANIE_PREDKLADATEL",
+    "stage": "ROKOVANIE_VLADA",
     "rel": 0,
     "tags": []
    },
@@ -6841,12 +6844,12 @@
     "tags": []
    },
    "LP/2026/534": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 2,
     "tags": [
      "Ministry of Health"
     ],
-    "stage_name": "Vyhodnotenie pripomienkového konania"
+    "stage_name": "Spracovanie predkladateľom"
    },
    "LPEU/2026/703": {
     "stage": "PROCES_UKONCENY",
@@ -6970,12 +6973,12 @@
     "tags": []
    },
    "LPEU/2026/712": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/711": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -7061,7 +7064,7 @@
     "tags": []
    },
    "LPEU/2026/719": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -7101,7 +7104,7 @@
     "tags": []
    },
    "LPEU/2026/721": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": [
      "Animal diseases"
@@ -7206,6 +7209,11 @@
    },
    "LPEU/2026/731": {
     "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/573": {
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 0,
     "tags": []
    }
@@ -7723,10 +7731,10 @@
     "stamp": "1077029||"
    },
    "202611": {
-    "hash": "1a638dd0955b",
+    "hash": "0c30ea139b56",
     "title": "Zoznam kategorizovaných liekov 1.11.2026 – 30.11.2026 – INFORMATÍVNY MATERIÁL",
     "url": "https://www.health.gov.sk/Zdroje?/Sources/kategorizacia/zkl/202611/cast_A_zoznam_liekov_N_k_01_11_2026.xlsx",
-    "stamp": "1082253||"
+    "stamp": "1071957||"
    }
   }
  },
