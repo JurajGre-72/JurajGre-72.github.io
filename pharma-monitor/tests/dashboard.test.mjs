@@ -444,6 +444,24 @@ try {
     await p4.context().close();
   }
 
+  console.log('Download page for colleagues');
+  {
+    const p5 = await newPage({ locale: 'sk-SK' });
+    await p5.goto(new globalThis.URL('download/', URL).href);
+    const dmg = 'https://github.com/JurajGre-72/JurajGre-72.github.io/releases/download/monitor-mac-latest/PHARMACOPOLA-Monitor.dmg';
+    check('download page opens in Slovak for Slovak browsers', (await p5.locator('h1:visible').innerText()) === 'Regulačný monitor PHARMACOPOLA');
+    check('download button points to the newest Mac app', (await p5.getAttribute('#dmgSk', 'href')) === dmg && (await p5.getAttribute('#dmgEn', 'href')) === dmg);
+    check('logo loads on the download page', await p5.locator('.logo').evaluate((img) => img.complete && img.naturalWidth > 0));
+    await p5.click('[data-set-lang="en"]');
+    check('EN switch shows the English text', (await p5.locator('h1:visible').innerText()) === 'PHARMACOPOLA Regulatory Monitor');
+    await p5.click('#openEn');
+    await p5.waitForSelector('article.item');
+    check('"Open the monitor" opens the dashboard', true);
+    check('dashboard links to the download page', (await p5.getAttribute('#shareLink', 'href')) === 'download/');
+    check('errors on the page', p5.errors.length === 0, p5.errors.join(' | '));
+    await p5.context().close();
+  }
+
   console.log('Phone layout');
   page = await newPage({ viewport: { width: 375, height: 800 } });
   await page.goto(URL);

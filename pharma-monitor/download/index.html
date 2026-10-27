@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PHARMACOPOLA Monitor – stiahnuť</title>
+<meta name="description" content="Stiahnite si PHARMACOPOLA Regulatory Monitor pre Mac alebo ho otvorte v prehliadači.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
+<meta name="theme-color" content="#003A5B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* PHARMACOPOLA brand: navy #003A5B, teal #00A78F – same tokens as the dashboard */
+  :root {
+    --bar: #003A5B; --bar-ink: #ffffff; --bar-muted: #A9C3D1;
+    --bg: #EAF0F3; --surface: #ffffff; --surface-2: #F2F6F8;
+    --ink: #0E2244; --heading: #003A5B; --muted: #546778; --line: #D3DEE3;
+    --accent: #007C6B; --accent-fill: #00A78F; --accent-fill-hover: #00917C; --accent-ink: #ffffff;
+    --note-bg: #FDF0D9; --note-ink: #6B4100;
+    --shadow: 0 1px 2px rgba(0, 58, 91, .06), 0 2px 8px rgba(0, 58, 91, .04);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bar: #00283F; --bar-muted: #8FB0C2;
+      --bg: #061722; --surface: #0B2433; --surface-2: #10303F;
+      --ink: #E3EDF2; --heading: #ffffff; --muted: #91A9B7; --line: #1D4053;
+      --accent: #3FD3B9; --accent-fill-hover: #10B89E;
+      --note-bg: #3B2B12; --note-ink: #F2D7A6; --shadow: none;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bar: #00283F; --bar-muted: #8FB0C2;
+    --bg: #061722; --surface: #0B2433; --surface-2: #10303F;
+    --ink: #E3EDF2; --heading: #ffffff; --muted: #91A9B7; --line: #1D4053;
+    --accent: #3FD3B9; --accent-fill-hover: #10B89E;
+    --note-bg: #3B2B12; --note-ink: #F2D7A6; --shadow: none;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.55 Manrope, system-ui, -apple-system, "Segoe UI", sans-serif; }
+  a { color: var(--accent); }
+  .bar { background: var(--bar); color: var(--bar-ink); }
+  .bar-in, main { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+  .bar-in { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 60px; }
+  .logo { display: block; height: 26px; width: auto; }
+  .lang { display: flex; gap: 4px; }
+  .lang button { font: inherit; font-size: 13px; font-weight: 700; color: var(--bar-muted); background: transparent; border: 1px solid transparent; border-radius: 6px; padding: 4px 9px; cursor: pointer; }
+  .lang button[aria-pressed="true"] { color: var(--bar-ink); border-color: var(--bar-muted); }
+  main { padding-top: 28px; padding-bottom: 48px; }
+  h1 { color: var(--heading); font-size: 28px; line-height: 1.2; margin: 0 0 6px; letter-spacing: -.01em; }
+  .lead { color: var(--muted); margin: 0 0 24px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); padding: 22px 22px 18px; margin-bottom: 18px; }
+  .card h2 { color: var(--heading); font-size: 19px; margin: 0 0 4px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .tag { font-size: 12px; font-weight: 700; color: var(--accent-ink); background: var(--accent-fill); border-radius: 999px; padding: 2px 9px; }
+  .card p { margin: 0 0 14px; color: var(--muted); }
+  .big { display: inline-flex; align-items: center; gap: 10px; background: var(--accent-fill); color: var(--accent-ink); text-decoration: none;
+         font-weight: 800; font-size: 17px; padding: 13px 22px; border-radius: 10px; margin: 2px 0 16px; }
+  .big:hover { background: var(--accent-fill-hover); }
+  .big.secondary { background: var(--surface-2); color: var(--heading); border: 1px solid var(--line); }
+  ol { margin: 0; padding-left: 22px; }
+  ol li { margin: 0 0 9px; padding-left: 4px; }
+  b { color: var(--heading); }
+  .note { background: var(--note-bg); color: var(--note-ink); border-radius: 10px; padding: 11px 14px; font-size: 14.5px; margin: 14px 0 4px; }
+  .note b { color: inherit; }
+  .small { font-size: 14px; color: var(--muted); }
+  [data-lang] { display: none; }
+  html[lang="sk"] [data-lang="sk"], html[lang="en"] [data-lang="en"] { display: revert; }
+  @media (max-width: 520px) { h1 { font-size: 23px; } .card { padding: 18px 16px 14px; } .big { width: 100%; justify-content: center; } }
+</style>
+</head>
+<body>
+<div class="bar">
+  <div class="bar-in">
+    <img class="logo" src="../assets/pharmacopola-logo-white.svg" alt="PHARMACOPOLA" width="159" height="26">
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-set-lang="sk" aria-pressed="true">SK</button>
+      <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</div>
+
+<main>
+  <!-- ======================================================== SLOVENSKY -->
+  <section data-lang="sk">
+    <h1>Regulačný monitor PHARMACOPOLA</h1>
+    <p class="lead">Upozorní na nové zákony, zmeny zákonov a oznámenia ŠÚKL, MZ SR, ÚŠKVBL, ŠVPS, EÚ a EMA, ktoré sa týkajú distribúcie humánnych a veterinárnych liekov.</p>
+
+    <div class="card">
+      <h2>Možnosť 1: Ikona v Docku <span class="tag">Najjednoduchšie</span></h2>
+      <p>Nič sa neinštaluje a nezobrazí sa žiadne bezpečnostné upozornenie. Funguje na Macu s macOS 14 (Sonoma) alebo novším aj na telefóne.</p>
+      <a class="big" href="../" id="openSk">Otvoriť monitor</a>
+      <ol>
+        <li>Kliknite na zelené tlačidlo vyššie – monitor sa otvorí v <b>Safari</b>.</li>
+        <li>V hornej lište kliknite na <b>Súbor</b> (File) → <b>Pridať do Docku…</b> (Add to Dock) → <b>Pridať</b>.</li>
+        <li>Hotovo. V Docku je teraz ikona PHARMACOPOLA a otvára sa ako samostatná aplikácia.</li>
+      </ol>
+      <p class="small" style="margin-top:10px">Na iPhone: v Safari klepnite na <b>Zdieľať</b> → <b>Pridať na plochu</b>. Na starších Macoch si monitor uložte do záložiek.</p>
+    </div>
+
+    <div class="card">
+      <h2>Možnosť 2: Aplikácia pre Mac</h2>
+      <p>Samostatná aplikácia s tlačidlom na aktualizáciu. Pri prvom spustení si ju treba raz povoliť (krok 4).</p>
+      <a class="big secondary" id="dmgSk" href="https://github.com/JurajGre-72/JurajGre-72.github.io/releases/download/monitor-mac-latest/PHARMACOPOLA-Monitor.dmg">Stiahnuť pre Mac (.dmg)</a>
+      <ol>
+        <li>Kliknite na tlačidlo vyššie. Súbor sa stiahne do priečinka <b>Stiahnuté</b> (Downloads).</li>
+        <li>Otvorte stiahnutý súbor <b>PHARMACOPOLA-Monitor.dmg</b> (dvojklik).</li>
+        <li>V okne, ktoré sa otvorí, potiahnite ikonu <b>PHARMACOPOLA Monitor</b> na priečinok <b>Aplikácie</b> (Applications).</li>
+        <li>Otvorte aplikáciu z <b>Aplikácií</b>. Mac napíše, že aplikáciu nemohol overiť – kliknite na <b>Hotovo</b> (Done).
+          Potom otvorte <b>Systémové nastavenia</b> → <b>Súkromie a bezpečnosť</b> (Privacy &amp; Security), posuňte sa úplne dole
+          a pri PHARMACOPOLA Monitor kliknite na <b>Otvoriť aj tak</b> (Open Anyway). Potvrďte heslom k Macu.</li>
+        <li>Aplikácia sa otvorí. Odteraz ju spúšťate bežne, bez upozornení.</li>
+      </ol>
+      <div class="note">Upozornenie v kroku 4 je bežné pri aplikáciách mimo App Store. Robí sa iba raz.</div>
+    </div>
+
+    <p class="small">Potrebný je macOS 11 alebo novší. Monitor sa aktualizuje sám – nové verzie netreba sťahovať znova.</p>
+  </section>
+
+  <!-- ======================================================== ENGLISH -->
+  <section data-lang="en">
+    <h1>PHARMACOPOLA Regulatory Monitor</h1>
+    <p class="lead">Tells you about new laws, law changes and announcements from ŠÚKL, the Ministry of Health, ÚŠKVBL, ŠVPS, the EU and EMA that matter for distributing human and veterinary medicines.</p>
+
+    <div class="card">
+      <h2>Option 1: Icon in the Dock <span class="tag">Easiest</span></h2>
+      <p>Nothing to install and no security warnings. Works on Macs with macOS 14 (Sonoma) or newer and on phones.</p>
+      <a class="big" href="../" id="openEn">Open the monitor</a>
+      <ol>
+        <li>Click the green button above – the monitor opens in <b>Safari</b>.</li>
+        <li>In the menu bar click <b>File</b> → <b>Add to Dock…</b> → <b>Add</b>.</li>
+        <li>Done. The PHARMACOPOLA icon is now in the Dock and opens like an app.</li>
+      </ol>
+      <p class="small" style="margin-top:10px">On iPhone: in Safari tap <b>Share</b> → <b>Add to Home Screen</b>. On older Macs, bookmark the monitor instead.</p>
+    </div>
+
+    <div class="card">
+      <h2>Option 2: Mac app</h2>
+      <p>A separate app with its own update button. The first time, you allow it once (step 4).</p>
+      <a class="big secondary" id="dmgEn" href="https://github.com/JurajGre-72/JurajGre-72.github.io/releases/download/monitor-mac-latest/PHARMACOPOLA-Monitor.dmg">Download for Mac (.dmg)</a>
+      <ol>
+        <li>Click the button above. The file goes to your <b>Downloads</b> folder.</li>
+        <li>Open <b>PHARMACOPOLA-Monitor.dmg</b> (double-click).</li>
+        <li>In the window that opens, drag <b>PHARMACOPOLA Monitor</b> onto the <b>Applications</b> folder.</li>
+        <li>Open the app from <b>Applications</b>. The Mac says it could not verify the app – click <b>Done</b>.
+          Then open <b>System Settings</b> → <b>Privacy &amp; Security</b>, scroll to the bottom and click
+          <b>Open Anyway</b> next to PHARMACOPOLA Monitor. Confirm with your Mac password.</li>
+        <li>The app opens. From now on it starts normally, without warnings.</li>
+      </ol>
+      <div class="note">The warning in step 4 is normal for apps from outside the App Store. You only do it once.</div>
+    </div>
+
+    <p class="small">Needs macOS 11 or newer. The monitor updates itself – no need to download new versions.</p>
+  </section>
+</main>
+
+<script>
+  (function () {
+    const root = document.documentElement;
+    function setLang(l) {
+      root.lang = l;
+      document.title = l === 'sk' ? 'PHARMACOPOLA Monitor – stiahnuť' : 'PHARMACOPOLA Monitor – download';
+      document.querySelectorAll('[data-set-lang]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.setLang === l)));
+      try { localStorage.setItem('pm-dl-lang', l); } catch (e) { /* private mode */ }
+    }
+    let saved = null;
+    try { saved = localStorage.getItem('pm-dl-lang'); } catch (e) { /* private mode */ }
+    const fromUrl = new URLSearchParams(location.search).get('lang');
+    const browser = /^(sk|cs)/i.test(navigator.language || '') ? 'sk' : 'en';
+    setLang(['sk', 'en'].includes(fromUrl) ? fromUrl : saved || browser);
+    document.querySelectorAll('[data-set-lang]').forEach((b) => b.addEventListener('click', () => setLang(b.dataset.setLang)));
+  })();
+</script>
+</body>
+</html>
