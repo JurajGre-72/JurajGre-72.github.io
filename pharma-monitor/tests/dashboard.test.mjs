@@ -472,7 +472,9 @@ try {
     if (!process.env.DASHBOARD_URL || URL.startsWith('https:')) {
       const cdp = await p6.context().newCDPSession(p6);
       const { installabilityErrors } = await cdp.send('Page.getInstallabilityErrors');
-      check('the browser can install the monitor as an app', installabilityErrors.length === 0, JSON.stringify(installabilityErrors));
+      // test browsers are incognito, where Chrome never installs apps; any other error is a real problem
+      const real = installabilityErrors.filter((e) => e.errorId !== 'in-incognito');
+      check('the browser can install the monitor as an app', real.length === 0, JSON.stringify(real));
     }
     await p6.click('#installEn');  // no install prompt in a test browser: falls back to the manual steps
     check('without a prompt, "Install the app" points to the manual steps', await p6.locator('section[data-lang="en"] .manual.flash').count() === 1);
