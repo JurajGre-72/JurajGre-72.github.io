@@ -1,6 +1,40 @@
 {
  "items": [
   {
+   "id": "uskvbl:3408:2026-10-28T09:40:06",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Veterinárne lieky",
+   "title": "Updated page: Odbor biopreparátov",
+   "url": "https://www.uskvbl.sk/?page_id=3408",
+   "date": "2026-10-28T09:40:06Z",
+   "detected": "2026-10-28T10:18:14Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "medium",
+   "tags": [
+    "Veterinary medicines",
+    "Medicines",
+    "Vaccines"
+   ],
+   "summary": "New on the page: Úradné laboratórium pre kvalitu liekov (OMCL) – biologické a imunologické lieky, OCABR/OBPR"
+  },
+  {
+   "id": "uskvbl:99:2026-10-28T09:37:45",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Veterinárne lieky",
+   "title": "Updated page: REKLAMA VETERINÁRNYCH LIEKOV",
+   "url": "https://www.uskvbl.sk/?page_id=99",
+   "date": "2026-10-28T09:37:45Z",
+   "detected": "2026-10-28T10:18:15Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "medium",
+   "tags": [
+    "Veterinary medicines",
+    "Medicines",
+    "Veterinary care"
+   ],
+   "summary": "New on the page: do obidvoch e-mailov: podatelna@uskvbl.sk"
+  },
+  {
    "id": "https://svps.sk/?p=17252",
    "source": "svps",
    "source_name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
@@ -3123,80 +3157,80 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-10-28T09:16:45Z",
+   "checked": "2026-10-28T10:17:26Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-10-28T09:16:45Z",
+   "checked": "2026-10-28T10:17:26Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-10-28T09:16:45Z",
+   "checked": "2026-10-28T10:17:26Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-10-28T09:16:45Z",
+   "checked": "2026-10-28T10:17:26Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-10-28T09:16:45Z",
-   "new": 0,
+   "checked": "2026-10-28T10:17:26Z",
+   "new": 2,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-10-28T09:16:45Z",
+   "checked": "2026-10-28T10:17:26Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-10-28T09:16:45Z",
+   "checked": "2026-10-28T10:17:26Z",
    "new": 0,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-10-28T09:16:45Z",
+   "checked": "2026-10-28T10:17:26Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-10-28T09:16:45Z",
+   "checked": "2026-10-28T10:17:26Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-10-28T09:16:45Z",
+   "checked": "2026-10-28T10:17:26Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-10-28T09:16:45Z",
-   "new": 1,
+   "checked": "2026-10-28T10:17:26Z",
+   "new": 0,
    "error": null
   }
  },
- "updated": "2026-10-28T09:16:45Z"
+ "updated": "2026-10-28T10:17:26Z"
 }
