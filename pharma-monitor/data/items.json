@@ -1,6 +1,89 @@
 {
  "items": [
   {
+   "id": "slovlex:259/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "259/2026 Z. z. – Zákon, ktorým sa dopĺňa zákon č. 139/1998 Z. z. o omamných látkach, psychotropných látkach a prípravkoch v znení neskorších predpisov",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/259/",
+   "date": "2026-10-29T08:00:00Z",
+   "detected": "2026-10-28T23:16:41Z",
+   "category": "Legislation",
+   "priority": "high",
+   "tags": [
+    "Narcotics & precursors",
+    "Amends 139/1998"
+   ],
+   "summary": "Amends: 139/1998 Z. z. – Act on Narcotic and Psychotropic Substances",
+   "doc_type": "Zákon,",
+   "effective": [],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/259/ZZ_2026_259.pdf",
+   "details": "data/changes/slovlex_259_2026.json"
+  },
+  {
+   "id": "slovlex:258/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "258/2026 Z. z. – Zákon, ktorým sa mení a dopĺňa zákon č. 363/2011 Z. z. o rozsahu a podmienkach úhrady liekov, zdravotníckych pomôcok a dietetických potravín na základe verejného zdravotného poistenia a o zmene a doplnení niektorých zákonov v znení neskorších predpisov a ktorým sa menia a dopĺňajú niektoré zákony",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/258/",
+   "date": "2026-10-29T08:00:00Z",
+   "detected": "2026-10-28T23:16:38Z",
+   "category": "Legislation",
+   "priority": "high",
+   "tags": [
+    "Medicines",
+    "Medical devices",
+    "Reimbursement / categorisation",
+    "Dietetic foods",
+    "Health insurance",
+    "Amends 362/2011",
+    "Amends 363/2011",
+    "Amends 581/2004"
+   ],
+   "summary": "Amends: 362/2011 Z. z. – Act on Medicinal Products and Medical Devices (zákon o liekoch); 363/2011 Z. z. – Act on Reimbursement of Medicines (zákon o kategorizácii a úhradách); 581/2004 Z. z. – Act on Health Insurance Companies · Effective from: 01.11.2026, 01.01.2027 · 1574 mentions of medicines / medical devices in…",
+   "doc_type": "Zákon,",
+   "effective": [
+    "2026-11-01",
+    "2027-01-01"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/258/ZZ_2026_258.pdf",
+   "details": "data/changes/slovlex_258_2026.json"
+  },
+  {
+   "id": "lp:LP/2026/523:VYHODNOTENIE_MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/523 · Vyhláška: Návrh vyhlášky Ministerstva zdravotníctva Slovenskej republiky, ktorou sa mení a dopĺňa vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 422/2011 Z. z. o podrobnostiach farmako-ekonomického rozboru lieku v znení vyhlášky č. 177/2021 Z. z.",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/523",
+   "date": "2026-10-29T08:00:00Z",
+   "detected": "2026-10-28T23:17:09Z",
+   "category": "Draft law",
+   "priority": "high",
+   "tags": [
+    "Medicines",
+    "Ministry of Health",
+    "Vyhodnotenie pripomienkového konania"
+   ],
+   "summary": "Moved from stage “Pripomienkové konanie” to “Vyhodnotenie pripomienkového konania” · Stage: Vyhodnotenie pripomienkového konania (since 29.10.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
+  },
+  {
+   "id": "lp:LP/2026/522:VYHODNOTENIE_MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/522 · Vyhláška: Návrh vyhlášky Ministerstva zdravotníctva Slovenskej republiky, ktorou sa mení a dopĺňa vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 298/2022 Z. z., ktorou sa ustanovujú podrobnosti výpočtu príslušného násobku hrubého domáceho produktu pre stanovenie prahovej hodnoty posudzovaného lieku",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/522",
+   "date": "2026-10-29T08:00:00Z",
+   "detected": "2026-10-28T23:17:11Z",
+   "category": "Draft law",
+   "priority": "high",
+   "tags": [
+    "Medicines",
+    "Ministry of Health",
+    "Vyhodnotenie pripomienkového konania"
+   ],
+   "summary": "Moved from stage “Pripomienkové konanie” to “Vyhodnotenie pripomienkového konania” · Stage: Vyhodnotenie pripomienkového konania (since 29.10.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
+  },
+  {
    "id": "kat:202612:da10ab42d1d7",
    "source": "kategorizacia",
    "source_name": "MZ SR · Zoznam kategorizovaných liekov",
@@ -3240,80 +3323,80 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-10-28T16:18:10Z",
-   "new": 0,
+   "checked": "2026-10-28T23:16:30Z",
+   "new": 2,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-10-28T16:18:10Z",
+   "checked": "2026-10-28T23:16:30Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-10-28T16:18:10Z",
+   "checked": "2026-10-28T23:16:30Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-10-28T16:18:10Z",
-   "new": 2,
+   "checked": "2026-10-28T23:16:30Z",
+   "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-10-28T16:18:10Z",
+   "checked": "2026-10-28T23:16:30Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-10-28T16:18:10Z",
+   "checked": "2026-10-28T23:16:30Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-10-28T16:18:10Z",
-   "new": 0,
+   "checked": "2026-10-28T23:16:30Z",
+   "new": 2,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-10-28T16:18:10Z",
+   "checked": "2026-10-28T23:16:30Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-10-28T16:18:10Z",
-   "new": 1,
+   "checked": "2026-10-28T23:16:30Z",
+   "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-10-28T16:18:10Z",
+   "checked": "2026-10-28T23:16:30Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-10-28T16:18:10Z",
+   "checked": "2026-10-28T23:16:30Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-10-28T16:18:10Z"
+ "updated": "2026-10-28T23:16:30Z"
 }

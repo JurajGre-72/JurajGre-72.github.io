@@ -4507,7 +4507,11 @@
    "183/2026": "2026-10-14T07:24:44Z",
    "241/2026": "2026-10-14T07:24:46Z",
    "254/2026": "2026-10-16T09:01:44Z",
-   "255/2026": "2026-10-27T23:16:28Z"
+   "255/2026": "2026-10-27T23:16:28Z",
+   "256/2026": "2026-10-28T23:16:31Z",
+   "257/2026": "2026-10-28T23:16:33Z",
+   "258/2026": "2026-10-28T23:16:35Z",
+   "259/2026": "2026-10-28T23:16:38Z"
   }
  },
  "slovlex_lp": {
@@ -4887,22 +4891,22 @@
     "tags": []
    },
    "LP/2026/523": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 3,
     "tags": [
      "Medicines",
      "Ministry of Health"
     ],
-    "stage_name": "Pripomienkové konanie"
+    "stage_name": "Vyhodnotenie pripomienkového konania"
    },
    "LP/2026/522": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 3,
     "tags": [
      "Medicines",
      "Ministry of Health"
     ],
-    "stage_name": "Pripomienkové konanie"
+    "stage_name": "Vyhodnotenie pripomienkového konania"
    },
    "LP/2026/521": {
     "stage": "VYHODNOTENIE_MPK",
@@ -4910,7 +4914,7 @@
     "tags": []
    },
    "LP/2026/520": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
