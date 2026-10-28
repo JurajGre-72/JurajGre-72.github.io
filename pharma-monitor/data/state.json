@@ -7243,6 +7243,16 @@
     "stage": "SCHVALENIE_GESTORA",
     "rel": 0,
     "tags": []
+   },
+   "LPEU/2026/735": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/496": {
+    "stage": "PROCES_UKONCENY",
+    "rel": 0,
+    "tags": []
    }
   }
  },
