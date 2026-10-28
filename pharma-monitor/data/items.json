@@ -1,6 +1,58 @@
 {
  "items": [
   {
+   "id": "kat:202612:da10ab42d1d7",
+   "source": "kategorizacia",
+   "source_name": "MZ SR · Zoznam kategorizovaných liekov",
+   "title": "Zoznam kategorizovaných liekov 1.12.2026 – 31.12.2026 – INFORMATÍVNY MATERIÁL: 17 added, 7 removed, 26 price/reimbursement changes",
+   "url": "https://www.health.gov.sk/Clanok?lieky202612",
+   "date": "2026-10-28T16:20:01Z",
+   "detected": "2026-10-28T16:20:01Z",
+   "category": "Reimbursement & prices",
+   "priority": "high",
+   "tags": [
+    "Reimbursement / categorisation",
+    "Price regulation"
+   ],
+   "summary": "Compared with the list valid from 01.11.2026. Open the item for the full lists by ŠÚKL code. New e.g.: BEYONTTRA 356 mg filmom obalené tablety, Skilarence 120 mg gastrorezistentné tablety, Skilarence 30 mg gastrorezistentné tablety.",
+   "effective": [
+    "2026-12-01"
+   ],
+   "details": "data/changes/kat_202612_da10ab42d1d7.json"
+  },
+  {
+   "id": "https://www.health.gov.sk/Clanok?lieky202612",
+   "source": "mzsr",
+   "source_name": "Ministerstvo zdravotníctva SR",
+   "title": "Zoznam kategorizovaných liekov 1.12.2026 – 31.12.2026 – INFORMATÍVNY MATERIÁL",
+   "url": "https://www.health.gov.sk/Clanok?lieky202612",
+   "date": "2026-10-28T15:28:01Z",
+   "detected": "2026-10-28T16:18:44Z",
+   "category": "Ministry of Health",
+   "priority": "high",
+   "tags": [
+    "Medicines",
+    "Reimbursement / categorisation"
+   ],
+   "summary": ""
+  },
+  {
+   "id": "https://www.health.gov.sk/Clanok?zuuc-202612-lieky",
+   "source": "mzsr",
+   "source_name": "Ministerstvo zdravotníctva SR",
+   "title": "Zoznam liekov s úradne určenou cenou 1.12.2026 - 31.12.2026 – INFORMATÍVNY MATERIÁL",
+   "url": "https://www.health.gov.sk/Clanok?zuuc-202612-lieky",
+   "date": "2026-10-28T15:15:22Z",
+   "detected": "2026-10-28T16:18:44Z",
+   "category": "Ministry of Health",
+   "priority": "high",
+   "tags": [
+    "Medicines",
+    "Reimbursement / categorisation"
+   ],
+   "summary": ""
+  },
+  {
    "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/dostupnost-a-kvalita-liekov/dostupnost-liekov/zmeny-v-oznamovani-prerusenia-dodavok-liekov",
    "source": "sukl",
    "source_name": "ŠÚKL · Aktuality",
@@ -3188,81 +3240,80 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-10-28T15:17:59Z",
+   "checked": "2026-10-28T16:18:10Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-10-28T15:17:59Z",
+   "checked": "2026-10-28T16:18:10Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-10-28T15:17:59Z",
+   "checked": "2026-10-28T16:18:10Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-10-28T15:17:59Z",
-   "new": 0,
+   "checked": "2026-10-28T16:18:10Z",
+   "new": 2,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-10-28T15:17:59Z",
+   "checked": "2026-10-28T16:18:10Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-10-28T15:17:59Z",
+   "checked": "2026-10-28T16:18:10Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-10-28T15:17:59Z",
+   "checked": "2026-10-28T16:18:10Z",
    "new": 0,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-10-28T15:17:59Z",
+   "checked": "2026-10-28T16:18:10Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
-   "ok": false,
-   "checked": "2026-10-28T15:17:59Z",
-   "new": 0,
-   "error": "Part A file not found for 202612",
-   "last_ok": "2026-10-28T12:35:53Z"
+   "ok": true,
+   "checked": "2026-10-28T16:18:10Z",
+   "new": 1,
+   "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-10-28T15:17:59Z",
+   "checked": "2026-10-28T16:18:10Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-10-28T15:17:59Z",
+   "checked": "2026-10-28T16:18:10Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-10-28T15:17:59Z"
+ "updated": "2026-10-28T16:18:10Z"
 }

@@ -122,7 +122,9 @@
    "https://www.health.gov.sk/Clanky": "2026-10-27T08:17:16Z",
    "https://www.health.gov.sk/Clanok?zuuc-202611-lieky": "2026-10-27T09:17:16Z",
    "https://www.health.gov.sk/Clanok?lieky202611": "2026-10-27T09:17:16Z",
-   "https://www.health.gov.sk/Clanok?memorandum-zdravotnici-ochrana": "2026-10-27T09:17:16Z"
+   "https://www.health.gov.sk/Clanok?memorandum-zdravotnici-ochrana": "2026-10-27T09:17:16Z",
+   "https://www.health.gov.sk/Clanok?lieky202612": "2026-10-28T16:18:44Z",
+   "https://www.health.gov.sk/Clanok?zuuc-202612-lieky": "2026-10-28T16:18:44Z"
   }
  },
  "uskvbl": {
@@ -7806,6 +7808,12 @@
     "title": "Zoznam kategorizovaných liekov 1.11.2026 – 30.11.2026 – INFORMATÍVNY MATERIÁL",
     "url": "https://www.health.gov.sk/Zdroje?/Sources/kategorizacia/zkl/202611/cast_A_zoznam_liekov_N_k_01_11_2026.xlsx",
     "stamp": "1071957||"
+   },
+   "202612": {
+    "hash": "da10ab42d1d7",
+    "title": "Zoznam kategorizovaných liekov 1.12.2026 – 31.12.2026 – INFORMATÍVNY MATERIÁL",
+    "url": "https://www.health.gov.sk/Zdroje?/Sources/kategorizacia/zkl/202612/cast_A_zoznam_liekov_N_k_01_12_2026.xlsx",
+    "stamp": "1078010||"
    }
   }
  },
