@@ -6446,12 +6446,12 @@
     "tags": []
    },
    "LP/2026/436": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 2,
     "tags": [
      "Ministry of Health"
     ],
-    "stage_name": "Vyhodnotenie pripomienkového konania"
+    "stage_name": "Spracovanie predkladateľom"
    },
    "LP/2026/80": {
     "stage": "PROCES_UKONCENY",
