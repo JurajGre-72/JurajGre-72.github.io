@@ -1,6 +1,37 @@
 {
  "items": [
   {
+   "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/dostupnost-a-kvalita-liekov/dostupnost-liekov/zmeny-v-oznamovani-prerusenia-dodavok-liekov",
+   "source": "sukl",
+   "source_name": "ŠÚKL · Aktuality",
+   "title": "Zmeny v oznamovaní prerušenia dodávok liekov",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/dostupnost-a-kvalita-liekov/dostupnost-liekov/zmeny-v-oznamovani-prerusenia-dodavok-liekov",
+   "date": "2026-10-28T12:24:29Z",
+   "detected": "2026-10-28T12:36:28Z",
+   "category": "Supply disruption",
+   "priority": "high",
+   "tags": [
+    "Medicines"
+   ],
+   "summary": "Od 1. novembra 2026 nadobúda účinnosť novela zákona č. 362/2011 Z. z., ktorá upravuje povinnosti držiteľov rozhodnutia o registrácii lieku pri oznamovaní prerušenia a zrušenia dodávok humánnych liekov na trh Slovenskej republiky."
+  },
+  {
+   "id": "https://svps.sk/?p=17256",
+   "source": "svps",
+   "source_name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
+   "title": "Austrália uznala Slovensko za krajinu bez výskytu slintačky a krívačky (FMD)",
+   "url": "https://svps.sk/australia-uznala-slovensko-za-krajinu-bez-vyskytu-slintacky-a-krivacky-fmd/",
+   "date": "2026-10-28T12:17:34Z",
+   "detected": "2026-10-28T12:36:57Z",
+   "category": "ŠVPS notice",
+   "priority": "medium",
+   "tags": [
+    "Animal diseases",
+    "Veterinary care"
+   ],
+   "summary": "ŠVPS SR Vás informuje, že sme dňa 26.10.2026 obdržali list od kompetentnej autority Austrálie. Informujú nás, že Austrália dokončila svoje hodnotenie a uznajú Slovensko za krajinu bez výskytu slintačky a krívačky s dátumom účinnosti od 31. októbra 2025. Slovensko bude tiež pridané do zoznamu krajín bez výskytu…"
+  },
+  {
    "id": "uskvbl:3408:2026-10-28T09:40:06",
    "source": "uskvbl",
    "source_name": "ÚŠKVBL · Veterinárne lieky",
@@ -3157,80 +3188,80 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-10-28T10:17:26Z",
+   "checked": "2026-10-28T12:35:53Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-10-28T10:17:26Z",
-   "new": 0,
+   "checked": "2026-10-28T12:35:53Z",
+   "new": 1,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-10-28T10:17:26Z",
+   "checked": "2026-10-28T12:35:53Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-10-28T10:17:26Z",
+   "checked": "2026-10-28T12:35:53Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-10-28T10:17:26Z",
-   "new": 2,
+   "checked": "2026-10-28T12:35:53Z",
+   "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-10-28T10:17:26Z",
+   "checked": "2026-10-28T12:35:53Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-10-28T10:17:26Z",
+   "checked": "2026-10-28T12:35:53Z",
    "new": 0,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-10-28T10:17:26Z",
+   "checked": "2026-10-28T12:35:53Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-10-28T10:17:26Z",
+   "checked": "2026-10-28T12:35:53Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-10-28T10:17:26Z",
+   "checked": "2026-10-28T12:35:53Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-10-28T10:17:26Z",
-   "new": 0,
+   "checked": "2026-10-28T12:35:53Z",
+   "new": 1,
    "error": null
   }
  },
- "updated": "2026-10-28T10:17:26Z"
+ "updated": "2026-10-28T12:35:53Z"
 }

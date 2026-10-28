@@ -71,7 +71,8 @@
    "https://www.sukl.sk/pre-verejnost-pacientov-a-media/oznamy-a-upozornenia/upozornenie-z-bezpecnostnych-dovodov-je-docasne-pozastaveny-pristup-k-it-sluzbam-sukl-ako-aj-k-sluzbam-ema": "2026-10-22T09:52:39Z",
    "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/doplnujuce-informacie-a-oznamy/informacia-o-aktualizacii-tlaciv-urcenych-na-podanie-ziadosti-o-prevod-registracie": "2026-10-26T14:31:41Z",
    "https://www.sukl.sk/pre-verejnost-pacientov-a-media/oznamy-a-upozornenia/aktualizacia-pristup-k-it-sluzbam-sukl-a-ema-bol-obnoveny": "2026-10-27T11:23:34Z",
-   "https://www.sukl.sk/pre-verejnost-pacientov-a-media/oznamy-a-upozornenia/aktualizacia-niektore-it-sluzby-sukl-su-nadalej-nedostupne": "2026-10-27T13:33:46Z"
+   "https://www.sukl.sk/pre-verejnost-pacientov-a-media/oznamy-a-upozornenia/aktualizacia-niektore-it-sluzby-sukl-su-nadalej-nedostupne": "2026-10-27T13:33:46Z",
+   "https://www.sukl.sk/pre-odbornikov-a-firmy/dostupnost-a-kvalita-liekov/dostupnost-liekov/zmeny-v-oznamovani-prerusenia-dodavok-liekov": "2026-10-28T12:36:28Z"
   }
  },
  "sukl_recall": {
@@ -4827,7 +4828,7 @@
     "tags": []
    },
    "LP/2026/503": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 0,
     "tags": []
    },
@@ -8709,7 +8710,8 @@
    "https://svps.sk/?p=16853": "2026-10-14T11:10:05Z",
    "https://svps.sk/?p=17129": "2026-10-15T09:10:59Z",
    "https://svps.sk/?p=17239": "2026-10-20T09:06:00Z",
-   "https://svps.sk/?p=17252": "2026-10-28T09:18:07Z"
+   "https://svps.sk/?p=17252": "2026-10-28T09:18:07Z",
+   "https://svps.sk/?p=17256": "2026-10-28T12:36:57Z"
   }
  }
 }
