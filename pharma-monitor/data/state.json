@@ -6446,12 +6446,12 @@
     "tags": []
    },
    "LP/2026/436": {
-    "stage": "SPRACOVANIE_PREDKLADATEL",
+    "stage": "PROCES_UKONCENY",
     "rel": 2,
     "tags": [
      "Ministry of Health"
     ],
-    "stage_name": "Spracovanie predkladateľom"
+    "stage_name": "Proces ukončený"
    },
    "LP/2026/80": {
     "stage": "PROCES_UKONCENY",
