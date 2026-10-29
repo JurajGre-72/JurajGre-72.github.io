@@ -1,6 +1,19 @@
 {
  "items": [
   {
+   "id": "https://www.ema.europa.eu/en/news/ema-closed-all-souls-day-2-november",
+   "source": "ema",
+   "source_name": "EMA · European Medicines Agency",
+   "title": "EMA closed on All Souls' Day, 2 November",
+   "url": "https://www.ema.europa.eu/en/news/ema-closed-all-souls-day-2-november",
+   "date": "2026-10-29T12:30:00Z",
+   "detected": "2026-10-29T13:36:16Z",
+   "category": "EU agency (EMA)",
+   "priority": "low",
+   "tags": [],
+   "summary": "EMA’s office is closed on Monday 2 November, to mark All Souls' Day. The office reopens at 08:30 on Tuesday 3 November.The product emergency hotline is available outside…"
+  },
+  {
    "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/klinicke-skusanie-liekov/oznamy-a-aktuality/pilotny-projekt-poradenstva-pri-klinickych-skusaniach-bude-pokracovat-ako-trvala-iniciativa",
    "source": "sukl",
    "source_name": "ŠÚKL · Aktuality",
@@ -3566,80 +3579,80 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-10-29T10:17:32Z",
+   "checked": "2026-10-29T13:35:38Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-10-29T10:17:32Z",
-   "new": 1,
+   "checked": "2026-10-29T13:35:38Z",
+   "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-10-29T10:17:32Z",
+   "checked": "2026-10-29T13:35:38Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-10-29T10:17:32Z",
-   "new": 0,
+   "checked": "2026-10-29T13:35:38Z",
+   "new": 1,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-10-29T10:17:32Z",
+   "checked": "2026-10-29T13:35:38Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-10-29T10:17:32Z",
+   "checked": "2026-10-29T13:35:38Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-10-29T10:17:32Z",
+   "checked": "2026-10-29T13:35:38Z",
    "new": 0,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-10-29T10:17:32Z",
+   "checked": "2026-10-29T13:35:38Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-10-29T10:17:32Z",
+   "checked": "2026-10-29T13:35:38Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-10-29T10:17:32Z",
-   "new": 0,
+   "checked": "2026-10-29T13:35:38Z",
+   "new": 1,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-10-29T10:17:32Z",
+   "checked": "2026-10-29T13:35:38Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-10-29T10:17:32Z"
+ "updated": "2026-10-29T13:35:38Z"
 }

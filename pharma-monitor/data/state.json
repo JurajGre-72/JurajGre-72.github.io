@@ -127,7 +127,9 @@
    "https://www.health.gov.sk/Clanok?lieky202612": "2026-10-28T16:18:44Z",
    "https://www.health.gov.sk/Clanok?zuuc-202612-lieky": "2026-10-28T16:18:44Z",
    "https://www.health.gov.sk/Clanok?kontrakt-mzsr-oszzs-2026": "2026-10-28T17:11:01Z",
-   "https://www.health.gov.sk/Clanok?vystava-lekarskej-fakulty-predstavuje-osobnosti": "2026-10-28T21:17:06Z"
+   "https://www.health.gov.sk/Clanok?vystava-lekarskej-fakulty-predstavuje-osobnosti": "2026-10-28T21:17:06Z",
+   "https://www.health.gov.sk/Clanok?uradne-urcenie-cien-liekov": "2026-10-29T13:36:09Z",
+   "https://www.health.gov.sk/Clanok?vysledok-pet-3-2026": "2026-10-29T13:36:09Z"
   }
  },
  "uskvbl": {
@@ -5783,7 +5785,7 @@
     "tags": []
    },
    "LP/2026/450": {
-    "stage": "ROKOVANIE_POV",
+    "stage": "ROKOVANIE_VLADA",
     "rel": 0,
     "tags": []
    },
@@ -7231,12 +7233,12 @@
     "tags": []
    },
    "LPEU/2026/732": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/733": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -7250,12 +7252,12 @@
     "stage_name": "Pripomienkové konanie"
    },
    "LPEU/2026/734": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/735": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -7334,6 +7336,16 @@
    },
    "LP/2026/579": {
     "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/582": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/253": {
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    }
@@ -8811,7 +8823,8 @@
    "https://www.ema.europa.eu/en/news/meeting-highlights-committee-medicinal-products-human-use-chmp-14-17-september-2026": "2026-10-14T11:10:03Z",
    "https://www.ema.europa.eu/en/news/ema-recommends-authorisation-rasonque-metastatic-pancreatic-cancer": "2026-10-15T17:48:02Z",
    "https://www.ema.europa.eu/en/news/meeting-highlights-committee-medicinal-products-human-use-chmp-12-15-october-2026": "2026-10-16T15:34:18Z",
-   "https://www.ema.europa.eu/en/news/ama-ema-issue-joint-guidance-ebola-vaccine-development": "2026-10-23T10:16:55Z"
+   "https://www.ema.europa.eu/en/news/ama-ema-issue-joint-guidance-ebola-vaccine-development": "2026-10-23T10:16:55Z",
+   "https://www.ema.europa.eu/en/news/ema-closed-all-souls-day-2-november": "2026-10-29T13:36:16Z"
   }
  },
  "svps": {
