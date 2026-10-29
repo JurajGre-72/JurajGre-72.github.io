@@ -1,6 +1,82 @@
 {
  "items": [
   {
+   "id": "law:581/2004:2027-07-01",
+   "source": "lawchanges",
+   "source_name": "Slov-Lex · Znenia kľúčových zákonov",
+   "title": "581/2004 Z. z. – Act on Health Insurance Companies: new wording in force from 01.07.2027",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2004/581/20270701.html",
+   "date": "2026-10-29T08:18:37Z",
+   "detected": "2026-10-29T08:18:37Z",
+   "category": "Law change",
+   "priority": "medium",
+   "tags": [
+    "Amends 581/2004"
+   ],
+   "summary": "Changed by 258/2026 Z. z. 6 provision(s) changed: § 6. Open the item to see the old and new wording.",
+   "effective": [
+    "2027-07-01"
+   ],
+   "details": "data/changes/law_581_2004_2027-07-01.json"
+  },
+  {
+   "id": "law:581/2004:2027-01-01",
+   "source": "lawchanges",
+   "source_name": "Slov-Lex · Znenia kľúčových zákonov",
+   "title": "581/2004 Z. z. – Act on Health Insurance Companies: new wording in force from 01.01.2027",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2004/581/20270101.html",
+   "date": "2026-10-29T08:18:35Z",
+   "detected": "2026-10-29T08:18:35Z",
+   "category": "Law change",
+   "priority": "medium",
+   "tags": [
+    "Amends 581/2004"
+   ],
+   "summary": "Changed by 258/2026 Z. z. 13 provision(s) changed: § 6, § 15, § 43a, § 43b, § 43e, § 44 +2 more. Open the item to see the old and new wording.",
+   "effective": [
+    "2027-01-01"
+   ],
+   "details": "data/changes/law_581_2004_2027-01-01.json"
+  },
+  {
+   "id": "law:581/2004:2026-11-01",
+   "source": "lawchanges",
+   "source_name": "Slov-Lex · Znenia kľúčových zákonov",
+   "title": "581/2004 Z. z. – Act on Health Insurance Companies: new wording in force from 01.11.2026",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2004/581/20261101.html",
+   "date": "2026-10-29T08:18:33Z",
+   "detected": "2026-10-29T08:18:33Z",
+   "category": "Law change",
+   "priority": "medium",
+   "tags": [
+    "Amends 581/2004"
+   ],
+   "summary": "Changed by 258/2026 Z. z. 3 provision(s) changed: § 6, § 6a. Open the item to see the old and new wording.",
+   "effective": [
+    "2026-11-01"
+   ],
+   "details": "data/changes/law_581_2004_2026-11-01.json"
+  },
+  {
+   "id": "law:578/2004:2026-11-01",
+   "source": "lawchanges",
+   "source_name": "Slov-Lex · Znenia kľúčových zákonov",
+   "title": "578/2004 Z. z. – Act on Healthcare Providers: new wording in force from 01.11.2026",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2004/578/20261101.html",
+   "date": "2026-10-29T08:18:28Z",
+   "detected": "2026-10-29T08:18:28Z",
+   "category": "Law change",
+   "priority": "medium",
+   "tags": [
+    "Amends 578/2004"
+   ],
+   "summary": "Changed by 258/2026 Z. z. 6 provision(s) changed: § 17a, § 69, § 74. Open the item to see the old and new wording.",
+   "effective": [
+    "2026-11-01"
+   ],
+   "details": "data/changes/law_578_2004_2026-11-01.json"
+  },
+  {
    "id": "slovlex:259/2026",
    "source": "slovlex",
    "source_name": "Slov-Lex · Zbierka zákonov SR",
@@ -3363,80 +3439,80 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-10-29T07:20:41Z",
+   "checked": "2026-10-29T08:18:14Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-10-29T07:20:41Z",
+   "checked": "2026-10-29T08:18:14Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-10-29T07:20:41Z",
+   "checked": "2026-10-29T08:18:14Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-10-29T07:20:41Z",
+   "checked": "2026-10-29T08:18:14Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-10-29T07:20:41Z",
+   "checked": "2026-10-29T08:18:14Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-10-29T07:20:41Z",
-   "new": 1,
+   "checked": "2026-10-29T08:18:14Z",
+   "new": 4,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-10-29T07:20:41Z",
-   "new": 1,
+   "checked": "2026-10-29T08:18:14Z",
+   "new": 0,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-10-29T07:20:41Z",
+   "checked": "2026-10-29T08:18:14Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-10-29T07:20:41Z",
+   "checked": "2026-10-29T08:18:14Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-10-29T07:20:41Z",
+   "checked": "2026-10-29T08:18:14Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-10-29T07:20:41Z",
+   "checked": "2026-10-29T08:18:14Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-10-29T07:20:41Z"
+ "updated": "2026-10-29T08:18:14Z"
 }

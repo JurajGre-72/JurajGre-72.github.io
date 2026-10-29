@@ -1,0 +1,112 @@
+{
+ "kind": "law_diff",
+ "law": "578/2004",
+ "law_name": "Act on Healthcare Providers",
+ "from": "2026-08-01",
+ "to": "2026-11-01",
+ "amended_by": "258/2026 Z. z.",
+ "amended_by_url": "https://static.slov-lex.sk/static/SK/ZZ/2026/258/20261101.html",
+ "old_url": "https://static.slov-lex.sk/static/SK/ZZ/2004/578/20260801.html",
+ "new_url": "https://static.slov-lex.sk/static/SK/ZZ/2004/578/20261101.html",
+ "changes": [
+  {
+   "loc": "§ 17a ods. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Držiteľ povolenia určí náhradného odborného zástupcu, ak odborný zástupca zomrel alebo z iného dôvodu náhle alebo neočakávane prestal alebo nemôže vykonávať činnosť odborného zástupcu. Náhradného odborného zástupcu nemožno určiť, ak odborný zástupca držiteľa povolenia stratil oprávnenie vykonávať činnosť odborného zástupcu v dôsledku zrušenia licencie na výkon činnosti odborného zástupcu podľa § 74 ods. 1 písm. c) až "
+    ],
+    [
+     "-",
+     "g)."
+    ],
+    [
+     "+",
+     "h)."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 69 ods. 3",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Dôveryhodný na účely vydania licencie je zdravotnícky pracovník, ktorý dva roky pred podaním žiadosti o vydanie licencie nemal zrušenú licenciu z dôvodov ustanovených v § 74 ods. 1 písm. c) až "
+    ],
+    [
+     "-",
+     "g)."
+    ],
+    [
+     "+",
+     "h)."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 74 ods. 1 písm. g)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "mal opakovane uložené disciplinárne opatrenie podľa § 65 ods. 2 písm. b) druhého "
+    ],
+    [
+     "-",
+     "bodu."
+    ],
+    [
+     "+",
+     "bodu,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 74 ods. 2",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Komora zruší licenciu z dôvodu ustanoveného v odseku 1 písm. d) aj na návrh úradu pre "
+    ],
+    [
+     "-",
+     "dohľad."
+    ],
+    [
+     "+",
+     "dohľad a z dôvodu ustanoveného v odseku 1 písm. h) aj na návrh ministerstva zdravotníctva, Štátneho ústavu pre kontrolu liečiv alebo samosprávneho kraja."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 74 ods. 3 písm. b)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "podľa odseku 1 písm. b), c), f) "
+    ],
+    [
+     "-",
+     "a g) "
+    ],
+    [
+     "+",
+     "až h) "
+    ],
+    [
+     "=",
+     "v celom rozsahu,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 74 ods. 1 písm. h)",
+   "type": "added",
+   "text": "opakovane porušil povinnosť podľa osobitného predpisu."
+  }
+ ]
+}
