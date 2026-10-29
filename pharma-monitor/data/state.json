@@ -7321,6 +7321,16 @@
     "stage": "MPK",
     "rel": 0,
     "tags": []
+   },
+   "LPEU/2026/741": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/580": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
    }
   }
  },

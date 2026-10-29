@@ -1,38 +1,38 @@
 {
- "checked": "2026-10-29T10:17:32Z",
+ "checked": "2026-10-29T11:20:28Z",
  "sources": {
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-10-29T10:17:32Z",
+   "checked": "2026-10-29T11:20:28Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-10-29T10:17:32Z",
-   "new": 1,
+   "checked": "2026-10-29T11:20:28Z",
+   "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-10-29T10:17:32Z",
+   "checked": "2026-10-29T11:20:28Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-10-29T10:17:32Z",
+   "checked": "2026-10-29T11:20:28Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-10-29T10:17:32Z",
+   "checked": "2026-10-29T11:20:28Z",
    "new": 0,
    "error": null
   },
@@ -46,7 +46,7 @@
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-10-29T10:17:32Z",
+   "checked": "2026-10-29T11:20:28Z",
    "new": 0,
    "error": null
   },
@@ -67,14 +67,14 @@
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-10-29T10:17:32Z",
+   "checked": "2026-10-29T11:20:28Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-10-29T10:17:32Z",
+   "checked": "2026-10-29T11:20:28Z",
    "new": 0,
    "error": null
   }
