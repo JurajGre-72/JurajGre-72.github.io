@@ -129,7 +129,8 @@
    "https://www.health.gov.sk/Clanok?kontrakt-mzsr-oszzs-2026": "2026-10-28T17:11:01Z",
    "https://www.health.gov.sk/Clanok?vystava-lekarskej-fakulty-predstavuje-osobnosti": "2026-10-28T21:17:06Z",
    "https://www.health.gov.sk/Clanok?uradne-urcenie-cien-liekov": "2026-10-29T13:36:09Z",
-   "https://www.health.gov.sk/Clanok?vysledok-pet-3-2026": "2026-10-29T13:36:09Z"
+   "https://www.health.gov.sk/Clanok?vysledok-pet-3-2026": "2026-10-29T13:36:09Z",
+   "https://www.health.gov.sk/Clanok?kategorizacia-liekov": "2026-10-29T14:37:51Z"
   }
  },
  "uskvbl": {
@@ -7272,7 +7273,7 @@
     "tags": []
    },
    "LPEU/2026/736": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -7346,6 +7347,11 @@
    },
    "LP/2026/253": {
     "stage": "PROCES_UKONCENY",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/583": {
+    "stage": "MPK",
     "rel": 0,
     "tags": []
    }
