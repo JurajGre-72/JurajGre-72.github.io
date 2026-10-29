@@ -1,6 +1,27 @@
 {
  "items": [
   {
+   "id": "slovlex:262/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "262/2026 Z. z. – Zákon o práci vykonávanej prostredníctvom digitálnej pracovnej platformy a o zmene a doplnení niektorých zákonov",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/262/",
+   "date": "2026-10-30T08:00:00Z",
+   "detected": "2026-10-29T23:17:11Z",
+   "category": "Legislation",
+   "priority": "low",
+   "tags": [
+    "Amends 311/2001"
+   ],
+   "summary": "Amends: 311/2001 Z. z. – Labour Code · Effective from: 02.12.2026",
+   "doc_type": "Zákon",
+   "effective": [
+    "2026-12-02"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/262/ZZ_2026_262.pdf",
+   "details": "data/changes/slovlex_262_2026.json"
+  },
+  {
    "id": "https://www.ema.europa.eu/en/news/ema-closed-all-souls-day-2-november",
    "source": "ema",
    "source_name": "EMA · European Medicines Agency",
@@ -3579,80 +3600,80 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-10-29T13:35:38Z",
-   "new": 0,
+   "checked": "2026-10-29T23:17:01Z",
+   "new": 1,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-10-29T13:35:38Z",
+   "checked": "2026-10-29T23:17:01Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-10-29T13:35:38Z",
+   "checked": "2026-10-29T23:17:01Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-10-29T13:35:38Z",
-   "new": 1,
+   "checked": "2026-10-29T23:17:01Z",
+   "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-10-29T13:35:38Z",
+   "checked": "2026-10-29T23:17:01Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-10-29T13:35:38Z",
+   "checked": "2026-10-29T23:17:01Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-10-29T13:35:38Z",
+   "checked": "2026-10-29T23:17:01Z",
    "new": 0,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-10-29T13:35:38Z",
+   "checked": "2026-10-29T23:17:01Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-10-29T13:35:38Z",
+   "checked": "2026-10-29T23:17:01Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-10-29T13:35:38Z",
-   "new": 1,
+   "checked": "2026-10-29T23:17:01Z",
+   "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-10-29T13:35:38Z",
+   "checked": "2026-10-29T23:17:01Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-10-29T13:35:38Z"
+ "updated": "2026-10-29T23:17:01Z"
 }
