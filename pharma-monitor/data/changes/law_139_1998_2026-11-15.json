@@ -1,0 +1,3694 @@
+{
+ "kind": "law_diff",
+ "law": "139/1998",
+ "law_name": "Act on Narcotic and Psychotropic Substances",
+ "from": "2026-01-01",
+ "to": "2026-11-15",
+ "amended_by": "259/2026 Z. z.",
+ "amended_by_url": "https://static.slov-lex.sk/static/SK/ZZ/2026/259/20261115.html",
+ "old_url": "https://static.slov-lex.sk/static/SK/ZZ/1998/139/20260101.html",
+ "new_url": "https://static.slov-lex.sk/static/SK/ZZ/1998/139/20261115.html",
+ "changes": [
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Bufedrón, "
+    ],
+    [
+     "+",
+     "4-brómometkatinón (4-BMC), "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "2-(metylamino)-1-fenylbután-1-ón"
+    ],
+    [
+     "+",
+     "1-(4-brómofenyl)-2-(metylamino) propán-1-ón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Butylón, bk-MBDB, "
+    ],
+    [
+     "+",
+     "Bufedrón, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "1-(1,3-benzodioxol -5-yl)-2-(metylamino)bután-1-ón"
+    ],
+    [
+     "+",
+     "2-(metylamino)-1-fenylbután-1-ón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "2 C-I, "
+    ],
+    [
+     "+",
+     "Butylón, bk-MBDB, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "2,5-dimetoxy-4-jódfenetylamín"
+    ],
+    [
+     "+",
+     "1-(1,3-benzodioxol -5-yl)-2-(metylamino)bután-1-ón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "4–CEC, 4-chlóretkatinón, "
+    ],
+    [
+     "+",
+     "2 C-I, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "1-(4-chlórfenyl)-2-(etylamín)-1-propanón monohydrochlorid"
+    ],
+    [
+     "+",
+     "2,5-dimetoxy-4-jódfenetylamín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "3-CMC, chlóredron, "
+    ],
+    [
+     "+",
+     "4–CEC, 4-chlóretkatinón, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "(1-(3-chlórfenyl)-2-(metylamíno)-1-propanón "
+    ],
+    [
+     "+",
+     "1-(4-chlórfenyl)-2-(etylamín)-1-propanón "
+    ],
+    [
+     "=",
+     "monohydrochlorid"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "4-CMC, klefedron, "
+    ],
+    [
+     "+",
+     "3-CMC, chlóredron, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "(1-(4-chlórfenyl)-2-(metylamíno)-1-propanón "
+    ],
+    [
+     "+",
+     "(1-(3-chlórfenyl)-2-(metylamíno)-1-propanón "
+    ],
+    [
+     "=",
+     "monohydrochlorid"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "1cP-LSD, "
+    ],
+    [
+     "+",
+     "4-CMC, klefedron, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "(N1-(cyklopropylmetanoyl)-dietylamid kyseliny lysergovej"
+    ],
+    [
+     "+",
+     "(1-(4-chlórfenyl)-2-(metylamíno)-1-propanón monohydrochlorid"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "CP 47,497 (C8), kanabicyklohexanol, "
+    ],
+    [
+     "+",
+     "1cP-LSD, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "2-/(1R,3S)-3-hydroxycyklohexyl/-5-(2-metylnonán-2 -yl)fenol"
+    ],
+    [
+     "+",
+     "(N1-(cyklopropylmetanoyl)-dietylamid kyseliny lysergovej"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "CP "
+    ],
+    [
+     "-",
+     "47,497, "
+    ],
+    [
+     "+",
+     "47,497 (C8), kanabicyklohexanol, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "2-/(1R,3S)-3 -hydroxycyklohexyl/-5-(2-metyloktán-2-yl)fenol"
+    ],
+    [
+     "+",
+     "2-/(1R,3S)-3-hydroxycyklohexyl/-5-(2-metylnonán-2 -yl)fenol"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "CP "
+    ],
+    [
+     "-",
+     "55,244, "
+    ],
+    [
+     "+",
+     "47,497, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "(2S,4S,4aS,6R,8aR)-6-(hydroxymetyl)-4-/2-hydroxy-4-(2-metyloktán-2-yl)fenyl/-1,2,3,4,4a,5,6,7,8,8a-dekahydronaftalén-2-ol"
+    ],
+    [
+     "+",
+     "2-/(1R,3S)-3 -hydroxycyklohexyl/-5-(2-metyloktán-2-yl)fenol"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "CP "
+    ],
+    [
+     "-",
+     "50,556-1, levonantradol, "
+    ],
+    [
+     "+",
+     "55,244, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "/(6S,6aR,9R,10aR)-9-hydroxy-6-metyl-3-/(2R)-5-fenyl- pentán-2-yl/oxy-5,6,6a,7,8,9,10,10a-oktahydrofenan-tridín-1-yl/octan"
+    ],
+    [
+     "+",
+     "(2S,4S,4aS,6R,8aR)-6-(hydroxymetyl)-4-/2-hydroxy-4-(2-metyloktán-2-yl)fenyl/-1,2,3,4,4a,5,6,7,8,8a-dekahydronaftalén-2-ol"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "CP "
+    ],
+    [
+     "-",
+     "55,940, "
+    ],
+    [
+     "+",
+     "50,556-1, levonantradol, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "2-/(1R,2R,5R)-5-hydroxy-2-(3-hydroxypropyl)cyklohexyl/-5-(2-metyloktán-2-yl)fenol"
+    ],
+    [
+     "+",
+     "/(6S,6aR,9R,10aR)-9-hydroxy-6-metyl-3-/(2R)-5-fenyl- pentán-2-yl/oxy-5,6,6a,7,8,9,10,10a-oktahydrofenan-tridín-1-yl/octan"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "2 C-T-2, "
+    ],
+    [
+     "+",
+     "CP 55,940, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "2,5-dimetoxy-4-etyltiofenetylamín"
+    ],
+    [
+     "+",
+     "2-/(1R,2R,5R)-5-hydroxy-2-(3-hydroxypropyl)cyklohexyl/-5-(2-metyloktán-2-yl)fenol"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "2 "
+    ],
+    [
+     "-",
+     "C-T-7, "
+    ],
+    [
+     "+",
+     "C-T-2, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "2,5-dimetoxy-4n-propyltiofenetylamín"
+    ],
+    [
+     "+",
+     "2,5-dimetoxy-4-etyltiofenetylamín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "CUMYL-4CN-BINACA, "
+    ],
+    [
+     "+",
+     "2 C-T-7, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "1-(4-kyanobutyl)-N-fenylpropán-2-yl)-1H-indazol-3-karboxamid"
+    ],
+    [
+     "+",
+     "2,5-dimetoxy-4n-propyltiofenetylamín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Desoxypipradrol (2-DPMP), "
+    ],
+    [
+     "+",
+     "CUMYL-4CN-BINACA, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "2-difenylmetylpiperi-dín"
+    ],
+    [
+     "+",
+     "1-(4-kyanobutyl)-N-fenylpropán-2-yl)-1H-indazol-3-karboxamid"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "DET, "
+    ],
+    [
+     "+",
+     "Desoxypipradrol (2-DPMP), "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "N,N-dietyltryptamín"
+    ],
+    [
+     "+",
+     "2-difenylmetylpiperi-dín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Difenidín, "
+    ],
+    [
+     "+",
+     "DET, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "1-(1,2-difenyletyl) piperidín"
+    ],
+    [
+     "+",
+     "N,N-dietyltryptamín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Diklazepam, "
+    ],
+    [
+     "+",
+     "Difenidín, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "7-chlór-5-(2-chlórfenyl)-1-metyl-1,3-dihydro-2H-1,4-benzodiazepín-2-ón"
+    ],
+    [
+     "+",
+     "1-(1,2-difenyletyl) piperidín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Dimetoxyamfetamín, DMA, "
+    ],
+    [
+     "+",
+     "Diklazepam, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "(RS)-1-(2,5-dimetoxyfenyl)propán-2-amín"
+    ],
+    [
+     "+",
+     "7-chlór-5-(2-chlórfenyl)-1-metyl-1,3-dihydro-2H-1,4-benzodiazepín-2-ón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "4,4'-Dimetylaminorex, para-metyl-4-metylaminorex, 4,4´- DMAR, "
+    ],
+    [
+     "+",
+     "Dimetoxyamfetamín, DMA, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "4-metyl-5-(4-metylfenyl)-4,5-dihydro-1,3-oxazol-2-amín"
+    ],
+    [
+     "+",
+     "(RS)-1-(2,5-dimetoxyfenyl)propán-2-amín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Dipentylón, "
+    ],
+    [
+     "+",
+     "4,4'-Dimetylaminorex, para-metyl-4-metylaminorex, 4,4´- DMAR, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "1-(1,3-benzodioxol-5-yl)-2-(dimetylamino)-1-pentanón"
+    ],
+    [
+     "+",
+     "4-metyl-5-(4-metylfenyl)-4,5-dihydro-1,3-oxazol-2-amín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "DMHP, "
+    ],
+    [
+     "+",
+     "Dipentylón, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "3-(3-metylheptán-2-yl)-6,6,9-trimetyl-7,8,9,10-tetrahydro-6H-dibenzo[b,d]pyrán-1-ol"
+    ],
+    [
+     "+",
+     "1-(1,3-benzodioxol-5-yl)-2-(dimetylamino)-1-pentanón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "DMT, "
+    ],
+    [
+     "+",
+     "DMHP, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "N,N-dimetyltryptamín"
+    ],
+    [
+     "+",
+     "3-(3-metylheptán-2-yl)-6,6,9-trimetyl-7,8,9,10-tetrahydro-6H-dibenzo[b,d]pyrán-1-ol"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "DOC (2,5-dimetoxy-4-chlóramfetamíne)“ nahrádzajú slovami „DOC (2,5-dimetoxy-4-chlóramfetamín)"
+    ],
+    [
+     "+",
+     "DMT, chemicky N,N-dimetyltryptamín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "2,5-Dimetoxy-4-etylamfetamín, DOET, chemicky (RS)-1-(2,5-dimetoxy-4-etylfenyl)propán-2-amín"
+    ],
+    [
+     "+",
+     "DOC (2,5-dimetoxy-4-chlóramfetamíne)“ nahrádzajú slovami „DOC (2,5-dimetoxy-4-chlóramfetamín)"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "DOI, "
+    ],
+    [
+     "+",
+     "2,5-Dimetoxy-4-etylamfetamín, DOET, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "2,5-dimetoxy-4-jódamfetamín"
+    ],
+    [
+     "+",
+     "(RS)-1-(2,5-dimetoxy-4-etylfenyl)propán-2-amín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Efenidín, EPE, NEDPA, "
+    ],
+    [
+     "+",
+     "DOI, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "N-etyl-1,2-difenyletylamín"
+    ],
+    [
+     "+",
+     "2,5-dimetoxy-4-jódamfetamín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Eticyklidín, PCE, "
+    ],
+    [
+     "+",
+     "Efenidín, EPE, NEDPA, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "N-etyl-l-fenylcyklohexylamín"
+    ],
+    [
+     "+",
+     "N-etyl-1,2-difenyletylamín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Etryptamín, "
+    ],
+    [
+     "+",
+     "Eticyklidín, PCE, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "4-(1H-indol-3-yl)bután-2-amín"
+    ],
+    [
+     "+",
+     "N-etyl-l-fenylcyklohexylamín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Etylfenidát, "
+    ],
+    [
+     "+",
+     "Etryptamín, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "(RS)-etyl-2-fenyl-2-piperidín-2-ylacetát"
+    ],
+    [
+     "+",
+     "4-(1H-indol-3-yl)bután-2-amín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Etylón, MDEC, βk-MDEA, "
+    ],
+    [
+     "+",
+     "Etylfenidát, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "(RS)-1-(1,3-benzodioxol-5-yl)-2-(etylamino)propán-1-ón"
+    ],
+    [
+     "+",
+     "(RS)-etyl-2-fenyl-2-piperidín-2-ylacetát"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Eutylon, β-Keto-1,3-benzodioxolyl-N-ethylbutanamine, bk-EBDB, n-ethylbutylone, "
+    ],
+    [
+     "+",
+     "Etylón, MDEC, βk-MDEA, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "(±)-1-(1,3-benzodioxol-5-yl)-2-(etylamín)bután-1-ón"
+    ],
+    [
+     "+",
+     "(RS)-1-(1,3-benzodioxol-5-yl)-2-(etylamino)propán-1-ón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "2-FDCK, 2-fluorodeschloroketamín, "
+    ],
+    [
+     "+",
+     "Eutylon, β-Keto-1,3-benzodioxolyl-N-ethylbutanamine, bk-EBDB, n-ethylbutylone, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "2-(2-fluorofenyl)-2-(metylamino)cyclohexanón"
+    ],
+    [
+     "+",
+     "(±)-1-(1,3-benzodioxol-5-yl)-2-(etylamín)bután-1-ón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "3 - FEA, "
+    ],
+    [
+     "+",
+     "2-FDCK, 2-fluorodeschloroketamín, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "3-fluóretamfetamín"
+    ],
+    [
+     "+",
+     "2-(2-fluorofenyl)-2-(metylamino)cyclohexanón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "3-Fluórfenmetrazín, 3F-fenmetrazín, 3-FPM, 3-FPH a PAL-593 "
+    ],
+    [
+     "+",
+     "3 - FEA, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "2- (3-fluórfenyl) -3- metylmorfolín"
+    ],
+    [
+     "+",
+     "3-fluóretamfetamín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "4F-MBMB-BINACA, "
+    ],
+    [
+     "+",
+     "3-Fluórfenmetrazín, 3F-fenmetrazín, 3-FPM, 3-FPH a PAL-593 "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "metyl 2-(1-(4-fluórbutyl)-1H-indazol-3-karboxamido)-3,3-dimetylbutanoát"
+    ],
+    [
+     "+",
+     "2- (3-fluórfenyl) -3- metylmorfolín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "4F-MDMB-BICA, "
+    ],
+    [
+     "+",
+     "4F-MBMB-BINACA, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "metyl-2-{[1-(4-fluórbutyl)-1H-indol-3-karbonyl]amino}-3,3-dimetylbutanoát"
+    ],
+    [
+     "+",
+     "metyl 2-(1-(4-fluórbutyl)-1H-indazol-3-karboxamido)-3,3-dimetylbutanoát"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "4F-MDMB-BINACA, "
+    ],
+    [
+     "+",
+     "4F-MDMB-BICA, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "metyl N-{[1-(4-fluórbutyl)-1H-indazol-3-yl]karbonyl}-3-metyl-L-valinát"
+    ],
+    [
+     "+",
+     "metyl-2-{[1-(4-fluórbutyl)-1H-indol-3-karbonyl]amino}-3,3-dimetylbutanoát"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "4-FA, 4-Fluóramfetamín, chemicky (RS)-1-(4-fluórfenyl) propán-2-amín 5F-ADB/5F-MDMB-PINACA, "
+    ],
+    [
+     "+",
+     "4F-MDMB-BINACA, "
+    ],
+    [
+     "=",
+     "chemicky metyl "
+    ],
+    [
+     "-",
+     "(2S)-2-{[ 1-(5-fluórpentyl)-1H-indazol-3-karbonyl]amino}-3,3-dimetylbutanoát"
+    ],
+    [
+     "+",
+     "N-{[1-(4-fluórbutyl)-1H-indazol-3-yl]karbonyl}-3-metyl-L-valinát"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "5F-AMB-PINACA (5F-AMB, 5F-MMB-PINACA) "
+    ],
+    [
+     "+",
+     "4-FA, 4-Fluóramfetamín, chemicky (RS)-1-(4-fluórfenyl) propán-2-amín 5F-ADB/5F-MDMB-PINACA, "
+    ],
+    [
+     "=",
+     "chemicky metyl "
+    ],
+    [
+     "-",
+     "(2S)-2-{[1-(5-fluórpentyl)-1H-indazol-3-yl]formamid}-3-metylbutánoát"
+    ],
+    [
+     "+",
+     "(2S)-2-{[ 1-(5-fluórpentyl)-1H-indazol-3-karbonyl]amino}-3,3-dimetylbutanoát"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "5F-APINICA, 5F-AKB48, "
+    ],
+    [
+     "+",
+     "5F-AMB-PINACA (5F-AMB, 5F-MMB-PINACA) "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "N-(adamantán-1-yl)-1-(5-fluórpent-1-yl)-1H-indazol-3-karboxamid"
+    ],
+    [
+     "+",
+     "metyl (2S)-2-{[1-(5-fluórpentyl)-1H-indazol-3-yl]formamid}-3-metylbutánoát"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "5F-kumyl-PeGACLON, "
+    ],
+    [
+     "+",
+     "5F-APINICA, 5F-AKB48, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "5-(5-fluórpentyl)-2-(2-fenylpropán-2-yl)-2,5-dihydro-1H-pyrido[4,3-b]indol-1-ón"
+    ],
+    [
+     "+",
+     "N-(adamantán-1-yl)-1-(5-fluórpent-1-yl)-1H-indazol-3-karboxamid"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Flubromazolam, "
+    ],
+    [
+     "+",
+     "5F-kumyl-PeGACLON, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "8-bróm-6-(2-fluórfenyl)-1-metyl-4Hbenzo[f][1,2,4]triazolo[4,3-a][1,4]diazepín"
+    ],
+    [
+     "+",
+     "5-(5-fluórpentyl)-2-(2-fenylpropán-2-yl)-2,5-dihydro-1H-pyrido[4,3-b]indol-1-ón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "5F-MDMB – PICA, MDMB-2201, 5F-MDMB-PICA, "
+    ],
+    [
+     "+",
+     "Flubromazolam, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "metyl 2-(1-(5-fluórpentyl)-1H- indol-3-karboxamido)-3,3-dimetylbutanoát"
+    ],
+    [
+     "+",
+     "8-bróm-6-(2-fluórfenyl)-1-metyl-4Hbenzo[f][1,2,4]triazolo[4,3-a][1,4]diazepín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "5-F-PB-22, "
+    ],
+    [
+     "+",
+     "5F-MDMB – PICA, MDMB-2201, 5F-MDMB-PICA, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "chinolín-8-yl 1-(5-fluórpentyl)-1H-indol-3-karboxylát"
+    ],
+    [
+     "+",
+     "metyl 2-(1-(5-fluórpentyl)-1H- indol-3-karboxamido)-3,3-dimetylbutanoát"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "FUB-AMB, MMB-FUBINACA, AMB-FUBINACA, "
+    ],
+    [
+     "+",
+     "5-F-PB-22, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "metyl-(2S)-2-[[1-[(4-fluórfenyl)metyl]indazol-3-karbonyl]amino]-3-metylbutanoát"
+    ],
+    [
+     "+",
+     "chinolín-8-yl 1-(5-fluórpentyl)-1H-indol-3-karboxylát"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "H4-CBD, tetrahydrokanabidiol, "
+    ],
+    [
+     "+",
+     "FUB-AMB, MMB-FUBINACA, AMB-FUBINACA, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "2-(2-isopropyl-5-metylcyclohexyl)-5-pentylbenzén-1,3-diol"
+    ],
+    [
+     "+",
+     "metyl-(2S)-2-[[1-[(4-fluórfenyl)metyl]indazol-3-karbonyl]amino]-3-metylbutanoát"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "HHC, hexahydrokanabinol, "
+    ],
+    [
+     "+",
+     "H4-CBD, tetrahydrokanabidiol, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "6a,7,8,9,10,10a-hexahydro-6,6,9-trimetyl-3-pentyl-6H-dibenzo[b,d]pyrán-1-ol"
+    ],
+    [
+     "+",
+     "2-(2-isopropyl-5-metylcyclohexyl)-5-pentylbenzén-1,3-diol"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "HHC-H, hexahydrokanabihexol, "
+    ],
+    [
+     "+",
+     "HHC, hexahydrokanabinol, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "3-hexyl-6,6,9-trimetyl-6a,7,8,9,10,10a-hexahydro-6H-benzo[c]chromén-1-ol"
+    ],
+    [
+     "+",
+     "6a,7,8,9,10,10a-hexahydro-6,6,9-trimetyl-3-pentyl-6H-dibenzo[b,d]pyrán-1-ol"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "HHC-O, hexahydrokanabinol acetát, "
+    ],
+    [
+     "+",
+     "HHC-H, hexahydrokanabihexol, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "6,6,9-trimetyl-3-pentyl-6a,7,8,9,10,10a-hexahydro-6H-benzo[c]chromén-1-yl acetát"
+    ],
+    [
+     "+",
+     "3-hexyl-6,6,9-trimetyl-6a,7,8,9,10,10a-hexahydro-6H-benzo[c]chromén-1-ol"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "HHC-P, hexahydrokanabiforol, "
+    ],
+    [
+     "+",
+     "HHC-O, hexahydrokanabinol acetát, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "6,6,9-trimetyl-3-heptyl-6a,7,8,9,10,10a-hexahydro-6H-benzo[c]chromén-1-ol"
+    ],
+    [
+     "+",
+     "6,6,9-trimetyl-3-pentyl-6a,7,8,9,10,10a-hexahydro-6H-benzo[c]chromén-1-yl acetát"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "HHCP acetát, hexahydrokanabiforol acetát, "
+    ],
+    [
+     "+",
+     "HHC-P, hexahydrokanabiforol, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "6,6,9-trimetyl-3-heptyl-6a,7,8,9,10,10a-hexahydro-6H-benzo[c]chromén-1-ol acetát"
+    ],
+    [
+     "+",
+     "6,6,9-trimetyl-3-heptyl-6a,7,8,9,10,10a-hexahydro-6H-benzo[c]chromén-1-ol"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "(3-HO-PCP), 3-hydroxyfencyklidín, "
+    ],
+    [
+     "+",
+     "HHCP acetát, hexahydrokanabiforol acetát, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "3-[1-(Piperidin-1-yl)cyclohexyl]fenol"
+    ],
+    [
+     "+",
+     "6,6,9-trimetyl-3-heptyl-6a,7,8,9,10,10a-hexahydro-6H-benzo[c]chromén-1-ol acetát"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "HU-210, "
+    ],
+    [
+     "+",
+     "(3-HO-PCP), 3-hydroxyfencyklidín, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "(6aR,10aR)-9-(hydroxymetyl)-6,6-dimetyl-3-(2-metyloktán-2-yl)-6a,7,10,10a-te- trahydrobenzo/c/chromen-1-ol"
+    ],
+    [
+     "+",
+     "3-[1-(Piperidin-1-yl)cyclohexyl]fenol"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "HU-243, kanbizol, "
+    ],
+    [
+     "+",
+     "HU-210, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "(6aR,9R,10aR) -6,6-dimetyl-3-(2-metyloktán-2-yl)-6a,7,8,9,10,10a-he-xahydrobenzo/c/chromen-1,9-diol"
+    ],
+    [
+     "+",
+     "(6aR,10aR)-9-(hydroxymetyl)-6,6-dimetyl-3-(2-metyloktán-2-yl)-6a,7,10,10a-te- trahydrobenzo/c/chromen-1-ol"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "25I-NBOMe, "
+    ],
+    [
+     "+",
+     "HU-243, kanbizol, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "4-jód-2,5-dimetoxy-N-(2-metoxybenzyl)fenetylamín"
+    ],
+    [
+     "+",
+     "(6aR,9R,10aR) -6,6-dimetyl-3-(2-metyloktán-2-yl)-6a,7,8,9,10,10a-he-xahydrobenzo/c/chromen-1,9-diol"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "IPPH, IPH, IPD, IPPD, chemicky: propán-2-yl-2-fenyl-2-(piperidín-2-yl)acetát"
+    ],
+    [
+     "+",
+     "25I-NBOMe, chemicky 4-jód-2,5-dimetoxy-N-(2-metoxybenzyl)fenetylamín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Karizoprodol, chemicky (2RS)-2-[(karbamoyloxy)metyl]-2-metylpentyl(1-metyletyl)karbamát)"
+    ],
+    [
+     "+",
+     "IPPH, IPH, IPD, IPPD, chemicky: propán-2-yl-2-fenyl-2-(piperidín-2-yl)acetát"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Katinón, "
+    ],
+    [
+     "+",
+     "Karizoprodol, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "(-)-2-aminopropiofenón"
+    ],
+    [
+     "+",
+     "(2RS)-2-[(karbamoyloxy)metyl]-2-metylpentyl(1-metyletyl)karbamát)"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "JWH-007, "
+    ],
+    [
+     "+",
+     "Katinón, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "1-pentyl-2-metyl-3-(1-naftoyl)indol"
+    ],
+    [
+     "+",
+     "(-)-2-aminopropiofenón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "JWH-015, "
+    ],
+    [
+     "+",
+     "JWH-007, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "(2-metyl-1-propyl-1H-indol-3-yl) -1-naftalénylmetanón"
+    ],
+    [
+     "+",
+     "1-pentyl-2-metyl-3-(1-naftoyl)indol"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "JWH-018, "
+    ],
+    [
+     "+",
+     "JWH-015, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "naftalén-1-yl-(1-pentylindol-3-yl) metanón"
+    ],
+    [
+     "+",
+     "(2-metyl-1-propyl-1H-indol-3-yl) -1-naftalénylmetanón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "JWH-019, "
+    ],
+    [
+     "+",
+     "JWH-018, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "1-hexyl-3-(naftalén-1-oyl)indol"
+    ],
+    [
+     "+",
+     "naftalén-1-yl-(1-pentylindol-3-yl) metanón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "JWH-030, "
+    ],
+    [
+     "+",
+     "JWH-019, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "naftalén-1-yl-(1-pentylpyrrol -3-yl)metanón"
+    ],
+    [
+     "+",
+     "1-hexyl-3-(naftalén-1-oyl)indol"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "JWH-051, "
+    ],
+    [
+     "+",
+     "JWH-030, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "(6aR,10aR)-6,6-dimetyl -3-(2-metyloktán-2-yl)-6a,7,10,10a-tetrahydrobenzo(c)chromen-9-yl)metanol"
+    ],
+    [
+     "+",
+     "naftalén-1-yl-(1-pentylpyrrol -3-yl)metanón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "JWH-073, "
+    ],
+    [
+     "+",
+     "JWH-051, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "naftalén-1-yl-(1-butylindol-3-yl) metanón"
+    ],
+    [
+     "+",
+     "(6aR,10aR)-6,6-dimetyl -3-(2-metyloktán-2-yl)-6a,7,10,10a-tetrahydrobenzo(c)chromen-9-yl)metanol"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "JWH-081, "
+    ],
+    [
+     "+",
+     "JWH-073, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "4-metoxynaftalén-1-yl -(1-pentylindol-3-yl)metanón"
+    ],
+    [
+     "+",
+     "naftalén-1-yl-(1-butylindol-3-yl) metanón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "JWH-098, "
+    ],
+    [
+     "+",
+     "JWH-081, "
+    ],
+    [
+     "=",
+     "chemicky 4-metoxynaftalén-1-yl "
+    ],
+    [
+     "-",
+     "-(1-pentyl-2-metylindol-3-yl)metanón"
+    ],
+    [
+     "+",
+     "-(1-pentylindol-3-yl)metanón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "JWH-122, "
+    ],
+    [
+     "+",
+     "JWH-098, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "1-pentyl-3-(4-metyl-1-naftoyl)indol"
+    ],
+    [
+     "+",
+     "4-metoxynaftalén-1-yl -(1-pentyl-2-metylindol-3-yl)metanón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "JWH-133, "
+    ],
+    [
+     "+",
+     "JWH-122, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "(6aR,10aR)-3-(1,1dimetylbutyl) -6a,7,10,10a-tetrahydro-6,6,9-trimetyl-6H-dibenzo (b,d)pyrán"
+    ],
+    [
+     "+",
+     "1-pentyl-3-(4-metyl-1-naftoyl)indol"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "JWH-147, "
+    ],
+    [
+     "+",
+     "JWH-133, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "1-hexyl-2-fenyl-4-(1-naftoyl)pyrol"
+    ],
+    [
+     "+",
+     "(6aR,10aR)-3-(1,1dimetylbutyl) -6a,7,10,10a-tetrahydro-6,6,9-trimetyl-6H-dibenzo (b,d)pyrán"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "JWH-161, "
+    ],
+    [
+     "+",
+     "JWH-147, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "(4aR,13bR)-2,5,5-trimetyl -8-pentyl-3,4,4a,5,8,13b hexahydroizochromeno (3,4-b)karbazol-13-ol"
+    ],
+    [
+     "+",
+     "1-hexyl-2-fenyl-4-(1-naftoyl)pyrol"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "JWH-164, "
+    ],
+    [
+     "+",
+     "JWH-161, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "7-metoxynaftalén-1-yl -(1-pentylindol-3-yl)metanón"
+    ],
+    [
+     "+",
+     "(4aR,13bR)-2,5,5-trimetyl -8-pentyl-3,4,4a,5,8,13b hexahydroizochromeno (3,4-b)karbazol-13-ol"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "JWH-167, "
+    ],
+    [
+     "+",
+     "JWH-164, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "2-fenyl-1-(1pentylindol-3-yl)etanón"
+    ],
+    [
+     "+",
+     "7-metoxynaftalén-1-yl -(1-pentylindol-3-yl)metanón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "JWH-171, "
+    ],
+    [
+     "+",
+     "JWH-167, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "1-(/(1E)-3-pentylinden-1-ylidín/ metyl)naftalén"
+    ],
+    [
+     "+",
+     "2-fenyl-1-(1pentylindol-3-yl)etanón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "JWH-200, "
+    ],
+    [
+     "+",
+     "JWH-171, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "(1-(2-morfolín-4-yletyl) indol-3-yl)-naftalén-1-yl metanón"
+    ],
+    [
+     "+",
+     "1-(/(1E)-3-pentylinden-1-ylidín/ metyl)naftalén"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "JWH-203, "
+    ],
+    [
+     "+",
+     "JWH-200, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "2-(2-chlórfenyl)-1-(1-pentylindol -3-yl)etanón"
+    ],
+    [
+     "+",
+     "(1-(2-morfolín-4-yletyl) indol-3-yl)-naftalén-1-yl metanón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "JWH-210, "
+    ],
+    [
+     "+",
+     "JWH-203, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "4-etylnaftalén-1-yl -(1-pentylindol-3-yl)metanón"
+    ],
+    [
+     "+",
+     "2-(2-chlórfenyl)-1-(1-pentylindol -3-yl)etanón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "JWH-249, "
+    ],
+    [
+     "+",
+     "JWH-210, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "2-(2-brómfenyl)-1 -(1-pentylindol-3-yl)etanón"
+    ],
+    [
+     "+",
+     "4-etylnaftalén-1-yl -(1-pentylindol-3-yl)metanón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "JWH-250, "
+    ],
+    [
+     "+",
+     "JWH-249, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "2-(2-metoxyfenyl)-1 "
+    ],
+    [
+     "+",
+     "2-(2-brómfenyl)-1 "
+    ],
+    [
+     "=",
+     "-(1-pentylindol-3-yl)etanón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "JWH-251, "
+    ],
+    [
+     "+",
+     "JWH-250, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "2-(2-metylfenyl)-1 -(1-pentyl-1H-indol-3-yl)etanón"
+    ],
+    [
+     "+",
+     "2-(2-metoxyfenyl)-1 -(1-pentylindol-3-yl)etanón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "JWH-307, "
+    ],
+    [
+     "+",
+     "JWH-251, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "(5-(2-fluórfenyl)-1-pentylpyrol -3-yl)naftalén-1-ylmetanón"
+    ],
+    [
+     "+",
+     "2-(2-metylfenyl)-1 -(1-pentyl-1H-indol-3-yl)etanón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "JWH-359, "
+    ],
+    [
+     "+",
+     "JWH-307, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "(6aR,10aR)-1 -metoxy-6,6,9-trimetyl-3-/(2R)-1,1,2-trimetylbutyl/ -6a,7,10,10a-tetrahydrobenzo/c/chromen"
+    ],
+    [
+     "+",
+     "(5-(2-fluórfenyl)-1-pentylpyrol -3-yl)naftalén-1-ylmetanón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "JWH-398, "
+    ],
+    [
+     "+",
+     "JWH-359, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "1-pentyl-3-(4-chlór-1-naftoyl)indol"
+    ],
+    [
+     "+",
+     "(6aR,10aR)-1 -metoxy-6,6,9-trimetyl-3-/(2R)-1,1,2-trimetylbutyl/ -6a,7,10,10a-tetrahydrobenzo/c/chromen"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Klonazolam, "
+    ],
+    [
+     "+",
+     "JWH-398, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "6-(2-chlórofenyl)-1-metyl-8-nitro-4H-benzo[f] [1,2,4]triazolo[4,3-a][1,4]diazepín"
+    ],
+    [
+     "+",
+     "1-pentyl-3-(4-chlór-1-naftoyl)indol"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Kratom (mitragyna speciosa)"
+    ],
+    [
+     "+",
+     "Klonazolam, chemicky 6-(2-chlórofenyl)-1-metyl-8-nitro-4H-benzo[f] [1,2,4]triazolo[4,3-a][1,4]diazepín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Kumyl-CH-MeGACLON, chemicky 5-(cyklohexylmetyl)-2-(2-fenylpropán-2-yl)-2,5-dihydro-1H-pyrido[4,3-b]indol-1-ón"
+    ],
+    [
+     "+",
+     "Kratom (mitragyna speciosa)"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Kumyl – PeGACLON, "
+    ],
+    [
+     "+",
+     "Kumyl-CH-MeGACLON, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "5-pentyl-2-(1-metyl-1-fenyl-etyl)-2,5-dihydro-pyridol[4,3-b]indol-1-ón"
+    ],
+    [
+     "+",
+     "5-(cyklohexylmetyl)-2-(2-fenylpropán-2-yl)-2,5-dihydro-1H-pyrido[4,3-b]indol-1-ón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "(+)-Lysergid, LSD, LSD-25, "
+    ],
+    [
+     "+",
+     "Kumyl – PeGACLON, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "(+)-N,N-dietyllysergamid"
+    ],
+    [
+     "+",
+     "5-pentyl-2-(1-metyl-1-fenyl-etyl)-2,5-dihydro-pyridol[4,3-b]indol-1-ón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "MDMB-CHMICA, "
+    ],
+    [
+     "+",
+     "(+)-Lysergid, LSD, LSD-25, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "metyl (2S)-2-{[1-(cyklohexylmetyl)-1H-indol-3-yl]formamido}-3,3-dimetyl ester kyseliny maslovej (butánovej)"
+    ],
+    [
+     "+",
+     "(+)-N,N-dietyllysergamid"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "MDMB-4en-PINACA, "
+    ],
+    [
+     "+",
+     "MDMB-CHMICA, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "metyl-3,3-dimetyl-2-{[1-(pent-4-én-1-yl)-1H-indazol-3-karbonyl]amino}butanoát"
+    ],
+    [
+     "+",
+     "metyl (2S)-2-{[1-(cyklohexylmetyl)-1H-indol-3-yl]formamido}-3,3-dimetyl ester kyseliny maslovej (butánovej)"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "MDPEP, "
+    ],
+    [
+     "+",
+     "MDMB-4en-PINACA, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "1-(benzo[d][1,3]dioxol-5-yl)-2-(pyrolidín-1- yl)heptán-1-1)"
+    ],
+    [
+     "+",
+     "metyl-3,3-dimetyl-2-{[1-(pent-4-én-1-yl)-1H-indazol-3-karbonyl]amino}butanoát"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "MDPHP, "
+    ],
+    [
+     "+",
+     "MDPEP, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "1-(2H-1,3-benzodioxol-5-yl)-2-(pyrrolidín-1-yl)hexan-1-ón"
+    ],
+    [
+     "+",
+     "1-(benzo[d][1,3]dioxol-5-yl)-2-(pyrolidín-1- yl)heptán-1-1)"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Mefedrón, 4-MMC, "
+    ],
+    [
+     "+",
+     "MDPHP, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "2-(metylamino)-1-(4-metylfenyl)-1-propanón"
+    ],
+    [
+     "+",
+     "1-(2H-1,3-benzodioxol-5-yl)-2-(pyrrolidín-1-yl)hexan-1-ón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "5-MeO-MiPT, "
+    ],
+    [
+     "+",
+     "Mefedrón, 4-MMC, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "5-metoxy-N-metyl-N-(1-metyletyl)-1H-indol-3-etánamín"
+    ],
+    [
+     "+",
+     "2-(metylamino)-1-(4-metylfenyl)-1-propanón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "meta-Chlórfenylpiperazín, mCPP, "
+    ],
+    [
+     "+",
+     "5-MeO-MiPT, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "1-(3-chlórfenyl) piperazín"
+    ],
+    [
+     "+",
+     "5-metoxy-N-metyl-N-(1-metyletyl)-1H-indol-3-etánamín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Metiopropamín, MPA, "
+    ],
+    [
+     "+",
+     "meta-Chlórfenylpiperazín, mCPP, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "N-metyl-1-(tiofén-2-yl)propán-2-amín"
+    ],
+    [
+     "+",
+     "1-(3-chlórfenyl) piperazín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Mezkalín, "
+    ],
+    [
+     "+",
+     "Metiopropamín, MPA, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "2-(3,4,5-trimetoxyfenyl)etylamín"
+    ],
+    [
+     "+",
+     "N-metyl-1-(tiofén-2-yl)propán-2-amín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Metkatinón, "
+    ],
+    [
+     "+",
+     "Mezkalín, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "1-fenyl-2-(metylamino)propán-1-ón"
+    ],
+    [
+     "+",
+     "2-(3,4,5-trimetoxyfenyl)etylamín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Metoxetamín (MXE), "
+    ],
+    [
+     "+",
+     "Metkatinón, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "2-(3-metoxyfenyl)-2-(etylamino)cyklohexanón"
+    ],
+    [
+     "+",
+     "1-fenyl-2-(metylamino)propán-1-ón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "5-Metoxy - N,N-dialyltryptamín, 5-MeO-DALT, "
+    ],
+    [
+     "+",
+     "Metoxetamín (MXE), "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "N-[2-(5-metoxy-1H-indol-3-yl)etyl]-N-(prop-2-én-1-yl)prop-2-én-1-amín"
+    ],
+    [
+     "+",
+     "2-(3-metoxyfenyl)-2-(etylamino)cyklohexanón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "2 – Metoxyetoxydifenidín, 2-MeO-difenidín, MDA, sass, "
+    ],
+    [
+     "+",
+     "5-Metoxy - N,N-dialyltryptamín, 5-MeO-DALT, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "1-(2H-1,3-benzodioxol-5-yl)propán-2-amín"
+    ],
+    [
+     "+",
+     "N-[2-(5-metoxy-1H-indol-3-yl)etyl]-N-(prop-2-én-1-yl)prop-2-én-1-amín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "3-Metoxyfencyklidín (3-MeO-PCP), "
+    ],
+    [
+     "+",
+     "2 – Metoxyetoxydifenidín, 2-MeO-difenidín, MDA, sass, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "1-[1-(3-metoxyfenyl) cyklohexyl]piperidín"
+    ],
+    [
+     "+",
+     "1-(2H-1,3-benzodioxol-5-yl)propán-2-amín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "5-Metoxy-3,4-metyléndioxyamfetamín, MMDA, "
+    ],
+    [
+     "+",
+     "3-Metoxyfencyklidín (3-MeO-PCP), "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "1-(3,4-metyléndioxy-5-metoxyfenyl)propán-2-amín"
+    ],
+    [
+     "+",
+     "1-[1-(3-metoxyfenyl) cyklohexyl]piperidín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "4-Metylamfetamín, "
+    ],
+    [
+     "+",
+     "5-Metoxy-3,4-metyléndioxyamfetamín, MMDA, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "1-(4-metylfenyl)-2-ami-nopropán"
+    ],
+    [
+     "+",
+     "1-(3,4-metyléndioxy-5-metoxyfenyl)propán-2-amín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "4-Metylaminorex, "
+    ],
+    [
+     "+",
+     "4-Metylamfetamín, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "(±)-cis-5-fenyl-4-metyl-4,5-dihydrooxazol-2-amín"
+    ],
+    [
+     "+",
+     "1-(4-metylfenyl)-2-ami-nopropán"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Metylbenzodioxolylbutánamín, MBDB, "
+    ],
+    [
+     "+",
+     "4-Metylaminorex, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "(RS)-1-(1,3-benzodioxol-5-yl)-N-metylbután-2-amín"
+    ],
+    [
+     "+",
+     "(±)-cis-5-fenyl-4-metyl-4,5-dihydrooxazol-2-amín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "3,4-Metyléndioxymetamfetamín, MDMA, "
+    ],
+    [
+     "+",
+     "Metylbenzodioxolylbutánamín, MBDB, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "N-metyl-1-(3,4-metyléndioxyfenyl)propán-2-amín"
+    ],
+    [
+     "+",
+     "(RS)-1-(1,3-benzodioxol-5-yl)-N-metylbután-2-amín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Metyléndioxypyrovalerón, MDPV, "
+    ],
+    [
+     "+",
+     "3,4-Metyléndioxymetamfetamín, MDMA, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "(RS)-1-(benzo/d//1,3/dioxol-5-yl)-2-(pyrolidín-1-yl) pentán-1-ón"
+    ],
+    [
+     "+",
+     "N-metyl-1-(3,4-metyléndioxyfenyl)propán-2-amín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "4-metyletkatinón (4-MEC), "
+    ],
+    [
+     "+",
+     "Metyléndioxypyrovalerón, MDPV, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "2-etylamino-1 -(4-metylfenyl)-1-propanón"
+    ],
+    [
+     "+",
+     "(RS)-1-(benzo/d//1,3/dioxol-5-yl)-2-(pyrolidín-1-yl) pentán-1-ón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "3-metylmetkatinón (3-MMC), "
+    ],
+    [
+     "+",
+     "4-metyletkatinón (4-MEC), "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "1-(3-metylfe- nyl)-2-(metylamino)propán-1-ón"
+    ],
+    [
+     "+",
+     "2-etylamino-1 -(4-metylfenyl)-1-propanón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Metylón, bk-MDMA, "
+    ],
+    [
+     "+",
+     "2-metylmetkatinón (2-MMC), "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "(±)-2-metylamino-1-(3, 4-metyléndioxyfenyl)propán-1-ón"
+    ],
+    [
+     "+",
+     "2-(metylamino)-1-(2-metylfenyl)propán-1-ón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "MMB – FUBICA (AMB-FUBICA metylester, "
+    ],
+    [
+     "+",
+     "3-metylmetkatinón (3-MMC), "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "N-[[1-[(4-fluórfenyl)metyl]-1H-indol-3-y1]karbony]-L-valín"
+    ],
+    [
+     "+",
+     "1-(3-metylfe- nyl)-2-(metylamino)propán-1-ón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "5-MMPA, mefedrén, "
+    ],
+    [
+     "+",
+     "Metylón, bk-MDMA, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "N,α,5-trimetyl-2-tiofénetánamín"
+    ],
+    [
+     "+",
+     "(±)-2-metylamino-1-(3, 4-metyléndioxyfenyl)propán-1-ón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "4-MTA, "
+    ],
+    [
+     "+",
+     "MMB – FUBICA (AMB-FUBICA metylester, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "1-[4(metylsulfanyl)fenyl]propán-2-amín"
+    ],
+    [
+     "+",
+     "N-[[1-[(4-fluórfenyl)metyl]-1H-indol-3-y1]karbony]-L-valín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "MXPr, metoxpropamín, "
+    ],
+    [
+     "+",
+     "5-MMPA, mefedrén, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "2-oxo-3'-metoxy-PCPr"
+    ],
+    [
+     "+",
+     "N,α,5-trimetyl-2-tiofénetánamín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "N-etylhexedrón, "
+    ],
+    [
+     "+",
+     "4-MTA, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "2-(etylamín)-1fenylhexan-1-ón"
+    ],
+    [
+     "+",
+     "1-[4(metylsulfanyl)fenyl]propán-2-amín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "N-Etyl MDA, "
+    ],
+    [
+     "+",
+     "MXPr, metoxpropamín, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "N-etyl-1-(3,4-metyléndioxyfenyl)propán-2-amín"
+    ],
+    [
+     "+",
+     "2-oxo-3'-metoxy-PCPr"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "N-etylnorpentylón, efylón, "
+    ],
+    [
+     "+",
+     "N-etylhexedrón, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "1-(2H-1,3-benzodioxol-5-yl)-2-(etylamino)pentán-1-ón"
+    ],
+    [
+     "+",
+     "2-(etylamín)-1fenylhexan-1-ón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "N-etylpentedrón, NEP, N-etyl-nor-pentedrón, "
+    ],
+    [
+     "+",
+     "N-Etyl MDA, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "2-(etylamíno)-1-fenyl-1-pentanón"
+    ],
+    [
+     "+",
+     "N-etyl-1-(3,4-metyléndioxyfenyl)propán-2-amín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "N-Hydroxy MDA, "
+    ],
+    [
+     "+",
+     "N-etylnorpentylón, efylón, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "N-[1-(3,4-metyléndioxyfenyl)propán-2-yl]hydroxylamín"
+    ],
+    [
+     "+",
+     "1-(2H-1,3-benzodioxol-5-yl)-2-(etylamino)pentán-1-ón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "O-PCE, "
+    ],
+    [
+     "+",
+     "N-etylpentedrón, NEP, N-etyl-nor-pentedrón, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "2-(etylamino)-2-fenylcyklohexán-1-ón"
+    ],
+    [
+     "+",
+     "2-(etylamíno)-1-fenyl-1-pentanón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Parahexyl, "
+    ],
+    [
+     "+",
+     "N-Hydroxy MDA, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "3-hexyl-6,6,9-trimetyl-7,8,9,10-tetrahydro-6H-dibenzo[b,d] pyrán-1-ol"
+    ],
+    [
+     "+",
+     "N-[1-(3,4-metyléndioxyfenyl)propán-2-yl]hydroxylamín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "para-Metoxyamfetamín, PMA, "
+    ],
+    [
+     "+",
+     "O-PCE, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "1-(4-metoxyfenyl)propán-2-amín"
+    ],
+    [
+     "+",
+     "2-(etylamino)-2-fenylcyklohexán-1-ón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "para-Metoxymetylamfetamín, PMMA, "
+    ],
+    [
+     "+",
+     "Parahexyl, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "N-metyl-1-(4-metoxyfenyl)propán-2-amín"
+    ],
+    [
+     "+",
+     "3-hexyl-6,6,9-trimetyl-7,8,9,10-tetrahydro-6H-dibenzo[b,d] pyrán-1-ol"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "P-metyltioamfetamín alebo 4-metyltioamfetamín"
+    ],
+    [
+     "+",
+     "para-Metoxyamfetamín, PMA, chemicky 1-(4-metoxyfenyl)propán-2-amín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Pentedrón, "
+    ],
+    [
+     "+",
+     "para-Metoxymetylamfetamín, PMMA, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "2-metylamino-1-fenyl-1-pentanón"
+    ],
+    [
+     "+",
+     "N-metyl-1-(4-metoxyfenyl)propán-2-amín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Psilocybín, chemicky 3-[2-(dimetylamino)etyl]-1H-indol-4-yl(dihydrogénfosfát)"
+    ],
+    [
+     "+",
+     "P-metyltioamfetamín alebo 4-metyltioamfetamín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Psilocín, "
+    ],
+    [
+     "+",
+     "Pentedrón, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "3-[2-(dimetylamino)etyl]-1H-indol-4-ol"
+    ],
+    [
+     "+",
+     "2-metylamino-1-fenyl-1-pentanón"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Rolicyklidín, PHP, PCPY, "
+    ],
+    [
+     "+",
+     "Psilocybín, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "1-(fenylcyklohexyl)pyrolidín"
+    ],
+    [
+     "+",
+     "3-[2-(dimetylamino)etyl]-1H-indol-4-yl(dihydrogénfosfát)"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "STP, DOM, "
+    ],
+    [
+     "+",
+     "Psilocín, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "1-(2,5-dimetoxy-4-metylfenyl)propán-2-amín"
+    ],
+    [
+     "+",
+     "3-[2-(dimetylamino)etyl]-1H-indol-4-ol"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Tenamfetamín, MDA, "
+    ],
+    [
+     "+",
+     "Rolicyklidín, PHP, PCPY, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "1-(3,4-metyléndioxyfenyl)propán-2-amín"
+    ],
+    [
+     "+",
+     "1-(fenylcyklohexyl)pyrolidín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Tenocyklidín, TCP, "
+    ],
+    [
+     "+",
+     "STP, DOM, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "1-[1-(2-tienyl)cyklohexyl]piperidín"
+    ],
+    [
+     "+",
+     "1-(2,5-dimetoxy-4-metylfenyl)propán-2-amín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "THC, "
+    ],
+    [
+     "+",
+     "Tenamfetamín, MDA, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "tetrahydrokanabinoly, všetky stereoizoméry delta hor. index 6a(10a), delta hor. index 6a(7), delta hor. index 7, delta hor. index 8, delta hor. index 10, delta hor. index 9(11) a ich stereochemické varianty"
+    ],
+    [
+     "+",
+     "1-(3,4-metyléndioxyfenyl)propán-2-amín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "THCB, tetrahydrokanabutol, "
+    ],
+    [
+     "+",
+     "Tenocyklidín, TCP, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "3-butyl-6a,7,8,10a-tetrahydro-6,6,9-trimetyl-6H-dibenzo[b,d]pyrán-1-ol alebo 3-butyl-6a,7,10,10a-tetrahydro-6,6,9-trimetyl-6H-dibenzo[b,d]pyrán-1-ol"
+    ],
+    [
+     "+",
+     "1-[1-(2-tienyl)cyklohexyl]piperidín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "THCH, tetrahydrokanabihexol, "
+    ],
+    [
+     "+",
+     "THC, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "3-hexyl-6a,7,8,10a-tetrahydro-6,6,9-trimetyl-6H-dibenzo[b,d]pyrán-1-ol alebo 3-hexyl-6a,7,10,10a-tetrahydro-6,6,9-trimetyl-6H-dibenzo[b,d]pyrán-1-ol"
+    ],
+    [
+     "+",
+     "tetrahydrokanabinoly, všetky stereoizoméry delta hor. index 6a(10a), delta hor. index 6a(7), delta hor. index 7, delta hor. index 8, delta hor. index 10, delta hor. index 9(11) a ich stereochemické varianty"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "THCP, tetrahydrokanabiforol, "
+    ],
+    [
+     "+",
+     "THCB, tetrahydrokanabutol, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "3-heptyl-6a,7,8,10a-tetrahydro-6,6,9-trimetyl-6H-dibenzo[b,d]pyrán-1-ol "
+    ],
+    [
+     "+",
+     "3-butyl-6a,7,8,10a-tetrahydro-6,6,9-trimetyl-6H-dibenzo[b,d]pyrán-1-ol "
+    ],
+    [
+     "=",
+     "alebo "
+    ],
+    [
+     "-",
+     "3-heptyl-6a,7,10,10a-tetrahydro-6,6,9-trimetyl-6H-dibenzo[b,d]pyrán-1-ol"
+    ],
+    [
+     "+",
+     "3-butyl-6a,7,10,10a-tetrahydro-6,6,9-trimetyl-6H-dibenzo[b,d]pyrán-1-ol"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Trimetoxyamfetamín, TMA, "
+    ],
+    [
+     "+",
+     "THCH, tetrahydrokanabihexol, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "(±)-1-(3,4,5-trimetoxyfenyl)propán-2-amín"
+    ],
+    [
+     "+",
+     "3-hexyl-6a,7,8,10a-tetrahydro-6,6,9-trimetyl-6H-dibenzo[b,d]pyrán-1-ol alebo 3-hexyl-6a,7,10,10a-tetrahydro-6,6,9-trimetyl-6H-dibenzo[b,d]pyrán-1-ol"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "TMA-2, "
+    ],
+    [
+     "+",
+     "THCP, tetrahydrokanabiforol, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "2,4,5-trimetoxyamfetamín"
+    ],
+    [
+     "+",
+     "3-heptyl-6a,7,8,10a-tetrahydro-6,6,9-trimetyl-6H-dibenzo[b,d]pyrán-1-ol alebo 3-heptyl-6a,7,10,10a-tetrahydro-6,6,9-trimetyl-6H-dibenzo[b,d]pyrán-1-ol"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "U-47700, "
+    ],
+    [
+     "+",
+     "Trimetoxyamfetamín, TMA, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "3,4-dichlór-N-[ (1R, 2R) -2-(dimetylamino)cyklohexyl]-N-metylbenzamid"
+    ],
+    [
+     "+",
+     "(±)-1-(3,4,5-trimetoxyfenyl)propán-2-amín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "UR-144, "
+    ],
+    [
+     "+",
+     "TMA-2, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "(1-pentyl-1H-indol-3-yl)(2,2,3,3-tetrametylcyklopropyl)metanón"
+    ],
+    [
+     "+",
+     "2,4,5-trimetoxyamfetamín"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "XLR-11, 5-fluoro-UR-144, "
+    ],
+    [
+     "+",
+     "U-47700, "
+    ],
+    [
+     "=",
+     "chemicky "
+    ],
+    [
+     "-",
+     "[1-(5-fluórpentyl)-1H-indol-3-yl](2,2,3,3-tetrametylcyklopropyl)metanón"
+    ],
+    [
+     "+",
+     "3,4-dichlór-N-[ (1R, 2R) -2-(dimetylamino)cyklohexyl]-N-metylbenzamid"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "added",
+   "text": "UR-144, chemicky (1-pentyl-1H-indol-3-yl)(2,2,3,3-tetrametylcyklopropyl)metanón"
+  },
+  {
+   "loc": "Príloha priloha_c_1_k_zakonu_c_139_1998_z_z",
+   "type": "added",
+   "text": "XLR-11, 5-fluoro-UR-144, chemicky [1-(5-fluórpentyl)-1H-indol-3-yl](2,2,3,3-tetrametylcyklopropyl)metanón"
+  },
+  {
+   "loc": "Príloha priloha_c_3_k_zakonu_c_139_1998_z_z_v_zneni_zakona_c_287_2018_z_z",
+   "type": "added",
+   "text": "Delegovaná smernica Komisie (EÚ) 2025/2062 zo 14. októbra 2025, ktorou sa mení príloha k rámcovému rozhodnutiu Rady 2004/757/SVV, pokiaľ ide o zahrnutie nových psychoaktívnych látok do vymedzenia pojmu drogy (Ú. v. EÚ L, 2025/2062, 23. 12. 2025)."
+  }
+ ]
+}

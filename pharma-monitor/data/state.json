@@ -5348,7 +5348,7 @@
     "tags": []
    },
    "LP/2026/453": {
-    "stage": "ROKOVANIE_POV",
+    "stage": "PRED_VYHLASENIM_V_ZBIERKE",
     "rel": 0,
     "tags": []
    },
@@ -7272,6 +7272,19 @@
     "stage": "SCHVALENIE_GESTORA",
     "rel": 0,
     "tags": []
+   },
+   "LP/2025/594": {
+    "stage": "VYHLASENE_V_ZBIERKE",
+    "rel": 3,
+    "tags": [
+     "Medicines",
+     "Medical devices",
+     "Reimbursement / categorisation",
+     "Dietetic foods",
+     "Health insurance",
+     "Amends 363/2011"
+    ],
+    "stage_name": "Vyhlásené v Zbierke zákonov SR"
    }
   }
  },
@@ -7954,7 +7967,8 @@
     "2022-12-01",
     "2024-11-01",
     "2025-12-01",
-    "2026-01-01"
+    "2026-01-01",
+    "2026-11-15"
    ],
    "577/2004": [
     "2005-01-01",

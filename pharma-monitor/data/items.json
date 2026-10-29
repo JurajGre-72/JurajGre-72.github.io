@@ -84,6 +84,46 @@
    "summary": "Moved from stage “Pripomienkové konanie” to “Vyhodnotenie pripomienkového konania” · Stage: Vyhodnotenie pripomienkového konania (since 29.10.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
   },
   {
+   "id": "lp:LP/2025/594:VYHLASENE_V_ZBIERKE",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2025/594 · Zákon: Návrh zákona, ktorým sa mení a dopĺňa zákon č. 363/2011 Z. z. o rozsahu a podmienkach úhrady liekov, zdravotníckych pomôcok a dietetických potravín na základe verejného zdravotného poistenia a o zmene a doplnení niektorých zákonov v znení neskorších predpisov a ktorým sa menia a dopĺňajú niektoré zákony",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2025/594",
+   "date": "2026-10-29T08:00:00Z",
+   "detected": "2026-10-29T07:21:11Z",
+   "category": "Draft law",
+   "priority": "high",
+   "tags": [
+    "Medicines",
+    "Medical devices",
+    "Reimbursement / categorisation",
+    "Dietetic foods",
+    "Health insurance",
+    "Amends 363/2011",
+    "Vyhlásené v Zbierke zákonov SR"
+   ],
+   "summary": "Stage: Vyhlásené v Zbierke zákonov SR (since 29.10.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky · Main act amended: 363/2011 Z. z."
+  },
+  {
+   "id": "law:139/1998:2026-11-15",
+   "source": "lawchanges",
+   "source_name": "Slov-Lex · Znenia kľúčových zákonov",
+   "title": "139/1998 Z. z. – Act on Narcotic and Psychotropic Substances: new wording in force from 15.11.2026",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/1998/139/20261115.html",
+   "date": "2026-10-29T07:20:50Z",
+   "detected": "2026-10-29T07:20:50Z",
+   "category": "Law change",
+   "priority": "high",
+   "tags": [
+    "Amends 139/1998"
+   ],
+   "summary": "Changed by 259/2026 Z. z. 146 provision(s) changed: Príloha priloha_c_1_k_zakonu_c_139_1998_z_z, Príloha priloha_c_3_k_zakonu_c_139_1998_z_z_v_zneni_zakona_c_287_2018_z_z. Open the item to see the old and new wording.",
+   "effective": [
+    "2026-11-15"
+   ],
+   "details": "data/changes/law_139_1998_2026-11-15.json"
+  },
+  {
    "id": "kat:202612:da10ab42d1d7",
    "source": "kategorizacia",
    "source_name": "MZ SR · Zoznam kategorizovaných liekov",
@@ -3323,80 +3363,80 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-10-28T23:16:30Z",
-   "new": 2,
+   "checked": "2026-10-29T07:20:41Z",
+   "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-10-28T23:16:30Z",
+   "checked": "2026-10-29T07:20:41Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-10-28T23:16:30Z",
+   "checked": "2026-10-29T07:20:41Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-10-28T23:16:30Z",
+   "checked": "2026-10-29T07:20:41Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-10-28T23:16:30Z",
+   "checked": "2026-10-29T07:20:41Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-10-28T23:16:30Z",
-   "new": 0,
+   "checked": "2026-10-29T07:20:41Z",
+   "new": 1,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-10-28T23:16:30Z",
-   "new": 2,
+   "checked": "2026-10-29T07:20:41Z",
+   "new": 1,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-10-28T23:16:30Z",
+   "checked": "2026-10-29T07:20:41Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-10-28T23:16:30Z",
+   "checked": "2026-10-29T07:20:41Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-10-28T23:16:30Z",
+   "checked": "2026-10-29T07:20:41Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-10-28T23:16:30Z",
+   "checked": "2026-10-29T07:20:41Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-10-28T23:16:30Z"
+ "updated": "2026-10-29T07:20:41Z"
 }
