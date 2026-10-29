@@ -1,6 +1,22 @@
 {
  "items": [
   {
+   "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/klinicke-skusanie-liekov/oznamy-a-aktuality/pilotny-projekt-poradenstva-pri-klinickych-skusaniach-bude-pokracovat-ako-trvala-iniciativa",
+   "source": "sukl",
+   "source_name": "ŠÚKL · Aktuality",
+   "title": "Pilotný projekt poradenstva pri klinických skúšaniach bude pokračovať ako trvalá iniciatíva",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/klinicke-skusanie-liekov/oznamy-a-aktuality/pilotny-projekt-poradenstva-pri-klinickych-skusaniach-bude-pokracovat-ako-trvala-iniciativa",
+   "date": "2026-10-29T09:55:02Z",
+   "detected": "2026-10-29T10:18:01Z",
+   "category": "ŠÚKL notice",
+   "priority": "medium",
+   "tags": [
+    "Medicines",
+    "Clinical trials"
+   ],
+   "summary": "Technická a regulačná podpora pri príprave žiadostí o povolenie klinického skúšania liekov bude pokračovať od januára 2027."
+  },
+  {
    "id": "law:363/2011:2028-03-31",
    "source": "lawchanges",
    "source_name": "Slov-Lex · Znenia kľúčových zákonov",
@@ -3550,80 +3566,80 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-10-29T09:17:27Z",
+   "checked": "2026-10-29T10:17:32Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-10-29T09:17:27Z",
-   "new": 0,
+   "checked": "2026-10-29T10:17:32Z",
+   "new": 1,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-10-29T09:17:27Z",
+   "checked": "2026-10-29T10:17:32Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-10-29T09:17:27Z",
+   "checked": "2026-10-29T10:17:32Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-10-29T09:17:27Z",
+   "checked": "2026-10-29T10:17:32Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-10-29T09:17:27Z",
-   "new": 5,
+   "checked": "2026-10-29T10:17:32Z",
+   "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-10-29T09:17:27Z",
-   "new": 1,
+   "checked": "2026-10-29T10:17:32Z",
+   "new": 0,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-10-29T09:17:27Z",
+   "checked": "2026-10-29T10:17:32Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-10-29T09:17:27Z",
+   "checked": "2026-10-29T10:17:32Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-10-29T09:17:27Z",
+   "checked": "2026-10-29T10:17:32Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-10-29T09:17:27Z",
+   "checked": "2026-10-29T10:17:32Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-10-29T09:17:27Z"
+ "updated": "2026-10-29T10:17:32Z"
 }
