@@ -1,0 +1,65 @@
+{
+ "kind": "law_diff",
+ "law": "363/2011",
+ "law_name": "Act on Reimbursement of Medicines (zákon o kategorizácii a úhradách)",
+ "from": "2027-01-01",
+ "to": "2028-03-31",
+ "amended_by": "258/2026 Z. z.",
+ "amended_by_url": "https://static.slov-lex.sk/static/SK/ZZ/2026/258/20280331.html",
+ "old_url": "https://static.slov-lex.sk/static/SK/ZZ/2011/363/20270101.html",
+ "new_url": "https://static.slov-lex.sk/static/SK/ZZ/2011/363/20280331.html",
+ "changes": [
+  {
+   "loc": "§ 16 ods. 9",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Ak predmetom rozhodovania ministerstva je zaradenie posudzovaného lieku do referenčnej skupiny, v ktorej je zaradený liek iného držiteľa registrácie, ktorý je predmetom zmluvy o podmienkach úhrady lieku podľa § 7a ods. 1, a podmienky úhrady zaradeného lieku dohodnuté v tejto zmluve sa v dôsledku zaradenia posudzovaného lieku nestávajú ekonomicky nevýhodnými v porovnaní s podmienkami úhrady založenými zaradením posudzovaného lieku do zoznamu kategorizovaných liekov, ministerstvo do 30 dní od podania žiadosti o zaradenie posudzovaného lieku do zoznamu kategorizovaných liekov písomne oznámi držiteľovi registrácie posudzovaného lieku, že podmienky úhrady lieku sa zaradením posudzovaného lieku do referenčnej skupiny nestávajú s prihliadnutím na uzatvorenú zmluvu o podmienkach úhrady lieku ekonomicky výhodnými (ďalej len „oznámenie o ekonomickej "
+    ],
+    [
+     "-",
+     "nevýhodnosti“)."
+    ],
+    [
+     "+",
+     "nevýhodnosti“). Ministerstvo oznámenie o ekonomickej nevýhodnosti doručuje podľa § 75 ods. 2."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 75 ods. 2",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Podania, ktoré sa doručujú ministerstvu "
+    ],
+    [
+     "+",
+     "alebo držiteľovi registrácie "
+    ],
+    [
+     "=",
+     "a obsahujú obchodné tajomstvo alebo dôvernú informáciu sa doručia ministerstvu "
+    ],
+    [
+     "+",
+     "alebo držiteľovi registrácie "
+    ],
+    [
+     "=",
+     "prostredníctvom tej časti elektronického portálu, ktorá umožňuje doručenie podania výlučne ministerstvu "
+    ],
+    [
+     "+",
+     "alebo držiteľovi registrácie "
+    ],
+    [
+     "=",
+     "bez ich sprístupnenia a zverejnenia všetkým účastníkom konania alebo verejnosti."
+    ]
+   ]
+  }
+ ]
+}

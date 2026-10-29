@@ -1,0 +1,1574 @@
+{
+ "kind": "law_diff",
+ "law": "363/2011",
+ "law_name": "Act on Reimbursement of Medicines (zákon o kategorizácii a úhradách)",
+ "from": "2026-11-01",
+ "to": "2027-01-01",
+ "amended_by": "258/2026 Z. z.",
+ "amended_by_url": "https://static.slov-lex.sk/static/SK/ZZ/2026/258/20270101.html",
+ "old_url": "https://static.slov-lex.sk/static/SK/ZZ/2011/363/20261101.html",
+ "new_url": "https://static.slov-lex.sk/static/SK/ZZ/2011/363/20270101.html",
+ "changes": [
+  {
+   "loc": "§ 7a ods. 2",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Zmluvu o podmienkach úhrady lieku môže na iný účel ako v odseku 1 uzatvoriť s držiteľom registrácie ministerstvo alebo zdravotná poisťovňa; zmluvu o podmienkach úhrady lieku nemôže ministerstvo s držiteľom registrácie uzatvoriť na "
+    ],
+    [
+     "-",
+     "osobitné "
+    ],
+    [
+     "+",
+     "výnimočné "
+    ],
+    [
+     "=",
+     "prípady úhrady lieku podľa § "
+    ],
+    [
+     "-",
+     "88."
+    ],
+    [
+     "+",
+     "88a až 88d."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 29a ods. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Pre zaradenie zdravotníckej pomôcky do zoznamu kategorizovaných zdravotníckych pomôcok alebo do zoznamu kategorizovaných špeciálnych zdravotníckych materiálov môže výrobca zdravotníckej pomôcky s ministerstvom uzatvoriť zmluvu "
+    ],
+    [
+     "+",
+     "Zmluvu "
+    ],
+    [
+     "=",
+     "o podmienkach úhrady zdravotníckej "
+    ],
+    [
+     "-",
+     "pomôcky."
+    ],
+    [
+     "+",
+     "pomôcky môže uzatvoriť"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 29a ods. 2",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Zmluvu "
+    ],
+    [
+     "+",
+     "Zmluva "
+    ],
+    [
+     "=",
+     "o podmienkach úhrady zdravotníckej pomôcky "
+    ],
+    [
+     "-",
+     "môže na iný účel ako v odseku 1 uzatvoriť"
+    ],
+    [
+     "+",
+     "musí obsahovať"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 29a ods. 2 písm. a)",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "s výrobcom "
+    ],
+    [
+     "+",
+     "označenie "
+    ],
+    [
+     "=",
+     "zdravotníckej "
+    ],
+    [
+     "-",
+     "pomôcky ministerstvo alebo zdravotná poisťovňa; zmluvu "
+    ],
+    [
+     "+",
+     "pomôcky, ktorá je predmetom zmluvy "
+    ],
+    [
+     "=",
+     "o podmienkach úhrady zdravotníckej "
+    ],
+    [
+     "-",
+     "pomôcky nemôže ministerstvo s výrobcom zdravotníckej pomôcky uzatvoriť na osobitné prípady úhrady zdravotníckej pomôcky podľa § 88,"
+    ],
+    [
+     "+",
+     "pomôcky,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 29a ods. 2 písm. b)",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "s distribútorom "
+    ],
+    [
+     "+",
+     "maximálnu výšku úhrady zdravotnej poisťovne, ktorú zdravotná poisťovňa uhradí za zdravotnícku pomôcku po uplatnení osobitných podmienok úhrady "
+    ],
+    [
+     "=",
+     "zdravotníckej pomôcky "
+    ],
+    [
+     "-",
+     "zdravotná poisťovňa."
+    ],
+    [
+     "+",
+     "dohodnutých v zmluve o podmienkach úhrady zdravotníckej pomôcky alebo spôsob jej výpočtu; maximálna výška úhrady zdravotnej poisťovne musí byť nižšia ako maximálna výška úhrady zdravotnej poisťovne podľa zoznamu kategorizovaných zdravotníckych pomôcok alebo podľa zoznamu kategorizovaných špeciálnych zdravotníckych materiálov alebo cena zdravotníckej pomôcky alebo špeciálneho zdravotníckeho materiálu určená podľa § 88a ods. 15,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 29a ods. 3",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Zmluva "
+    ],
+    [
+     "+",
+     "Podmienky dohodnuté v zmluve "
+    ],
+    [
+     "=",
+     "o podmienkach úhrady zdravotníckej pomôcky "
+    ],
+    [
+     "-",
+     "musí obsahovať"
+    ],
+    [
+     "+",
+     "podľa odseku 2 písm. b) sa nesprístupňujú a nezverejňujú."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 29a ods. 3 písm. a)",
+   "type": "removed",
+   "text": "označenie zdravotníckej pomôcky, ktorá je predmetom zmluvy o podmienkach úhrady zdravotníckej pomôcky,"
+  },
+  {
+   "loc": "§ 29a ods. 3 písm. b)",
+   "type": "removed",
+   "text": "maximálnu výšku úhrady zdravotnej poisťovne za túto zdravotnícku pomôcku, ktorá sa uvedie v zozname kategorizovaných zdravotníckych pomôcok alebo zozname kategorizovaných špeciálnych zdravotníckych materiálov,"
+  },
+  {
+   "loc": "§ 29a ods. 3 písm. c)",
+   "type": "removed",
+   "text": "maximálnu výšku úhrady zdravotnej poisťovne, ktorú zdravotná poisťovňa uhradí za zdravotnícku pomôcku po uplatnení osobitných podmienok úhrady zdravotníckej pomôcky dohodnutých v zmluve o podmienkach úhrady zdravotníckej pomôcky alebo spôsob jej výpočtu, ktorá musí byť nižšia ako maximálna výška úhrady zdravotnej poisťovne podľa písmena b),"
+  },
+  {
+   "loc": "§ 29a ods. 3 písm. d)",
+   "type": "removed",
+   "text": "indikačné obmedzenia a preskripčné obmedzenia, ak sa navrhujú určiť,"
+  },
+  {
+   "loc": "§ 29a ods. 3 písm. e)",
+   "type": "removed",
+   "text": "obdobie platnosti zmluvy o podmienkach úhrady zdravotníckej pomôcky."
+  },
+  {
+   "loc": "§ 29a ods. 4",
+   "type": "removed",
+   "text": "Zmluva o podmienkach úhrady zdravotníckej pomôcky nadobúda účinnosť najneskôr dňom nadobudnutia vykonateľnosti rozhodnutia o zaradení zdravotníckej pomôcky do zoznamu kategorizovaných zdravotníckych pomôcok alebo zoznamu kategorizovaných špeciálnych zdravotníckych materiálov, ktorá je predmetom žiadosti, vo vzťahu ku ktorej sa zmluva o podmienkach úhrady zdravotníckej pomôcky uzatvorila."
+  },
+  {
+   "loc": "§ 29a ods. 5",
+   "type": "removed",
+   "text": "Podmienky dohodnuté v zmluve o podmienkach úhrady zdravotníckej pomôcky podľa odseku 3 písm. c) sa nesprístupňujú a nezverejňujú; ministerstvo podmienky o úhrade zdravotníckej pomôcky dohodnuté v zmluve sprístupní iba členom poradných orgánov podľa § 91 ods. 1 a 2."
+  },
+  {
+   "loc": "§ 29a ods. 6",
+   "type": "removed",
+   "text": "Ak ministerstvo rozhodne o zmene charakteristík referenčnej podskupiny, do ktorej je zaradená zdravotnícka pomôcka, ktorá je predmetom zmluvy o podmienkach úhrady zdravotníckej pomôcky, na základe výzvy ministerstva adresovanej výrobcovi zdravotníckej pomôcky sú zmluvné strany povinné uviesť zmluvu o podmienkach úhrady zdravotníckej pomôcky do súladu s týmto rozhodnutím spôsobom, ktorý maximálne zachová hospodársky účel zmluvy a pôvodný zámer zmluvných strán najneskôr do dňa nadobudnutia vykonateľnosti tohto rozhodnutia."
+  },
+  {
+   "loc": "§ 29a ods. 7",
+   "type": "removed",
+   "text": "Ak ministerstvo rozhodne o zaradení inej zdravotníckej pomôcky do referenčnej podskupiny, v ktorej je zaradená zdravotnícka pomôcka, ktorá je predmetom zmluvy o podmienkach úhrady zdravotníckej pomôcky a podmienky úhrady zdravotníckej pomôcky dohodnuté v tejto zmluve sa v dôsledku zaradenia inej zdravotníckej pomôcky stanú preukázateľne nevýhodnými v porovnaní s podmienkami úhrady založenými zaradením inej zdravotníckej pomôcky, zmluva o podmienkach úhrady zdravotníckej pomôcky stráca platnosť odo dňa nadobudnutia vykonateľnosti rozhodnutia o zaradení inej zdravotníckej pomôcky do zoznamu kategorizovaných zdravotníckych pomôcok alebo zoznamu kategorizovaných špeciálnych zdravotníckych materiálov; ministerstvo o nevýhodnosti podmienok dohodnutých v uzatvorenej zmluve o podmienkach úhrady zdravotníckej pomôcky a ukončení zmluvy o podmienkach úhrady zdravotníckej pomôcky písomne upovedomí výrobcu zdravotníckej pomôcky, s ktorým zmluvu o podmienkach úhrady zdravotníckej pomôcky uzatvorilo, a to najneskôr do dňa nadobudnutia vykonateľnosti rozhodnutia o zaradení inej zdravotníckej pomôcky do zoznamu kategorizovaných zdravotníckych pomôcok alebo zoznamu kategorizovaných špeciálnych zdravotníckych materiálov, v dôsledku zaradenia ktorej sa osobitné podmienky o úhrade zdravotníckej pomôcky dohodnuté v uzatvorenej zmluve o podmienkach úhrady zdravotníckej pomôcky stali nevýhodnými. Ak sa podmienky o úhrade zdravotníckej pomôcky dohodnuté v zmluve o podmienkach úhrady zdravotníckej pomôcky nestanú preukázateľne nevýhodnými v porovnaní s podmienkami úhrady založenými zaradením inej zdravotníckej pomôcky do zoznamu kategorizovaných zdravotníckych pomôcok alebo zoznamu kategorizovaných špeciálnych zdravotníckych materiálov, ministerstvo o trvaní zmluvy o podmienkach úhrady zdravotníckej pomôcky písomne upovedomí výrobcu inej zdravotníckej pomôcky, a to najneskôr do dňa nadobudnutia vykonateľnosti rozhodnutia o zaradení inej zdravotníckej pomôcky do zoznamu kategorizovaných zdravotníckych pomôcok alebo zoznamu kategorizovaných špeciálnych zdravotníckych materiálov, v dôsledku zaradenia ktorej sa osobitné podmienky o úhrade zdravotníckej pomôcky dohodnuté v uzatvorenej zmluve o podmienkach úhrady zdravotníckej pomôcky nestali nevýhodnými."
+  },
+  {
+   "loc": "§ 29a ods. 8",
+   "type": "removed",
+   "text": "Rokovanie o uzatvorení zmluvy o podmienkach úhrady zdravotníckej pomôcky vrátane s tým súvisiacej komunikácie, informácií, návrhov a podkladov, ktoré tvoria predmet rokovania alebo sú vzájomne predkladané medzi ministerstvom a výrobcom zdravotníckej pomôcky, nepodlieha sprístupňovaniu ani zverejňovaniu a môže prebiehať aj prostredníctvom ústnych prejednaní alebo elektronickej komunikácie. Z ústnych prejednaní sa vyhotovuje zvukový záznam. Ministerstvo zvukové záznamy a elektronickú komunikáciu archivuje po dobu desiatich rokov. Rokovanie o uzatvorení zmluvy o podmienkach úhrady zdravotníckej pomôcky medzi ministerstvom a výrobcom zdravotníckej pomôcky prebieha výlučne za stálej prítomnosti najmenej troch zástupcov ministerstva. Za výrobcu zdravotníckej pomôcky sa na rokovaní môžu zúčastňovať aj jeho zamestnanci a ním splnomocnené tretie osoby."
+  },
+  {
+   "loc": "§ 29a ods. 9",
+   "type": "removed",
+   "text": "Na zmluvu o podmienkach úhrady zdravotníckej pomôcky podľa odseku 2 sa ustanovenia odsekov 3 a 4 vzťahujú primerane."
+  },
+  {
+   "loc": "§ 57a ods. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Pre zaradenie dietetickej potraviny do zoznamu kategorizovaných dietetických potravín môže výrobca dietetickej potraviny s ministerstvom uzatvoriť zmluvu "
+    ],
+    [
+     "+",
+     "Zmluvu "
+    ],
+    [
+     "=",
+     "o podmienkach úhrady dietetickej "
+    ],
+    [
+     "-",
+     "potraviny."
+    ],
+    [
+     "+",
+     "potraviny môže uzatvoriť"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 57a ods. 2",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Zmluvu "
+    ],
+    [
+     "+",
+     "Zmluva "
+    ],
+    [
+     "=",
+     "o podmienkach úhrady dietetickej potraviny "
+    ],
+    [
+     "-",
+     "môže na iný účel ako v odseku 1 uzatvoriť"
+    ],
+    [
+     "+",
+     "musí obsahovať"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 57a ods. 2 písm. a)",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "s výrobcom "
+    ],
+    [
+     "+",
+     "označenie "
+    ],
+    [
+     "=",
+     "dietetickej "
+    ],
+    [
+     "-",
+     "potraviny ministerstvo alebo zdravotná poisťovňa; zmluvu o podmienkach úhrady dietetickej potraviny nemôže ministerstvo s výrobcom dietetickej potraviny uzatvoriť na osobitné prípady úhrady dietetickej potraviny podľa § 88,"
+    ],
+    [
+     "+",
+     "potraviny, ktorá je predmetom zmluvy,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 57a ods. 2 písm. b)",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "s distribútorom "
+    ],
+    [
+     "+",
+     "maximálnu výšku úhrady zdravotnej poisťovne, ktorú zdravotná poisťovňa uhradí za dietetickú potravinu po uplatnení osobitných podmienok úhrady "
+    ],
+    [
+     "=",
+     "dietetickej potraviny "
+    ],
+    [
+     "-",
+     "zdravotná poisťovňa."
+    ],
+    [
+     "+",
+     "dohodnutých v zmluve alebo spôsob jej výpočtu, ktorá musí byť nižšia ako maximálna výška úhrady zdravotnej poisťovne podľa zoznamu kategorizovaných dietetických potravín alebo cena dietetickej potraviny určená podľa § 88g ods. 10,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 57a ods. 3",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Zmluva "
+    ],
+    [
+     "+",
+     "Podmienky dohodnuté v zmluve "
+    ],
+    [
+     "=",
+     "o podmienkach úhrady dietetickej potraviny "
+    ],
+    [
+     "-",
+     "musí obsahovať"
+    ],
+    [
+     "+",
+     "podľa odseku 2 písm. b) sa nesprístupňujú a nezverejňujú."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 57a ods. 3 písm. a)",
+   "type": "removed",
+   "text": "označenie dietetickej potraviny, ktorá je predmetom zmluvy,"
+  },
+  {
+   "loc": "§ 57a ods. 3 písm. b)",
+   "type": "removed",
+   "text": "maximálnu výšku úhrady zdravotnej poisťovne za túto dietetickú potravinu, ktorá sa uvedie v zozname kategorizovaných dietetických potravín,"
+  },
+  {
+   "loc": "§ 57a ods. 3 písm. c)",
+   "type": "removed",
+   "text": "maximálnu výšku úhrady zdravotnej poisťovne, ktorú zdravotná poisťovňa uhradí za dietetickú potravinu po uplatnení osobitných podmienok úhrady dietetickej potraviny dohodnutých v zmluve alebo spôsob jej výpočtu, ktorá nesmie byť nižšia ako maximálna výška úhrady zdravotnej poisťovne podľa písmena b),"
+  },
+  {
+   "loc": "§ 57a ods. 3 písm. d)",
+   "type": "removed",
+   "text": "indikačné obmedzenia a preskripčné obmedzenia, ak sa navrhujú určiť,"
+  },
+  {
+   "loc": "§ 57a ods. 3 písm. e)",
+   "type": "removed",
+   "text": "obdobie platnosti zmluvy."
+  },
+  {
+   "loc": "§ 57a ods. 4",
+   "type": "removed",
+   "text": "Zmluva o podmienkach úhrady dietetickej potraviny nadobúda účinnosť najneskôr dňom nadobudnutia vykonateľnosti rozhodnutia o zaradení dietetickej potraviny do zoznamu kategorizovaných dietetických potravín, ktorá je predmetom žiadosti, vo vzťahu ku ktorej sa zmluva o podmienkach úhrady dietetickej potraviny uzatvorila."
+  },
+  {
+   "loc": "§ 57a ods. 5",
+   "type": "removed",
+   "text": "Podmienky dohodnuté v zmluve o podmienkach úhrady dietetickej potraviny podľa odseku 3 písm. c) sa nesprístupňujú a nezverejňujú; ministerstvo podmienky o úhrade dietetickej potraviny dohodnuté v zmluve sprístupní iba členom poradných orgánov podľa § 91 ods. 1 a 2."
+  },
+  {
+   "loc": "§ 57a ods. 6",
+   "type": "removed",
+   "text": "Ak ministerstvo rozhodne o zmene charakteristík referenčnej podskupiny, do ktorej je zaradená dietetická potravina, ktorá je predmetom zmluvy o podmienkach úhrady dietetickej potraviny, na základe výzvy ministerstva adresovanej výrobcovi dietetickej potraviny sú zmluvné strany povinné uviesť zmluvu o podmienkach úhrady dietetickej potraviny do súladu s týmto rozhodnutím spôsobom, ktorý maximálne zachová hospodársky účel zmluvy a pôvodný zámer zmluvných strán najneskôr do dňa nadobudnutia vykonateľnosti tohto rozhodnutia."
+  },
+  {
+   "loc": "§ 57a ods. 7",
+   "type": "removed",
+   "text": "Ak ministerstvo rozhodne o zaradení inej dietetickej potraviny do referenčnej podskupiny, v ktorej je zaradená dietetická potravina, ktorá je predmetom zmluvy o podmienkach úhrady dietetickej potraviny a podmienky úhrady dietetickej potraviny dohodnuté v tejto zmluve sa v dôsledku zaradenia inej dietetickej potraviny stanú preukázateľne nevýhodnými v porovnaní s podmienkami úhrady založenými zaradením inej dietetickej potraviny, zmluva o podmienkach úhrady dietetickej potraviny stráca platnosť odo dňa nadobudnutia vykonateľnosti rozhodnutia o zaradení inej dietetickej potraviny do zoznamu kategorizovaných dietetických potravín; ministerstvo o nevýhodnosti podmienok dohodnutých v uzatvorenej zmluve o podmienkach úhrady dietetickej potraviny a ukončení zmluvy písomne upovedomí výrobcu dietetickej potraviny, s ktorým zmluvu o podmienkach úhrady dietetickej potraviny uzatvorilo, a to najneskôr do dňa nadobudnutia vykonateľnosti rozhodnutia o zaradení inej dietetickej potraviny do zoznamu kategorizovaných dietetických potravín, v dôsledku zaradenia ktorej sa osobitné podmienky o úhrade dietetickej potraviny dohodnuté v uzatvorenej zmluve o podmienkach úhrady dietetickej potraviny stali nevýhodnými. Ak sa podmienky o úhrade dietetickej potraviny dohodnuté v zmluve o podmienkach úhrady dietetickej potraviny nestanú preukázateľne nevýhodnými v porovnaní s podmienkami úhrady založenými zaradením inej dietetickej potraviny do zoznamu kategorizovaných dietetických potravín, ministerstvo o trvaní zmluvy o podmienkach úhrady dietetickej potraviny písomne upovedomí výrobcu inej dietetickej potraviny, a to najneskôr do dňa nadobudnutia vykonateľnosti rozhodnutia o zaradení inej dietetickej potraviny do zoznamu kategorizovaných dietetických potravín, v dôsledku zaradenia ktorej sa osobitné podmienky o úhrade dietetickej potraviny dohodnuté v uzatvorenej zmluve o podmienkach úhrady dietetickej potraviny nestali nevýhodnými."
+  },
+  {
+   "loc": "§ 57a ods. 8",
+   "type": "removed",
+   "text": "Rokovanie o uzatvorení zmluvy o podmienkach úhrady dietetickej potraviny vrátane s tým súvisiacej komunikácie, informácií, návrhov a podkladov, ktoré tvoria predmet rokovania alebo sú vzájomne predkladané medzi ministerstvom a výrobcom dietetickej potraviny, nepodlieha sprístupňovaniu ani zverejňovaniu a môže prebiehať aj prostredníctvom ústnych prejednaní alebo elektronickej komunikácie. Z ústnych prejednaní sa vyhotovuje zvukový záznam. Ministerstvo zvukové záznamy a elektronickú komunikáciu archivuje po dobu desiatich rokov. Rokovanie o uzatvorení zmluvy o podmienkach úhrady dietetickej potraviny medzi ministerstvom a výrobcom dietetickej potraviny prebieha výlučne za stálej prítomnosti najmenej troch zástupcov ministerstva. Za výrobcu dietetickej potraviny sa na rokovaní môžu zúčastňovať aj jeho zamestnanci a ním splnomocnené tretie osoby."
+  },
+  {
+   "loc": "§ 57a ods. 9",
+   "type": "removed",
+   "text": "Na zmluvu o podmienkach úhrady zdravotníckej pomôcky podľa odseku 2 sa ustanovenia odsekov 3 a 4 vzťahujú primerane."
+  },
+  {
+   "loc": "§ 84 ods. 2",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "V prípadoch podľa § 7a ods. 13, § 17 ods. 3, § 18 ods. 4, § 19 ods. 3, § 22a ods. 3, § 23 ods. 7, § 24 ods. 6, § 25 ods. 6, § 29a ods. "
+    ],
+    [
+     "-",
+     "8, "
+    ],
+    [
+     "+",
+     "3, "
+    ],
+    [
+     "=",
+     "§ 38 ods. 3, § 39 ods. 3, § 40 ods. 3, § 51 ods. 3, § 52 ods. 3, § 53 ods. 3, § 57a ods. "
+    ],
+    [
+     "-",
+     "8, "
+    ],
+    [
+     "+",
+     "3, "
+    ],
+    [
+     "=",
+     "§ 66 ods. 3, § 67 ods. 3, § 68 ods. 3, § 75 ods. 9, § 79 ods. 9 a § 94 ministerstvo nevydáva rozhodnutie."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 88 ods. 7",
+   "type": "removed",
+   "text": "Zdravotná poisťovňa môže po vopred udelenom súhlase poistencovi uhradiť najviac vo výške podľa odseku 16"
+  },
+  {
+   "loc": "§ 88 ods. 7 písm. a)",
+   "type": "removed",
+   "text": "liek, ktorý nie je zaradený v zozname kategorizovaných liekov,"
+  },
+  {
+   "loc": "§ 88 ods. 7 písm. b)",
+   "type": "removed",
+   "text": "liek, ktorý nie je zaradený v zozname liekov s úradne určenou cenou,"
+  },
+  {
+   "loc": "§ 88 ods. 7 písm. c)",
+   "type": "removed",
+   "text": "zdravotnícku pomôcku, ktorá nie je zaradená v zozname kategorizovaných zdravotníckych pomôcok,"
+  },
+  {
+   "loc": "§ 88 ods. 7 písm. d)",
+   "type": "removed",
+   "text": "zdravotnícku pomôcku, ktorá nie je zaradená v zozname kategorizovaných špeciálnych zdravotníckych materiálov,"
+  },
+  {
+   "loc": "§ 88 ods. 7 písm. e)",
+   "type": "removed",
+   "text": "zdravotnícku pomôcku, ktorá nie je zaradená v zozname zdravotníckych pomôcok s úradne určenou cenou,"
+  },
+  {
+   "loc": "§ 88 ods. 7 písm. f)",
+   "type": "removed",
+   "text": "dietetickú potravinu, ktorá nie je zaradená v zozname kategorizovaných dietetických potravín,"
+  },
+  {
+   "loc": "§ 88 ods. 7 písm. g)",
+   "type": "removed",
+   "text": "dietetickú potravinu, ktorá nie je zaradená v zozname dietetických potravín s úradne určenou cenou,"
+  },
+  {
+   "loc": "§ 88 ods. 7 písm. h)",
+   "type": "removed",
+   "text": "liek zaradený v zozname kategorizovaných liekov, ktorý nespĺňa preskripčné obmedzenie alebo indikačné obmedzenie,"
+  },
+  {
+   "loc": "§ 88 ods. 7 písm. i)",
+   "type": "removed",
+   "text": "zdravotnícku pomôcku zaradenú v zozname kategorizovaných zdravotníckych pomôcok, ktorá nespĺňa preskripčné obmedzenie alebo indikačné obmedzenie alebo je predpísaná nad rámec množstvového limitu alebo finančného limitu,"
+  },
+  {
+   "loc": "§ 88 ods. 7 písm. j)",
+   "type": "removed",
+   "text": "zdravotnícku pomôcku zaradenú v zozname kategorizovaných špeciálnych zdravotníckych materiálov, ktorá nespĺňa preskripčné obmedzenie alebo indikačné obmedzenie alebo je predpísaná nad rámec množstvového limitu,"
+  },
+  {
+   "loc": "§ 88 ods. 7 písm. k)",
+   "type": "removed",
+   "text": "dietetickú potravinu zaradenú v zozname kategorizovaných dietetických potravín, ktorá nespĺňa preskripčné obmedzenie alebo indikačné obmedzenie alebo je predpísaná nad rámec množstvového limitu alebo finančného limitu."
+  },
+  {
+   "loc": "§ 88 ods. 8",
+   "type": "removed",
+   "text": "Zdravotná poisťovňa môže po vopred udelenom súhlase poistencovi uhradiť najviac vo výške podľa odseku 16"
+  },
+  {
+   "loc": "§ 88 ods. 8 písm. a)",
+   "type": "removed",
+   "text": "neregistrovaný liek, ktorého použitie povolilo ministerstvo podľa osobitného predpisu,"
+  },
+  {
+   "loc": "§ 88 ods. 8 písm. b)",
+   "type": "removed",
+   "text": "registrovaný liek, ktorého použitie na terapeutickú indikáciu, ktorá nie je uvedená v rozhodnutí o registrácii humánneho lieku, povolilo ministerstvo podľa osobitného predpisu,"
+  },
+  {
+   "loc": "§ 88 ods. 8 písm. c)",
+   "type": "removed",
+   "text": "dietetickú potravinu pre pacientov s metabolickou poruchou, ktorej prevalencia v Slovenskej republike je nižšia ako 1:300 000."
+  },
+  {
+   "loc": "§ 88 ods. 9",
+   "type": "removed",
+   "text": "Úhradu podľa odsekov 7 a 8 môže zdravotná poisťovňa odsúhlasiť rozhodnutím v odôvodnených prípadoch najmä vtedy, ak je poskytnutie lieku, zdravotníckej pomôcky alebo dietetickej potraviny s prihliadnutím na zdravotný stav poistenca jedinou vhodnou možnosťou; úhradu odsúhlasuje zdravotná poisťovňa vydaním stanoviska na základe písomnej žiadosti poskytovateľa. Zdravotná poisťovňa rozhodne o žiadosti do 15 pracovných dní od doručenia úplnej žiadosti zdravotnej poisťovni alebo do 10 pracovných dní od doručenia úplnej žiadosti zdravotnej poisťovni, ak ide o opakovanú žiadosť; žiadosť je úplná, ak obsahuje všetky náležitosti a prílohy, ktoré zdravotná poisťovňa zverejňuje na svojom webovom sídle."
+  },
+  {
+   "loc": "§ 88 ods. 10",
+   "type": "removed",
+   "text": "Ak zdravotná poisťovňa úhradu podľa odseku 9 rozhodnutím neodsúhlasí, poskytovateľ môže do 15 dní od doručenia nesúhlasu podať zdravotnej poisťovni odvolanie proti nesúhlasu zdravotnej poisťovne s úhradou liečby. Poskytovateľ môže podať odvolanie podľa predchádzajúcej vety výlučne s písomným súhlasom poistenca, ktorý je uvedený v odvolaní alebo je jeho súhlas k odvolaniu priložený. O odvolaní proti nesúhlasu zdravotnej poisťovne s úhradou lieku rozhodne priamy nadriadený zamestnanca zdravotnej poisťovne, ktorý nesúhlas vydal, a to najneskôr do 15 pracovných dní od doručenia odvolania zdravotnej poisťovni. Ak zdravotná poisťovňa odvolaniu nevyhovie, poistenec je oprávnený požiadať Úrad pre dohľad nad zdravotnou starostlivosťou o vykonanie dohľadu podľa osobitného predpisu."
+  },
+  {
+   "loc": "§ 88 ods. 11",
+   "type": "removed",
+   "text": "Zdravotná poisťovňa zverejňuje kritériá rozhodovania podľa odseku 9 na svojom webovom sídle."
+  },
+  {
+   "loc": "§ 88 ods. 12",
+   "type": "removed",
+   "text": "Zdravotná poisťovňa na svojom webovom sídle zverejňuje štatistické informácie o rozhodnutiach podľa odseku 9 v rozsahu podľa odseku 13 vždy k 15. dňu kalendárneho mesiaca nasledujúceho po skončení každého kalendárneho štvrťroka."
+  },
+  {
+   "loc": "§ 88 ods. 13",
+   "type": "removed",
+   "text": "Štatistické informácie podľa odseku 12 sú zverejňované v rozsahu:"
+  },
+  {
+   "loc": "§ 88 ods. 13 písm. a)",
+   "type": "removed",
+   "text": "počet odsúhlasených a neodsúhlasených úhrad lieku zdravotnou poisťovňou,"
+  },
+  {
+   "loc": "§ 88 ods. 13 písm. b)",
+   "type": "removed",
+   "text": "dôvody neodsúhlasenia úhrady lieku zdravotnou poisťovňou aj s uvedením počtu neodsúhlasených úhrad lieku zdravotnou poisťovňou z uvedeného dôvodu,"
+  },
+  {
+   "loc": "§ 88 ods. 13 písm. c)",
+   "type": "removed",
+   "text": "počet prvostupňových rozhodnutí a druhostupňových rozhodnutí a"
+  },
+  {
+   "loc": "§ 88 ods. 13 písm. d)",
+   "type": "removed",
+   "text": "počet uhradených liekov, zdravotníckych pomôcok a dietetických potravín."
+  },
+  {
+   "loc": "§ 88 ods. 14",
+   "type": "removed",
+   "text": "V prípade epidemického výskytu choroby, pandemického výskytu choroby alebo výnimočnej situácie vyplývajúcej z prírodnej alebo ekologickej katastrofy zdravotná poisťovňa poistencom plne alebo čiastočne uhrádza lieky, zdravotnícke pomôcky alebo dietetické potraviny podľa odsekov 7 a 8 na príkaz ministerstva; v takých prípadoch sa žiadosť poskytovateľa alebo predchádzajúci súhlas zdravotnej poisťovne nevyžadujú."
+  },
+  {
+   "loc": "§ 88 ods. 15",
+   "type": "removed",
+   "text": "Cena lieku, zdravotníckej pomôcky alebo dietetickej potraviny, o ktorej úhradu žiada poskytovateľ podľa odseku 9, sa vypočíta ako súčet"
+  },
+  {
+   "loc": "§ 88 ods. 15 písm. a)",
+   "type": "removed",
+   "text": "úradne určenej ceny lieku, úradne určenej ceny zdravotníckej pomôcky alebo úradne určenej ceny dietetickej potraviny alebo európskej referenčnej ceny lieku, európskej referenčnej ceny zdravotníckej pomôcky alebo európskej referenčnej ceny dietetickej potraviny, ak nie je úradne určená cena,"
+  },
+  {
+   "loc": "§ 88 ods. 15 písm. b)",
+   "type": "removed",
+   "text": "ceny obchodného výkonu držiteľa povolenia na veľkodistribúciu liekov,"
+  },
+  {
+   "loc": "§ 88 ods. 15 písm. c)",
+   "type": "removed",
+   "text": "ceny obchodného výkonu držiteľa povolenia na poskytovanie lekárenskej starostlivosti vo verejnej lekárni a"
+  },
+  {
+   "loc": "§ 88 ods. 15 písm. d)",
+   "type": "removed",
+   "text": "dane z pridanej hodnoty."
+  },
+  {
+   "loc": "§ 88 ods. 16",
+   "type": "removed",
+   "text": "Zdravotná poisťovňa môže uhradiť liek, zdravotnícku pomôcku alebo dietetickú potravinu podľa odseku 7 najviac vo výške"
+  },
+  {
+   "loc": "§ 88 ods. 16 písm. a)",
+   "type": "removed",
+   "text": "90 % z najnižšej maximálnej výšky úhrady zdravotnej poisťovne za liek, ktorá je uvedená v zozname kategorizovaných liekov alebo je dohodnutá v zmluve o podmienkach úhrady lieku podľa § 7a alebo najviac vo výške 70 % z ceny lieku vypočítanej podľa odseku 15, podľa toho, ktorá z týchto súm je nižšia, ak liek je zaradený v zozname kategorizovaných liekov,"
+  },
+  {
+   "loc": "§ 88 ods. 16 písm. b)",
+   "type": "removed",
+   "text": "90 % z najnižšej maximálnej výšky úhrady zdravotnej poisťovne za zdravotnícku pomôcku, ktorá je uvedená v zozname kategorizovaných zdravotníckych pomôcok alebo zozname kategorizovaných špeciálnych zdravotníckych materiálov alebo je dohodnutá v zmluve o podmienkach úhrady zdravotníckej pomôcky podľa § 29a, alebo najviac vo výške 70 % z ceny zdravotníckej pomôcky vypočítanej podľa odseku 15 podľa toho, ktorá z týchto súm je nižšia, ak zdravotnícka pomôcka je zaradená v zozname kategorizovaných zdravotníckych pomôcok alebo zozname kategorizovaných špeciálnych zdravotníckych materiálov,"
+  },
+  {
+   "loc": "§ 88 ods. 16 písm. c)",
+   "type": "removed",
+   "text": "90 % z najnižšej maximálnej výšky úhrady zdravotnej poisťovne za dietetickú potravinu, ktorá je uvedená v zozname kategorizovaných dietetických potravín alebo je dohodnutá v zmluve o podmienkach úhrady dietetickej potraviny podľa § 57a, alebo najviac vo výške 70 % z ceny dietetickej potraviny vypočítanej podľa odseku 15 podľa toho, ktorá z týchto súm je nižšia, ak dietetická potravina je zaradená v zozname kategorizovaných dietetických potravín,"
+  },
+  {
+   "loc": "§ 88 ods. 16 písm. d)",
+   "type": "removed",
+   "text": "70 % z ceny lieku vypočítanej podľa odseku 15, ak liek nie je zaradený v zozname kategorizovaných liekov,"
+  },
+  {
+   "loc": "§ 88 ods. 16 písm. e)",
+   "type": "removed",
+   "text": "70 % z ceny zdravotníckej pomôcky vypočítanej podľa odseku 15, ak zdravotnícka pomôcka nie je zaradená v zozname kategorizovaných zdravotníckych pomôcok alebo v zozname kategorizovaných špeciálnych zdravotníckych materiálov,"
+  },
+  {
+   "loc": "§ 88 ods. 16 písm. f)",
+   "type": "removed",
+   "text": "70 % z ceny dietetickej potraviny vypočítanej podľa odseku 15, ak dietetická potravina nie je zaradená v zozname kategorizovaných dietetických potravín,"
+  },
+  {
+   "loc": "§ 88 ods. 16 písm. g)",
+   "type": "removed",
+   "text": "70 % z ceny lieku vypočítanej podľa odseku 15, ak predmetom žiadosti je neregistrovaný liek, ktorého použitie povolilo ministerstvo podľa osobitného predpisu,"
+  },
+  {
+   "loc": "§ 88 ods. 16 písm. h)",
+   "type": "removed",
+   "text": "70 % z ceny lieku vypočítanej podľa odseku 15, ak predmetom žiadosti je registrovaný liek, ktorého použitie na terapeutickú indikáciu, ktorá nie je uvedená v rozhodnutí o registrácii humánneho lieku indikoval ošetrujúci lekár v súlade s postupom podľa osobitného predpisu,1e)"
+  },
+  {
+   "loc": "§ 88 ods. 16 písm. i)",
+   "type": "removed",
+   "text": "70 % z ceny dietetickej potraviny vypočítanej podľa odseku 15, ak predmetom žiadosti je dietetická potraviny pre pacientov s metabolickou poruchou, ktorej prevalencia v Slovenskej republike je nižšia ako 1 : 300 000."
+  },
+  {
+   "loc": "§ 88 ods. 17",
+   "type": "removed",
+   "text": "Zdravotná poisťovňa môže v prípadoch hodných osobitného zreteľa uhradiť liek, zdravotnícku pomôcku alebo dietetickú potravinu podľa odsekov 7 a 8 nad rámec limitov ustanovených v odseku 16."
+  },
+  {
+   "loc": "§ 88 ods. 18",
+   "type": "removed",
+   "text": "Zdravotná poisťovňa úhradu lieku podľa odsekov 7 a 8 neodsúhlasí, ak by uhradením tohto lieku celková suma úhrad zdravotnej poisťovne podľa odsekov 7 a 8 v príslušnom kalendárnom roku prevýšila 1,9 % z výšky verejných prostriedkov určených na úhradu liekov pre príslušný kalendárny rok podľa osobitného predpisu."
+  },
+  {
+   "loc": "§ 7c (nadpis)",
+   "type": "added",
+   "text": "Priority kategorizácie liekov"
+  },
+  {
+   "loc": "§ 7c ods. 1",
+   "type": "added",
+   "text": "Priority kategorizácie liekov určuje ministerstvo na účely zohľadnenia potrieb zdravotnej starostlivosti v Slovenskej republike pri rozhodovaní o žiadostiach podľa § 10 alebo § 14. Prioritu určuje ministerstvo na návrh komisie pre priority kategorizácie liekov výlučne pre terapeutickú oblasť, skupinu účinných látok alebo indikáciu, a to na základe kritérií podľa odseku 2. Priority sa uvádzajú v zozname priorít kategorizácie liekov. Prioritu nemožno vymedziť názvom lieku, kódom lieku ani označením držiteľa registrácie. Ak liek spĺňa podmienky uvedené v zozname priorít kategorizácie liekov, ministerstvo rozhodne z vlastného podnetu alebo na žiadosť držiteľa registrácie o žiadosti podľa § 10 alebo § 14 najneskôr do 160 dní odo dňa doručenia úplnej žiadosti."
+  },
+  {
+   "loc": "§ 7c ods. 2",
+   "type": "added",
+   "text": "Pri určovaní priorít sa zohľadňuje najmä"
+  },
+  {
+   "loc": "§ 7c ods. 2 písm. a)",
+   "type": "added",
+   "text": "nenaplnená medicínska potreba a dostupnosť iných medicínskych intervencií uhrádzaných na základe verejného zdravotného poistenia,"
+  },
+  {
+   "loc": "§ 7c ods. 2 písm. b)",
+   "type": "added",
+   "text": "záťaž ochorenia,"
+  },
+  {
+   "loc": "§ 7c ods. 2 písm. c)",
+   "type": "added",
+   "text": "očakávaný klinický prínos nových liekov,"
+  },
+  {
+   "loc": "§ 7c ods. 2 písm. d)",
+   "type": "added",
+   "text": "výsledky sledovania trendov v oblasti vývoja nových zdravotníckych technológií."
+  },
+  {
+   "loc": "§ 7c ods. 3",
+   "type": "added",
+   "text": "Členov komisie pre priority kategorizácie liekov vymenúva a odvoláva minister tak, aby v zložení komisie pre priority kategorizácie boli zastúpení"
+  },
+  {
+   "loc": "§ 7c ods. 3 písm. a)",
+   "type": "added",
+   "text": "dvaja členovia navrhnutí ministerstvom,"
+  },
+  {
+   "loc": "§ 7c ods. 3 písm. b)",
+   "type": "added",
+   "text": "jeden člen z najmenej dvoch kandidátov navrhnutých inštitútom,"
+  },
+  {
+   "loc": "§ 7c ods. 3 písm. c)",
+   "type": "added",
+   "text": "jeden člen za každú zdravotnú poisťovňu pôsobiacu na území Slovenskej republiky z najmenej dvoch kandidátov navrhnutých každou zdravotnou poisťovňou pôsobiacou na území Slovenskej republiky,"
+  },
+  {
+   "loc": "§ 7c ods. 3 písm. d)",
+   "type": "added",
+   "text": "štyria členovia z najmenej ôsmich kandidátov navrhnutých samosprávnymi stavovskými organizáciami a inými odbornými spoločnosťami a"
+  },
+  {
+   "loc": "§ 7c ods. 3 písm. e)",
+   "type": "added",
+   "text": "dvaja členovia z najmenej štyroch kandidátov navrhnutých pacientskou organizáciou."
+  },
+  {
+   "loc": "§ 7c ods. 4",
+   "type": "added",
+   "text": "Návrh na určenie priority a odborné podklady môže komisii pre priority kategorizácie liekov predložiť ministerstvo, inštitút, zdravotná poisťovňa, poradný orgán podľa § 91 ods. 1 písm. c), samosprávna stavovská organizácia a iné odborné spoločnosti a pacientska organizácia. Návrh sa predkladá najneskôr do 30. septembra kalendárneho roka, ktorý predchádza roku aktualizácie zoznamu priorít kategorizácie liekov. Návrh musí obsahovať vymedzenie terapeutickej oblasti, skupiny účinných látok alebo indikácie a odôvodnenie vo vzťahu ku kritériám podľa odseku 2. Komisia pre priority kategorizácie liekov pri vypracúvaní zoznamu priorít kategorizácie liekov vychádza najmä, nie však výlučne, z predložených návrhov a odborných podkladov."
+  },
+  {
+   "loc": "§ 7c ods. 5",
+   "type": "added",
+   "text": "Komisia pre priority kategorizácie liekov vypracuje predbežný zoznam priorít kategorizácie liekov s odôvodnením každej priority. Ministerstvo ho zverejní na svojom webovom sídle najneskôr do 31. decembra kalendárneho roka, ktorý predchádza roku aktualizácie zoznamu priorít kategorizácie liekov. Pripomienky k predbežnému zoznamu priorít kategorizácie liekov môže podať komisii pre priority kategorizácie liekov ktokoľvek prostredníctvom ministerstva do 30 dní odo dňa jeho zverejnenia. Ministerstvo po uplynutí 30 dní, zverejní všetky pripomienky, ktoré mu boli doručené. Na pripomienky, ktoré vecne nesúvisia s predbežným zoznamom priorít kategorizácie liekov, komisia pre priority kategorizácie liekov neprihliada."
+  },
+  {
+   "loc": "§ 7c ods. 6",
+   "type": "added",
+   "text": "Komisia pre priority kategorizácie liekov posúdi všetky pripomienky podané podľa odseku 5 a vypracuje ich vyhodnotenie. Vo vyhodnotení pri každej pripomienke uvedie, či pripomienku prijala. Ak pripomienku neprijala, uvedie dôvody, ktoré viedli k odmietnutiu pripomienky. Komisia pre priority kategorizácie liekov následne predloží návrh zoznamu priorít kategorizácie liekov spolu s vyhodnotením pripomienok ministerstvu na schválenie. Ministerstvo môže návrh zoznamu priorít kategorizácie liekov schváliť alebo schváliť ho bez niektorej z navrhovaných priorít. Ak ministerstvo niektorú navrhovanú prioritu neschváli, uvedie dôvody. Prioritu, ktorá nie je obsiahnutá v návrhu komisie pre priority kategorizácie liekov, ministerstvo určiť nemôže. Ministerstvo zverejní schválený zoznam priorít kategorizácie liekov spolu s vyhodnotením pripomienok na svojom webovom sídle najneskôr do 31. marca kalendárneho roka, v ktorom sa aktualizácia vykonáva."
+  },
+  {
+   "loc": "§ 7c ods. 7",
+   "type": "added",
+   "text": "Zoznam priorít kategorizácie liekov sa aktualizuje raz za kalendárny rok podľa odsekov 4 až 6. Zoznam priorít kategorizácie liekov sa uplatňuje od prvého dňa kalendárneho mesiaca nasledujúceho po jeho zverejnení."
+  },
+  {
+   "loc": "§ 7c ods. 8",
+   "type": "added",
+   "text": "Na hlasovaní sa nepodieľajú členovia komisie pre priority kategorizácie liekov podľa odseku 3 písm. e)."
+  },
+  {
+   "loc": "§ 7c ods. 9",
+   "type": "added",
+   "text": "Na členov komisie pre priority kategorizácie liekov sa primerane vzťahuje § 73. Podrobnosti o zložení komisie pre priority kategorizácie liekov, o podmienkach a spôsobe vymenúvania a odvolávania jej členov a o rokovaní a hlasovaní komisie pre priority kategorizácie liekov upraví štatút a rokovací poriadok komisie pre priority kategorizácie liekov, ktorý vydá ministerstvo."
+  },
+  {
+   "loc": "§ 7c ods. 10",
+   "type": "added",
+   "text": "Podmienky podľa odseku 2 sa posudzujú vo vzájomnej súvislosti. Ak tento zákon neustanovuje inak, žiadne z kritérií nie je samo osebe rozhodujúce; nižšiu mieru naplnenia jedného kritéria možno vyvážiť vyššou mierou naplnenia iného kritéria."
+  },
+  {
+   "loc": "§ 7c ods. 11",
+   "type": "added",
+   "text": "Ak pre terapeutickú oblasť, skupinu účinných látok alebo indikáciu nie je dostupná žiadna účinná medicínska intervencia uhrádzaná na základe verejného zdravotného poistenia, možno prioritu určiť aj výlučne na základe kritéria podľa odseku 2 písm. a)."
+  },
+  {
+   "loc": "§ 7c ods. 12",
+   "type": "added",
+   "text": "Podrobnosti o kritériách podľa odsekov 2, 10 a 11 a postup ich vyhodnotenia ustanoví všeobecne záväzný právny predpis, ktorý vydá ministerstvo."
+  },
+  {
+   "loc": "§ 7c ods. 13",
+   "type": "added",
+   "text": "Držiteľ registrácie môže v žiadosti o zaradenie lieku do zoznamu kategorizovaných liekov, v žiadosti o zmenu charakteristík referenčnej skupiny, požiadať ministerstvo o rozhodnutie v lehote podľa odseku 1, ak držiteľ registrácie dôvodne predpokladá, že sa žiadosť týka lieku patriaceho do terapeutickej oblasti, skupiny účinných látok alebo indikácie, pre ktorú bola určená priorita kategorizácie podľa odseku 1 a spĺňa požiadavky podľa zoznamu priorít kategorizácie liekov. Ak dôjde k zmene zoznamu priorít kategorizácie liekov, môže držiteľ registrácie doplniť svoju žiadosť podľa tohto odseku do 30 dní odo dňa zverejnenia zoznamu priorít kategorizácie liekov. Splnenie týchto podmienok sa posudzuje podľa zoznamu priorít kategorizácie liekov platného v deň podania žiadosti."
+  },
+  {
+   "loc": "§ 7c ods. 14",
+   "type": "added",
+   "text": "K žiadosti podľa odseku 13 držiteľ registrácie priloží podklady osvedčujúce splnenie podmienok uvedených v zozname priorít kategorizácie liekov."
+  },
+  {
+   "loc": "§ 7c ods. 15",
+   "type": "added",
+   "text": "Postupom podľa odseku 13 nie je dotknutá povinnosť ministerstva posúdiť splnenie všetkých podmienok na zaradenie lieku do zoznamu kategorizovaných liekov alebo na zmenu charakteristík referenčnej skupiny. Postupom podľa odseku 13 nie sú dotknuté práva účastníkov konania ani lehoty na rozhodnutie v ostatných konaniach podľa tohto zákona."
+  },
+  {
+   "loc": "§ 7c ods. 16",
+   "type": "added",
+   "text": "Ak držiteľ registrácie k žiadosti podľa § 10 alebo § 14 priloží žiadosť podľa odseku 13, vyhodnocuje splnenie podmienok podľa zoznamu priorít kategorizácie liekov komisia pre priority kategorizácie na základe predložených údajov a dôkazov slúžiacich ako podklady pre hodnotenie inštitútu."
+  },
+  {
+   "loc": "§ 7c ods. 17",
+   "type": "added",
+   "text": "Ak posudzovaný liek spĺňa podmienky podľa zoznamu priorít kategorizácie liekov, ministerstvo je oprávnené takúto žiadosť vybaviť prednostne bez ohľadu na poradie, v ktorom boli ministerstvu doručené."
+  },
+  {
+   "loc": "§ 29a ods. 1 písm. a)",
+   "type": "added",
+   "text": "s výrobcom zdravotníckej pomôcky ministerstvo alebo zdravotná poisťovňa; zmluvu o podmienkach úhrady zdravotníckej pomôcky nemôže ministerstvo s výrobcom zdravotníckej pomôcky uzatvoriť na osobitné prípady úhrady zdravotníckej pomôcky podľa § 88e,"
+  },
+  {
+   "loc": "§ 29a ods. 1 písm. b)",
+   "type": "added",
+   "text": "s distribútorom zdravotníckej pomôcky zdravotná poisťovňa."
+  },
+  {
+   "loc": "§ 29a ods. 2 písm. c)",
+   "type": "added",
+   "text": "indikačné obmedzenia a preskripčné obmedzenia, ak sa navrhujú určiť,"
+  },
+  {
+   "loc": "§ 29a ods. 2 písm. d)",
+   "type": "added",
+   "text": "obdobie trvania zmluvy o podmienkach úhrady zdravotníckej pomôcky."
+  },
+  {
+   "loc": "§ 57a ods. 1 písm. a)",
+   "type": "added",
+   "text": "s výrobcom dietetickej potraviny ministerstvo alebo zdravotná poisťovňa; zmluvu o podmienkach úhrady dietetickej potraviny nemôže ministerstvo s výrobcom dietetickej potraviny uzatvoriť na osobitné prípady úhrady dietetickej potraviny podľa § 88e,"
+  },
+  {
+   "loc": "§ 57a ods. 1 písm. b)",
+   "type": "added",
+   "text": "s distribútorom dietetickej potraviny zdravotná poisťovňa."
+  },
+  {
+   "loc": "§ 57a ods. 2 písm. c)",
+   "type": "added",
+   "text": "indikačné obmedzenia a preskripčné obmedzenia, ak sa navrhujú určiť,"
+  },
+  {
+   "loc": "§ 57a ods. 2 písm. d)",
+   "type": "added",
+   "text": "obdobie trvania zmluvy."
+  },
+  {
+   "loc": "§ 88a (nadpis)",
+   "type": "added",
+   "text": "Výnimočné prípady úhrad liekov"
+  },
+  {
+   "loc": "§ 88a ods. 1",
+   "type": "added",
+   "text": "Na základe žiadosti poskytovateľa a vopred vydaného súhlasu zdravotnej poisťovne, ak sú splnené podmienky podľa odseku 2, zdravotná poisťovňa uhradí humánny liek, ktorý"
+  },
+  {
+   "loc": "§ 88a ods. 1 písm. a)",
+   "type": "added",
+   "text": "je registrovaný a nie je zaradený v zozname kategorizovaných liekov,"
+  },
+  {
+   "loc": "§ 88a ods. 1 písm. b)",
+   "type": "added",
+   "text": "je registrovaný a nie je zaradený v zozname liekov s úradne určenou cenou,"
+  },
+  {
+   "loc": "§ 88a ods. 1 písm. c)",
+   "type": "added",
+   "text": "je zaradený v zozname kategorizovaných liekov, ale nespĺňa indikačné obmedzenie uvedené v zozname kategorizovaných liekov a indikácia, v ktorej sa má liek pacientovi podať, je uvedená v súhrne charakteristických vlastností lieku alebo"
+  },
+  {
+   "loc": "§ 88a ods. 1 písm. d)",
+   "type": "added",
+   "text": "má byť podaný pediatrickému pacientovi nad rámec súhrnu charakteristických vlastností lieku a jeho použitie je v súlade s medicínou založenou na dôkazoch alebo medzinárodnými odporúčaniami a liečba je potvrdená príslušným špecializovaným klinickým pracoviskom."
+  },
+  {
+   "loc": "§ 88a ods. 2",
+   "type": "added",
+   "text": "Ak v odseku 3 nie je ustanovené inak, zdravotná poisťovňa uhradí liek podľa odseku 1, ak sú ku dňu podania žiadosti o úhradu lieku splnené tieto podmienky:"
+  },
+  {
+   "loc": "§ 88a ods. 2 písm. a)",
+   "type": "added",
+   "text": "liek nie je nahraditeľný inou medicínskou intervenciou uhrádzanou na základe verejného zdravotného poistenia vzhľadom na zdravotný stav pacienta,"
+  },
+  {
+   "loc": "§ 88a ods. 2 písm. b)",
+   "type": "added",
+   "text": "boli vyčerpané účinné medicínske intervencie hradené na základe verejného zdravotného poistenia, ktoré bolo možné poistencovi indikovať vzhľadom na jeho zdravotný stav,"
+  },
+  {
+   "loc": "§ 88a ods. 2 písm. c)",
+   "type": "added",
+   "text": "ochorenie poistenca, ktorému má byť liek hradený, spĺňa indikáciu uvedenú v súhrne charakteristických vlastností lieku podľa osobitného predpisu; okrem lieku podľa odseku 1 písm. d),"
+  },
+  {
+   "loc": "§ 88a ods. 2 písm. d)",
+   "type": "added",
+   "text": "držiteľ registrácie podal žiadosť o zaradenie lieku do zoznamu kategorizovaných liekov alebo žiadosť o zmenu charakteristík referenčnej skupiny pre príslušnú indikáciu; to neplatí, ak predmetom žiadosti o úhradu lieku je originálny liek, od ktorého registrácie alebo od registrácie príslušnej indikácie uplynulo menej ako 24 mesiacov alebo ak ide o liek podľa odseku 1 písm. d),"
+  },
+  {
+   "loc": "§ 88a ods. 2 písm. e)",
+   "type": "added",
+   "text": "ministerstvo nevydalo rozhodnutie o žiadosti držiteľa registrácie o zaradenie lieku do zoznamu kategorizovaných liekov, ktoré nadobudlo vykonateľnosť, rozhodnutie o žiadosti držiteľa registrácie o zmenu charakteristík referenčnej skupiny vo vzťahu k príslušnej indikácii, ktoré nadobudlo vykonateľnosť alebo rozhodnutie o vyradení lieku zo zoznamu kategorizovaných liekov, ktoré nadobudlo vykonateľnosť,"
+  },
+  {
+   "loc": "§ 88a ods. 2 písm. f)",
+   "type": "added",
+   "text": "prostriedky zdravotnej poisťovne ustanovené osobitným predpisom postačujú na úhradu lieku podľa všeobecne záväzného právneho predpisu, ktorý vydá ministerstvo; všeobecne záväzný právny predpis, ktorý vydá ministerstvo, ustanoví, aj ako sa posudzuje splnenie tejto podmienky, ak osobitný predpis nebol vydaný."
+  },
+  {
+   "loc": "§ 88a ods. 3",
+   "type": "added",
+   "text": "Zdravotná poisťovňa nemôže udeliť súhlas s úhradou lieku podľa odseku 1, ak ide o liek podľa § 7 ods. 6, § 16 ods. 4 písm. b), c), e) a f) alebo § 86."
+  },
+  {
+   "loc": "§ 88a ods. 4",
+   "type": "added",
+   "text": "Zdravotná poisťovňa vydá súhlas s pokračovaním v úhrade lieku na základe žiadosti podľa § 88f ods. 4, ak sú splnené podmienky podľa odseku 2 a doterajšia liečba liekom uhrádzaným na základe súhlasu zdravotnej poisťovne podľa § 88g ods. 1 písm. a) alebo § 88g ods. 2 písm. a) bola preukázateľne efektívna. Ak nebola splnená výlučne podmienka podľa odseku 2 písm. f), zdravotná poisťovňa, ktorá vydala súhlas s úhradou lieku, o pokračovanie v úhrade ktorého sa žiada, nemôže vydať rozhodnutie o neudelení súhlasu s pokračovaním v úhrade lieku."
+  },
+  {
+   "loc": "§ 88b ods. 1",
+   "type": "added",
+   "text": "Na základe žiadosti poskytovateľa a vopred vydaného súhlasu zdravotnej poisťovne, ak sú splnené podmienky podľa odseku 2, zdravotná poisťovňa uhradí liek, ktorý je registrovaný a má byť podaný pacientovi výhradne v priamej súvislosti s transplantáciou orgánu, tkaniva alebo buniek v neschválenej terapeutickej indikácii neuvedenej v súhrne charakteristických vlastností lieku, ak je jeho použitie určené na zabezpečenie úspechu transplantácie alebo na zachovanie, stabilizáciu alebo zlepšenie funkcie transplantovaného orgánu, tkaniva alebo buniek a jeho použitie je v súlade s medicínou založenou na dôkazoch."
+  },
+  {
+   "loc": "§ 88b ods. 2",
+   "type": "added",
+   "text": "Ak v odseku 3 nie je ustanovené inak, zdravotná poisťovňa uhradí liek podľa odseku 1, ak sú ku dňu podania žiadosti o úhradu lieku splnené tieto podmienky:"
+  },
+  {
+   "loc": "§ 88b ods. 2 písm. a)",
+   "type": "added",
+   "text": "prostriedky zdravotnej poisťovne ustanovené osobitným predpisom postačujú na úhradu lieku podľa všeobecne záväzného právneho predpisu, ktorý vydá ministerstvo; všeobecne záväzný právny predpis, ktorý vydá ministerstvo, ustanoví, aj ako sa posudzuje splnenie tejto podmienky, ak osobitný predpis nebol vydaný, a"
+  },
+  {
+   "loc": "§ 88b ods. 2 písm. b)",
+   "type": "added",
+   "text": "je splnená jedna z nasledovných podmienok"
+  },
+  {
+   "loc": "§ 88b ods. 2 písm. b) bod 1",
+   "type": "added",
+   "text": "poistenec, ktorému má byť liek hradený absolvoval transplantáciu orgánu, tkaniva alebo buniek v zahraničí a bol nastavený na liečbu liekom, ktorá je určená na zachovanie, stabilizáciu alebo zlepšenie funkcie transplantátu orgánu, tkaniva alebo buniek a ktorá nie je hradená na základe verejného zdravotného poistenia alebo"
+  },
+  {
+   "loc": "§ 88b ods. 2 písm. b) bod 2",
+   "type": "added",
+   "text": "ak je použitie takéhoto lieku na účely podpory alebo zachovania funkcie transplantovaného orgánu, tkaniva alebo buniek v súlade s medicínou založenou na dôkazoch."
+  },
+  {
+   "loc": "§ 88b ods. 3",
+   "type": "added",
+   "text": "Zdravotná poisťovňa nemôže udeliť súhlas s úhradou lieku podľa odseku 1, ak ide o liek podľa § 7 ods. 6, § 16 ods. 4 písm. b), c), e) a f) alebo § 86."
+  },
+  {
+   "loc": "§ 88b ods. 4",
+   "type": "added",
+   "text": "Zdravotná poisťovňa vydá súhlas s pokračovaním v úhrade lieku na základe žiadosti podľa § 88f ods. 4, ak sú splnené podmienky podľa odseku 2 a doterajšia liečba liekom uhrádzaným na základe súhlasu zdravotnej poisťovne podľa § 88g ods. 1 písm. a) alebo ods. 2 písm. a) bola preukázateľne efektívna. Ak nebola splnená výlučne podmienka podľa odseku 2 písm. a), zdravotná poisťovňa, ktorá vydala súhlas s úhradou lieku, o pokračovanie v úhrade ktorého sa žiada, nemôže vydať rozhodnutie o neudelení súhlasu s pokračovaním v úhrade lieku."
+  },
+  {
+   "loc": "§ 88c ods. 1",
+   "type": "added",
+   "text": "Na základe žiadosti poskytovateľa a vopred vydaného súhlasu zdravotnej poisťovne, ak sú splnené podmienky podľa odseku 2, zdravotná poisťovňa môže uhradiť liek, ktorý"
+  },
+  {
+   "loc": "§ 88c ods. 1 písm. a)",
+   "type": "added",
+   "text": "je registrovaný a nie je zaradený v zozname kategorizovaných liekov,"
+  },
+  {
+   "loc": "§ 88c ods. 1 písm. b)",
+   "type": "added",
+   "text": "je registrovaný a nie je zaradený v zozname liekov s úradne určenou cenou,"
+  },
+  {
+   "loc": "§ 88c ods. 1 písm. c)",
+   "type": "added",
+   "text": "je zaradený v zozname kategorizovaných liekov, ale nespĺňa indikačné obmedzenie, ktoré je uvedené v zozname kategorizovaných liekov a indikácia, v ktorej sa má liek pacientovi podať, je uvedená v súhrne charakteristických vlastností lieku,"
+  },
+  {
+   "loc": "§ 88c ods. 1 písm. d)",
+   "type": "added",
+   "text": "nie je registrovaný alebo"
+  },
+  {
+   "loc": "§ 88c ods. 1 písm. e)",
+   "type": "added",
+   "text": "sa má podať v neschválenej terapeutickej indikácii neuvedenej v súhrne charakteristík vlastností lieku."
+  },
+  {
+   "loc": "§ 88c ods. 2",
+   "type": "added",
+   "text": "Ak v odseku 3 nie je ustanovené inak, zdravotná poisťovňa môže udeliť súhlas s úhradou lieku podľa odseku 1, ak sú ku dňu podania žiadosti o úhradu splnené tieto podmienky:"
+  },
+  {
+   "loc": "§ 88c ods. 2 písm. a)",
+   "type": "added",
+   "text": "liek nie je nahraditeľný inou medicínskou intervenciou uhrádzanou na základe verejného zdravotného poistenia vzhľadom na zdravotný stav pacienta,"
+  },
+  {
+   "loc": "§ 88c ods. 2 písm. b)",
+   "type": "added",
+   "text": "sú splnené kritériá určené príslušnou zdravotnou poisťovňou, ktoré sú transparentné, objektívne, založené na medicíne založenej na dôkazoch, nediskriminačné a tieto kritériá sú zverejnené na webovom sídle príslušnej zdravotnej poisťovne a ministerstva; zdravotná poisťovňa môže tieto kritériá zmeniť najviac jedenkrát za kalendárny rok,"
+  },
+  {
+   "loc": "§ 88c ods. 2 písm. c)",
+   "type": "added",
+   "text": "liek je uvedený na trh Európskej únie alebo ministerstvo vydalo povolenie na terapeutické použitie lieku podľa osobitného predpisu a"
+  },
+  {
+   "loc": "§ 88c ods. 2 písm. d)",
+   "type": "added",
+   "text": "prostriedky zdravotnej poisťovne ustanovené osobitným predpisom postačujú na úhradu lieku podľa všeobecne záväzného právneho predpisu, ktorý vydá ministerstvo; všeobecne záväzný právny predpis, ktorý vydá ministerstvo, ustanoví, aj ako sa posudzuje splnenie tejto podmienky, ak osobitný predpis nebol vydaný."
+  },
+  {
+   "loc": "§ 88c ods. 3",
+   "type": "added",
+   "text": "Zdravotná poisťovňa nemôže udeliť súhlas s úhradou lieku podľa odseku 1, ak ide o liek podľa § 7 ods. 6, § 16 ods. 4 písm. b), c), e) a f) alebo § 86."
+  },
+  {
+   "loc": "§ 88c ods. 4",
+   "type": "added",
+   "text": "Zdravotná poisťovňa môže vydať súhlas s pokračovaním v úhrade lieku na základe žiadosti podľa § 88f ods. 4, ak sú splnené podmienky podľa odseku 2 a doterajšia liečba liekom uhrádzaným na základe súhlasu zdravotnej poisťovne podľa § 88g ods. 1 písm. a) alebo ods. 2 písm. a) bola preukázateľne efektívna. Ak nebola splnená výlučne podmienka podľa odseku 2 písm. d), zdravotná poisťovňa, ktorá vydala súhlas s úhradou lieku, o pokračovanie v úhrade ktorého sa žiada, nemôže vydať rozhodnutie o neudelení súhlasu s pokračovaním v úhrade lieku."
+  },
+  {
+   "loc": "§ 88d (nadpis)",
+   "type": "added",
+   "text": "Výnimočné prípady úhrad liekov pre skupinu pacientov"
+  },
+  {
+   "loc": "§ 88d ods. 1",
+   "type": "added",
+   "text": "Na základe žiadosti poskytovateľa a vopred vydaného súhlasu zdravotnej poisťovne, ak sú splnené podmienky podľa odseku 2, zdravotná poisťovňa môže pre skupinu poistencov hradiť liek, ktorý"
+  },
+  {
+   "loc": "§ 88d ods. 1 písm. a)",
+   "type": "added",
+   "text": "je registrovaný a nie je zaradený v zozname kategorizovaných liekov,"
+  },
+  {
+   "loc": "§ 88d ods. 1 písm. b)",
+   "type": "added",
+   "text": "je registrovaný a nie je zaradený v zozname liekov s úradne určenou cenou,"
+  },
+  {
+   "loc": "§ 88d ods. 1 písm. c)",
+   "type": "added",
+   "text": "je zaradený v zozname kategorizovaných liekov, ale nespĺňa indikačné obmedzenie, ktoré je uvedené v zozname kategorizovaných liekov a indikácia, v ktorej sa má liek pacientovi podať, je uvedená v súhrne charakteristických vlastností lieku,"
+  },
+  {
+   "loc": "§ 88d ods. 1 písm. d)",
+   "type": "added",
+   "text": "nie je registrovaný alebo"
+  },
+  {
+   "loc": "§ 88d ods. 1 písm. e)",
+   "type": "added",
+   "text": "má byť podaný v neschválenej terapeutickej indikácii neuvedenej v súhrne charakteristík vlastností lieku."
+  },
+  {
+   "loc": "§ 88d ods. 2",
+   "type": "added",
+   "text": "Ak v odseku 3 nie je ustanovené inak, zdravotná poisťovňa môže udeliť súhlas s úhradou lieku podľa odseku 1, ak sú ku dňu podania žiadosti splnené tieto podmienky:"
+  },
+  {
+   "loc": "§ 88d ods. 2 písm. a)",
+   "type": "added",
+   "text": "liek je uvedený v odporúčaných terapeutických postupoch a nie je nahraditeľný inou nákladovo efektívnejšou medicínskou intervenciou uhrádzanou na základe verejného zdravotného poistenia,"
+  },
+  {
+   "loc": "§ 88d ods. 2 písm. b)",
+   "type": "added",
+   "text": "náklady na úhradu liečby liekom za 12 mesiacov liečby pre jedného pacienta, ktoré sú určené podľa ceny lieku vypočítanej podľa § 88g ods. 9, neprevyšujú štvornásobok priemernej mesačnej mzdy zamestnanca v hospodárstve Slovenskej republiky zistenej Štatistickým úradom Slovenskej republiky za kalendárny rok, ktorý dva roky predchádza kalendárnemu roku, v ktorom sa súhlas s úhradou lieku vydáva,"
+  },
+  {
+   "loc": "§ 88d ods. 2 písm. c)",
+   "type": "added",
+   "text": "prostriedky zdravotnej poisťovne ustanovené osobitným predpisom postačujú na úhradu lieku podľa všeobecne záväzného právneho predpisu, ktorý vydá ministerstvo; všeobecne záväzný právny predpis, ktorý vydá ministerstvo, ustanoví, aj ako sa posudzuje splnenie tejto podmienky, ak osobitný predpis nebol vydaný a"
+  },
+  {
+   "loc": "§ 88d ods. 2 písm. d)",
+   "type": "added",
+   "text": "liek je uvedený na trh Európskej únie alebo ministerstvo vydalo povolenie na terapeutické použitie lieku podľa osobitného predpisu."
+  },
+  {
+   "loc": "§ 88d ods. 3",
+   "type": "added",
+   "text": "Zdravotná poisťovňa nemôže udeliť súhlas s úhradou lieku podľa odseku 1, ak ide o liek podľa § 7 ods. 6, § 16 ods. 4 písm. b), c), e) a f) alebo § 86."
+  },
+  {
+   "loc": "§ 88d ods. 4",
+   "type": "added",
+   "text": "Zdravotná poisťovňa zverejní zoznam hradených liekov a ich indikačných obmedzení a preskripčných obmedzení, ktoré uhrádza pre skupinu pacientov, na svojom webovom sídle."
+  },
+  {
+   "loc": "§ 88e (nadpis)",
+   "type": "added",
+   "text": "Výnimočné prípady úhrad zdravotníckych pomôcok a dietetických potravín"
+  },
+  {
+   "loc": "§ 88e ods. 1",
+   "type": "added",
+   "text": "Na základe žiadosti poskytovateľa a vopred vydaného súhlasu zdravotnej poisťovne, ak sú splnené podmienky podľa odseku 2, zdravotná poisťovňa môže uhradiť"
+  },
+  {
+   "loc": "§ 88e ods. 1 písm. a)",
+   "type": "added",
+   "text": "zdravotnícku pomôcku, ktorá nie je zaradená v zozname kategorizovaných zdravotníckych pomôcok,"
+  },
+  {
+   "loc": "§ 88e ods. 1 písm. b)",
+   "type": "added",
+   "text": "zdravotnícku pomôcku, ktorá nie je zaradená v zozname kategorizovaných špeciálnych zdravotníckych materiálov,"
+  },
+  {
+   "loc": "§ 88e ods. 1 písm. c)",
+   "type": "added",
+   "text": "zdravotnícku pomôcku, ktorá nie je zaradená v zozname zdravotníckych pomôcok s úradne určenou cenou alebo v zozname špeciálnych zdravotníckych materiálov s úradne určenou cenou,"
+  },
+  {
+   "loc": "§ 88e ods. 1 písm. d)",
+   "type": "added",
+   "text": "zdravotnícku pomôcku zaradenú v zozname kategorizovaných zdravotníckych pomôcok, ktorá nespĺňa preskripčné obmedzenie alebo indikačné obmedzenie alebo je predpísaná nad rámec množstvového limitu alebo finančného limitu,"
+  },
+  {
+   "loc": "§ 88e ods. 1 písm. e)",
+   "type": "added",
+   "text": "zdravotnícku pomôcku zaradenú v zozname kategorizovaných špeciálnych zdravotníckych materiálov, ktorá nespĺňa preskripčné obmedzenie alebo indikačné obmedzenie alebo je predpísaná nad rámec množstvového limitu,"
+  },
+  {
+   "loc": "§ 88e ods. 1 písm. f)",
+   "type": "added",
+   "text": "dietetickú potravinu zaradenú v zozname kategorizovaných dietetických potravín, ktorá nespĺňa preskripčné obmedzenie alebo indikačné obmedzenie alebo je predpísaná nad rámec množstvového limitu alebo finančného limitu alebo"
+  },
+  {
+   "loc": "§ 88e ods. 1 písm. g)",
+   "type": "added",
+   "text": "dietetickú potravinu pre pacientov s metabolickou poruchou, ktorej prevalencia v Slovenskej republike je nižšia ako 1 : 300 000; to neplatí, ak ide o dietetickú potravinu pre pacientov s metabolickou poruchou, ktorej prevalencia v Slovenskej republike je vyššia ako 1 : 300 000, ak ide o jedinú medicínsky dostupnú dietetickú potravinu potrebnú na zabezpečenie špeciálneho diétneho režimu alebo nutričného režimu, cena takejto dietetickej potraviny neprekračuje európsku referenčnú cenu dietetickej potraviny a výrobca dietetickej potraviny do šiestich mesiacov odo dňa vydania súhlasu s úhradou takejto dietetickej potraviny podal žiadosť o jej zaradenie do zoznamu kategorizovaných dietetických potravín."
+  },
+  {
+   "loc": "§ 88e ods. 2",
+   "type": "added",
+   "text": "Ak v odseku 3 nie je ustanovené inak, zdravotná poisťovňa môže uhradiť zdravotnícku pomôcku alebo dietetickú potravinu podľa odseku 1, ak sú ku dňu podania žiadosti o úhradu zdravotníckej pomôcky alebo dietetickej potraviny podľa § 88f splnené tieto podmienky:"
+  },
+  {
+   "loc": "§ 88e ods. 2 písm. a)",
+   "type": "added",
+   "text": "zdravotnícka pomôcka alebo dietetická potravina nie je nahraditeľná inou medicínskou intervenciou uhrádzanou na základe verejného zdravotného poistenia,"
+  },
+  {
+   "loc": "§ 88e ods. 2 písm. b)",
+   "type": "added",
+   "text": "náklady na úhradu zdravotníckej pomôcky alebo dietetickej potraviny za 12 po sebe nasledujúcich mesiacov vypočítané podľa § 88g ods. 9 neprevyšujú výšku štvornásobku priemernej mesačnej mzdy zamestnanca v hospodárstve Slovenskej republiky zistenej Štatistickým úradom Slovenskej republiky za kalendárny rok, ktorý dva roky predchádza kalendárnemu roku, v ktorom sa súhlas s úhradou zdravotníckej pomôcky alebo dietetickej potraviny vydáva a"
+  },
+  {
+   "loc": "§ 88e ods. 2 písm. c)",
+   "type": "added",
+   "text": "prostriedky zdravotnej poisťovne ustanovené osobitným predpisom postačujú na úhradu zdravotníckej pomôcky alebo dietetickej potraviny, podľa všeobecne záväzného právneho predpisu, ktorý vydá ministerstvo; všeobecne záväzný právny predpis, ktorý vydá ministerstvo, ustanoví, aj ako sa posudzuje splnenie tejto podmienky, ak osobitný predpis nebol vydaný."
+  },
+  {
+   "loc": "§ 88e ods. 3",
+   "type": "added",
+   "text": "Zdravotná poisťovňa nemôže vydať súhlas s úhradou zdravotníckej pomôcky podľa odseku 1, ak sa nenachádza v Európskej databáze zdravotníckych pomôcok."
+  },
+  {
+   "loc": "§ 88e ods. 4",
+   "type": "added",
+   "text": "Zdravotná poisťovňa môže vydať súhlas s pokračovaním v úhrade zdravotníckej pomôcky alebo dietetickej potraviny na základe žiadosti podľa § 88f ods. 4, ak sú splnené podmienky podľa odseku 2 a doterajšia liečba zdravotníckou pomôckou alebo dietetickou potravinou uhrádzanou na základe súhlasu zdravotnej poisťovne podľa § 88g ods. 1 písm. a) alebo ods. 2 písm. a) bola preukázateľne efektívna. Ak nebola splnená výlučne podmienka podľa odseku 2 písm. c), zdravotná poisťovňa, ktorá vydala súhlas s úhradou zdravotníckej pomôcky alebo dietetickej potraviny, o pokračovanie v úhrade ktorej sa žiada, nemôže vydať rozhodnutie o neudelení súhlasu s pokračovaním v úhrade zdravotníckej pomôcky alebo dietetickej potraviny."
+  },
+  {
+   "loc": "§ 88f (nadpis)",
+   "type": "added",
+   "text": "Žiadosť o výnimočnú úhradu lieku, žiadosť o výnimočnú úhradu lieku pre skupinu pacientov, žiadosť o výnimočnú úhradu zdravotníckej pomôcky a žiadosť o výnimočnú úhradu dietetickej potraviny"
+  },
+  {
+   "loc": "§ 88f ods. 1",
+   "type": "added",
+   "text": "Žiadosť o výnimočnú úhradu lieku, žiadosť o výnimočnú úhradu lieku pre skupinu pacientov, žiadosť o výnimočnú úhradu zdravotníckej pomôcky a žiadosť o výnimočnú úhradu dietetickej potraviny podáva príslušnej zdravotnej poisťovni poskytovateľ. Poskytovateľ je povinný podať žiadosť prostredníctvom na to určeného formulára zverejneného zdravotnou poisťovňou s príznakom, či poskytovateľ žiada o úhradu lieku, zdravotníckej pomôcky alebo dietetickej potraviny podľa § 88a, 88b, 88c, 88d alebo § 88e."
+  },
+  {
+   "loc": "§ 88f ods. 2",
+   "type": "added",
+   "text": "Žiadosť podľa odseku 1, okrem žiadosti o výnimočnú úhradu lieku pre skupinu pacientov, obsahuje"
+  },
+  {
+   "loc": "§ 88f ods. 2 písm. a)",
+   "type": "added",
+   "text": "údaje o poistencovi v rozsahu meno, priezvisko, dátum narodenia, rodné číslo, ak je pridelené, a adresa trvalého bydliska poistenca,"
+  },
+  {
+   "loc": "§ 88f ods. 2 písm. b)",
+   "type": "added",
+   "text": "hlavnú diagnózu a vedľajšie diagnózy,"
+  },
+  {
+   "loc": "§ 88f ods. 2 písm. c)",
+   "type": "added",
+   "text": "odborné zhrnutie priebehu poskytnutej zdravotnej starostlivosti pacientovi,"
+  },
+  {
+   "loc": "§ 88f ods. 2 písm. d)",
+   "type": "added",
+   "text": "identifikáciu lieku, zdravotníckej pomôcky alebo dietetickej potraviny, ktorej sa žiadosť týka, v rozsahu"
+  },
+  {
+   "loc": "§ 88f ods. 2 písm. d) bod 1",
+   "type": "added",
+   "text": "kód lieku, kód zdravotníckej pomôcky pridelený Štátnym ústavom pre kontrolu liečiv alebo kód zdravotníckej pomôcky pridelený Európskou databázou zdravotníckych pomôcok,18d)"
+  },
+  {
+   "loc": "§ 88f ods. 2 písm. d) bod 2",
+   "type": "added",
+   "text": "číslo nahlásenia ministerstvu, ak ide o liek podľa § 88c ods. 1 písm. d) alebo"
+  },
+  {
+   "loc": "§ 88f ods. 2 písm. d) bod 3",
+   "type": "added",
+   "text": "kód pridelený dietetickej potravine, ak existuje a"
+  },
+  {
+   "loc": "§ 88f ods. 2 písm. e)",
+   "type": "added",
+   "text": "odôvodnenie žiadosti, v ktorom poskytovateľ uvedie splnenie podmienok podľa § 88a až 88c a § 88e; podmienky podľa § 88a ods. 2 písm. d) až f), § 88b ods. 2 písm. a), § 88c ods. 2 písm. d) a § 88e ods. 2 písm. c) poskytovateľ neodôvodňuje a"
+  },
+  {
+   "loc": "§ 88f ods. 2 písm. f)",
+   "type": "added",
+   "text": "informáciu, či poskytovateľ žiada o úhradu lieku, zdravotníckej pomôcky alebo dietetickej potraviny podľa § 88a, § 88b, § 88c alebo § 88e."
+  },
+  {
+   "loc": "§ 88f ods. 3",
+   "type": "added",
+   "text": "Žiadosť o výnimočnú úhradu lieku pre skupinu pacientov podľa § 88d obsahuje"
+  },
+  {
+   "loc": "§ 88f ods. 3 písm. a)",
+   "type": "added",
+   "text": "identifikáciu lieku v rozsahu názov lieku, lieková forma, cesta podania, veľkosť balenia lieku,"
+  },
+  {
+   "loc": "§ 88f ods. 3 písm. b)",
+   "type": "added",
+   "text": "návrh terapeutickej indikácie vrátane kódu prideleného v rámci medzinárodnej klasifikácie chorôb a preskripčného obmedzenia, pre ktoré sa výnimočná úhrada lieku pre skupinu pacientov žiada,"
+  },
+  {
+   "loc": "§ 88f ods. 3 písm. c)",
+   "type": "added",
+   "text": "údaj o predpokladanej veľkosti skupiny pacientov v rámci Slovenskej republiky,"
+  },
+  {
+   "loc": "§ 88f ods. 3 písm. d)",
+   "type": "added",
+   "text": "predpokladaná dĺžka liečby liekom a"
+  },
+  {
+   "loc": "§ 88f ods. 3 písm. e)",
+   "type": "added",
+   "text": "odporúčané terapeutické postupy, na základe ktorých poskytovateľ žiada o výnimočnú úhradu lieku pre skupinu pacientov."
+  },
+  {
+   "loc": "§ 88f ods. 4",
+   "type": "added",
+   "text": "Žiadosť o vydanie súhlasu s pokračovaním v úhrade lieku, zdravotníckej pomôcky alebo dietetickej potraviny podáva zdravotnej poisťovni poskytovateľ. Žiadosť podľa prvej vety obsahuje náležitosti podľa odseku 2 písm. a), b) a d); prílohou k žiadosti je klinické hodnotenie efektívnosti doterajšej liečby liekom, o pokračovanie v úhrade ktorého sa žiada alebo potvrdenie o pretrvávaní potreby poskytovania úhrady zdravotníckej pomôcky alebo dietetickej potraviny. Efektívnosť sa hodnotí porovnaním východiskového klinického stavu poistenca a následného klinického stavu poistenca na základe objektívnych alebo klinicky relevantných parametrov primeraných povahe ochorenia. Za preukázaný efekt liečby sa považuje zlepšenie zdravotného stavu poistenca, jeho stabilizácia alebo preukázateľné spomalenie progresie ochorenia pri akceptovateľnej bezpečnosti a tolerancii liečby."
+  },
+  {
+   "loc": "§ 88f ods. 5",
+   "type": "added",
+   "text": "Ak žiadosť podľa odsekov 2 až 4 nie je úplná, zdravotná poisťovňa do 15 pracovných dní odo dňa doručenia neúplnej žiadosti vyzve poskytovateľa na jej doplnenie. Ak poskytovateľ žiadosť nedoplní do 20 pracovných dní odo dňa doručenia výzvy podľa prvej vety, zdravotná poisťovňa žiadosť odmietne."
+  },
+  {
+   "loc": "§ 88f ods. 6",
+   "type": "added",
+   "text": "Zdravotná poisťovňa nesmie od poskytovateľa vyžadovať predloženie údajov alebo podkladov nad rozsah uvedený v odsekoch 2 až 4 a 7."
+  },
+  {
+   "loc": "§ 88f ods. 7",
+   "type": "added",
+   "text": "Ak ide o žiadosť o úhradu neregistrovaného lieku žiadateľ je povinný priložiť k žiadosti povolenie podľa osobitného predpisu."
+  },
+  {
+   "loc": "§ 88g (nadpis)",
+   "type": "added",
+   "text": "Rozhodovanie o žiadosti o výnimočnú úhradu lieku, o žiadosti o výnimočnú úhradu lieku pre skupinu pacientov, o žiadosti o výnimočnú úhradu zdravotníckej pomôcky a o žiadosti o výnimočnú úhradu dietetickej potraviny"
+  },
+  {
+   "loc": "§ 88g ods. 1",
+   "type": "added",
+   "text": "Zdravotná poisťovňa posúdi splnenie podmienok výnimočnej úhrady lieku, lieku pre skupinu pacientov, zdravotníckej pomôcky alebo dietetickej potraviny a do 15 pracovných dní od doručenia úplnej žiadosti podľa § 88f ods. 2 alebo ods. 3"
+  },
+  {
+   "loc": "§ 88g ods. 1 písm. a)",
+   "type": "added",
+   "text": "vydá súhlas s úhradou lieku, lieku pre skupinu pacientov, zdravotníckej pomôcky alebo dietetickej potraviny a určí dobu platnosti súhlasu alebo"
+  },
+  {
+   "loc": "§ 88g ods. 1 písm. b)",
+   "type": "added",
+   "text": "vydá rozhodnutie o neudelení súhlasu s úhradou lieku, lieku pre skupinu pacientov, zdravotníckej pomôcky alebo dietetickej potraviny."
+  },
+  {
+   "loc": "§ 88g ods. 2",
+   "type": "added",
+   "text": "Zdravotná poisťovňa posúdi splnenie podmienok pokračovania s výnimočnou úhradou lieku, zdravotníckej pomôcky alebo dietetickej potraviny a do 15 pracovných dní od doručenia úplnej žiadosti podľa § 88f ods. 4"
+  },
+  {
+   "loc": "§ 88g ods. 2 písm. a)",
+   "type": "added",
+   "text": "vydá súhlas s pokračovaním v úhrade lieku, zdravotníckej pomôcky alebo dietetickej potraviny a určí dobu platnosti súhlasu alebo"
+  },
+  {
+   "loc": "§ 88g ods. 2 písm. b)",
+   "type": "added",
+   "text": "vydá rozhodnutie o neudelení súhlasu s pokračovaním v úhrade lieku, zdravotníckej pomôcky alebo dietetickej potraviny."
+  },
+  {
+   "loc": "§ 88g ods. 3",
+   "type": "added",
+   "text": "Rozhodnutie podľa odseku 1 písm. b) a odseku 2 písm. b) obsahuje výrok, odôvodnenie a poučenie o opravných prostriedkoch, možnosti súdneho prieskumu rozhodnutia a podania podnetu podľa odseku 14."
+  },
+  {
+   "loc": "§ 88g ods. 4",
+   "type": "added",
+   "text": "Výrok obsahuje rozhodnutie vo veci s uvedením ustanovenia právneho predpisu, podľa ktorého sa rozhodlo. Ak ide o vydanie súhlasu s úhradou lieku pre skupinu pacientov na základe žiadosti podľa § 88d, uvedie sa v tomto súhlase aj indikačné obmedzenie a preskripčné obmedzenie pre daný liek."
+  },
+  {
+   "loc": "§ 88g ods. 5",
+   "type": "added",
+   "text": "V odôvodnení rozhodnutia zdravotná poisťovňa jasne a výstižne vysvetlí, ako posúdila žiadosť poskytovateľa, podstatné skutkové tvrdenia a argumenty poskytovateľa, ktoré skutočnosti považuje za preukázané a ktoré nie, z ktorých dôkazov vychádzala a ako ich vyhodnotila."
+  },
+  {
+   "loc": "§ 88g ods. 6",
+   "type": "added",
+   "text": "Podkladmi pre rozhodnutie je žiadosť poskytovateľa, prílohy pripojené k žiadosti, cena lieku, zdravotníckej pomôcky alebo dietetickej potraviny, skutočnosti všeobecne známe alebo známe zdravotnej poisťovni z jej činnosti."
+  },
+  {
+   "loc": "§ 88g ods. 7",
+   "type": "added",
+   "text": "Ak zdravotná poisťovňa vydá súhlas podľa odseku 1 písm. a) alebo odseku 2 písm. a), bezodkladne to oznámi poskytovateľovi, ktorý žiadosť podal. Zdravotná poisťovňa vo vydanom súhlase uvedie obdobie, počas ktorého bude liek, zdravotnícku pomôcku alebo dietetickú potravinu uhrádzať. Ak ide o vydanie súhlasu na základe žiadosti podľa § 88a až 88e, toto obdobie nesmie byť kratšie ako šesť mesiacov; to neplatí, ak poskytovateľ v žiadosti uvedie kratšie obdobie."
+  },
+  {
+   "loc": "§ 88g ods. 8",
+   "type": "added",
+   "text": "V prípade epidemického výskytu choroby, pandemického výskytu choroby, výnimočnej situácie vyplývajúcej z prírodnej katastrofy alebo ekologickej katastrofy zdravotná poisťovňa plne alebo čiastočne uhrádza lieky, zdravotnícke pomôcky alebo dietetické potraviny podľa § 88a ods. 1, § 88c ods. 1 alebo § 88e ods. 1 na príkaz ministerstva; v takýchto prípadoch sa žiadosť poskytovateľa a súhlas zdravotnej poisťovne nevyžadujú."
+  },
+  {
+   "loc": "§ 88g ods. 9",
+   "type": "added",
+   "text": "Cena lieku, zdravotníckej pomôcky alebo dietetickej potraviny, o ktorej úhradu poskytovateľ žiada, sa vypočíta ako súčet"
+  },
+  {
+   "loc": "§ 88g ods. 9 písm. a)",
+   "type": "added",
+   "text": "úradne určenej ceny lieku, úradne určenej ceny zdravotníckej pomôcky alebo úradne určenej ceny dietetickej potraviny alebo európskej referenčnej ceny lieku, európskej referenčnej ceny zdravotníckej pomôcky alebo európskej referenčnej ceny dietetickej potraviny; ak nie je možné stanoviť európsku referenčnú cenu lieku, európsku referenčnú cenu zdravotníckej pomôcky alebo európsku referenčnú cenu dietetickej potraviny, tak sa použije najnižšia cena lieku, zdravotníckej pomôcky alebo dietetickej potraviny v inom členskom štáte,"
+  },
+  {
+   "loc": "§ 88g ods. 9 písm. b)",
+   "type": "added",
+   "text": "ceny obchodného výkonu držiteľa povolenia na veľkodistribúciu liekov,"
+  },
+  {
+   "loc": "§ 88g ods. 9 písm. c)",
+   "type": "added",
+   "text": "ceny obchodného výkonu držiteľa povolenia na poskytovanie lekárenskej starostlivosti vo verejnej lekárni a"
+  },
+  {
+   "loc": "§ 88g ods. 9 písm. d)",
+   "type": "added",
+   "text": "dane z pridanej hodnoty."
+  },
+  {
+   "loc": "§ 88g ods. 10",
+   "type": "added",
+   "text": "Zdravotná poisťovňa uhradí liek, zdravotnícku pomôcku alebo dietetickú potravinu podľa § 88a až 88e najviac vo výške"
+  },
+  {
+   "loc": "§ 88g ods. 10 písm. a)",
+   "type": "added",
+   "text": "najnižšej maximálnej výšky úhrady zdravotnej poisťovne za liek, ktorá je uvedená v zozname kategorizovaných liekov alebo ktorú zdravotná poisťovňa uhradí za liek po uplatnení osobitných podmienok úhrady lieku dohodnutých v zmluve podľa § 7a alebo najviac vo výške 70 % z ceny lieku vypočítanej podľa odseku 9, podľa toho, ktorá z týchto súm je nižšia, ak liek je zaradený v zozname kategorizovaných liekov,"
+  },
+  {
+   "loc": "§ 88g ods. 10 písm. b)",
+   "type": "added",
+   "text": "najnižšej maximálnej výšky úhrady zdravotnej poisťovne za zdravotnícku pomôcku, ktorá je uvedená v zozname kategorizovaných zdravotníckych pomôcok alebo v zozname kategorizovaných špeciálnych zdravotníckych materiálov alebo je dohodnutá v zmluve podľa § 29a, alebo najviac vo výške 70 % z ceny zdravotníckej pomôcky vypočítanej podľa odseku 9 podľa toho, ktorá z týchto súm je nižšia, ak zdravotnícka pomôcka je zaradená v zozname kategorizovaných zdravotníckych pomôcok alebo v zozname kategorizovaných špeciálnych zdravotníckych materiálov,"
+  },
+  {
+   "loc": "§ 88g ods. 10 písm. c)",
+   "type": "added",
+   "text": "najnižšej maximálnej výšky úhrady zdravotnej poisťovne za dietetickú potravinu, ktorá je uvedená v zozname kategorizovaných dietetických potravín alebo je dohodnutá v zmluve podľa § 57a, alebo najviac vo výške 70 % z ceny dietetickej potraviny vypočítanej podľa odseku 9 podľa toho, ktorá z týchto súm je nižšia, ak dietetická potravina je zaradená v zozname kategorizovaných dietetických potravín,"
+  },
+  {
+   "loc": "§ 88g ods. 10 písm. d)",
+   "type": "added",
+   "text": "70 % z ceny lieku vypočítanej podľa odseku 9, ak liek nie je zaradený v zozname kategorizovaných liekov,"
+  },
+  {
+   "loc": "§ 88g ods. 10 písm. e)",
+   "type": "added",
+   "text": "70 % z ceny zdravotníckej pomôcky vypočítanej podľa odseku 9, ak zdravotnícka pomôcka nie je zaradená v zozname kategorizovaných zdravotníckych pomôcok alebo v zozname kategorizovaných špeciálnych zdravotníckych materiálov,"
+  },
+  {
+   "loc": "§ 88g ods. 10 písm. f)",
+   "type": "added",
+   "text": "70 % z ceny dietetickej potraviny vypočítanej podľa odseku 9, ak dietetická potravina nie je zaradená v zozname kategorizovaných dietetických potravín,"
+  },
+  {
+   "loc": "§ 88g ods. 10 písm. g)",
+   "type": "added",
+   "text": "70 % z ceny lieku vypočítanej podľa odseku 9, ak predmetom žiadosti je neregistrovaný liek alebo"
+  },
+  {
+   "loc": "§ 88g ods. 10 písm. h)",
+   "type": "added",
+   "text": "70 % z ceny lieku vypočítanej podľa odseku 9, ak predmetom žiadosti je registrovaný liek, ktorého použitie na terapeutickú indikáciu, ktorá nie je uvedená v rozhodnutí o registrácii humánneho lieku, indikoval ošetrujúci lekár."
+  },
+  {
+   "loc": "§ 88g ods. 11",
+   "type": "added",
+   "text": "Ak poistencovi, ktorému bola schválená výnimočná úhrada lieku, zdravotníckej pomôcky alebo dietetickej potraviny podľa odseku 1 písm. a) alebo odseku 2 písm. a) vznikne doplatok za liek, ktorý mu bol schválený, použijú sa pravidlá o limite spoluúčasti podľa § 87a až § 87d primerane."
+  },
+  {
+   "loc": "§ 88g ods. 12",
+   "type": "added",
+   "text": "Rozhodnutie o neudelení súhlasu sa doručuje poskytovateľovi; ak ide o rozhodnutie o žiadosti podľa § 88a až 88c a § 88e doručuje sa aj poistencovi."
+  },
+  {
+   "loc": "§ 88g ods. 13",
+   "type": "added",
+   "text": "Proti rozhodnutiu o žiadosti podľa § 88c až 88e môže poskytovateľ podať odvolanie podľa § 88h."
+  },
+  {
+   "loc": "§ 88g ods. 14",
+   "type": "added",
+   "text": "Ak zdravotná poisťovňa rozhodne o neudelení súhlasu s úhradou lieku alebo rozhodne o neudelení súhlasu s pokračovaním v úhrade lieku na základe žiadosti podľa § 88a alebo § 88b, riadny opravný prostriedok proti takému rozhodnutiu nie je prípustný; poistenec môže požiadať Úrad pre dohľad nad zdravotnou starostlivosťou (ďalej len „úrad“) o vykonanie dohľadu."
+  },
+  {
+   "loc": "§ 88g ods. 15",
+   "type": "added",
+   "text": "Ak úrad uloží zdravotnej poisťovni povinnosť prijať opatrenia na odstránenie zistených nedostatkov a ich príčin podľa osobitného predpisu,18ba) zdravotná poisťovňa vec opätovne posúdi a rozhodne podľa odseku 1 alebo odseku 2. Novým rozhodnutím zdravotnej poisťovne o žiadosti sa pôvodné rozhodnutie zrušuje."
+  },
+  {
+   "loc": "§ 88h ods. 1",
+   "type": "added",
+   "text": "Ak zdravotná poisťovňa na základe žiadosti podľa § 88c až § 88e rozhodne o neudelení súhlasu s úhradou lieku, zdravotníckej pomôcky alebo dietetickej potraviny podľa § 88g ods. 1 písm. b) alebo rozhodne o nepredĺžení súhlasu s pokračovaním v úhrade lieku, zdravotníckej pomôcky alebo dietetickej potraviny podľa § 88g ods. 2 písm. b) na základe žiadosti podľa § 88c, § 88d alebo § 88e, môže poskytovateľ do 15 dní od doručenia rozhodnutia o neudelení súhlasu alebo rozhodnutia o neudelení súhlasu s pokračovaním v úhrade lieku, zdravotníckej pomôcky alebo dietetickej potraviny podať zdravotnej poisťovni odvolanie."
+  },
+  {
+   "loc": "§ 88h ods. 2",
+   "type": "added",
+   "text": "Poskytovateľ môže podať odvolanie podľa odseku 1 výlučne s písomným súhlasom poistenca, ktorý je uvedený v odvolaní alebo je k odvolaniu priložený."
+  },
+  {
+   "loc": "§ 88h ods. 3",
+   "type": "added",
+   "text": "O odvolaní rozhodne priamy nadriadený zamestnanec zamestnanca zdravotnej poisťovne, ktorý rozhodol o neudelení súhlasu alebo o neudelení súhlasu s pokračovaním v úhrade lieku, zdravotníckej pomôcky alebo dietetickej potraviny do 15 pracovných dní od doručenia odvolania zdravotnej poisťovni."
+  },
+  {
+   "loc": "§ 88h ods. 4",
+   "type": "added",
+   "text": "Odvolanie podľa odseku 1 obsahuje"
+  },
+  {
+   "loc": "§ 88h ods. 4 písm. a)",
+   "type": "added",
+   "text": "údaje o poistencovi v rozsahu meno, priezvisko, dátum narodenia, rodné číslo, ak je pridelené, a adresa trvalého bydliska poistenca,"
+  },
+  {
+   "loc": "§ 88h ods. 4 písm. b)",
+   "type": "added",
+   "text": "číslo rozhodnutia, proti ktorému odvolanie smeruje,"
+  },
+  {
+   "loc": "§ 88h ods. 4 písm. c)",
+   "type": "added",
+   "text": "odôvodnenie odvolania."
+  },
+  {
+   "loc": "§ 88h ods. 5",
+   "type": "added",
+   "text": "Ustanovenia § 88f a § 88g sa na konanie o odvolaní vzťahujú primerane."
+  },
+  {
+   "loc": "§ 88h ods. 6",
+   "type": "added",
+   "text": "Ak zdravotná poisťovňa odvolaniu nevyhovie, poistenec môže požiadať úrad o vykonanie dohľadu."
+  },
+  {
+   "loc": "§ 88i (nadpis)",
+   "type": "added",
+   "text": "Zber štatistických údajov"
+  },
+  {
+   "loc": "§ 88i ods. 1",
+   "type": "added",
+   "text": "Zdravotná poisťovňa na svojom webovom sídle vždy do 30. dňa kalendárneho mesiaca nasledujúceho po skončení kalendárneho polroka zverejňuje štatistické informácie o rozhodnutiach podľa § 88g v rozsahu"
+  },
+  {
+   "loc": "§ 88i ods. 1 písm. a)",
+   "type": "added",
+   "text": "počet žiadostí rozdelených podľa § 88a až 88e,"
+  },
+  {
+   "loc": "§ 88i ods. 1 písm. b)",
+   "type": "added",
+   "text": "počet vydaných súhlasov podľa § 88g ods. 1 písm. a) a ods. 2 písm. a) rozdelených podľa § 88a až 88e,"
+  },
+  {
+   "loc": "§ 88i ods. 1 písm. c)",
+   "type": "added",
+   "text": "informáciu o indikačnom obmedzení, pre ktoré bol vydaný súhlas alebo vydané rozhodnutie o neudelení súhlasu podľa § 88g ods. 1 písm. b) alebo ods. 2 písm. b),"
+  },
+  {
+   "loc": "§ 88i ods. 1 písm. d)",
+   "type": "added",
+   "text": "dôvody vydania rozhodnutia o neudelení súhlasu s úhradou lieku, zdravotníckej pomôcky alebo dietetickej potraviny zdravotnou poisťovňou vrátane počtu neudelených súhlasov s úhradou z príslušného dôvodu,"
+  },
+  {
+   "loc": "§ 88i ods. 1 písm. e)",
+   "type": "added",
+   "text": "celkový počet odvolaní podľa § 88h a počet odvolaní podľa § 88h, ktorým bolo vyhovené,"
+  },
+  {
+   "loc": "§ 88i ods. 1 písm. f)",
+   "type": "added",
+   "text": "celková suma finančných prostriedkov vynaložená na základe vydaných súhlasov s úhradou lieku, zdravotníckej pomôcky alebo dietetickej potraviny udelených jednotlivo podľa § 88a až 88e a celková suma finančných prostriedkov vynaložená na základe vydaných súhlasov s pokračovaním v úhrade lieku, zdravotníckej pomôcky alebo dietetickej potraviny vydaných jednotlivo podľa § 88a až 88e,"
+  },
+  {
+   "loc": "§ 88i ods. 1 písm. g)",
+   "type": "added",
+   "text": "celková suma úhrad za lieky, zdravotnícke pomôcky alebo dietetické potraviny podľa § 88a až 88e,"
+  },
+  {
+   "loc": "§ 88i ods. 1 písm. h)",
+   "type": "added",
+   "text": "priemerné finančné náklady vynaložené na jedného poistenca za kalendárny mesiac."
+  },
+  {
+   "loc": "§ 88i ods. 2",
+   "type": "added",
+   "text": "Zdravotná poisťovňa sprístupňuje ministerstvu všetky udelené súhlasy a rozhodnutia podľa § 88g."
+  },
+  {
+   "loc": "§ 98l (nadpis)",
+   "type": "added",
+   "text": "Prechodné ustanovenia k úpravám účinným od 1. januára 2027"
+  },
+  {
+   "loc": "§ 98l ods. 1",
+   "type": "added",
+   "text": "Žiadosť poskytovateľa o udelenie súhlasu na úhradu lieku, zdravotníckej pomôcky alebo o úhradu dietetickej potraviny podľa § 88 ods. 7 a 8 v znení účinnom do 31. decembra 2026, o ktorej nebolo rozhodnuté do 31. decembra 2026, sa posúdi podľa § 88a až § 88h v znení účinnom od 1. januára 2027."
+  },
+  {
+   "loc": "§ 98l ods. 2",
+   "type": "added",
+   "text": "Súhlas zdravotnej poisťovne s úhradou lieku, zdravotníckej pomôcky alebo dietetickej potraviny udelený podľa § 88 ods. 7 a 8 v znení účinnom do 31. decembra 2026, zostáva v platnosti počas doby, na ktorú bol udelený. Ak poistenec, ktorému bol udelený súhlas s úhradou lieku zdravotníckej pomôcky alebo dietetickej potraviny podľa § 88 ods. 7 a 8 v znení účinnom do 31. decembra 2026, požiada o súhlas zdravotnej poisťovne s úhradou toho istého lieku, zdravotníckej pomôcky alebo dietetickej potraviny posudzuje sa táto žiadosť ako opakovaná žiadosť podľa § 88 ods. 9 druhej vety v znení účinnom do 31. decembra 2026 a v súlade s kritériami rozhodovania zverejnených na webovom sídle príslušnej zdravotnej poisťovne ku dňu odsúhlasenia úhrady podľa § 88 ods. 9 v znení účinnom do 31. decembra 2026."
+  },
+  {
+   "loc": "§ 98l ods. 3",
+   "type": "added",
+   "text": "Samosprávne stavovské organizácie, iné odborné spoločnosti, inštitút, zdravotné poisťovne a pacientske organizácie predložia ministerstvu návrhy kandidátov na členov komisie pre priority kategorizácie liekov podľa § 7c ods. 3 do 1. marca 2027. Minister vymenuje členov komisie pre priority kategorizácie liekov do 1. apríla 2027. Ak niektorý zo subjektov podľa prvej vety nenavrhne kandidátov v lehote podľa prvej vety, nebráni to vymenovaniu ostatných členov ani začatiu činnosti komisie pre priority kategorizácie liekov. Chýbajúceho člena minister vymenuje bez zbytočného odkladu po doručení návrhu. Ministerstvo vydá štatút a rokovací poriadok komisie pre priority kategorizácie liekov podľa § 7c ods. 9 do 1. marca 2027."
+  },
+  {
+   "loc": "§ 98l ods. 4",
+   "type": "added",
+   "text": "Pri vypracúvaní prvého zoznamu priorít kategorizácie liekov sa primerane postupuje podľa § 7c ods. 4 až 6. Ministerstvo zverejní schválený zoznam priorít kategorizácie liekov podľa § 7c ods. 6 najneskôr do 30. júna 2027."
+  },
+  {
+   "loc": "§ 98l ods. 5",
+   "type": "added",
+   "text": "Ak sa konanie o žiadosti podľa § 10 alebo § 14 začalo pred zverejnením prvého zoznamu priorít kategorizácie liekov a ministerstvo v ňom do jeho zverejnenia nerozhodlo, držiteľ registrácie môže doplniť žiadosť podľa § 7c ods. 13 do 30 dní odo dňa zverejnenia prvého zoznamu priorít kategorizácie liekov."
+  }
+ ]
+}

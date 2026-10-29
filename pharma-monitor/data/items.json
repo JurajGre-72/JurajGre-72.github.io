@@ -1,6 +1,101 @@
 {
  "items": [
   {
+   "id": "law:363/2011:2028-03-31",
+   "source": "lawchanges",
+   "source_name": "Slov-Lex · Znenia kľúčových zákonov",
+   "title": "363/2011 Z. z. – Act on Reimbursement of Medicines (zákon o kategorizácii a úhradách): new wording in force from 31.03.2028",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2011/363/20280331.html",
+   "date": "2026-10-29T09:17:46Z",
+   "detected": "2026-10-29T09:17:46Z",
+   "category": "Law change",
+   "priority": "high",
+   "tags": [
+    "Amends 363/2011"
+   ],
+   "summary": "Changed by 258/2026 Z. z. 2 provision(s) changed: § 16, § 75. Open the item to see the old and new wording.",
+   "effective": [
+    "2028-03-31"
+   ],
+   "details": "data/changes/law_363_2011_2028-03-31.json"
+  },
+  {
+   "id": "law:363/2011:2027-01-01",
+   "source": "lawchanges",
+   "source_name": "Slov-Lex · Znenia kľúčových zákonov",
+   "title": "363/2011 Z. z. – Act on Reimbursement of Medicines (zákon o kategorizácii a úhradách): new wording in force from 01.01.2027",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2011/363/20270101.html",
+   "date": "2026-10-29T09:17:43Z",
+   "detected": "2026-10-29T09:17:43Z",
+   "category": "Law change",
+   "priority": "high",
+   "tags": [
+    "Amends 363/2011"
+   ],
+   "summary": "Changed by 258/2026 Z. z. 257 provision(s) changed: § 7a, § 29a, § 57a, § 84, § 88, § 7c +10 more. Open the item to see the old and new wording.",
+   "effective": [
+    "2027-01-01"
+   ],
+   "details": "data/changes/law_363_2011_2027-01-01.json"
+  },
+  {
+   "id": "law:363/2011:2026-11-01",
+   "source": "lawchanges",
+   "source_name": "Slov-Lex · Znenia kľúčových zákonov",
+   "title": "363/2011 Z. z. – Act on Reimbursement of Medicines (zákon o kategorizácii a úhradách): new wording in force from 01.11.2026",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2011/363/20261101.html",
+   "date": "2026-10-29T09:17:41Z",
+   "detected": "2026-10-29T09:17:41Z",
+   "category": "Law change",
+   "priority": "high",
+   "tags": [
+    "Amends 363/2011"
+   ],
+   "summary": "Changed by 258/2026 Z. z. 400 provision(s) changed: § 2, § 3, § 5, § 6, § 7, § 7a +48 more. Open the item to see the old and new wording.",
+   "effective": [
+    "2026-11-01"
+   ],
+   "details": "data/changes/law_363_2011_2026-11-01.json"
+  },
+  {
+   "id": "law:362/2011:2027-01-01",
+   "source": "lawchanges",
+   "source_name": "Slov-Lex · Znenia kľúčových zákonov",
+   "title": "362/2011 Z. z. – Act on Medicinal Products and Medical Devices (zákon o liekoch): new wording in force from 01.01.2027",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2011/362/20270101.html",
+   "date": "2026-10-29T09:17:35Z",
+   "detected": "2026-10-29T09:17:35Z",
+   "category": "Law change",
+   "priority": "high",
+   "tags": [
+    "Amends 362/2011"
+   ],
+   "summary": "Changed by 258/2026 Z. z. 6 provision(s) changed: § 2, § 23, § 138. Open the item to see the old and new wording.",
+   "effective": [
+    "2027-01-01"
+   ],
+   "details": "data/changes/law_362_2011_2027-01-01.json"
+  },
+  {
+   "id": "law:362/2011:2026-11-01",
+   "source": "lawchanges",
+   "source_name": "Slov-Lex · Znenia kľúčových zákonov",
+   "title": "362/2011 Z. z. – Act on Medicinal Products and Medical Devices (zákon o liekoch): new wording in force from 01.11.2026",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2011/362/20261101.html",
+   "date": "2026-10-29T09:17:33Z",
+   "detected": "2026-10-29T09:17:33Z",
+   "category": "Law change",
+   "priority": "high",
+   "tags": [
+    "Amends 362/2011"
+   ],
+   "summary": "Changed by 258/2026 Z. z. 400 provision(s) changed: § 2, § 3, § 5, § 6, § 7, § 8 +35 more. Open the item to see the old and new wording.",
+   "effective": [
+    "2026-11-01"
+   ],
+   "details": "data/changes/law_362_2011_2026-11-01.json"
+  },
+  {
    "id": "law:581/2004:2027-07-01",
    "source": "lawchanges",
    "source_name": "Slov-Lex · Znenia kľúčových zákonov",
@@ -449,6 +544,22 @@
     "Spracovanie predkladateľom"
    ],
    "summary": "Moved from stage “Vyhodnotenie pripomienkového konania” to “Spracovanie predkladateľom” · Stage: Spracovanie predkladateľom (since 27.10.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
+  },
+  {
+   "id": "lp:LP/2026/534:ROKOVANIE_POV",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/534 · Vyhláška: Návrh vyhlášky Ministerstva zdravotníctva Slovenskej republiky, ktorou sa mení a dopĺňa vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 229/2011 Z. z. o postupe pri posudzovaní zdravotnej spôsobilosti a psychickej spôsobilosti na držanie alebo nosenie strelných zbraní a streliva a o náležitostiach lekárskeho posudku a psychologického posudku v znení vyhlášky č. 105/2012 Z. z.",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/534",
+   "date": "2026-10-27T08:00:00Z",
+   "detected": "2026-10-29T09:18:10Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Ministry of Health",
+    "Rokovanie poradných orgánov vlády SR"
+   ],
+   "summary": "Moved from stage “Spracovanie predkladateľom” to “Rokovanie poradných orgánov vlády SR” · Stage: Rokovanie poradných orgánov vlády SR (since 27.10.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
   },
   {
    "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/doplnujuce-informacie-a-oznamy/informacia-o-aktualizacii-tlaciv-urcenych-na-podanie-ziadosti-o-prevod-registracie",
@@ -3439,80 +3550,80 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-10-29T08:18:14Z",
+   "checked": "2026-10-29T09:17:27Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-10-29T08:18:14Z",
+   "checked": "2026-10-29T09:17:27Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-10-29T08:18:14Z",
+   "checked": "2026-10-29T09:17:27Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-10-29T08:18:14Z",
+   "checked": "2026-10-29T09:17:27Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-10-29T08:18:14Z",
+   "checked": "2026-10-29T09:17:27Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-10-29T08:18:14Z",
-   "new": 4,
+   "checked": "2026-10-29T09:17:27Z",
+   "new": 5,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-10-29T08:18:14Z",
-   "new": 0,
+   "checked": "2026-10-29T09:17:27Z",
+   "new": 1,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-10-29T08:18:14Z",
+   "checked": "2026-10-29T09:17:27Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-10-29T08:18:14Z",
+   "checked": "2026-10-29T09:17:27Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-10-29T08:18:14Z",
+   "checked": "2026-10-29T09:17:27Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-10-29T08:18:14Z",
+   "checked": "2026-10-29T09:17:27Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-10-29T08:18:14Z"
+ "updated": "2026-10-29T09:17:27Z"
 }

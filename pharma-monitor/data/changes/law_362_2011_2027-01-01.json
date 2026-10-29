@@ -1,0 +1,82 @@
+{
+ "kind": "law_diff",
+ "law": "362/2011",
+ "law_name": "Act on Medicinal Products and Medical Devices (zákon o liekoch)",
+ "from": "2026-11-01",
+ "to": "2027-01-01",
+ "amended_by": "258/2026 Z. z.",
+ "amended_by_url": "https://static.slov-lex.sk/static/SK/ZZ/2026/258/20270101.html",
+ "old_url": "https://static.slov-lex.sk/static/SK/ZZ/2011/362/20261101.html",
+ "new_url": "https://static.slov-lex.sk/static/SK/ZZ/2011/362/20270101.html",
+ "changes": [
+  {
+   "loc": "§ 2 ods. 37",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Dispenzačný záznam je osobou oprávnenou vydávať humánne lieky, zdravotnícke pomôcky a dietetické potraviny vytvorený elektronický záznam o vydaní humánneho lieku alebo dietetickej potraviny, ktorých výdaj je viazaný na lekársky predpis, alebo o vydaní zdravotníckej pomôcky, ktorej výdaj je viazaný na lekársky poukaz, v elektronickej zdravotnej knižke v rozsahu preskripčného záznamu alebo lekárskeho predpisu, ak ide o výdaj humánneho lieku alebo dietetickej potraviny, alebo v rozsahu lekárskeho poukazu, ak ide o zdravotnícku pomôcku. Dispenzačný záznam obsahuje údaj o podaní humánneho lieku osobe, ktorá dovŕšila vek 18 rokov, ak ide o jej očkovanie proti chrípke v rámci lekárenskej starostlivosti (ďalej len „očkovanie“). Dispenzačný záznam obsahuje identifikátor dispenzačného záznamu a identifikátor preskripčného záznamu, ak bol vytvorený preskripčný záznam, čo umožní jednoznačné spojenie dispenzačného záznamu s preskripčným "
+    ],
+    [
+     "-",
+     "záznamom."
+    ],
+    [
+     "+",
+     "záznamom. Dispenzačný záznam obsahuje aj identifikátor držiteľa povolenia na veľkodistribúciu humánnych liekov, od ktorého bolo vydané balenie humánneho lieku nadobudnuté."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. bg)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "bezodkladne sprístupniť držiteľovi registrácie humánneho lieku zaradeného v zozname kategorizovaných liekov na jeho žiadosť lekársky predpis alebo preskripčný záznam v anonymizovanej podobe, na základe ktorého bol humánny liek zaradený v zozname kategorizovaných liekov dodaný podľa § 23 ods. 1 písm. at), za obdobie uvedené v žiadosti držiteľa registrácie humánneho lieku zaradeného v zozname kategorizovaných "
+    ],
+    [
+     "-",
+     "liekov."
+    ],
+    [
+     "+",
+     "liekov,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 138 ods. 5 písm. co)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "nepodá žiadosť o pozastavenie činnosti v lehote podľa § 9 ods. "
+    ],
+    [
+     "-",
+     "4."
+    ],
+    [
+     "+",
+     "4,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 2 ods. 43",
+   "type": "added",
+   "text": "Identifikátor držiteľa povolenia na veľkodistribúciu humánnych liekov je jedinečný bezvýznamový alfanumerický reťazec, ktorý jednoznačne identifikuje držiteľa povolenia na veľkodistribúciu humánnych liekov."
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. bh)",
+   "type": "added",
+   "text": "zabezpečiť, aby bol pri výdaji humánneho lieku zaradeného v zozname kategorizovaných liekov v dispenzačnom zázname uvedený počet vydaných balení a pri každom vydanom balení identifikátor držiteľa povolenia na veľkodistribúciu humánnych liekov, od ktorého bolo vydané balenie nadobudnuté."
+  },
+  {
+   "loc": "§ 138 ods. 5 písm. cp)",
+   "type": "added",
+   "text": "nezabezpečí uvedenie údajov podľa § 23 ods. 1 písm. bh) v dispenzačnom zázname."
+  }
+ ]
+}
