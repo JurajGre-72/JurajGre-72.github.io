@@ -73,7 +73,8 @@
    "https://www.sukl.sk/pre-verejnost-pacientov-a-media/oznamy-a-upozornenia/aktualizacia-pristup-k-it-sluzbam-sukl-a-ema-bol-obnoveny": "2026-10-27T11:23:34Z",
    "https://www.sukl.sk/pre-verejnost-pacientov-a-media/oznamy-a-upozornenia/aktualizacia-niektore-it-sluzby-sukl-su-nadalej-nedostupne": "2026-10-27T13:33:46Z",
    "https://www.sukl.sk/pre-odbornikov-a-firmy/dostupnost-a-kvalita-liekov/dostupnost-liekov/zmeny-v-oznamovani-prerusenia-dodavok-liekov": "2026-10-28T12:36:28Z",
-   "https://www.sukl.sk/pre-odbornikov-a-firmy/klinicke-skusanie-liekov/oznamy-a-aktuality/pilotny-projekt-poradenstva-pri-klinickych-skusaniach-bude-pokracovat-ako-trvala-iniciativa": "2026-10-29T10:18:01Z"
+   "https://www.sukl.sk/pre-odbornikov-a-firmy/klinicke-skusanie-liekov/oznamy-a-aktuality/pilotny-projekt-poradenstva-pri-klinickych-skusaniach-bude-pokracovat-ako-trvala-iniciativa": "2026-10-29T10:18:01Z",
+   "https://www.sukl.sk/pre-odbornikov-a-firmy/bezpecnost-liekov/oznamy-drzitelov-dhpc/caelyx-pegylated-liposomal-riziko-narusenia-sterility-lieku-a-neumyselnej-pracovnej-expozicie-pri-odstranovani-ochranneho-krytu": "2026-10-30T11:13:24Z"
   }
  },
  "sukl_recall": {
@@ -7411,6 +7412,24 @@
    },
    "LP/2026/113": {
     "stage": "VYHLASENE_V_ZBIERKE",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/745": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 2,
+    "tags": [
+     "Biocides & chemicals"
+    ],
+    "stage_name": "Schválenie gestora"
+   },
+   "LPEU/2026/744": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/743": {
+    "stage": "SCHVALENIE_GESTORA",
     "rel": 0,
     "tags": []
    }

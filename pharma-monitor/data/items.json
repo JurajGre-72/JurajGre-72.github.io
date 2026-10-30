@@ -1,6 +1,22 @@
 {
  "items": [
   {
+   "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/bezpecnost-liekov/oznamy-drzitelov-dhpc/caelyx-pegylated-liposomal-riziko-narusenia-sterility-lieku-a-neumyselnej-pracovnej-expozicie-pri-odstranovani-ochranneho-krytu",
+   "source": "sukl",
+   "source_name": "ŠÚKL · Aktuality",
+   "title": "Caelyx pegylated liposomal: Riziko narušenia sterility lieku a neúmyselnej pracovnej expozície pri odstraňovaní ochranného krytu",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/bezpecnost-liekov/oznamy-drzitelov-dhpc/caelyx-pegylated-liposomal-riziko-narusenia-sterility-lieku-a-neumyselnej-pracovnej-expozicie-pri-odstranovani-ochranneho-krytu",
+   "date": "2026-10-30T10:28:41Z",
+   "detected": "2026-10-30T11:13:24Z",
+   "category": "Drug safety",
+   "priority": "medium",
+   "tags": [
+    "Medicines",
+    "Drug safety"
+   ],
+   "summary": "DHPC (Direct Healthcare Professional Communication) predstavuje priamu komunikáciu zdravotníckym pracovníkom, prostredníctvom ktorej sú poskytované nové dôležité informácie týkajúce sa bezpečnosti, účinnosti alebo správneho používania lieku."
+  },
+  {
    "id": "law:311/2001:2026-12-02",
    "source": "lawchanges",
    "source_name": "Slov-Lex · Znenia kľúčových zákonov",
@@ -54,6 +70,22 @@
    ],
    "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/262/ZZ_2026_262.pdf",
    "details": "data/changes/slovlex_262_2026.json"
+  },
+  {
+   "id": "lp:LPEU/2026/745:SCHVALENIE_GESTORA",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LPEU/2026/745 · Akt EÚ: COM(2026)589 SPRÁVA KOMISIE EURÓPSKEMU PARLAMENTU A RADE o výkone delegovania právomoci udelenej Komisii podľa nariadenia Európskeho parlamentu a Rady (EÚ) č. 528/2012 z 22. mája 2012 o sprístupňovaní biocídnych výrobkov na trhu a ich používaní v súlade s článkom 83 ods. 2 uvedeného nariadenia",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LPEU/2026/745",
+   "date": "2026-10-30T08:00:00Z",
+   "detected": "2026-10-30T11:13:20Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Biocides & chemicals",
+    "Schválenie gestora"
+   ],
+   "summary": "Stage: Schválenie gestora (since 30.10.2026)"
   },
   {
    "id": "https://www.ema.europa.eu/en/news/ema-closed-all-souls-day-2-november",
@@ -3634,80 +3666,80 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-10-30T09:20:11Z",
+   "checked": "2026-10-30T11:12:45Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-10-30T09:20:11Z",
-   "new": 0,
+   "checked": "2026-10-30T11:12:45Z",
+   "new": 1,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-10-30T09:20:11Z",
+   "checked": "2026-10-30T11:12:45Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-10-30T09:20:11Z",
+   "checked": "2026-10-30T11:12:45Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-10-30T09:20:11Z",
-   "new": 1,
+   "checked": "2026-10-30T11:12:45Z",
+   "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-10-30T09:20:11Z",
-   "new": 1,
+   "checked": "2026-10-30T11:12:45Z",
+   "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-10-30T09:20:11Z",
-   "new": 0,
+   "checked": "2026-10-30T11:12:45Z",
+   "new": 1,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-10-30T09:20:11Z",
+   "checked": "2026-10-30T11:12:45Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-10-30T09:20:11Z",
+   "checked": "2026-10-30T11:12:45Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-10-30T09:20:11Z",
+   "checked": "2026-10-30T11:12:45Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-10-30T09:20:11Z",
+   "checked": "2026-10-30T11:12:45Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-10-30T09:20:11Z"
+ "updated": "2026-10-30T11:12:45Z"
 }
