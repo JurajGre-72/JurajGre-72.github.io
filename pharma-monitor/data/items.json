@@ -1,6 +1,40 @@
 {
  "items": [
   {
+   "id": "law:311/2001:2026-12-02",
+   "source": "lawchanges",
+   "source_name": "Slov-Lex · Znenia kľúčových zákonov",
+   "title": "311/2001 Z. z. – Labour Code: new wording in force from 02.12.2026",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2001/311/20261202.html",
+   "date": "2026-10-30T09:20:38Z",
+   "detected": "2026-10-30T09:20:38Z",
+   "category": "Law change",
+   "priority": "low",
+   "tags": [
+    "Amends 311/2001"
+   ],
+   "summary": "Changed by 262/2026 Z. z. 1 provision(s) changed: § 3. Open the item to see the old and new wording.",
+   "effective": [
+    "2026-12-02"
+   ],
+   "details": "data/changes/law_311_2001_2026-12-02.json"
+  },
+  {
+   "id": "uskvbl:402:2026-10-30T08:31:05",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Veterinárne lieky",
+   "title": "Updated page: OBJEDNÁVKY A FAKTÚRY",
+   "url": "https://www.uskvbl.sk/?page_id=402",
+   "date": "2026-10-30T08:31:05Z",
+   "detected": "2026-10-30T09:21:06Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "medium",
+   "tags": [
+    "Veterinary medicines"
+   ],
+   "summary": "New on the page: objednávky jún 2026 · objednávky máj 2026 · objednávky apríl 2026 · faktúry jún 2026 · faktúry máj 2026 · faktúry apríl 2026"
+  },
+  {
    "id": "slovlex:262/2026",
    "source": "slovlex",
    "source_name": "Slov-Lex · Zbierka zákonov SR",
@@ -3600,80 +3634,80 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-10-29T23:17:01Z",
-   "new": 1,
+   "checked": "2026-10-30T09:20:11Z",
+   "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-10-29T23:17:01Z",
+   "checked": "2026-10-30T09:20:11Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-10-29T23:17:01Z",
+   "checked": "2026-10-30T09:20:11Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-10-29T23:17:01Z",
+   "checked": "2026-10-30T09:20:11Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-10-29T23:17:01Z",
-   "new": 0,
+   "checked": "2026-10-30T09:20:11Z",
+   "new": 1,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-10-29T23:17:01Z",
-   "new": 0,
+   "checked": "2026-10-30T09:20:11Z",
+   "new": 1,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-10-29T23:17:01Z",
+   "checked": "2026-10-30T09:20:11Z",
    "new": 0,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-10-29T23:17:01Z",
+   "checked": "2026-10-30T09:20:11Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-10-29T23:17:01Z",
+   "checked": "2026-10-30T09:20:11Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-10-29T23:17:01Z",
+   "checked": "2026-10-30T09:20:11Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-10-29T23:17:01Z",
+   "checked": "2026-10-30T09:20:11Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-10-29T23:17:01Z"
+ "updated": "2026-10-30T09:20:11Z"
 }
