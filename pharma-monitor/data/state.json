@@ -7433,6 +7433,16 @@
     "stage": "SCHVALENIE_GESTORA",
     "rel": 0,
     "tags": []
+   },
+   "LP/2026/588": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/581": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
    }
   }
  },
