@@ -7371,6 +7371,11 @@
     "stage": "SCHVALENIE_GESTORA",
     "rel": 0,
     "tags": []
+   },
+   "LP/2026/585": {
+    "stage": "ROKOVANIE_VLADA",
+    "rel": 0,
+    "tags": []
    }
   }
  },
