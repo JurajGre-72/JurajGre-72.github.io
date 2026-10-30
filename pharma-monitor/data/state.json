@@ -130,7 +130,8 @@
    "https://www.health.gov.sk/Clanok?vystava-lekarskej-fakulty-predstavuje-osobnosti": "2026-10-28T21:17:06Z",
    "https://www.health.gov.sk/Clanok?uradne-urcenie-cien-liekov": "2026-10-29T13:36:09Z",
    "https://www.health.gov.sk/Clanok?vysledok-pet-3-2026": "2026-10-29T13:36:09Z",
-   "https://www.health.gov.sk/Clanok?kategorizacia-liekov": "2026-10-29T14:37:51Z"
+   "https://www.health.gov.sk/Clanok?kategorizacia-liekov": "2026-10-29T14:37:51Z",
+   "https://www.health.gov.sk/Clanok?VP-dokumentacia-Digitalna-patologia-2": "2026-10-30T10:20:48Z"
   }
  },
  "uskvbl": {
@@ -5002,7 +5003,7 @@
     "tags": []
    },
    "LP/2026/519": {
-    "stage": "SPRACOVANIE_PREDKLADATEL",
+    "stage": "ROKOVANIE_VLADA",
     "rel": 0,
     "tags": []
    },
@@ -6886,7 +6887,7 @@
     "tags": []
    },
    "LPEU/2026/702": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -7394,6 +7395,21 @@
     "tags": []
    },
    "LP/2025/486": {
+    "stage": "VYHLASENE_V_ZBIERKE",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/587": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/105": {
+    "stage": "VYHLASENE_V_ZBIERKE",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/113": {
     "stage": "VYHLASENE_V_ZBIERKE",
     "rel": 0,
     "tags": []
@@ -7956,7 +7972,8 @@
    "32026R2396": "2026-10-30T09:21:10Z",
    "32026D2407": "2026-10-30T09:21:10Z",
    "32026R2163": "2026-10-30T09:21:10Z",
-   "32026D2410": "2026-10-30T09:21:10Z"
+   "32026D2410": "2026-10-30T09:21:10Z",
+   "32026D2331R(01)": "2026-10-30T10:21:00Z"
   }
  },
  "kategorizacia": {
