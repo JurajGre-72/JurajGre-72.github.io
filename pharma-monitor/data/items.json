@@ -1,6 +1,38 @@
 {
  "items": [
   {
+   "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/bezpecnost-liekov/informacie-z-prac/zavery-z-vyboru-pre-hodnotenie-rizik-liekov-prac-26.-29.10.2026",
+   "source": "sukl",
+   "source_name": "ŠÚKL · Aktuality",
+   "title": "Závery z Výboru pre hodnotenie rizík liekov (PRAC) 26.–29.10.2026",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/bezpecnost-liekov/informacie-z-prac/zavery-z-vyboru-pre-hodnotenie-rizik-liekov-prac-26.-29.10.2026",
+   "date": "2026-10-30T11:20:57Z",
+   "detected": "2026-10-30T11:23:11Z",
+   "category": "Drug safety",
+   "priority": "medium",
+   "tags": [
+    "Medicines"
+   ],
+   "summary": "Stručné zhrnutie záverov zo zasadania Výboru pre hodnotenie rizík liekov (PRAC), ktoré sa uskutočnilo 26.–29.10.2026. Plné znenie správy sa nachádza na webovej stránke Európskej liekovej agentúry."
+  },
+  {
+   "id": "https://www.ema.europa.eu/en/news/meeting-highlights-pharmacovigilance-risk-assessment-committee-prac-26-29-october-2026",
+   "source": "ema",
+   "source_name": "EMA · European Medicines Agency",
+   "title": "Meeting highlights from the Pharmacovigilance Risk Assessment Committee (PRAC) 26 - 29 October 2026",
+   "url": "https://www.ema.europa.eu/en/news/meeting-highlights-pharmacovigilance-risk-assessment-committee-prac-26-29-october-2026",
+   "date": "2026-10-30T11:11:00Z",
+   "detected": "2026-10-30T11:23:27Z",
+   "category": "EU agency (EMA)",
+   "priority": "medium",
+   "tags": [
+    "Medicines",
+    "Medicines (general)",
+    "Drug safety"
+   ],
+   "summary": "PRAC starts review of depression and anxiety medicine Deanxit (flupentixol/melitracen)PRAC has started a review of Deanxit, a fixed-dose combination medicine for treating…, Agenda Agenda of the PRAC meeting 26 - 29 October 2026Draft Reference Number: EMA/PRAC/227255/2026…, PRAC statistics: November 2026 Monthly…"
+  },
+  {
    "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/bezpecnost-liekov/oznamy-drzitelov-dhpc/caelyx-pegylated-liposomal-riziko-narusenia-sterility-lieku-a-neumyselnej-pracovnej-expozicie-pri-odstranovani-ochranneho-krytu",
    "source": "sukl",
    "source_name": "ŠÚKL · Aktuality",
@@ -3666,80 +3698,80 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-10-30T11:12:45Z",
+   "checked": "2026-10-30T11:22:36Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-10-30T11:12:45Z",
+   "checked": "2026-10-30T11:22:36Z",
    "new": 1,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-10-30T11:12:45Z",
+   "checked": "2026-10-30T11:22:36Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-10-30T11:12:45Z",
+   "checked": "2026-10-30T11:22:36Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-10-30T11:12:45Z",
+   "checked": "2026-10-30T11:22:36Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-10-30T11:12:45Z",
+   "checked": "2026-10-30T11:22:36Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-10-30T11:12:45Z",
-   "new": 1,
+   "checked": "2026-10-30T11:22:36Z",
+   "new": 0,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-10-30T11:12:45Z",
+   "checked": "2026-10-30T11:22:36Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-10-30T11:12:45Z",
+   "checked": "2026-10-30T11:22:36Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-10-30T11:12:45Z",
-   "new": 0,
+   "checked": "2026-10-30T11:22:36Z",
+   "new": 1,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-10-30T11:12:45Z",
+   "checked": "2026-10-30T11:22:36Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-10-30T11:12:45Z"
+ "updated": "2026-10-30T11:22:36Z"
 }
