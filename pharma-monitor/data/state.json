@@ -7376,6 +7376,21 @@
     "stage": "ROKOVANIE_VLADA",
     "rel": 0,
     "tags": []
+   },
+   "LP/2026/586": {
+    "stage": "PROCES_UKONCENY",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/50": {
+    "stage": "VYHLASENE_V_ZBIERKE",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2025/486": {
+    "stage": "VYHLASENE_V_ZBIERKE",
+    "rel": 0,
+    "tags": []
    }
   }
  },
