@@ -1,6 +1,42 @@
 {
  "items": [
   {
+   "id": "slovlex:267/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "267/2026 Z. z. – Vyhláška Ministerstva zdravotníctva Slovenskej republiky, ktorou sa mení a dopĺňa vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 229/2011 Z. z. o postupe pri posudzovaní zdravotnej spôsobilosti a psychickej spôsobilosti na držanie alebo nosenie strelných zbraní a streliva a o náležitostiach lekárskeho posudku a psychologického posudku v znení vyhlášky č. 105/2012 Z. z.",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/267/",
+   "date": "2026-10-31T08:00:00Z",
+   "detected": "2026-10-30T23:16:44Z",
+   "category": "Legislation",
+   "priority": "medium",
+   "tags": [
+    "Ministry of Health"
+   ],
+   "summary": "Effective from: 01.11.2026",
+   "doc_type": "Vyhláška",
+   "effective": [
+    "2026-11-01"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/267/ZZ_2026_267.pdf"
+  },
+  {
+   "id": "lp:LP/2026/550:VYHODNOTENIE_MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/550 · Nelegislatívny všeobecný materiál: Návrh na určenie gestorstva ústredného orgánu štátnej správy k aktu EÚ o verejnom obstarávaní",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/550",
+   "date": "2026-10-31T08:00:00Z",
+   "detected": "2026-10-30T23:17:14Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Public procurement",
+    "Vyhodnotenie pripomienkového konania"
+   ],
+   "summary": "Moved from stage “Pripomienkové konanie” to “Vyhodnotenie pripomienkového konania” · Stage: Vyhodnotenie pripomienkového konania (since 31.10.2026) · Submitted by: Úrad pre verejné obstarávanie"
+  },
+  {
    "id": "https://www.health.gov.sk/Clanok?MZSR-vydava-MU-predpisovanie-liekov-mimo-schvalenej-terapeutickej-indikacie",
    "source": "mzsr",
    "source_name": "Ministerstvo zdravotníctva SR",
@@ -3746,80 +3782,80 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-10-30T15:20:16Z",
-   "new": 0,
+   "checked": "2026-10-30T23:16:39Z",
+   "new": 1,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-10-30T15:20:16Z",
+   "checked": "2026-10-30T23:16:39Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-10-30T15:20:16Z",
+   "checked": "2026-10-30T23:16:39Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-10-30T15:20:16Z",
-   "new": 1,
+   "checked": "2026-10-30T23:16:39Z",
+   "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-10-30T15:20:16Z",
+   "checked": "2026-10-30T23:16:39Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-10-30T15:20:16Z",
+   "checked": "2026-10-30T23:16:39Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-10-30T15:20:16Z",
-   "new": 0,
+   "checked": "2026-10-30T23:16:39Z",
+   "new": 1,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-10-30T15:20:16Z",
+   "checked": "2026-10-30T23:16:39Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-10-30T15:20:16Z",
+   "checked": "2026-10-30T23:16:39Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-10-30T15:20:16Z",
+   "checked": "2026-10-30T23:16:39Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-10-30T15:20:16Z",
+   "checked": "2026-10-30T23:16:39Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-10-30T15:20:16Z"
+ "updated": "2026-10-30T23:16:39Z"
 }

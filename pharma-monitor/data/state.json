@@ -4533,7 +4533,8 @@
    "263/2026": "2026-10-29T23:17:12Z",
    "264/2026": "2026-10-29T23:17:15Z",
    "265/2026": "2026-10-29T23:17:18Z",
-   "266/2026": "2026-10-29T23:17:21Z"
+   "266/2026": "2026-10-29T23:17:21Z",
+   "267/2026": "2026-10-30T23:16:41Z"
   }
  },
  "slovlex_lp": {
@@ -4775,22 +4776,22 @@
     "tags": []
    },
    "LP/2026/530": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
    "LP/2026/529": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
    "LP/2026/527": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
    "LP/2026/528": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -7022,12 +7023,12 @@
     "tags": []
    },
    "LP/2026/550": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 2,
     "tags": [
      "Public procurement"
     ],
-    "stage_name": "Pripomienkové konanie"
+    "stage_name": "Vyhodnotenie pripomienkového konania"
    },
    "LP/2026/551": {
     "stage": "MPK",
@@ -7286,7 +7287,7 @@
     "tags": []
    },
    "LPEU/2026/737": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
