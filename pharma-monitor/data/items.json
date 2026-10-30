@@ -1,6 +1,21 @@
 {
  "items": [
   {
+   "id": "https://www.health.gov.sk/Clanok?MZSR-zjednocuje-postupy-oznamovanie-dostupnosti-kategorizovanych-liekov",
+   "source": "mzsr",
+   "source_name": "Ministerstvo zdravotníctva SR",
+   "title": "Ministerstvo zdravotníctva vydáva metodické usmernenie k predpisovaniu liekov mimo schválenej terapeutickej indikácie",
+   "url": "https://www.health.gov.sk/Clanok?MZSR-zjednocuje-postupy-oznamovanie-dostupnosti-kategorizovanych-liekov",
+   "date": "2026-10-30T13:13:45Z",
+   "detected": "2026-10-30T13:18:01Z",
+   "category": "Ministry of Health",
+   "priority": "high",
+   "tags": [
+    "Medicines"
+   ],
+   "summary": ""
+  },
+  {
    "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/bezpecnost-liekov/informacie-z-prac/zavery-z-vyboru-pre-hodnotenie-rizik-liekov-prac-26.-29.10.2026",
    "source": "sukl",
    "source_name": "ŠÚKL · Aktuality",
@@ -118,6 +133,24 @@
     "Schválenie gestora"
    ],
    "summary": "Stage: Schválenie gestora (since 30.10.2026)"
+  },
+  {
+   "id": "lp:LP/2026/561:MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/561 · Poslanecký návrh zákona: Návrh poslancov Národnej rady Slovenskej republiky Adama LUČANSKÉHO, Milana GARAJA, Romana MICHELKA a Karola FARKAŠOVSKÉHO \nna vydanie zákona, ktorým sa dopĺňa zákon č. 108/2024 Z. z. o ochrane spotrebiteľa a o zmene a doplnení niektorých zákonov v znení neskorších predpisov (tlač 1531)",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/561",
+   "date": "2026-10-30T08:00:00Z",
+   "detected": "2026-10-30T13:17:53Z",
+   "category": "Draft law",
+   "priority": "low",
+   "tags": [
+    "Consumer protection",
+    "Amends 108/2024",
+    "Pripomienkové konanie"
+   ],
+   "summary": "Stage: Pripomienkové konanie (since 30.10.2026) · Comments can be submitted until 09.11.2026 · Submitted by: Ministerstvo hospodárstva Slovenskej republiky",
+   "deadline": "2026-11-09"
   },
   {
    "id": "https://www.ema.europa.eu/en/news/ema-closed-all-souls-day-2-november",
@@ -3698,80 +3731,80 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-10-30T11:22:36Z",
+   "checked": "2026-10-30T13:17:19Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-10-30T11:22:36Z",
-   "new": 1,
+   "checked": "2026-10-30T13:17:19Z",
+   "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-10-30T11:22:36Z",
+   "checked": "2026-10-30T13:17:19Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-10-30T11:22:36Z",
-   "new": 0,
+   "checked": "2026-10-30T13:17:19Z",
+   "new": 1,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-10-30T11:22:36Z",
+   "checked": "2026-10-30T13:17:19Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-10-30T11:22:36Z",
+   "checked": "2026-10-30T13:17:19Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-10-30T11:22:36Z",
-   "new": 0,
+   "checked": "2026-10-30T13:17:19Z",
+   "new": 1,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-10-30T11:22:36Z",
+   "checked": "2026-10-30T13:17:19Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-10-30T11:22:36Z",
+   "checked": "2026-10-30T13:17:19Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-10-30T11:22:36Z",
-   "new": 1,
+   "checked": "2026-10-30T13:17:19Z",
+   "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-10-30T11:22:36Z",
+   "checked": "2026-10-30T13:17:19Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-10-30T11:22:36Z"
+ "updated": "2026-10-30T13:17:19Z"
 }

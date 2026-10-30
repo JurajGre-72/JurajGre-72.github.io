@@ -133,7 +133,8 @@
    "https://www.health.gov.sk/Clanok?uradne-urcenie-cien-liekov": "2026-10-29T13:36:09Z",
    "https://www.health.gov.sk/Clanok?vysledok-pet-3-2026": "2026-10-29T13:36:09Z",
    "https://www.health.gov.sk/Clanok?kategorizacia-liekov": "2026-10-29T14:37:51Z",
-   "https://www.health.gov.sk/Clanok?VP-dokumentacia-Digitalna-patologia-2": "2026-10-30T10:20:48Z"
+   "https://www.health.gov.sk/Clanok?VP-dokumentacia-Digitalna-patologia-2": "2026-10-30T10:20:48Z",
+   "https://www.health.gov.sk/Clanok?MZSR-zjednocuje-postupy-oznamovanie-dostupnosti-kategorizovanych-liekov": "2026-10-30T13:18:01Z"
   }
  },
  "uskvbl": {
@@ -7443,6 +7444,15 @@
     "stage": "MPK",
     "rel": 0,
     "tags": []
+   },
+   "LP/2026/561": {
+    "stage": "MPK",
+    "rel": 1,
+    "tags": [
+     "Consumer protection",
+     "Amends 108/2024"
+    ],
+    "stage_name": "Pripomienkové konanie"
    }
   }
  },
