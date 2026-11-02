@@ -1,6 +1,22 @@
 {
  "items": [
   {
+   "id": "https://www.sukl.sk/pre-verejnost-pacientov-a-media/pre-media/tlacove-spravy/slovensko-sa-pripaja-k-svetovej-kampani-medsafetyweek-neignorujte-vedlajsie-ucinky-liekov-nahlaste-ich",
+   "source": "sukl",
+   "source_name": "ŠÚKL · Aktuality",
+   "title": "Slovensko sa pripája k svetovej kampani #MedSafetyWeek: Neignorujte vedľajšie účinky liekov, nahláste ich",
+   "url": "https://www.sukl.sk/pre-verejnost-pacientov-a-media/pre-media/tlacove-spravy/slovensko-sa-pripaja-k-svetovej-kampani-medsafetyweek-neignorujte-vedlajsie-ucinky-liekov-nahlaste-ich",
+   "date": "2026-11-02T09:25:59Z",
+   "detected": "2026-11-02T10:18:14Z",
+   "category": "ŠÚKL notice",
+   "priority": "medium",
+   "tags": [
+    "Medicines",
+    "Drug safety"
+   ],
+   "summary": "Štátny ústav pre kontrolu liečiv (ŠÚKL) sa aj tento rok pripája k celosvetovej kampani #MedSafetyWeek, čiže Týždeň povedomia o bezpečnosti liekov. Tohtoročná kampaň sa koná od 2. do 8. novembra a má jasné posolstvo: Neignorujte vedľajšie účinky, nahláste ich."
+  },
+  {
    "id": "lp:LP/2026/182:VYHLASENE_V_ZBIERKE",
    "source": "slovlex_lp",
    "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
@@ -3799,80 +3815,80 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-02T07:30:47Z",
+   "checked": "2026-11-02T10:17:40Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-02T07:30:47Z",
-   "new": 0,
+   "checked": "2026-11-02T10:17:40Z",
+   "new": 1,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-02T07:30:47Z",
+   "checked": "2026-11-02T10:17:40Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-11-02T07:30:47Z",
+   "checked": "2026-11-02T10:17:40Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-11-02T07:30:47Z",
+   "checked": "2026-11-02T10:17:40Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-11-02T07:30:47Z",
+   "checked": "2026-11-02T10:17:40Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-02T07:30:47Z",
-   "new": 1,
+   "checked": "2026-11-02T10:17:40Z",
+   "new": 0,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-11-02T07:30:47Z",
+   "checked": "2026-11-02T10:17:40Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-11-02T07:30:47Z",
+   "checked": "2026-11-02T10:17:40Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-02T07:30:47Z",
+   "checked": "2026-11-02T10:17:40Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-02T07:30:47Z",
+   "checked": "2026-11-02T10:17:40Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-11-02T07:30:47Z"
+ "updated": "2026-11-02T10:17:40Z"
 }
