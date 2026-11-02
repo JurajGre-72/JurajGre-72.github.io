@@ -7461,6 +7461,15 @@
     "stage": "VYHLASENE_V_ZBIERKE",
     "rel": 0,
     "tags": []
+   },
+   "LP/2026/182": {
+    "stage": "VYHLASENE_V_ZBIERKE",
+    "rel": 3,
+    "tags": [
+     "Narcotics & precursors",
+     "Amends 139/1998"
+    ],
+    "stage_name": "Vyhlásené v Zbierke zákonov SR"
    }
   }
  },
