@@ -4712,17 +4712,17 @@
     "tags": []
    },
    "LP/2026/515": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
    "LP/2026/514": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
    "LP/2026/511": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -7084,12 +7084,12 @@
     "tags": []
    },
    "LP/2026/554": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/91": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK_AKTY",
     "rel": 0,
     "tags": []
    },
@@ -7315,12 +7315,12 @@
     "stage_name": "Vyhlásené v Zbierke zákonov SR"
    },
    "LPEU/2026/738": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/739": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -7340,7 +7340,7 @@
     "tags": []
    },
    "LPEU/2026/740": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -7350,7 +7350,7 @@
     "tags": []
    },
    "LPEU/2026/741": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -7385,7 +7385,7 @@
     "tags": []
    },
    "LPEU/2026/742": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
