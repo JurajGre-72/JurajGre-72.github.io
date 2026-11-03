@@ -7525,6 +7525,14 @@
     "stage": "SCHVALENIE_GESTORA",
     "rel": 0,
     "tags": []
+   },
+   "LP/2026/595": {
+    "stage": "SPRACOVANIE_PREDKLADATEL",
+    "rel": 2,
+    "tags": [
+     "Health insurance"
+    ],
+    "stage_name": "Spracovanie predkladateľom"
    }
   }
  },
