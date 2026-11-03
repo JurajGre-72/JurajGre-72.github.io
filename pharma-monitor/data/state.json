@@ -7533,6 +7533,16 @@
      "Health insurance"
     ],
     "stage_name": "Spracovanie predkladateľom"
+   },
+   "LP/2026/597": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/596": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
    }
   }
  },
