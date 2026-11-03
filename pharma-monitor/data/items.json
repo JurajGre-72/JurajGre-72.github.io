@@ -1,6 +1,22 @@
 {
  "items": [
   {
+   "id": "https://svps.sk/?p=17262",
+   "source": "svps",
+   "source_name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
+   "title": "Preverili svoje zmysly",
+   "url": "https://svps.sk/preverili-svoje-zmysly/",
+   "date": "2026-11-03T12:51:04Z",
+   "detected": "2026-11-03T13:19:12Z",
+   "category": "ŠVPS notice",
+   "priority": "medium",
+   "tags": [
+    "Veterinary care",
+    "Consumer protection"
+   ],
+   "summary": "Inšpektori Regionálnej veterinárnej a potravinovej správy Dolný Kubín si v Bratislave preverili svoje schopnosti rozpoznávať chute, vône a ďalšie senzorické vlastnosti potravín. Pravidelné senzorické skúšky pomáhajú zvyšovať odbornosť kontrolných pracovníkov a prispievajú k ochrane spotrebiteľov. Cieľom účasti na…"
+  },
+  {
    "id": "lp:LP/2026/595:SPRACOVANIE_PREDKLADATEL",
    "source": "slovlex_lp",
    "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
@@ -3877,80 +3893,80 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-03T12:19:04Z",
+   "checked": "2026-11-03T13:18:20Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-03T12:19:04Z",
+   "checked": "2026-11-03T13:18:20Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-03T12:19:04Z",
+   "checked": "2026-11-03T13:18:20Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-11-03T12:19:04Z",
+   "checked": "2026-11-03T13:18:20Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-11-03T12:19:04Z",
+   "checked": "2026-11-03T13:18:20Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-11-03T12:19:04Z",
+   "checked": "2026-11-03T13:18:20Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-03T12:19:04Z",
-   "new": 1,
+   "checked": "2026-11-03T13:18:20Z",
+   "new": 0,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-11-03T12:19:04Z",
+   "checked": "2026-11-03T13:18:20Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-11-03T12:19:04Z",
+   "checked": "2026-11-03T13:18:20Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-03T12:19:04Z",
+   "checked": "2026-11-03T13:18:20Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-03T12:19:04Z",
-   "new": 0,
+   "checked": "2026-11-03T13:18:20Z",
+   "new": 1,
    "error": null
   }
  },
- "updated": "2026-11-03T12:19:04Z"
+ "updated": "2026-11-03T13:18:20Z"
 }
