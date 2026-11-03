@@ -1,6 +1,23 @@
 {
  "items": [
   {
+   "id": "lp:LP/2026/594:MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/594 · Vyhláška: Návrh vyhlášky Ministerstva životného prostredia Slovenskej republiky, ktorou sa mení vyhláška Ministerstva životného prostredia Slovenskej republiky č. 26/2021 Z. z., ktorou sa mení a dopĺňa vyhláška Ministerstva životného prostredia Slovenskej republiky č. 382/2018 Z. z. o skládkovaní odpadov a uskladnení odpadovej ortuti",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/594",
+   "date": "2026-11-03T08:00:00Z",
+   "detected": "2026-11-03T09:16:48Z",
+   "category": "Draft law",
+   "priority": "low",
+   "tags": [
+    "Waste & packaging",
+    "Pripomienkové konanie"
+   ],
+   "summary": "Stage: Pripomienkové konanie (since 03.11.2026) · Comments can be submitted until 23.11.2026 · Submitted by: Ministerstvo životného prostredia Slovenskej republiky",
+   "deadline": "2026-11-23"
+  },
+  {
    "id": "https://www.sukl.sk/pre-verejnost-pacientov-a-media/pre-media/tlacove-spravy/slovensko-sa-pripaja-k-svetovej-kampani-medsafetyweek-neignorujte-vedlajsie-ucinky-liekov-nahlaste-ich",
    "source": "sukl",
    "source_name": "ŠÚKL · Aktuality",
@@ -3815,80 +3832,80 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-02T10:17:40Z",
+   "checked": "2026-11-03T09:16:16Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-02T10:17:40Z",
-   "new": 1,
+   "checked": "2026-11-03T09:16:16Z",
+   "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-02T10:17:40Z",
+   "checked": "2026-11-03T09:16:16Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-11-02T10:17:40Z",
+   "checked": "2026-11-03T09:16:16Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-11-02T10:17:40Z",
+   "checked": "2026-11-03T09:16:16Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-11-02T10:17:40Z",
+   "checked": "2026-11-03T09:16:16Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-02T10:17:40Z",
-   "new": 0,
+   "checked": "2026-11-03T09:16:16Z",
+   "new": 1,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-11-02T10:17:40Z",
+   "checked": "2026-11-03T09:16:16Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-11-02T10:17:40Z",
+   "checked": "2026-11-03T09:16:16Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-02T10:17:40Z",
+   "checked": "2026-11-03T09:16:16Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-02T10:17:40Z",
+   "checked": "2026-11-03T09:16:16Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-11-02T10:17:40Z"
+ "updated": "2026-11-03T09:16:16Z"
 }

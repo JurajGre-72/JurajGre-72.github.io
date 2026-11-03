@@ -7506,6 +7506,14 @@
     "stage": "MPK",
     "rel": 0,
     "tags": []
+   },
+   "LP/2026/594": {
+    "stage": "MPK",
+    "rel": 1,
+    "tags": [
+     "Waste & packaging"
+    ],
+    "stage_name": "Pripomienkové konanie"
    }
   }
  },
