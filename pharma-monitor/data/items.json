@@ -1,6 +1,22 @@
 {
  "items": [
   {
+   "id": "lp:LPEU/2026/745:ZAPIS_PREDBEZNEHO_STANOVISKA",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LPEU/2026/745 · Akt EÚ: COM(2026)589 SPRÁVA KOMISIE EURÓPSKEMU PARLAMENTU A RADE o výkone delegovania právomoci udelenej Komisii podľa nariadenia Európskeho parlamentu a Rady (EÚ) č. 528/2012 z 22. mája 2012 o sprístupňovaní biocídnych výrobkov na trhu a ich používaní v súlade s článkom 83 ods. 2 uvedeného nariadenia",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LPEU/2026/745",
+   "date": "2026-11-04T08:00:00Z",
+   "detected": "2026-11-03T23:17:24Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Biocides & chemicals",
+    "Zápis predbežného stanoviska k návrhu aktu EÚ"
+   ],
+   "summary": "Moved from stage “Schválenie gestora” to “Zápis predbežného stanoviska k návrhu aktu EÚ” · Stage: Zápis predbežného stanoviska k návrhu aktu EÚ (since 04.11.2026)"
+  },
+  {
    "id": "https://svps.sk/?p=17262",
    "source": "svps",
    "source_name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
@@ -3910,80 +3926,80 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-03T15:17:24Z",
+   "checked": "2026-11-03T23:16:46Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-03T15:17:24Z",
+   "checked": "2026-11-03T23:16:46Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-03T15:17:24Z",
+   "checked": "2026-11-03T23:16:46Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-11-03T15:17:24Z",
+   "checked": "2026-11-03T23:16:46Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-11-03T15:17:24Z",
+   "checked": "2026-11-03T23:16:46Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-11-03T15:17:24Z",
+   "checked": "2026-11-03T23:16:46Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-03T15:17:24Z",
+   "checked": "2026-11-03T23:16:46Z",
    "new": 1,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-11-03T15:17:24Z",
+   "checked": "2026-11-03T23:16:46Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-11-03T15:17:24Z",
+   "checked": "2026-11-03T23:16:46Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-03T15:17:24Z",
+   "checked": "2026-11-03T23:16:46Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-03T15:17:24Z",
+   "checked": "2026-11-03T23:16:46Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-11-03T15:17:24Z"
+ "updated": "2026-11-03T23:16:46Z"
 }

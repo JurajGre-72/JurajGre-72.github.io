@@ -4540,13 +4540,14 @@
    "265/2026": "2026-10-29T23:17:18Z",
    "266/2026": "2026-10-29T23:17:21Z",
    "267/2026": "2026-10-30T23:16:41Z",
-   "268/2026": "2026-11-01T23:16:20Z"
+   "268/2026": "2026-11-01T23:16:20Z",
+   "269/2026": "2026-11-03T23:16:48Z"
   }
  },
  "slovlex_lp": {
   "materials": {
    "LP/2026/535": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -7426,20 +7427,20 @@
     "tags": []
    },
    "LPEU/2026/745": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 2,
     "tags": [
      "Biocides & chemicals"
     ],
-    "stage_name": "Schválenie gestora"
+    "stage_name": "Zápis predbežného stanoviska k návrhu aktu EÚ"
    },
    "LPEU/2026/744": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/743": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -7558,6 +7559,11 @@
     "stage_name": "Pripomienkové konanie"
    },
    "LP/2026/598": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/577": {
     "stage": "MPK",
     "rel": 0,
     "tags": []
