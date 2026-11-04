@@ -4642,7 +4642,7 @@
     "tags": []
    },
    "LPEU/2026/646": {
-    "stage": "ZAPIS_DOPLNENEHO_PREDBEZNEHO_STANOVISKA",
+    "stage": "MPK",
     "rel": 0,
     "tags": []
    },
@@ -5305,7 +5305,7 @@
     "tags": []
    },
    "LP/2026/394": {
-    "stage": "PRED_VYHLASENIM_V_ZBIERKE",
+    "stage": "VYHLASENE_V_ZBIERKE",
     "rel": 0,
     "tags": []
    },
@@ -8140,7 +8140,8 @@
    "32026D2482": "2026-11-04T07:17:55Z",
    "32026R2490": "2026-11-04T07:17:55Z",
    "32026D2484": "2026-11-04T07:17:55Z",
-   "32026R2473": "2026-11-04T07:17:55Z"
+   "32026R2473": "2026-11-04T07:17:55Z",
+   "32026D2475": "2026-11-04T08:17:39Z"
   }
  },
  "kategorizacia": {
