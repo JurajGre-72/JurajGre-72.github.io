@@ -3942,81 +3942,81 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-04T12:48:34Z",
+   "checked": "2026-11-04T13:21:52Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-04T12:48:34Z",
+   "checked": "2026-11-04T13:21:52Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-04T12:48:34Z",
+   "checked": "2026-11-04T13:21:52Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": false,
-   "checked": "2026-11-04T12:48:34Z",
+   "checked": "2026-11-04T13:21:52Z",
    "new": 0,
-   "error": "https://www.health.gov.sk/RSS?Clanky: ConnectionResetError(104, 'Connection reset by peer')",
+   "error": "https://www.health.gov.sk/RSS?Clanky: <HTTPError 404: 'Not Found'>",
    "last_ok": "2026-11-03T23:16:46Z"
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-11-04T12:48:34Z",
+   "checked": "2026-11-04T13:21:52Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-11-04T12:18:37Z",
+   "checked": "2026-11-04T13:21:52Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-04T12:48:34Z",
+   "checked": "2026-11-04T13:21:52Z",
    "new": 0,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-11-04T12:18:37Z",
+   "checked": "2026-11-04T13:21:52Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-11-04T12:18:37Z",
+   "checked": "2026-11-04T13:21:52Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-04T12:48:34Z",
+   "checked": "2026-11-04T13:21:52Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-04T12:48:34Z",
+   "checked": "2026-11-04T13:21:52Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-11-04T12:48:34Z"
+ "updated": "2026-11-04T13:21:52Z"
 }
