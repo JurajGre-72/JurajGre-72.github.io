@@ -4659,7 +4659,7 @@
     "tags": []
    },
    "LPEU/2026/696": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -6978,7 +6978,7 @@
     "stage_name": "Pripomienkové konanie"
    },
    "LP/2026/546": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 0,
     "tags": []
    },
@@ -7586,6 +7586,11 @@
     "tags": []
    },
    "LP/2026/601": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/602": {
     "stage": "MPK",
     "rel": 0,
     "tags": []
