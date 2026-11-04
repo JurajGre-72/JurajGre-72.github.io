@@ -1,6 +1,22 @@
 {
  "items": [
   {
+   "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/bezpecnost-liekov/oznamy-drzitelov-dhpc/respreezar-inhibitor-alfa1-proteinazy-riziko-vynechanej-davky-alebo-potencialnej-infekcie-v-dosledku-narusenia-integrity-injekcnej-liekovky",
+   "source": "sukl",
+   "source_name": "ŠÚKL · Aktuality",
+   "title": "Respreeza® (inhibítor alfa1-proteinázy): riziko vynechanej dávky alebo potenciálnej infekcie v dôsledku narušenia integrity injekčnej liekovky",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/bezpecnost-liekov/oznamy-drzitelov-dhpc/respreezar-inhibitor-alfa1-proteinazy-riziko-vynechanej-davky-alebo-potencialnej-infekcie-v-dosledku-narusenia-integrity-injekcnej-liekovky",
+   "date": "2026-11-04T10:33:06Z",
+   "detected": "2026-11-04T12:19:14Z",
+   "category": "Drug safety",
+   "priority": "medium",
+   "tags": [
+    "Medicines",
+    "Drug safety"
+   ],
+   "summary": "DHPC (Direct Healthcare Professional Communication) predstavuje priamu komunikáciu zdravotníckym pracovníkom, prostredníctvom ktorej sú poskytované nové dôležité informácie týkajúce sa bezpečnosti, účinnosti alebo správneho používania lieku."
+  },
+  {
    "id": "lp:LPEU/2026/745:ZAPIS_PREDBEZNEHO_STANOVISKA",
    "source": "slovlex_lp",
    "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
@@ -3926,28 +3942,28 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-04T10:16:59Z",
+   "checked": "2026-11-04T12:18:37Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-04T10:16:59Z",
-   "new": 0,
+   "checked": "2026-11-04T12:18:37Z",
+   "new": 1,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-04T10:16:59Z",
+   "checked": "2026-11-04T12:18:37Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": false,
-   "checked": "2026-11-04T10:16:59Z",
+   "checked": "2026-11-04T12:18:37Z",
    "new": 0,
    "error": "https://www.health.gov.sk/RSS?Clanky: <HTTPError 404: 'Not Found'>",
    "last_ok": "2026-11-03T23:16:46Z"
@@ -3955,52 +3971,52 @@
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-11-04T10:16:59Z",
+   "checked": "2026-11-04T12:18:37Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-11-04T10:16:59Z",
+   "checked": "2026-11-04T12:18:37Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-04T10:16:59Z",
+   "checked": "2026-11-04T12:18:37Z",
    "new": 0,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-11-04T10:16:59Z",
+   "checked": "2026-11-04T12:18:37Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-11-04T10:16:59Z",
+   "checked": "2026-11-04T12:18:37Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-04T10:16:59Z",
+   "checked": "2026-11-04T12:18:37Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-04T10:16:59Z",
+   "checked": "2026-11-04T12:18:37Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-11-04T10:16:59Z"
+ "updated": "2026-11-04T12:18:37Z"
 }
