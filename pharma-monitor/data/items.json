@@ -1,6 +1,21 @@
 {
  "items": [
   {
+   "id": "https://svps.sk/?p=17272",
+   "source": "svps",
+   "source_name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
+   "title": "Ambulantný predaj rýb 2026",
+   "url": "https://svps.sk/ambulantny-predaj-ryb-2026/",
+   "date": "2026-11-05T07:59:05Z",
+   "detected": "2026-11-05T08:17:08Z",
+   "category": "ŠVPS notice",
+   "priority": "medium",
+   "tags": [
+    "Veterinary care"
+   ],
+   "summary": "Aktualizovali sme informácie ohľadom ambulantného predaja rýb pre rok 2026 Mohlo by vás zaujímať The post Ambulantný predaj rýb 2026 appeared first on Štátna veterinárna a potravinová správa ."
+  },
+  {
    "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/bezpecnost-liekov/oznamy-drzitelov-dhpc/respreezar-inhibitor-alfa1-proteinazy-riziko-vynechanej-davky-alebo-potencialnej-infekcie-v-dosledku-narusenia-integrity-injekcnej-liekovky",
    "source": "sukl",
    "source_name": "ŠÚKL · Aktuality",
@@ -3942,28 +3957,28 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-04T13:21:52Z",
+   "checked": "2026-11-05T08:16:25Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-04T13:21:52Z",
+   "checked": "2026-11-05T08:16:25Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-04T13:21:52Z",
+   "checked": "2026-11-05T08:16:25Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": false,
-   "checked": "2026-11-04T13:21:52Z",
+   "checked": "2026-11-05T08:16:25Z",
    "new": 0,
    "error": "https://www.health.gov.sk/RSS?Clanky: <HTTPError 404: 'Not Found'>",
    "last_ok": "2026-11-03T23:16:46Z"
@@ -3971,52 +3986,52 @@
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-11-04T13:21:52Z",
+   "checked": "2026-11-05T08:16:25Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-11-04T13:21:52Z",
+   "checked": "2026-11-05T08:16:25Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-04T13:21:52Z",
+   "checked": "2026-11-05T08:16:25Z",
    "new": 0,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-11-04T13:21:52Z",
+   "checked": "2026-11-05T08:16:25Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-11-04T13:21:52Z",
+   "checked": "2026-11-05T08:16:25Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-04T13:21:52Z",
+   "checked": "2026-11-05T08:16:25Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-04T13:21:52Z",
-   "new": 0,
+   "checked": "2026-11-05T08:16:25Z",
+   "new": 1,
    "error": null
   }
  },
- "updated": "2026-11-04T13:21:52Z"
+ "updated": "2026-11-05T08:16:25Z"
 }
