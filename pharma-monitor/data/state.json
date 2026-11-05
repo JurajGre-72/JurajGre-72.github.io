@@ -7520,12 +7520,12 @@
     "stage_name": "Pripomienkové konanie"
    },
    "LPEU/2026/748": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/747": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -7592,6 +7592,11 @@
    },
    "LP/2026/602": {
     "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/258": {
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    }
