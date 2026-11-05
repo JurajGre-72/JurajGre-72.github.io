@@ -6953,12 +6953,12 @@
     "tags": []
    },
    "LP/2026/541": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
    "LP/2026/540": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -6970,12 +6970,12 @@
     ]
    },
    "LP/2026/547": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 2,
     "tags": [
      "Ministry of Health"
     ],
-    "stage_name": "Pripomienkové konanie"
+    "stage_name": "Vyhodnotenie pripomienkového konania"
    },
    "LP/2026/546": {
     "stage": "SPRACOVANIE_PREDKLADATEL",
