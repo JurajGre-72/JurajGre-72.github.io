@@ -7480,7 +7480,7 @@
     "stage_name": "Vyhlásené v Zbierke zákonov SR"
    },
    "LPEU/2026/746": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": [
      "Animal diseases"
@@ -7581,7 +7581,7 @@
     "tags": []
    },
    "LPEU/2026/750": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -7596,6 +7596,11 @@
     "tags": []
    },
    "LP/2026/258": {
+    "stage": "PROCES_UKONCENY",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/193": {
     "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
