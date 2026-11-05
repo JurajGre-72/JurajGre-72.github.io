@@ -7437,12 +7437,12 @@
     "stage_name": "Zápis predbežného stanoviska k návrhu aktu EÚ"
    },
    "LPEU/2026/744": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/743": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
