@@ -1,6 +1,21 @@
 {
  "items": [
   {
+   "id": "https://svps.sk/?p=17279",
+   "source": "svps",
+   "source_name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
+   "title": "Jedlé gaštany pod kontrolou",
+   "url": "https://svps.sk/jedle-gastany-pod-kontrolou/",
+   "date": "2026-11-06T08:27:47Z",
+   "detected": "2026-11-06T09:16:51Z",
+   "category": "ŠVPS notice",
+   "priority": "medium",
+   "tags": [
+    "Veterinary care"
+   ],
+   "summary": "Jeseň má svoju nezameniteľnú vôňu a k nej neodmysliteľne patria aj čerstvo upečené gaštany. Ale pozor, nie každý gaštan, ktorý nájdete v obchode, musí byť vhodný na konzumáciu. Svedčia o tom podnety od spotrebiteľov – hovoria o predaji nekvalitných gaštanov ponúkaných v maloobchodných prevádzkach. Jedna z nich v…"
+  },
+  {
    "id": "lp:LP/2026/547:VYHODNOTENIE_MPK",
    "source": "slovlex_lp",
    "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
@@ -3973,28 +3988,28 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-06T05:15:55Z",
+   "checked": "2026-11-06T09:15:57Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-06T05:15:55Z",
+   "checked": "2026-11-06T09:15:57Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-06T05:15:55Z",
+   "checked": "2026-11-06T09:15:57Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": false,
-   "checked": "2026-11-06T05:15:55Z",
+   "checked": "2026-11-06T09:15:57Z",
    "new": 0,
    "error": "https://www.health.gov.sk/RSS?Clanky: <HTTPError 404: 'Not Found'>",
    "last_ok": "2026-11-03T23:16:46Z"
@@ -4002,52 +4017,52 @@
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-11-06T05:15:55Z",
+   "checked": "2026-11-06T09:15:57Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-11-06T05:15:55Z",
+   "checked": "2026-11-06T09:15:57Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-06T05:15:55Z",
+   "checked": "2026-11-06T09:15:57Z",
    "new": 0,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-11-06T05:15:55Z",
+   "checked": "2026-11-06T09:15:57Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-11-06T05:15:55Z",
+   "checked": "2026-11-06T09:15:57Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-06T05:15:55Z",
+   "checked": "2026-11-06T09:15:57Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-06T05:15:55Z",
-   "new": 0,
+   "checked": "2026-11-06T09:15:57Z",
+   "new": 1,
    "error": null
   }
  },
- "updated": "2026-11-06T05:15:55Z"
+ "updated": "2026-11-06T09:15:57Z"
 }

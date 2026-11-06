@@ -5002,7 +5002,7 @@
     "tags": []
    },
    "LPEU/2026/680": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -7614,6 +7614,21 @@
     "stage": "SCHVALENIE_GESTORA",
     "rel": 0,
     "tags": []
+   },
+   "LPEU/2026/754": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/753": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/752": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": []
    }
   }
  },
@@ -9154,7 +9169,8 @@
    "https://svps.sk/?p=17252": "2026-10-28T09:18:07Z",
    "https://svps.sk/?p=17256": "2026-10-28T12:36:57Z",
    "https://svps.sk/?p=17262": "2026-11-03T13:19:12Z",
-   "https://svps.sk/?p=17272": "2026-11-05T08:17:08Z"
+   "https://svps.sk/?p=17272": "2026-11-05T08:17:08Z",
+   "https://svps.sk/?p=17279": "2026-11-06T09:16:51Z"
   }
  }
 }
