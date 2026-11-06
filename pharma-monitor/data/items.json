@@ -1,6 +1,23 @@
 {
  "items": [
   {
+   "id": "https://www.ema.europa.eu/en/news/meeting-highlights-committee-veterinary-medicinal-products-cvmp-3-5-november-2026",
+   "source": "ema",
+   "source_name": "EMA · European Medicines Agency",
+   "title": "Meeting highlights from the Committee for Veterinary Medicinal Products (CVMP) 3-5 November 2026",
+   "url": "https://www.ema.europa.eu/en/news/meeting-highlights-committee-veterinary-medicinal-products-cvmp-3-5-november-2026",
+   "date": "2026-11-06T13:20:00Z",
+   "detected": "2026-11-06T14:21:03Z",
+   "category": "EU agency (EMA)",
+   "priority": "high",
+   "tags": [
+    "Medicines",
+    "Veterinary medicines",
+    "Authorisation opinions"
+   ],
+   "summary": "CVMP opinions on veterinary medicinal products Further to the re-examination of the opinion adopted by the Committee during its June 2026 meeting, the Committee adopted a…"
+  },
+  {
    "id": "https://svps.sk/?p=17279",
    "source": "svps",
    "source_name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
@@ -3988,28 +4005,28 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-06T09:15:57Z",
+   "checked": "2026-11-06T14:20:21Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-06T09:15:57Z",
+   "checked": "2026-11-06T14:20:21Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-06T09:15:57Z",
+   "checked": "2026-11-06T14:20:21Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": false,
-   "checked": "2026-11-06T09:15:57Z",
+   "checked": "2026-11-06T14:20:21Z",
    "new": 0,
    "error": "https://www.health.gov.sk/RSS?Clanky: <HTTPError 404: 'Not Found'>",
    "last_ok": "2026-11-03T23:16:46Z"
@@ -4017,52 +4034,52 @@
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-11-06T09:15:57Z",
+   "checked": "2026-11-06T14:20:21Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-11-06T09:15:57Z",
+   "checked": "2026-11-06T14:20:21Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-06T09:15:57Z",
+   "checked": "2026-11-06T14:20:21Z",
    "new": 0,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-11-06T09:15:57Z",
+   "checked": "2026-11-06T14:20:21Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-11-06T09:15:57Z",
+   "checked": "2026-11-06T14:20:21Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-06T09:15:57Z",
-   "new": 0,
+   "checked": "2026-11-06T14:20:21Z",
+   "new": 1,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-06T09:15:57Z",
-   "new": 1,
+   "checked": "2026-11-06T14:20:21Z",
+   "new": 0,
    "error": null
   }
  },
- "updated": "2026-11-06T09:15:57Z"
+ "updated": "2026-11-06T14:20:21Z"
 }
