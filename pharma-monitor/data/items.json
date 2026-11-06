@@ -1,6 +1,22 @@
 {
  "items": [
   {
+   "id": "lp:LP/2026/549:VYHODNOTENIE_MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/549 · Nariadenie vlády Slovenskej republiky: Návrh nariadenia vlády Slovenskej republiky, ktorým sa mení nariadenie vlády Slovenskej republiky č. 668/2004 Z. z. o rozdeľovaní výnosu dane z príjmov územnej samospráve v znení neskorších predpisov",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/549",
+   "date": "2026-11-07T08:00:00Z",
+   "detected": "2026-11-06T23:17:10Z",
+   "category": "Draft law",
+   "priority": "low",
+   "tags": [
+    "Taxes",
+    "Vyhodnotenie pripomienkového konania"
+   ],
+   "summary": "Moved from stage “Pripomienkové konanie” to “Vyhodnotenie pripomienkového konania” · Stage: Vyhodnotenie pripomienkového konania (since 07.11.2026) · Submitted by: Ministerstvo financií Slovenskej republiky · Main act amended: 668/2004 Z. z."
+  },
+  {
    "id": "https://www.ema.europa.eu/en/news/meeting-highlights-committee-veterinary-medicinal-products-cvmp-3-5-november-2026",
    "source": "ema",
    "source_name": "EMA · European Medicines Agency",
@@ -4005,28 +4021,28 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-06T19:42:58Z",
+   "checked": "2026-11-06T23:16:33Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-06T19:42:58Z",
+   "checked": "2026-11-06T23:16:33Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-06T19:42:58Z",
+   "checked": "2026-11-06T23:16:33Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": false,
-   "checked": "2026-11-06T19:42:58Z",
+   "checked": "2026-11-06T23:16:33Z",
    "new": 0,
    "error": "https://www.health.gov.sk/RSS?Clanky: <HTTPError 404: 'Not Found'>",
    "last_ok": "2026-11-03T23:16:46Z"
@@ -4034,52 +4050,52 @@
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-11-06T19:42:58Z",
+   "checked": "2026-11-06T23:16:33Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-11-06T19:16:34Z",
+   "checked": "2026-11-06T23:16:33Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-06T19:42:58Z",
-   "new": 0,
+   "checked": "2026-11-06T23:16:33Z",
+   "new": 1,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-11-06T19:16:34Z",
+   "checked": "2026-11-06T23:16:33Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-11-06T19:16:34Z",
+   "checked": "2026-11-06T23:16:33Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-06T19:42:58Z",
+   "checked": "2026-11-06T23:16:33Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-06T19:42:58Z",
+   "checked": "2026-11-06T23:16:33Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-11-06T19:42:58Z"
+ "updated": "2026-11-06T23:16:33Z"
 }

@@ -5055,7 +5055,7 @@
     "tags": []
    },
    "LP/2026/517": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -7027,7 +7027,7 @@
     "tags": []
    },
    "LP/2026/548": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -7040,12 +7040,12 @@
     "stage_name": "Vyhodnotenie pripomienkového konania"
    },
    "LP/2026/551": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
    "LP/2026/553": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -7060,12 +7060,12 @@
     "tags": []
    },
    "LP/2026/549": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 1,
     "tags": [
      "Taxes"
     ],
-    "stage_name": "Pripomienkové konanie"
+    "stage_name": "Vyhodnotenie pripomienkového konania"
    },
    "LPEU/2026/716": {
     "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
@@ -7194,7 +7194,7 @@
     "tags": []
    },
    "LP/2026/542": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -7239,7 +7239,7 @@
     "tags": []
    },
    "LP/2026/572": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -7329,7 +7329,7 @@
     "tags": []
    },
    "LP/2026/575": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -7349,7 +7349,7 @@
     "tags": []
    },
    "LP/2026/576": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -7364,7 +7364,7 @@
     "tags": []
    },
    "LP/2026/579": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
