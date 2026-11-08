@@ -1,31 +1,31 @@
 {
- "checked": "2026-11-08T23:15:33Z",
+ "checked": "2026-11-08T23:24:01Z",
  "sources": {
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-08T23:15:33Z",
+   "checked": "2026-11-08T23:24:01Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-08T23:15:33Z",
+   "checked": "2026-11-08T23:24:01Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-08T23:15:33Z",
+   "checked": "2026-11-08T23:24:01Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": false,
-   "checked": "2026-11-08T23:15:33Z",
+   "checked": "2026-11-08T23:24:01Z",
    "new": 0,
    "error": "https://www.health.gov.sk/RSS?Clanky: ConnectionResetError(104, 'Connection reset by peer')",
    "last_ok": "2026-11-03T23:16:46Z"
@@ -33,7 +33,7 @@
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-11-08T23:15:33Z",
+   "checked": "2026-11-08T23:24:01Z",
    "new": 0,
    "error": null
   },
@@ -47,7 +47,7 @@
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-08T23:15:33Z",
+   "checked": "2026-11-08T23:24:01Z",
    "new": 0,
    "error": null
   },
@@ -68,14 +68,14 @@
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-08T23:15:33Z",
+   "checked": "2026-11-08T23:24:01Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-08T23:15:33Z",
+   "checked": "2026-11-08T23:24:01Z",
    "new": 0,
    "error": null
   }
