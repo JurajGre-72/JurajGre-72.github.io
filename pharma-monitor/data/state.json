@@ -7699,6 +7699,31 @@
     "stage": "MPK",
     "rel": 0,
     "tags": []
+   },
+   "LP/2026/609": {
+    "stage": "MPK",
+    "rel": 2,
+    "tags": [
+     "Ministry of Health",
+     "Food supplements"
+    ],
+    "stage_name": "Pripomienkové konanie"
+   },
+   "LP/2026/610": {
+    "stage": "MPK",
+    "rel": 2,
+    "tags": [
+     "Ministry of Health"
+    ],
+    "stage_name": "Pripomienkové konanie"
+   },
+   "LP/2026/611": {
+    "stage": "MPK",
+    "rel": 2,
+    "tags": [
+     "Ministry of Health"
+    ],
+    "stage_name": "Pripomienkové konanie"
    }
   }
  },
