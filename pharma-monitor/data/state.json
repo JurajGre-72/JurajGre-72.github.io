@@ -4903,7 +4903,7 @@
     "tags": []
    },
    "LP/2026/484": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 0,
     "tags": []
    },
@@ -7651,7 +7651,17 @@
     "tags": []
    },
    "LP/2026/305": {
-    "stage": "PRED_VYHLASENIM_V_ZBIERKE",
+    "stage": "VYHLASENE_V_ZBIERKE",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/607": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2025/480": {
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    }
