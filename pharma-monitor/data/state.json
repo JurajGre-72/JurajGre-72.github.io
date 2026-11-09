@@ -4544,7 +4544,13 @@
    "266/2026": "2026-10-29T23:17:21Z",
    "267/2026": "2026-10-30T23:16:41Z",
    "268/2026": "2026-11-01T23:16:20Z",
-   "269/2026": "2026-11-03T23:16:48Z"
+   "269/2026": "2026-11-03T23:16:48Z",
+   "270/2026": "2026-11-09T23:10:04Z",
+   "271/2026": "2026-11-09T23:10:08Z",
+   "272/2026": "2026-11-09T23:10:10Z",
+   "273/2026": "2026-11-09T23:10:13Z",
+   "274/2026": "2026-11-09T23:10:15Z",
+   "275/2026": "2026-11-09T23:10:19Z"
   }
  },
  "slovlex_lp": {
@@ -7099,7 +7105,7 @@
     "tags": []
    },
    "LP/2026/556": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -7415,7 +7421,7 @@
     "tags": []
    },
    "LP/2026/587": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -7458,13 +7464,13 @@
     "tags": []
    },
    "LP/2026/561": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 1,
     "tags": [
      "Consumer protection",
      "Amends 108/2024"
     ],
-    "stage_name": "Pripomienkové konanie"
+    "stage_name": "Vyhodnotenie pripomienkového konania"
    },
    "LP/2026/123": {
     "stage": "VYHLASENE_V_ZBIERKE",

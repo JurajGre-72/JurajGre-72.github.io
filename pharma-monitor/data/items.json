@@ -1,6 +1,45 @@
 {
  "items": [
   {
+   "id": "slovlex:272/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "272/2026 Z. z. – Zákon, ktorým sa mení a dopĺňa zákon č. 39/2007 Z. z. o veterinárnej starostlivosti v znení neskorších predpisov a ktorým sa dopĺňa zákon Národnej rady Slovenskej republiky",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/272/",
+   "date": "2026-11-10T08:00:00Z",
+   "detected": "2026-11-09T23:10:13Z",
+   "category": "Legislation",
+   "priority": "high",
+   "tags": [
+    "Veterinary care",
+    "Amends 39/2007"
+   ],
+   "summary": "Amends: 39/2007 Z. z. – Act on Veterinary Care · Effective from: 01.01.2027",
+   "doc_type": "Zákon,",
+   "effective": [
+    "2027-01-01"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/272/ZZ_2026_272.pdf",
+   "details": "data/changes/slovlex_272_2026.json"
+  },
+  {
+   "id": "lp:LP/2026/561:VYHODNOTENIE_MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/561 · Poslanecký návrh zákona: Návrh poslancov Národnej rady Slovenskej republiky Adama LUČANSKÉHO, Milana GARAJA, Romana MICHELKA a Karola FARKAŠOVSKÉHO \nna vydanie zákona, ktorým sa dopĺňa zákon č. 108/2024 Z. z. o ochrane spotrebiteľa a o zmene a doplnení niektorých zákonov v znení neskorších predpisov (tlač 1531)",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/561",
+   "date": "2026-11-10T08:00:00Z",
+   "detected": "2026-11-09T23:10:46Z",
+   "category": "Draft law",
+   "priority": "low",
+   "tags": [
+    "Consumer protection",
+    "Amends 108/2024",
+    "Vyhodnotenie pripomienkového konania"
+   ],
+   "summary": "Moved from stage “Pripomienkové konanie” to “Vyhodnotenie pripomienkového konania” · Stage: Vyhodnotenie pripomienkového konania (since 10.11.2026) · Submitted by: Ministerstvo hospodárstva Slovenskej republiky"
+  },
+  {
    "id": "https://www.sukl.sk/pre-verejnost-pacientov-a-media/oznamy-a-upozornenia/povodna-verzia-webu-bude-definitivne-vypnuta",
    "source": "sukl",
    "source_name": "ŠÚKL · Aktuality",
@@ -4103,28 +4142,28 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-09T17:16:23Z",
-   "new": 0,
+   "checked": "2026-11-09T23:10:03Z",
+   "new": 1,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-09T17:16:23Z",
+   "checked": "2026-11-09T23:10:03Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-09T17:16:23Z",
+   "checked": "2026-11-09T23:10:03Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": false,
-   "checked": "2026-11-09T17:16:23Z",
+   "checked": "2026-11-09T23:10:03Z",
    "new": 0,
    "error": "https://www.health.gov.sk/RSS?Clanky: <HTTPError 404: 'Not Found'>",
    "last_ok": "2026-11-03T23:16:46Z"
@@ -4132,52 +4171,53 @@
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-11-09T17:16:23Z",
+   "checked": "2026-11-09T23:10:03Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-11-09T17:16:23Z",
+   "checked": "2026-11-09T23:10:03Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-09T17:16:23Z",
-   "new": 3,
+   "checked": "2026-11-09T23:10:03Z",
+   "new": 1,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-11-09T17:16:23Z",
+   "checked": "2026-11-09T23:10:03Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
-   "ok": true,
-   "checked": "2026-11-09T17:16:23Z",
+   "ok": false,
+   "checked": "2026-11-09T23:10:03Z",
    "new": 0,
-   "error": null
+   "error": "https://www.health.gov.sk/?kategorizacia-a-ceny: ConnectionResetError(104, 'Connection reset by peer')",
+   "last_ok": "2026-11-09T17:16:23Z"
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-09T17:16:23Z",
+   "checked": "2026-11-09T23:10:03Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-09T17:16:23Z",
+   "checked": "2026-11-09T23:10:03Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-11-09T17:16:23Z"
+ "updated": "2026-11-09T23:10:03Z"
 }
