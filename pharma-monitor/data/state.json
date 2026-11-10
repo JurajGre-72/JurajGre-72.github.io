@@ -7231,7 +7231,7 @@
     "tags": []
    },
    "LPEU/2026/730": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -7371,7 +7371,7 @@
     "tags": []
    },
    "LP/2026/579": {
-    "stage": "SPRACOVANIE_PREDKLADATEL",
+    "stage": "ROKOVANIE_POV",
     "rel": 0,
     "tags": []
    },
