@@ -5792,7 +5792,7 @@
     "tags": []
    },
    "LP/2026/458": {
-    "stage": "SPRACOVANIE_PREDKLADATEL",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -6990,13 +6990,13 @@
     "tags": []
    },
    "LP/2026/545": {
-    "stage": "SPRACOVANIE_PREDKLADATEL",
+    "stage": "ROKOVANIE_POV",
     "rel": 1,
     "tags": [
      "Taxes",
      "Amends 595/2003"
     ],
-    "stage_name": "Spracovanie predkladateľom"
+    "stage_name": "Rokovanie poradných orgánov vlády SR"
    },
    "LPEU/2026/708": {
     "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
@@ -8461,7 +8461,8 @@
     "2023-08-01",
     "2024-07-01",
     "2025-04-01",
-    "2026-01-01"
+    "2026-01-01",
+    "2027-01-01"
    ],
    "139/1998": [
     "1998-06-01",
