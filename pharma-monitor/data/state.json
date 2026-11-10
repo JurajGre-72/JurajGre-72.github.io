@@ -7196,7 +7196,7 @@
     "tags": []
    },
    "LP/2026/570": {
-    "stage": "ROKOVANIE_VLADA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -7421,7 +7421,7 @@
     "tags": []
    },
    "LP/2026/587": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 0,
     "tags": []
    },
@@ -7730,6 +7730,11 @@
      "Ministry of Health"
     ],
     "stage_name": "Pripomienkové konanie"
+   },
+   "LP/2026/76": {
+    "stage": "SPRACOVANIE_PREDKLADATEL",
+    "rel": 0,
+    "tags": []
    }
   }
  },
