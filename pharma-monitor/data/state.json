@@ -4743,7 +4743,7 @@
     "tags": []
    },
    "LP/2026/489": {
-    "stage": "ROKOVANIE_VLADA",
+    "stage": "VYHLASENE_V_ZBIERKE",
     "rel": 0,
     "tags": []
    },
@@ -7371,7 +7371,7 @@
     "tags": []
    },
    "LP/2026/579": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 0,
     "tags": []
    },
@@ -7738,6 +7738,23 @@
    },
    "LP/2026/612": {
     "stage": "PROCES_UKONCENY",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/761": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/760": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": [
+     "Animal diseases"
+    ]
+   },
+   "LPEU/2026/759": {
+    "stage": "SCHVALENIE_GESTORA",
     "rel": 0,
     "tags": []
    }
@@ -8332,7 +8349,11 @@
    "32026R2476": "2026-11-09T08:19:42Z",
    "32026R2474": "2026-11-09T08:19:42Z",
    "32026M12600": "2026-11-09T09:17:12Z",
-   "32026M12661": "2026-11-09T09:17:12Z"
+   "32026M12661": "2026-11-09T09:17:12Z",
+   "32026R2523": "2026-11-10T10:17:15Z",
+   "32026D2480": "2026-11-10T10:17:15Z",
+   "32026D2479": "2026-11-10T10:17:15Z",
+   "32026D2481": "2026-11-10T10:17:15Z"
   }
  },
  "kategorizacia": {

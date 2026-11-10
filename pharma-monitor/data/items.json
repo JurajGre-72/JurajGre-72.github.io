@@ -175,6 +175,22 @@
    "deadline": "2026-11-17"
   },
   {
+   "id": "eu:32026D2479",
+   "source": "eurlex",
+   "source_name": "EUR-Lex · Úradný vestník EÚ",
+   "title": "Vykonávacie rozhodnutie Komisie (EÚ) 2026/2479 z 9. novembra 2026, ktorým sa mení vykonávacie rozhodnutie (EÚ) 2021/1182, pokiaľ ide o harmonizované normy pre sterilizáciu výrobkov na zdravotnú starostlivosť, klinické skúšanie zdravotníckych pomôcok na humánne použitie, kondómy z prírodného kaučukového latexu, biologické hodnotenie zdravotníckych pomôcok, prístroje na umývanie a dezinfekciu, zdravotnícke elektrické prístroje a spojky s malým priemerom na kvapaliny a plyny v aplikáciách zdravotnej starostlivosti",
+   "url": "https://eur-lex.europa.eu/legal-content/SK/TXT/?uri=CELEX:32026D2479",
+   "date": "2026-11-09T08:00:00Z",
+   "detected": "2026-11-10T10:17:15Z",
+   "category": "EU legislation",
+   "priority": "high",
+   "tags": [
+    "Medical devices"
+   ],
+   "summary": "Changes: amending Implementing Decision (EU) 2021/1182. Commission Implementing Decision (EU) 2026/2479 of 9 November 2026 amending Implementing Decision (EU) 2021/1182 as regards harmonised standards for sterilization of health care products, clinical investigation of medical devices for human subjects, natural…",
+   "doc_type": "DEC_IMPL"
+  },
+  {
    "id": "lp:LP/2026/549:VYHODNOTENIE_MPK",
    "source": "slovlex_lp",
    "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
@@ -4195,28 +4211,28 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-10T09:16:21Z",
+   "checked": "2026-11-10T10:16:40Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-10T09:16:21Z",
+   "checked": "2026-11-10T10:16:40Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-10T09:16:21Z",
+   "checked": "2026-11-10T10:16:40Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": false,
-   "checked": "2026-11-10T09:16:21Z",
+   "checked": "2026-11-10T10:16:40Z",
    "new": 0,
    "error": "https://www.health.gov.sk/RSS?Clanky: <HTTPError 404: 'Not Found'>",
    "last_ok": "2026-11-03T23:16:46Z"
@@ -4224,52 +4240,52 @@
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-11-10T09:16:21Z",
+   "checked": "2026-11-10T10:16:40Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-11-10T09:16:21Z",
-   "new": 1,
+   "checked": "2026-11-10T10:16:40Z",
+   "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-10T09:16:21Z",
-   "new": 1,
+   "checked": "2026-11-10T10:16:40Z",
+   "new": 0,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-11-10T09:16:21Z",
-   "new": 0,
+   "checked": "2026-11-10T10:16:40Z",
+   "new": 1,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-11-10T09:16:21Z",
+   "checked": "2026-11-10T10:16:40Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-10T09:16:21Z",
+   "checked": "2026-11-10T10:16:40Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-10T09:16:21Z",
+   "checked": "2026-11-10T10:16:40Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-11-10T09:16:21Z"
+ "updated": "2026-11-10T10:16:40Z"
 }
