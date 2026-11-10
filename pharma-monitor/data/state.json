@@ -6990,13 +6990,13 @@
     "tags": []
    },
    "LP/2026/545": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 1,
     "tags": [
      "Taxes",
      "Amends 595/2003"
     ],
-    "stage_name": "Vyhodnotenie pripomienkového konania"
+    "stage_name": "Spracovanie predkladateľom"
    },
    "LPEU/2026/708": {
     "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
@@ -7733,6 +7733,11 @@
    },
    "LP/2026/76": {
     "stage": "SPRACOVANIE_PREDKLADATEL",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/612": {
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    }
