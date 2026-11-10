@@ -5174,7 +5174,7 @@
     "tags": []
    },
    "LPEU/2026/633": {
-    "stage": "ZAPIS_DOPLNENEHO_PREDBEZNEHO_STANOVISKA",
+    "stage": "MPK",
     "rel": 0,
     "tags": []
    },
@@ -7221,7 +7221,7 @@
     "tags": []
    },
    "LPEU/2026/726": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -7778,6 +7778,11 @@
     "tags": []
    },
    "LP/2026/562": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/613": {
     "stage": "MPK",
     "rel": 0,
     "tags": []
