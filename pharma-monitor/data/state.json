@@ -7578,7 +7578,7 @@
     "tags": []
    },
    "LPEU/2026/749": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -7673,17 +7673,17 @@
     "tags": []
    },
    "LPEU/2026/758": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/757": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/756": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -7783,6 +7783,20 @@
     "tags": []
    },
    "LP/2026/613": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/615": {
+    "stage": "MPK",
+    "rel": 2,
+    "tags": [
+     "Ministry of Health",
+     "Healthcare providers"
+    ],
+    "stage_name": "Pripomienkové konanie"
+   },
+   "LP/2026/614": {
     "stage": "MPK",
     "rel": 0,
     "tags": []

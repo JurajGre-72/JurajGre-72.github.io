@@ -42,6 +42,24 @@
    "details": "data/changes/slovlex_272_2026.json"
   },
   {
+   "id": "lp:LP/2026/615:MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/615 · Vyhláška: Návrh vyhlášky Ministerstva zdravotníctva Slovenskej republiky, ktorou sa ustanovujú podmienky na zaradenie pracoviska poskytovateľa zdravotnej starostlivosti do zoznamu skríningových pracovísk, podmienky pre skríningové pracoviská, požiadavky na zdravotníckych pracovníkov vykonávajúcich zdravotné výkony pri organizovanom skríningu onkologických chorôb a včasnej detekcii rakoviny prsníka a kritériá optimálneho rozloženia  skríningových pracovísk",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/615",
+   "date": "2026-11-10T08:00:00Z",
+   "detected": "2026-11-10T15:20:16Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Ministry of Health",
+    "Healthcare providers",
+    "Pripomienkové konanie"
+   ],
+   "summary": "Stage: Pripomienkové konanie (since 10.11.2026) · Comments can be submitted until 18.11.2026 · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky",
+   "deadline": "2026-11-18"
+  },
+  {
    "id": "lp:LP/2026/561:VYHODNOTENIE_MPK",
    "source": "slovlex_lp",
    "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
@@ -4211,28 +4229,28 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-10T14:21:17Z",
+   "checked": "2026-11-10T15:19:44Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-10T14:21:17Z",
+   "checked": "2026-11-10T15:19:44Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-10T14:21:17Z",
+   "checked": "2026-11-10T15:19:44Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": false,
-   "checked": "2026-11-10T14:21:17Z",
+   "checked": "2026-11-10T15:19:44Z",
    "new": 0,
    "error": "https://www.health.gov.sk/RSS?Clanky: <HTTPError 404: 'Not Found'>",
    "last_ok": "2026-11-03T23:16:46Z"
@@ -4240,53 +4258,52 @@
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-11-10T14:21:17Z",
+   "checked": "2026-11-10T15:19:44Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-11-10T14:21:17Z",
+   "checked": "2026-11-10T15:19:44Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-10T14:21:17Z",
-   "new": 0,
+   "checked": "2026-11-10T15:19:44Z",
+   "new": 1,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-11-10T14:21:17Z",
+   "checked": "2026-11-10T15:19:44Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
-   "ok": false,
-   "checked": "2026-11-10T14:21:17Z",
+   "ok": true,
+   "checked": "2026-11-10T15:19:44Z",
    "new": 0,
-   "error": "https://www.health.gov.sk/?kategorizacia-a-ceny: ConnectionResetError(104, 'Connection reset by peer')",
-   "last_ok": "2026-11-10T10:16:40Z"
+   "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-10T14:21:17Z",
+   "checked": "2026-11-10T15:19:44Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-10T14:21:17Z",
+   "checked": "2026-11-10T15:19:44Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-11-10T14:21:17Z"
+ "updated": "2026-11-10T15:19:44Z"
 }
