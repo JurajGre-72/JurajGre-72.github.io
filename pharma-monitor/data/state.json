@@ -6931,7 +6931,7 @@
     "tags": []
    },
    "LP/2026/539": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 0,
     "tags": []
    },
@@ -7821,6 +7821,16 @@
    },
    "LPEU/2026/379": {
     "stage": "PROCES_UKONCENY",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/767": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/766": {
+    "stage": "SCHVALENIE_GESTORA",
     "rel": 0,
     "tags": []
    }
