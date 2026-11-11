@@ -16,6 +16,23 @@
    "summary": "Čo musí spĺňať takéto víno? Na Slovensku je používanie označenia „Mladé víno“ legislatívne upravené zákonom č. 313/2009 Z. z. o vinohradníctve a vinárstve. Kedy možno používať názov „Mladé víno 2026“? Podľa § 25 ods. 1 a §28 ods. 7 zákona č. 313/2009 Z. z.: Na trh sa môže uvádzať najskôr v prvý novembrový pondelok…"
   },
   {
+   "id": "lp:LP/2026/522:SPRACOVANIE_PREDKLADATEL",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/522 · Vyhláška: Návrh vyhlášky Ministerstva zdravotníctva Slovenskej republiky, ktorou sa mení a dopĺňa vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 298/2022 Z. z., ktorou sa ustanovujú podrobnosti výpočtu príslušného násobku hrubého domáceho produktu pre stanovenie prahovej hodnoty posudzovaného lieku",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/522",
+   "date": "2026-11-11T08:00:00Z",
+   "detected": "2026-11-11T11:23:31Z",
+   "category": "Draft law",
+   "priority": "high",
+   "tags": [
+    "Medicines",
+    "Ministry of Health",
+    "Spracovanie predkladateľom"
+   ],
+   "summary": "Moved from stage “Vyhodnotenie pripomienkového konania” to “Spracovanie predkladateľom” · Stage: Spracovanie predkladateľom (since 11.11.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
+  },
+  {
    "id": "law:39/2007:2027-01-01",
    "source": "lawchanges",
    "source_name": "Slov-Lex · Znenia kľúčových zákonov",
@@ -4244,81 +4261,82 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-11T10:16:04Z",
+   "checked": "2026-11-11T11:23:06Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-11T10:16:04Z",
+   "checked": "2026-11-11T11:23:06Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-11T10:16:04Z",
+   "checked": "2026-11-11T11:23:06Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": false,
-   "checked": "2026-11-11T10:16:04Z",
+   "checked": "2026-11-11T11:23:06Z",
    "new": 0,
-   "error": "https://www.health.gov.sk/RSS?Clanky: ConnectionResetError(104, 'Connection reset by peer')",
+   "error": "https://www.health.gov.sk/RSS?Clanky: <HTTPError 404: 'Not Found'>",
    "last_ok": "2026-11-03T23:16:46Z"
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-11-11T10:16:04Z",
+   "checked": "2026-11-11T11:23:06Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-11-11T10:16:04Z",
+   "checked": "2026-11-11T11:23:06Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-11T10:16:04Z",
-   "new": 0,
+   "checked": "2026-11-11T11:23:06Z",
+   "new": 1,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-11-11T10:16:04Z",
+   "checked": "2026-11-11T11:23:06Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
-   "ok": true,
-   "checked": "2026-11-11T10:16:04Z",
+   "ok": false,
+   "checked": "2026-11-11T11:23:06Z",
    "new": 0,
-   "error": null
+   "error": "https://www.health.gov.sk/?kategorizacia-a-ceny: ConnectionResetError(104, 'Connection reset by peer')",
+   "last_ok": "2026-11-11T10:16:04Z"
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-11T10:16:04Z",
+   "checked": "2026-11-11T11:23:06Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-11T10:16:04Z",
+   "checked": "2026-11-11T11:23:06Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-11-11T10:16:04Z"
+ "updated": "2026-11-11T11:23:06Z"
 }

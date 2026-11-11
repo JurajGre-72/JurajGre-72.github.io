@@ -4942,13 +4942,13 @@
     "stage_name": "Vyhodnotenie pripomienkového konania"
    },
    "LP/2026/522": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 3,
     "tags": [
      "Medicines",
      "Ministry of Health"
     ],
-    "stage_name": "Vyhodnotenie pripomienkového konania"
+    "stage_name": "Spracovanie predkladateľom"
    },
    "LP/2026/521": {
     "stage": "VYHODNOTENIE_MPK",
@@ -5060,7 +5060,7 @@
     "tags": []
    },
    "LP/2026/488": {
-    "stage": "ROKOVANIE_VLADA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
