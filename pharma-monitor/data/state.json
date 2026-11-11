@@ -7189,7 +7189,7 @@
     "stage_name": "Pripomienkové konanie"
    },
    "LPEU/2026/722": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -7800,6 +7800,11 @@
     "stage_name": "Pripomienkové konanie"
    },
    "LP/2026/614": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/617": {
     "stage": "MPK",
     "rel": 0,
     "tags": []
