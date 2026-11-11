@@ -6550,12 +6550,12 @@
     "tags": []
    },
    "LPEU/2026/553": {
-    "stage": "PROCES_UKONCENY",
+    "stage": "ZAPIS_DOPLNENEHO_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/552": {
-    "stage": "PROCES_UKONCENY",
+    "stage": "ZAPIS_DOPLNENEHO_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
