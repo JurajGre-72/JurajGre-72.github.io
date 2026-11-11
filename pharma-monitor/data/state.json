@@ -5923,7 +5923,7 @@
     "stage_name": "Spracovanie predkladateľom"
    },
    "LPEU/2026/608": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -6550,12 +6550,12 @@
     "tags": []
    },
    "LPEU/2026/553": {
-    "stage": "ZAPIS_DOPLNENEHO_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/552": {
-    "stage": "ZAPIS_DOPLNENEHO_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -6753,7 +6753,7 @@
     "tags": []
    },
    "LP/2026/430": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "ROKOVANIE_VLADA",
     "rel": 0,
     "tags": []
    },
@@ -7133,7 +7133,7 @@
     "tags": []
    },
    "LP/2026/557": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 0,
     "tags": []
    },
@@ -7806,6 +7806,21 @@
    },
    "LP/2026/617": {
     "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/279": {
+    "stage": "PROCES_UKONCENY",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/389": {
+    "stage": "PROCES_UKONCENY",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/379": {
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    }
