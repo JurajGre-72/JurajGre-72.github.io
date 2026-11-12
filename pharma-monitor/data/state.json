@@ -5392,7 +5392,7 @@
     "tags": []
    },
    "LP/2026/453": {
-    "stage": "PRED_VYHLASENIM_V_ZBIERKE",
+    "stage": "VYHLASENE_V_ZBIERKE",
     "rel": 0,
     "tags": []
    },
@@ -7747,24 +7747,24 @@
     "tags": []
    },
    "LPEU/2026/761": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/760": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": [
      "Animal diseases"
     ]
    },
    "LPEU/2026/759": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/762": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": [
      "Customs"
