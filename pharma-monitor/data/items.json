@@ -18,6 +18,42 @@
    "summary": "Štátny ústav pre kontrolu liečiv zverejnil metodický pokyn MP 155/2026, ktorý stanovuje požiadavky a postup pri oznamovaní úmyslu vykonávať očkovanie v rámci lekárenskej starostlivosti."
   },
   {
+   "id": "lp:LP/2026/619:MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/619 · Vyhláška: Návrh vyhlášky Ministerstva zdravotníctva  Slovenskej republiky, ktorou sa ustanovuje minimálny počet lôžok na účely poskytovania ošetrovateľskej starostlivosti v zariadeniach sociálnej pomoci uhrádzanej z verejného zdravotného poistenia pre rok 2027",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/619",
+   "date": "2026-11-12T08:00:00Z",
+   "detected": "2026-11-12T13:20:43Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Ministry of Health",
+    "Health insurance",
+    "Pripomienkové konanie"
+   ],
+   "summary": "Stage: Pripomienkové konanie (since 12.11.2026) · Comments can be submitted until 20.11.2026 · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky",
+   "deadline": "2026-11-20"
+  },
+  {
+   "id": "lp:LP/2026/616:MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/616 · Opatrenie: návrh opatrenia, ktorým sa mení a dopĺňa opatrenie Ministerstva zdravotníctva Slovenskej republiky č. 07045/2003 z 30. decembra 2003, ktorým sa ustanovuje rozsah regulácie cien v oblasti zdravotníctva v znení neskorších predpisov",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/616",
+   "date": "2026-11-12T08:00:00Z",
+   "detected": "2026-11-12T13:20:44Z",
+   "category": "Draft law",
+   "priority": "high",
+   "tags": [
+    "Price regulation",
+    "Ministry of Health",
+    "Pripomienkové konanie"
+   ],
+   "summary": "Stage: Pripomienkové konanie (since 12.11.2026) · Comments can be submitted until 20.11.2026 · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky",
+   "deadline": "2026-11-20"
+  },
+  {
    "id": "lp:LP/2026/599:VYHODNOTENIE_MPK",
    "source": "slovlex_lp",
    "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
@@ -4309,82 +4345,81 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-12T12:18:44Z",
+   "checked": "2026-11-12T13:20:16Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-12T12:18:44Z",
+   "checked": "2026-11-12T13:20:16Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-12T12:18:44Z",
+   "checked": "2026-11-12T13:20:16Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": false,
-   "checked": "2026-11-12T12:18:44Z",
+   "checked": "2026-11-12T13:20:16Z",
    "new": 0,
-   "error": "https://www.health.gov.sk/RSS?Clanky: <HTTPError 404: 'Not Found'>",
+   "error": "https://www.health.gov.sk/RSS?Clanky: ConnectionResetError(104, 'Connection reset by peer')",
    "last_ok": "2026-11-03T23:16:46Z"
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-11-12T12:18:44Z",
+   "checked": "2026-11-12T13:20:16Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-11-12T12:18:44Z",
+   "checked": "2026-11-12T13:20:16Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-12T12:18:44Z",
-   "new": 0,
+   "checked": "2026-11-12T13:20:16Z",
+   "new": 2,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-11-12T12:18:44Z",
+   "checked": "2026-11-12T13:20:16Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
-   "ok": false,
-   "checked": "2026-11-12T12:18:44Z",
+   "ok": true,
+   "checked": "2026-11-12T13:20:16Z",
    "new": 0,
-   "error": "https://www.health.gov.sk/?kategorizacia-a-ceny: ConnectionResetError(104, 'Connection reset by peer')",
-   "last_ok": "2026-11-12T11:16:54Z"
+   "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-12T12:18:44Z",
+   "checked": "2026-11-12T13:20:16Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-12T12:18:44Z",
+   "checked": "2026-11-12T13:20:16Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-11-12T12:18:44Z"
+ "updated": "2026-11-12T13:20:16Z"
 }

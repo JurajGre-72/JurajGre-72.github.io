@@ -5863,7 +5863,7 @@
     "tags": []
    },
    "LP/2026/459": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 0,
     "tags": []
    },
@@ -7847,6 +7847,24 @@
     "stage": "SCHVALENIE_GESTORA",
     "rel": 0,
     "tags": []
+   },
+   "LP/2026/619": {
+    "stage": "MPK",
+    "rel": 2,
+    "tags": [
+     "Ministry of Health",
+     "Health insurance"
+    ],
+    "stage_name": "Pripomienkové konanie"
+   },
+   "LP/2026/616": {
+    "stage": "MPK",
+    "rel": 3,
+    "tags": [
+     "Price regulation",
+     "Ministry of Health"
+    ],
+    "stage_name": "Pripomienkové konanie"
    }
   }
  },
