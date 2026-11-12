@@ -1,6 +1,23 @@
 {
  "items": [
   {
+   "id": "lp:LP/2026/568:VYHODNOTENIE_MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/568 · Vyhláška: Návrh vyhlášky Úradu jadrového dozoru Slovenskej republiky č. .../2027 Z. z. , ktorou sa ustanovujú podrobnosti o požiadavkách pri preprave rádioaktívnych materiálov a o schválení typu prepravného obalového súboru",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/568",
+   "date": "2026-11-13T08:00:00Z",
+   "detected": "2026-11-12T23:16:47Z",
+   "category": "Draft law",
+   "priority": "low",
+   "tags": [
+    "Waste & packaging",
+    "Transport of goods",
+    "Vyhodnotenie pripomienkového konania"
+   ],
+   "summary": "Moved from stage “Pripomienkové konanie” to “Vyhodnotenie pripomienkového konania” · Stage: Vyhodnotenie pripomienkového konania (since 13.11.2026) · Submitted by: Úrad jadrového dozoru Slovenskej republiky"
+  },
+  {
    "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/lekarne-a-vydajne-zdravotnickych-pomocok/lekarenstvo/oznamovanie-umyslu-vykonavat-ockovanie-v-ramci-lekarenskej-starostlivosti",
    "source": "sukl",
    "source_name": "ŠÚKL · Aktuality",
@@ -4345,28 +4362,28 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-12T17:16:17Z",
+   "checked": "2026-11-12T23:16:23Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-12T17:16:17Z",
+   "checked": "2026-11-12T23:16:23Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-12T17:16:17Z",
+   "checked": "2026-11-12T23:16:23Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": false,
-   "checked": "2026-11-12T17:16:17Z",
+   "checked": "2026-11-12T23:16:23Z",
    "new": 0,
    "error": "https://www.health.gov.sk/RSS?Clanky: <HTTPError 404: 'Not Found'>",
    "last_ok": "2026-11-03T23:16:46Z"
@@ -4374,52 +4391,52 @@
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-11-12T17:16:17Z",
+   "checked": "2026-11-12T23:16:23Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-11-12T17:16:17Z",
+   "checked": "2026-11-12T23:16:23Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-12T17:16:17Z",
-   "new": 0,
+   "checked": "2026-11-12T23:16:23Z",
+   "new": 1,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-11-12T17:16:17Z",
+   "checked": "2026-11-12T23:16:23Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-11-12T17:16:17Z",
+   "checked": "2026-11-12T23:16:23Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-12T17:16:17Z",
+   "checked": "2026-11-12T23:16:23Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-12T17:16:17Z",
+   "checked": "2026-11-12T23:16:23Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-11-12T17:16:17Z"
+ "updated": "2026-11-12T23:16:23Z"
 }

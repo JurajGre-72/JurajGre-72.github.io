@@ -7174,7 +7174,7 @@
     "tags": []
    },
    "LP/2026/558": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -7184,13 +7184,13 @@
     "tags": []
    },
    "LP/2026/568": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 1,
     "tags": [
      "Waste & packaging",
      "Transport of goods"
     ],
-    "stage_name": "Pripomienkové konanie"
+    "stage_name": "Vyhodnotenie pripomienkového konania"
    },
    "LPEU/2026/722": {
     "stage": "PROCES_UKONCENY",
