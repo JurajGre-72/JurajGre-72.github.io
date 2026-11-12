@@ -4793,7 +4793,7 @@
     "tags": []
    },
    "LPEU/2026/684": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -7222,7 +7222,7 @@
     "tags": []
    },
    "LPEU/2026/727": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -7779,7 +7779,7 @@
     ]
    },
    "LPEU/2026/763": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -7834,6 +7834,11 @@
    },
    "LPEU/2026/766": {
     "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/245": {
+    "stage": "ROKOVANIE_NRSR",
     "rel": 0,
     "tags": []
    }
