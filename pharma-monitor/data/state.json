@@ -5436,7 +5436,7 @@
     "tags": []
    },
    "LPEU/2026/582": {
-    "stage": "ZAPIS_DOPLNENEHO_PREDBEZNEHO_STANOVISKA",
+    "stage": "MPK",
     "rel": 0,
     "tags": []
    },
@@ -7074,12 +7074,12 @@
     "tags": []
    },
    "LP/2026/549": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "ROKOVANIE_POV",
     "rel": 1,
     "tags": [
      "Taxes"
     ],
-    "stage_name": "Vyhodnotenie pripomienkového konania"
+    "stage_name": "Rokovanie poradných orgánov vlády SR"
    },
    "LPEU/2026/716": {
     "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
@@ -7863,6 +7863,32 @@
     "tags": [
      "Price regulation",
      "Ministry of Health"
+    ],
+    "stage_name": "Pripomienkové konanie"
+   },
+   "LP/2026/624": {
+    "stage": "MPK",
+    "rel": 3,
+    "tags": [
+     "Pharmacy",
+     "Medical devices",
+     "Ministry of Health"
+    ],
+    "stage_name": "Pripomienkové konanie"
+   },
+   "LP/2026/623": {
+    "stage": "MPK",
+    "rel": 2,
+    "tags": [
+     "Ministry of Health"
+    ],
+    "stage_name": "Pripomienkové konanie"
+   },
+   "LP/2026/621": {
+    "stage": "MPK",
+    "rel": 2,
+    "tags": [
+     "Health insurance"
     ],
     "stage_name": "Pripomienkové konanie"
    }

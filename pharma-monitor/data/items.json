@@ -1,6 +1,59 @@
 {
  "items": [
   {
+   "id": "lp:LP/2026/624:MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/624 · Vyhláška: Vyhláška Ministerstva zdravotníctva Slovenskej republiky, ktorou sa ustanovuje zoznam farmaceuticko-nákladových skupín, diagnostických skupín, diagnosticko-nákladových skupín a nákladových skupín zdravotníckych pomôcok na rok 2027",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/624",
+   "date": "2026-11-13T08:00:00Z",
+   "detected": "2026-11-13T09:17:03Z",
+   "category": "Draft law",
+   "priority": "high",
+   "tags": [
+    "Pharmacy",
+    "Medical devices",
+    "Ministry of Health",
+    "Pripomienkové konanie"
+   ],
+   "summary": "Stage: Pripomienkové konanie (since 13.11.2026) · Comments can be submitted until 23.11.2026 · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky",
+   "deadline": "2026-11-23"
+  },
+  {
+   "id": "lp:LP/2026/623:MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/623 · Vyhláška: Návrh vyhlášky Ministerstva zdravotníctva Slovenskej republiky, ktorou sa ustanovuje index rizika nákladov na zdravotnú starostlivosť na rok 2027",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/623",
+   "date": "2026-11-13T08:00:00Z",
+   "detected": "2026-11-13T09:17:04Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Ministry of Health",
+    "Pripomienkové konanie"
+   ],
+   "summary": "Stage: Pripomienkové konanie (since 13.11.2026) · Comments can be submitted until 23.11.2026 · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky",
+   "deadline": "2026-11-23"
+  },
+  {
+   "id": "lp:LP/2026/621:MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/621 · Nariadenie vlády Slovenskej republiky: Návrh nariadenia vlády Slovenskej republiky č. .../2026 Z. z., ktorým sa mení nariadenie vlády Slovenskej republiky č. 115/2018 Z. z., ktorým sa ustanovuje výška úhrad zdravotnej poisťovne za poskytovanie zubno-lekárskej pohotovostnej služby a ambulantnej pohotovostnej služby, spôsob výpočtu a pravidlá výpočtu týchto úhrad v znení neskorších predpisov",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/621",
+   "date": "2026-11-13T08:00:00Z",
+   "detected": "2026-11-13T09:17:05Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Health insurance",
+    "Pripomienkové konanie"
+   ],
+   "summary": "Stage: Pripomienkové konanie (since 13.11.2026) · Comments can be submitted until 23.11.2026 · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky",
+   "deadline": "2026-11-23"
+  },
+  {
    "id": "lp:LP/2026/568:VYHODNOTENIE_MPK",
    "source": "slovlex_lp",
    "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
@@ -16,6 +69,22 @@
     "Vyhodnotenie pripomienkového konania"
    ],
    "summary": "Moved from stage “Pripomienkové konanie” to “Vyhodnotenie pripomienkového konania” · Stage: Vyhodnotenie pripomienkového konania (since 13.11.2026) · Submitted by: Úrad jadrového dozoru Slovenskej republiky"
+  },
+  {
+   "id": "lp:LP/2026/549:ROKOVANIE_POV",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/549 · Nariadenie vlády Slovenskej republiky: Návrh nariadenia vlády Slovenskej republiky, ktorým sa mení nariadenie vlády Slovenskej republiky č. 668/2004 Z. z. o rozdeľovaní výnosu dane z príjmov územnej samospráve v znení neskorších predpisov",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/549",
+   "date": "2026-11-13T08:00:00Z",
+   "detected": "2026-11-13T09:17:07Z",
+   "category": "Draft law",
+   "priority": "low",
+   "tags": [
+    "Taxes",
+    "Rokovanie poradných orgánov vlády SR"
+   ],
+   "summary": "Moved from stage “Vyhodnotenie pripomienkového konania” to “Rokovanie poradných orgánov vlády SR” · Stage: Rokovanie poradných orgánov vlády SR (since 13.11.2026) · Submitted by: Ministerstvo financií Slovenskej republiky · Main act amended: 668/2004 Z. z."
   },
   {
    "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/lekarne-a-vydajne-zdravotnickych-pomocok/lekarenstvo/oznamovanie-umyslu-vykonavat-ockovanie-v-ramci-lekarenskej-starostlivosti",
@@ -4362,82 +4431,81 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-13T07:17:22Z",
+   "checked": "2026-11-13T09:16:35Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-13T07:17:22Z",
+   "checked": "2026-11-13T09:16:35Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-13T07:17:22Z",
+   "checked": "2026-11-13T09:16:35Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": false,
-   "checked": "2026-11-13T07:17:22Z",
+   "checked": "2026-11-13T09:16:35Z",
    "new": 0,
    "error": "https://www.health.gov.sk/RSS?Clanky: <HTTPError 404: 'Not Found'>",
    "last_ok": "2026-11-03T23:16:46Z"
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
-   "ok": false,
-   "checked": "2026-11-13T07:17:22Z",
+   "ok": true,
+   "checked": "2026-11-13T09:16:35Z",
    "new": 0,
-   "error": "https://www.uskvbl.sk/index.php?rest_route=/wp/v2/pages&orderby=modified&order=desc&per_page=50&_fields=id,title,modified_gmt,link: URLError(gaierror(-3, 'Temporary failure in name resolution'))",
-   "last_ok": "2026-11-13T06:16:42Z"
+   "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-11-13T07:17:22Z",
+   "checked": "2026-11-13T09:16:35Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-13T07:17:22Z",
-   "new": 0,
+   "checked": "2026-11-13T09:16:35Z",
+   "new": 4,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-11-13T07:17:22Z",
+   "checked": "2026-11-13T09:16:35Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-11-13T07:17:22Z",
+   "checked": "2026-11-13T09:16:35Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-13T07:17:22Z",
+   "checked": "2026-11-13T09:16:35Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-13T07:17:22Z",
+   "checked": "2026-11-13T09:16:35Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-11-13T07:17:22Z"
+ "updated": "2026-11-13T09:16:35Z"
 }
