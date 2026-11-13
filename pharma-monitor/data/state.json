@@ -7906,6 +7906,11 @@
     "stage": "MPK",
     "rel": 0,
     "tags": []
+   },
+   "LP/2026/626": {
+    "stage": "ROKOVANIE_VLADA",
+    "rel": 0,
+    "tags": []
    }
   }
  },
