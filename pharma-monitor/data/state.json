@@ -7891,6 +7891,21 @@
      "Health insurance"
     ],
     "stage_name": "Pripomienkové konanie"
+   },
+   "LP/2026/404": {
+    "stage": "PROCES_UKONCENY",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/620": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/622": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
    }
   }
  },
