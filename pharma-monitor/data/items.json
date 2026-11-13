@@ -19,6 +19,22 @@
    "summary": "Seven new medicines recommended for approvalEMA’s human medicines committee (CHMP) recommended seven medicines for approval at its November 2026 meeting.The committee…, CHMP statistics Key figures from the November 2026 CHMP meeting are represented in the graphic below. © European Medicines Agency , CHMP…"
   },
   {
+   "id": "lp:LPEU/2026/770:SCHVALENIE_GESTORA",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LPEU/2026/770 · Akt EÚ: C(2026)8203 VYKONÁVACIE ROZHODNUTIE KOMISIE ktoré sa týka povolení na uvedenie na trh pre humánne lieky s obsahom účinnej látky „lenalidomid“ v zmysle článku 107e smernice Európskeho parlamentu a Rady 2001/83/ES",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LPEU/2026/770",
+   "date": "2026-11-13T08:00:00Z",
+   "detected": "2026-11-13T14:53:53Z",
+   "category": "Draft law",
+   "priority": "high",
+   "tags": [
+    "Medicines",
+    "Schválenie gestora"
+   ],
+   "summary": "Stage: Schválenie gestora (since 13.11.2026)"
+  },
+  {
    "id": "lp:LP/2026/624:MPK",
    "source": "slovlex_lp",
    "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
@@ -4465,28 +4481,28 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-13T12:53:28Z",
+   "checked": "2026-11-13T14:53:19Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-13T12:53:28Z",
+   "checked": "2026-11-13T14:53:19Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-13T12:53:28Z",
+   "checked": "2026-11-13T14:53:19Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": false,
-   "checked": "2026-11-13T12:53:28Z",
+   "checked": "2026-11-13T14:53:19Z",
    "new": 0,
    "error": "https://www.health.gov.sk/RSS?Clanky: <HTTPError 404: 'Not Found'>",
    "last_ok": "2026-11-03T23:16:46Z"
@@ -4494,52 +4510,52 @@
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-11-13T12:53:28Z",
+   "checked": "2026-11-13T14:53:19Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-11-13T12:18:36Z",
+   "checked": "2026-11-13T14:53:19Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-13T12:53:28Z",
-   "new": 0,
+   "checked": "2026-11-13T14:53:19Z",
+   "new": 1,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-11-13T12:18:36Z",
+   "checked": "2026-11-13T14:53:19Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-11-13T12:18:36Z",
+   "checked": "2026-11-13T14:53:19Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-13T12:53:28Z",
+   "checked": "2026-11-13T14:53:19Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-13T12:53:28Z",
+   "checked": "2026-11-13T14:53:19Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-11-13T12:53:28Z"
+ "updated": "2026-11-13T14:53:19Z"
 }

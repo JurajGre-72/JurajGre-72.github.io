@@ -7916,6 +7916,29 @@
     "stage": "MPK",
     "rel": 0,
     "tags": []
+   },
+   "LPEU/2026/771": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/770": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 3,
+    "tags": [
+     "Medicines"
+    ],
+    "stage_name": "Schválenie gestora"
+   },
+   "LPEU/2026/769": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/768": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": []
    }
   }
  },
