@@ -1,31 +1,31 @@
 {
- "checked": "2026-11-13T07:17:22Z",
+ "checked": "2026-11-13T07:34:27Z",
  "sources": {
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-13T07:17:22Z",
+   "checked": "2026-11-13T07:34:27Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-13T07:17:22Z",
+   "checked": "2026-11-13T07:34:27Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-13T07:17:22Z",
+   "checked": "2026-11-13T07:34:27Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": false,
-   "checked": "2026-11-13T07:17:22Z",
+   "checked": "2026-11-13T07:34:27Z",
    "new": 0,
    "error": "https://www.health.gov.sk/RSS?Clanky: <HTTPError 404: 'Not Found'>",
    "last_ok": "2026-11-03T23:16:46Z"
@@ -33,7 +33,7 @@
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": false,
-   "checked": "2026-11-13T07:17:22Z",
+   "checked": "2026-11-13T07:34:27Z",
    "new": 0,
    "error": "https://www.uskvbl.sk/index.php?rest_route=/wp/v2/pages&orderby=modified&order=desc&per_page=50&_fields=id,title,modified_gmt,link: URLError(gaierror(-3, 'Temporary failure in name resolution'))",
    "last_ok": "2026-11-13T06:16:42Z"
@@ -48,7 +48,7 @@
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-13T07:17:22Z",
+   "checked": "2026-11-13T07:34:27Z",
    "new": 0,
    "error": null
   },
@@ -69,14 +69,14 @@
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-13T07:17:22Z",
+   "checked": "2026-11-13T07:34:27Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-13T07:17:22Z",
+   "checked": "2026-11-13T07:34:27Z",
    "new": 0,
    "error": null
   }
