@@ -4837,7 +4837,7 @@
     "stage_name": "Proces ukončený"
    },
    "LP/2026/526": {
-    "stage": "ROKOVANIE_VLADA",
+    "stage": "PRED_VYHLASENIM_V_ZBIERKE",
     "rel": 0,
     "tags": []
    },
@@ -5911,12 +5911,12 @@
     "stage_name": "Vyhodnotenie pripomienkového konania"
    },
    "LP/2026/445": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 2,
     "tags": [
      "Ministry of Health"
     ],
-    "stage_name": "Vyhodnotenie pripomienkového konania"
+    "stage_name": "Spracovanie predkladateľom"
    },
    "LP/2026/449": {
     "stage": "SPRACOVANIE_PREDKLADATEL",
@@ -9488,7 +9488,8 @@
    "https://www.ema.europa.eu/en/news/ama-ema-issue-joint-guidance-ebola-vaccine-development": "2026-10-23T10:16:55Z",
    "https://www.ema.europa.eu/en/news/ema-closed-all-souls-day-2-november": "2026-10-29T13:36:16Z",
    "https://www.ema.europa.eu/en/news/meeting-highlights-pharmacovigilance-risk-assessment-committee-prac-26-29-october-2026": "2026-10-30T11:23:27Z",
-   "https://www.ema.europa.eu/en/news/meeting-highlights-committee-veterinary-medicinal-products-cvmp-3-5-november-2026": "2026-11-06T14:21:03Z"
+   "https://www.ema.europa.eu/en/news/meeting-highlights-committee-veterinary-medicinal-products-cvmp-3-5-november-2026": "2026-11-06T14:21:03Z",
+   "https://www.ema.europa.eu/en/news/meeting-highlights-committee-medicinal-products-human-use-chmp-9-12-november-2026": "2026-11-13T11:19:22Z"
   }
  },
  "svps": {

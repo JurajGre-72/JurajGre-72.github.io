@@ -1,6 +1,24 @@
 {
  "items": [
   {
+   "id": "https://www.ema.europa.eu/en/news/meeting-highlights-committee-medicinal-products-human-use-chmp-9-12-november-2026",
+   "source": "ema",
+   "source_name": "EMA · European Medicines Agency",
+   "title": "Meeting highlights from the Committee for Medicinal Products for Human Use (CHMP) 9-12 November 2026",
+   "url": "https://www.ema.europa.eu/en/news/meeting-highlights-committee-medicinal-products-human-use-chmp-9-12-november-2026",
+   "date": "2026-11-13T11:00:00Z",
+   "detected": "2026-11-13T11:19:22Z",
+   "category": "EU agency (EMA)",
+   "priority": "high",
+   "tags": [
+    "Medicines",
+    "Medicines (general)",
+    "Authorisation opinions",
+    "Vaccines"
+   ],
+   "summary": "Seven new medicines recommended for approvalEMA’s human medicines committee (CHMP) recommended seven medicines for approval at its November 2026 meeting.The committee…, CHMP statistics Key figures from the November 2026 CHMP meeting are represented in the graphic below. © European Medicines Agency , CHMP…"
+  },
+  {
    "id": "lp:LP/2026/624:MPK",
    "source": "slovlex_lp",
    "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
@@ -85,6 +103,22 @@
     "Rokovanie poradných orgánov vlády SR"
    ],
    "summary": "Moved from stage “Vyhodnotenie pripomienkového konania” to “Rokovanie poradných orgánov vlády SR” · Stage: Rokovanie poradných orgánov vlády SR (since 13.11.2026) · Submitted by: Ministerstvo financií Slovenskej republiky · Main act amended: 668/2004 Z. z."
+  },
+  {
+   "id": "lp:LP/2026/445:SPRACOVANIE_PREDKLADATEL",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/445 · Vyhláška: Návrh vyhlášky Ministerstva zdravotníctva Slovenskej republiky, ktorou sa mení vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 99/2016 Z. z. o podrobnostiach o ochrane zdravia pred záťažou teplom a chladom pri práci v znení neskorších predpisov",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/445",
+   "date": "2026-11-13T08:00:00Z",
+   "detected": "2026-11-13T11:16:58Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Ministry of Health",
+    "Spracovanie predkladateľom"
+   ],
+   "summary": "Moved from stage “Vyhodnotenie pripomienkového konania” to “Spracovanie predkladateľom” · Stage: Spracovanie predkladateľom (since 13.11.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
   },
   {
    "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/lekarne-a-vydajne-zdravotnickych-pomocok/lekarenstvo/oznamovanie-umyslu-vykonavat-ockovanie-v-ramci-lekarenskej-starostlivosti",
@@ -4431,28 +4465,28 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-13T09:16:35Z",
+   "checked": "2026-11-13T11:16:30Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-13T09:16:35Z",
+   "checked": "2026-11-13T11:16:30Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-13T09:16:35Z",
+   "checked": "2026-11-13T11:16:30Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": false,
-   "checked": "2026-11-13T09:16:35Z",
+   "checked": "2026-11-13T11:16:30Z",
    "new": 0,
    "error": "https://www.health.gov.sk/RSS?Clanky: <HTTPError 404: 'Not Found'>",
    "last_ok": "2026-11-03T23:16:46Z"
@@ -4460,52 +4494,52 @@
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-11-13T09:16:35Z",
+   "checked": "2026-11-13T11:16:30Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-11-13T09:16:35Z",
+   "checked": "2026-11-13T11:16:30Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-13T09:16:35Z",
-   "new": 4,
+   "checked": "2026-11-13T11:16:30Z",
+   "new": 1,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-11-13T09:16:35Z",
+   "checked": "2026-11-13T11:16:30Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-11-13T09:16:35Z",
+   "checked": "2026-11-13T11:16:30Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-13T09:16:35Z",
-   "new": 0,
+   "checked": "2026-11-13T11:16:30Z",
+   "new": 1,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-13T09:16:35Z",
+   "checked": "2026-11-13T11:16:30Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-11-13T09:16:35Z"
+ "updated": "2026-11-13T11:16:30Z"
 }
