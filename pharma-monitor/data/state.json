@@ -4563,7 +4563,7 @@
  "slovlex_lp": {
   "materials": {
    "LP/2026/535": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 0,
     "tags": []
    },
@@ -4633,7 +4633,7 @@
     "tags": []
    },
    "LPEU/2026/634": {
-    "stage": "ZAPIS_DOPLNENEHO_PREDBEZNEHO_STANOVISKA",
+    "stage": "MPK",
     "rel": 0,
     "tags": []
    },
@@ -5512,7 +5512,7 @@
     "tags": []
    },
    "LP/2026/473": {
-    "stage": "ROKOVANIE_VLADA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -6007,7 +6007,7 @@
     "tags": []
    },
    "LP/2026/273": {
-    "stage": "SPRACOVANIE_PREDKLADATEL",
+    "stage": "VYHLASENE_V_ZBIERKE",
     "rel": 0,
     "tags": []
    },
@@ -6962,7 +6962,7 @@
     ]
    },
    "LP/2026/543": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "ROKOVANIE_POV",
     "rel": 0,
     "tags": []
    },
@@ -7036,7 +7036,7 @@
     "tags": []
    },
    "LPEU/2026/711": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "SCHVALENIE_GESTORA",
     "rel": 0,
     "tags": []
    },
@@ -7363,7 +7363,7 @@
     "tags": []
    },
    "LP/2026/576": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 0,
     "tags": []
    },
@@ -7939,6 +7939,33 @@
     "stage": "SCHVALENIE_GESTORA",
     "rel": 0,
     "tags": []
+   },
+   "LP/2026/628": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/251": {
+    "stage": "PROCES_UKONCENY",
+    "rel": 1,
+    "tags": [
+     "Waste & packaging"
+    ],
+    "stage_name": "Proces ukončený"
+   },
+   "LPEU/2026/772": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/625": {
+    "stage": "SPRACOVANIE_PREDKLADATEL",
+    "rel": 3,
+    "tags": [
+     "Veterinary care",
+     "Amends 39/2007"
+    ],
+    "stage_name": "Spracovanie predkladateľom"
    }
   }
  },

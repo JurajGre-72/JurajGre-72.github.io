@@ -1,6 +1,39 @@
 {
  "items": [
   {
+   "id": "lp:LP/2026/625:SPRACOVANIE_PREDKLADATEL",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/625 · Zákon: Návrh zákona, ktorým sa mení a dopĺňa zákon č. 39/2007 Z. z. o veterinárnej starostlivosti v znení neskorších predpisov a ktorým sa dopĺňa zákon Národnej rady Slovenskej republiky č. 145/1995 Z. z. o správnych poplatkoch v znení neskorších predpisov",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/625",
+   "date": "2026-11-16T08:00:00Z",
+   "detected": "2026-11-16T13:25:23Z",
+   "category": "Draft law",
+   "priority": "high",
+   "tags": [
+    "Veterinary care",
+    "Amends 39/2007",
+    "Spracovanie predkladateľom"
+   ],
+   "summary": "Stage: Spracovanie predkladateľom (since 16.11.2026) · Submitted by: Ministerstvo pôdohospodárstva a rozvoja vidieka Slovenskej republiky · Main act amended: 39/2007 Z. z."
+  },
+  {
+   "id": "lp:LP/2026/251:PROCES_UKONCENY",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/251 · Poslanecký návrh zákona: Návrh poslancov Národnej rady Slovenskej republiky Milana GARAJA, Dagmar KRAMPLOVEJ, Andreja DANKA a Adama LUČANSKÉHO na vydanie zákona, ktorým sa mení a dopĺňa zákon č. 582/2004 Z. z. o miestnych daniach a miestnom poplatku za komunálne odpady a drobné stavebné odpady v znení neskorších predpisov (tlač 1263)",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/251",
+   "date": "2026-11-16T08:00:00Z",
+   "detected": "2026-11-16T13:25:22Z",
+   "category": "Draft law",
+   "priority": "low",
+   "tags": [
+    "Waste & packaging",
+    "Proces ukončený"
+   ],
+   "summary": "Stage: Proces ukončený (since 16.11.2026) · Submitted by: Ministerstvo financií Slovenskej republiky · Main act amended: 582/2004 Z. z."
+  },
+  {
    "id": "https://www.ema.europa.eu/en/news/meeting-highlights-committee-medicinal-products-human-use-chmp-9-12-november-2026",
    "source": "ema",
    "source_name": "EMA · European Medicines Agency",
@@ -4481,28 +4514,28 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-16T06:16:41Z",
+   "checked": "2026-11-16T13:25:19Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-16T06:16:41Z",
+   "checked": "2026-11-16T13:25:19Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-16T06:16:41Z",
+   "checked": "2026-11-16T13:25:19Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": false,
-   "checked": "2026-11-16T06:16:41Z",
+   "checked": "2026-11-16T13:25:19Z",
    "new": 0,
    "error": "https://www.health.gov.sk/RSS?Clanky: <HTTPError 404: 'Not Found'>",
    "last_ok": "2026-11-03T23:16:46Z"
@@ -4510,7 +4543,7 @@
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-11-16T06:16:41Z",
+   "checked": "2026-11-16T13:25:19Z",
    "new": 0,
    "error": null
   },
@@ -4524,8 +4557,8 @@
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-16T06:16:41Z",
-   "new": 0,
+   "checked": "2026-11-16T13:25:19Z",
+   "new": 2,
    "error": null
   },
   "eurlex": {
@@ -4545,17 +4578,17 @@
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-16T06:16:41Z",
+   "checked": "2026-11-16T13:25:19Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-16T06:16:41Z",
+   "checked": "2026-11-16T13:25:19Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-11-16T06:16:41Z"
+ "updated": "2026-11-16T13:25:19Z"
 }
