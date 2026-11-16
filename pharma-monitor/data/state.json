@@ -5833,7 +5833,7 @@
     "tags": []
    },
    "LP/2026/461": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 0,
     "tags": []
    },
@@ -7082,7 +7082,7 @@
     "stage_name": "Rokovanie poradných orgánov vlády SR"
    },
    "LPEU/2026/716": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -7966,6 +7966,28 @@
      "Amends 39/2007"
     ],
     "stage_name": "Spracovanie predkladateľom"
+   },
+   "LPEU/2026/774": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": [
+     "Animal diseases"
+    ]
+   },
+   "LP/2026/357": {
+    "stage": "PROCES_UKONCENY",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/355": {
+    "stage": "PROCES_UKONCENY",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/773": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": []
    }
   }
  },
