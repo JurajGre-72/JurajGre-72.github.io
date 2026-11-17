@@ -6986,12 +6986,12 @@
     ]
    },
    "LP/2026/547": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 2,
     "tags": [
      "Ministry of Health"
     ],
-    "stage_name": "Vyhodnotenie pripomienkového konania"
+    "stage_name": "Spracovanie predkladateľom"
    },
    "LP/2026/546": {
     "stage": "SPRACOVANIE_PREDKLADATEL",
@@ -7038,7 +7038,7 @@
     "tags": []
    },
    "LPEU/2026/711": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -7741,7 +7741,7 @@
     "stage_name": "Pripomienkové konanie"
    },
    "LP/2026/76": {
-    "stage": "SPRACOVANIE_PREDKLADATEL",
+    "stage": "ROKOVANIE_POV",
     "rel": 0,
     "tags": []
    },
@@ -7920,25 +7920,25 @@
     "tags": []
    },
    "LPEU/2026/771": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/770": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 3,
     "tags": [
      "Medicines"
     ],
-    "stage_name": "Schválenie gestora"
+    "stage_name": "Zápis predbežného stanoviska k návrhu aktu EÚ"
    },
    "LPEU/2026/769": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/768": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -7956,7 +7956,7 @@
     "stage_name": "Proces ukončený"
    },
    "LPEU/2026/772": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -7970,7 +7970,7 @@
     "stage_name": "Vyhlásené v Zbierke zákonov SR"
    },
    "LPEU/2026/774": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": [
      "Animal diseases"
@@ -7987,12 +7987,12 @@
     "tags": []
    },
    "LPEU/2026/773": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/775": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -8002,7 +8002,7 @@
     "tags": []
    },
    "LP/2026/387": {
-    "stage": "SPRACOVANIE_PREDKLADATEL",
+    "stage": "ROKOVANIE_POV",
     "rel": 0,
     "tags": []
    },
@@ -8013,6 +8013,16 @@
    },
    "LP/2026/302": {
     "stage": "ROKOVANIE_NRSR",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/776": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/629": {
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    }
@@ -9598,7 +9608,8 @@
    "https://www.ema.europa.eu/en/news/ema-closed-all-souls-day-2-november": "2026-10-29T13:36:16Z",
    "https://www.ema.europa.eu/en/news/meeting-highlights-pharmacovigilance-risk-assessment-committee-prac-26-29-october-2026": "2026-10-30T11:23:27Z",
    "https://www.ema.europa.eu/en/news/meeting-highlights-committee-veterinary-medicinal-products-cvmp-3-5-november-2026": "2026-11-06T14:21:03Z",
-   "https://www.ema.europa.eu/en/news/meeting-highlights-committee-medicinal-products-human-use-chmp-9-12-november-2026": "2026-11-13T11:19:22Z"
+   "https://www.ema.europa.eu/en/news/meeting-highlights-committee-medicinal-products-human-use-chmp-9-12-november-2026": "2026-11-13T11:19:22Z",
+   "https://www.ema.europa.eu/en/news/eu-recommendations-2026-2027-seasonal-flu-vaccine-composition": "2026-11-17T14:10:25Z"
   }
  },
  "svps": {

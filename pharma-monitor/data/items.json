@@ -1,6 +1,37 @@
 {
  "items": [
   {
+   "id": "https://www.ema.europa.eu/en/news/eu-recommendations-2026-2027-seasonal-flu-vaccine-composition",
+   "source": "ema",
+   "source_name": "EMA · European Medicines Agency",
+   "title": "EU recommendations for 2026/2027 seasonal flu vaccine composition",
+   "url": "https://www.ema.europa.eu/en/news/eu-recommendations-2026-2027-seasonal-flu-vaccine-composition",
+   "date": "2026-11-17T13:00:00Z",
+   "detected": "2026-11-17T14:10:25Z",
+   "category": "EU agency (EMA)",
+   "priority": "medium",
+   "tags": [
+    "Vaccines"
+   ],
+   "summary": "The recommendations were updated and published on the following dates: 17 November 2026: to include a recommendation for mRNA (nucleic acid) influenza vaccines. Annex I…"
+  },
+  {
+   "id": "lp:LPEU/2026/770:ZAPIS_PREDBEZNEHO_STANOVISKA",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LPEU/2026/770 · Akt EÚ: C(2026)8203 VYKONÁVACIE ROZHODNUTIE KOMISIE ktoré sa týka povolení na uvedenie na trh pre humánne lieky s obsahom účinnej látky „lenalidomid“ v zmysle článku 107e smernice Európskeho parlamentu a Rady 2001/83/ES",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LPEU/2026/770",
+   "date": "2026-11-17T08:00:00Z",
+   "detected": "2026-11-17T14:10:03Z",
+   "category": "Draft law",
+   "priority": "high",
+   "tags": [
+    "Medicines",
+    "Zápis predbežného stanoviska k návrhu aktu EÚ"
+   ],
+   "summary": "Moved from stage “Schválenie gestora” to “Zápis predbežného stanoviska k návrhu aktu EÚ” · Stage: Zápis predbežného stanoviska k návrhu aktu EÚ (since 17.11.2026)"
+  },
+  {
    "id": "lp:LP/2026/625:VYHLASENE_V_ZBIERKE",
    "source": "slovlex_lp",
    "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
@@ -33,6 +64,22 @@
     "Vyhodnotenie pripomienkového konania"
    ],
    "summary": "Moved from stage “Pripomienkové konanie” to “Vyhodnotenie pripomienkového konania” · Stage: Vyhodnotenie pripomienkového konania (since 17.11.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
+  },
+  {
+   "id": "lp:LP/2026/547:SPRACOVANIE_PREDKLADATEL",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/547 · Vyhláška: Návrh vyhlášky Ministerstva zdravotníctva Slovenskej republiky, ktorou sa mení a dopĺňa vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 531/2023 Z. z. o kategorizácii ústavnej zdravotnej starostlivosti v znení neskorších predpisov",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/547",
+   "date": "2026-11-17T08:00:00Z",
+   "detected": "2026-11-17T14:10:01Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Ministry of Health",
+    "Spracovanie predkladateľom"
+   ],
+   "summary": "Moved from stage “Vyhodnotenie pripomienkového konania” to “Spracovanie predkladateľom” · Stage: Spracovanie predkladateľom (since 17.11.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
   },
   {
    "id": "lp:LP/2026/625:SPRACOVANIE_PREDKLADATEL",
@@ -4563,81 +4610,82 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-17T11:26:46Z",
+   "checked": "2026-11-17T14:09:37Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-17T11:26:46Z",
+   "checked": "2026-11-17T14:09:37Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-17T11:26:46Z",
+   "checked": "2026-11-17T14:09:37Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": false,
-   "checked": "2026-11-17T11:26:46Z",
+   "checked": "2026-11-17T14:09:37Z",
    "new": 0,
-   "error": "https://www.health.gov.sk/RSS?Clanky: <HTTPError 404: 'Not Found'>",
+   "error": "https://www.health.gov.sk/RSS?Clanky: ConnectionResetError(104, 'Connection reset by peer')",
    "last_ok": "2026-11-03T23:16:46Z"
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-11-17T11:26:46Z",
+   "checked": "2026-11-17T14:09:37Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-11-16T06:16:41Z",
+   "checked": "2026-11-17T14:09:37Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-17T11:26:46Z",
-   "new": 1,
+   "checked": "2026-11-17T14:09:37Z",
+   "new": 2,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
-   "ok": true,
-   "checked": "2026-11-16T06:16:41Z",
+   "ok": false,
+   "checked": "2026-11-17T14:09:37Z",
    "new": 0,
-   "error": null
+   "error": "https://publications.europa.eu/webapi/rdf/sparql?query=PREFIX+cdm%3A+%3Chttp%3A%2F%2Fpublications.europa.eu%2Fontology%2Fcdm%23%3E%0ASELECT+%3Fcelex+%3Fdate+%3Ftype+%3Flang+%3Ftitle+WHERE+%7B%0A++%3F…",
+   "last_ok": "2026-11-16T06:16:41Z"
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-11-16T06:16:41Z",
+   "checked": "2026-11-17T14:09:37Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-17T11:26:46Z",
-   "new": 0,
+   "checked": "2026-11-17T14:09:37Z",
+   "new": 1,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-17T11:26:46Z",
-   "new": 1,
+   "checked": "2026-11-17T14:09:37Z",
+   "new": 0,
    "error": null
   }
  },
- "updated": "2026-11-17T11:26:46Z"
+ "updated": "2026-11-17T14:09:37Z"
 }
