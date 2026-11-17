@@ -1,6 +1,23 @@
 {
  "items": [
   {
+   "id": "lp:LP/2026/559:VYHODNOTENIE_MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/559 · Vyhláška: Návrh vyhlášky Ministerstva zdravotníctva Slovenskej republiky, ktorou sa ustanovujú podrobnosti o povoľovaní terapeutického alebo diagnostického použitia hromadne vyrábaných humánnych liekov, ktoré nepodliehajú registrácii",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/559",
+   "date": "2026-11-17T08:00:00Z",
+   "detected": "2026-11-17T02:44:42Z",
+   "category": "Draft law",
+   "priority": "high",
+   "tags": [
+    "Medicines",
+    "Ministry of Health",
+    "Vyhodnotenie pripomienkového konania"
+   ],
+   "summary": "Moved from stage “Pripomienkové konanie” to “Vyhodnotenie pripomienkového konania” · Stage: Vyhodnotenie pripomienkového konania (since 17.11.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
+  },
+  {
    "id": "lp:LP/2026/625:SPRACOVANIE_PREDKLADATEL",
    "source": "slovlex_lp",
    "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
@@ -4514,28 +4531,28 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-16T13:25:19Z",
+   "checked": "2026-11-17T02:44:38Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-16T13:25:19Z",
+   "checked": "2026-11-17T02:44:38Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-16T13:25:19Z",
+   "checked": "2026-11-17T02:44:38Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": false,
-   "checked": "2026-11-16T13:25:19Z",
+   "checked": "2026-11-17T02:44:38Z",
    "new": 0,
    "error": "https://www.health.gov.sk/RSS?Clanky: <HTTPError 404: 'Not Found'>",
    "last_ok": "2026-11-03T23:16:46Z"
@@ -4543,7 +4560,7 @@
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-11-16T13:25:19Z",
+   "checked": "2026-11-17T02:44:38Z",
    "new": 0,
    "error": null
   },
@@ -4557,8 +4574,8 @@
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-16T13:25:19Z",
-   "new": 2,
+   "checked": "2026-11-17T02:44:38Z",
+   "new": 1,
    "error": null
   },
   "eurlex": {
@@ -4578,17 +4595,17 @@
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-16T13:25:19Z",
+   "checked": "2026-11-17T02:44:38Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-16T13:25:19Z",
+   "checked": "2026-11-17T02:44:38Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-11-16T13:25:19Z"
+ "updated": "2026-11-17T02:44:38Z"
 }
