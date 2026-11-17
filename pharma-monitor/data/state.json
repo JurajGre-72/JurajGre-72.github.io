@@ -7380,7 +7380,7 @@
     "tags": []
    },
    "LP/2026/579": {
-    "stage": "ROKOVANIE_POV",
+    "stage": "SCHVALOVANIE_MINISTER",
     "rel": 0,
     "tags": []
    },
@@ -7970,7 +7970,7 @@
     "stage_name": "Vyhlásené v Zbierke zákonov SR"
    },
    "LPEU/2026/774": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": [
      "Animal diseases"
@@ -8023,6 +8023,46 @@
    },
    "LP/2026/629": {
     "stage": "PROCES_UKONCENY",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/777": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/636": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/635": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/634": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/633": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/632": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/631": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/630": {
+    "stage": "MPK",
     "rel": 0,
     "tags": []
    }
