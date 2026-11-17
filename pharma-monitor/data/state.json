@@ -6114,7 +6114,7 @@
     "tags": []
    },
    "LPEU/2026/583": {
-    "stage": "ZAPIS_DOPLNENEHO_PREDBEZNEHO_STANOVISKA",
+    "stage": "MPK",
     "rel": 0,
     "tags": []
    },
@@ -7961,13 +7961,13 @@
     "tags": []
    },
    "LP/2026/625": {
-    "stage": "SPRACOVANIE_PREDKLADATEL",
+    "stage": "VYHLASENE_V_ZBIERKE",
     "rel": 3,
     "tags": [
      "Veterinary care",
      "Amends 39/2007"
     ],
-    "stage_name": "Spracovanie predkladateľom"
+    "stage_name": "Vyhlásené v Zbierke zákonov SR"
    },
    "LPEU/2026/774": {
     "stage": "SCHVALENIE_GESTORA",
@@ -7988,6 +7988,31 @@
    },
    "LPEU/2026/773": {
     "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/775": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/618": {
+    "stage": "ROKOVANIE_VLADA",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/387": {
+    "stage": "SPRACOVANIE_PREDKLADATEL",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/332": {
+    "stage": "ROKOVANIE_NRSR",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/302": {
+    "stage": "ROKOVANIE_NRSR",
     "rel": 0,
     "tags": []
    }
@@ -9598,7 +9623,8 @@
    "https://svps.sk/?p=17272": "2026-11-05T08:17:08Z",
    "https://svps.sk/?p=17279": "2026-11-06T09:16:51Z",
    "https://svps.sk/?p=17300": "2026-11-11T09:17:20Z",
-   "https://svps.sk/?p=17298": "2026-11-11T09:17:20Z"
+   "https://svps.sk/?p=17298": "2026-11-11T09:17:20Z",
+   "https://svps.sk/?p=17305": "2026-11-17T11:27:06Z"
   }
  }
 }

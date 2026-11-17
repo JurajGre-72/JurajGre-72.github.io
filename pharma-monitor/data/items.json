@@ -1,6 +1,23 @@
 {
  "items": [
   {
+   "id": "lp:LP/2026/625:VYHLASENE_V_ZBIERKE",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/625 · Zákon: Návrh zákona, ktorým sa mení a dopĺňa zákon č. 39/2007 Z. z. o veterinárnej starostlivosti v znení neskorších predpisov a ktorým sa dopĺňa zákon Národnej rady Slovenskej republiky č. 145/1995 Z. z. o správnych poplatkoch v znení neskorších predpisov",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/625",
+   "date": "2026-11-17T08:00:00Z",
+   "detected": "2026-11-17T11:26:51Z",
+   "category": "Draft law",
+   "priority": "high",
+   "tags": [
+    "Veterinary care",
+    "Amends 39/2007",
+    "Vyhlásené v Zbierke zákonov SR"
+   ],
+   "summary": "Moved from stage “Spracovanie predkladateľom” to “Vyhlásené v Zbierke zákonov SR” · Stage: Vyhlásené v Zbierke zákonov SR (since 17.11.2026) · Submitted by: Ministerstvo pôdohospodárstva a rozvoja vidieka Slovenskej republiky · Main act amended: 39/2007 Z. z."
+  },
+  {
    "id": "lp:LP/2026/559:VYHODNOTENIE_MPK",
    "source": "slovlex_lp",
    "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
@@ -202,6 +219,21 @@
     "Vaccines"
    ],
    "summary": "Štátny ústav pre kontrolu liečiv zverejnil metodický pokyn MP 155/2026, ktorý stanovuje požiadavky a postup pri oznamovaní úmyslu vykonávať očkovanie v rámci lekárenskej starostlivosti."
+  },
+  {
+   "id": "https://svps.sk/?p=17305",
+   "source": "svps",
+   "source_name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
+   "title": "Nevyhovujúci výrobok – Gaštany jedlé voľné",
+   "url": "https://svps.sk/nevyhovujuci-vyrobok-gastany-volne/",
+   "date": "2026-11-12T08:11:55Z",
+   "detected": "2026-11-17T11:27:06Z",
+   "category": "ŠVPS notice",
+   "priority": "medium",
+   "tags": [
+    "Veterinary care"
+   ],
+   "summary": "RVPS Nové Mesto nad Váhom odobrala na základe sťažnosti zákazníka v prevádzkarni spoločnosti BILLA s. r. o., BILLA, filiálka č. 216, na adrese Štefánikova 34, 915 01 Nové Mesto nad Váhom, úradnú vzorku potraviny: Identifikácia výrobku Zistenie Vzorka bola podrobená senzorickému vyšetreniu v Štátnom veterinárnom a…"
   },
   {
    "id": "lp:LP/2026/619:MPK",
@@ -4531,28 +4563,28 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-17T02:44:38Z",
+   "checked": "2026-11-17T11:26:46Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-17T02:44:38Z",
+   "checked": "2026-11-17T11:26:46Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-17T02:44:38Z",
+   "checked": "2026-11-17T11:26:46Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": false,
-   "checked": "2026-11-17T02:44:38Z",
+   "checked": "2026-11-17T11:26:46Z",
    "new": 0,
    "error": "https://www.health.gov.sk/RSS?Clanky: <HTTPError 404: 'Not Found'>",
    "last_ok": "2026-11-03T23:16:46Z"
@@ -4560,7 +4592,7 @@
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-11-17T02:44:38Z",
+   "checked": "2026-11-17T11:26:46Z",
    "new": 0,
    "error": null
   },
@@ -4574,7 +4606,7 @@
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-17T02:44:38Z",
+   "checked": "2026-11-17T11:26:46Z",
    "new": 1,
    "error": null
   },
@@ -4595,17 +4627,17 @@
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-17T02:44:38Z",
+   "checked": "2026-11-17T11:26:46Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-17T02:44:38Z",
-   "new": 0,
+   "checked": "2026-11-17T11:26:46Z",
+   "new": 1,
    "error": null
   }
  },
- "updated": "2026-11-17T02:44:38Z"
+ "updated": "2026-11-17T11:26:46Z"
 }
