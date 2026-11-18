@@ -1,6 +1,55 @@
 {
  "items": [
   {
+   "id": "lp:LP/2026/611:VYHODNOTENIE_MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/611 · Vyhláška: Návrh vyhlášky Ministerstva zdravotníctva Slovenskej republiky o požiadavkách na materiály a predmety určené na styk s potravinami",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/611",
+   "date": "2026-11-18T08:00:00Z",
+   "detected": "2026-11-18T02:04:29Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Ministry of Health",
+    "Vyhodnotenie pripomienkového konania"
+   ],
+   "summary": "Moved from stage “Pripomienkové konanie” to “Vyhodnotenie pripomienkového konania” · Stage: Vyhodnotenie pripomienkového konania (since 18.11.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
+  },
+  {
+   "id": "lp:LP/2026/610:VYHODNOTENIE_MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/610 · Vyhláška: Návrh vyhlášky Ministerstva zdravotníctva Slovenskej republiky o požiadavkách na potraviny a potravinové prísady ošetrené ionizujúcim žiarením",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/610",
+   "date": "2026-11-18T08:00:00Z",
+   "detected": "2026-11-18T02:04:33Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Ministry of Health",
+    "Vyhodnotenie pripomienkového konania"
+   ],
+   "summary": "Moved from stage “Pripomienkové konanie” to “Vyhodnotenie pripomienkového konania” · Stage: Vyhodnotenie pripomienkového konania (since 18.11.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
+  },
+  {
+   "id": "lp:LP/2026/609:VYHODNOTENIE_MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/609 · Vyhláška: Návrh vyhlášky Ministerstva zdravotníctva Slovenskej republiky o požiadavkách na potraviny spracované na báze obilnín a detské potraviny a na výživové doplnky",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/609",
+   "date": "2026-11-18T08:00:00Z",
+   "detected": "2026-11-18T02:04:31Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Ministry of Health",
+    "Food supplements",
+    "Vyhodnotenie pripomienkového konania"
+   ],
+   "summary": "Moved from stage “Pripomienkové konanie” to “Vyhodnotenie pripomienkového konania” · Stage: Vyhodnotenie pripomienkového konania (since 18.11.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
+  },
+  {
    "id": "https://www.ema.europa.eu/en/news/eu-recommendations-2026-2027-seasonal-flu-vaccine-composition",
    "source": "ema",
    "source_name": "EMA · European Medicines Agency",
@@ -4610,28 +4659,28 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-17T22:25:06Z",
+   "checked": "2026-11-18T02:03:46Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-17T22:25:06Z",
+   "checked": "2026-11-18T02:03:46Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-17T22:25:06Z",
+   "checked": "2026-11-18T02:03:46Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": false,
-   "checked": "2026-11-17T22:25:06Z",
+   "checked": "2026-11-18T02:03:46Z",
    "new": 0,
    "error": "https://www.health.gov.sk/RSS?Clanky: <HTTPError 404: 'Not Found'>",
    "last_ok": "2026-11-03T23:16:46Z"
@@ -4639,53 +4688,52 @@
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-11-17T22:25:06Z",
+   "checked": "2026-11-18T02:03:46Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-11-17T14:09:37Z",
+   "checked": "2026-11-18T02:03:46Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-17T22:25:06Z",
-   "new": 0,
+   "checked": "2026-11-18T02:03:46Z",
+   "new": 3,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
-   "ok": false,
-   "checked": "2026-11-17T14:09:37Z",
+   "ok": true,
+   "checked": "2026-11-18T02:03:46Z",
    "new": 0,
-   "error": "https://publications.europa.eu/webapi/rdf/sparql?query=PREFIX+cdm%3A+%3Chttp%3A%2F%2Fpublications.europa.eu%2Fontology%2Fcdm%23%3E%0ASELECT+%3Fcelex+%3Fdate+%3Ftype+%3Flang+%3Ftitle+WHERE+%7B%0A++%3F…",
-   "last_ok": "2026-11-16T06:16:41Z"
+   "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-11-17T14:09:37Z",
+   "checked": "2026-11-18T02:03:46Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-17T22:25:06Z",
+   "checked": "2026-11-18T02:03:46Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-17T22:25:06Z",
+   "checked": "2026-11-18T02:03:46Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-11-17T22:25:06Z"
+ "updated": "2026-11-18T02:03:46Z"
 }
