@@ -1,6 +1,21 @@
 {
  "items": [
   {
+   "id": "https://www.sukl.sk/pre-verejnost-pacientov-a-media/pre-media/tlacove-spravy/svetovy-tyzden-povedomia-o-amr-antimikrobialna-rezistencia-realne-ohrozuje-zivoty-ludi",
+   "source": "sukl",
+   "source_name": "ŠÚKL · Aktuality",
+   "title": "Svetový týždeň povedomia o AMR: Antimikrobiálna rezistencia reálne ohrozuje životy ľudí",
+   "url": "https://www.sukl.sk/pre-verejnost-pacientov-a-media/pre-media/tlacove-spravy/svetovy-tyzden-povedomia-o-amr-antimikrobialna-rezistencia-realne-ohrozuje-zivoty-ludi",
+   "date": "2026-11-18T13:41:24Z",
+   "detected": "2026-11-18T13:42:18Z",
+   "category": "ŠÚKL notice",
+   "priority": "medium",
+   "tags": [
+    "Antimicrobials"
+   ],
+   "summary": "Antimikrobiálna rezistencia (AMR) predstavuje globálnu krízu, ktorá komplikuje liečbu bežných ochorení. Osvetu o tejto téme každoročne šíri medzinárodná kampaň Svetový týždeň povedomia o antimikrobiálnej rezistencii (18. – 24. november) a iniciatíva Európsky deň antibiotík (18. november)."
+  },
+  {
    "id": "lp:LP/2026/611:VYHODNOTENIE_MPK",
    "source": "slovlex_lp",
    "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
@@ -48,6 +63,23 @@
     "Vyhodnotenie pripomienkového konania"
    ],
    "summary": "Moved from stage “Pripomienkové konanie” to “Vyhodnotenie pripomienkového konania” · Stage: Vyhodnotenie pripomienkového konania (since 18.11.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
+  },
+  {
+   "id": "lp:LP/2026/523:SPRACOVANIE_PREDKLADATEL",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/523 · Vyhláška: Návrh vyhlášky Ministerstva zdravotníctva Slovenskej republiky, ktorou sa mení a dopĺňa vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 422/2011 Z. z. o podrobnostiach farmako-ekonomického rozboru lieku v znení vyhlášky č. 177/2021 Z. z.",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/523",
+   "date": "2026-11-18T08:00:00Z",
+   "detected": "2026-11-18T13:42:14Z",
+   "category": "Draft law",
+   "priority": "high",
+   "tags": [
+    "Medicines",
+    "Ministry of Health",
+    "Spracovanie predkladateľom"
+   ],
+   "summary": "Moved from stage “Vyhodnotenie pripomienkového konania” to “Spracovanie predkladateľom” · Stage: Spracovanie predkladateľom (since 18.11.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
   },
   {
    "id": "https://www.ema.europa.eu/en/news/eu-recommendations-2026-2027-seasonal-flu-vaccine-composition",
@@ -4659,36 +4691,36 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-18T11:02:24Z",
+   "checked": "2026-11-18T13:42:10Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-18T11:02:24Z",
-   "new": 0,
+   "checked": "2026-11-18T13:42:10Z",
+   "new": 1,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-18T11:02:24Z",
+   "checked": "2026-11-18T13:42:10Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": false,
-   "checked": "2026-11-18T11:02:24Z",
+   "checked": "2026-11-18T13:42:10Z",
    "new": 0,
-   "error": "https://www.health.gov.sk/RSS?Clanky: ConnectionResetError(104, 'Connection reset by peer')",
+   "error": "https://www.health.gov.sk/RSS?Clanky: <HTTPError 404: 'Not Found'>",
    "last_ok": "2026-11-03T23:16:46Z"
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-11-18T11:02:24Z",
+   "checked": "2026-11-18T13:42:10Z",
    "new": 0,
    "error": null
   },
@@ -4702,8 +4734,8 @@
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-18T11:02:24Z",
-   "new": 0,
+   "checked": "2026-11-18T13:42:10Z",
+   "new": 1,
    "error": null
   },
   "eurlex": {
@@ -4723,17 +4755,17 @@
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-18T11:02:24Z",
+   "checked": "2026-11-18T13:42:10Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-18T11:02:24Z",
+   "checked": "2026-11-18T13:42:10Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-11-18T11:02:24Z"
+ "updated": "2026-11-18T13:42:10Z"
 }

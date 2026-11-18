@@ -82,7 +82,8 @@
    "https://www.sukl.sk/o-nas/kariera/statna-sprava/pracovna-ponuka-hlavny-radca-pravnik-pravnicka": "2026-11-04T12:19:14Z",
    "https://www.sukl.sk/pre-verejnost-pacientov-a-media/oznamy-a-upozornenia/povodna-verzia-webu-bude-definitivne-vypnuta": "2026-11-09T13:25:55Z",
    "https://www.sukl.sk/pre-odbornikov-a-firmy/zdravotnicke-pomocky/aktualne-informacie/zmena-terminov-na-parovanie-udajov-medzi-databazami-eudamed-a-sukl": "2026-11-12T08:17:02Z",
-   "https://www.sukl.sk/pre-odbornikov-a-firmy/lekarne-a-vydajne-zdravotnickych-pomocok/lekarenstvo/oznamovanie-umyslu-vykonavat-ockovanie-v-ramci-lekarenskej-starostlivosti": "2026-11-12T10:17:14Z"
+   "https://www.sukl.sk/pre-odbornikov-a-firmy/lekarne-a-vydajne-zdravotnickych-pomocok/lekarenstvo/oznamovanie-umyslu-vykonavat-ockovanie-v-ramci-lekarenskej-starostlivosti": "2026-11-12T10:17:14Z",
+   "https://www.sukl.sk/pre-verejnost-pacientov-a-media/pre-media/tlacove-spravy/svetovy-tyzden-povedomia-o-amr-antimikrobialna-rezistencia-realne-ohrozuje-zivoty-ludi": "2026-11-18T13:42:18Z"
   }
  },
  "sukl_recall": {
@@ -4940,13 +4941,13 @@
     "tags": []
    },
    "LP/2026/523": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 3,
     "tags": [
      "Medicines",
      "Ministry of Health"
     ],
-    "stage_name": "Vyhodnotenie pripomienkového konania"
+    "stage_name": "Spracovanie predkladateľom"
    },
    "LP/2026/522": {
     "stage": "SPRACOVANIE_PREDKLADATEL",
@@ -8074,6 +8075,11 @@
    },
    "LP/2026/350": {
     "stage": "ROKOVANIE_NRSR",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/124": {
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    }
