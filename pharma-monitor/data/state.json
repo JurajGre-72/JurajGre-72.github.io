@@ -6928,7 +6928,7 @@
     "tags": []
    },
    "LP/2026/538": {
-    "stage": "SPRACOVANIE_PREDKLADATEL",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -7009,12 +7009,12 @@
     "stage_name": "Rokovanie poradných orgánov vlády SR"
    },
    "LPEU/2026/708": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/709": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -7366,7 +7366,7 @@
     "tags": []
    },
    "LP/2026/576": {
-    "stage": "SPRACOVANIE_PREDKLADATEL",
+    "stage": "ROKOVANIE_POV",
     "rel": 0,
     "tags": []
    },
@@ -7555,7 +7555,7 @@
     "stage_name": "Spracovanie predkladateľom"
    },
    "LP/2026/597": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "ROKOVANIE_POV",
     "rel": 0,
     "tags": []
    },
@@ -8064,6 +8064,16 @@
    },
    "LP/2026/630": {
     "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/567": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/350": {
+    "stage": "ROKOVANIE_NRSR",
     "rel": 0,
     "tags": []
    }
@@ -8741,7 +8751,16 @@
    "32026R2565": "2026-11-18T02:04:58Z",
    "32026D2554": "2026-11-18T02:04:58Z",
    "32026D2306R(01)": "2026-11-18T02:04:58Z",
-   "32026R2527": "2026-11-18T02:04:58Z"
+   "32026R2527": "2026-11-18T02:04:58Z",
+   "32026R2035": "2026-11-18T11:03:21Z",
+   "32026R2538": "2026-11-18T11:03:21Z",
+   "32026D2539": "2026-11-18T11:03:21Z",
+   "32026D2553": "2026-11-18T11:03:21Z",
+   "32026D2582": "2026-11-18T11:03:21Z",
+   "32026D2552": "2026-11-18T11:03:21Z",
+   "32026D2542": "2026-11-18T11:03:21Z",
+   "32026R2537": "2026-11-18T11:03:21Z",
+   "32026D2555": "2026-11-18T11:03:21Z"
   }
  },
  "kategorizacia": {
