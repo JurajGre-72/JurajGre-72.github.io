@@ -16,6 +16,23 @@
    "summary": "Antimikrobiálna rezistencia (AMR) predstavuje globálnu krízu, ktorá komplikuje liečbu bežných ochorení. Osvetu o tejto téme každoročne šíri medzinárodná kampaň Svetový týždeň povedomia o antimikrobiálnej rezistencii (18. – 24. november) a iniciatíva Európsky deň antibiotík (18. november)."
   },
   {
+   "id": "lp:LP/2026/639:MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/639 · Vyhláška: Návrh vyhlášky Ministerstva zdravotníctva Slovenskej republiky, ktorou sa mení vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 62/2025 Z. z., ktorou sa definujú podmienky úhrady a úhrada podľa klasifikačného systému pre definovanú časť diagnosticko-terapeutických skupín",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/639",
+   "date": "2026-11-18T08:00:00Z",
+   "detected": "2026-11-18T21:36:59Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Ministry of Health",
+    "Pripomienkové konanie"
+   ],
+   "summary": "Stage: Pripomienkové konanie (since 18.11.2026) · Comments can be submitted until 08.12.2026 · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky",
+   "deadline": "2026-12-08"
+  },
+  {
    "id": "lp:LP/2026/611:VYHODNOTENIE_MPK",
    "source": "slovlex_lp",
    "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
@@ -4691,28 +4708,28 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-18T13:42:10Z",
+   "checked": "2026-11-18T21:36:56Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-18T13:42:10Z",
-   "new": 1,
+   "checked": "2026-11-18T21:36:56Z",
+   "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-18T13:42:10Z",
+   "checked": "2026-11-18T21:36:56Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": false,
-   "checked": "2026-11-18T13:42:10Z",
+   "checked": "2026-11-18T21:36:56Z",
    "new": 0,
    "error": "https://www.health.gov.sk/RSS?Clanky: <HTTPError 404: 'Not Found'>",
    "last_ok": "2026-11-03T23:16:46Z"
@@ -4720,7 +4737,7 @@
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-11-18T13:42:10Z",
+   "checked": "2026-11-18T21:36:56Z",
    "new": 0,
    "error": null
   },
@@ -4734,7 +4751,7 @@
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-18T13:42:10Z",
+   "checked": "2026-11-18T21:36:56Z",
    "new": 1,
    "error": null
   },
@@ -4755,17 +4772,17 @@
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-18T13:42:10Z",
+   "checked": "2026-11-18T21:36:56Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-18T13:42:10Z",
+   "checked": "2026-11-18T21:36:56Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-11-18T13:42:10Z"
+ "updated": "2026-11-18T21:36:56Z"
 }
