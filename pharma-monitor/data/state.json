@@ -4561,7 +4561,8 @@
    "280/2026": "2026-11-11T23:16:07Z",
    "281/2026": "2026-11-17T02:44:40Z",
    "282/2026": "2026-11-17T02:44:40Z",
-   "283/2026": "2026-11-18T02:03:48Z"
+   "283/2026": "2026-11-18T02:03:48Z",
+   "284/2026": "2026-11-19T01:40:24Z"
   }
  },
  "slovlex_lp": {
@@ -7352,7 +7353,7 @@
     "tags": []
    },
    "LP/2026/578": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -7377,7 +7378,7 @@
     "tags": []
    },
    "LP/2026/580": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -7397,12 +7398,12 @@
     "tags": []
    },
    "LP/2026/583": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
    "LP/2026/584": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -7624,7 +7625,7 @@
     "tags": []
    },
    "LP/2026/603": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -7799,13 +7800,13 @@
     "tags": []
    },
    "LP/2026/615": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 2,
     "tags": [
      "Ministry of Health",
      "Healthcare providers"
     ],
-    "stage_name": "Pripomienkové konanie"
+    "stage_name": "Vyhodnotenie pripomienkového konania"
    },
    "LP/2026/614": {
     "stage": "MPK",
