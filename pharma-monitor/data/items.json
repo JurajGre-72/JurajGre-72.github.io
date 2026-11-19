@@ -1,6 +1,22 @@
 {
  "items": [
   {
+   "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/doplnujuce-informacie-a-oznamy/informacia-o-aktualizacii-qrd-prilohy-v",
+   "source": "sukl",
+   "source_name": "ŠÚKL · Aktuality",
+   "title": "Informácia o aktualizácii QRD Prílohy V",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/doplnujuce-informacie-a-oznamy/informacia-o-aktualizacii-qrd-prilohy-v",
+   "date": "2026-11-19T14:56:57Z",
+   "detected": "2026-11-19T22:10:21Z",
+   "category": "ŠÚKL notice",
+   "priority": "medium",
+   "tags": [
+    "Medicines",
+    "Drug safety"
+   ],
+   "summary": "Aktualizácii QRD Prílohy V (EMA/67830/2013, Version 36) v súvislosti so zmenou umiestnenia tlačiva na hlásenie podozrenia na nežiaduci účinok lieku na webovej stránke ŠÚKL."
+  },
+  {
    "id": "lp:LP/2026/615:VYHODNOTENIE_MPK",
    "source": "slovlex_lp",
    "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
@@ -197,6 +213,22 @@
    "summary": "Moved from stage “Vyhodnotenie pripomienkového konania” to “Spracovanie predkladateľom” · Stage: Spracovanie predkladateľom (since 17.11.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
   },
   {
+   "id": "lp:LP/2026/547:ROKOVANIE_POV",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/547 · Vyhláška: Návrh vyhlášky Ministerstva zdravotníctva Slovenskej republiky, ktorou sa mení a dopĺňa vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 531/2023 Z. z. o kategorizácii ústavnej zdravotnej starostlivosti v znení neskorších predpisov",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/547",
+   "date": "2026-11-17T08:00:00Z",
+   "detected": "2026-11-19T22:10:16Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Ministry of Health",
+    "Rokovanie poradných orgánov vlády SR"
+   ],
+   "summary": "Moved from stage “Spracovanie predkladateľom” to “Rokovanie poradných orgánov vlády SR” · Stage: Rokovanie poradných orgánov vlády SR (since 17.11.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
+  },
+  {
    "id": "lp:LP/2026/625:SPRACOVANIE_PREDKLADATEL",
    "source": "slovlex_lp",
    "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
@@ -364,6 +396,22 @@
     "Spracovanie predkladateľom"
    ],
    "summary": "Moved from stage “Vyhodnotenie pripomienkového konania” to “Spracovanie predkladateľom” · Stage: Spracovanie predkladateľom (since 13.11.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
+  },
+  {
+   "id": "lp:LP/2026/445:ROKOVANIE_POV",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/445 · Vyhláška: Návrh vyhlášky Ministerstva zdravotníctva Slovenskej republiky, ktorou sa mení vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 99/2016 Z. z. o podrobnostiach o ochrane zdravia pred záťažou teplom a chladom pri práci v znení neskorších predpisov",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/445",
+   "date": "2026-11-13T08:00:00Z",
+   "detected": "2026-11-19T22:10:17Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Ministry of Health",
+    "Rokovanie poradných orgánov vlády SR"
+   ],
+   "summary": "Moved from stage “Spracovanie predkladateľom” to “Rokovanie poradných orgánov vlády SR” · Stage: Rokovanie poradných orgánov vlády SR (since 13.11.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
   },
   {
    "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/lekarne-a-vydajne-zdravotnickych-pomocok/lekarenstvo/oznamovanie-umyslu-vykonavat-ockovanie-v-ramci-lekarenskej-starostlivosti",
@@ -4725,28 +4773,28 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-19T01:40:22Z",
+   "checked": "2026-11-19T22:09:52Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-19T01:40:22Z",
-   "new": 0,
+   "checked": "2026-11-19T22:09:52Z",
+   "new": 1,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-19T01:40:22Z",
+   "checked": "2026-11-19T22:09:52Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": false,
-   "checked": "2026-11-19T01:40:22Z",
+   "checked": "2026-11-19T22:09:52Z",
    "new": 0,
    "error": "https://www.health.gov.sk/RSS?Clanky: <HTTPError 404: 'Not Found'>",
    "last_ok": "2026-11-03T23:16:46Z"
@@ -4754,52 +4802,52 @@
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-11-19T01:40:22Z",
+   "checked": "2026-11-19T22:09:52Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-11-18T11:02:24Z",
+   "checked": "2026-11-19T22:09:52Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-19T01:40:22Z",
-   "new": 1,
+   "checked": "2026-11-19T22:09:52Z",
+   "new": 2,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-11-18T11:02:24Z",
+   "checked": "2026-11-19T22:09:52Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-11-18T11:02:24Z",
+   "checked": "2026-11-19T22:09:52Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-19T01:40:22Z",
+   "checked": "2026-11-19T22:09:52Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-19T01:40:22Z",
+   "checked": "2026-11-19T22:09:52Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-11-19T01:40:22Z"
+ "updated": "2026-11-19T22:09:52Z"
 }

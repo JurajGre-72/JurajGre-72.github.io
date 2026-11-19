@@ -83,7 +83,8 @@
    "https://www.sukl.sk/pre-verejnost-pacientov-a-media/oznamy-a-upozornenia/povodna-verzia-webu-bude-definitivne-vypnuta": "2026-11-09T13:25:55Z",
    "https://www.sukl.sk/pre-odbornikov-a-firmy/zdravotnicke-pomocky/aktualne-informacie/zmena-terminov-na-parovanie-udajov-medzi-databazami-eudamed-a-sukl": "2026-11-12T08:17:02Z",
    "https://www.sukl.sk/pre-odbornikov-a-firmy/lekarne-a-vydajne-zdravotnickych-pomocok/lekarenstvo/oznamovanie-umyslu-vykonavat-ockovanie-v-ramci-lekarenskej-starostlivosti": "2026-11-12T10:17:14Z",
-   "https://www.sukl.sk/pre-verejnost-pacientov-a-media/pre-media/tlacove-spravy/svetovy-tyzden-povedomia-o-amr-antimikrobialna-rezistencia-realne-ohrozuje-zivoty-ludi": "2026-11-18T13:42:18Z"
+   "https://www.sukl.sk/pre-verejnost-pacientov-a-media/pre-media/tlacove-spravy/svetovy-tyzden-povedomia-o-amr-antimikrobialna-rezistencia-realne-ohrozuje-zivoty-ludi": "2026-11-18T13:42:18Z",
+   "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/doplnujuce-informacie-a-oznamy/informacia-o-aktualizacii-qrd-prilohy-v": "2026-11-19T22:10:21Z"
   }
  },
  "sukl_recall": {
@@ -5916,12 +5917,12 @@
     "stage_name": "Vyhodnotenie pripomienkového konania"
    },
    "LP/2026/445": {
-    "stage": "SPRACOVANIE_PREDKLADATEL",
+    "stage": "ROKOVANIE_POV",
     "rel": 2,
     "tags": [
      "Ministry of Health"
     ],
-    "stage_name": "Spracovanie predkladateľom"
+    "stage_name": "Rokovanie poradných orgánov vlády SR"
    },
    "LP/2026/449": {
     "stage": "SPRACOVANIE_PREDKLADATEL",
@@ -6989,12 +6990,12 @@
     ]
    },
    "LP/2026/547": {
-    "stage": "SPRACOVANIE_PREDKLADATEL",
+    "stage": "ROKOVANIE_POV",
     "rel": 2,
     "tags": [
      "Ministry of Health"
     ],
-    "stage_name": "Spracovanie predkladateľom"
+    "stage_name": "Rokovanie poradných orgánov vlády SR"
    },
    "LP/2026/546": {
     "stage": "SPRACOVANIE_PREDKLADATEL",
@@ -7338,7 +7339,7 @@
     "stage_name": "Vyhlásené v Zbierke zákonov SR"
    },
    "LPEU/2026/738": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -8104,6 +8105,16 @@
    },
    "LP/2026/640": {
     "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/641": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/780": {
+    "stage": "SCHVALENIE_GESTORA",
     "rel": 0,
     "tags": []
    }
