@@ -5306,7 +5306,7 @@
     ]
    },
    "LPEU/2026/656": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -5436,7 +5436,7 @@
     "tags": []
    },
    "LPEU/2026/551": {
-    "stage": "ZAPIS_DOPLNENEHO_PREDBEZNEHO_STANOVISKA",
+    "stage": "MPK",
     "rel": 0,
     "tags": []
    },
@@ -7213,7 +7213,7 @@
     "tags": []
    },
    "LP/2026/542": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 0,
     "tags": []
    },
@@ -7408,12 +7408,12 @@
     "tags": []
    },
    "LPEU/2026/742": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
    "LP/2026/585": {
-    "stage": "ROKOVANIE_VLADA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -7990,7 +7990,7 @@
     "tags": []
    },
    "LPEU/2026/773": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -8020,7 +8020,7 @@
     "tags": []
    },
    "LPEU/2026/776": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -8030,7 +8030,7 @@
     "tags": []
    },
    "LPEU/2026/777": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -8085,12 +8085,12 @@
     "tags": []
    },
    "LPEU/2026/778": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/779": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -8101,6 +8101,11 @@
      "Ministry of Health"
     ],
     "stage_name": "Pripomienkové konanie"
+   },
+   "LP/2026/640": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
    }
   }
  },
