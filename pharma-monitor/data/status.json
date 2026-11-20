@@ -1,31 +1,33 @@
 {
- "checked": "2026-11-20T01:37:48Z",
+ "checked": "2026-11-20T09:36:48Z",
  "sources": {
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-20T01:37:48Z",
+   "checked": "2026-11-20T09:36:48Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
-   "ok": true,
-   "checked": "2026-11-20T01:37:48Z",
+   "ok": false,
+   "checked": "2026-11-20T09:36:48Z",
    "new": 0,
-   "error": null
+   "error": "https://www.sukl.sk/sk/rss?page_id=1355&days=365: <HTTPError 403: 'Forbidden'>",
+   "last_ok": "2026-11-19T22:09:52Z"
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
-   "ok": true,
-   "checked": "2026-11-20T01:37:48Z",
+   "ok": false,
+   "checked": "2026-11-20T09:36:48Z",
    "new": 0,
-   "error": null
+   "error": "https://www.sukl.sk/sk/rss?page_id=1355&pid=208&days=365: <HTTPError 403: 'Forbidden'>",
+   "last_ok": "2026-11-19T22:09:52Z"
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": false,
-   "checked": "2026-11-20T01:37:48Z",
+   "checked": "2026-11-20T09:36:48Z",
    "new": 0,
    "error": "https://www.health.gov.sk/RSS?Clanky: <HTTPError 404: 'Not Found'>",
    "last_ok": "2026-11-03T23:16:46Z"
@@ -33,7 +35,7 @@
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-11-20T01:37:48Z",
+   "checked": "2026-11-20T09:36:48Z",
    "new": 0,
    "error": null
   },
@@ -47,7 +49,7 @@
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-20T01:37:48Z",
+   "checked": "2026-11-20T09:36:48Z",
    "new": 0,
    "error": null
   },
@@ -68,14 +70,14 @@
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-20T01:37:48Z",
+   "checked": "2026-11-20T09:36:48Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-20T01:37:48Z",
+   "checked": "2026-11-20T09:36:48Z",
    "new": 0,
    "error": null
   }
