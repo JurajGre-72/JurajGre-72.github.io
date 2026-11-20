@@ -5442,7 +5442,7 @@
     "tags": []
    },
    "LPEU/2026/582": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK_AKTY",
     "rel": 0,
     "tags": []
    },
@@ -7467,12 +7467,12 @@
     "tags": []
    },
    "LP/2026/588": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
    "LP/2026/581": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
