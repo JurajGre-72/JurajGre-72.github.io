@@ -5002,7 +5002,7 @@
     "tags": []
    },
    "LP/2026/479": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 0,
     "tags": []
    },
@@ -6418,7 +6418,7 @@
     "tags": []
    },
    "LP/2026/433": {
-    "stage": "SPRACOVANIE_PREDKLADATEL",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -8115,6 +8115,29 @@
    },
    "LPEU/2026/780": {
     "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/337": {
+    "stage": "SPRACOVANIE_PREDKLADATEL",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/644": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/643": {
+    "stage": "MPK",
+    "rel": 2,
+    "tags": [
+     "Ministry of Health"
+    ],
+    "stage_name": "Pripomienkové konanie"
+   },
+   "LP/2026/642": {
+    "stage": "MPK",
     "rel": 0,
     "tags": []
    }

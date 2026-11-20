@@ -1,6 +1,23 @@
 {
  "items": [
   {
+   "id": "lp:LP/2026/643:MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/643 · Vyhláška: Návrh vyhlášky Ministerstva zdravotníctva Slovenskej republiky, ktorou sa mení vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 62/2025 Z. z., ktorou sa definujú podmienky úhrady a úhrada podľa klasifikačného systému pre definovanú časť diagnosticko-terapeutických skupín",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/643",
+   "date": "2026-11-20T08:00:00Z",
+   "detected": "2026-11-20T13:51:45Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Ministry of Health",
+    "Pripomienkové konanie"
+   ],
+   "summary": "Stage: Pripomienkové konanie (since 20.11.2026) · Comments can be submitted until 08.12.2026 · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky",
+   "deadline": "2026-12-08"
+  },
+  {
    "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/doplnujuce-informacie-a-oznamy/informacia-o-aktualizacii-qrd-prilohy-v",
    "source": "sukl",
    "source_name": "ŠÚKL · Aktuality",
@@ -4773,14 +4790,14 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-20T09:36:48Z",
+   "checked": "2026-11-20T13:51:41Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": false,
-   "checked": "2026-11-20T09:36:48Z",
+   "checked": "2026-11-20T13:51:41Z",
    "new": 0,
    "error": "https://www.sukl.sk/sk/rss?page_id=1355&days=365: <HTTPError 403: 'Forbidden'>",
    "last_ok": "2026-11-19T22:09:52Z"
@@ -4788,7 +4805,7 @@
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": false,
-   "checked": "2026-11-20T09:36:48Z",
+   "checked": "2026-11-20T13:51:41Z",
    "new": 0,
    "error": "https://www.sukl.sk/sk/rss?page_id=1355&pid=208&days=365: <HTTPError 403: 'Forbidden'>",
    "last_ok": "2026-11-19T22:09:52Z"
@@ -4796,7 +4813,7 @@
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": false,
-   "checked": "2026-11-20T09:36:48Z",
+   "checked": "2026-11-20T13:51:41Z",
    "new": 0,
    "error": "https://www.health.gov.sk/RSS?Clanky: <HTTPError 404: 'Not Found'>",
    "last_ok": "2026-11-03T23:16:46Z"
@@ -4804,7 +4821,7 @@
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-11-20T09:36:48Z",
+   "checked": "2026-11-20T13:51:41Z",
    "new": 0,
    "error": null
   },
@@ -4818,8 +4835,8 @@
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-20T09:36:48Z",
-   "new": 0,
+   "checked": "2026-11-20T13:51:41Z",
+   "new": 1,
    "error": null
   },
   "eurlex": {
@@ -4839,17 +4856,17 @@
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-20T09:36:48Z",
+   "checked": "2026-11-20T13:51:41Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-20T09:36:48Z",
+   "checked": "2026-11-20T13:51:41Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-11-20T09:36:48Z"
+ "updated": "2026-11-20T13:51:41Z"
 }
