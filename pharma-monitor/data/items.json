@@ -1,6 +1,40 @@
 {
  "items": [
   {
+   "id": "lp:LP/2026/619:VYHODNOTENIE_MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/619 · Vyhláška: Návrh vyhlášky Ministerstva zdravotníctva  Slovenskej republiky, ktorou sa ustanovuje minimálny počet lôžok na účely poskytovania ošetrovateľskej starostlivosti v zariadeniach sociálnej pomoci uhrádzanej z verejného zdravotného poistenia pre rok 2027",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/619",
+   "date": "2026-11-21T08:00:00Z",
+   "detected": "2026-11-21T01:04:05Z",
+   "category": "Draft law",
+   "priority": "medium",
+   "tags": [
+    "Ministry of Health",
+    "Health insurance",
+    "Vyhodnotenie pripomienkového konania"
+   ],
+   "summary": "Moved from stage “Pripomienkové konanie” to “Vyhodnotenie pripomienkového konania” · Stage: Vyhodnotenie pripomienkového konania (since 21.11.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
+  },
+  {
+   "id": "lp:LP/2026/616:VYHODNOTENIE_MPK",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/616 · Opatrenie: návrh opatrenia, ktorým sa mení a dopĺňa opatrenie Ministerstva zdravotníctva Slovenskej republiky č. 07045/2003 z 30. decembra 2003, ktorým sa ustanovuje rozsah regulácie cien v oblasti zdravotníctva v znení neskorších predpisov",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/616",
+   "date": "2026-11-21T08:00:00Z",
+   "detected": "2026-11-21T01:04:03Z",
+   "category": "Draft law",
+   "priority": "high",
+   "tags": [
+    "Price regulation",
+    "Ministry of Health",
+    "Vyhodnotenie pripomienkového konania"
+   ],
+   "summary": "Moved from stage “Pripomienkové konanie” to “Vyhodnotenie pripomienkového konania” · Stage: Vyhodnotenie pripomienkového konania (since 21.11.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
+  },
+  {
    "id": "lp:LP/2026/643:MPK",
    "source": "slovlex_lp",
    "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
@@ -4790,14 +4824,14 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-20T13:51:41Z",
+   "checked": "2026-11-21T01:03:37Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": false,
-   "checked": "2026-11-20T13:51:41Z",
+   "checked": "2026-11-21T01:03:37Z",
    "new": 0,
    "error": "https://www.sukl.sk/sk/rss?page_id=1355&days=365: <HTTPError 403: 'Forbidden'>",
    "last_ok": "2026-11-19T22:09:52Z"
@@ -4805,7 +4839,7 @@
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": false,
-   "checked": "2026-11-20T13:51:41Z",
+   "checked": "2026-11-21T01:03:37Z",
    "new": 0,
    "error": "https://www.sukl.sk/sk/rss?page_id=1355&pid=208&days=365: <HTTPError 403: 'Forbidden'>",
    "last_ok": "2026-11-19T22:09:52Z"
@@ -4813,7 +4847,7 @@
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": false,
-   "checked": "2026-11-20T13:51:41Z",
+   "checked": "2026-11-21T01:03:37Z",
    "new": 0,
    "error": "https://www.health.gov.sk/RSS?Clanky: <HTTPError 404: 'Not Found'>",
    "last_ok": "2026-11-03T23:16:46Z"
@@ -4821,52 +4855,52 @@
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-11-20T13:51:41Z",
+   "checked": "2026-11-21T01:03:37Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-11-19T22:09:52Z",
+   "checked": "2026-11-21T01:03:37Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-20T13:51:41Z",
-   "new": 1,
+   "checked": "2026-11-21T01:03:37Z",
+   "new": 2,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-11-19T22:09:52Z",
+   "checked": "2026-11-21T01:03:37Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-11-19T22:09:52Z",
+   "checked": "2026-11-21T01:03:37Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-20T13:51:41Z",
+   "checked": "2026-11-21T01:03:37Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-20T13:51:41Z",
+   "checked": "2026-11-21T01:03:37Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-11-20T13:51:41Z"
+ "updated": "2026-11-21T01:03:37Z"
 }
