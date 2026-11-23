@@ -1,6 +1,22 @@
 {
  "items": [
   {
+   "id": "lp:LPEU/2026/790:ZAPIS_PREDBEZNEHO_STANOVISKA",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LPEU/2026/790 · Akt EÚ: C(2026)8606 VYKONÁVACIE ROZHODNUTIE KOMISIE o povoleniach na uvedenie liekov na humánne použitie, ktoré obsahujú účinnú látku „ipidakrín“, na trh na základe článku 31 smernice Európskeho parlamentu a Rady 2001/83/ES",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LPEU/2026/790",
+   "date": "2026-11-23T08:00:00Z",
+   "detected": "2026-11-23T15:44:11Z",
+   "category": "Draft law",
+   "priority": "high",
+   "tags": [
+    "Medicines",
+    "Zápis predbežného stanoviska k návrhu aktu EÚ"
+   ],
+   "summary": "Stage: Zápis predbežného stanoviska k návrhu aktu EÚ (since 23.11.2026)"
+  },
+  {
    "id": "lp:LP/2026/619:VYHODNOTENIE_MPK",
    "source": "slovlex_lp",
    "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
@@ -415,6 +431,22 @@
     "Vyhodnotenie pripomienkového konania"
    ],
    "summary": "Moved from stage “Pripomienkové konanie” to “Vyhodnotenie pripomienkového konania” · Stage: Vyhodnotenie pripomienkového konania (since 13.11.2026) · Submitted by: Úrad jadrového dozoru Slovenskej republiky"
+  },
+  {
+   "id": "lp:LP/2026/549:SPRACOVANIE_PREDKLADATEL",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/549 · Nariadenie vlády Slovenskej republiky: Návrh nariadenia vlády Slovenskej republiky, ktorým sa mení nariadenie vlády Slovenskej republiky č. 668/2004 Z. z. o rozdeľovaní výnosu dane z príjmov územnej samospráve v znení neskorších predpisov",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/549",
+   "date": "2026-11-13T08:00:00Z",
+   "detected": "2026-11-23T15:44:13Z",
+   "category": "Draft law",
+   "priority": "low",
+   "tags": [
+    "Taxes",
+    "Spracovanie predkladateľom"
+   ],
+   "summary": "Moved from stage “Rokovanie poradných orgánov vlády SR” to “Spracovanie predkladateľom” · Stage: Spracovanie predkladateľom (since 13.11.2026) · Submitted by: Ministerstvo financií Slovenskej republiky · Main act amended: 668/2004 Z. z."
   },
   {
    "id": "lp:LP/2026/549:ROKOVANIE_POV",
@@ -4824,14 +4856,14 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-21T01:03:37Z",
+   "checked": "2026-11-23T15:44:08Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": false,
-   "checked": "2026-11-21T01:03:37Z",
+   "checked": "2026-11-23T15:44:08Z",
    "new": 0,
    "error": "https://www.sukl.sk/sk/rss?page_id=1355&days=365: <HTTPError 403: 'Forbidden'>",
    "last_ok": "2026-11-19T22:09:52Z"
@@ -4839,7 +4871,7 @@
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": false,
-   "checked": "2026-11-21T01:03:37Z",
+   "checked": "2026-11-23T15:44:08Z",
    "new": 0,
    "error": "https://www.sukl.sk/sk/rss?page_id=1355&pid=208&days=365: <HTTPError 403: 'Forbidden'>",
    "last_ok": "2026-11-19T22:09:52Z"
@@ -4847,7 +4879,7 @@
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": false,
-   "checked": "2026-11-21T01:03:37Z",
+   "checked": "2026-11-23T15:44:08Z",
    "new": 0,
    "error": "https://www.health.gov.sk/RSS?Clanky: <HTTPError 404: 'Not Found'>",
    "last_ok": "2026-11-03T23:16:46Z"
@@ -4855,7 +4887,7 @@
   "uskvbl": {
    "name": "ÚŠKVBL · Veterinárne lieky",
    "ok": true,
-   "checked": "2026-11-21T01:03:37Z",
+   "checked": "2026-11-23T15:44:08Z",
    "new": 0,
    "error": null
   },
@@ -4869,7 +4901,7 @@
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-21T01:03:37Z",
+   "checked": "2026-11-23T15:44:08Z",
    "new": 2,
    "error": null
   },
@@ -4890,17 +4922,17 @@
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-21T01:03:37Z",
+   "checked": "2026-11-23T15:44:08Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-21T01:03:37Z",
+   "checked": "2026-11-23T15:44:08Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-11-21T01:03:37Z"
+ "updated": "2026-11-23T15:44:08Z"
 }

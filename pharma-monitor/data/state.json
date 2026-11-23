@@ -4666,7 +4666,7 @@
     "tags": []
    },
    "LPEU/2026/646": {
-    "stage": "VYHODNOTENIE_MPK_AKTY",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -5004,7 +5004,7 @@
     "tags": []
    },
    "LP/2026/479": {
-    "stage": "SPRACOVANIE_PREDKLADATEL",
+    "stage": "ROKOVANIE_POV",
     "rel": 0,
     "tags": []
    },
@@ -5542,7 +5542,7 @@
     ]
    },
    "LP/2026/494": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "ROKOVANIE_POV",
     "rel": 0,
     "tags": []
    },
@@ -7082,12 +7082,12 @@
     "tags": []
    },
    "LP/2026/549": {
-    "stage": "ROKOVANIE_POV",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 1,
     "tags": [
      "Taxes"
     ],
-    "stage_name": "Rokovanie poradných orgánov vlády SR"
+    "stage_name": "Spracovanie predkladateľom"
    },
    "LPEU/2026/716": {
     "stage": "PROCES_UKONCENY",
@@ -8116,7 +8116,7 @@
     "tags": []
    },
    "LPEU/2026/780": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -8145,6 +8145,86 @@
    },
    "LP/2026/645": {
     "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/792": {
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/791": {
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/790": {
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "rel": 3,
+    "tags": [
+     "Medicines"
+    ],
+    "stage_name": "Zápis predbežného stanoviska k návrhu aktu EÚ"
+   },
+   "LPEU/2026/789": {
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/788": {
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/787": {
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/785": {
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/786": {
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "rel": 0,
+    "tags": [
+     "Consumer protection"
+    ]
+   },
+   "LPEU/2026/784": {
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/783": {
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/782": {
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/781": {
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/265": {
+    "stage": "PROCES_UKONCENY",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/647": {
+    "stage": "ROKOVANIE_VLADA",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/646": {
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    }
