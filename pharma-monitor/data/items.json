@@ -1,6 +1,36 @@
 {
  "items": [
   {
+   "id": "sukl_web:https://www.sukl.sk/o-nas/databazy-a-servis/rss-1:573061792d",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Updated page: RSS",
+   "url": "https://www.sukl.sk/o-nas/databazy-a-servis/rss-1",
+   "date": "2026-11-24T12:00:00Z",
+   "detected": "2026-11-24T12:00:00Z",
+   "category": "ŠÚKL website",
+   "priority": "low",
+   "tags": [
+    "Medicines"
+   ],
+   "summary": "Odoberajte novinky cez RSS · Majte dôležité informácie vždy po ruke. Ponúkame vám automatický odber správ priamo do vášho e-mailového klienta (napr. Outlook) alebo RSS čítačky. · Adresy kanálov na skopírovanie: · Mimoriadne oznamy (sťahovanie liekov z trhu): · https://www.sukl.sk/sk/rss?page_id=1355&pid=208&days=365"
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/o-nas/databazy-a-servis/rss-1/oznam-k-odberu-rss-noviniek-kanal-sukl-funguje-zmena-nastala-v-aplikacii-outlook:0e1123b82f",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Updated page: Oznam k odberu RSS noviniek: Kanál ŠÚKL funguje, zmena nastala v aplikácii Outlook",
+   "url": "https://www.sukl.sk/o-nas/databazy-a-servis/rss-1/oznam-k-odberu-rss-noviniek-kanal-sukl-funguje-zmena-nastala-v-aplikacii-outlook",
+   "date": "2026-11-24T12:00:00Z",
+   "detected": "2026-11-24T12:00:00Z",
+   "category": "ŠÚKL website",
+   "priority": "low",
+   "tags": [
+    "Medicines"
+   ],
+   "summary": "Aktualita · Zverejnené: 24.11.2026 · Obsah · Štátny ústav pre kontrolu liečiv informuje verejnosť, že RSS kanály na odber noviniek a aktualít sú naďalej plne funkčné a ich zrušenie neplánujeme. · Ak sa vám v poslednom období prestali zobrazovať nové príspevky alebo pri pridávaní kanála dostávate chybové hlásenie,…"
+  },
+  {
    "id": "lp:LP/2026/624:VYHODNOTENIE_MPK",
    "source": "slovlex_lp",
    "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
@@ -67,6 +97,94 @@
    "summary": "Moved from stage “Pripomienkové konanie” to “Vyhodnotenie pripomienkového konania” · Stage: Vyhodnotenie pripomienkového konania (since 24.11.2026) · Submitted by: Ministerstvo životného prostredia Slovenskej republiky"
   },
   {
+   "id": "sukl_web:https://www.sukl.sk/pre-odbornikov-a-firmy/zdravotnicke-pomocky/fsn:ff34b60321",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Updated page: FSN",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/zdravotnicke-pomocky/fsn",
+   "date": "2026-11-23T12:00:00Z",
+   "detected": "2026-11-23T12:00:00Z",
+   "category": "Medical devices",
+   "priority": "medium",
+   "tags": [],
+   "summary": "Bezpečnostné oznámenie · Zverejnené: 14.09.2026 · Posledná zmena: 23.11.2026 · Dokumenty na stiahnutie · Covidien, Fred (2) Anti-Fog Kit"
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/o-nas/vyhlasenie-o-pristupnosti:fbd8ead198",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Updated page: Vyhlásenie o prístupnosti",
+   "url": "https://www.sukl.sk/o-nas/vyhlasenie-o-pristupnosti",
+   "date": "2026-11-23T12:00:00Z",
+   "detected": "2026-11-23T12:00:00Z",
+   "category": "ŠÚKL website",
+   "priority": "low",
+   "tags": [
+    "Medicines"
+   ],
+   "summary": "Článok · Posledná zmena: 04.11.2026 · Obsah · Štátny ústav pre kontrolu liečiv sa zaväzuje sprístupniť svoje webové sídlo v súlade so zákonom č. 95/2019 Z. z. o informačných technológiách vo verejnej správe a o zmene a doplnení niektorých zákonov a vyhláškou Úradu podpredsedu vlády Slovenskej republiky pre investície…"
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/novalgin-500-mg-24857-prerusenie-02.11.2026:87f31a2996",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Novalgin 500 mg tbl flm 20x500 mg (blis.Al/PVC) (24857) - Prerušenie 02.11.2026",
+   "url": "https://www.sukl.sk/novalgin-500-mg-24857-prerusenie-02.11.2026",
+   "date": "2026-11-23T12:00:00Z",
+   "detected": "2026-11-23T12:00:00Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "Supply interruption"
+   ],
+   "summary": "Typ oznámenia: Prerušenie · Platnosť od: 02.11.2026 · Dátum hlásenia: 23.11.2026 · Predpokladaný termín obnovenia: 23.11.2026 · Poznámka: test hlásenie · Kód ŠÚKL: 24857 · Predpokladaný termín obnovenia: Detail · Typ oznámenia: Obnovenie · Platnosť od: 26.11.2026 · Dátum hlásenia: 23.11.2026 · Predpokladaný termín…"
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/novalgin-500-mg-24857-obnovenie-26.11.2026:aaead1b890",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Novalgin 500 mg tbl flm 20x500 mg (blis.Al/PVC) (24857) - Obnovenie 26.11.2026",
+   "url": "https://www.sukl.sk/novalgin-500-mg-24857-obnovenie-26.11.2026",
+   "date": "2026-11-23T12:00:00Z",
+   "detected": "2026-11-23T12:00:00Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "Supply resumed"
+   ],
+   "summary": "Typ oznámenia: Obnovenie · Platnosť od: 26.11.2026 · Dátum hlásenia: 23.11.2026 · Poznámka: test hlásenia · Kód ŠÚKL: 24857 · Predpokladaný termín obnovenia: Detail · Typ oznámenia: Prerušenie · Platnosť od: 02.11.2026 · Dátum hlásenia: 23.11.2026 · Predpokladaný termín obnovenia: 23.11.2026"
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/lenzetto-153-mg-davka-5836b-prerusenie-23.11.2026:12560de80f",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Lenzetto 1,53 mg/dávka aer tdo 1x56 dávok (fľ.skl.s pumpičkou) (5836B) - Prerušenie 23.11.2026",
+   "url": "https://www.sukl.sk/lenzetto-153-mg-davka-5836b-prerusenie-23.11.2026",
+   "date": "2026-11-23T12:00:00Z",
+   "detected": "2026-11-23T12:00:00Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "Supply interruption"
+   ],
+   "summary": "Typ oznámenia: Prerušenie · Platnosť od: 23.11.2026 · Dátum hlásenia: 23.11.2026 · Predpokladaný termín obnovenia: 28.11.2026 · Poznámka: TEST 2 · Kód ŠÚKL: 5836B"
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/akynzeo-300-mg-05-mg-tvrde-kapsuly-5231c-prerusenie:e605d92bd6",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Akynzeo 300 mg/0,5 mg tvrdé kapsuly cps dur 4x1x300 mg/0,5 mg (blis.Al/Al-jednotk.bal.) (5231C) - Prerušenie",
+   "url": "https://www.sukl.sk/akynzeo-300-mg-05-mg-tvrde-kapsuly-5231c-prerusenie",
+   "date": "2026-11-23T12:00:00Z",
+   "detected": "2026-11-23T12:00:00Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "Supply interruption"
+   ],
+   "summary": "Typ oznámenia: Prerušenie · Dátum hlásenia: 23.11.2026 · Kód ŠÚKL: 5231C"
+  },
+  {
    "id": "lp:LPEU/2026/790:ZAPIS_PREDBEZNEHO_STANOVISKA",
    "source": "slovlex_lp",
    "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
@@ -117,6 +235,66 @@
    "summary": "Moved from stage “Pripomienkové konanie” to “Vyhodnotenie pripomienkového konania” · Stage: Vyhodnotenie pripomienkového konania (since 21.11.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
   },
   {
+   "id": "sukl_web:https://www.sukl.sk/pre-verejnost-pacientov-a-media/oznamy-a-upozornenia/sekcia-inspekcie-ziadosti-o-vydanie-posudku-budu-spracovane-od-10.-januara-2027:aec15e7a90",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Updated page: Sekcia inšpekcie: Žiadosti o vydanie posudku budú spracované od 10. januára 2027",
+   "url": "https://www.sukl.sk/pre-verejnost-pacientov-a-media/oznamy-a-upozornenia/sekcia-inspekcie-ziadosti-o-vydanie-posudku-budu-spracovane-od-10.-januara-2027",
+   "date": "2026-11-20T12:00:00Z",
+   "detected": "2026-11-20T12:00:00Z",
+   "category": "ŠÚKL website",
+   "priority": "low",
+   "tags": [
+    "Medicines"
+   ],
+   "summary": "Týka sa to všetkých žiadostí, ktoré budú podané od 23. novembra 2026. · Oznam · Zverejnené: 20.11.2026 · Obsah · Štátny ústav pre kontrolu liečiv (ŠÚKL) oznamuje, že Sekcia inšpekcie z kapacitných dôvodov v tomto kalendárnom roku už nebude spracovávať nové žiadosti o vydanie posudku."
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/pre-odbornikov-a-firmy/vyroba-distribucia-a-transfuziologia:645f706c2f",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Updated page: Výroba, distribúcia a transfuziológia",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/vyroba-distribucia-a-transfuziologia",
+   "date": "2026-11-20T12:00:00Z",
+   "detected": "2026-11-20T12:00:00Z",
+   "category": "Distribution & pharmacies",
+   "priority": "high",
+   "tags": [],
+   "summary": "Rýchle odkazy · OZNAM: Sekcia inšpekcie: Žiadosti o vydanie posudku budú spracované od 10. januára 2027 · Výroba, distribúcia a transfuziológia: Metodické pokyny · Výroba, distribúcia a transfuziológia: Tlačivá a formuláre · Výroba"
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/pre-odbornikov-a-firmy/lekarne-a-vydajne-zdravotnickych-pomocok:4087fa4c98",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Updated page: Lekárne a výdajne zdravotníckych pomôcok",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/lekarne-a-vydajne-zdravotnickych-pomocok",
+   "date": "2026-11-20T12:00:00Z",
+   "detected": "2026-11-20T12:00:00Z",
+   "category": "Distribution & pharmacies",
+   "priority": "high",
+   "tags": [
+    "Pharmacy",
+    "Medical devices"
+   ],
+   "summary": "Rýchle odkazy · OZNAM: Sekcia inšpekcie: Žiadosti o vydanie posudku budú spracované od 10. januára 2027 · Metodické pokyny · Tlačivá a formuláre · Lekárenstvo"
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/pre-odbornikov-a-firmy/bezpecnost-liekov/edukacne-materialy:3cea003034",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Updated page: Edukačné materiály",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/bezpecnost-liekov/edukacne-materialy",
+   "date": "2026-11-20T12:00:00Z",
+   "detected": "2026-11-20T12:00:00Z",
+   "category": "Drug safety",
+   "priority": "medium",
+   "tags": [
+    "Medicines",
+    "Drug safety"
+   ],
+   "summary": "Edukačné materiály poskytujú zdravotníckym pracovníkom, pacientom a ich opatrovateľom dôležité informácie pre bezpečné používanie lieku a zníženie rizika nežiaducich účinkov. · Liek · Edukačný materiál · Accusol 35 · Accusol 35: Príručka pre zdravotníckych pracovníkov (PDF, 1,8 MB)"
+  },
+  {
    "id": "lp:LP/2026/643:MPK",
    "source": "slovlex_lp",
    "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
@@ -150,6 +328,32 @@
    "summary": "Aktualizácii QRD Prílohy V (EMA/67830/2013, Version 36) v súvislosti so zmenou umiestnenia tlačiva na hlásenie podozrenia na nežiaduci účinok lieku na webovej stránke ŠÚKL."
   },
   {
+   "id": "sukl_web:https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/registracia-lieku/pridelovanie-slotov-slots-assignment:fa6d365202",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Updated page: Prideľovanie slotov/Slots assignment",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/registracia-lieku/pridelovanie-slotov-slots-assignment",
+   "date": "2026-11-19T12:00:00Z",
+   "detected": "2026-11-19T12:00:00Z",
+   "category": "ŠÚKL notice",
+   "priority": "low",
+   "tags": [],
+   "summary": "Podmienky a postup pri prideľovaní DCP slotov, v ktorých Slovenská republika vystupuje ako referenčný štát (RMS). · Zverejnené: 16.06.2025 · Obsah · Sloty pre decentralizované postupy (DCP), v ktorých Slovenská republika vystupuje ako referenčný štát · Štátny ústav prideľuje a uzatvára DCP sloty priebežne celý rok.…"
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/o-nas/databazy-a-servis/ine-zoznamy/zoznam-subjektov-vykonavajucich-internetovy-vydaj:bc6680fbdd",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Updated page: Zoznam subjektov vykonávajúcich internetový výdaj",
+   "url": "https://www.sukl.sk/o-nas/databazy-a-servis/ine-zoznamy/zoznam-subjektov-vykonavajucich-internetovy-vydaj",
+   "date": "2026-11-19T12:00:00Z",
+   "detected": "2026-11-19T12:00:00Z",
+   "category": "ŠÚKL website",
+   "priority": "low",
+   "tags": [],
+   "summary": "Zoznam registrovaných internetových lekární · Článok · Posledná zmena: 19.11.2026 · DÁTUM · NÁZOV"
+  },
+  {
    "id": "lp:LP/2026/615:VYHODNOTENIE_MPK",
    "source": "slovlex_lp",
    "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
@@ -180,6 +384,39 @@
     "Antimicrobials"
    ],
    "summary": "Antimikrobiálna rezistencia (AMR) predstavuje globálnu krízu, ktorá komplikuje liečbu bežných ochorení. Osvetu o tejto téme každoročne šíri medzinárodná kampaň Svetový týždeň povedomia o antimikrobiálnej rezistencii (18. – 24. november) a iniciatíva Európsky deň antibiotík (18. november)."
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/pre-verejnost-pacientov-a-media/osvetove-kampane/svetovy-tyzden-povedomia-o-antimikrobialnej-rezistencii:7d7d1b90dd",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Updated page: Svetový týždeň povedomia o antimikrobiálnej rezistencii",
+   "url": "https://www.sukl.sk/pre-verejnost-pacientov-a-media/osvetove-kampane/svetovy-tyzden-povedomia-o-antimikrobialnej-rezistencii",
+   "date": "2026-11-18T12:00:00Z",
+   "detected": "2026-11-18T12:00:00Z",
+   "category": "ŠÚKL website",
+   "priority": "medium",
+   "tags": [
+    "Medicines",
+    "Antimicrobials"
+   ],
+   "summary": "Zverejnené: 18.11.2026 · Svetový týždeň povedomia o antimikrobiálnej rezistencii (18. – 24. november) a iniciatíva Európsky deň antibiotík (18. november) · Obsah · Čo je to antimikrobiálna rezistencia? · AMR vzniká vtedy, keď si mikróby (baktérie, vírusy, parazity či plesne) vybudujú odolnosť voči liekom, ktoré ich…"
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/o-nas/databazy-a-servis/ine-zoznamy/zoznam-registrovanych-liekov-zdravotnickych-pomocok-a-klinickeho-skusania:88980f69e5",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Updated page: Zoznam registrovaných liekov, zdravotníckych pomôcok a klinického skúšania",
+   "url": "https://www.sukl.sk/o-nas/databazy-a-servis/ine-zoznamy/zoznam-registrovanych-liekov-zdravotnickych-pomocok-a-klinickeho-skusania",
+   "date": "2026-11-18T12:00:00Z",
+   "detected": "2026-11-18T12:00:00Z",
+   "category": "ŠÚKL website",
+   "priority": "high",
+   "tags": [
+    "Medicines",
+    "Medical devices",
+    "Clinical trials"
+   ],
+   "summary": "Článok · Obsah · https://www.sukl.sk/verejne/ - exportované dáta a zoznamy na stiahnutie (Zoznam liekov, Zoznam zdravotníckych pomôcok, Zoznam SPC a PIL) · https://ec.europa.eu/tools/eudamed/#/screen/home - EUDAMED portál · print"
   },
   {
    "id": "lp:LP/2026/639:MPK",
@@ -362,6 +599,19 @@
    "summary": "Moved from stage “Spracovanie predkladateľom” to “Rokovanie poradných orgánov vlády SR” · Stage: Rokovanie poradných orgánov vlády SR (since 17.11.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
   },
   {
+   "id": "sukl_web:https://www.sukl.sk/pre-odbornikov-a-firmy/lekarne-a-vydajne-zdravotnickych-pomocok/lekarenstvo/doklady-potrebne-k-vykonaniu-vstupnej-inspekcie-za-ucelom-posudku-sukl:a2c7b0ee24",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Updated page: Doklady potrebné k vykonaniu vstupnej inšpekcie za účelom Posudku ŠÚKL",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/lekarne-a-vydajne-zdravotnickych-pomocok/lekarenstvo/doklady-potrebne-k-vykonaniu-vstupnej-inspekcie-za-ucelom-posudku-sukl",
+   "date": "2026-11-16T12:00:00Z",
+   "detected": "2026-11-16T12:00:00Z",
+   "category": "Distribution & pharmacies",
+   "priority": "medium",
+   "tags": [],
+   "summary": "Posledná zmena: 16.11.2026 · Obsah · Vzor žiadosti o vstupnú inšpekciu je rovnaký pre všetky subjekty, a ostatné dokumenty (nevyhnutné prílohy k žiadosti) sa menia v závislosti od typu subjektu uvedeného nižšie (zoznamy dokumentov sa nachádzajú v rýchlych odkazoch pod článkom). · Vstupná inšpekcia bude vykonaná až po…"
+  },
+  {
    "id": "lp:LP/2026/625:SPRACOVANIE_PREDKLADATEL",
    "source": "slovlex_lp",
    "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
@@ -515,6 +765,22 @@
    "summary": "Moved from stage “Rokovanie poradných orgánov vlády SR” to “Spracovanie predkladateľom” · Stage: Spracovanie predkladateľom (since 13.11.2026) · Submitted by: Ministerstvo financií Slovenskej republiky · Main act amended: 668/2004 Z. z."
   },
   {
+   "id": "lp:LP/2026/549:ROKOVANIE_VLADA",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/549 · Nariadenie vlády Slovenskej republiky: Návrh nariadenia vlády Slovenskej republiky, ktorým sa mení nariadenie vlády Slovenskej republiky č. 668/2004 Z. z. o rozdeľovaní výnosu dane z príjmov územnej samospráve v znení neskorších predpisov",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/549",
+   "date": "2026-11-13T08:00:00Z",
+   "detected": "2026-11-24T13:55:31Z",
+   "category": "Draft law",
+   "priority": "low",
+   "tags": [
+    "Taxes",
+    "Rokovanie vlády SR"
+   ],
+   "summary": "Moved from stage “Spracovanie predkladateľom” to “Rokovanie vlády SR” · Stage: Rokovanie vlády SR (since 13.11.2026) · Submitted by: Ministerstvo financií Slovenskej republiky · Main act amended: 668/2004 Z. z."
+  },
+  {
    "id": "lp:LP/2026/549:ROKOVANIE_POV",
    "source": "slovlex_lp",
    "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
@@ -561,6 +827,22 @@
     "Rokovanie poradných orgánov vlády SR"
    ],
    "summary": "Moved from stage “Spracovanie predkladateľom” to “Rokovanie poradných orgánov vlády SR” · Stage: Rokovanie poradných orgánov vlády SR (since 13.11.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/postregistracne-procesy/zrusenie-registracie-lieku/zrusenie-registracie-lieku:140c2e528e",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Zrušenie registrácie lieku",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/postregistracne-procesy/zrusenie-registracie-lieku/zrusenie-registracie-lieku",
+   "date": "2026-11-12T12:00:00Z",
+   "detected": "2026-11-12T12:00:00Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "Supply ended",
+    "Medicines"
+   ],
+   "summary": "Zrušenie registrácie lieku · Dôvody zrušenia registrácie humánneho lieku a postup pri podaní žiadosti o jej zrušenie vrátane potrebných dokumentov a úhrady poplatku. · Článok · Zverejnené: 09.01.2020 · Posledná zmena: 18.07.2025 · Obsah"
   },
   {
    "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/lekarne-a-vydajne-zdravotnickych-pomocok/lekarenstvo/oznamovanie-umyslu-vykonavat-ockovanie-v-ramci-lekarenskej-starostlivosti",
@@ -692,6 +974,22 @@
     "Spracovanie predkladateľom"
    ],
    "summary": "Moved from stage “Vyhodnotenie pripomienkového konania” to “Spracovanie predkladateľom” · Stage: Spracovanie predkladateľom (since 11.11.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/pre-odbornikov-a-firmy/zdravotnicke-pomocky/postupy-pri-podavani-ziadosti/registracia-distributora-zdravotnickych-pomocok-a-in-vitro-zdravotnickych-pomocok:723482ffcc",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Updated page: Registrácia distribútora zdravotníckych pomôcok a in vitro zdravotníckych pomôcok",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/zdravotnicke-pomocky/postupy-pri-podavani-ziadosti/registracia-distributora-zdravotnickych-pomocok-a-in-vitro-zdravotnickych-pomocok",
+   "date": "2026-11-10T12:00:00Z",
+   "detected": "2026-11-10T12:00:00Z",
+   "category": "Medical devices",
+   "priority": "high",
+   "tags": [
+    "Medicines",
+    "Medical devices"
+   ],
+   "summary": "Zverejnené: 25.05.2022 · Obsah · Štátny ústav podľa § 110a ods. 3 zákona o liekoch a zdravotníckych pomôckach č.362/2011 Z.z. vykonáva registráciu distribútorov zdravotníckych pomôcok (ZP) alebo diagnostických zdravotníckych pomôcok in vitro (IVD ZP). · Pri registrácii distribútora ZP/IVD ZP postupuje podľa…"
   },
   {
    "id": "law:39/2007:2027-01-01",
@@ -884,6 +1182,23 @@
    ],
    "summary": "Stage: Pripomienkové konanie (since 09.11.2026) · Comments can be submitted until 17.11.2026 · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky",
    "deadline": "2026-11-17"
+  },
+  {
+   "id": "eu:32026D2608",
+   "source": "eurlex",
+   "source_name": "EUR-Lex · Úradný vestník EÚ",
+   "title": "Rozhodnutie Rady (EÚ) 2026/2608 z 9. novembra 2026 o pozícii, ktorá sa má v mene Európskej únie zaujať vo Svetovej colnej organizácie, pokiaľ ide o odporúčanie týkajúce sa zmeny nomenklatúry pripojenej ako príloha k dohovoru o harmonizovanom systéme a o schválení vysvetliviek, stanovísk k zatriedeniu alebo iného poradenstva týkajúceho sa interpretácie harmonizovaného systému a odporúčaní na zabezpečenie jednotnosti pri interpretácii harmonizovaného systému podľa dohovoru o harmonizovanom systéme",
+   "url": "https://eur-lex.europa.eu/legal-content/SK/TXT/?uri=CELEX:32026D2608",
+   "date": "2026-11-09T08:00:00Z",
+   "detected": "2026-11-24T13:57:30Z",
+   "category": "EU legislation",
+   "priority": "medium",
+   "tags": [
+    "Authorisation opinions",
+    "VAT / customs"
+   ],
+   "summary": "Council Decision (EU) 2026/2608 of 9 November 2026 on the position to be taken on behalf of the European Union within the World Customs Organization with regard to a Recommendation concerning the amendment of the Nomenclature appended as an Annex to the Harmonized System Convention and the approval of Explanatory…",
+   "doc_type": "DEC"
   },
   {
    "id": "eu:32026D2479",
@@ -1095,6 +1410,67 @@
    "summary": "Moved from stage “Rokovanie poradných orgánov vlády SR” to “Vyhlásené v Zbierke zákonov SR” · Stage: Vyhlásené v Zbierke zákonov SR (since 03.11.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
   },
   {
+   "id": "sukl_web:https://www.sukl.sk/nimesil-59625-prerusenie-02.11.2026:9375def0e5",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Nimesil gru por 15x2g/100 mg (vrecko) (59625) - Prerušenie 02.11.2026",
+   "url": "https://www.sukl.sk/nimesil-59625-prerusenie-02.11.2026",
+   "date": "2026-11-02T12:00:00Z",
+   "detected": "2026-11-02T12:00:00Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "Supply interruption"
+   ],
+   "summary": "Typ oznámenia: Prerušenie · Platnosť od: 02.11.2026 · Dátum hlásenia: 02.11.2026 · Kód ŠÚKL: 59625"
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/epclusa-200-mg-50-mg-filmom-obalene-tablety-5539d-zrusenie-31.12.2026:d56b1a93cb",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Epclusa 200 mg/50 mg filmom obalené tablety tbl flm 28x200 mg/50 mg (fľ.HDPE) (5539D) - Zrušenie 31.12.2026",
+   "url": "https://www.sukl.sk/epclusa-200-mg-50-mg-filmom-obalene-tablety-5539d-zrusenie-31.12.2026",
+   "date": "2026-11-02T12:00:00Z",
+   "detected": "2026-11-02T12:00:00Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "Supply ended",
+    "Waste & packaging"
+   ],
+   "summary": "Typ oznámenia: Zrušenie · Platnosť od: 31.12.2026 · Dátum hlásenia: 02.11.2026 · Kód ŠÚKL: 5539D"
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/boostrix-45368-obnovenie-23.10.2026:49c4bab7e2",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Boostrix sus iru 1x0,5 ml (striek.skl.napl. s ihlami/bez ihiel) (45368) - Obnovenie 23.10.2026",
+   "url": "https://www.sukl.sk/boostrix-45368-obnovenie-23.10.2026",
+   "date": "2026-11-02T12:00:00Z",
+   "detected": "2026-11-02T12:00:00Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "Supply resumed"
+   ],
+   "summary": "Typ oznámenia: Obnovenie · Platnosť od: 23.10.2026 · Dátum hlásenia: 02.11.2026 · Kód ŠÚKL: 45368"
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/betahistine-medreg-16-mg-9837e-prve-uvedenie-28.10.2026:0518d5aea9",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Betahistine Medreg 16 mg tbl 60x16 mg (blis. PVC/PVDC/Al) (9837E) - Prvé uvedenie 28.10.2026",
+   "url": "https://www.sukl.sk/betahistine-medreg-16-mg-9837e-prve-uvedenie-28.10.2026",
+   "date": "2026-11-02T12:00:00Z",
+   "detected": "2026-11-02T12:00:00Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "First placed on the market"
+   ],
+   "summary": "Typ oznámenia: Prvé uvedenie · Platnosť od: 28.10.2026 · Dátum hlásenia: 02.11.2026 · Kód ŠÚKL: 9837E"
+  },
+  {
    "id": "https://www.sukl.sk/pre-verejnost-pacientov-a-media/pre-media/tlacove-spravy/slovensko-sa-pripaja-k-svetovej-kampani-medsafetyweek-neignorujte-vedlajsie-ucinky-liekov-nahlaste-ich",
    "source": "sukl",
    "source_name": "ŠÚKL · Aktuality",
@@ -1194,6 +1570,21 @@
    "summary": ""
   },
   {
+   "id": "sukl_web:https://www.sukl.sk/pazopanib-sandoz-200-mg-9858e-prve-uvedenie-26.10.2026:652c7ab236",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Pazopanib Sandoz 200 mg tbl flm 90x200 mg (blis.PVC/PE/PVDC/Al) (9858E) - Prvé uvedenie 26.10.2026",
+   "url": "https://www.sukl.sk/pazopanib-sandoz-200-mg-9858e-prve-uvedenie-26.10.2026",
+   "date": "2026-10-30T12:00:00Z",
+   "detected": "2026-10-30T12:00:00Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "First placed on the market"
+   ],
+   "summary": "Typ oznámenia: Prvé uvedenie · Platnosť od: 26.10.2026 · Dátum hlásenia: 30.10.2026 · Kód ŠÚKL: 9858E"
+  },
+  {
    "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/bezpecnost-liekov/informacie-z-prac/zavery-z-vyboru-pre-hodnotenie-rizik-liekov-prac-26.-29.10.2026",
    "source": "sukl",
    "source_name": "ŠÚKL · Aktuality",
@@ -1276,6 +1667,96 @@
    "summary": "New on the page: objednávky jún 2026 · objednávky máj 2026 · objednávky apríl 2026 · faktúry jún 2026 · faktúry máj 2026 · faktúry apríl 2026"
   },
   {
+   "id": "uskvbl:media:9869",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Všetky zmeny na webe",
+   "title": "New document: prehlad_objednavok_04_2026",
+   "url": "https://www.uskvbl.sk/wp-content/uploads/prehlad_objednavok_04_2026.html",
+   "date": "2026-10-30T08:30:37Z",
+   "detected": "2026-10-30T08:30:37Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "low",
+   "tags": [
+    "Veterinary medicines"
+   ],
+   "summary": "HTML file uploaded to www.uskvbl.sk"
+  },
+  {
+   "id": "uskvbl:media:9868",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Všetky zmeny na webe",
+   "title": "New document: prehlad_objednavok_05_2026 (1)",
+   "url": "https://www.uskvbl.sk/wp-content/uploads/prehlad_objednavok_05_2026-1.html",
+   "date": "2026-10-30T08:28:40Z",
+   "detected": "2026-10-30T08:28:40Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "low",
+   "tags": [
+    "Veterinary medicines"
+   ],
+   "summary": "HTML file uploaded to www.uskvbl.sk"
+  },
+  {
+   "id": "uskvbl:media:9867",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Všetky zmeny na webe",
+   "title": "New document: prehlad_objednavok_06_2026",
+   "url": "https://www.uskvbl.sk/wp-content/uploads/prehlad_objednavok_06_2026.html",
+   "date": "2026-10-30T08:28:05Z",
+   "detected": "2026-10-30T08:28:05Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "low",
+   "tags": [
+    "Veterinary medicines"
+   ],
+   "summary": "HTML file uploaded to www.uskvbl.sk"
+  },
+  {
+   "id": "uskvbl:media:9866",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Všetky zmeny na webe",
+   "title": "New document: prehlad_faktur_04_2026 (1)",
+   "url": "https://www.uskvbl.sk/wp-content/uploads/prehlad_faktur_04_2026-1.html",
+   "date": "2026-10-30T08:27:17Z",
+   "detected": "2026-10-30T08:27:17Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "low",
+   "tags": [
+    "Veterinary medicines"
+   ],
+   "summary": "HTML file uploaded to www.uskvbl.sk"
+  },
+  {
+   "id": "uskvbl:media:9865",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Všetky zmeny na webe",
+   "title": "New document: prehlad_faktur_05_2026",
+   "url": "https://www.uskvbl.sk/wp-content/uploads/prehlad_faktur_05_2026.html",
+   "date": "2026-10-30T08:26:42Z",
+   "detected": "2026-10-30T08:26:42Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "low",
+   "tags": [
+    "Veterinary medicines"
+   ],
+   "summary": "HTML file uploaded to www.uskvbl.sk"
+  },
+  {
+   "id": "uskvbl:media:9863",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Všetky zmeny na webe",
+   "title": "New document: prehlad_faktur_06_2026",
+   "url": "https://www.uskvbl.sk/wp-content/uploads/prehlad_faktur_06_2026.html",
+   "date": "2026-10-30T08:25:59Z",
+   "detected": "2026-10-30T08:25:59Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "low",
+   "tags": [
+    "Veterinary medicines"
+   ],
+   "summary": "HTML file uploaded to www.uskvbl.sk"
+  },
+  {
    "id": "slovlex:262/2026",
    "source": "slovlex",
    "source_name": "Slov-Lex · Zbierka zákonov SR",
@@ -1342,6 +1823,37 @@
    "priority": "low",
    "tags": [],
    "summary": "EMA’s office is closed on Monday 2 November, to mark All Souls' Day. The office reopens at 08:30 on Tuesday 3 November.The product emergency hotline is available outside…"
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/tadalafil-mylan-20-mg-filmom-obalene-tablety-4037b-prve-uvedenie-23.10.2026:8ef552bbac",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Tadalafil Mylan 20 mg filmom obalené tablety tbl flm 12x20 mg (PVC/PE/PVDC/Al) (4037B) - Prvé uvedenie 23.10.2026",
+   "url": "https://www.sukl.sk/tadalafil-mylan-20-mg-filmom-obalene-tablety-4037b-prve-uvedenie-23.10.2026",
+   "date": "2026-10-29T12:00:00Z",
+   "detected": "2026-10-29T12:00:00Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "First placed on the market",
+    "Waste & packaging"
+   ],
+   "summary": "Typ oznámenia: Prvé uvedenie · Platnosť od: 23.10.2026 · Dátum hlásenia: 29.10.2026 · Kód ŠÚKL: 4037B"
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/ibalgin-rapidcaps-400-mg-3833f-prve-uvedenie-29.10.2026:9a0c4a1b6a",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Ibalgin Rapidcaps 400 mg cps mol 50x400 mg (blis.PVC/PVDC/Al) (3833F) - Prvé uvedenie 29.10.2026",
+   "url": "https://www.sukl.sk/ibalgin-rapidcaps-400-mg-3833f-prve-uvedenie-29.10.2026",
+   "date": "2026-10-29T12:00:00Z",
+   "detected": "2026-10-29T12:00:00Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "First placed on the market"
+   ],
+   "summary": "Typ oznámenia: Prvé uvedenie · Platnosť od: 29.10.2026 · Dátum hlásenia: 29.10.2026 · Kód ŠÚKL: 3833F"
   },
   {
    "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/klinicke-skusanie-liekov/oznamy-a-aktuality/pilotny-projekt-poradenstva-pri-klinickych-skusaniach-bude-pokracovat-ako-trvala-iniciativa",
@@ -1735,6 +2247,52 @@
     "Veterinary care"
    ],
    "summary": "ŠVPS SR Vás informuje, že sme dňa 26.10.2026 obdržali list od kompetentnej autority Austrálie. Informujú nás, že Austrália dokončila svoje hodnotenie a uznajú Slovensko za krajinu bez výskytu slintačky a krívačky s dátumom účinnosti od 31. októbra 2025. Slovensko bude tiež pridané do zoznamu krajín bez výskytu…"
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/pomalidomid-teva-3-mg-tvrde-kapsuly-8125e-prve-uvedenie-21.10.2026:6852a56bf7",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Pomalidomid Teva 3 mg tvrdé kapsuly cps dur 21x1x3 mg (blis.PVC/PE/PVDC/Al - jednotk.bal.) (8125E) - Prvé uvedenie 21.10.2026",
+   "url": "https://www.sukl.sk/pomalidomid-teva-3-mg-tvrde-kapsuly-8125e-prve-uvedenie-21.10.2026",
+   "date": "2026-10-28T12:00:00Z",
+   "detected": "2026-10-28T12:00:00Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "First placed on the market"
+   ],
+   "summary": "Typ oznámenia: Prvé uvedenie · Platnosť od: 21.10.2026 · Dátum hlásenia: 28.10.2026 · Kód ŠÚKL: 8125E"
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/pomalidomid-teva-2-mg-tvrde-kapsuly-8113e-prve-uvedenie-21.10.2026:e986c10dee",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Pomalidomid Teva 2 mg tvrdé kapsuly cps dur 21x1x2 mg (blis.PVC/PE/PVDC/Al - jednotk.bal.) (8113E) - Prvé uvedenie 21.10.2026",
+   "url": "https://www.sukl.sk/pomalidomid-teva-2-mg-tvrde-kapsuly-8113e-prve-uvedenie-21.10.2026",
+   "date": "2026-10-28T12:00:00Z",
+   "detected": "2026-10-28T12:00:00Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "First placed on the market"
+   ],
+   "summary": "Typ oznámenia: Prvé uvedenie · Platnosť od: 21.10.2026 · Dátum hlásenia: 28.10.2026 · Kód ŠÚKL: 8113E"
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/beyonttra-356-mg-filmom-obalene-tablety-8993e-prve-uvedenie-22.10.2026:865bb50133",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "BEYONTTRA 356 mg filmom obalené tablety tbl flm 120x356 mg (blis. PVC/PCTFE/Al) (8993E) - Prvé uvedenie 22.10.2026",
+   "url": "https://www.sukl.sk/beyonttra-356-mg-filmom-obalene-tablety-8993e-prve-uvedenie-22.10.2026",
+   "date": "2026-10-28T12:00:00Z",
+   "detected": "2026-10-28T12:00:00Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "First placed on the market",
+    "Waste & packaging"
+   ],
+   "summary": "Typ oznámenia: Prvé uvedenie · Platnosť od: 22.10.2026 · Dátum hlásenia: 28.10.2026 · Kód ŠÚKL: 8993E"
   },
   {
    "id": "uskvbl:3408:2026-10-28T09:40:06",
@@ -2185,6 +2743,21 @@
    "summary": "Ústav štátnej kontroly veterinárnych biopreparátov a liečiv Nitra · Adresa: · Biovetská 34 · P.O.Box 52c · 949 01 Nitra"
   },
   {
+   "id": "sukl_web:https://www.sukl.sk/opzelura-15-mg-g-krem-3574f-prve-uvedenie-15.10.2026:1c69a4ffb6",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Opzelura 15 mg/g krém crm 1x100 g (tuba laminát.) (3574F) - Prvé uvedenie 15.10.2026",
+   "url": "https://www.sukl.sk/opzelura-15-mg-g-krem-3574f-prve-uvedenie-15.10.2026",
+   "date": "2026-10-21T12:00:00Z",
+   "detected": "2026-10-21T12:00:00Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "First placed on the market"
+   ],
+   "summary": "Typ oznámenia: Prvé uvedenie · Platnosť od: 15.10.2026 · Dátum hlásenia: 21.10.2026 · Kód ŠÚKL: 3574F"
+  },
+  {
    "id": "uskvbl:3420:2026-10-21T11:59:27",
    "source": "uskvbl",
    "source_name": "ÚŠKVBL · Veterinárne lieky",
@@ -2294,6 +2867,36 @@
     "Veterinary care"
    ],
    "summary": "New on the page: VET-PASS · Slovenská republika participuje na akcii COST (European Cooperation in Science and Technology) s názvom „European Veterinary Education and Training for Professional Advancement, Specialisation, and Skills (VET-PASS), ktorej cieľom je v priebehu štyroch rokov vybudovať transparentný,…"
+  },
+  {
+   "id": "uskvbl:media:9816",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Všetky zmeny na webe",
+   "title": "New document: Press_release",
+   "url": "https://www.uskvbl.sk/wp-content/uploads/Press_release.pdf",
+   "date": "2026-10-21T08:03:46Z",
+   "detected": "2026-10-21T08:03:46Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "medium",
+   "tags": [
+    "Veterinary medicines"
+   ],
+   "summary": "PDF file uploaded to www.uskvbl.sk"
+  },
+  {
+   "id": "uskvbl:media:9815",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Všetky zmeny na webe",
+   "title": "New document: Tlacova-sprava",
+   "url": "https://www.uskvbl.sk/wp-content/uploads/Tlacova-sprava.pdf",
+   "date": "2026-10-21T08:03:07Z",
+   "detected": "2026-10-21T08:03:07Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "medium",
+   "tags": [
+    "Veterinary medicines"
+   ],
+   "summary": "PDF file uploaded to www.uskvbl.sk"
   },
   {
    "id": "https://www.sukl.sk/pre-verejnost-pacientov-a-media/pre-media/tlacove-spravy/ema-odporucila-schvalenie-noveho-lieku-rasonque-na-metastaticku-rakovinu-pankreasu",
@@ -2792,6 +3395,53 @@
    "summary": "CVMP opinions on veterinary medicinal productsThe Committee adopted a positive opinion, in exceptional circumstances, for a marketing authorisation for Bovilis Lumpyvax (lumpy…"
   },
   {
+   "id": "sukl_web:https://www.sukl.sk/sitagliptin-olpha-100-mg-filmom-obalene-tablety-2119f-prve-uvedenie-16.10.2026:a130cd51eb",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Sitagliptin Olpha 100 mg filmom obalené tablety tbl flm 98x100 mg (blis.PVC/PE/PVDC/Al) (2119F) - Prvé uvedenie 16.10.2026",
+   "url": "https://www.sukl.sk/sitagliptin-olpha-100-mg-filmom-obalene-tablety-2119f-prve-uvedenie-16.10.2026",
+   "date": "2026-10-09T12:00:00Z",
+   "detected": "2026-10-09T12:00:00Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "First placed on the market",
+    "Waste & packaging"
+   ],
+   "summary": "Typ oznámenia: Prvé uvedenie · Platnosť od: 16.10.2026 · Dátum hlásenia: 09.10.2026 · Kód ŠÚKL: 2119F"
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/sitagliptin-olpha-100-mg-filmom-obalene-tablety-2116f-prve-uvedenie-16.10.2026:78ebc1e496",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Sitagliptin Olpha 100 mg filmom obalené tablety tbl flm 28x100 mg (blis.PVC/PE/PVDC/Al) (2116F) - Prvé uvedenie 16.10.2026",
+   "url": "https://www.sukl.sk/sitagliptin-olpha-100-mg-filmom-obalene-tablety-2116f-prve-uvedenie-16.10.2026",
+   "date": "2026-10-09T12:00:00Z",
+   "detected": "2026-10-09T12:00:00Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "First placed on the market",
+    "Waste & packaging"
+   ],
+   "summary": "Typ oznámenia: Prvé uvedenie · Platnosť od: 16.10.2026 · Dátum hlásenia: 09.10.2026 · Kód ŠÚKL: 2116F"
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/dutasteride-tamsulosin-olpha-9547e-prve-uvedenie-16.10.2026:7e63abd0af",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Dutasteride/Tamsulosin Olpha cps dur 90x0,5 mg/0,4 mg (blis. Al/Al) (9547E) - Prvé uvedenie 16.10.2026",
+   "url": "https://www.sukl.sk/dutasteride-tamsulosin-olpha-9547e-prve-uvedenie-16.10.2026",
+   "date": "2026-10-09T12:00:00Z",
+   "detected": "2026-10-09T12:00:00Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "First placed on the market"
+   ],
+   "summary": "Typ oznámenia: Prvé uvedenie · Platnosť od: 16.10.2026 · Dátum hlásenia: 09.10.2026 · Kód ŠÚKL: 9547E"
+  },
+  {
    "id": "slovlex:249/2026",
    "source": "slovlex",
    "source_name": "Slov-Lex · Zbierka zákonov SR",
@@ -2859,6 +3509,96 @@
     "Waste & packaging"
    ],
    "summary": "Komplexné informácie o veterinárnych liekoch v Slovenskej republike a Európskom spoločenstve sú dostupné v databáze liekov Únie : ( https://medicines.health.europa.eu/veterinary ) – umožňuje vyhľadávanie podľa názvu lieku, účinných látok, druhov zvierat, členského štátu v ktorom je liek registrovaný, aktuálny stav…"
+  },
+  {
+   "id": "uskvbl:media:9798",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Všetky zmeny na webe",
+   "title": "New document: Albendis_100mg-ml_peror_susp",
+   "url": "https://www.uskvbl.sk/wp-content/uploads/Albendis_100mg-ml_peror_susp.docx",
+   "date": "2026-10-08T09:28:10Z",
+   "detected": "2026-10-08T09:28:10Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "medium",
+   "tags": [
+    "Veterinary medicines"
+   ],
+   "summary": "DOCX file uploaded to www.uskvbl.sk"
+  },
+  {
+   "id": "uskvbl:media:9797",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Všetky zmeny na webe",
+   "title": "New document: Bioclindavet_275mg_tbl",
+   "url": "https://www.uskvbl.sk/wp-content/uploads/Bioclindavet_275mg_tbl.docx",
+   "date": "2026-10-08T09:25:33Z",
+   "detected": "2026-10-08T09:25:33Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "medium",
+   "tags": [
+    "Veterinary medicines"
+   ],
+   "summary": "DOCX file uploaded to www.uskvbl.sk"
+  },
+  {
+   "id": "uskvbl:media:9796",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Všetky zmeny na webe",
+   "title": "New document: Bioclindavet_110mg-ml_peror-rozt",
+   "url": "https://www.uskvbl.sk/wp-content/uploads/Bioclindavet_110mg-ml_peror-rozt.docx",
+   "date": "2026-10-08T09:24:46Z",
+   "detected": "2026-10-08T09:24:46Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "medium",
+   "tags": [
+    "Veterinary medicines"
+   ],
+   "summary": "DOCX file uploaded to www.uskvbl.sk"
+  },
+  {
+   "id": "uskvbl:media:9795",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Všetky zmeny na webe",
+   "title": "New document: Bioclindavet_75mg_tbl",
+   "url": "https://www.uskvbl.sk/wp-content/uploads/Bioclindavet_75mg_tbl.docx",
+   "date": "2026-10-08T09:23:47Z",
+   "detected": "2026-10-08T09:23:47Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "medium",
+   "tags": [
+    "Veterinary medicines"
+   ],
+   "summary": "DOCX file uploaded to www.uskvbl.sk"
+  },
+  {
+   "id": "uskvbl:media:9794",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Všetky zmeny na webe",
+   "title": "New document: clenovet_0025mg-ml_gel",
+   "url": "https://www.uskvbl.sk/wp-content/uploads/clenovet_0025mg-ml_gel.docx",
+   "date": "2026-10-08T09:18:12Z",
+   "detected": "2026-10-08T09:18:12Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "medium",
+   "tags": [
+    "Veterinary medicines"
+   ],
+   "summary": "DOCX file uploaded to www.uskvbl.sk"
+  },
+  {
+   "id": "uskvbl:media:9792",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Všetky zmeny na webe",
+   "title": "New document: labiprofen_150mg-ml_inj",
+   "url": "https://www.uskvbl.sk/wp-content/uploads/labiprofen_150mg-ml_inj.docx",
+   "date": "2026-10-08T09:13:51Z",
+   "detected": "2026-10-08T09:13:51Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "medium",
+   "tags": [
+    "Veterinary medicines"
+   ],
+   "summary": "DOCX file uploaded to www.uskvbl.sk"
   },
   {
    "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/bezpecnost-liekov/oznamy-drzitelov-dhpc/ocrevus-okrelizumab-nove-riziko-liekom-indukovaneho-poskodenia-pecene-a-odporucania-na-monitorovanie-funkcie-pecene-pred-liecbou-a-pocas-liecby",
@@ -2945,6 +3685,21 @@
    "summary": "Stage: Vyhodnotenie pripomienkového konania (since 08.10.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
   },
   {
+   "id": "uskvbl:media:9791",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Všetky zmeny na webe",
+   "title": "New document: prac-zoz_reg_roz_2026",
+   "url": "https://www.uskvbl.sk/wp-content/uploads/prac-zoz_reg_roz_2026.doc",
+   "date": "2026-10-08T06:11:37Z",
+   "detected": "2026-10-08T06:11:37Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "medium",
+   "tags": [
+    "Veterinary medicines"
+   ],
+   "summary": "DOC file uploaded to www.uskvbl.sk"
+  },
+  {
    "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/registracia-humannych-liekov/postregistracne-procesy/prevod-registracie-humanneho-lieku/prevod-registracie-humanneho-lieku",
    "source": "sukl",
    "source_name": "ŠÚKL · Aktuality",
@@ -2973,6 +3728,81 @@
     "Medicines"
    ],
    "summary": "Informácie pre žiadateľov a držiteľov registrácie humánnych liekov o náležitostiach, ako podať žiadosť."
+  },
+  {
+   "id": "uskvbl:media:9790",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Všetky zmeny na webe",
+   "title": "New document: miziverm_125mg-125mg_tbl_psy",
+   "url": "https://www.uskvbl.sk/wp-content/uploads/miziverm_125mg-125mg_tbl_psy.docx",
+   "date": "2026-10-07T08:28:13Z",
+   "detected": "2026-10-07T08:28:13Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "medium",
+   "tags": [
+    "Veterinary medicines"
+   ],
+   "summary": "DOCX file uploaded to www.uskvbl.sk"
+  },
+  {
+   "id": "uskvbl:media:9789",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Všetky zmeny na webe",
+   "title": "New document: miziverm_25mg-25mg_tbl_male_psy",
+   "url": "https://www.uskvbl.sk/wp-content/uploads/miziverm_25mg-25mg_tbl_male_psy.docx",
+   "date": "2026-10-07T08:27:03Z",
+   "detected": "2026-10-07T08:27:03Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "medium",
+   "tags": [
+    "Veterinary medicines"
+   ],
+   "summary": "DOCX file uploaded to www.uskvbl.sk"
+  },
+  {
+   "id": "uskvbl:media:9788",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Všetky zmeny na webe",
+   "title": "New document: taurador_10mg-ml_inj",
+   "url": "https://www.uskvbl.sk/wp-content/uploads/taurador_10mg-ml_inj.docx",
+   "date": "2026-10-07T08:12:04Z",
+   "detected": "2026-10-07T08:12:04Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "medium",
+   "tags": [
+    "Veterinary medicines"
+   ],
+   "summary": "DOCX file uploaded to www.uskvbl.sk"
+  },
+  {
+   "id": "uskvbl:media:9787",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Všetky zmeny na webe",
+   "title": "New document: erygal",
+   "url": "https://www.uskvbl.sk/wp-content/uploads/erygal.doc",
+   "date": "2026-10-07T08:08:52Z",
+   "detected": "2026-10-07T08:08:52Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "medium",
+   "tags": [
+    "Veterinary medicines"
+   ],
+   "summary": "DOC file uploaded to www.uskvbl.sk"
+  },
+  {
+   "id": "uskvbl:media:9786",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Všetky zmeny na webe",
+   "title": "New document: bovitubal_28000",
+   "url": "https://www.uskvbl.sk/wp-content/uploads/bovitubal_28000.doc",
+   "date": "2026-10-07T08:07:20Z",
+   "detected": "2026-10-07T08:07:20Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "medium",
+   "tags": [
+    "Veterinary medicines"
+   ],
+   "summary": "DOC file uploaded to www.uskvbl.sk"
   },
   {
    "id": "lp:LPEU/2026/676:ZAPIS_PREDBEZNEHO_STANOVISKA",
@@ -3004,6 +3834,21 @@
     "Veterinary care"
    ],
    "summary": "ŠVPS SR sa podieľala na šetrení incidentu zo dňa 11.09.2026, ku ktorému došlo v zariadení verejného stravovania, kedy došlo k požitiu neznámej tekutiny z PET fľašky 500 ml, označenej ako pramenitá voda Natura, maloletou osobou a táto utrpela bezprostredne po požití zdravotné ťažkosti. Predmetné zistenia Úradu…"
+  },
+  {
+   "id": "uskvbl:media:9784",
+   "source": "uskvbl",
+   "source_name": "ÚŠKVBL · Všetky zmeny na webe",
+   "title": "New document: scout",
+   "url": "https://www.uskvbl.sk/wp-content/uploads/scout.pdf",
+   "date": "2026-10-06T19:20:21Z",
+   "detected": "2026-10-06T19:20:21Z",
+   "category": "Veterinary (ÚŠKVBL)",
+   "priority": "medium",
+   "tags": [
+    "Veterinary medicines"
+   ],
+   "summary": "PDF file uploaded to www.uskvbl.sk"
   },
   {
    "id": "slovlex:241/2026",
@@ -3778,6 +4623,24 @@
     "Rokovanie Národnej rady SR"
    ],
    "summary": "Stage: Rokovanie Národnej rady SR (since 02.09.2026) · Submitted by: Ministerstvo spravodlivosti Slovenskej republiky · Main act amended: 513/1991 Zb."
+  },
+  {
+   "id": "sool:posts:1227:2026-09-01T08:56:30",
+   "source": "sool",
+   "source_name": "SOOL · Slovenská organizácia pre overovanie liekov",
+   "title": "New article: Annual Fee for the Slovak Medicines Verification System – 2027",
+   "url": "https://sool.sk/annual-fee-for-the-slovak-medicines-verification-system-2027/",
+   "date": "2026-09-01T08:56:30Z",
+   "detected": "2026-09-01T08:56:30Z",
+   "category": "Medicines verification (SOOL)",
+   "priority": "high",
+   "tags": [
+    "Medicines verification",
+    "Medicines",
+    "Ministry of Health",
+    "VAT"
+   ],
+   "summary": "Vážení držitelia rozhodnutia o registrácii (MAH), · v súlade so Zásadami tvorby modelu poplatkov za využívanie Slovenského systému overovania liekov držiteľmi rozhodnutia o registrácii (MAH) , ktoré tvoria súčasť platných zmlúv medzi Slovenskou organizáciou pre overovanie liekov (SOOL) a jednotlivými držiteľmi…"
   },
   {
    "id": "law:311/2001:2026-09-01",
@@ -4922,14 +5785,14 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-24T02:36:13Z",
+   "checked": "2026-11-24T13:54:52Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": false,
-   "checked": "2026-11-24T02:36:13Z",
+   "checked": "2026-11-24T13:54:52Z",
    "new": 0,
    "error": "https://www.sukl.sk/sk/rss?page_id=1355&days=365: <HTTPError 403: 'Forbidden'>",
    "last_ok": "2026-11-19T22:09:52Z"
@@ -4937,68 +5800,81 @@
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": false,
-   "checked": "2026-11-24T02:36:13Z",
+   "checked": "2026-11-24T13:54:52Z",
    "new": 0,
    "error": "https://www.sukl.sk/sk/rss?page_id=1355&pid=208&days=365: <HTTPError 403: 'Forbidden'>",
    "last_ok": "2026-11-19T22:09:52Z"
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
-   "ok": false,
-   "checked": "2026-11-24T02:36:13Z",
+   "ok": true,
+   "checked": "2026-11-24T13:54:52Z",
    "new": 0,
-   "error": "https://www.health.gov.sk/RSS?Clanky: <HTTPError 404: 'Not Found'>",
-   "last_ok": "2026-11-03T23:16:46Z"
+   "error": null
   },
   "uskvbl": {
-   "name": "ÚŠKVBL · Veterinárne lieky",
+   "name": "ÚŠKVBL · Všetky zmeny na webe",
    "ok": true,
-   "checked": "2026-11-24T02:36:13Z",
-   "new": 0,
+   "checked": "2026-11-24T13:54:52Z",
+   "new": 21,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-11-21T01:03:37Z",
+   "checked": "2026-11-24T13:54:52Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-24T02:36:13Z",
-   "new": 4,
+   "checked": "2026-11-24T13:54:52Z",
+   "new": 1,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-11-21T01:03:37Z",
-   "new": 0,
+   "checked": "2026-11-24T13:54:52Z",
+   "new": 1,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-11-21T01:03:37Z",
+   "checked": "2026-11-24T13:54:52Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-24T02:36:13Z",
+   "checked": "2026-11-24T13:54:52Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-24T02:36:13Z",
+   "checked": "2026-11-24T13:54:52Z",
    "new": 0,
+   "error": null
+  },
+  "sukl_web": {
+   "name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "ok": true,
+   "checked": "2026-11-24T13:54:52Z",
+   "new": 33,
+   "error": null
+  },
+  "sool": {
+   "name": "SOOL · Slovenská organizácia pre overovanie liekov",
+   "ok": true,
+   "checked": "2026-11-24T13:54:52Z",
+   "new": 1,
    "error": null
   }
  },
- "updated": "2026-11-24T02:36:13Z"
+ "updated": "2026-11-24T13:54:52Z"
 }
