@@ -62,9 +62,11 @@ SOURCES = {
     "slovlex_lp": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
     "sukl": "ŠÚKL · Aktuality",
     "sukl_recall": "ŠÚKL · Stiahnutia liekov z trhu",
+    "sukl_web": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
     "mzsr": "Ministerstvo zdravotníctva SR",
     "kategorizacia": "MZ SR · Zoznam kategorizovaných liekov",
-    "uskvbl": "ÚŠKVBL · Veterinárne lieky",
+    "uskvbl": "ÚŠKVBL · Všetky zmeny na webe",
+    "sool": "SOOL · Slovenská organizácia pre overovanie liekov",
     "eurlex": "EUR-Lex · Úradný vestník EÚ",
     "ema": "EMA · European Medicines Agency",
     "svps": "ŠVPS SR · Štátna veterinárna a potravinová správa",
@@ -361,48 +363,241 @@ def check_mzsr(rules: Rules, state: dict) -> list[dict]:
     return results
 
 
-def check_uskvbl(rules: Rules, state: dict, bootstrap: bool) -> list[dict]:
-    """ÚŠKVBL publishes everything as WordPress pages; report pages that changed and what was added."""
-    st = state.setdefault("uskvbl", {}).setdefault("pages", {})
-    base = "https://www.uskvbl.sk/index.php?rest_route=/wp/v2/pages&orderby=modified&order=desc&per_page=50&_fields=id,title,modified_gmt,link"
-    listing = json.loads(fetch(base))
-    results = []
+# --------------------------------------------------------------------------- whole-website change tracking
+
+ICON_WORDS = {"east", "west", "north", "south", "arrow_forward", "arrow_back", "chevron_right", "chevron_left",
+              "open_in_new", "download", "expand_more", "expand_less", "close", "search", "menu", "home"}
+
+
+def text_lines(text: str) -> list[str]:
+    return [ln for ln in text.splitlines() if len(ln) > 3 and ln.strip().lower() not in ICON_WORDS]
+
+
+def line_hashes(lines: list[str]) -> list[str]:
+    return [hashlib.sha1(ln.encode()).hexdigest()[:10] for ln in lines]
+
+
+def describe_change(lines: list[str], hashes: list[str], old: list[str], limit: int = 6) -> str | None:
+    """What changed on a page, from its current lines and the previous version's line hashes.
+    Added lines get their unchanged label line in front ("Predpokladaný termín obnovenia: 30.11.2026").
+    Returns None when the text did not change (only formatting or the order)."""
+    before, now = set(old), set(hashes)
+    added = []
+    for i, (ln, h) in enumerate(zip(lines, hashes)):
+        if h in before:
+            continue
+        label = lines[i - 1] if i and hashes[i - 1] in before and len(lines[i - 1]) <= 40 and not lines[i - 1].endswith(".") else ""
+        added.append(f"{label}: {ln}" if label else ln)
+    removed = len([h for h in dict.fromkeys(old) if h not in now])
+    if not added and not removed:
+        return None
+    parts = []
+    if added:
+        parts.append("Added: " + " · ".join(added[:limit]) + (f" (+{len(added) - limit} more)" if len(added) > limit else ""))
+    if removed:
+        parts.append(f"Removed: {removed} line{'s' if removed != 1 else ''}")
+    return " | ".join(parts)
+
+
+def page_text(url: str) -> list[str]:
+    """The readable text of a published page, without menus, header and footer."""
+    page = fetch(url)
+    m = re.search(r"(?is)<main\b.*?</main>", page) or re.search(r"(?is)<body\b.*?</body>", page)
+    body = re.sub(r"(?is)<(nav|header|footer|form|script|style)\b.*?</\1>", " ", m.group(0) if m else page)
+    return text_lines(strip_html(body))
+
+
+# WordPress sites: every page change, new article and newly uploaded document.
+WP_SITES = {
+    "uskvbl": {"api": "https://www.uskvbl.sk/index.php?rest_route=/wp/v2/{route}",
+               "category": "Veterinary (ÚŠKVBL)", "tag": "Veterinary medicines"},
+    "sool": {"api": "https://sool.sk/index.php?rest_route=/wp/v2/{route}",
+             "category": "Medicines verification (SOOL)", "tag": "Medicines verification"},
+}
+# documents the institutes must publish about their own purchases – shown, but never notified
+WP_ADMIN_DOCS = re.compile(r"prehlad[_ -]?(objednav|faktur)|zmluv|objednavk|faktur|verejne obstaravanie|vyrocna sprava")
+
+
+def wp_get(site: str, route: str, **params):
+    url = WP_SITES[site]["api"].format(route=route) + "&" + urllib.parse.urlencode(params)
+    return json.loads(fetch(url))
+
+
+def wp_level(site: str, title: str, text: str, rules: Rules) -> int:
+    t = fold(title)
+    level, _ = rules.match(f"{title} {text}", specific_only=True)
+    if site == "uskvbl" and any(k in t for k in ("dolezite oznamy", "kvalita", "inspekc", "stiahnut")):
+        return 3
+    if site == "sool" and any(k in t for k in ("dolezit", "zmena", "poplat", "fee", "end point")):
+        return 3
+    return max(level, 2)
+
+
+def check_wordpress(site: str, rules: Rules, state: dict, bootstrap: bool) -> list[dict]:
+    """Report every changed page (with the added / removed text), every new or edited article and every new document."""
+    cfg = WP_SITES[site]
+    st = state.setdefault(site, {})
     cutoff = now_utc() - dt.timedelta(days=rules.bootstrap_days)
-    for page in listing:
-        pid = str(page["id"])
-        modified = page.get("modified_gmt")
-        prev = st.get(pid)
-        if prev and prev.get("modified") == modified:
-            continue
-        mod_dt = parse_iso(modified)
-        if not prev and not bootstrap and mod_dt and mod_dt < cutoff:
-            st[pid] = {"modified": modified, "lines": []}
-            continue
-        detail = json.loads(fetch(f"https://www.uskvbl.sk/index.php?rest_route=/wp/v2/pages/{pid}&_fields=id,title,content,link"))
-        title = strip_html(detail["title"]["rendered"]) or "Úvodná stránka"
-        text = strip_html(detail["content"]["rendered"])
-        lines = [ln for ln in text.splitlines() if len(ln) > 3]
-        hashes = [hashlib.sha1(ln.encode()).hexdigest()[:10] for ln in lines]
-        old = set(prev.get("lines", [])) if prev else None
-        st[pid] = {"modified": modified, "lines": hashes}
-        if rules.excluded(title, detail.get("link", "")):
-            continue
-        if old is not None:
-            added = [ln for ln, h in zip(lines, hashes) if h not in old]
-            if not added:
-                continue  # only formatting changed
-            summary = "New on the page: " + " · ".join(added[:6])
-        else:
-            if not mod_dt or mod_dt < cutoff:
+    results = []
+
+    def item(uid, title, link, when, level, summary, backlog=False):
+        _, tags = rules.match(f"{title} {summary}", specific_only=True)
+        it = make_item(site, uid, title, link, when, cfg["category"], level, [cfg["tag"]] + [t for t in tags if t != cfg["tag"]], summary)
+        if backlog:
+            it["_backlog"] = True
+        results.append(it)
+
+    # pages and articles: compare the text with the previous version
+    for route, kind in (("pages", "page"), ("posts", "article")):
+        first = route not in st and not bootstrap  # a part of the site tracked for the first time: baseline only
+        known = st.setdefault(route, {})
+        for page in wp_get(site, route, orderby="modified", order="desc", per_page=50, _fields="id,title,modified_gmt,link"):
+            pid, modified = str(page["id"]), page.get("modified_gmt")
+            prev = known.get(pid)
+            if prev and prev.get("modified") == modified:
                 continue
-            summary = " · ".join(lines[:5])
+            mod_dt = parse_iso(modified)
+            if not prev and not bootstrap and not first and mod_dt and mod_dt < cutoff:
+                known[pid] = {"modified": modified, "lines": []}  # old content we had not seen yet
+                continue
+            detail = wp_get(site, f"{route}/{pid}", _fields="id,title,content,link")
+            title = strip_html(detail["title"]["rendered"]) or "Úvodná stránka"
+            link = detail.get("link") or page["link"]
+            lines = text_lines(strip_html(detail["content"]["rendered"])) or page_text(link)  # some themes keep text outside "content"
+            hashes = line_hashes(lines)
+            known[pid] = {"modified": modified, "lines": hashes}
+            if rules.excluded(title, link):
+                continue
+            if prev and prev.get("lines"):
+                summary = describe_change(lines, hashes, prev["lines"])
+                if summary is None:
+                    continue  # only formatting changed
+                label = "Updated page" if kind == "page" else "Updated article"
+            else:
+                if not mod_dt or mod_dt < cutoff:
+                    continue
+                summary = " · ".join(lines[:5])
+                label = "Updated page" if kind == "page" else "New article"
+            level = 1 if WP_ADMIN_DOCS.search(fold(title)) else wp_level(site, title, summary, rules)
+            item(f"{site}:{route}:{pid}:{modified}", f"{label}: {title}", link, mod_dt, level, summary, backlog=first)
+
+    # newly uploaded documents (PDF, Word, Excel …); images are skipped
+    first = "media" not in st and not bootstrap
+    media = st.setdefault("media", {})
+    for m in wp_get(site, "media", orderby="date", order="desc", per_page=100, _fields="id,date_gmt,title,source_url,mime_type"):
+        mid = str(m["id"])
+        if mid in media:
+            continue
+        media[mid] = m.get("date_gmt")
+        if (m.get("mime_type") or "").startswith("image/"):
+            continue
+        when = parse_iso(m.get("date_gmt"))
+        if not when or ((bootstrap or first) and when < cutoff):
+            continue
+        title = strip_html(m["title"]["rendered"]) or m["source_url"].rsplit("/", 1)[-1]
+        ext = m["source_url"].rsplit(".", 1)[-1].upper()[:5]
+        level = 1 if WP_ADMIN_DOCS.search(fold(f"{title} {m['source_url']}")) else wp_level(site, title, "", rules)
+        item(f"{site}:media:{mid}", f"New document: {title}", m["source_url"], when, level,
+             f"{ext} file uploaded to {urllib.parse.urlparse(m['source_url']).netloc}", backlog=first)
+    return results
+
+
+# ŠÚKL publishes every page in its sitemap with the date it last changed.
+SUKL_SITEMAP = "https://www.sukl.sk/sitemap_sk.xml"
+SUKL_AVAILABILITY = [  # slug fragment -> notice type
+    ("prerusenie", "Supply interruption"),
+    ("obnovenie", "Supply resumed"),
+    ("zrusenie", "Supply ended"),
+    ("prve-uvedenie", "First placed on the market"),
+]
+SUKL_NOTICE_FIELDS = ["Typ oznámenia", "Platnosť od", "Dátum hlásenia", "Predpokladaný termín obnovenia",
+                      "Kód ŠÚKL", "ATC", "Držiteľ registrácie", "Poznámka"]
+SUKL_WEB_FETCH_LIMIT = 60     # page downloads per run; the rest are picked up in the next runs
+SUKL_WEB_MASS_UPDATE = 80     # more pages re-dated at once than this = a site-wide re-stamp, not edits
+
+
+def sukl_page(url: str) -> tuple[str, list[str]]:
+    page = fetch(url)
+    m = re.search(r"(?is)<main\b.*?</main>", page)
+    body = re.sub(r"(?is)<(nav|header|footer|form)\b.*?</\1>", " ", m.group(0) if m else page)
+    h1 = re.search(r"(?is)<h1[^>]*>(.*?)</h1>", body)
+    title = strip_html(h1.group(1)) if h1 else ""
+    if not title:
+        t = re.search(r"(?is)<title>(.*?)</title>", page)
+        title = strip_html(t.group(1)).split(" | ")[0] if t else url.rsplit("/", 1)[-1]
+    return title.replace("\n", " "), text_lines(strip_html(body))  # same cleaning as page_text()
+
+
+def notice_summary(lines: list[str]) -> str:
+    """'Typ oznámenia: Prerušenie · Platnosť od: 02.11.2026 · …' from the label/value lines of an availability notice."""
+    out = []
+    for i, ln in enumerate(lines[:-1]):
+        if ln in SUKL_NOTICE_FIELDS and lines[i + 1] not in SUKL_NOTICE_FIELDS:
+            out.append(f"{ln}: {lines[i + 1]}")
+    return " · ".join(out)
+
+
+def check_sukl_web(rules: Rules, state: dict, bootstrap: bool, known_urls: set[str]) -> list[dict]:
+    st = state.setdefault("sukl_web", {})
+    stamps, texts = st.setdefault("lastmod", {}), st.setdefault("lines", {})
+    sitemap = re.findall(r"<loc>\s*([^<\s]+)\s*</loc>\s*<lastmod>\s*([^<\s]+)\s*</lastmod>", fetch(SUKL_SITEMAP, timeout=90))
+    if len(sitemap) < 100:
+        raise RuntimeError(f"sitemap has only {len(sitemap)} pages")
+    recent = (now_utc() - dt.timedelta(days=14)).date().isoformat()
+    if bootstrap:
+        stamps.update(dict(sitemap))
+        # show the last two weeks of supply notices straight away (not notified)
+        todo = [(u, m, True) for u, m in sitemap if m >= recent and any(f in u for f, _ in SUKL_AVAILABILITY)]
+    else:
+        new = [(u, m, True) for u, m in sitemap if u not in stamps]
+        changed = [(u, m, False) for u, m in sitemap if u in stamps and m != stamps[u]]
+        if len([1 for u, _, _ in changed if u not in texts]) > SUKL_WEB_MASS_UPDATE:
+            for u, m, _ in changed:  # the whole site was re-dated; real edits on tracked pages still show
+                if u not in texts:
+                    stamps[u] = m
+            changed = [c for c in changed if c[0] in texts]
+        todo = new + changed
+    results = []
+    for n, (url, lastmod, is_new) in enumerate(todo):
+        if n >= SUKL_WEB_FETCH_LIMIT:
+            break  # stamps not updated: these are picked up next run
+        stamps[url] = lastmod
+        if url in known_urls:
+            continue  # already reported by the ŠÚKL news or recall feed
+        try:
+            title, lines = sukl_page(url)
+        except RuntimeError as e:
+            print(f"  ! {url}: {e}", file=sys.stderr)
+            continue
+        hashes = line_hashes(lines)
+        old = texts.get(url)
+        texts[url] = hashes
+        if rules.excluded(title, url):
+            continue
+        notice = next((label for frag, label in SUKL_AVAILABILITY if frag in url.lower()), None)
+        change = describe_change(lines, hashes, old) if old else None
+        if old and change is None:
+            continue  # re-dated, but the text is the same
+        if notice:
+            category, base, heading = "Supply / availability", 2, title
+            summary = change or notice_summary(lines) or " · ".join(lines[:6])
+        else:
+            category, base = next(((c, b) for frag, c, b in SUKL_SECTIONS if frag in url), ("ŠÚKL website", 1))
+            if old:
+                summary, heading = change, f"Updated page: {title}"
+            else:
+                summary = " · ".join(lines[1:6] if lines and lines[0] == title else lines[:5])
+                heading = f"{'New page' if is_new else 'Updated page'}: {title}"
         level, tags = rules.match(f"{title} {summary}", specific_only=True)
-        t = fold(title)
-        level = 3 if any(k in t for k in ("dolezite oznamy", "kvalita", "inspekc", "stiahnut")) else max(level, 2)
-        tags = ["Veterinary medicines"] + [x for x in tags if x != "Veterinary medicines"]
-        uid = f"uskvbl:{pid}:{modified}"
-        results.append(make_item("uskvbl", uid, f"Updated page: {title}", detail.get("link") or page["link"],
-                                 mod_dt, "Veterinary (ÚŠKVBL)", level, tags, summary))
+        level = max(base, min(level, 3))
+        reported = re.search(r"Dátum hlásenia: (\d\d)\.(\d\d)\.(\d{4})", notice_summary(lines)) if notice else None
+        if reported and (bootstrap or is_new):
+            when = parse_iso(f"{reported[3]}-{reported[2]}-{reported[1]}T12:00:00Z")  # the date the notice was filed
+        else:
+            when = now_utc() if not bootstrap else parse_iso(lastmod + "T12:00:00Z")
+        uid = f"sukl_web:{url}:{hashlib.sha1(''.join(hashes).encode()).hexdigest()[:10]}"
+        it = make_item("sukl_web", uid, heading, url, when, category, level, ([notice] if notice else []) + tags, summary)
+        results.append(it)
     return results
 
 
@@ -889,8 +1084,10 @@ def main() -> int:
                 found = check_sukl(rules, state, recalls_only=key == "sukl_recall")
             elif key == "mzsr":
                 found = check_mzsr(rules, state)
-            elif key == "uskvbl":
-                found = check_uskvbl(rules, state, bootstrap)
+            elif key in ("uskvbl", "sool"):
+                found = check_wordpress(key, rules, state, bootstrap)
+            elif key == "sukl_web":
+                found = check_sukl_web(rules, state, bootstrap, {i["url"] for i in store["items"]})
             elif key == "lawchanges":
                 found = check_lawchanges(rules, state)
             elif key == "slovlex_lp":

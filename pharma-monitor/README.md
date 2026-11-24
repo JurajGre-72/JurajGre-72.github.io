@@ -18,7 +18,9 @@ to a distributor of human and veterinary medicines, medical devices and related 
 | **ŠÚKL – recall feed** (`sukl_recall`) | Medicines withdrawn from the market | Always **high** priority |
 | **ŠÚKL – news feed** (`sukl`) | Supply disruptions (MSC), distribution and pharmacy guidance, DHPC safety letters, medical devices, advertising | Priority depends on section |
 | **MZ SR – news** (`mzsr`) | Press releases about medicines, reimbursement, prices, insurance | Keyword filtered |
-| **ÚŠKVBL** (`uskvbl`) | Updates of the veterinary institute's pages (important notices, quality, lists) | Lines added to the page |
+| **ŠÚKL – whole website** (`sukl_web`) | Every new or changed page of sukl.sk, read from its sitemap every hour – including the supply notices (interruption, resumption, end of supply, first placing on the market) that are not in the news feed | Notice type, dates, ŠÚKL code; for changed pages the added text and how many lines were removed |
+| **ÚŠKVBL – whole website** (`uskvbl`) | Every changed page, new article and newly uploaded document of the veterinary institute | Added text and removed lines; document type. The institute's own order and invoice reports are shown as low priority |
+| **SOOL** (`sool`) | Slovak Medicines Verification Organisation (FMD / verification system): articles, pages and documents, e.g. annual fees and changes for LIS/DIS suppliers | Added text and removed lines; new documents |
 | **ŠVPS SR** (`svps`) | Veterinary medicines, emergency measures, animal disease outbreaks, non-compliant products | Keyword and category filtered |
 | **EUR-Lex** (`eurlex`) | New EU regulations, directives and decisions on medicines, veterinary medicines, medical devices, distribution, shortages | Slovak title, link to the Slovak text, which act it amends |
 | **EMA** (`ema`) | European Medicines Agency news (CHMP/PRAC/CVMP highlights, shortages, safety) | Headline decides priority |
