@@ -557,7 +557,7 @@ def notice_summary(lines: list[str]) -> str:
 
 def check_sukl_web(rules: Rules, state: dict, bootstrap: bool, known_urls: set[str]) -> list[dict]:
     st = state.setdefault("sukl_web", {})
-    stamps, texts = st.setdefault("lastmod", {}), st.setdefault("lines", {})
+    stamps, texts, failed = st.setdefault("lastmod", {}), st.setdefault("lines", {}), st.setdefault("failed", {})
     sitemap = re.findall(r"<loc>\s*([^<\s]+)\s*</loc>\s*<lastmod>\s*([^<\s]+)\s*</lastmod>", fetch(SUKL_SITEMAP, timeout=90))
     if len(sitemap) < 100:
         raise RuntimeError(f"sitemap has only {len(sitemap)} pages")
@@ -579,14 +579,21 @@ def check_sukl_web(rules: Rules, state: dict, bootstrap: bool, known_urls: set[s
     for n, (url, lastmod, is_new) in enumerate(todo):
         if n >= SUKL_WEB_FETCH_LIMIT:
             break  # stamps not updated: these are picked up next run
-        stamps[url] = lastmod
         if url in known_urls:
+            stamps[url] = lastmod
             continue  # already reported by the ŠÚKL news or recall feed
         try:
             title, lines = sukl_page(url)
         except RuntimeError as e:
-            print(f"  ! {url}: {e}", file=sys.stderr)
+            # leave the old date so the next run tries again; give up on a page that keeps failing (e.g. a dead link)
+            tries = failed[url] = failed.get(url, 0) + 1
+            print(f"  ! {url}: {e}{' – giving up' if tries >= 3 else ' – will retry'}", file=sys.stderr)
+            if tries >= 3:
+                stamps[url] = lastmod
+                del failed[url]
             continue
+        stamps[url] = lastmod
+        failed.pop(url, None)
         hashes = line_hashes(lines)
         old = texts.get(url)
         texts[url] = hashes

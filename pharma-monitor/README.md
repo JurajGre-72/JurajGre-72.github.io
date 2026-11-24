@@ -132,4 +132,11 @@ npm install --no-save playwright@1.56.1 && npx playwright install chromium
 node pharma-monitor/tests/dashboard.test.mjs
 ```
 
+`tests/test_web_tracking.py` checks the ŠÚKL / ÚŠKVBL / SOOL website trackers without network access (what a changed
+supply notice reports, retry after a failed download, reading back past 100 entries, no flood on a site-wide re-dating):
+
+```bash
+python3 -m unittest discover -s pharma-monitor/tests -p 'test_*.py'
+```
+
 > Monitoring aid, not legal advice. Always check the official text.
