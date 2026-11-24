@@ -423,6 +423,22 @@ def wp_get(site: str, route: str, **params):
     return json.loads(fetch(url))
 
 
+def wp_newest(site: str, route: str, already_seen, **params):
+    """Entries newest first, reading further back (100 per request) until one we have already seen, so nothing
+    is missed even after many changes between two checks (e.g. when the site was down for a while)."""
+    for page_no in range(1, 11):
+        try:
+            batch = wp_get(site, route, per_page=100, page=page_no, **params)
+        except RuntimeError:
+            if page_no == 1:
+                raise
+            return  # WordPress answers 400 when asked past its last page
+        done = len(batch) < 100 or any(already_seen(e) for e in batch)  # decide before the caller records them
+        yield from batch
+        if done:
+            return
+
+
 def wp_level(site: str, title: str, text: str, rules: Rules) -> int:
     t = fold(title)
     level, _ = rules.match(f"{title} {text}", specific_only=True)
@@ -451,7 +467,8 @@ def check_wordpress(site: str, rules: Rules, state: dict, bootstrap: bool) -> li
     for route, kind in (("pages", "page"), ("posts", "article")):
         first = route not in st and not bootstrap  # a part of the site tracked for the first time: baseline only
         known = st.setdefault(route, {})
-        for page in wp_get(site, route, orderby="modified", order="desc", per_page=50, _fields="id,title,modified_gmt,link"):
+        unchanged = lambda e, known=known: (known.get(str(e["id"])) or {}).get("modified") == e.get("modified_gmt")
+        for page in wp_newest(site, route, unchanged, orderby="modified", order="desc", _fields="id,title,modified_gmt,link"):
             pid, modified = str(page["id"]), page.get("modified_gmt")
             prev = known.get(pid)
             if prev and prev.get("modified") == modified:
@@ -484,7 +501,8 @@ def check_wordpress(site: str, rules: Rules, state: dict, bootstrap: bool) -> li
     # newly uploaded documents (PDF, Word, Excel …); images are skipped
     first = "media" not in st and not bootstrap
     media = st.setdefault("media", {})
-    for m in wp_get(site, "media", orderby="date", order="desc", per_page=100, _fields="id,date_gmt,title,source_url,mime_type"):
+    for m in wp_newest(site, "media", lambda e: str(e["id"]) in media, orderby="date", order="desc",
+                       _fields="id,date_gmt,title,source_url,mime_type"):
         mid = str(m["id"])
         if mid in media:
             continue
