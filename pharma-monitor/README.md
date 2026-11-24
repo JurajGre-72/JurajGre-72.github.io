@@ -17,7 +17,7 @@ to a distributor of human and veterinary medicines, medical devices and related 
 | **MZ SR – list of categorised medicines** (`kategorizacia`) | Each monthly reimbursement list (Part A) | Medicines added / removed and changes of max. price, reimbursement, co-pay, prescription and indication restrictions, by ŠÚKL code |
 | **ŠÚKL – recall feed** (`sukl_recall`) | Medicines withdrawn from the market | Always **high** priority |
 | **ŠÚKL – news feed** (`sukl`) | Supply disruptions (MSC), distribution and pharmacy guidance, DHPC safety letters, medical devices, advertising | Priority depends on section |
-| **MZ SR – news** (`mzsr`) | Press releases about medicines, reimbursement, prices, insurance | Keyword filtered |
+| **MZ SR – news** (`mzsr`, feed `health.gov.sk/rss/sk/novinky.xml` since the November 2026 website move) | Press releases about medicines, reimbursement, prices, insurance | Keyword filtered |
 | **ŠÚKL – whole website** (`sukl_web`) | Every new or changed page of sukl.sk, read from its sitemap every hour – including the supply notices (interruption, resumption, end of supply, first placing on the market) that are not in the news feed | Notice type, dates, ŠÚKL code; for changed pages the added text and how many lines were removed |
 | **ÚŠKVBL – whole website** (`uskvbl`) | Every changed page, new article and newly uploaded document of the veterinary institute | Added text and removed lines; document type. The institute's own order and invoice reports are shown as low priority |
 | **SOOL** (`sool`) | Slovak Medicines Verification Organisation (FMD / verification system): articles, pages and documents, e.g. annual fees and changes for LIS/DIS suppliers | Added text and removed lines; new documents |

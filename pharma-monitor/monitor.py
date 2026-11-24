@@ -339,14 +339,23 @@ def check_sukl(rules: Rules, state: dict, recalls_only: bool) -> list[dict]:
     return results
 
 
+MZSR_FEED = "https://www.health.gov.sk/rss/sk/novinky.xml"  # new website since November 2026 (old RSS?Clanky is gone)
+
+
 def check_mzsr(rules: Rules, state: dict) -> list[dict]:
-    seen = state.setdefault("mzsr", {}).setdefault("seen", {})
+    st = state.setdefault("mzsr", {})
+    seen = st.setdefault("seen", {})
+    # after a move to a new feed every link is new: older news was already reported under its old address
+    moved_since = now_utc() - dt.timedelta(days=25) if st.get("feed") != MZSR_FEED else None
+    st["feed"] = MZSR_FEED
     results = []
-    for it in rss_items(fetch("https://www.health.gov.sk/RSS?Clanky")):
+    for it in rss_items(fetch(MZSR_FEED)):
         uid = it["link"] or it["guid"]
         if uid in seen:
             continue
         seen[uid] = iso(now_utc())
+        if moved_since and it["date"] and it["date"] < moved_since:
+            continue
         text = strip_html(it["description"])
         text = re.sub(r"^Nadpis plný:.*\n?|^Dátum článku:.*\n?", "", text, flags=re.M)
         text = re.sub(r"^Obsah stručný:\s*", "", text, flags=re.M)
@@ -564,8 +573,9 @@ def check_sukl_web(rules: Rules, state: dict, bootstrap: bool, known_urls: set[s
     recent = (now_utc() - dt.timedelta(days=14)).date().isoformat()
     if bootstrap:
         stamps.update(dict(sitemap))
-        # show the last two weeks of supply notices straight away (not notified)
-        todo = [(u, m, True) for u, m in sitemap if m >= recent and any(f in u for f, _ in SUKL_AVAILABILITY)]
+        # show the last two weeks straight away (not notified): supply notices first, then news, recalls and other pages
+        todo = sorted(((u, m, False) for u, m in sitemap if m >= recent), key=lambda t: t[1], reverse=True)  # newest first
+        todo.sort(key=lambda t: not any(f in t[0] for f, _ in SUKL_AVAILABILITY))  # stable: notices ahead
     else:
         new = [(u, m, True) for u, m in sitemap if u not in stamps]
         changed = [(u, m, False) for u, m in sitemap if u in stamps and m != stamps[u]]
