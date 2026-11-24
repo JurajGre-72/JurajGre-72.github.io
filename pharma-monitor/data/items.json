@@ -1,6 +1,19 @@
 {
  "items": [
   {
+   "id": "https://www.sukl.sk/o-nas/databazy-a-servis/rss-1/oznam-k-odberu-rss-noviniek-kanal-sukl-funguje-zmena-nastala-v-aplikacii-outlook",
+   "source": "sukl",
+   "source_name": "ŠÚKL · Aktuality",
+   "title": "Oznam k odberu RSS noviniek: Kanál ŠÚKL funguje, zmena nastala v aplikácii Outlook",
+   "url": "https://www.sukl.sk/o-nas/databazy-a-servis/rss-1/oznam-k-odberu-rss-noviniek-kanal-sukl-funguje-zmena-nastala-v-aplikacii-outlook",
+   "date": "2026-11-24T12:04:12Z",
+   "detected": "2026-11-24T15:35:21Z",
+   "category": "ŠÚKL notice",
+   "priority": "low",
+   "tags": [],
+   "summary": ""
+  },
+  {
    "id": "sukl_web:https://www.sukl.sk/o-nas/databazy-a-servis/rss-1:573061792d",
    "source": "sukl_web",
    "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
@@ -293,6 +306,19 @@
     "Drug safety"
    ],
    "summary": "Edukačné materiály poskytujú zdravotníckym pracovníkom, pacientom a ich opatrovateľom dôležité informácie pre bezpečné používanie lieku a zníženie rizika nežiaducich účinkov. · Liek · Edukačný materiál · Accusol 35 · Accusol 35: Príručka pre zdravotníckych pracovníkov (PDF, 1,8 MB)"
+  },
+  {
+   "id": "https://www.sukl.sk/pre-verejnost-pacientov-a-media/oznamy-a-upozornenia/sekcia-inspekcie-ziadosti-o-vydanie-posudku-budu-spracovane-od-10.-januara-2027",
+   "source": "sukl",
+   "source_name": "ŠÚKL · Aktuality",
+   "title": "Sekcia inšpekcie: Žiadosti o vydanie posudku budú spracované od 10. januára 2027",
+   "url": "https://www.sukl.sk/pre-verejnost-pacientov-a-media/oznamy-a-upozornenia/sekcia-inspekcie-ziadosti-o-vydanie-posudku-budu-spracovane-od-10.-januara-2027",
+   "date": "2026-11-20T11:14:49Z",
+   "detected": "2026-11-24T15:35:21Z",
+   "category": "ŠÚKL notice",
+   "priority": "low",
+   "tags": [],
+   "summary": "Týka sa to všetkých žiadostí, ktoré budú podané od 23. novembra 2026."
   },
   {
    "id": "lp:LP/2026/643:MPK",
@@ -5785,38 +5811,36 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-24T13:54:52Z",
+   "checked": "2026-11-24T15:35:14Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
-   "ok": false,
-   "checked": "2026-11-24T13:54:52Z",
-   "new": 0,
-   "error": "https://www.sukl.sk/sk/rss?page_id=1355&days=365: <HTTPError 403: 'Forbidden'>",
-   "last_ok": "2026-11-19T22:09:52Z"
+   "ok": true,
+   "checked": "2026-11-24T15:35:14Z",
+   "new": 2,
+   "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
-   "ok": false,
-   "checked": "2026-11-24T13:54:52Z",
+   "ok": true,
+   "checked": "2026-11-24T15:35:14Z",
    "new": 0,
-   "error": "https://www.sukl.sk/sk/rss?page_id=1355&pid=208&days=365: <HTTPError 403: 'Forbidden'>",
-   "last_ok": "2026-11-19T22:09:52Z"
+   "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-11-24T13:54:52Z",
+   "checked": "2026-11-24T15:35:14Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Všetky zmeny na webe",
    "ok": true,
-   "checked": "2026-11-24T13:54:52Z",
-   "new": 21,
+   "checked": "2026-11-24T15:35:14Z",
+   "new": 0,
    "error": null
   },
   "lawchanges": {
@@ -5829,8 +5853,8 @@
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-24T13:54:52Z",
-   "new": 1,
+   "checked": "2026-11-24T15:35:14Z",
+   "new": 0,
    "error": null
   },
   "eurlex": {
@@ -5850,31 +5874,31 @@
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-24T13:54:52Z",
+   "checked": "2026-11-24T15:35:14Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-24T13:54:52Z",
+   "checked": "2026-11-24T15:35:14Z",
    "new": 0,
    "error": null
   },
   "sukl_web": {
    "name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
    "ok": true,
-   "checked": "2026-11-24T13:54:52Z",
-   "new": 33,
+   "checked": "2026-11-24T15:35:14Z",
+   "new": 0,
    "error": null
   },
   "sool": {
    "name": "SOOL · Slovenská organizácia pre overovanie liekov",
    "ok": true,
-   "checked": "2026-11-24T13:54:52Z",
-   "new": 1,
+   "checked": "2026-11-24T15:35:14Z",
+   "new": 0,
    "error": null
   }
  },
- "updated": "2026-11-24T13:54:52Z"
+ "updated": "2026-11-24T15:35:14Z"
 }
