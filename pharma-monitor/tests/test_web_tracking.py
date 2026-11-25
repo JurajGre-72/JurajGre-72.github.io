@@ -173,6 +173,33 @@ class WordPressHistoryTest(unittest.TestCase):
         self.assertEqual(again, [], "the history is listed only once")
 
 
+    def test_history_survives_a_sources_first_run(self):
+        started = monitor.now_utc()
+        old = {"id": "a", "date": monitor.iso(started - monitor.dt.timedelta(days=400)), "_history": True}
+        plain_old = {"id": "b", "date": old["date"]}
+        recent = {"id": "c", "date": monitor.iso(started)}
+        kept = monitor.first_run_filter([old, plain_old, recent], 90, started)
+        self.assertEqual([i["id"] for i in kept], ["a", "c"])
+
+    def test_history_reads_past_a_thousand_entries(self):
+        now = monitor.now_utc()
+        media = [{"id": n, "date_gmt": monitor.iso(now - monitor.dt.timedelta(hours=n)).replace("Z", ""),
+                  "title": {"rendered": f"doc {n}"}, "source_url": f"https://www.uskvbl.sk/u/{n}.pdf",
+                  "mime_type": "application/pdf"} for n in range(1, 1501)]  # 1,500 documents, all within two years
+
+        def wp_get(site, route, per_page=100, page=1, **params):
+            if route != "media":
+                return []
+            chunk = media[(page - 1) * per_page: page * per_page]
+            if not chunk:
+                raise RuntimeError("400")
+            return chunk
+        state = {"uskvbl": {"pages": {}, "posts": {}, "media": {str(m["id"]): "x" for m in media}}}
+        with mock.patch.object(monitor, "wp_get", side_effect=wp_get):
+            items = monitor.check_wordpress("uskvbl", RULES, state, False)
+        self.assertEqual(len(items), 1500)
+
+
 class DescribeChangeTest(unittest.TestCase):
     def test_unchanged_text_is_none(self):
         lines = ["a line", "another line"]

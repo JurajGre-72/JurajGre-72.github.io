@@ -433,10 +433,10 @@ def wp_get(site: str, route: str, **params):
     return json.loads(fetch(url))
 
 
-def wp_newest(site: str, route: str, already_seen, **params):
+def wp_newest(site: str, route: str, already_seen, max_pages: int = 10, **params):
     """Entries newest first, reading further back (100 per request) until one we have already seen, so nothing
     is missed even after many changes between two checks (e.g. when the site was down for a while)."""
-    for page_no in range(1, 11):
+    for page_no in range(1, max_pages + 1):
         try:
             batch = wp_get(site, route, per_page=100, page=page_no, **params)
         except RuntimeError:
@@ -466,13 +466,15 @@ def check_wordpress(site: str, rules: Rules, state: dict, bootstrap: bool) -> li
     cutoff = now_utc() - dt.timedelta(days=rules.bootstrap_days)
     results = []
 
-    def item(uid, title, link, when, level, summary, backlog=False):
+    def item(uid, title, link, when, level, summary, backlog=False, history=False):
         if any(r["id"] == uid for r in results):
             return  # already listed by this run
         _, tags = rules.match(f"{title} {summary}", specific_only=True)
         it = make_item(site, uid, title, link, when, cfg["category"], level, [cfg["tag"]] + [t for t in tags if t != cfg["tag"]], summary)
         if backlog:
             it["_backlog"] = True
+        if history:
+            it["_history"] = True  # kept even on a source's first run, which otherwise keeps only recent items
         results.append(it)
 
     # pages and articles: compare the text with the previous version
@@ -510,13 +512,13 @@ def check_wordpress(site: str, rules: Rules, state: dict, bootstrap: bool) -> li
             level = 1 if WP_ADMIN_DOCS.search(fold(title)) else wp_level(site, title, summary, rules)
             item(f"{site}:{route}:{pid}:{modified}", f"{label}: {title}", link, mod_dt, level, summary, backlog=first)
 
-    def document(m, when, label, backlog):
+    def document(m, when, label, backlog, history=False):
         title = strip_html(m["title"]["rendered"]) or m["source_url"].rsplit("/", 1)[-1]
         title = re.sub(r"\s+", " ", title.replace("_", " ")).strip()  # file names: "Duecoxin_40mg_tbl_psy"
         ext = m["source_url"].rsplit(".", 1)[-1].upper()[:5]
         level = 1 if WP_ADMIN_DOCS.search(fold(f"{title} {m['source_url']}")) else wp_level(site, title, "", rules)
         item(f"{site}:media:{m['id']}", f"{label}: {title}", m["source_url"], when, level,
-             f"{ext} file uploaded to {urllib.parse.urlparse(m['source_url']).netloc}", backlog=backlog)
+             f"{ext} file uploaded to {urllib.parse.urlparse(m['source_url']).netloc}", backlog=backlog, history=history)
 
     # newly uploaded documents (PDF, Word, Excel …); images are skipped
     first = "media" not in st and not bootstrap
@@ -538,13 +540,13 @@ def check_wordpress(site: str, rules: Rules, state: dict, bootstrap: bool) -> li
     if cfg.get("history") and st.get("history_days") != rules.keep_days:
         since = now_utc() - dt.timedelta(days=rules.keep_days)
         too_old = lambda field: (lambda e: (parse_iso(e.get(field)) or since) < since)
-        for m in wp_newest(site, "media", too_old("date_gmt"), orderby="date", order="desc",
+        for m in wp_newest(site, "media", too_old("date_gmt"), max_pages=200, orderby="date", order="desc",
                            _fields="id,date_gmt,title,source_url,mime_type"):
             when = parse_iso(m.get("date_gmt"))
             if when and when >= since and not (m.get("mime_type") or "").startswith("image/"):
-                document(m, when, "Document published", backlog=True)
+                document(m, when, "Document published", backlog=True, history=True)
         for route in ("pages", "posts"):
-            for page in wp_newest(site, route, too_old("modified_gmt"), orderby="modified", order="desc",
+            for page in wp_newest(site, route, too_old("modified_gmt"), max_pages=200, orderby="modified", order="desc",
                                   _fields="id,title,modified_gmt,link"):
                 when = parse_iso(page.get("modified_gmt"))
                 if not when or when < since:
@@ -557,7 +559,8 @@ def check_wordpress(site: str, rules: Rules, state: dict, bootstrap: bool) -> li
                 summary = f"Last updated {sk_date(when.date())} · Page begins: " + " · ".join(lines[:5])
                 level = 1 if WP_ADMIN_DOCS.search(fold(title)) else wp_level(site, title, summary, rules)
                 item(f"{site}:{route}:{page['id']}:{page['modified_gmt']}",
-                     f"{'Updated page' if route == 'pages' else 'Article'}: {title}", link, when, level, summary, backlog=True)
+                     f"{'Updated page' if route == 'pages' else 'Article'}: {title}", link, when, level, summary,
+                     backlog=True, history=True)
         st["history_days"] = rules.keep_days
     return results
 
@@ -1070,6 +1073,12 @@ def check_ema(rules: Rules, state: dict) -> list[dict]:
     return results
 
 
+def first_run_filter(found: list[dict], days: int, started: dt.datetime) -> list[dict]:
+    """A source's first run keeps only recent items, except a site's history listing, which goes back further."""
+    cutoff = started - dt.timedelta(days=days)
+    return [i for i in found if i.get("_history") or parse_iso(i["date"]) >= cutoff]
+
+
 def make_item(source, uid, title, url, date, category, level, tags, summary) -> dict:
     found = now_utc()
     return {
@@ -1156,6 +1165,9 @@ def main() -> int:
     rules = Rules(load_json(CONFIG_FILE, None))
     state = load_json(STATE_FILE, {})
     store = load_json(ITEMS_FILE, {"items": [], "sources": {}})
+    for i in store["items"]:  # internal markers ("_backlog", "_history") never belong in the published data
+        for k in [k for k in i if k.startswith("_")]:
+            del i[k]
     for i in store["items"]:  # ÚŠKVBL page items from before the WordPress tracker: "uskvbl:<page>:<modified>"
         if re.fullmatch(r"uskvbl:\d+:[^:].*", i["id"]):
             i["id"] = "uskvbl:pages:" + i["id"].split(":", 1)[1]
@@ -1211,10 +1223,11 @@ def main() -> int:
                 continue
             if bootstrap:
                 days = {"slovlex": 400, "lawchanges": 400, "kategorizacia": 400}.get(key, rules.bootstrap_days)
-                cutoff = started - dt.timedelta(days=days)
-                found = [i for i in found if parse_iso(i["date"]) >= cutoff]
+                found = first_run_filter(found, days, started)
             for i in found:
-                if bootstrap or i.pop("_backlog", False):
+                i.pop("_history", None)
+                backlog = i.pop("_backlog", False)
+                if bootstrap or backlog:
                     i["detected"] = min(i["date"], i["detected"])  # don't flag the backlog as "new"
                     i["backlog"] = True
             fresh = [i for i in found if i["id"] not in known]
