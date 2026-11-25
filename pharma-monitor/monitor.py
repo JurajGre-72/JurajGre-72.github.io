@@ -564,7 +564,25 @@ def notice_summary(lines: list[str]) -> str:
     return " · ".join(out)
 
 
-def check_sukl_web(rules: Rules, state: dict, bootstrap: bool, known_urls: set[str]) -> list[dict]:
+def notice_date(summary: str) -> dt.datetime | None:
+    """Filing date of a ŠÚKL availability notice: "Dátum hlásenia: 02.11.2026" or, since 11/2026, "2.11.2026 15:22"."""
+    m = re.search(r"Dátum hlásenia: (\d{1,2})\.\s*(\d{1,2})\.\s*(\d{4})", summary or "")
+    return parse_iso(f"{m[3]}-{int(m[2]):02d}-{int(m[1]):02d}T12:00:00Z") if m else None
+
+
+def notice_key(summary: str) -> tuple | None:
+    """What identifies an availability notice whatever its web address: ŠÚKL code, notice type and valid-from date
+    (ŠÚKL republishes notices under new addresses, e.g. ...-prerusenie-02.11.2026 -> ...-prerusenie-2.11.2026)."""
+    f = {k: v.strip() for k, v in re.findall(r"(Typ oznámenia|Platnosť od|Kód ŠÚKL): ([^·]+)", summary or "")}
+    if len(f) < 3:
+        return None
+    d = re.match(r"(\d{1,2})\.\s*(\d{1,2})\.\s*(\d{4})", f["Platnosť od"])
+    valid = f"{d[3]}-{int(d[2]):02d}-{int(d[1]):02d}" if d else f["Platnosť od"]
+    return f["Kód ŠÚKL"], fold(f["Typ oznámenia"]), valid
+
+
+def check_sukl_web(rules: Rules, state: dict, bootstrap: bool, known_urls: set[str],
+                   known_notices: set | None = None) -> list[dict]:
     st = state.setdefault("sukl_web", {})
     stamps, texts, failed = st.setdefault("lastmod", {}), st.setdefault("lines", {}), st.setdefault("failed", {})
     sitemap = re.findall(r"<loc>\s*([^<\s]+)\s*</loc>\s*<lastmod>\s*([^<\s]+)\s*</lastmod>", fetch(SUKL_SITEMAP, timeout=90))
@@ -613,6 +631,11 @@ def check_sukl_web(rules: Rules, state: dict, bootstrap: bool, known_urls: set[s
         change = describe_change(lines, hashes, old) if old else None
         if old and change is None:
             continue  # re-dated, but the text is the same
+        if notice and not old and known_notices is not None:
+            key = notice_key(notice_summary(lines))
+            if key in known_notices:
+                continue  # the same notice, republished under a new address
+            known_notices.add(key)
         if notice:
             category, base, heading = "Supply / availability", 2, title
             summary = change or notice_summary(lines) or " · ".join(lines[:6])
@@ -625,9 +648,9 @@ def check_sukl_web(rules: Rules, state: dict, bootstrap: bool, known_urls: set[s
                 heading = f"{'New page' if is_new else 'Updated page'}: {title}"
         level, tags = rules.match(f"{title} {summary}", specific_only=True)
         level = max(base, min(level, 3))
-        reported = re.search(r"Dátum hlásenia: (\d\d)\.(\d\d)\.(\d{4})", notice_summary(lines)) if notice else None
-        if reported and (bootstrap or is_new):
-            when = parse_iso(f"{reported[3]}-{reported[2]}-{reported[1]}T12:00:00Z")  # the date the notice was filed
+        reported = notice_date(notice_summary(lines)) if notice else None
+        if reported and (bootstrap or is_new or not old):
+            when = reported  # first time we read this notice: date it when it was filed
         else:
             when = now_utc() if not bootstrap else parse_iso(lastmod + "T12:00:00Z")
         uid = f"sukl_web:{url}:{hashlib.sha1(''.join(hashes).encode()).hexdigest()[:10]}"
@@ -1109,6 +1132,17 @@ def main() -> int:
     if args.heavy == "hourly" and now_utc().minute >= 20:  # the :02 run, even when GitHub starts it late
         keys = [k for k in keys if k not in HEAVY_SOURCES or k not in state]
     before = normalized(load_json(ITEMS_FILE, {}))
+    for i in store["items"]:  # supply notices first listed with the day we read them: use the day they were filed
+        filed = notice_date(i["summary"]) if i.get("source") == "sukl_web" and i.get("category") == "Supply / availability" else None
+        if filed and iso(filed) < i["date"] and not i["summary"].startswith("Added:"):
+            i["date"] = iso(filed)
+    firsts: dict = {}  # the same notice listed twice under two addresses: keep the first one found
+    for i in sorted(store["items"], key=lambda i: i["detected"]):
+        key = notice_key(i["summary"]) if i.get("source") == "sukl_web" else None
+        if key:
+            firsts.setdefault(key, i["id"])
+    store["items"] = [i for i in store["items"] if i.get("source") != "sukl_web" or
+                      firsts.get(notice_key(i["summary"]), i["id"]) == i["id"]]
     for key in keys:
         bootstrap = key not in state
         print(f"→ {key}{' (first run – baseline)' if bootstrap else ''}")
@@ -1122,7 +1156,8 @@ def main() -> int:
             elif key in ("uskvbl", "sool"):
                 found = check_wordpress(key, rules, state, bootstrap)
             elif key == "sukl_web":
-                found = check_sukl_web(rules, state, bootstrap, {i["url"] for i in store["items"]})
+                found = check_sukl_web(rules, state, bootstrap, {i["url"] for i in store["items"]},
+                                       {notice_key(i["summary"]) for i in store["items"] if i.get("source") == "sukl_web"} - {None})
             elif key == "lawchanges":
                 found = check_lawchanges(rules, state)
             elif key == "slovlex_lp":
