@@ -181,11 +181,11 @@ class WordPressHistoryTest(unittest.TestCase):
         kept = monitor.first_run_filter([old, plain_old, recent], 90, started)
         self.assertEqual([i["id"] for i in kept], ["a", "c"])
 
-    def test_history_reads_past_a_thousand_entries(self):
+    def test_history_reads_everything_within_two_years(self):
         now = monitor.now_utc()
-        media = [{"id": n, "date_gmt": monitor.iso(now - monitor.dt.timedelta(hours=n)).replace("Z", ""),
+        media = [{"id": n, "date_gmt": monitor.iso(now - monitor.dt.timedelta(minutes=n)).replace("Z", ""),
                   "title": {"rendered": f"doc {n}"}, "source_url": f"https://www.uskvbl.sk/u/{n}.pdf",
-                  "mime_type": "application/pdf"} for n in range(1, 1501)]  # 1,500 documents, all within two years
+                  "mime_type": "application/pdf"} for n in range(1, 25001)]  # 25,000 documents, all within two years
 
         def wp_get(site, route, per_page=100, page=1, **params):
             if route != "media":
@@ -197,7 +197,7 @@ class WordPressHistoryTest(unittest.TestCase):
         state = {"uskvbl": {"pages": {}, "posts": {}, "media": {str(m["id"]): "x" for m in media}}}
         with mock.patch.object(monitor, "wp_get", side_effect=wp_get):
             items = monitor.check_wordpress("uskvbl", RULES, state, False)
-        self.assertEqual(len(items), 1500)
+        self.assertEqual(len(items), 25000, "the history has no fixed cap: it reads until two years back")
 
 
 class DescribeChangeTest(unittest.TestCase):

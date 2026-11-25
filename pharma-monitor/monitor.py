@@ -23,6 +23,7 @@ import email.utils
 import hashlib
 import html
 import http.client
+import itertools
 import json
 import os
 import re
@@ -433,10 +434,11 @@ def wp_get(site: str, route: str, **params):
     return json.loads(fetch(url))
 
 
-def wp_newest(site: str, route: str, already_seen, max_pages: int = 10, **params):
+def wp_newest(site: str, route: str, already_seen, max_pages: int | None = 10, **params):
     """Entries newest first, reading further back (100 per request) until one we have already seen, so nothing
-    is missed even after many changes between two checks (e.g. when the site was down for a while)."""
-    for page_no in range(1, max_pages + 1):
+    is missed even after many changes between two checks (e.g. when the site was down for a while).
+    max_pages=None reads until already_seen() or the end of the list (WordPress answers 400 past its last page)."""
+    for page_no in (range(1, max_pages + 1) if max_pages else itertools.count(1)):
         try:
             batch = wp_get(site, route, per_page=100, page=page_no, **params)
         except RuntimeError:
@@ -464,11 +466,12 @@ def check_wordpress(site: str, rules: Rules, state: dict, bootstrap: bool) -> li
     cfg = WP_SITES[site]
     st = state.setdefault(site, {})
     cutoff = now_utc() - dt.timedelta(days=rules.bootstrap_days)
-    results = []
+    results, listed = [], set()
 
     def item(uid, title, link, when, level, summary, backlog=False, history=False):
-        if any(r["id"] == uid for r in results):
+        if uid in listed:
             return  # already listed by this run
+        listed.add(uid)
         _, tags = rules.match(f"{title} {summary}", specific_only=True)
         it = make_item(site, uid, title, link, when, cfg["category"], level, [cfg["tag"]] + [t for t in tags if t != cfg["tag"]], summary)
         if backlog:
@@ -540,13 +543,13 @@ def check_wordpress(site: str, rules: Rules, state: dict, bootstrap: bool) -> li
     if cfg.get("history") and st.get("history_days") != rules.keep_days:
         since = now_utc() - dt.timedelta(days=rules.keep_days)
         too_old = lambda field: (lambda e: (parse_iso(e.get(field)) or since) < since)
-        for m in wp_newest(site, "media", too_old("date_gmt"), max_pages=200, orderby="date", order="desc",
+        for m in wp_newest(site, "media", too_old("date_gmt"), max_pages=None, orderby="date", order="desc",
                            _fields="id,date_gmt,title,source_url,mime_type"):
             when = parse_iso(m.get("date_gmt"))
             if when and when >= since and not (m.get("mime_type") or "").startswith("image/"):
                 document(m, when, "Document published", backlog=True, history=True)
         for route in ("pages", "posts"):
-            for page in wp_newest(site, route, too_old("modified_gmt"), max_pages=200, orderby="modified", order="desc",
+            for page in wp_newest(site, route, too_old("modified_gmt"), max_pages=None, orderby="modified", order="desc",
                                   _fields="id,title,modified_gmt,link"):
                 when = parse_iso(page.get("modified_gmt"))
                 if not when or when < since:
