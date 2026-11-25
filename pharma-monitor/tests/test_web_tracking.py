@@ -146,6 +146,30 @@ class WordPressListTest(unittest.TestCase):
             self.assertEqual(len(list(monitor.wp_newest("sool", "media", lambda e: False))), 200)
 
 
+class WordPressHistoryTest(unittest.TestCase):
+    def test_history_lists_two_years_once_without_notifications(self):
+        now = monitor.now_utc()
+        day = lambda d: monitor.iso(now - monitor.dt.timedelta(days=d)).replace("Z", "")
+        media = [{"id": 3, "date_gmt": day(10), "title": {"rendered": "Duecoxin_40mg_tbl_psy"},
+                  "source_url": "https://www.uskvbl.sk/wp-content/uploads/a.pdf", "mime_type": "application/pdf"},
+                 {"id": 2, "date_gmt": day(20), "title": {"rendered": "logo"},
+                  "source_url": "https://www.uskvbl.sk/wp-content/uploads/b.png", "mime_type": "image/png"},
+                 {"id": 1, "date_gmt": day(900), "title": {"rendered": "old"},
+                  "source_url": "https://www.uskvbl.sk/wp-content/uploads/c.pdf", "mime_type": "application/pdf"}]
+
+        def wp_get(site, route, **params):
+            if route == "media":
+                return media if params.get("page", 1) == 1 else []
+            return []
+        state = {"uskvbl": {"pages": {}, "posts": {}, "media": {"3": "x", "2": "x", "1": "x"}}}  # all already seen
+        with mock.patch.object(monitor, "wp_get", side_effect=wp_get):
+            items = monitor.check_wordpress("uskvbl", RULES, state, False)
+            again = monitor.check_wordpress("uskvbl", RULES, state, False)
+        self.assertEqual([i["title"] for i in items], ["Document published: Duecoxin 40mg tbl psy"])  # no image, nothing > 2 years
+        self.assertTrue(items[0].get("_backlog"), "history must not send notifications")
+        self.assertEqual(again, [], "the history is listed only once")
+
+
 class DescribeChangeTest(unittest.TestCase):
     def test_unchanged_text_is_none(self):
         lines = ["a line", "another line"]

@@ -419,7 +419,8 @@ def page_text(url: str) -> list[str]:
 # WordPress sites: every page change, new article and newly uploaded document.
 WP_SITES = {
     "uskvbl": {"api": "https://www.uskvbl.sk/index.php?rest_route=/wp/v2/{route}",
-               "category": "Veterinary (ÚŠKVBL)", "tag": "Veterinary medicines"},
+               "category": "Veterinary (ÚŠKVBL)", "tag": "Veterinary medicines",
+               "history": True},  # also list everything published within keep_days, once
     "sool": {"api": "https://sool.sk/index.php?rest_route=/wp/v2/{route}",
              "category": "Medicines verification (SOOL)", "tag": "Medicines verification"},
 }
@@ -466,6 +467,8 @@ def check_wordpress(site: str, rules: Rules, state: dict, bootstrap: bool) -> li
     results = []
 
     def item(uid, title, link, when, level, summary, backlog=False):
+        if any(r["id"] == uid for r in results):
+            return  # already listed by this run
         _, tags = rules.match(f"{title} {summary}", specific_only=True)
         it = make_item(site, uid, title, link, when, cfg["category"], level, [cfg["tag"]] + [t for t in tags if t != cfg["tag"]], summary)
         if backlog:
@@ -507,6 +510,14 @@ def check_wordpress(site: str, rules: Rules, state: dict, bootstrap: bool) -> li
             level = 1 if WP_ADMIN_DOCS.search(fold(title)) else wp_level(site, title, summary, rules)
             item(f"{site}:{route}:{pid}:{modified}", f"{label}: {title}", link, mod_dt, level, summary, backlog=first)
 
+    def document(m, when, label, backlog):
+        title = strip_html(m["title"]["rendered"]) or m["source_url"].rsplit("/", 1)[-1]
+        title = re.sub(r"\s+", " ", title.replace("_", " ")).strip()  # file names: "Duecoxin_40mg_tbl_psy"
+        ext = m["source_url"].rsplit(".", 1)[-1].upper()[:5]
+        level = 1 if WP_ADMIN_DOCS.search(fold(f"{title} {m['source_url']}")) else wp_level(site, title, "", rules)
+        item(f"{site}:media:{m['id']}", f"{label}: {title}", m["source_url"], when, level,
+             f"{ext} file uploaded to {urllib.parse.urlparse(m['source_url']).netloc}", backlog=backlog)
+
     # newly uploaded documents (PDF, Word, Excel …); images are skipped
     first = "media" not in st and not bootstrap
     media = st.setdefault("media", {})
@@ -521,11 +532,32 @@ def check_wordpress(site: str, rules: Rules, state: dict, bootstrap: bool) -> li
         when = parse_iso(m.get("date_gmt"))
         if not when or ((bootstrap or first) and when < cutoff):
             continue
-        title = strip_html(m["title"]["rendered"]) or m["source_url"].rsplit("/", 1)[-1]
-        ext = m["source_url"].rsplit(".", 1)[-1].upper()[:5]
-        level = 1 if WP_ADMIN_DOCS.search(fold(f"{title} {m['source_url']}")) else wp_level(site, title, "", rules)
-        item(f"{site}:media:{mid}", f"New document: {title}", m["source_url"], when, level,
-             f"{ext} file uploaded to {urllib.parse.urlparse(m['source_url']).netloc}", backlog=first)
+        document(m, when, "New document", backlog=first)
+
+    # one-off: everything the site published within the dashboard's retention (keep_days), listed as history
+    if cfg.get("history") and st.get("history_days") != rules.keep_days:
+        since = now_utc() - dt.timedelta(days=rules.keep_days)
+        too_old = lambda field: (lambda e: (parse_iso(e.get(field)) or since) < since)
+        for m in wp_newest(site, "media", too_old("date_gmt"), orderby="date", order="desc",
+                           _fields="id,date_gmt,title,source_url,mime_type"):
+            when = parse_iso(m.get("date_gmt"))
+            if when and when >= since and not (m.get("mime_type") or "").startswith("image/"):
+                document(m, when, "Document published", backlog=True)
+        for route in ("pages", "posts"):
+            for page in wp_newest(site, route, too_old("modified_gmt"), orderby="modified", order="desc",
+                                  _fields="id,title,modified_gmt,link"):
+                when = parse_iso(page.get("modified_gmt"))
+                if not when or when < since:
+                    continue
+                detail = wp_get(site, f"{route}/{page['id']}", _fields="id,title,content,link")
+                title = strip_html(detail["title"]["rendered"]) or "Úvodná stránka"
+                link = detail.get("link") or page["link"]
+                lines = text_lines(strip_html(detail["content"]["rendered"])) or page_text(link)
+                summary = " · ".join(lines[:5])
+                level = 1 if WP_ADMIN_DOCS.search(fold(title)) else wp_level(site, title, summary, rules)
+                item(f"{site}:{route}:{page['id']}:{page['modified_gmt']}",
+                     f"{'Updated page' if route == 'pages' else 'Article'}: {title}", link, when, level, summary, backlog=True)
+        st["history_days"] = rules.keep_days
     return results
 
 
@@ -1123,6 +1155,9 @@ def main() -> int:
     rules = Rules(load_json(CONFIG_FILE, None))
     state = load_json(STATE_FILE, {})
     store = load_json(ITEMS_FILE, {"items": [], "sources": {}})
+    for i in store["items"]:  # ÚŠKVBL page items from before the WordPress tracker: "uskvbl:<page>:<modified>"
+        if re.fullmatch(r"uskvbl:\d+:[^:].*", i["id"]):
+            i["id"] = "uskvbl:pages:" + i["id"].split(":", 1)[1]
     known = {i["id"] for i in store["items"]}
     status = store.setdefault("sources", {})
     new_items: list[dict] = []
