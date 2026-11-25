@@ -9156,7 +9156,7 @@
     "tags": []
    },
    "LP/2026/618": {
-    "stage": "ROKOVANIE_VLADA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -9424,6 +9424,21 @@
     "tags": []
    },
    "LPEU/2026/798": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/803": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/802": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/801": {
     "stage": "SCHVALENIE_GESTORA",
     "rel": 0,
     "tags": []
