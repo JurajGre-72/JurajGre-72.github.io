@@ -1,6 +1,36 @@
 {
  "items": [
   {
+   "id": "sukl_web:https://www.sukl.sk/nimesil-59625-prerusenie-2.11.2026:9bf7a9794f",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Nimesil gru por 15x2g/100 mg (vrecko) (59625) - Prerušenie 2.11.2026",
+   "url": "https://www.sukl.sk/nimesil-59625-prerusenie-2.11.2026",
+   "date": "2026-11-25T07:27:58Z",
+   "detected": "2026-11-25T07:27:58Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "Supply interruption"
+   ],
+   "summary": "Typ oznámenia: Prerušenie · Platnosť od: 2.11.2026 · Dátum hlásenia: 2.11.2026 15:22 · Kód ŠÚKL: 59625"
+  },
+  {
+   "id": "https://svps.sk/?p=17349",
+   "source": "svps",
+   "source_name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
+   "title": "Veterinárna pomoc prišla aj do Lenártova. Desiatky kastrácií, jeden spoločný cieľ.",
+   "url": "https://svps.sk/veterinarna-pomoc-prisla-aj-do-lenartova-desiatky-kastracii-jeden-spolocny-ciel/",
+   "date": "2026-11-25T07:16:20Z",
+   "detected": "2026-11-25T07:28:12Z",
+   "category": "ŠVPS notice",
+   "priority": "medium",
+   "tags": [
+    "Veterinary care"
+   ],
+   "summary": "V obci Lenártov pri Bardejove sa uskutočnila ďalšia kastračná akcia, ktorej cieľom bolo obmedziť nežiaduce množenie psov a zlepšiť ich zdravotný stav, čo sme v krátkosti zhrnuli aj do videa na Facebooku. Pozrime sa ale spoločne na fakty. Prejdime k číslam Do akcie sa zapojili inšpektori RVPS Bardejov a niekoľko…"
+  },
+  {
    "id": "https://www.sukl.sk/o-nas/databazy-a-servis/rss-1/oznam-k-odberu-rss-noviniek-kanal-sukl-funguje-zmena-nastala-v-aplikacii-outlook",
    "source": "sukl",
    "source_name": "ŠÚKL · Aktuality",
@@ -169,6 +199,21 @@
    "summary": "Článok · Posledná zmena: 04.11.2026 · Obsah · Štátny ústav pre kontrolu liečiv sa zaväzuje sprístupniť svoje webové sídlo v súlade so zákonom č. 95/2019 Z. z. o informačných technológiách vo verejnej správe a o zmene a doplnení niektorých zákonov a vyhláškou Úradu podpredsedu vlády Slovenskej republiky pre investície…"
   },
   {
+   "id": "sukl_web:https://www.sukl.sk/novalgin-500-mg-24857-prerusenie-2.11.2026:b49516a18a",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Novalgin 500 mg tbl flm 20x500 mg (blis.Al/PVC) (24857) - Prerušenie 2.11.2026",
+   "url": "https://www.sukl.sk/novalgin-500-mg-24857-prerusenie-2.11.2026",
+   "date": "2026-11-23T12:00:00Z",
+   "detected": "2026-11-25T07:28:00Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "Supply interruption"
+   ],
+   "summary": "Typ oznámenia: Prerušenie · Platnosť od: 2.11.2026 · Dátum hlásenia: 23.11.2026 14:10 · Predpokladaný termín obnovenia: 23.11.2026 · Poznámka: test hlásenie · Kód ŠÚKL: 24857 · Predpokladaný termín obnovenia: Detail · Typ oznámenia: Obnovenie · Platnosť od: 26.11.2026 · Dátum hlásenia: 23.11.2026 14:02 ·…"
+  },
+  {
    "id": "sukl_web:https://www.sukl.sk/novalgin-500-mg-24857-prerusenie-02.11.2026:87f31a2996",
    "source": "sukl_web",
    "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
@@ -197,6 +242,21 @@
     "Supply resumed"
    ],
    "summary": "Typ oznámenia: Obnovenie · Platnosť od: 26.11.2026 · Dátum hlásenia: 23.11.2026 · Poznámka: test hlásenia · Kód ŠÚKL: 24857 · Predpokladaný termín obnovenia: Detail · Typ oznámenia: Prerušenie · Platnosť od: 02.11.2026 · Dátum hlásenia: 23.11.2026 · Predpokladaný termín obnovenia: 23.11.2026"
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/novalgin-500-mg-24857-obnovenie-26.11.2026-1:707c89e5f8",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Novalgin 500 mg tbl flm 20x500 mg (blis.Al/PVC) (24857) - Obnovenie 26.11.2026",
+   "url": "https://www.sukl.sk/novalgin-500-mg-24857-obnovenie-26.11.2026-1",
+   "date": "2026-11-23T12:00:00Z",
+   "detected": "2026-11-25T07:27:59Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "Supply resumed"
+   ],
+   "summary": "Typ oznámenia: Obnovenie · Platnosť od: 26.11.2026 · Dátum hlásenia: 23.11.2026 14:02 · Poznámka: test hlásenia · Kód ŠÚKL: 24857 · Predpokladaný termín obnovenia: Detail · Typ oznámenia: Prerušenie · Platnosť od: 2.11.2026 · Dátum hlásenia: 23.11.2026 14:10 · Predpokladaný termín obnovenia: 23.11.2026"
   },
   {
    "id": "sukl_web:https://www.sukl.sk/lenzetto-153-mg-davka-5836b-prerusenie-23.11.2026:12560de80f",
@@ -5842,94 +5902,94 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-25T00:07:59Z",
+   "checked": "2026-11-25T07:27:30Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-25T00:07:59Z",
+   "checked": "2026-11-25T07:27:30Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-25T00:07:59Z",
+   "checked": "2026-11-25T07:27:30Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-11-25T00:07:59Z",
+   "checked": "2026-11-25T07:27:30Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Všetky zmeny na webe",
    "ok": true,
-   "checked": "2026-11-25T00:07:59Z",
+   "checked": "2026-11-25T07:27:30Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-11-25T00:07:59Z",
+   "checked": "2026-11-25T07:27:30Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-25T00:07:59Z",
+   "checked": "2026-11-25T07:27:30Z",
    "new": 0,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-11-25T00:07:59Z",
+   "checked": "2026-11-25T07:27:30Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-11-25T00:07:59Z",
+   "checked": "2026-11-25T07:27:30Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-25T00:07:59Z",
+   "checked": "2026-11-25T07:27:30Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-25T00:07:59Z",
-   "new": 0,
+   "checked": "2026-11-25T07:27:30Z",
+   "new": 1,
    "error": null
   },
   "sukl_web": {
    "name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
    "ok": true,
-   "checked": "2026-11-25T00:07:59Z",
-   "new": 2,
+   "checked": "2026-11-25T07:27:30Z",
+   "new": 3,
    "error": null
   },
   "sool": {
    "name": "SOOL · Slovenská organizácia pre overovanie liekov",
    "ok": true,
-   "checked": "2026-11-25T00:07:59Z",
+   "checked": "2026-11-25T07:27:30Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-11-25T00:07:59Z"
+ "updated": "2026-11-25T07:27:30Z"
 }
