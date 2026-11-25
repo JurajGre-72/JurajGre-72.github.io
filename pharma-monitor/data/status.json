@@ -1,38 +1,38 @@
 {
- "checked": "2026-11-25T00:07:59Z",
+ "checked": "2026-11-25T03:20:32Z",
  "sources": {
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-25T00:07:59Z",
+   "checked": "2026-11-25T03:20:32Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-25T00:07:59Z",
+   "checked": "2026-11-25T03:20:32Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-25T00:07:59Z",
+   "checked": "2026-11-25T03:20:32Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-11-25T00:07:59Z",
+   "checked": "2026-11-25T03:20:32Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Všetky zmeny na webe",
    "ok": true,
-   "checked": "2026-11-25T00:07:59Z",
+   "checked": "2026-11-25T03:20:32Z",
    "new": 0,
    "error": null
   },
@@ -46,7 +46,7 @@
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-25T00:07:59Z",
+   "checked": "2026-11-25T03:20:32Z",
    "new": 0,
    "error": null
   },
@@ -67,28 +67,28 @@
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-25T00:07:59Z",
+   "checked": "2026-11-25T03:20:32Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-25T00:07:59Z",
+   "checked": "2026-11-25T03:20:32Z",
    "new": 0,
    "error": null
   },
   "sukl_web": {
    "name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
    "ok": true,
-   "checked": "2026-11-25T00:07:59Z",
-   "new": 2,
+   "checked": "2026-11-25T03:20:32Z",
+   "new": 0,
    "error": null
   },
   "sool": {
    "name": "SOOL · Slovenská organizácia pre overovanie liekov",
    "ok": true,
-   "checked": "2026-11-25T00:07:59Z",
+   "checked": "2026-11-25T03:20:32Z",
    "new": 0,
    "error": null
   }
