@@ -6592,7 +6592,7 @@
     "tags": []
    },
    "LPEU/2026/551": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK_AKTY",
     "rel": 0,
     "tags": []
    },
@@ -9201,12 +9201,12 @@
     "tags": []
    },
    "LP/2026/634": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
    "LP/2026/633": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -9259,7 +9259,7 @@
     "stage_name": "Pripomienkové konanie"
    },
    "LP/2026/640": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
