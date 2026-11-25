@@ -175,7 +175,8 @@
    "https://www.health.gov.sk/novinky/ruzovy-oktober-skrining-mamograficky/": "2026-11-24T13:56:16Z",
    "https://www.health.gov.sk/novinky/nemocnica-kralovsky-chlmec/": "2026-11-24T13:56:16Z",
    "https://www.health.gov.sk/novinky/slovensko-ziskalo-vysoke-hodnotenie-v-oblasti-monitorovania-drog/": "2026-11-24T13:56:16Z",
-   "https://www.health.gov.sk/novinky/ezapisovanie-prinasa-vysledky-januar-dalsie-ambulancie-stacionare/": "2026-11-25T08:28:40Z"
+   "https://www.health.gov.sk/novinky/ezapisovanie-prinasa-vysledky-januar-dalsie-ambulancie-stacionare/": "2026-11-25T08:28:40Z",
+   "https://www.health.gov.sk/novinky/test/": "2026-11-25T10:28:15Z"
   },
   "feed": "https://www.health.gov.sk/rss/sk/novinky.xml"
  },
@@ -5813,7 +5814,7 @@
     "tags": []
    },
    "LP/2026/533": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 0,
     "tags": []
    },
@@ -9408,6 +9409,21 @@
     "tags": []
    },
    "LPEU/2026/793": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/800": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/799": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/798": {
     "stage": "SCHVALENIE_GESTORA",
     "rel": 0,
     "tags": []
