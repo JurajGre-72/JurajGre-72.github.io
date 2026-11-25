@@ -553,7 +553,8 @@ def check_wordpress(site: str, rules: Rules, state: dict, bootstrap: bool) -> li
                 title = strip_html(detail["title"]["rendered"]) or "Úvodná stránka"
                 link = detail.get("link") or page["link"]
                 lines = text_lines(strip_html(detail["content"]["rendered"])) or page_text(link)
-                summary = " · ".join(lines[:5])
+                # history shows the page as it is now, not what changed back then – say so
+                summary = f"Last updated {sk_date(when.date())} · Page begins: " + " · ".join(lines[:5])
                 level = 1 if WP_ADMIN_DOCS.search(fold(title)) else wp_level(site, title, summary, rules)
                 item(f"{site}:{route}:{page['id']}:{page['modified_gmt']}",
                      f"{'Updated page' if route == 'pages' else 'Article'}: {title}", link, when, level, summary, backlog=True)

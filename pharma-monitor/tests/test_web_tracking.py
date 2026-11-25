@@ -154,18 +154,21 @@ class WordPressHistoryTest(unittest.TestCase):
                   "source_url": "https://www.uskvbl.sk/wp-content/uploads/a.pdf", "mime_type": "application/pdf"},
                  {"id": 2, "date_gmt": day(20), "title": {"rendered": "logo"},
                   "source_url": "https://www.uskvbl.sk/wp-content/uploads/b.png", "mime_type": "image/png"},
-                 {"id": 1, "date_gmt": day(900), "title": {"rendered": "old"},
+                 {"id": 4, "date_gmt": day(RULES.keep_days - 5), "title": {"rendered": "just inside"},
+                  "source_url": "https://www.uskvbl.sk/wp-content/uploads/d.pdf", "mime_type": "application/pdf"},
+                 {"id": 1, "date_gmt": day(RULES.keep_days + 5), "title": {"rendered": "old"},
                   "source_url": "https://www.uskvbl.sk/wp-content/uploads/c.pdf", "mime_type": "application/pdf"}]
 
         def wp_get(site, route, **params):
             if route == "media":
                 return media if params.get("page", 1) == 1 else []
             return []
-        state = {"uskvbl": {"pages": {}, "posts": {}, "media": {"3": "x", "2": "x", "1": "x"}}}  # all already seen
+        state = {"uskvbl": {"pages": {}, "posts": {}, "media": {"3": "x", "2": "x", "4": "x", "1": "x"}}}  # all already seen
         with mock.patch.object(monitor, "wp_get", side_effect=wp_get):
             items = monitor.check_wordpress("uskvbl", RULES, state, False)
             again = monitor.check_wordpress("uskvbl", RULES, state, False)
-        self.assertEqual([i["title"] for i in items], ["Document published: Duecoxin 40mg tbl psy"])  # no image, nothing > 2 years
+        # no image; the retention window (keep_days) is the exact limit
+        self.assertEqual([i["title"] for i in items], ["Document published: Duecoxin 40mg tbl psy", "Document published: just inside"])
         self.assertTrue(items[0].get("_backlog"), "history must not send notifications")
         self.assertEqual(again, [], "the history is listed only once")
 
