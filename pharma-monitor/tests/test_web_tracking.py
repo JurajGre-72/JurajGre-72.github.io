@@ -77,6 +77,29 @@ class SuklWebTest(unittest.TestCase):
         self.assertEqual(state["sukl_web"]["lastmod"][dead], "2026-11-24")
         self.assertNotIn(dead, state["sukl_web"]["failed"])
 
+    def test_notice_read_for_the_first_time_is_dated_when_it_was_filed(self):
+        state = self.baseline()  # the notice is known from the sitemap but its text was never read
+        state["sukl_web"]["lines"].pop(NOTICE, None)
+        lines = NOTICE_LINES[:6] + ["Dátum hlásenia", "2.11.2026 15:22"] + NOTICE_LINES[8:]  # ŠÚKL's newer date format
+        items = self.run_check(state, site(**{NOTICE: "2026-11-25"}), lambda u: (lines[0], lines))
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0]["date"], "2026-11-02T12:00:00Z")
+
+    def test_notice_republished_under_a_new_address_is_not_reported_again(self):
+        state = self.baseline()
+        moved = NOTICE.replace("02.11.2026", "2.11.2026")
+        lines = NOTICE_LINES[:5] + ["2.11.2026"] + NOTICE_LINES[6:]
+        known = {monitor.notice_key(monitor.notice_summary(NOTICE_LINES))}
+        with mock.patch.object(monitor, "fetch", return_value=sitemap(site(**{NOTICE: "2026-11-01", moved: "2026-11-25"}))), \
+             mock.patch.object(monitor, "sukl_page", return_value=(lines[0], lines)):
+            items = monitor.check_sukl_web(RULES, state, False, set(), known)
+        self.assertEqual(items, [])
+
+    def test_notice_dates_in_both_formats(self):
+        self.assertEqual(monitor.iso(monitor.notice_date("Dátum hlásenia: 02.11.2026")), "2026-11-02T12:00:00Z")
+        self.assertEqual(monitor.iso(monitor.notice_date("Typ: X · Dátum hlásenia: 2.11.2026 15:22 · Kód")), "2026-11-02T12:00:00Z")
+        self.assertIsNone(monitor.notice_date("no date here"))
+
     def test_redated_page_with_same_text_is_not_reported(self):
         state = self.baseline()
         state["sukl_web"]["lines"][NOTICE] = monitor.line_hashes(NOTICE_LINES)
