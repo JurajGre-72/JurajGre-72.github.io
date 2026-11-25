@@ -14,6 +14,21 @@
    "summary": ""
   },
   {
+   "id": "sukl_web:https://www.sukl.sk/suprax-26460-prerusenie-25.11.2026:6a4bdc5b5a",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "SUPRAX plu por 1x50 ml/1 g (fľ.skl.) (26460) - Prerušenie 25.11.2026",
+   "url": "https://www.sukl.sk/suprax-26460-prerusenie-25.11.2026",
+   "date": "2026-11-24T12:00:00Z",
+   "detected": "2026-11-25T00:08:31Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "Supply interruption"
+   ],
+   "summary": "Typ oznámenia: Prerušenie · Platnosť od: 25.11.2026 · Dátum hlásenia: 24.11.2026 · Predpokladaný termín obnovenia: 10.11.2026 · Poznámka: test · Kód ŠÚKL: 26460"
+  },
+  {
    "id": "sukl_web:https://www.sukl.sk/o-nas/databazy-a-servis/rss-1:573061792d",
    "source": "sukl_web",
    "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
@@ -42,6 +57,22 @@
     "Medicines"
    ],
    "summary": "Aktualita · Zverejnené: 24.11.2026 · Obsah · Štátny ústav pre kontrolu liečiv informuje verejnosť, že RSS kanály na odber noviniek a aktualít sú naďalej plne funkčné a ich zrušenie neplánujeme. · Ak sa vám v poslednom období prestali zobrazovať nové príspevky alebo pri pridávaní kanála dostávate chybové hlásenie,…"
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/cuprior-150-mg-filmom-obalene-tablety-5544c-prerusenie-24.11.2026:0547899430",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Cuprior 150 mg filmom obalené tablety tbl flm 72x150 mg (blis.OPA/Al/PVC/Al) (5544C) - Prerušenie 24.11.2026",
+   "url": "https://www.sukl.sk/cuprior-150-mg-filmom-obalene-tablety-5544c-prerusenie-24.11.2026",
+   "date": "2026-11-24T12:00:00Z",
+   "detected": "2026-11-25T00:08:32Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "Supply interruption",
+    "Waste & packaging"
+   ],
+   "summary": "Typ oznámenia: Prerušenie · Platnosť od: 24.11.2026 · Dátum hlásenia: 24.11.2026 · Predpokladaný termín obnovenia: 29.11.2026 · Poznámka: test · Kód ŠÚKL: 5544C"
   },
   {
    "id": "lp:LP/2026/624:VYHODNOTENIE_MPK",
@@ -5811,94 +5842,94 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-24T15:35:14Z",
+   "checked": "2026-11-25T00:07:59Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-24T15:35:14Z",
-   "new": 2,
+   "checked": "2026-11-25T00:07:59Z",
+   "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-24T15:35:14Z",
+   "checked": "2026-11-25T00:07:59Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-11-24T15:35:14Z",
+   "checked": "2026-11-25T00:07:59Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Všetky zmeny na webe",
    "ok": true,
-   "checked": "2026-11-24T15:35:14Z",
+   "checked": "2026-11-25T00:07:59Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-11-24T13:54:52Z",
+   "checked": "2026-11-25T00:07:59Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-24T15:35:14Z",
+   "checked": "2026-11-25T00:07:59Z",
    "new": 0,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-11-24T13:54:52Z",
-   "new": 1,
+   "checked": "2026-11-25T00:07:59Z",
+   "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-11-24T13:54:52Z",
+   "checked": "2026-11-25T00:07:59Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-24T15:35:14Z",
+   "checked": "2026-11-25T00:07:59Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-24T15:35:14Z",
+   "checked": "2026-11-25T00:07:59Z",
    "new": 0,
    "error": null
   },
   "sukl_web": {
    "name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
    "ok": true,
-   "checked": "2026-11-24T15:35:14Z",
-   "new": 0,
+   "checked": "2026-11-25T00:07:59Z",
+   "new": 2,
    "error": null
   },
   "sool": {
    "name": "SOOL · Slovenská organizácia pre overovanie liekov",
    "ok": true,
-   "checked": "2026-11-24T15:35:14Z",
+   "checked": "2026-11-25T00:07:59Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-11-24T15:35:14Z"
+ "updated": "2026-11-25T00:07:59Z"
 }

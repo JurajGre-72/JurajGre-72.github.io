@@ -5714,7 +5714,9 @@
    "283/2026": "2026-11-18T02:03:48Z",
    "284/2026": "2026-11-19T01:40:24Z",
    "285/2026": "2026-11-23T00:34:50Z",
-   "286/2026": "2026-11-23T00:34:52Z"
+   "286/2026": "2026-11-23T00:34:52Z",
+   "287/2026": "2026-11-25T00:08:00Z",
+   "288/2026": "2026-11-25T00:08:02Z"
   }
  },
  "slovlex_lp": {
@@ -8757,7 +8759,7 @@
     "tags": []
    },
    "LP/2026/601": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -8966,7 +8968,7 @@
     "tags": []
    },
    "LP/2026/617": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -13127,7 +13129,9 @@
    "https://www.sukl.sk/akynzeo-300-mg-05-mg-tvrde-kapsuly-5231c-prerusenie": "2026-11-24",
    "https://www.sukl.sk/novalgin-500-mg-24857-obnovenie-26.11.2026": "2026-11-24",
    "https://www.sukl.sk/novalgin-500-mg-24857-prerusenie-02.11.2026": "2026-11-24",
-   "https://www.sukl.sk/o-nas/databazy-a-servis/rss-1/oznam-k-odberu-rss-noviniek-kanal-sukl-funguje-zmena-nastala-v-aplikacii-outlook": "2026-11-24"
+   "https://www.sukl.sk/o-nas/databazy-a-servis/rss-1/oznam-k-odberu-rss-noviniek-kanal-sukl-funguje-zmena-nastala-v-aplikacii-outlook": "2026-11-24",
+   "https://www.sukl.sk/suprax-26460-prerusenie-25.11.2026": "2026-11-24",
+   "https://www.sukl.sk/cuprior-150-mg-filmom-obalene-tablety-5544c-prerusenie-24.11.2026": "2026-11-24"
   },
   "lines": {
    "https://www.sukl.sk/boostrix-45368-obnovenie-23.10.2026": [
@@ -16133,6 +16137,64 @@
     "35289447ca",
     "af3af52a69",
     "0337c5b061"
+   ],
+   "https://www.sukl.sk/suprax-26460-prerusenie-25.11.2026": [
+    "f760dec2fa",
+    "0268a1cd4e",
+    "6ce5fd8e3f",
+    "7f50894d63",
+    "a0bf53612e",
+    "d8d50bd2c7",
+    "a7c8cedb65",
+    "80fc7478b4",
+    "a76c9bf1b5",
+    "76916e3921",
+    "cc70824ffe",
+    "ca37c8c491",
+    "a94a8fe5cc",
+    "b746e46218",
+    "13938db64e",
+    "c53ad6942b",
+    "6d56f0fe4a",
+    "37f31e210a",
+    "94c0888167",
+    "3ad0e930a3",
+    "9f25f85a90",
+    "f70beb6b71",
+    "c030a25882",
+    "f5fdfdd595",
+    "939f3b7f99",
+    "9086056fcf",
+    "7d8aafae12"
+   ],
+   "https://www.sukl.sk/cuprior-150-mg-filmom-obalene-tablety-5544c-prerusenie-24.11.2026": [
+    "a7ac364f55",
+    "0268a1cd4e",
+    "6ce5fd8e3f",
+    "7f50894d63",
+    "a0bf53612e",
+    "d8d50bd2c7",
+    "a76c9bf1b5",
+    "80fc7478b4",
+    "a76c9bf1b5",
+    "76916e3921",
+    "653836c16e",
+    "ca37c8c491",
+    "a94a8fe5cc",
+    "b746e46218",
+    "13938db64e",
+    "6a511d7da7",
+    "6d56f0fe4a",
+    "844ca21416",
+    "94c0888167",
+    "a2913f0c6e",
+    "aba51271f2",
+    "f70beb6b71",
+    "f3520c774a",
+    "f5fdfdd595",
+    "ffdf447142",
+    "9086056fcf",
+    "7d8aafae12"
    ]
   },
   "failed": {}
