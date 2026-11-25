@@ -8529,7 +8529,7 @@
     "tags": []
    },
    "LPEU/2026/741": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -9439,6 +9439,16 @@
     "tags": []
    },
    "LPEU/2026/801": {
+    "stage": "SCHVALENIE_GESTORA",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/650": {
+    "stage": "PROCES_UKONCENY",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/804": {
     "stage": "SCHVALENIE_GESTORA",
     "rel": 0,
     "tags": []
