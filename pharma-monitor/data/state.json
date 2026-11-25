@@ -174,7 +174,8 @@
    "https://www.health.gov.sk/novinky/ruzovy-oktober-mzsr-nrsr/": "2026-11-24T13:56:16Z",
    "https://www.health.gov.sk/novinky/ruzovy-oktober-skrining-mamograficky/": "2026-11-24T13:56:16Z",
    "https://www.health.gov.sk/novinky/nemocnica-kralovsky-chlmec/": "2026-11-24T13:56:16Z",
-   "https://www.health.gov.sk/novinky/slovensko-ziskalo-vysoke-hodnotenie-v-oblasti-monitorovania-drog/": "2026-11-24T13:56:16Z"
+   "https://www.health.gov.sk/novinky/slovensko-ziskalo-vysoke-hodnotenie-v-oblasti-monitorovania-drog/": "2026-11-24T13:56:16Z",
+   "https://www.health.gov.sk/novinky/ezapisovanie-prinasa-vysledky-januar-dalsie-ambulancie-stacionare/": "2026-11-25T08:28:40Z"
   },
   "feed": "https://www.health.gov.sk/rss/sk/novinky.xml"
  },
@@ -8126,7 +8127,7 @@
     "tags": []
    },
    "LP/2026/541": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 0,
     "tags": []
    },
@@ -8333,7 +8334,7 @@
     "tags": []
    },
    "LP/2026/558": {
-    "stage": "SPRACOVANIE_PREDKLADATEL",
+    "stage": "ROKOVANIE_POV",
     "rel": 0,
     "tags": []
    },
@@ -10144,7 +10145,12 @@
    "32026R2594": "2026-11-24T13:57:30Z",
    "32026D2581": "2026-11-24T13:57:30Z",
    "32026D2621": "2026-11-24T13:57:30Z",
-   "32026D2607": "2026-11-24T13:57:30Z"
+   "32026D2607": "2026-11-24T13:57:30Z",
+   "32026R2635": "2026-11-25T08:28:51Z",
+   "32026D2623": "2026-11-25T08:28:51Z",
+   "32026D2544": "2026-11-25T08:28:51Z",
+   "32026D2612": "2026-11-25T08:28:51Z",
+   "32026R2628": "2026-11-25T08:28:51Z"
   }
  },
  "kategorizacia": {
@@ -11228,7 +11234,7 @@
    "https://www.sukl.sk/o-nas/staznosti-a-peticie": "2026-09-14",
    "https://www.sukl.sk/lieky-a-pomocky/oznamy-o-stiahnuti-liekov/upozornenie-tralgit-kvapky-tlacova-chyba": "2026-09-14",
    "https://www.sukl.sk/lieky-a-pomocky/oznamy-o-stiahnuti-liekov/stiahnutie-z-trhu-haemate-p-500-injection": "2026-09-14",
-   "https://www.sukl.sk/o-nas/databazy-a-servis/rss-1": "2026-11-24",
+   "https://www.sukl.sk/o-nas/databazy-a-servis/rss-1": "2026-11-25",
    "https://www.sukl.sk/pre-odbornikov-a-firmy/bezpecnost-liekov/bezpecnost-liekov-archiv/liekove-riziko-archiv/liekove-riziko-28-2006": "2026-09-14",
    "https://www.sukl.sk/pre-odbornikov-a-firmy/bezpecnost-liekov/bezpecnost-liekov-archiv/liekove-riziko-archiv/liekove-riziko-29-2007": "2026-09-14",
    "https://www.sukl.sk/pre-odbornikov-a-firmy/bezpecnost-liekov/bezpecnost-liekov-archiv/liekove-riziko-archiv/liekove-riziko-30-2007": "2026-09-14",
@@ -13130,7 +13136,7 @@
    "https://www.sukl.sk/akynzeo-300-mg-05-mg-tvrde-kapsuly-5231c-prerusenie": "2026-11-25",
    "https://www.sukl.sk/novalgin-500-mg-24857-obnovenie-26.11.2026": "2026-11-24",
    "https://www.sukl.sk/novalgin-500-mg-24857-prerusenie-02.11.2026": "2026-11-24",
-   "https://www.sukl.sk/o-nas/databazy-a-servis/rss-1/oznam-k-odberu-rss-noviniek-kanal-sukl-funguje-zmena-nastala-v-aplikacii-outlook": "2026-11-24",
+   "https://www.sukl.sk/o-nas/databazy-a-servis/rss-1/oznam-k-odberu-rss-noviniek-kanal-sukl-funguje-zmena-nastala-v-aplikacii-outlook": "2026-11-25",
    "https://www.sukl.sk/suprax-26460-prerusenie-25.11.2026": "2026-11-25",
    "https://www.sukl.sk/cuprior-150-mg-filmom-obalene-tablety-5544c-prerusenie-24.11.2026": "2026-11-25",
    "https://www.sukl.sk/nimesil-59625-prerusenie-2.11.2026": "2026-11-25",
