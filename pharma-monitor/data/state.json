@@ -8127,7 +8127,7 @@
     "tags": []
    },
    "LP/2026/541": {
-    "stage": "SPRACOVANIE_PREDKLADATEL",
+    "stage": "ROKOVANIE_POV",
     "rel": 0,
     "tags": []
    },
@@ -8418,12 +8418,12 @@
     "tags": []
    },
    "LPEU/2026/728": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "ZAPIS_DOPLNENEHO_PREDBEZNEHO_STANOVISKA",
     "rel": 2,
     "tags": [
      "Public procurement"
     ],
-    "stage_name": "Zápis predbežného stanoviska k návrhu aktu EÚ"
+    "stage_name": "Zápis doplneného predbežného stanoviska k návrhu aktu EÚ"
    },
    "LPEU/2026/731": {
     "stage": "PROCES_UKONCENY",
