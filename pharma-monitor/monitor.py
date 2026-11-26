@@ -595,6 +595,7 @@ def check_watch_pages(rules: Rules, state: dict) -> list[dict]:
             failed.append(f"{name}: page has no readable text")
             continue
         hashes, old = line_hashes(lines), st.get(url)
+        print(f"  {name}: {len(lines)} lines of text")  # a handful would mean a cookie wall or an error page
         st[url] = hashes
         if old is None:
             continue  # baseline
