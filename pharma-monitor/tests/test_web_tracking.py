@@ -146,6 +146,70 @@ class WordPressListTest(unittest.TestCase):
             self.assertEqual(len(list(monitor.wp_newest("sool", "media", lambda e: False))), 200)
 
 
+class WordPressHistoryTest(unittest.TestCase):
+    def test_history_lists_two_years_once_without_notifications(self):
+        now = monitor.now_utc()
+        day = lambda d: monitor.iso(now - monitor.dt.timedelta(days=d)).replace("Z", "")
+        media = [{"id": 3, "date_gmt": day(10), "title": {"rendered": "Duecoxin_40mg_tbl_psy"},
+                  "source_url": "https://www.uskvbl.sk/wp-content/uploads/a.pdf", "mime_type": "application/pdf"},
+                 {"id": 2, "date_gmt": day(20), "title": {"rendered": "logo"},
+                  "source_url": "https://www.uskvbl.sk/wp-content/uploads/b.png", "mime_type": "image/png"},
+                 {"id": 4, "date_gmt": day(RULES.keep_days - 5), "title": {"rendered": "just inside"},
+                  "source_url": "https://www.uskvbl.sk/wp-content/uploads/d.pdf", "mime_type": "application/pdf"},
+                 {"id": 1, "date_gmt": day(RULES.keep_days + 5), "title": {"rendered": "old"},
+                  "source_url": "https://www.uskvbl.sk/wp-content/uploads/c.pdf", "mime_type": "application/pdf"}]
+
+        def wp_get(site, route, **params):
+            if route == "media":
+                return media if params.get("page", 1) == 1 else []
+            return []
+        state = {"uskvbl": {"pages": {}, "posts": {}, "media": {"3": "x", "2": "x", "4": "x", "1": "x"}}}  # all already seen
+        with mock.patch.object(monitor, "wp_get", side_effect=wp_get):
+            items = monitor.check_wordpress("uskvbl", RULES, state, False)
+            again = monitor.check_wordpress("uskvbl", RULES, state, False)
+        # no image; the retention window (keep_days) is the exact limit
+        self.assertEqual([i["title"] for i in items], ["Document published: Duecoxin 40mg tbl psy", "Document published: just inside"])
+        self.assertTrue(items[0].get("_backlog"), "history must not send notifications")
+        self.assertEqual(again, [], "the history is listed only once")
+
+
+    def test_history_survives_a_sources_first_run(self):
+        started = monitor.now_utc()
+        old = {"id": "a", "date": monitor.iso(started - monitor.dt.timedelta(days=400)), "_history": True}
+        plain_old = {"id": "b", "date": old["date"]}
+        recent = {"id": "c", "date": monitor.iso(started)}
+        kept = monitor.first_run_filter([old, plain_old, recent], 90, started)
+        self.assertEqual([i["id"] for i in kept], ["a", "c"])
+
+    def test_history_reads_everything_within_two_years(self):
+        now = monitor.now_utc()
+        media = [{"id": n, "date_gmt": monitor.iso(now - monitor.dt.timedelta(minutes=n)).replace("Z", ""),
+                  "title": {"rendered": f"doc {n}"}, "source_url": f"https://www.uskvbl.sk/u/{n}.pdf",
+                  "mime_type": "application/pdf"} for n in range(1, 25001)]  # 25,000 documents, all within two years
+
+        def wp_get(site, route, per_page=100, page=1, **params):
+            if route != "media":
+                return []
+            chunk = media[(page - 1) * per_page: page * per_page]
+            if not chunk:
+                raise RuntimeError("400")
+            return chunk
+        state = {"uskvbl": {"pages": {}, "posts": {}, "media": {str(m["id"]): "x" for m in media}}}
+        with mock.patch.object(monitor, "wp_get", side_effect=wp_get):
+            items = monitor.check_wordpress("uskvbl", RULES, state, False)
+        self.assertEqual(len(items), 25000, "the history has no fixed cap: it reads until two years back")
+
+
+class PriorityTest(unittest.TestCase):
+    def test_every_uskvbl_change_is_notified(self):
+        # ÚŠKVBL is the most important source: even its own invoice reports are medium (medium and high are e-mailed)
+        self.assertGreaterEqual(monitor.item_level("uskvbl", "prehlad_faktur_05_2026", "", RULES), RULES.notify_min)
+        self.assertGreaterEqual(monitor.item_level("uskvbl", "Zoznamy", "", RULES), RULES.notify_min)
+
+    def test_other_sites_keep_admin_reports_low(self):
+        self.assertEqual(monitor.item_level("sool", "Výročná správa za rok 2025", "", RULES), monitor.LEVELS["low"])
+
+
 class DescribeChangeTest(unittest.TestCase):
     def test_unchanged_text_is_none(self):
         lines = ["a line", "another line"]
