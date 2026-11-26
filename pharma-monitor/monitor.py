@@ -421,7 +421,8 @@ def page_text(url: str) -> list[str]:
 WP_SITES = {
     "uskvbl": {"api": "https://www.uskvbl.sk/index.php?rest_route=/wp/v2/{route}",
                "category": "Veterinary (ÚŠKVBL)", "tag": "Veterinary medicines",
-               "history": True},  # also list everything published within keep_days, once
+               "history": True,  # also list everything published within keep_days, once
+               "notify_all": True},  # the most important source: every change is at least medium, i.e. e-mailed
     "sool": {"api": "https://sool.sk/index.php?rest_route=/wp/v2/{route}",
              "category": "Medicines verification (SOOL)", "tag": "Medicines verification"},
 }
@@ -449,6 +450,14 @@ def wp_newest(site: str, route: str, already_seen, max_pages: int | None = 10, *
         yield from batch
         if done:
             return
+
+
+def item_level(site: str, title: str, text: str, rules: Rules, admin_text: str = "") -> int:
+    """Priority of a website change. The institutes' own order/invoice reports are low, unless the site is set to
+    notify every change (ÚŠKVBL)."""
+    if WP_ADMIN_DOCS.search(fold(admin_text or title)) and not WP_SITES[site].get("notify_all"):
+        return 1
+    return wp_level(site, title, text, rules)
 
 
 def wp_level(site: str, title: str, text: str, rules: Rules) -> int:
@@ -512,14 +521,14 @@ def check_wordpress(site: str, rules: Rules, state: dict, bootstrap: bool) -> li
                     continue
                 summary = " · ".join(lines[:5])
                 label = "Updated page" if kind == "page" else "New article"
-            level = 1 if WP_ADMIN_DOCS.search(fold(title)) else wp_level(site, title, summary, rules)
+            level = item_level(site, title, summary, rules)
             item(f"{site}:{route}:{pid}:{modified}", f"{label}: {title}", link, mod_dt, level, summary, backlog=first)
 
     def document(m, when, label, backlog, history=False):
         title = strip_html(m["title"]["rendered"]) or m["source_url"].rsplit("/", 1)[-1]
         title = re.sub(r"\s+", " ", title.replace("_", " ")).strip()  # file names: "Duecoxin_40mg_tbl_psy"
         ext = m["source_url"].rsplit(".", 1)[-1].upper()[:5]
-        level = 1 if WP_ADMIN_DOCS.search(fold(f"{title} {m['source_url']}")) else wp_level(site, title, "", rules)
+        level = item_level(site, title, "", rules, admin_text=f"{title} {m['source_url']}")
         item(f"{site}:media:{m['id']}", f"{label}: {title}", m["source_url"], when, level,
              f"{ext} file uploaded to {urllib.parse.urlparse(m['source_url']).netloc}", backlog=backlog, history=history)
 
@@ -560,7 +569,7 @@ def check_wordpress(site: str, rules: Rules, state: dict, bootstrap: bool) -> li
                 lines = text_lines(strip_html(detail["content"]["rendered"])) or page_text(link)
                 # history shows the page as it is now, not what changed back then – say so
                 summary = f"Last updated {sk_date(when.date())} · Page begins: " + " · ".join(lines[:5])
-                level = 1 if WP_ADMIN_DOCS.search(fold(title)) else wp_level(site, title, summary, rules)
+                level = item_level(site, title, summary, rules)
                 item(f"{site}:{route}:{page['id']}:{page['modified_gmt']}",
                      f"{'Updated page' if route == 'pages' else 'Article'}: {title}", link, when, level, summary,
                      backlog=True, history=True)

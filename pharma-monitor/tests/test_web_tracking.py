@@ -200,6 +200,16 @@ class WordPressHistoryTest(unittest.TestCase):
         self.assertEqual(len(items), 25000, "the history has no fixed cap: it reads until two years back")
 
 
+class PriorityTest(unittest.TestCase):
+    def test_every_uskvbl_change_is_notified(self):
+        # ÚŠKVBL is the most important source: even its own invoice reports are medium (medium and high are e-mailed)
+        self.assertGreaterEqual(monitor.item_level("uskvbl", "prehlad_faktur_05_2026", "", RULES), RULES.notify_min)
+        self.assertGreaterEqual(monitor.item_level("uskvbl", "Zoznamy", "", RULES), RULES.notify_min)
+
+    def test_other_sites_keep_admin_reports_low(self):
+        self.assertEqual(monitor.item_level("sool", "Výročná správa za rok 2025", "", RULES), monitor.LEVELS["low"])
+
+
 class DescribeChangeTest(unittest.TestCase):
     def test_unchanged_text_is_none(self):
         lines = ["a line", "another line"]
