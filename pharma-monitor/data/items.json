@@ -1,6 +1,53 @@
 {
  "items": [
   {
+   "id": "sukl_web:https://www.sukl.sk/pre-odbornikov-a-firmy/bezpecnost-liekov/pokyny:f0e1488ba6",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Updated page: Pokyny",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/bezpecnost-liekov/pokyny",
+   "date": "2026-11-26T12:04:26Z",
+   "detected": "2026-11-26T12:04:26Z",
+   "category": "Drug safety",
+   "priority": "medium",
+   "tags": [
+    "Medicines",
+    "Drug safety"
+   ],
+   "summary": "Inštrukcie, oznamy, doplnenia a najčastejšie otázky k tlačivám a metodickým pokynom. · Rýchle odkazy · Bezpečnosť liekov: Metodické pokyny · Bezpečnosť liekov: Tlačivá a formuláre · Usmernenie k povoľovaniu očkovacích kampaní"
+  },
+  {
+   "id": "https://www.sukl.sk/pre-odbornikov-a-firmy/bezpecnost-liekov/pokyny/usmernenie-k-povolovaniu-ockovacich-kampani",
+   "source": "sukl",
+   "source_name": "ŠÚKL · Aktuality",
+   "title": "Usmernenie k povoľovaniu očkovacích kampaní",
+   "url": "https://www.sukl.sk/pre-odbornikov-a-firmy/bezpecnost-liekov/pokyny/usmernenie-k-povolovaniu-ockovacich-kampani",
+   "date": "2026-11-26T11:01:22Z",
+   "detected": "2026-11-26T12:04:22Z",
+   "category": "Drug safety",
+   "priority": "medium",
+   "tags": [
+    "Medicines"
+   ],
+   "summary": "Od 1. novembra 2026 zabezpečuje povoľovanie očkovacích kampaní Štátny ústav pre kontrolu liečiv."
+  },
+  {
+   "id": "lp:LPEU/2026/807:SCHVALENIE_GESTORA",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LPEU/2026/807 · Akt EÚ: C(2026)8747 VYKONÁVACIE ROZHODNUTIE KOMISIE týkajúce sa povolení na uvedenie liekov na humánne použitie „sirup a perorálny roztok obsahujúce oxybát sodný na liečbu závislosti od alkoholu“ na trh v rámci článku 31 smernice Európskeho parlamentu a Rady 2001/83/ES",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LPEU/2026/807",
+   "date": "2026-11-26T08:00:00Z",
+   "detected": "2026-11-26T12:04:19Z",
+   "category": "Draft law",
+   "priority": "high",
+   "tags": [
+    "Medicines",
+    "Schválenie gestora"
+   ],
+   "summary": "Stage: Schválenie gestora (since 26.11.2026)"
+  },
+  {
    "id": "lp:LPEU/2026/790:PROCES_UKONCENY",
    "source": "slovlex_lp",
    "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
@@ -31,6 +78,24 @@
     "Rokovanie vlády SR"
    ],
    "summary": "Stage: Rokovanie vlády SR (since 26.11.2026) · Submitted by: Ministerstvo pôdohospodárstva a rozvoja vidieka Slovenskej republiky"
+  },
+  {
+   "id": "lp:LP/2026/624:SPRACOVANIE_PREDKLADATEL",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/624 · Vyhláška: Vyhláška Ministerstva zdravotníctva Slovenskej republiky, ktorou sa ustanovuje zoznam farmaceuticko-nákladových skupín, diagnostických skupín, diagnosticko-nákladových skupín a nákladových skupín zdravotníckych pomôcok na rok 2027",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/624",
+   "date": "2026-11-26T08:00:00Z",
+   "detected": "2026-11-26T12:04:18Z",
+   "category": "Draft law",
+   "priority": "high",
+   "tags": [
+    "Pharmacy",
+    "Medical devices",
+    "Ministry of Health",
+    "Spracovanie predkladateľom"
+   ],
+   "summary": "Moved from stage “Vyhodnotenie pripomienkového konania” to “Spracovanie predkladateľom” · Stage: Spracovanie predkladateľom (since 26.11.2026) · Submitted by: Ministerstvo zdravotníctva Slovenskej republiky"
   },
   {
    "id": "lp:LP/2026/623:SPRACOVANIE_PREDKLADATEL",
@@ -12528,94 +12593,94 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-26T10:09:38Z",
+   "checked": "2026-11-26T12:03:54Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-26T10:09:38Z",
-   "new": 0,
+   "checked": "2026-11-26T12:03:54Z",
+   "new": 1,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-26T10:09:38Z",
+   "checked": "2026-11-26T12:03:54Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-11-26T10:09:38Z",
+   "checked": "2026-11-26T12:03:54Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Všetky zmeny na webe",
    "ok": true,
-   "checked": "2026-11-26T10:09:38Z",
-   "new": 429,
+   "checked": "2026-11-26T12:03:54Z",
+   "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-11-26T10:09:38Z",
+   "checked": "2026-11-26T12:03:54Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-26T10:09:38Z",
-   "new": 1,
+   "checked": "2026-11-26T12:03:54Z",
+   "new": 2,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-11-26T10:09:38Z",
+   "checked": "2026-11-26T12:03:54Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-11-26T10:09:38Z",
+   "checked": "2026-11-26T12:03:54Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-26T10:09:38Z",
+   "checked": "2026-11-26T12:03:54Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-26T10:09:38Z",
+   "checked": "2026-11-26T12:03:54Z",
    "new": 0,
    "error": null
   },
   "sukl_web": {
    "name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
    "ok": true,
-   "checked": "2026-11-26T10:09:38Z",
-   "new": 0,
+   "checked": "2026-11-26T12:03:54Z",
+   "new": 1,
    "error": null
   },
   "sool": {
    "name": "SOOL · Slovenská organizácia pre overovanie liekov",
    "ok": true,
-   "checked": "2026-11-26T10:09:38Z",
+   "checked": "2026-11-26T12:03:54Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-11-26T10:09:38Z"
+ "updated": "2026-11-26T12:03:54Z"
 }
