@@ -69,6 +69,23 @@ GitHub only allows that with a token, so the first use asks for one:
 
 Without a token, "Run it on GitHub instead" opens the workflow page, where *Run workflow* does the same.
 
+## Plain-language explanations (Claude)
+
+With the repository secret `ANTHROPIC_API_KEY` set, every check asks Claude (model `claude-opus-5-5`, low effort,
+`explain.py`) to explain each new item in three short parts, shown under the item on the dashboard and in the
+notification e-mail:
+
+- **About** – what the document, notice or page is
+- **What changed** – concretely what is new or different (from the detected change, e.g. the changed provisions)
+- **For PHARMACOPOLA** – what it means for a wholesale distributor and whether action is needed
+
+New items are explained first; items already on the list are filled in at most 40 per check, newest first. Without
+the secret nothing changes. If a request fails the item is tried again at the next check; the PR check explains
+only 2 items as a live test. Cost: about 1–3 US cents per item at list prices.
+
+**Switch it on:** create an API key at https://platform.claude.com (Settings → API keys), then in GitHub open
+*Settings → Secrets and variables → Actions → New repository secret*, name it `ANTHROPIC_API_KEY` and paste the key.
+
 ## Mac app
 
 **To share with a colleague**, send https://jurajgre-72.github.io/pharma-monitor/download/ – a simple page in Slovak and

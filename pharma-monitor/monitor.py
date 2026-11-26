@@ -41,6 +41,7 @@ from email.message import EmailMessage
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import explain  # noqa: E402
 import lawdiff  # noqa: E402
 import pricelist  # noqa: E402
 
@@ -1165,7 +1166,12 @@ def digest(new_items: list[dict]) -> tuple[str, str]:
             d = parse_iso(i["date"])
             lines.append(f"- **[{i['title']}]({i['url']})**  ")
             lines.append(f"  {i['source_name']} · {d:%d.%m.%Y} · {i['category']}" + (f" · _{', '.join(i['tags'][:4])}_" if i["tags"] else ""))
-            if i["summary"]:
+            ex = i.get("explain") or {}
+            if ex.get("about"):
+                lines.append(f"  > **About:** {ex['about']}  ")
+                lines.append(f"  > **What changed:** {ex['what_changed']}  ")
+                lines.append(f"  > **For PHARMACOPOLA:** {ex['impact']}")
+            elif i["summary"]:
                 lines.append(f"  > {i['summary']}")
         lines.append("")
     lines.append("<sub>Automatic digest. Relevance rules: `pharma-monitor/config.json`. "
@@ -1209,6 +1215,8 @@ def main() -> int:
     ap.add_argument("--heavy", choices=["always", "hourly"], default="always",
                     help="'hourly': run the heavier sources (law wordings, EUR-Lex, price list) only in the first "
                          "20 minutes of each hour – used by the 15-minute schedule")
+    ap.add_argument("--explain-limit", type=int, default=explain.MAX_PER_RUN,
+                    help="how many items Claude explains this run (needs ANTHROPIC_API_KEY; 0 = none)")
     args = ap.parse_args()
 
     rules = Rules(load_json(CONFIG_FILE, None))
@@ -1296,6 +1304,9 @@ def main() -> int:
     keep_after = started - dt.timedelta(days=rules.keep_days)
     store["items"] = sorted((i for i in store["items"] if parse_iso(i["date"]) >= keep_after),
                             key=lambda i: (i["date"], i["id"]), reverse=True)
+    if args.explain_limit > 0:  # plain-language "about / what changed / impact" for new items, then older ones
+        explain.MAX_PER_RUN = args.explain_limit
+        explain.explain_items(store["items"], {i["id"] for i in new_items}, HERE)
     if normalized(store) != before:  # only record a new version when something besides check times changed
         store["updated"] = iso(started)
         save_json(ITEMS_FILE, store)

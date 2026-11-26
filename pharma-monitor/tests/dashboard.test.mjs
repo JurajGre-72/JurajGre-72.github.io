@@ -428,6 +428,28 @@ try {
     await p2.context().close(); await p3.context().close();
   }
 
+  console.log('Plain-language explanations');
+  {
+    const p7 = await newPage();
+    const withEx = JSON.parse(JSON.stringify(DATA));
+    withEx.items[0].explain = { about: 'A decree of the Ministry of Health.', what_changed: 'Section 30 now requires a temperature log.',
+      impact: 'Update the cold-chain SOP before 1 July.' };
+    await p7.route(ITEMS_URL, (r) => r.fulfill({ json: withEx }));
+    await p7.route('https://api.github.com/**', (r) => r.fulfill({ json: { workflow_runs: [] } }));
+    await p7.goto(URL);
+    await p7.waitForSelector('article.item');
+    const box = await p7.locator('article.item .explain').first().innerText().catch(() => '');
+    check('explanation shown under the item', /About:.*Ministry of Health/s.test(box) && /What changed:.*temperature log/s.test(box)
+      && /For PHARMACOPOLA:.*cold-chain SOP/s.test(box), box.slice(0, 120));
+    check('items without an explanation keep their summary', await p7.locator('article.item p.sum').count() > 0);
+    await p7.fill('#q', 'cold-chain');
+    await p7.waitForTimeout(250);
+    check('search finds words from the explanation', (await p7.locator('article.item').count()) === 1);
+    check('errors on the page', p7.errors.length === 0, p7.errors.join(' | '));
+    await p7.screenshot({ path: process.env.EXPLAIN_SHOT || '/dev/null', clip: { x: 0, y: 300, width: 1200, height: 420 } }).catch(() => {});
+    await p7.context().close();
+  }
+
   console.log('Check times come from status.json (written by every check)');
   {
     const p4 = await newPage();

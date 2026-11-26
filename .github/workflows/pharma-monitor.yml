@@ -42,6 +42,10 @@ jobs:
       - uses: actions/checkout@v4
         if: steps.guard.outputs.skip != 'true'
 
+      - name: Install the Claude library (for plain-language explanations)
+        if: steps.guard.outputs.skip != 'true'
+        run: python3 -m pip install --quiet "anthropic==2.14.0"
+
       - name: Check Slovak sources
         id: check
         if: steps.guard.outputs.skip != 'true'
@@ -52,6 +56,8 @@ jobs:
           SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
           MAIL_TO: ${{ secrets.MAIL_TO }}
+          # Optional: with this secret Claude writes "About / What changed / For PHARMACOPOLA" for each item.
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           SOURCES: ${{ inputs.sources }}
         run: |
           args=(--notify-out "$RUNNER_TEMP/digest.md")
