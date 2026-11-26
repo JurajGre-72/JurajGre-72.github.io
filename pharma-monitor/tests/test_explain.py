@@ -77,6 +77,16 @@ class ExplainTest(unittest.TestCase):
             self.assertEqual(explain.explain_items(items, {"a"}, HERE), 0)
         self.assertNotIn("explain", items[0])
 
+    def test_a_broken_explanation_step_never_stops_the_check(self):
+        with mock.patch.object(explain, "explain_items", side_effect=RuntimeError("boom")), \
+             mock.patch.object(monitor, "save_json") as save, \
+             mock.patch.object(monitor, "load_json", side_effect=lambda path, default, real=monitor.load_json:
+                               real(path, default) if path == monitor.CONFIG_FILE else ({} if default is None else default)), \
+             mock.patch.object(sys, "argv", ["monitor.py", "--sources", "nothing"]):
+            monitor.main()  # must not raise
+        saved = [c.args[0].name for c in save.call_args_list]
+        self.assertIn("status.json", saved)
+
     def test_the_email_shows_the_explanation(self):
         it = monitor.make_item("uskvbl", "u1", "New document: Zoznam", "https://x", None, "Veterinary", 2, [], "raw")
         it["explain"] = ANSWER

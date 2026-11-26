@@ -1169,8 +1169,8 @@ def digest(new_items: list[dict]) -> tuple[str, str]:
             ex = i.get("explain") or {}
             if ex.get("about"):
                 lines.append(f"  > **About:** {ex['about']}  ")
-                lines.append(f"  > **What changed:** {ex['what_changed']}  ")
-                lines.append(f"  > **For PHARMACOPOLA:** {ex['impact']}")
+                lines.append(f"  > **What changed:** {ex.get('what_changed', '')}  ")
+                lines.append(f"  > **For PHARMACOPOLA:** {ex.get('impact', '')}")
             elif i["summary"]:
                 lines.append(f"  > {i['summary']}")
         lines.append("")
@@ -1306,7 +1306,10 @@ def main() -> int:
                             key=lambda i: (i["date"], i["id"]), reverse=True)
     if args.explain_limit > 0:  # plain-language "about / what changed / impact" for new items, then older ones
         explain.MAX_PER_RUN = args.explain_limit
-        explain.explain_items(store["items"], {i["id"] for i in new_items}, HERE)
+        try:
+            explain.explain_items(store["items"], {i["id"] for i in new_items}, HERE)
+        except Exception as e:  # explanations are extra: they must never cost the check its results or notification
+            print(f"  ! explanations failed: {type(e).__name__}: {str(e)[:200]}", file=sys.stderr)
     if normalized(store) != before:  # only record a new version when something besides check times changed
         store["updated"] = iso(started)
         save_json(ITEMS_FILE, store)

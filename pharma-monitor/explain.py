@@ -65,7 +65,7 @@ def item_prompt(item: dict, here: Path) -> str:
             if len(text) > DETAIL_CHARS:
                 text = text[:DETAIL_CHARS] + " … (cut)"
             parts.append(f"Details of what changed (JSON): {text}")
-        except (OSError, json.JSONDecodeError):
+        except (OSError, ValueError):  # unreadable or not JSON (incl. bad UTF-8): explain from the summary alone
             pass
     return "\n".join(parts)
 
