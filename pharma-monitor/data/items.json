@@ -1,6 +1,37 @@
 {
  "items": [
   {
+   "id": "https://svps.sk/?p=17358",
+   "source": "svps",
+   "source_name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
+   "title": "Štatom zriadené stanice pre zvieratá",
+   "url": "https://svps.sk/statom-zriadene-stanice-pre-zvierata/",
+   "date": "2026-11-26T17:41:25Z",
+   "detected": "2026-11-26T20:05:02Z",
+   "category": "ŠVPS notice",
+   "priority": "medium",
+   "tags": [
+    "Veterinary care"
+   ],
+   "summary": "Stanice pre zvieratá zriadené Ministerstvom pôdohospodárstva a rozvoja vidieka SR pre príjem zvierat, ktoré slúžia na umiestnenie zvierat podliehajúcich veterinárnym opatreniam nariadeným orgánom veterinárnej správy v súvislosti s ochranou zdravia zvierat, dobrými životnými podmienkami zvierat a veterinárnym…",
+   "explain": {
+    "about": "State Veterinary and Food Administration (ŠVPS SR): Štatom zriadené stanice pre zvieratá",
+    "what_changed": "Stanice pre zvieratá zriadené Ministerstvom pôdohospodárstva a rozvoja vidieka SR pre príjem zvierat, ktoré slúžia na umiestnenie zvierat podliehajúcich veterinárnym opatreniam nariadeným orgánom veterinárnej správy v súvislosti s ochranou zdravia zvierat, dobrými životnými podmienkami zvierat a veterinárnym…",
+    "impact": "For information; no action is expected.",
+    "auto": true,
+    "sk": {
+     "about": "Štátna veterinárna a potravinová správa (ŠVPS SR): Štatom zriadené stanice pre zvieratá",
+     "what_changed": "Stanice pre zvieratá zriadené Ministerstvom pôdohospodárstva a rozvoja vidieka SR pre príjem zvierat, ktoré slúžia na umiestnenie zvierat podliehajúcich veterinárnym opatreniam nariadeným orgánom veterinárnej správy v súvislosti s ochranou zdravia zvierat, dobrými životnými podmienkami zvierat a veterinárnym…",
+     "impact": "Na informáciu; nepredpokladá sa žiadna akcia."
+    }
+   },
+   "title_sk": "Štatom zriadené stanice pre zvieratá",
+   "category_sk": "Oznam ŠVPS",
+   "tags_sk": [
+    "Veterinárna starostlivosť"
+   ]
+  },
+  {
    "id": "sukl_web:https://www.sukl.sk/pre-odbornikov-a-firmy/bezpecnost-liekov/pokyny:f0e1488ba6",
    "source": "sukl_web",
    "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
@@ -31,6 +62,512 @@
    "tags_sk": [
     "Lieky",
     "Bezpečnosť liekov"
+   ]
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/zessly-100-mg-prasok-na-pripravu-infuzneho-koncentratu-8171c-prerusenie-26.11.2026:16ac85991b",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Zessly 100 mg prášok na prípravu infúzneho koncentrátu plc ifc 1x100 mg (liek.inj.skl.) (8171C) - Prerušenie 26.11.2026",
+   "url": "https://www.sukl.sk/zessly-100-mg-prasok-na-pripravu-infuzneho-koncentratu-8171c-prerusenie-26.11.2026",
+   "date": "2026-11-26T12:00:00Z",
+   "detected": "2026-11-26T20:04:44Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "Supply interruption",
+    "Medicines"
+   ],
+   "summary": "Typ oznámenia: Prerušenie · Platnosť od: 26.11.2026 · Dátum hlásenia: 26.11.2026 15:06 · Predpokladaný termín obnovenia: 18.2.2027 · Poznámka: TEST · Kód ŠÚKL: 8171C",
+   "explain": {
+    "about": "ŠÚKL supply notice for Zessly 100 mg prášok na prípravu infúzneho koncentrátu plc ifc 1x100 mg (liek.inj.skl.) (8171C).",
+    "what_changed": "Type: Interruption · Valid from: 26.11.2026 · Reported: 26.11.2026 15:06 · Expected resumption: 18.2.2027 · Note: TEST · ŠÚKL code: 8171C",
+    "impact": "Supply of this product is interrupted: check your stock, tell affected customers and plan an alternative.",
+    "auto": true,
+    "sk": {
+     "about": "Oznámenie ŠÚKL o dostupnosti lieku Zessly 100 mg prášok na prípravu infúzneho koncentrátu plc ifc 1x100 mg (liek.inj.skl.) (8171C).",
+     "what_changed": "Typ oznámenia: Prerušenie · Platnosť od: 26.11.2026 · Dátum hlásenia: 26.11.2026 15:06 · Predpokladaný termín obnovenia: 18.2.2027 · Poznámka: TEST · Kód ŠÚKL: 8171C",
+     "impact": "Dodávky lieku sú prerušené: skontrolujte zásoby, informujte dotknutých odberateľov a pripravte náhradu."
+    }
+   },
+   "title_sk": "Zessly 100 mg prášok na prípravu infúzneho koncentrátu plc ifc 1x100 mg (liek.inj.skl.) (8171C) - Prerušenie 26.11.2026",
+   "category_sk": "Dostupnosť liekov",
+   "tags_sk": [
+    "Prerušenie dodávok",
+    "Lieky"
+   ]
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/pyzchiva-90-mg-injekcny-roztok-naplneny-v-injekcnej-striekacke-6118e-zrusenie-24.11.2026:953ae20b5e",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Pyzchiva 90 mg injekčný roztok naplnený v injekčnej striekačke sol inj 1x1 ml/90 mg (striek.inj.napl.skl.) (6118E) - Zrušenie 24.11.2026",
+   "url": "https://www.sukl.sk/pyzchiva-90-mg-injekcny-roztok-naplneny-v-injekcnej-striekacke-6118e-zrusenie-24.11.2026",
+   "date": "2026-11-26T12:00:00Z",
+   "detected": "2026-11-26T20:04:39Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "Supply ended"
+   ],
+   "summary": "Typ oznámenia: Zrušenie · Platnosť od: 24.11.2026 · Dátum hlásenia: 26.11.2026 15:41 · Poznámka: TEST · Kód ŠÚKL: 6118E",
+   "explain": {
+    "about": "ŠÚKL supply notice for Pyzchiva 90 mg injekčný roztok naplnený v injekčnej striekačke sol inj 1x1 ml/90 mg (striek.inj.napl.skl.) (6118E).",
+    "what_changed": "Type: End of supply · Valid from: 24.11.2026 · Reported: 26.11.2026 15:41 · Note: TEST · ŠÚKL code: 6118E",
+    "impact": "Supply ends: plan a replacement and run down the remaining stock.",
+    "auto": true,
+    "sk": {
+     "about": "Oznámenie ŠÚKL o dostupnosti lieku Pyzchiva 90 mg injekčný roztok naplnený v injekčnej striekačke sol inj 1x1 ml/90 mg (striek.inj.napl.skl.) (6118E).",
+     "what_changed": "Typ oznámenia: Zrušenie · Platnosť od: 24.11.2026 · Dátum hlásenia: 26.11.2026 15:41 · Poznámka: TEST · Kód ŠÚKL: 6118E",
+     "impact": "Dodávky končia: pripravte náhradu a dopredajte zostávajúce zásoby."
+    }
+   },
+   "title_sk": "Pyzchiva 90 mg injekčný roztok naplnený v injekčnej striekačke sol inj 1x1 ml/90 mg (striek.inj.napl.skl.) (6118E) - Zrušenie 24.11.2026",
+   "category_sk": "Dostupnosť liekov",
+   "tags_sk": [
+    "Ukončenie dodávok"
+   ]
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/omnitrope-5-mg-15-ml-injekcny-roztok-4111b-prve-uvedenie-1.12.2026:10de2fb342",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Omnitrope 5 mg/1,5 ml injekčný roztok sol inj 1x1,5 ml (skl.náplň pre pero SurePal 5) (4111B) - Prvé uvedenie 1.12.2026",
+   "url": "https://www.sukl.sk/omnitrope-5-mg-15-ml-injekcny-roztok-4111b-prve-uvedenie-1.12.2026",
+   "date": "2026-11-26T12:00:00Z",
+   "detected": "2026-11-26T20:04:39Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "First placed on the market"
+   ],
+   "summary": "Typ oznámenia: Prvé uvedenie · Platnosť od: 1.12.2026 · Dátum hlásenia: 26.11.2026 11:41 · Poznámka: TEST · Kód ŠÚKL: 4111B",
+   "explain": {
+    "about": "ŠÚKL supply notice for Omnitrope 5 mg/1,5 ml injekčný roztok sol inj 1x1,5 ml (skl.náplň pre pero SurePal 5) (4111B).",
+    "what_changed": "Type: First placed on the market · Valid from: 1.12.2026 · Reported: 26.11.2026 11:41 · Note: TEST · ŠÚKL code: 4111B",
+    "impact": "New product on the Slovak market: consider adding it to your range.",
+    "auto": true,
+    "sk": {
+     "about": "Oznámenie ŠÚKL o dostupnosti lieku Omnitrope 5 mg/1,5 ml injekčný roztok sol inj 1x1,5 ml (skl.náplň pre pero SurePal 5) (4111B).",
+     "what_changed": "Typ oznámenia: Prvé uvedenie · Platnosť od: 1.12.2026 · Dátum hlásenia: 26.11.2026 11:41 · Poznámka: TEST · Kód ŠÚKL: 4111B",
+     "impact": "Nový liek na slovenskom trhu: zvážte jeho zaradenie do sortimentu."
+    }
+   },
+   "title_sk": "Omnitrope 5 mg/1,5 ml injekčný roztok sol inj 1x1,5 ml (skl.náplň pre pero SurePal 5) (4111B) - Prvé uvedenie 1.12.2026",
+   "category_sk": "Dostupnosť liekov",
+   "tags_sk": [
+    "Prvé uvedenie na trh"
+   ]
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/megesin-160-mg-34950-prerusenie-2.1.2026:83fd1e723e",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "MEGESIN 160 mg tbl 100x160 mg (34950) - Prerušenie 2.1.2026",
+   "url": "https://www.sukl.sk/megesin-160-mg-34950-prerusenie-2.1.2026",
+   "date": "2026-11-26T12:00:00Z",
+   "detected": "2026-11-26T20:04:36Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "Supply interruption"
+   ],
+   "summary": "Typ oznámenia: Prerušenie · Platnosť od: 2.1.2026 · Dátum hlásenia: 26.11.2026 10:07 · Predpokladaný termín obnovenia: 2.1.2027 · Poznámka: Problémy vo výrobe - Kapacitné dôvody (baliace stroje) · Kód ŠÚKL: 34950",
+   "explain": {
+    "about": "ŠÚKL supply notice for MEGESIN 160 mg tbl 100x160 mg (34950).",
+    "what_changed": "Type: Interruption · Valid from: 2.1.2026 · Reported: 26.11.2026 10:07 · Expected resumption: 2.1.2027 · Note: Problémy vo výrobe - Kapacitné dôvody (baliace stroje) · ŠÚKL code: 34950",
+    "impact": "Supply of this product is interrupted: check your stock, tell affected customers and plan an alternative.",
+    "auto": true,
+    "sk": {
+     "about": "Oznámenie ŠÚKL o dostupnosti lieku MEGESIN 160 mg tbl 100x160 mg (34950).",
+     "what_changed": "Typ oznámenia: Prerušenie · Platnosť od: 2.1.2026 · Dátum hlásenia: 26.11.2026 10:07 · Predpokladaný termín obnovenia: 2.1.2027 · Poznámka: Problémy vo výrobe - Kapacitné dôvody (baliace stroje) · Kód ŠÚKL: 34950",
+     "impact": "Dodávky lieku sú prerušené: skontrolujte zásoby, informujte dotknutých odberateľov a pripravte náhradu."
+    }
+   },
+   "title_sk": "MEGESIN 160 mg tbl 100x160 mg (34950) - Prerušenie 2.1.2026",
+   "category_sk": "Dostupnosť liekov",
+   "tags_sk": [
+    "Prerušenie dodávok"
+   ]
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/ivemend-150-mg-prasok-na-infuzny-roztok-07643-prerusenie-31.12.2026:90884a5077",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "IVEMEND 150 mg prášok na infúzny roztok plv ifo 1x150 mg (liek.inj.skl.) (07643) - Prerušenie 31.12.2026",
+   "url": "https://www.sukl.sk/ivemend-150-mg-prasok-na-infuzny-roztok-07643-prerusenie-31.12.2026",
+   "date": "2026-11-26T12:00:00Z",
+   "detected": "2026-11-26T20:04:40Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "Supply interruption",
+    "Medicines"
+   ],
+   "summary": "Typ oznámenia: Prerušenie · Platnosť od: 31.12.2026 · Dátum hlásenia: 26.11.2026 13:18 · Predpokladaný termín obnovenia: 24.12.2027 · Poznámka: test · Kód ŠÚKL: 07643",
+   "explain": {
+    "about": "ŠÚKL supply notice for IVEMEND 150 mg prášok na infúzny roztok plv ifo 1x150 mg (liek.inj.skl.) (07643).",
+    "what_changed": "Type: Interruption · Valid from: 31.12.2026 · Reported: 26.11.2026 13:18 · Expected resumption: 24.12.2027 · Note: test · ŠÚKL code: 07643",
+    "impact": "Supply of this product is interrupted: check your stock, tell affected customers and plan an alternative.",
+    "auto": true,
+    "sk": {
+     "about": "Oznámenie ŠÚKL o dostupnosti lieku IVEMEND 150 mg prášok na infúzny roztok plv ifo 1x150 mg (liek.inj.skl.) (07643).",
+     "what_changed": "Typ oznámenia: Prerušenie · Platnosť od: 31.12.2026 · Dátum hlásenia: 26.11.2026 13:18 · Predpokladaný termín obnovenia: 24.12.2027 · Poznámka: test · Kód ŠÚKL: 07643",
+     "impact": "Dodávky lieku sú prerušené: skontrolujte zásoby, informujte dotknutých odberateľov a pripravte náhradu."
+    }
+   },
+   "title_sk": "IVEMEND 150 mg prášok na infúzny roztok plv ifo 1x150 mg (liek.inj.skl.) (07643) - Prerušenie 31.12.2026",
+   "category_sk": "Dostupnosť liekov",
+   "tags_sk": [
+    "Prerušenie dodávok",
+    "Lieky"
+   ]
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/ivabradin-sandoz-75-mg-1695c-prerusenie-26.11.2026:d4d5c98ffe",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Ivabradín Sandoz 7,5 mg tbl flm 56x7,5 mg (blis.PVC/PE/PVDC/Al) (1695C) - Prerušenie 26.11.2026",
+   "url": "https://www.sukl.sk/ivabradin-sandoz-75-mg-1695c-prerusenie-26.11.2026",
+   "date": "2026-11-26T12:00:00Z",
+   "detected": "2026-11-26T20:04:43Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "Supply interruption"
+   ],
+   "summary": "Typ oznámenia: Prerušenie · Platnosť od: 26.11.2026 · Dátum hlásenia: 26.11.2026 15:07 · Predpokladaný termín obnovenia: 1.12.2027 · Kód ŠÚKL: 1695C",
+   "explain": {
+    "about": "ŠÚKL supply notice for Ivabradín Sandoz 7,5 mg tbl flm 56x7,5 mg (blis.PVC/PE/PVDC/Al) (1695C).",
+    "what_changed": "Type: Interruption · Valid from: 26.11.2026 · Reported: 26.11.2026 15:07 · Expected resumption: 1.12.2027 · ŠÚKL code: 1695C",
+    "impact": "Supply of this product is interrupted: check your stock, tell affected customers and plan an alternative.",
+    "auto": true,
+    "sk": {
+     "about": "Oznámenie ŠÚKL o dostupnosti lieku Ivabradín Sandoz 7,5 mg tbl flm 56x7,5 mg (blis.PVC/PE/PVDC/Al) (1695C).",
+     "what_changed": "Typ oznámenia: Prerušenie · Platnosť od: 26.11.2026 · Dátum hlásenia: 26.11.2026 15:07 · Predpokladaný termín obnovenia: 1.12.2027 · Kód ŠÚKL: 1695C",
+     "impact": "Dodávky lieku sú prerušené: skontrolujte zásoby, informujte dotknutých odberateľov a pripravte náhradu."
+    }
+   },
+   "title_sk": "Ivabradín Sandoz 7,5 mg tbl flm 56x7,5 mg (blis.PVC/PE/PVDC/Al) (1695C) - Prerušenie 26.11.2026",
+   "category_sk": "Dostupnosť liekov",
+   "tags_sk": [
+    "Prerušenie dodávok"
+   ]
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/isoprinosine-500-mg-tablety-88174-prerusenie-1.12.2026:7611ba898a",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Isoprinosine 500 mg tablety tbl 50x500 mg (blis. PVC/PVDC/Al) (88174) - Prerušenie 1.12.2026",
+   "url": "https://www.sukl.sk/isoprinosine-500-mg-tablety-88174-prerusenie-1.12.2026",
+   "date": "2026-11-26T12:00:00Z",
+   "detected": "2026-11-26T20:04:34Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "Supply interruption"
+   ],
+   "summary": "Typ oznámenia: Prerušenie · Platnosť od: 1.12.2026 · Dátum hlásenia: 26.11.2026 09:38 · Predpokladaný termín obnovenia: 31.12.2026 · Kód ŠÚKL: 88174 · Predpokladaný termín obnovenia: Detail · Typ oznámenia: Zrušenie · Platnosť od: 1.1.2027 · Dátum hlásenia: 26.11.2026 13:27 · Predpokladaný termín obnovenia: Detail…",
+   "explain": {
+    "about": "ŠÚKL supply notice for Isoprinosine 500 mg tablety tbl 50x500 mg (blis. PVC/PVDC/Al) (88174).",
+    "what_changed": "Type: Interruption · Valid from: 1.12.2026 · Reported: 26.11.2026 09:38 · Expected resumption: 31.12.2026 · ŠÚKL code: 88174",
+    "impact": "Supply of this product is interrupted: check your stock, tell affected customers and plan an alternative.",
+    "auto": true,
+    "sk": {
+     "about": "Oznámenie ŠÚKL o dostupnosti lieku Isoprinosine 500 mg tablety tbl 50x500 mg (blis. PVC/PVDC/Al) (88174).",
+     "what_changed": "Typ oznámenia: Prerušenie · Platnosť od: 1.12.2026 · Dátum hlásenia: 26.11.2026 09:38 · Predpokladaný termín obnovenia: 31.12.2026 · Kód ŠÚKL: 88174",
+     "impact": "Dodávky lieku sú prerušené: skontrolujte zásoby, informujte dotknutých odberateľov a pripravte náhradu."
+    }
+   },
+   "title_sk": "Isoprinosine 500 mg tablety tbl 50x500 mg (blis. PVC/PVDC/Al) (88174) - Prerušenie 1.12.2026",
+   "category_sk": "Dostupnosť liekov",
+   "tags_sk": [
+    "Prerušenie dodávok"
+   ]
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/isoprinosine-500-mg-tablety-88174-obnovenie-21.12.2026:0d601039b3",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Isoprinosine 500 mg tablety tbl 50x500 mg (blis. PVC/PVDC/Al) (88174) - Obnovenie 21.12.2026",
+   "url": "https://www.sukl.sk/isoprinosine-500-mg-tablety-88174-obnovenie-21.12.2026",
+   "date": "2026-11-26T12:00:00Z",
+   "detected": "2026-11-26T20:04:35Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "Supply resumed"
+   ],
+   "summary": "Typ oznámenia: Obnovenie · Platnosť od: 21.12.2026 · Dátum hlásenia: 26.11.2026 09:43 · Kód ŠÚKL: 88174 · Predpokladaný termín obnovenia: Detail · Typ oznámenia: Zrušenie · Platnosť od: 1.1.2027 · Dátum hlásenia: 26.11.2026 13:27 · Predpokladaný termín obnovenia: Detail hlásenia Zrušenie 1.1.2027 · Typ oznámenia:…",
+   "explain": {
+    "about": "ŠÚKL supply notice for Isoprinosine 500 mg tablety tbl 50x500 mg (blis. PVC/PVDC/Al) (88174).",
+    "what_changed": "Type: Resumption · Valid from: 21.12.2026 · Reported: 26.11.2026 09:43 · ŠÚKL code: 88174",
+    "impact": "Supply resumes: the product can be ordered again from the date given.",
+    "auto": true,
+    "sk": {
+     "about": "Oznámenie ŠÚKL o dostupnosti lieku Isoprinosine 500 mg tablety tbl 50x500 mg (blis. PVC/PVDC/Al) (88174).",
+     "what_changed": "Typ oznámenia: Obnovenie · Platnosť od: 21.12.2026 · Dátum hlásenia: 26.11.2026 09:43 · Kód ŠÚKL: 88174",
+     "impact": "Dodávky sa obnovujú: liek bude možné znovu objednať od uvedeného dátumu."
+    }
+   },
+   "title_sk": "Isoprinosine 500 mg tablety tbl 50x500 mg (blis. PVC/PVDC/Al) (88174) - Obnovenie 21.12.2026",
+   "category_sk": "Dostupnosť liekov",
+   "tags_sk": [
+    "Obnovenie dodávok"
+   ]
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/herwenda-150-mg-prasok-na-koncentrat-na-infuzny-roztok-5046e-zrusenie-26.11.2026:ec576cc2e2",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Herwenda 150 mg prášok na koncentrát na infúzny roztok plc ifc 1x150 mg (liek.inj.skl.) (5046E) - Zrušenie 26.11.2026",
+   "url": "https://www.sukl.sk/herwenda-150-mg-prasok-na-koncentrat-na-infuzny-roztok-5046e-zrusenie-26.11.2026",
+   "date": "2026-11-26T12:00:00Z",
+   "detected": "2026-11-26T20:04:42Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "Supply ended",
+    "Medicines"
+   ],
+   "summary": "Typ oznámenia: Zrušenie · Platnosť od: 26.11.2026 · Dátum hlásenia: 26.11.2026 14:40 · Poznámka: Na sklade aktuálne 20 kusov, posledná distribuovaná šarža má exspiráciu 07/2027. · Kód ŠÚKL: 5046E",
+   "explain": {
+    "about": "ŠÚKL supply notice for Herwenda 150 mg prášok na koncentrát na infúzny roztok plc ifc 1x150 mg (liek.inj.skl.) (5046E).",
+    "what_changed": "Type: End of supply · Valid from: 26.11.2026 · Reported: 26.11.2026 14:40 · Note: Na sklade aktuálne 20 kusov, posledná distribuovaná šarža má exspiráciu 07/2027. · ŠÚKL code: 5046E",
+    "impact": "Supply ends: plan a replacement and run down the remaining stock.",
+    "auto": true,
+    "sk": {
+     "about": "Oznámenie ŠÚKL o dostupnosti lieku Herwenda 150 mg prášok na koncentrát na infúzny roztok plc ifc 1x150 mg (liek.inj.skl.) (5046E).",
+     "what_changed": "Typ oznámenia: Zrušenie · Platnosť od: 26.11.2026 · Dátum hlásenia: 26.11.2026 14:40 · Poznámka: Na sklade aktuálne 20 kusov, posledná distribuovaná šarža má exspiráciu 07/2027. · Kód ŠÚKL: 5046E",
+     "impact": "Dodávky končia: pripravte náhradu a dopredajte zostávajúce zásoby."
+    }
+   },
+   "title_sk": "Herwenda 150 mg prášok na koncentrát na infúzny roztok plc ifc 1x150 mg (liek.inj.skl.) (5046E) - Zrušenie 26.11.2026",
+   "category_sk": "Dostupnosť liekov",
+   "tags_sk": [
+    "Ukončenie dodávok",
+    "Lieky"
+   ]
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/emend-125-mg-tvrde-kapsuly-emend-80-mg-tvrde-kapsuly-40852-zrusenie-31.12.2026:4fdc75facf",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "EMEND 125 mg tvrdé kapsuly, EMEND 80 mg tvrdé kapsuly cps dur 1x125 mg+ 2x80 mg (blis.Al/Al) (40852) - Zrušenie 31.12.2026",
+   "url": "https://www.sukl.sk/emend-125-mg-tvrde-kapsuly-emend-80-mg-tvrde-kapsuly-40852-zrusenie-31.12.2026",
+   "date": "2026-11-26T12:00:00Z",
+   "detected": "2026-11-26T20:04:41Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "Supply ended"
+   ],
+   "summary": "Typ oznámenia: Zrušenie · Platnosť od: 31.12.2026 · Dátum hlásenia: 26.11.2026 13:28 · Poznámka: Zostávajúci počet balení: 75 ks · Kód ŠÚKL: 40852",
+   "explain": {
+    "about": "ŠÚKL supply notice for EMEND 125 mg tvrdé kapsuly, EMEND 80 mg tvrdé kapsuly cps dur 1x125 mg+ 2x80 mg (blis.Al/Al) (40852).",
+    "what_changed": "Type: End of supply · Valid from: 31.12.2026 · Reported: 26.11.2026 13:28 · Note: Zostávajúci počet balení: 75 ks · ŠÚKL code: 40852",
+    "impact": "Supply ends: plan a replacement and run down the remaining stock.",
+    "auto": true,
+    "sk": {
+     "about": "Oznámenie ŠÚKL o dostupnosti lieku EMEND 125 mg tvrdé kapsuly, EMEND 80 mg tvrdé kapsuly cps dur 1x125 mg+ 2x80 mg (blis.Al/Al) (40852).",
+     "what_changed": "Typ oznámenia: Zrušenie · Platnosť od: 31.12.2026 · Dátum hlásenia: 26.11.2026 13:28 · Poznámka: Zostávajúci počet balení: 75 ks · Kód ŠÚKL: 40852",
+     "impact": "Dodávky končia: pripravte náhradu a dopredajte zostávajúce zásoby."
+    }
+   },
+   "title_sk": "EMEND 125 mg tvrdé kapsuly, EMEND 80 mg tvrdé kapsuly cps dur 1x125 mg+ 2x80 mg (blis.Al/Al) (40852) - Zrušenie 31.12.2026",
+   "category_sk": "Dostupnosť liekov",
+   "tags_sk": [
+    "Ukončenie dodávok"
+   ]
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/edicin-1-g-prasok-na-infuzny-roztok-85599-prerusenie-26.11.2026:cd7982ebdd",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "EDICIN 1 g prášok na infúzny roztok plv ifo 1x1 g (liek.skl.) (85599) - Prerušenie 26.11.2026",
+   "url": "https://www.sukl.sk/edicin-1-g-prasok-na-infuzny-roztok-85599-prerusenie-26.11.2026",
+   "date": "2026-11-26T12:00:00Z",
+   "detected": "2026-11-26T20:04:41Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "Supply interruption",
+    "Medicines"
+   ],
+   "summary": "Typ oznámenia: Prerušenie · Platnosť od: 26.11.2026 · Dátum hlásenia: 26.11.2026 14:22 · Predpokladaný termín obnovenia: 17.12.2026 · Poznámka: TEST · Kód ŠÚKL: 85599",
+   "explain": {
+    "about": "ŠÚKL supply notice for EDICIN 1 g prášok na infúzny roztok plv ifo 1x1 g (liek.skl.) (85599).",
+    "what_changed": "Type: Interruption · Valid from: 26.11.2026 · Reported: 26.11.2026 14:22 · Expected resumption: 17.12.2026 · Note: TEST · ŠÚKL code: 85599",
+    "impact": "Supply of this product is interrupted: check your stock, tell affected customers and plan an alternative.",
+    "auto": true,
+    "sk": {
+     "about": "Oznámenie ŠÚKL o dostupnosti lieku EDICIN 1 g prášok na infúzny roztok plv ifo 1x1 g (liek.skl.) (85599).",
+     "what_changed": "Typ oznámenia: Prerušenie · Platnosť od: 26.11.2026 · Dátum hlásenia: 26.11.2026 14:22 · Predpokladaný termín obnovenia: 17.12.2026 · Poznámka: TEST · Kód ŠÚKL: 85599",
+     "impact": "Dodávky lieku sú prerušené: skontrolujte zásoby, informujte dotknutých odberateľov a pripravte náhradu."
+    }
+   },
+   "title_sk": "EDICIN 1 g prášok na infúzny roztok plv ifo 1x1 g (liek.skl.) (85599) - Prerušenie 26.11.2026",
+   "category_sk": "Dostupnosť liekov",
+   "tags_sk": [
+    "Prerušenie dodávok",
+    "Lieky"
+   ]
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/corbilta-50-mg-125-mg-200-mg-filmom-obalene-tablety-8250a-prerusenie-26.11.2026:391a3f387c",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Corbilta 50 mg/12,5 mg/200 mg filmom obalené tablety tbl flm 100x50 mg/12,5 mg/200 mg (fľ.HDPE) (8250A) - Prerušenie 26.11.2026",
+   "url": "https://www.sukl.sk/corbilta-50-mg-125-mg-200-mg-filmom-obalene-tablety-8250a-prerusenie-26.11.2026",
+   "date": "2026-11-26T12:00:00Z",
+   "detected": "2026-11-26T20:04:42Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "Supply interruption",
+    "Waste & packaging"
+   ],
+   "summary": "Typ oznámenia: Prerušenie · Platnosť od: 26.11.2026 · Dátum hlásenia: 26.11.2026 15:12 · Predpokladaný termín obnovenia: 31.3.2027 · Poznámka: TEST · Kód ŠÚKL: 8250A",
+   "explain": {
+    "about": "ŠÚKL supply notice for Corbilta 50 mg/12,5 mg/200 mg filmom obalené tablety tbl flm 100x50 mg/12,5 mg/200 mg (fľ.HDPE) (8250A).",
+    "what_changed": "Type: Interruption · Valid from: 26.11.2026 · Reported: 26.11.2026 15:12 · Expected resumption: 31.3.2027 · Note: TEST · ŠÚKL code: 8250A",
+    "impact": "Supply of this product is interrupted: check your stock, tell affected customers and plan an alternative.",
+    "auto": true,
+    "sk": {
+     "about": "Oznámenie ŠÚKL o dostupnosti lieku Corbilta 50 mg/12,5 mg/200 mg filmom obalené tablety tbl flm 100x50 mg/12,5 mg/200 mg (fľ.HDPE) (8250A).",
+     "what_changed": "Typ oznámenia: Prerušenie · Platnosť od: 26.11.2026 · Dátum hlásenia: 26.11.2026 15:12 · Predpokladaný termín obnovenia: 31.3.2027 · Poznámka: TEST · Kód ŠÚKL: 8250A",
+     "impact": "Dodávky lieku sú prerušené: skontrolujte zásoby, informujte dotknutých odberateľov a pripravte náhradu."
+    }
+   },
+   "title_sk": "Corbilta 50 mg/12,5 mg/200 mg filmom obalené tablety tbl flm 100x50 mg/12,5 mg/200 mg (fľ.HDPE) (8250A) - Prerušenie 26.11.2026",
+   "category_sk": "Dostupnosť liekov",
+   "tags_sk": [
+    "Prerušenie dodávok",
+    "Odpady a obaly"
+   ]
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/apixaban-sandoz-25-mg-8891d-prve-uvedenie-25.11.2026:1a01fef747",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Apixaban Sandoz 2,5 mg tbl flm 60x2,5 mg (blis.Al/PVC/PVDC) (8891D) - Prvé uvedenie 25.11.2026",
+   "url": "https://www.sukl.sk/apixaban-sandoz-25-mg-8891d-prve-uvedenie-25.11.2026",
+   "date": "2026-11-26T12:00:00Z",
+   "detected": "2026-11-26T20:04:38Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "First placed on the market"
+   ],
+   "summary": "Typ oznámenia: Prvé uvedenie · Platnosť od: 25.11.2026 · Dátum hlásenia: 26.11.2026 11:26 · Poznámka: TEST - Prvé uvedenie 25.11.2026 (doručený na sklad Movianto a prijaté v systéme), zadaný dňa 26.11.2026, pretože 26.11.2026 začal predaj. · Kód ŠÚKL: 8891D",
+   "explain": {
+    "about": "ŠÚKL supply notice for Apixaban Sandoz 2,5 mg tbl flm 60x2,5 mg (blis.Al/PVC/PVDC) (8891D).",
+    "what_changed": "Type: First placed on the market · Valid from: 25.11.2026 · Reported: 26.11.2026 11:26 · Note: TEST - First placed on the market 25.11.2026 (doručený na sklad Movianto a prijaté v systéme), zadaný dňa 26.11.2026, pretože 26.11.2026 začal predaj. · ŠÚKL code: 8891D",
+    "impact": "New product on the Slovak market: consider adding it to your range.",
+    "auto": true,
+    "sk": {
+     "about": "Oznámenie ŠÚKL o dostupnosti lieku Apixaban Sandoz 2,5 mg tbl flm 60x2,5 mg (blis.Al/PVC/PVDC) (8891D).",
+     "what_changed": "Typ oznámenia: Prvé uvedenie · Platnosť od: 25.11.2026 · Dátum hlásenia: 26.11.2026 11:26 · Poznámka: TEST - Prvé uvedenie 25.11.2026 (doručený na sklad Movianto a prijaté v systéme), zadaný dňa 26.11.2026, pretože 26.11.2026 začal predaj. · Kód ŠÚKL: 8891D",
+     "impact": "Nový liek na slovenskom trhu: zvážte jeho zaradenie do sortimentu."
+    }
+   },
+   "title_sk": "Apixaban Sandoz 2,5 mg tbl flm 60x2,5 mg (blis.Al/PVC/PVDC) (8891D) - Prvé uvedenie 25.11.2026",
+   "category_sk": "Dostupnosť liekov",
+   "tags_sk": [
+    "Prvé uvedenie na trh"
+   ]
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/amoksiklav-625-mg-18614-prerusenie-26.11.2026:b8b586f061",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Amoksiklav 625 mg tbl flm 21x625 mg (blis.Al/Al) (18614) - Prerušenie 26.11.2026",
+   "url": "https://www.sukl.sk/amoksiklav-625-mg-18614-prerusenie-26.11.2026",
+   "date": "2026-11-26T12:00:00Z",
+   "detected": "2026-11-26T20:04:37Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "Supply interruption"
+   ],
+   "summary": "Typ oznámenia: Prerušenie · Platnosť od: 26.11.2026 · Dátum hlásenia: 26.11.2026 15:04 · Predpokladaný termín obnovenia: 25.7.2027 · Poznámka: TEST · Kód ŠÚKL: 18614",
+   "explain": {
+    "about": "ŠÚKL supply notice for Amoksiklav 625 mg tbl flm 21x625 mg (blis.Al/Al) (18614).",
+    "what_changed": "Type: Interruption · Valid from: 26.11.2026 · Reported: 26.11.2026 15:04 · Expected resumption: 25.7.2027 · Note: TEST · ŠÚKL code: 18614",
+    "impact": "Supply of this product is interrupted: check your stock, tell affected customers and plan an alternative.",
+    "auto": true,
+    "sk": {
+     "about": "Oznámenie ŠÚKL o dostupnosti lieku Amoksiklav 625 mg tbl flm 21x625 mg (blis.Al/Al) (18614).",
+     "what_changed": "Typ oznámenia: Prerušenie · Platnosť od: 26.11.2026 · Dátum hlásenia: 26.11.2026 15:04 · Predpokladaný termín obnovenia: 25.7.2027 · Poznámka: TEST · Kód ŠÚKL: 18614",
+     "impact": "Dodávky lieku sú prerušené: skontrolujte zásoby, informujte dotknutých odberateľov a pripravte náhradu."
+    }
+   },
+   "title_sk": "Amoksiklav 625 mg tbl flm 21x625 mg (blis.Al/Al) (18614) - Prerušenie 26.11.2026",
+   "category_sk": "Dostupnosť liekov",
+   "tags_sk": [
+    "Prerušenie dodávok"
+   ]
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/akynzeo-300-mg-05-mg-tvrde-kapsuly-5287b-obnovenie-30.11.2026:c0f9fbb8f5",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Akynzeo 300 mg/0,5 mg tvrdé kapsuly cps dur 1x300 mg/0,5 mg (blis.Al/Al) (5287B) - Obnovenie 30.11.2026",
+   "url": "https://www.sukl.sk/akynzeo-300-mg-05-mg-tvrde-kapsuly-5287b-obnovenie-30.11.2026",
+   "date": "2026-11-26T12:00:00Z",
+   "detected": "2026-11-26T20:04:33Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "Supply resumed"
+   ],
+   "summary": "Typ oznámenia: Obnovenie · Platnosť od: 30.11.2026 · Dátum hlásenia: 26.11.2026 10:21 · Poznámka: test · Kód ŠÚKL: 5287B",
+   "explain": {
+    "about": "ŠÚKL supply notice for Akynzeo 300 mg/0,5 mg tvrdé kapsuly cps dur 1x300 mg/0,5 mg (blis.Al/Al) (5287B).",
+    "what_changed": "Type: Resumption · Valid from: 30.11.2026 · Reported: 26.11.2026 10:21 · Note: test · ŠÚKL code: 5287B",
+    "impact": "Supply resumes: the product can be ordered again from the date given.",
+    "auto": true,
+    "sk": {
+     "about": "Oznámenie ŠÚKL o dostupnosti lieku Akynzeo 300 mg/0,5 mg tvrdé kapsuly cps dur 1x300 mg/0,5 mg (blis.Al/Al) (5287B).",
+     "what_changed": "Typ oznámenia: Obnovenie · Platnosť od: 30.11.2026 · Dátum hlásenia: 26.11.2026 10:21 · Poznámka: test · Kód ŠÚKL: 5287B",
+     "impact": "Dodávky sa obnovujú: liek bude možné znovu objednať od uvedeného dátumu."
+    }
+   },
+   "title_sk": "Akynzeo 300 mg/0,5 mg tvrdé kapsuly cps dur 1x300 mg/0,5 mg (blis.Al/Al) (5287B) - Obnovenie 30.11.2026",
+   "category_sk": "Dostupnosť liekov",
+   "tags_sk": [
+    "Obnovenie dodávok"
+   ]
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/airflusal-forspiro-50-mikrogramov-250-mikrogramov-1543b-prerusenie-26.11.2026:33bb723962",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Airflusal Forspiro 50 mikrogramov/250 mikrogramov plv ido 1x60 dávok+1x inhalátor (blis.OPA/Al/PVC/Al+inhalátor) (1543B) - Prerušenie 26.11.2026",
+   "url": "https://www.sukl.sk/airflusal-forspiro-50-mikrogramov-250-mikrogramov-1543b-prerusenie-26.11.2026",
+   "date": "2026-11-26T12:00:00Z",
+   "detected": "2026-11-26T20:04:38Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "Supply interruption"
+   ],
+   "summary": "Typ oznámenia: Prerušenie · Platnosť od: 26.11.2026 · Dátum hlásenia: 26.11.2026 11:17 · Predpokladaný termín obnovenia: 1.3.2027 · Poznámka: TEST · Kód ŠÚKL: 1543B",
+   "explain": {
+    "about": "ŠÚKL supply notice for Airflusal Forspiro 50 mikrogramov/250 mikrogramov plv ido 1x60 dávok+1x inhalátor (blis.OPA/Al/PVC/Al+inhalátor) (1543B).",
+    "what_changed": "Type: Interruption · Valid from: 26.11.2026 · Reported: 26.11.2026 11:17 · Expected resumption: 1.3.2027 · Note: TEST · ŠÚKL code: 1543B",
+    "impact": "Supply of this product is interrupted: check your stock, tell affected customers and plan an alternative.",
+    "auto": true,
+    "sk": {
+     "about": "Oznámenie ŠÚKL o dostupnosti lieku Airflusal Forspiro 50 mikrogramov/250 mikrogramov plv ido 1x60 dávok+1x inhalátor (blis.OPA/Al/PVC/Al+inhalátor) (1543B).",
+     "what_changed": "Typ oznámenia: Prerušenie · Platnosť od: 26.11.2026 · Dátum hlásenia: 26.11.2026 11:17 · Predpokladaný termín obnovenia: 1.3.2027 · Poznámka: TEST · Kód ŠÚKL: 1543B",
+     "impact": "Dodávky lieku sú prerušené: skontrolujte zásoby, informujte dotknutých odberateľov a pripravte náhradu."
+    }
+   },
+   "title_sk": "Airflusal Forspiro 50 mikrogramov/250 mikrogramov plv ido 1x60 dávok+1x inhalátor (blis.OPA/Al/PVC/Al+inhalátor) (1543B) - Prerušenie 26.11.2026",
+   "category_sk": "Dostupnosť liekov",
+   "tags_sk": [
+    "Prerušenie dodávok"
    ]
   },
   {
@@ -25608,101 +26145,101 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-26T13:53:22Z",
+   "checked": "2026-11-26T20:04:02Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-26T13:53:22Z",
+   "checked": "2026-11-26T20:04:02Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-26T13:53:22Z",
+   "checked": "2026-11-26T20:04:02Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-11-26T13:53:22Z",
+   "checked": "2026-11-26T20:04:02Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Všetky zmeny na webe",
    "ok": true,
-   "checked": "2026-11-26T13:53:22Z",
+   "checked": "2026-11-26T20:04:02Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-11-26T13:53:22Z",
+   "checked": "2026-11-26T20:04:02Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-26T13:53:22Z",
+   "checked": "2026-11-26T20:04:02Z",
    "new": 0,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-11-26T13:53:22Z",
+   "checked": "2026-11-26T20:04:02Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-11-26T13:53:22Z",
+   "checked": "2026-11-26T20:04:02Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-26T13:53:22Z",
+   "checked": "2026-11-26T20:04:02Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-26T13:53:22Z",
-   "new": 0,
+   "checked": "2026-11-26T20:04:02Z",
+   "new": 1,
    "error": null
   },
   "sukl_web": {
    "name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
    "ok": true,
-   "checked": "2026-11-26T13:53:22Z",
-   "new": 0,
+   "checked": "2026-11-26T20:04:02Z",
+   "new": 16,
    "error": null
   },
   "sool": {
    "name": "SOOL · Slovenská organizácia pre overovanie liekov",
    "ok": true,
-   "checked": "2026-11-26T13:53:22Z",
+   "checked": "2026-11-26T20:04:02Z",
    "new": 0,
    "error": null
   },
   "sdp": {
    "name": "SDP / GDP · EÚ, EMA, PIC/S, EMVO",
    "ok": true,
-   "checked": "2026-11-26T13:53:22Z",
+   "checked": "2026-11-26T20:04:02Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-11-26T13:53:22Z"
+ "updated": "2026-11-26T20:04:02Z"
 }
