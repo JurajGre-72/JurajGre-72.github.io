@@ -5634,6 +5634,25 @@
    "details": "data/changes/law_581_2004_2026-07-01.json"
   },
   {
+   "id": "law:129/2012:2026-07-01",
+   "source": "lawchanges",
+   "source_name": "Slov-Lex · Znenia kľúčových zákonov",
+   "title": "129/2012 Z. z. – Decree on Good Manufacturing and Good Wholesale Distribution Practice (SDP): new wording in force from 01.07.2026",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2012/129/20260701.html",
+   "date": "2026-07-01T08:00:00Z",
+   "detected": "2026-07-01T08:00:00Z",
+   "category": "Law change",
+   "priority": "high",
+   "tags": [
+    "Amends 129/2012"
+   ],
+   "summary": "Changed by 419/2025 Z. z. 99 provision(s) changed: § 30, § 31, Príloha č. 1. Open the item to see the old and new wording.",
+   "effective": [
+    "2026-07-01"
+   ],
+   "details": "data/changes/law_129_2012_2026-07-01.json"
+  },
+  {
    "id": "uskvbl:pages:115:2026-06-26T09:20:32",
    "source": "uskvbl",
    "source_name": "ÚŠKVBL · Všetky zmeny na webe",
@@ -12593,94 +12612,101 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-26T12:03:54Z",
+   "checked": "2026-11-26T12:22:56Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-26T12:03:54Z",
-   "new": 1,
+   "checked": "2026-11-26T12:22:56Z",
+   "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-26T12:03:54Z",
+   "checked": "2026-11-26T12:22:56Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-11-26T12:03:54Z",
+   "checked": "2026-11-26T12:22:56Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Všetky zmeny na webe",
    "ok": true,
-   "checked": "2026-11-26T12:03:54Z",
+   "checked": "2026-11-26T12:22:56Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-11-26T12:03:54Z",
-   "new": 0,
+   "checked": "2026-11-26T12:22:56Z",
+   "new": 1,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-26T12:03:54Z",
-   "new": 2,
+   "checked": "2026-11-26T12:22:56Z",
+   "new": 0,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-11-26T12:03:54Z",
+   "checked": "2026-11-26T12:22:56Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-11-26T12:03:54Z",
+   "checked": "2026-11-26T12:22:56Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-26T12:03:54Z",
+   "checked": "2026-11-26T12:22:56Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-26T12:03:54Z",
+   "checked": "2026-11-26T12:22:56Z",
    "new": 0,
    "error": null
   },
   "sukl_web": {
    "name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
    "ok": true,
-   "checked": "2026-11-26T12:03:54Z",
-   "new": 1,
+   "checked": "2026-11-26T12:22:56Z",
+   "new": 0,
    "error": null
   },
   "sool": {
    "name": "SOOL · Slovenská organizácia pre overovanie liekov",
    "ok": true,
-   "checked": "2026-11-26T12:03:54Z",
+   "checked": "2026-11-26T12:22:56Z",
+   "new": 0,
+   "error": null
+  },
+  "sdp": {
+   "name": "SDP / GDP · EÚ, EMA, PIC/S, EMVO",
+   "ok": true,
+   "checked": "2026-11-26T12:22:56Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-11-26T12:03:54Z"
+ "updated": "2026-11-26T12:22:56Z"
 }

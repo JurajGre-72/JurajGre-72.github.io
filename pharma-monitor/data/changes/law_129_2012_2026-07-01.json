@@ -1,0 +1,1683 @@
+{
+ "kind": "law_diff",
+ "law": "129/2012",
+ "law_name": "Decree on Good Manufacturing and Good Wholesale Distribution Practice (SDP)",
+ "from": "2026-01-01",
+ "to": "2026-07-01",
+ "amended_by": "419/2025 Z. z.",
+ "amended_by_url": "https://static.slov-lex.sk/static/SK/ZZ/2025/419/20260701.html",
+ "old_url": "https://static.slov-lex.sk/static/SK/ZZ/2012/129/20260101.html",
+ "new_url": "https://static.slov-lex.sk/static/SK/ZZ/2012/129/20260701.html",
+ "changes": [
+  {
+   "loc": "§ 30 ods. 8",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Lieky, liečivá a pomocné látky sa uchovávajú za podmienok určených držiteľom registrácie lieku, výrobcom liečiv a pomocných látok, Európskym liekopisom alebo Slovenským farmaceutickým "
+    ],
+    [
+     "-",
+     "kódexom, "
+    ],
+    [
+     "+",
+     "kódexom tak, "
+    ],
+    [
+     "=",
+     "aby sa zabránilo akémukoľvek "
+    ],
+    [
+     "+",
+     "ich "
+    ],
+    [
+     "=",
+     "poškodeniu teplom alebo vlhkom. Teplota "
+    ],
+    [
+     "+",
+     "sa meria pomocou kalibrovaného meradla, ktoré umožňuje meranie "
+    ],
+    [
+     "=",
+     "a "
+    ],
+    [
+     "-",
+     "vlhkosť "
+    ],
+    [
+     "+",
+     "automatickú evidenciu teploty najmenej v dvojhodinových intervaloch. Denné záznamy o teplote "
+    ],
+    [
+     "=",
+     "sa "
+    ],
+    [
+     "-",
+     "denne počas prevádzky zaznamenávajú, kontrolujú a vyhodnocujú. "
+    ],
+    [
+     "+",
+     "uchovávajú 12 mesiacov. "
+    ],
+    [
+     "=",
+     "Lieky, liečivá a pomocné látky sa neuchovávajú v prepravných "
+    ],
+    [
+     "-",
+     "obaloch."
+    ],
+    [
+     "+",
+     "obaloch. Povinnosti týkajúce sa merania a evidencie teploty sa nevzťahujú na ústavné zdravotnícke zariadenie, ktoré nemá zriadenú nemocničnú lekáreň."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 31 ods. 3",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Zdravotnícke pomôcky, dietetické potraviny a doplnkový sortiment sa uchovávajú za podmienok určených "
+    ],
+    [
+     "-",
+     "výrobcom, "
+    ],
+    [
+     "+",
+     "výrobcom tak, "
+    ],
+    [
+     "=",
+     "aby sa zabránilo akémukoľvek poškodeniu teplom alebo vlhkom. Teplota "
+    ],
+    [
+     "+",
+     "sa meria pomocou kalibrovaného meradla, ktoré umožňuje meranie "
+    ],
+    [
+     "=",
+     "a "
+    ],
+    [
+     "-",
+     "vlhkosť "
+    ],
+    [
+     "+",
+     "automatickú evidenciu teploty najmenej v dvojhodinových intervaloch. Denné záznamy o teplote "
+    ],
+    [
+     "=",
+     "sa "
+    ],
+    [
+     "-",
+     "denne počas prevádzky zaznamenávajú, kontrolujú "
+    ],
+    [
+     "+",
+     "uchovávajú 12 mesiacov. Zdravotnícke pomôcky, dietetické potraviny "
+    ],
+    [
+     "=",
+     "a "
+    ],
+    [
+     "-",
+     "vyhodnocujú."
+    ],
+    [
+     "+",
+     "doplnkový sortiment sa neuchovávajú v prepravných obaloch."
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "pracovné "
+    ],
+    [
+     "+",
+     "plochy "
+    ],
+    [
+     "=",
+     "a úložné plochy s "
+    ],
+    [
+     "-",
+     "chladničkou,"
+    ],
+    [
+     "+",
+     "chladničkou s kalibrovaným meradlom umožňujúcim meranie a automatickú evidenciu teploty najmenej v dvojhodinových intervaloch,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "teplomer "
+    ],
+    [
+     "+",
+     "kalibrované meradlo umožňujúce meranie "
+    ],
+    [
+     "=",
+     "a "
+    ],
+    [
+     "-",
+     "vlhkomer,"
+    ],
+    [
+     "+",
+     "automatickú evidenciu teploty najmenej v dvojhodinových intervaloch,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "kalibrovaný teplomer "
+    ],
+    [
+     "+",
+     "kalibrované meradlo umožňujúce meranie "
+    ],
+    [
+     "=",
+     "a "
+    ],
+    [
+     "-",
+     "vlhkomer."
+    ],
+    [
+     "+",
+     "automatickú evidenciu teploty najmenej v dvojhodinových intervaloch,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "pracovné "
+    ],
+    [
+     "+",
+     "plochy "
+    ],
+    [
+     "=",
+     "a úložné plochy s chladničkou s kalibrovaným "
+    ],
+    [
+     "-",
+     "teplomerom,"
+    ],
+    [
+     "+",
+     "meradlom umožňujúcim meranie a automatickú evidenciu teploty najmenej v dvojhodinových intervaloch,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "pracovné "
+    ],
+    [
+     "+",
+     "plochy "
+    ],
+    [
+     "=",
+     "a úložné plochy s chladničkou s kalibrovaným "
+    ],
+    [
+     "-",
+     "teplomerom,"
+    ],
+    [
+     "+",
+     "meradlom umožňujúcim meranie a automatickú evidenciu teploty najmenej v dvojhodinových intervaloch,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "kalibrovaný teplomer "
+    ],
+    [
+     "+",
+     "kalibrované meradlo umožňujúce meranie "
+    ],
+    [
+     "=",
+     "a "
+    ],
+    [
+     "-",
+     "vlhkomer,"
+    ],
+    [
+     "+",
+     "automatickú evidenciu teploty najmenej v dvojhodinových intervaloch,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "chladnička s kalibrovaným "
+    ],
+    [
+     "-",
+     "teplomerom,"
+    ],
+    [
+     "+",
+     "meradlom umožňujúcim meranie a automatickú evidenciu teploty najmenej v dvojhodinových intervaloch,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "kalibrovaný teplomer "
+    ],
+    [
+     "+",
+     "kalibrované meradlo umožňujúce meranie "
+    ],
+    [
+     "=",
+     "a "
+    ],
+    [
+     "-",
+     "vlhkomer,"
+    ],
+    [
+     "+",
+     "automatickú evidenciu teploty najmenej v dvojhodinových intervaloch,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "kalibrovaný teplomer "
+    ],
+    [
+     "+",
+     "kalibrované meradlo umožňujúce meranie "
+    ],
+    [
+     "=",
+     "a "
+    ],
+    [
+     "-",
+     "vlhkomer,"
+    ],
+    [
+     "+",
+     "automatickú evidenciu teploty najmenej v dvojhodinových intervaloch,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "kalibrovaný teplomer "
+    ],
+    [
+     "+",
+     "kalibrované meradlo umožňujúce meranie "
+    ],
+    [
+     "=",
+     "a "
+    ],
+    [
+     "-",
+     "vlhkomer,"
+    ],
+    [
+     "+",
+     "automatickú evidenciu teploty najmenej v dvojhodinových intervaloch,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "kalibrovaný teplomer "
+    ],
+    [
+     "+",
+     "kalibrované meradlo umožňujúce meranie "
+    ],
+    [
+     "=",
+     "a "
+    ],
+    [
+     "-",
+     "vlhkomer,"
+    ],
+    [
+     "+",
+     "automatickú evidenciu teploty najmenej v dvojhodinových intervaloch,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "kalibrovaný teplomer "
+    ],
+    [
+     "+",
+     "kalibrované meradlo umožňujúce meranie "
+    ],
+    [
+     "=",
+     "a "
+    ],
+    [
+     "-",
+     "vlhkomer."
+    ],
+    [
+     "+",
+     "automatickú evidenciu teploty najmenej v dvojhodinových intervaloch,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "kalibrovaný teplomer "
+    ],
+    [
+     "+",
+     "kalibrované meradlo umožňujúce meranie "
+    ],
+    [
+     "=",
+     "a "
+    ],
+    [
+     "-",
+     "vlhkomer,"
+    ],
+    [
+     "+",
+     "automatickú evidenciu teploty najmenej v dvojhodinových intervaloch,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "pracovné "
+    ],
+    [
+     "+",
+     "plochy "
+    ],
+    [
+     "=",
+     "a úložné plochy s chladničkou s kalibrovaným "
+    ],
+    [
+     "-",
+     "teplomerom,"
+    ],
+    [
+     "+",
+     "meradlom umožňujúcim meranie a automatickú evidenciu teploty najmenej v dvojhodinových intervaloch,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "kalibrovaný teplomer "
+    ],
+    [
+     "+",
+     "kalibrované meradlo umožňujúce meranie "
+    ],
+    [
+     "=",
+     "a "
+    ],
+    [
+     "-",
+     "vlhkomer,"
+    ],
+    [
+     "+",
+     "automatickú evidenciu teploty najmenej v dvojhodinových intervaloch,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "pracovné "
+    ],
+    [
+     "+",
+     "plochy "
+    ],
+    [
+     "=",
+     "a úložné plochy s chladničkou s kalibrovaným "
+    ],
+    [
+     "-",
+     "teplomerom,"
+    ],
+    [
+     "+",
+     "meradlom umožňujúcim meranie a automatickú evidenciu teploty najmenej v dvojhodinových intervaloch,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "presné váhy,"
+    ],
+    [
+     "+",
+     "váhy s váživosťou podľa charakteru činností,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "zdroj čistenej "
+    ],
+    [
+     "-",
+     "vody,"
+    ],
+    [
+     "+",
+     "vody alebo čistená voda v obale zodpovedajúca požiadavkám Európskeho liekopisu alebo Slovenského farmaceutického kódexu,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "filtračné zariadenia,"
+    ],
+    [
+     "+",
+     "drez,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "drez,"
+    ],
+    [
+     "+",
+     "lekárenský robot,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "lekárenský robot,"
+    ],
+    [
+     "+",
+     "forma na odlievanie čapíkov a globúl,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "forma "
+    ],
+    [
+     "+",
+     "prístroj "
+    ],
+    [
+     "=",
+     "na "
+    ],
+    [
+     "-",
+     "odlievanie čapíkov a globúl,"
+    ],
+    [
+     "+",
+     "uzatváranie kapsúl,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "exsikátor,"
+    ],
+    [
+     "+",
+     "porcelánové a antikorové roztieračky a roztieradlá,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "receptúrne sitá,"
+    ],
+    [
+     "+",
+     "antikorové špachtle,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "prístroj na uzatváranie kapsúl,"
+    ],
+    [
+     "+",
+     "stierky a lyžičky,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "porcelánové a antikorové roztieračky a roztieradlá,"
+    ],
+    [
+     "+",
+     "kalibrovaný laboratórny teplomer,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "antikorové špachtle,"
+    ],
+    [
+     "+",
+     "kalibrovaný horúcovzduchový sterilizátor,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "stierky a lyžičky,"
+    ],
+    [
+     "+",
+     "zariadenie s laminárnym prúdením vzduchu, ak to vyžaduje charakter činnosti lekárne."
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "removed",
+   "text": "laboratórny teplomer,"
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "removed",
+   "text": "horúcovzduchový sterilizátor,"
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "removed",
+   "text": "zariadenie s laminárnym prúdením vzduchu, ak lekáreň nemá zriadené oddelenie prípravy sterilných humánnych liekov."
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "pracovné "
+    ],
+    [
+     "+",
+     "plochy "
+    ],
+    [
+     "=",
+     "a úložné plochy s chladničkou s kalibrovaným "
+    ],
+    [
+     "-",
+     "teplomerom,"
+    ],
+    [
+     "+",
+     "meradlom umožňujúcim meranie a automatickú evidenciu teploty najmenej v dvojhodinových intervaloch,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "destilačný prístroj,"
+    ],
+    [
+     "+",
+     "zariadenie s laminárnym prúdením vzduchu,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "zariadenie "
+    ],
+    [
+     "+",
+     "váhy "
+    ],
+    [
+     "=",
+     "s "
+    ],
+    [
+     "-",
+     "laminárnym prúdením vzduchu,"
+    ],
+    [
+     "+",
+     "váživosťou podľa charakteru činnosti,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "presné váhy,"
+    ],
+    [
+     "+",
+     "nádoby na prípravu roztokov,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "nádoby "
+    ],
+    [
+     "+",
+     "filtračné zariadenie "
+    ],
+    [
+     "=",
+     "na "
+    ],
+    [
+     "-",
+     "prípravu roztokov,"
+    ],
+    [
+     "+",
+     "membránovú filtráciu,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "filtračné "
+    ],
+    [
+     "=",
+     "zariadenie na "
+    ],
+    [
+     "-",
+     "membránovú filtráciu,"
+    ],
+    [
+     "+",
+     "optickú kontrolu,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "zariadenie na optickú kontrolu,"
+    ],
+    [
+     "+",
+     "rozplňovacie zariadenie,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "rozplňovacie zariadenie,"
+    ],
+    [
+     "+",
+     "kalibrovaný parný tlakový sterilizátor,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "parný tlakový "
+    ],
+    [
+     "+",
+     "horúcovzduchový "
+    ],
+    [
+     "=",
+     "sterilizátor,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "horúcovzduchový sterilizátor,"
+    ],
+    [
+     "+",
+     "drez,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "drez,"
+    ],
+    [
+     "+",
+     "germicídny žiarič."
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "removed",
+   "text": "germicídny žiarič."
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "zariadenie s laminárnym prúdením "
+    ],
+    [
+     "-",
+     "vzduchu,"
+    ],
+    [
+     "+",
+     "vzduchu biohazard typu II B2 alebo farmaceutický izolátor (Restricted Access Barrier System),"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "fóliový "
+    ],
+    [
+     "=",
+     "odpadový kôš so zatavovaním fólie na "
+    ],
+    [
+     "-",
+     "cytostatiká,"
+    ],
+    [
+     "+",
+     "nebezpečný odpad,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "trepačka "
+    ],
+    [
+     "+",
+     "prenosné kontajnery "
+    ],
+    [
+     "=",
+     "na "
+    ],
+    [
+     "-",
+     "ampuly a liekovky,"
+    ],
+    [
+     "+",
+     "pripravené cytostatiká,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "prenosné kontajnery "
+    ],
+    [
+     "+",
+     "vozíky "
+    ],
+    [
+     "=",
+     "na "
+    ],
+    [
+     "-",
+     "pripravené cytostatiká,"
+    ],
+    [
+     "+",
+     "cytostatiká a infúzne roztoky,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "vozíky na cytostatiká "
+    ],
+    [
+     "+",
+     "chladnička s kalibrovaným meradlom umožňujúcim meranie "
+    ],
+    [
+     "=",
+     "a "
+    ],
+    [
+     "-",
+     "infúzne roztoky,"
+    ],
+    [
+     "+",
+     "automatickú evidenciu teploty najmenej v dvojhodinových intervaloch,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "chladnička "
+    ],
+    [
+     "+",
+     "počítač "
+    ],
+    [
+     "=",
+     "s "
+    ],
+    [
+     "-",
+     "kalibrovaným teplomerom,"
+    ],
+    [
+     "+",
+     "tlačiarňou,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "počítače s tlačiarňou,"
+    ],
+    [
+     "+",
+     "germicídne žiariče,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "drez,"
+    ],
+    [
+     "+",
+     "laboratórny nábytok,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "germicídne žiariče,"
+    ],
+    [
+     "+",
+     "kalibrované meradlo umožňujúce meranie a automatickú evidenciu teploty najmenej v dvojhodinových intervaloch."
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "removed",
+   "text": "laboratórny nábytok."
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "+",
+     "tienené "
+    ],
+    [
+     "=",
+     "zariadenie s laminárnym prúdením vzduchu,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "+",
+     "tienené "
+    ],
+    [
+     "=",
+     "prenosné kontajnery na pripravené rádioaktívne humánne "
+    ],
+    [
+     "-",
+     "lieky,"
+    ],
+    [
+     "+",
+     "lieky vybavené zariadením na meranie aktivity žiarenia a tlačiarňou,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "vozíky "
+    ],
+    [
+     "+",
+     "zariadenie "
+    ],
+    [
+     "=",
+     "na "
+    ],
+    [
+     "-",
+     "prepravu spotrebného "
+    ],
+    [
+     "+",
+     "automatickú prípravu "
+    ],
+    [
+     "=",
+     "a "
+    ],
+    [
+     "-",
+     "obalového materiálu a pripravených "
+    ],
+    [
+     "+",
+     "rozplňovanie "
+    ],
+    [
+     "=",
+     "rádioaktívnych humánnych "
+    ],
+    [
+     "-",
+     "liekov,"
+    ],
+    [
+     "+",
+     "liekov a mobilné zariadenie na podávanie rádioaktívnych liekov určených na terapiu podľa druhu pripravovaných rádioaktívnych humánnych liekov a prístrojového vybavenia,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "chladnička s kalibrovaným teplomerom,"
+    ],
+    [
+     "+",
+     "vozíky na prepravu spotrebného a obalového materiálu, pripravených rádioaktívnych humánnych liekov, generátorov rádionuklidov a nespotrebovaných rádioaktívnych humánnych liekov,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "počítače "
+    ],
+    [
+     "+",
+     "chladnička "
+    ],
+    [
+     "=",
+     "s "
+    ],
+    [
+     "-",
+     "tlačiarňou,"
+    ],
+    [
+     "+",
+     "kalibrovaným meradlom umožňujúcim meranie a automatickú evidenciu teploty najmenej v dvojhodinových intervaloch,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "drez,"
+    ],
+    [
+     "+",
+     "počítač s tlačiarňou,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "germicídne žiariče,"
+    ],
+    [
+     "+",
+     "drez s vlastnou zbernou nádobou na kontaminované odpady a nebezpečné odpady,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "laboratórny nábytok."
+    ],
+    [
+     "+",
+     "germicídne žiariče,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "chladnička s kalibrovaným "
+    ],
+    [
+     "-",
+     "teplomerom,"
+    ],
+    [
+     "+",
+     "meradlom umožňujúcim meranie a automatickú evidenciu teploty najmenej v dvojhodinových intervaloch,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "pracovné "
+    ],
+    [
+     "+",
+     "plochy "
+    ],
+    [
+     "=",
+     "a úložné plochy s chladničkou s kalibrovaným "
+    ],
+    [
+     "-",
+     "teplomerom,"
+    ],
+    [
+     "+",
+     "meradlom umožňujúcim meranie a automatickú evidenciu teploty najmenej v dvojhodinových intervaloch,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "pec na žíhanie,"
+    ],
+    [
+     "+",
+     "vodný kúpeľ s termostatom alebo elektrické vyhrievacie hniezdo,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "vodná výveva,"
+    ],
+    [
+     "+",
+     "kahan,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "vodný kúpeľ,"
+    ],
+    [
+     "+",
+     "laboratórne pomôcky, a to sklenené, porcelánové, kovové a plastové, laboratórne odmerné sklo a laboratórne teplomery,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "elektrické vyhrievacie hniezdo,"
+    ],
+    [
+     "+",
+     "platinový drôt,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "kahan,"
+    ],
+    [
+     "+",
+     "váhy s váživosťou podľa charakteru činnosti,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "laboratórne "
+    ],
+    [
+     "-",
+     "sklo a laboratórne teplomery,"
+    ],
+    [
+     "+",
+     "prístroje"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "platinový drôt,"
+    ],
+    [
+     "+",
+     "UV lampa 254 nm a 366 nm."
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "removed",
+   "text": "váhy"
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "removed",
+   "text": "analytické,"
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "removed",
+   "text": "presné,"
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "removed",
+   "text": "laboratórne prístroje"
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "removed",
+   "text": "na stanovenie teploty topenia,"
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "removed",
+   "text": "mikroskop,"
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "removed",
+   "text": "polarimeter,"
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "removed",
+   "text": "refraktometer,"
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "removed",
+   "text": "konduktometer,"
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "removed",
+   "text": "pH-meter,"
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "removed",
+   "text": "potenciometer na inštrumentálnu indikáciu ekvivalentného bodu,"
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "removed",
+   "text": "zariadenie na tenkovrstvovú chromatografiu,"
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "removed",
+   "text": "elektróda"
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "removed",
+   "text": "kalomelová,"
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "removed",
+   "text": "sklenená,"
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "removed",
+   "text": "strieborná,"
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "removed",
+   "text": "platinová,"
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "removed",
+   "text": "UV lampa 254 nm a 366 nm."
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "pracovné "
+    ],
+    [
+     "+",
+     "plochy "
+    ],
+    [
+     "=",
+     "a úložné plochy s "
+    ],
+    [
+     "-",
+     "chladničkou,"
+    ],
+    [
+     "+",
+     "chladničkou s kalibrovaným meradlom umožňujúcim meranie a automatickú evidenciu teploty najmenej v dvojhodinových intervaloch,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "teplomer "
+    ],
+    [
+     "+",
+     "kalibrované meradlo umožňujúce meranie "
+    ],
+    [
+     "=",
+     "a "
+    ],
+    [
+     "-",
+     "vlhkomer,"
+    ],
+    [
+     "+",
+     "automatickú evidenciu teploty najmenej v dvojhodinových intervaloch,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "chladnička "
+    ],
+    [
+     "-",
+     "na uchovávanie liekov "
+    ],
+    [
+     "=",
+     "s kalibrovaným "
+    ],
+    [
+     "-",
+     "teplomerom,"
+    ],
+    [
+     "+",
+     "meradlom umožňujúcim meranie a automatickú evidenciu teploty najmenej v dvojhodinových intervaloch,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "kalibrovaný teplomer "
+    ],
+    [
+     "+",
+     "kalibrované meradlo umožňujúce meranie "
+    ],
+    [
+     "=",
+     "a "
+    ],
+    [
+     "-",
+     "vlhkomer,"
+    ],
+    [
+     "+",
+     "automatickú evidenciu teploty najmenej v dvojhodinových intervaloch,"
+    ]
+   ]
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "added",
+   "text": "laboratórny nábytok,"
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "added",
+   "text": "laboratórne vybavenie na vykonávanie kontroly akosti pripravených liekov, vyhodnotenie, interpretáciu a uchovávanie výsledkov kontroly."
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "added",
+   "text": "na určenie teploty topenia,"
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "added",
+   "text": "konduktometer,"
+  },
+  {
+   "loc": "Príloha č. 1",
+   "type": "added",
+   "text": "pH-meter,"
+  }
+ ]
+}
