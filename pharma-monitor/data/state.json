@@ -5427,7 +5427,8 @@
    "7638": "2023-07-07T11:11:34",
    "7637": "2023-07-07T11:11:33",
    "7636": "2023-07-07T11:11:33"
-  }
+  },
+  "history_days": 730
  },
  "slovlex": {
   "seen": {
@@ -9038,12 +9039,12 @@
     "stage_name": "Vyhodnotenie pripomienkového konania"
    },
    "LP/2026/623": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 2,
     "tags": [
      "Ministry of Health"
     ],
-    "stage_name": "Vyhodnotenie pripomienkového konania"
+    "stage_name": "Spracovanie predkladateľom"
    },
    "LP/2026/621": {
     "stage": "VYHODNOTENIE_MPK",
@@ -9146,7 +9147,7 @@
     "tags": []
    },
    "LPEU/2026/773": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -9482,6 +9483,16 @@
      "Animal diseases"
     ],
     "stage_name": "Rokovanie vlády SR"
+   },
+   "LP/2026/654": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/653": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
    }
   }
  },
