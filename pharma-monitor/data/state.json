@@ -5891,12 +5891,12 @@
     "tags": []
    },
    "LP/2026/515": {
-    "stage": "ROKOVANIE_POV",
+    "stage": "PRED_VYHLASENIM_V_ZBIERKE",
     "rel": 0,
     "tags": []
    },
    "LP/2026/514": {
-    "stage": "ROKOVANIE_POV",
+    "stage": "PRED_VYHLASENIM_V_ZBIERKE",
     "rel": 0,
     "tags": []
    },
@@ -9312,12 +9312,12 @@
     "tags": []
    },
    "LPEU/2026/790": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "PROCES_UKONCENY",
     "rel": 3,
     "tags": [
      "Medicines"
     ],
-    "stage_name": "Zápis predbežného stanoviska k návrhu aktu EÚ"
+    "stage_name": "Proces ukončený"
    },
    "LPEU/2026/789": {
     "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
@@ -9474,6 +9474,14 @@
     "stage": "SCHVALENIE_GESTORA",
     "rel": 0,
     "tags": []
+   },
+   "LP/2026/652": {
+    "stage": "ROKOVANIE_VLADA",
+    "rel": 1,
+    "tags": [
+     "Animal diseases"
+    ],
+    "stage_name": "Rokovanie vlády SR"
    }
   }
  },
@@ -10222,7 +10230,8 @@
    "32026R2626": "2026-11-26T07:28:48Z",
    "32026R2636": "2026-11-26T07:28:48Z",
    "32026D2622": "2026-11-26T07:28:48Z",
-   "32026R2632": "2026-11-26T07:28:48Z"
+   "32026R2632": "2026-11-26T07:28:48Z",
+   "32025R1190R(02)": "2026-11-26T09:29:12Z"
   }
  },
  "kategorizacia": {

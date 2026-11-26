@@ -1,6 +1,38 @@
 {
  "items": [
   {
+   "id": "lp:LPEU/2026/790:PROCES_UKONCENY",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LPEU/2026/790 · Akt EÚ: C(2026)8606 VYKONÁVACIE ROZHODNUTIE KOMISIE o povoleniach na uvedenie liekov na humánne použitie, ktoré obsahujú účinnú látku „ipidakrín“, na trh na základe článku 31 smernice Európskeho parlamentu a Rady 2001/83/ES",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LPEU/2026/790",
+   "date": "2026-11-26T08:00:00Z",
+   "detected": "2026-11-26T09:28:49Z",
+   "category": "Draft law",
+   "priority": "high",
+   "tags": [
+    "Medicines",
+    "Proces ukončený"
+   ],
+   "summary": "Moved from stage “Zápis predbežného stanoviska k návrhu aktu EÚ” to “Proces ukončený” · Stage: Proces ukončený (since 26.11.2026)"
+  },
+  {
+   "id": "lp:LP/2026/652:ROKOVANIE_VLADA",
+   "source": "slovlex_lp",
+   "source_name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
+   "title": "LP/2026/652 · Informatívny materiál na rokovanie vlády SR: Informácia o aktuálnej situácii šírenia afrického moru ošípaných, realizácii opatrení na zabránenie šírenia a eradikáciu afrického moru ošípaných a stave znižovania denzity populácie diviaka",
+   "url": "https://www.slov-lex.sk/elegislativa/legislativne-procesy/SK/LP/2026/652",
+   "date": "2026-11-26T08:00:00Z",
+   "detected": "2026-11-26T09:28:51Z",
+   "category": "Draft law",
+   "priority": "low",
+   "tags": [
+    "Animal diseases",
+    "Rokovanie vlády SR"
+   ],
+   "summary": "Stage: Rokovanie vlády SR (since 26.11.2026) · Submitted by: Ministerstvo pôdohospodárstva a rozvoja vidieka Slovenskej republiky"
+  },
+  {
    "id": "sukl_web:https://www.sukl.sk/novalgin-500-mg-24857-prerusenie-2.11.2026:8f9c34f29e",
    "source": "sukl_web",
    "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
@@ -5948,94 +5980,94 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-26T06:28:30Z",
+   "checked": "2026-11-26T09:28:13Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-26T06:28:30Z",
+   "checked": "2026-11-26T09:28:13Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-26T06:28:30Z",
+   "checked": "2026-11-26T09:28:13Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-11-26T06:28:30Z",
+   "checked": "2026-11-26T09:28:13Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Všetky zmeny na webe",
    "ok": true,
-   "checked": "2026-11-26T06:28:30Z",
+   "checked": "2026-11-26T09:28:13Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-11-26T06:28:30Z",
+   "checked": "2026-11-26T09:28:13Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-26T06:28:30Z",
-   "new": 0,
+   "checked": "2026-11-26T09:28:13Z",
+   "new": 2,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-11-26T06:28:30Z",
+   "checked": "2026-11-26T09:28:13Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-11-26T06:28:30Z",
+   "checked": "2026-11-26T09:28:13Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-26T06:28:30Z",
+   "checked": "2026-11-26T09:28:13Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-26T06:28:30Z",
+   "checked": "2026-11-26T09:28:13Z",
    "new": 0,
    "error": null
   },
   "sukl_web": {
    "name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
    "ok": true,
-   "checked": "2026-11-26T06:28:30Z",
-   "new": 2,
+   "checked": "2026-11-26T09:28:13Z",
+   "new": 0,
    "error": null
   },
   "sool": {
    "name": "SOOL · Slovenská organizácia pre overovanie liekov",
    "ok": true,
-   "checked": "2026-11-26T06:28:30Z",
+   "checked": "2026-11-26T09:28:13Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-11-26T06:28:30Z"
+ "updated": "2026-11-26T09:28:13Z"
 }
