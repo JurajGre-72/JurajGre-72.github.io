@@ -14,8 +14,11 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import sys
 from pathlib import Path
+
+import slovak
 
 MODEL = "claude-opus-5-5"
 MAX_PER_RUN = 40
@@ -33,7 +36,8 @@ For the item you are given, write three short parts in plain English (the reader
 - impact: one or two sentences on what it means for a wholesale distributor like PHARMACOPOLA and whether any
   action is needed (e.g. check stock, update an SOP, inform customers, watch the deadline). If it does not concern
   a distributor, say "No direct impact on distribution." and why in a few words.
-Keep Slovak names of laws, institutions and products as they are."""
+Keep Slovak names of laws, institutions and products as they are.
+Then give the same three parts in Slovak under "sk" (natural Slovak for pharmacists, same content)."""
 
 SCHEMA = {
     "type": "object",
@@ -41,8 +45,14 @@ SCHEMA = {
         "about": {"type": "string"},
         "what_changed": {"type": "string"},
         "impact": {"type": "string"},
+        "sk": {
+            "type": "object",
+            "properties": {"about": {"type": "string"}, "what_changed": {"type": "string"}, "impact": {"type": "string"}},
+            "required": ["about", "what_changed", "impact"],
+            "additionalProperties": False,
+        },
     },
-    "required": ["about", "what_changed", "impact"],
+    "required": ["about", "what_changed", "impact", "sk"],
     "additionalProperties": False,
 }
 
@@ -120,11 +130,15 @@ def explain_items(items: list[dict], new_ids: set[str], here: Path, client=None,
                 break  # a wrong key fails every request
             continue
         if result is None:
-            item["explain"] = {**basic(item), "declined": True}  # keeps the free explanation, not retried
+            item["explain"] = {**free(item), "declined": True}  # keeps the free explanation, not retried
             continue
         tin, tout = result.pop("usage")
         tokens_in, tokens_out = tokens_in + tin, tokens_out + tout
-        item["explain"] = {k: str(result[k]).strip() for k in ("about", "what_changed", "impact")}
+        parts = ("about", "what_changed", "impact")
+        item["explain"] = {k: str(result[k]).strip() for k in parts}
+        sk = result.get("sk") or {}
+        if all(sk.get(k) for k in parts):
+            item["explain"]["sk"] = {k: str(sk[k]).strip() for k in parts}
         done += 1
     if done:
         cost = tokens_in / 1e6 * 4 + tokens_out / 1e6 * 20  # Claude Opus 5.5 list prices, USD
@@ -160,8 +174,10 @@ NOTICE_LABELS = {"Typ oznámenia": "Type", "Platnosť od": "Valid from", "Dátum
                  "Predpokladaný termín obnovenia": "Expected resumption", "Kód ŠÚKL": "ŠÚKL code", "Poznámka": "Note",
                  "Prerušenie": "Interruption", "Obnovenie": "Resumption", "Zrušenie": "End of supply",
                  "Prvé uvedenie": "First placed on the market"}
-DRAFT_KINDS = {"zakon": "Draft act", "vyhlaska": "Draft decree", "nariadenie vlady": "Draft government regulation",
-               "opatrenie": "Draft measure", "akt eu": "EU act handled by a Slovak ministry"}
+DRAFT_KINDS = {"zakon": ("Draft act", "Návrh zákona"), "vyhlaska": ("Draft decree", "Návrh vyhlášky"),
+               "nariadenie vlady": ("Draft government regulation", "Návrh nariadenia vlády"),
+               "opatrenie": ("Draft measure", "Návrh opatrenia"),
+               "akt eu": ("EU act handled by a Slovak ministry", "Akt EÚ v gescii slovenského ministerstva")}
 
 
 def _english_notice(text: str) -> str:
@@ -171,141 +187,212 @@ def _english_notice(text: str) -> str:
 
 
 SUPPLY_IMPACT = {
-    "prerusenie": "Supply of this product is interrupted: check your stock, tell affected customers and plan an alternative.",
-    "obnovenie": "Supply resumes: the product can be ordered again from the date given.",
-    "zrusenie": "Supply ends: plan a replacement and run down the remaining stock.",
-    "prve-uvedenie": "New product on the Slovak market: consider adding it to your range.",
+    "prerusenie": ("Supply of this product is interrupted: check your stock, tell affected customers and plan an alternative.",
+                   "Dodávky lieku sú prerušené: skontrolujte zásoby, informujte dotknutých odberateľov a pripravte náhradu."),
+    "obnovenie": ("Supply resumes: the product can be ordered again from the date given.",
+                  "Dodávky sa obnovujú: liek bude možné znovu objednať od uvedeného dátumu."),
+    "zrusenie": ("Supply ends: plan a replacement and run down the remaining stock.",
+                 "Dodávky končia: pripravte náhradu a dopredajte zostávajúce zásoby."),
+    "prve-uvedenie": ("New product on the Slovak market: consider adding it to your range.",
+                      "Nový liek na slovenskom trhu: zvážte jeho zaradenie do sortimentu."),
 }
 CATEGORY_IMPACT = {
-    "Recall / quality": "Check your stock for the affected batches, block them, follow ŠÚKL's instructions and inform your customers.",
-    "Supply disruption": "Concerns medicine availability: check whether products you distribute are affected.",
-    "Distribution & pharmacies": "Concerns wholesale distribution or pharmacies directly: read it and check your procedures.",
-    "Drug safety": "Safety information: check whether it concerns products you distribute and pass it on if required.",
-    "Medical devices": "Concerns medical devices: check whether it affects devices you distribute.",
-    "Reimbursement & prices": "Update prices and reimbursement in your system from the date it applies.",
-    "EU legislation": "EU law: check whether Slovak rules or your procedures will have to follow.",
-    "Animal health (ŠVPS)": "May change demand for veterinary medicines or vaccines in the affected areas.",
+    "Recall / quality": ("Check your stock for the affected batches, block them, follow ŠÚKL's instructions and inform your customers.",
+                         "Skontrolujte zásoby dotknutých šarží, zablokujte ich, postupujte podľa pokynov ŠÚKL a informujte odberateľov."),
+    "Supply disruption": ("Concerns medicine availability: check whether products you distribute are affected.",
+                          "Týka sa dostupnosti liekov: skontrolujte, či sa týka liekov, ktoré distribuujete."),
+    "Distribution & pharmacies": ("Concerns wholesale distribution or pharmacies directly: read it and check your procedures.",
+                                  "Priamo sa týka veľkodistribúcie alebo lekární: prečítajte si to a skontrolujte svoje postupy."),
+    "Drug safety": ("Safety information: check whether it concerns products you distribute and pass it on if required.",
+                    "Bezpečnostná informácia: skontrolujte, či sa týka liekov, ktoré distribuujete, a ak treba, odovzdajte ju ďalej."),
+    "Medical devices": ("Concerns medical devices: check whether it affects devices you distribute.",
+                        "Týka sa zdravotníckych pomôcok: skontrolujte, či sa týka pomôcok, ktoré distribuujete."),
+    "Reimbursement & prices": ("Update prices and reimbursement in your system from the date it applies.",
+                               "Aktualizujte ceny a úhrady vo svojom systéme od dátumu platnosti."),
+    "EU legislation": ("EU law: check whether Slovak rules or your procedures will have to follow.",
+                       "Právo EÚ: skontrolujte, či sa mu budú musieť prispôsobiť slovenské predpisy alebo vaše postupy."),
+    "Animal health (ŠVPS)": ("May change demand for veterinary medicines or vaccines in the affected areas.",
+                             "Môže zmeniť dopyt po veterinárnych liekoch alebo vakcínach v dotknutých oblastiach."),
 }
+NO_ACTION = ("For information; no action is expected.", "Na informáciu; nepredpokladá sa žiadna akcia.")
 
 
-def basic(item: dict) -> dict:
-    """{"about", "what_changed", "impact", "auto": True} for any monitor item, without calling an AI."""
+def basic(item: dict, lang: str = "en") -> dict:
+    """{"about", "what_changed", "impact", "auto": True} for any monitor item, in English or Slovak ("sk"),
+    without calling an AI. Text quoted from the source stays in its own language."""
+    sk = lang == "sk"
+    t = (lambda en, sk_: sk_ if sk else en)
+    pick_ = (lambda pair: pair[1] if sk else pair[0])
     src, cat, title = item.get("source", ""), item.get("category", ""), item.get("title", "")
     summary = item.get("summary", "") or ""
+    local = slovak.summary if sk else (lambda x: x)  # the monitor's own English phrases, translated
+    cat_l = slovak.label(cat) if sk else cat
+    title_l = slovak.title(item) if sk else title
     eff = (item.get("effective") or [None])[0]
-    about, changed, impact = "", _short(summary) or _short(title), CATEGORY_IMPACT.get(cat, "For information; no action is expected.")
+    about, changed = "", _short(local(summary)) or _short(title_l)
+    impact = pick_(CATEGORY_IMPACT.get(cat, NO_ACTION))
 
     if src == "lawchanges":
         num, _, rest = title.partition(" – ")
-        name = rest.split(":")[0]
-        about = f"Slov-Lex published a new consolidated wording of {num} ({name})."
-        changed = _short(summary.replace(" Open the item to see the old and new wording.", ""))
+        name = slovak.law_name(num.split()[0], rest.split(":")[0]) if sk else rest.split(":")[0]
+        about = t(f"Slov-Lex published a new consolidated wording of {num} ({name}).",
+                  f"Slov-Lex zverejnil nové konsolidované znenie predpisu {num} ({name}).")
+        changed = _short(local(summary.replace(" Open the item to see the old and new wording.", "")))
         if eff:
-            changed += f" In force from {_date(eff)}."
-        impact = (f"Check whether your procedures, contracts or licences must change by {_date(eff) or 'the date it applies'}; "
-                  "open the item to see the old and new wording side by side.")
+            changed += t(f" In force from {_date(eff)}.", f" Účinné od {_date(eff)}.")
+        impact = t(f"Check whether your procedures, contracts or licences must change by {_date(eff) or 'the date it applies'}; "
+                   "open the item to see the old and new wording side by side.",
+                   f"Skontrolujte, či treba do {_date(eff) or 'dátumu účinnosti'} zmeniť vaše postupy, zmluvy alebo povolenia; "
+                   "v položke uvidíte staré a nové znenie vedľa seba.")
     elif src == "slovlex":
-        about = f"New act in the Collection of Laws (Zbierka zákonov): {_short(title, 200)}"
+        about = t(f"New act in the Collection of Laws (Zbierka zákonov): {_short(title, 200)}",
+                  f"Nový predpis v Zbierke zákonov: {_short(title, 200)}")
         amends = _field(summary, "Amends")
-        changed = (f"It amends {amends}." if amends else _short(summary)) + (f" In force from {_date(eff)}." if eff else "")
-        impact = ("It changes a law that matters for distribution: check what changes and when." if amends
-                  else "New legislation: check whether it concerns your business.")
+        if amends and sk:
+            amends = slovak.summary(amends)
+        rest = re.sub(r"(?: · )?Effective from: [^·]*", "", summary).strip(" ·") if eff else summary  # date added below
+        changed = ((t(f"It amends {amends}.", f"Mení {amends}.") if amends else _short(local(rest)))
+                   + (t(f" In force from {_date(eff)}.", f" Účinné od {_date(eff)}.") if eff else "")).strip()
+        impact = (t("It changes a law that matters for distribution: check what changes and when.",
+                    "Mení predpis dôležitý pre distribúciu: skontrolujte, čo sa mení a odkedy.") if amends
+                  else t("New legislation: check whether it concerns your business.",
+                         "Nový predpis: skontrolujte, či sa týka vašej činnosti."))
     elif src == "slovlex_lp":
         kind_sk, _, subject = (title.split(" · ", 1)[1] if " · " in title else title).partition(": ")
-        kind = DRAFT_KINDS.get(_fold(kind_sk).strip(), "Draft")
+        kind = pick_(DRAFT_KINDS.get(_fold(kind_sk).strip(), ("Draft", "Návrh")))
         by = _field(summary, "Submitted by")
-        about = (f"{kind} in the Slov-Lex legislative process" + (f", submitted by {by}" if by else "")
+        about = (t(f"{kind} in the Slov-Lex legislative process", f"{kind} v legislatívnom procese Slov-Lex")
+                 + (t(f", submitted by {by}", f", predkladateľ: {by}") if by else "")
                  + (f": {_short(subject, 220)}" if subject else "."))
-        changed = _short(summary.split(" · Submitted by")[0])
+        changed = _short(local(summary.split(" · Submitted by")[0]))
         stage = _fold(_field(summary, "Stage") or summary)  # the current stage, not the one it moved from
+        deadline = _date(item.get("deadline"))
         if "vyhlasene v zbierke" in stage:
-            impact = "It has been published in the Collection of Laws and is now law: check what changes and from when."
+            impact = t("It has been published in the Collection of Laws and is now law: check what changes and from when.",
+                       "Bol vyhlásený v Zbierke zákonov a už platí: skontrolujte, čo sa mení a odkedy.")
         elif item.get("deadline") or stage.startswith("pripomienkove konanie"):
-            impact = ("Comments are open" + (f" until {_date(item.get('deadline'))}" if item.get("deadline") else "")
-                      + ": this is the stage where the draft can still be influenced.")
+            impact = (t("Comments are open", "Prebieha pripomienkové konanie")
+                      + (t(f" until {deadline}", f" (do {deadline})") if deadline else "")
+                      + t(": this is the stage where the draft can still be influenced.",
+                          ": v tejto fáze sa návrh ešte dá ovplyvniť."))
         elif "narodnej rady" in stage:
-            impact = "It is in Parliament and may become law soon: prepare for the change."
+            impact = t("It is in Parliament and may become law soon: prepare for the change.",
+                       "Je v Národnej rade SR a čoskoro môže platiť: pripravte sa na zmenu.")
         elif "rokovanie vlady" in stage or "poradnych organov vlady" in stage:
-            impact = "It is before the Government, so the text is close to final: prepare for the change."
+            impact = t("It is before the Government, so the text is close to final: prepare for the change.",
+                       "Prerokúva ho vláda, text je takmer konečný: pripravte sa na zmenu.")
         elif "proces ukonceny" in stage:
-            impact = "The legislative process has ended: check whether it was published as law or stopped."
+            impact = t("The legislative process has ended: check whether it was published as law or stopped.",
+                       "Legislatívny proces sa skončil: overte, či bol predpis vyhlásený, alebo zastavený.")
         elif "akt eu" in _fold(kind_sk) or "aktu eu" in stage:
-            impact = "Slovakia's position on a proposed EU act: it may change EU rules later; no action needed now."
+            impact = t("Slovakia's position on a proposed EU act: it may change EU rules later; no action needed now.",
+                       "Stanovisko Slovenska k návrhu aktu EÚ: neskôr môže zmeniť pravidlá EÚ; zatiaľ netreba nič robiť.")
         else:
-            impact = "A draft, not yet law: watch how it develops; no action needed now."
+            impact = t("A draft, not yet law: watch how it develops; no action needed now.",
+                       "Návrh, zatiaľ neplatí: sledujte jeho vývoj; teraz netreba nič robiť.")
     elif src == "sukl_web" and cat == "Supply / availability":
         product, _, kind = title.rpartition(" - ")
         code = _field(summary, "Kód ŠÚKL")
-        about = f"ŠÚKL supply notice for {product or title}" + (f" (ŠÚKL code {code})" if code and code not in product else "") + "."
+        about = (t(f"ŠÚKL supply notice for {product or title}", f"Oznámenie ŠÚKL o dostupnosti lieku {product or title}")
+                 + (t(f" (ŠÚKL code {code})", f" (kód ŠÚKL {code})") if code and code not in product else "") + ".")
         url = (item.get("url") or "").lower()
         key = next((k for k in SUPPLY_IMPACT if k in url), None)
-        impact = SUPPLY_IMPACT.get(key, "Check whether this product is in your range.")
+        impact = pick_(SUPPLY_IMPACT[key]) if key else t("Check whether this product is in your range.",
+                                                          "Skontrolujte, či je tento liek vo vašom sortimente.")
         if summary.startswith("Added:"):  # an existing notice was edited: show the new values, not the line count
-            changed = "Notice updated – " + summary.split(" | Removed:")[0].replace("Added: ", "")
+            changed = t("Notice updated – ", "Oznámenie aktualizované – ") + summary.split(" | Removed:")[0].replace("Added: ", "")
         else:  # the page can list several notices for the product: describe the first (this one) only
             first = summary.split(" · Typ oznámenia:")[0]
             changed = " · ".join(f for f in first.split(" · ") if not f.endswith(": Detail")) or kind
-        changed = _short(_english_notice(changed))
+        changed = _short(changed if sk else _english_notice(changed))  # the notice's own labels are Slovak
     elif src == "sukl_web":
         page = title.split(": ", 1)[-1]
-        about = f"ŠÚKL web page “{page}” ({cat})."
-        changed = (_short(summary) if summary.startswith(("Added:", "Removed:")) else
-                   f"The page was {'published' if title.startswith('New page') else 'updated'}. It begins: {_short(summary, 260)}")
+        about = t(f"ŠÚKL web page “{page}” ({cat}).", f"Stránka ŠÚKL „{page}“ ({cat_l}).")
+        new_page = title.startswith("New page")
+        changed = (_short(local(summary)) if summary.startswith(("Added:", "Removed:")) else
+                   t(f"The page was {'published' if new_page else 'updated'}. It begins: ",
+                     f"Stránka bola {'zverejnená' if new_page else 'aktualizovaná'}. Začína: ") + _short(summary, 260))
     elif src in ("sukl", "sukl_recall"):
-        about = f"ŠÚKL announcement ({cat}): {_short(title, 200)}"
-        changed = _short(summary) or "See the announcement for details."
+        about = t(f"ŠÚKL announcement ({cat}): ", f"Oznam ŠÚKL ({cat_l}): ") + _short(title, 200)
+        changed = _short(summary) or t("See the announcement for details.", "Podrobnosti sú v ozname.")
     elif src == "mzsr":
-        about = f"News from the Ministry of Health (MZ SR): {_short(title, 200)}"
-        changed = _short(summary) or "See the article for details."
+        about = t("News from the Ministry of Health (MZ SR): ", "Novinka Ministerstva zdravotníctva SR: ") + _short(title, 200)
+        changed = _short(summary) or t("See the article for details.", "Podrobnosti sú v článku.")
     elif src == "kategorizacia":
-        about = "MZ SR list of categorised medicines (the reimbursement list)" + (f" valid from {_date(eff)}" if eff else "") + "."
-        counts = title.split(": ", 1)[-1] if ": " in title else ""
-        changed = _short(f"{counts[:1].upper() + counts[1:]}. {summary.replace(' Open the item for the full lists by ŠÚKL code.', '')}"
-                         if counts else summary)
+        about = (t("MZ SR list of categorised medicines (the reimbursement list)", "Zoznam kategorizovaných liekov MZ SR (zoznam úhrad)")
+                 + (t(f" valid from {_date(eff)}", f" platný od {_date(eff)}") if eff else "") + ".")
+        counts = title_l.split(": ", 1)[-1] if ": " in title_l else ""
+        rest = local(summary.replace(" Open the item for the full lists by ŠÚKL code.", ""))
+        changed = _short(f"{counts[:1].upper() + counts[1:]}. {rest}" if counts else rest)
     elif src in ("uskvbl", "sool"):
-        site = "ÚŠKVBL (veterinary institute)" if src == "uskvbl" else "SOOL (Slovak Medicines Verification Organisation)"
+        site = (t("ÚŠKVBL (veterinary institute)", "ÚŠKVBL (veterinárny ústav)") if src == "uskvbl"
+                else t("SOOL (Slovak Medicines Verification Organisation)", "SOOL (Slovenská organizácia pre overovanie pravosti liekov)"))
         kind, _, name = title.partition(": ")
-        thing = {"New document": "new document", "Document published": "document", "Updated page": "page",
-                 "New article": "new article", "Updated article": "article"}.get(kind, "item")
-        about = f"{site}: {thing} “{name or title}”."
+        things = {"New document": ("new document", "nový dokument"), "Document published": ("document", "dokument"),
+                  "Updated page": ("page", "stránka"), "New article": ("new article", "nový článok"),
+                  "Updated article": ("article", "článok")}
+        thing_en = things.get(kind, ("item", "položka"))[0]
+        thing = pick_(things.get(kind, ("item", "položka")))
+        about = t(f"{site}: {thing} “{name or title}”.", f"{site}: {thing} „{name or title}“.")
         if summary.startswith(("Added:", "Removed:", "New on the page:")):
-            changed = _short(summary)
+            changed = _short(local(summary))
         elif "file uploaded" in summary:
-            changed = f"A {summary.split()[0]} file was published on the website."
+            ext = summary.split()[0]
+            changed = t(f"A {ext} file was published on the website.", f"Na webe bol zverejnený súbor {ext}.")
         else:
-            changed = f"{'Published' if 'new' in thing else 'Updated'}. It begins: {_short(summary, 260)}"
+            published = "new" in thing_en
+            changed = (t(f"{'Published' if published else 'Updated'}. It begins: ",
+                         f"{'Zverejnené' if published else 'Aktualizované'}. Začína: ") + _short(local(summary), 260))
         if src == "uskvbl":
-            impact = ("The institute's own administration (orders, invoices): no action needed."
-                      if item.get("priority") == "low" or any(w in _fold(name) for w in ("faktur", "objednav", "zmluv"))
-                      else "Veterinary: check whether it concerns veterinary medicines you distribute.")
+            admin = item.get("priority") == "low" or any(w in _fold(name) for w in ("faktur", "objednav", "zmluv"))
+            impact = (t("The institute's own administration (orders, invoices): no action needed.",
+                        "Vlastná administratíva ústavu (objednávky, faktúry): netreba nič robiť.") if admin
+                      else t("Veterinary: check whether it concerns veterinary medicines you distribute.",
+                             "Veterina: skontrolujte, či sa týka veterinárnych liekov, ktoré distribuujete."))
         else:
-            impact = "Medicines verification (FMD): check whether it affects your verification system, connection or fees."
+            impact = t("Medicines verification (FMD): check whether it affects your verification system, connection or fees.",
+                       "Overovanie pravosti liekov (FMD): skontrolujte, či sa týka vášho overovacieho systému, pripojenia alebo poplatkov.")
     elif src == "eurlex":
-        about = f"EU legal act in the Official Journal of the EU: {_short(title, 200)}"
+        about = t("EU legal act in the Official Journal of the EU: ", "Právny akt EÚ v Úradnom vestníku EÚ: ") + _short(title, 200)
     elif src == "ema":
-        about = f"European Medicines Agency (EMA) news: {_short(title, 200)}"
+        about = t("European Medicines Agency (EMA) news: ", "Novinka Európskej agentúry pre lieky (EMA): ") + _short(title, 200)
     elif src == "svps":
-        about = f"State Veterinary and Food Administration (ŠVPS SR): {_short(title, 200)}"
+        about = t("State Veterinary and Food Administration (ŠVPS SR): ", "Štátna veterinárna a potravinová správa (ŠVPS SR): ") + _short(title, 200)
     elif src == "sdp":
-        about = f"Official good-distribution-practice (SDP/GDP) reference page: {title.split(': ', 1)[-1]}."
-        impact = "Check whether your SDP procedures (SOPs, training, quality system) need updating."
+        name = title.split(": ", 1)[-1]
+        about = t(f"Official good-distribution-practice (SDP/GDP) reference page: {name}.",
+                  f"Oficiálna referenčná stránka správnej distribučnej praxe (SDP/GDP): {name}.")
+        impact = t("Check whether your SDP procedures (SOPs, training, quality system) need updating.",
+                   "Skontrolujte, či treba aktualizovať vaše postupy SDP (SOP, školenia, systém kvality).")
     else:
-        about = _short(title, 200)
+        about = _short(title_l, 200)
 
-    if item.get("deadline") and "until" not in impact:
-        impact += f" Deadline: {_date(item['deadline'])}."
+    if item.get("deadline") and _date(item["deadline"]) not in impact:
+        impact += t(f" Deadline: {_date(item['deadline'])}.", f" Termín: {_date(item['deadline'])}.")
     return {"about": about, "what_changed": changed, "impact": impact, "auto": True}
 
 
+def free(item: dict) -> dict:
+    """The free explanation in English with its Slovak version under "sk"."""
+    sk = basic(item, "sk")
+    sk.pop("auto")
+    return {**basic(item), "sk": sk}
+
+
 def add_basic(items: list[dict]) -> int:
-    """Free explanations for every item without a Claude one. Returns how many were (re)written."""
+    """Free explanations for every item without a Claude one, plus the Slovak title and labels of every item.
+    Returns how many items were (re)written."""
     n = 0
     for i in items:
+        before = (i.get("explain"), i.get("title_sk"), i.get("category_sk"), i.get("tags_sk"))
         if "explain" not in i or i["explain"].get("auto"):
-            new = basic(i)
+            new = free(i)
             if i.get("explain", {}).get("declined"):
                 new["declined"] = True
-            if i.get("explain") != new:
-                i["explain"] = new
-                n += 1
+            i["explain"] = new
+        i["title_sk"] = slovak.title(i)
+        i["category_sk"] = slovak.label(i.get("category", ""))
+        i["tags_sk"] = [slovak.label(x) for x in i.get("tags") or []]
+        if before != (i.get("explain"), i["title_sk"], i["category_sk"], i["tags_sk"]):
+            n += 1
     return n

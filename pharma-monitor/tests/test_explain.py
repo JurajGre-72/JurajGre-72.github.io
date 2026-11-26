@@ -11,6 +11,7 @@ from unittest import mock
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import explain  # noqa: E402
+import slovak  # noqa: E402
 import monitor  # noqa: E402
 
 HERE = Path(__file__).resolve().parents[1]
@@ -58,7 +59,7 @@ class ExplainTest(unittest.TestCase):
         kw = client.calls[0]
         self.assertEqual(kw["model"], "claude-opus-5-5")
         self.assertEqual(kw["fallbacks"], "default")
-        self.assertEqual(kw["output_config"]["format"]["schema"]["required"], ["about", "what_changed", "impact"])
+        self.assertEqual(kw["output_config"]["format"]["schema"]["required"], ["about", "what_changed", "impact", "sk"])
         self.assertIn("Title: Item a", kw["messages"][0]["content"])
 
     def test_a_failure_does_not_stop_the_others_and_is_retried_later(self):
@@ -66,6 +67,12 @@ class ExplainTest(unittest.TestCase):
         explain.explain_items(items, set(), HERE, client=FakeClient([RuntimeError("overloaded"), ANSWER]))
         self.assertNotIn("explain", items[0], "a failed item stays without explanation, so the next run tries again")
         self.assertEqual(items[1]["explain"], ANSWER)
+
+    def test_claudes_slovak_version_is_stored(self):
+        items = [item("a", "2026-11-26")]
+        sk = {"about": "Oznam.", "what_changed": "Pribudol zoznam.", "impact": "Skontrolujte zásoby."}
+        explain.explain_items(items, set(), HERE, client=FakeClient([{**ANSWER, "sk": sk}]))
+        self.assertEqual(items[0]["explain"], {**ANSWER, "sk": sk})
 
     def test_a_declined_item_is_not_retried(self):
         items = [item("a", "2026-11-26")]
@@ -169,8 +176,9 @@ class FreeExplanationTest(unittest.TestCase):
 
     def test_every_item_gets_one_and_a_rerun_changes_nothing(self):
         items = [item("a", "2026-11-26"), item("b", "2026-11-25", explain=ANSWER)]
-        self.assertEqual(explain.add_basic(items), 1)
+        self.assertEqual(explain.add_basic(items), 2, "both get Slovak titles, only the first a free explanation")
         self.assertTrue(items[0]["explain"]["auto"])
+        self.assertTrue(items[0]["explain"]["sk"]["about"])
         self.assertEqual(items[1]["explain"], ANSWER, "a Claude explanation is never overwritten")
         self.assertEqual(explain.add_basic(items), 0)
 
@@ -179,6 +187,43 @@ class FreeExplanationTest(unittest.TestCase):
         explain.add_basic(items)
         items[1]["explain"]["declined"] = True
         self.assertEqual([i["id"] for i in explain.pick(items, set(), 40)], ["a"])
+
+
+class SlovakTest(unittest.TestCase):
+    def test_supply_notice_in_slovak_keeps_the_notice_text(self):
+        it = {"source": "sukl_web", "category": "Supply / availability", "url": "https://x-24857-prerusenie",
+              "title": "Novalgin (24857) - Prerušenie 2.11.2026",
+              "summary": "Typ oznámenia: Prerušenie · Platnosť od: 2.11.2026 · Kód ŠÚKL: 24857"}
+        e = explain.free(it)["sk"]
+        self.assertEqual(e["about"], "Oznámenie ŠÚKL o dostupnosti lieku Novalgin (24857).")
+        self.assertEqual(e["what_changed"], "Typ oznámenia: Prerušenie · Platnosť od: 2.11.2026 · Kód ŠÚKL: 24857")
+        self.assertIn("skontrolujte zásoby", e["impact"])
+
+    def test_law_change_title_and_text(self):
+        it = {"source": "lawchanges", "category": "Law change", "effective": ["2027-01-01"], "tags": ["Amends 39/2007"],
+              "title": "39/2007 Z. z. – Act on Veterinary Care: new wording in force from 01.01.2027",
+              "summary": "Changed by 272/2026 Z. z. 79 provision(s) changed: § 5, § 6 +3 more. Open the item to see the old and new wording."}
+        explain.add_basic([it])
+        self.assertEqual(it["title_sk"], "39/2007 Z. z. – zákon o veterinárnej starostlivosti: nové znenie účinné od 01.01.2027")
+        self.assertEqual(it["category_sk"], "Zmena zákona")
+        self.assertEqual(it["tags_sk"], ["Mení 39/2007"])
+        self.assertEqual(it["explain"]["sk"]["what_changed"],
+                         "Zmenené predpisom 272/2026 Z. z. Zmenené ustanovenia (79): § 5, § 6 a ďalšie (3). Účinné od 01.01.2027.")
+
+    def test_draft_stage_and_uskvbl_titles(self):
+        draft = {"source": "slovlex_lp", "category": "Draft law", "title": "LP/2026/1 · Vyhláška: Návrh vyhlášky",
+                 "summary": "Moved from stage “Pripomienkové konanie” to “Rokovanie vlády SR” · Stage: Rokovanie vlády SR (since 2.11.2026)"}
+        e = explain.free(draft)["sk"]
+        self.assertTrue(e["about"].startswith("Návrh vyhlášky v legislatívnom procese Slov-Lex"))
+        self.assertEqual(e["what_changed"], "Presunuté zo štádia „Pripomienkové konanie“ do štádia „Rokovanie vlády SR“"
+                                            " · Štádium: Rokovanie vlády SR (od 2.11.2026)")
+        self.assertIn("vláda", e["impact"])
+        doc = {"source": "uskvbl", "category": "Veterinary (ÚŠKVBL)", "title": "Document published: Zoznam liekov"}
+        self.assertEqual(slovak.title(doc), "Zverejnený dokument: Zoznam liekov")
+
+    def test_reimbursement_list_title(self):
+        it = {"source": "kategorizacia", "title": "Zoznam 1.12.2026 (updated version): 17 added, 7 removed, 26 price/reimbursement changes"}
+        self.assertEqual(slovak.title(it), "Zoznam 1.12.2026 (aktualizovaná verzia): pridané: 17, vyradené: 7, zmeny cien a úhrad: 26")
 
 
 if __name__ == "__main__":

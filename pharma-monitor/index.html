@@ -7,7 +7,7 @@
 <meta name="description" content="New Slovak laws and regulator announcements relevant to pharmaceutical and veterinary distribution.">
 <meta name="robots" content="noindex">
 <!-- change on every dashboard change: open pages and the Mac app see it and load the new version -->
-<meta name="pm-build" content="2026-11-27.1">
+<meta name="pm-build" content="2026-11-27.2">
 <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/icons/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
@@ -189,6 +189,12 @@
   .seg button { border: 0; background: none; padding: 7px 11px; cursor: pointer; color: var(--muted); }
   .seg button + button { border-left: 1px solid var(--line); }
   .seg button[aria-pressed="true"] { background: var(--surface-2); color: var(--ink); font-weight: 600; }
+  /* language: EN | SK switch in the bar; blocks written twice show only the chosen language */
+  .bar .lang { border-color: rgba(255, 255, 255, .35); background: transparent; }
+  .bar .lang button { color: var(--bar-muted); padding: 7px 10px; font: inherit; font-weight: 600; font-size: 13px; }
+  .bar .lang button + button { border-left-color: rgba(255, 255, 255, .35); }
+  .bar .lang button[aria-pressed="true"] { background: rgba(255, 255, 255, .14); color: var(--bar-ink); }
+  html[lang="sk"] .l-en, html:not([lang="sk"]) .l-sk { display: none; }
   select { border: 1px solid var(--line); background: var(--surface); border-radius: 8px; padding: 7px 10px; max-width: 100%; }
   label.chk { display: inline-flex; gap: 6px; align-items: center; color: var(--muted); cursor: pointer; padding: 0 4px; }
 
@@ -283,12 +289,16 @@
       <img class="logo" src="assets/pharmacopola-logo-white.svg" alt="PHARMACOPOLA" width="183" height="30">
     </a>
     <div class="bar-actions">
-      <button class="btn primary" id="refresh" type="button" title="Show the newest results of the automatic checks">
+      <button class="btn primary" id="refresh" type="button" title="Show the newest results of the automatic checks" data-sk-title="Zobraziť najnovšie výsledky automatických kontrol">
         <svg id="refreshIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
         <span id="refreshLabel">Check for updates<span class="lbl-long"> now</span></span>
       </button>
-      <button class="btn" id="markRead" type="button" title="Clear the NEW markers">Mark all read</button>
-      <button class="btn icon-btn" id="theme" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <button class="btn" id="markRead" type="button" title="Clear the NEW markers" data-sk-title="Zrušiť označenia NOVÉ" data-sk="Označiť ako prečítané">Mark all read</button>
+      <div class="seg lang" id="lang" role="group" aria-label="Language / Jazyk">
+        <button type="button" data-v="en" aria-pressed="true" title="English">EN</button>
+        <button type="button" data-v="sk" aria-pressed="false" title="Slovensky">SK</button>
+      </div>
+      <button class="btn icon-btn" id="theme" type="button" aria-label="Toggle dark mode" title="Toggle dark mode" data-sk-title="Prepnúť tmavý režim" data-sk-aria-label="Prepnúť tmavý režim">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
       </button>
     </div>
@@ -297,15 +307,25 @@
 
 <div class="wrap">
   <header class="top">
-    <p class="eyebrow">Regulatory intelligence · Slovensko &amp; EÚ</p>
-    <h1>Regulatory Monitor</h1>
-    <p class="sub">New Slovak and EU laws, draft legislation, regulator announcements and reimbursement-list changes relevant to the distribution of human and veterinary medicines, medical devices and related products. Checked automatically every 4 hours. Open an item to see exactly what changed.</p>
+    <p class="eyebrow" data-sk="Regulačný prehľad · Slovensko &amp; EÚ">Regulatory intelligence · Slovensko &amp; EÚ</p>
+    <h1 data-sk="Regulačný monitor">Regulatory Monitor</h1>
+    <p class="sub" data-sk="Nové slovenské a európske predpisy, návrhy predpisov, oznamy úradov a zmeny zoznamu kategorizovaných liekov dôležité pre distribúciu humánnych a veterinárnych liekov, zdravotníckych pomôcok a súvisiacich produktov. Kontroluje sa automaticky každé 4 hodiny. Otvorte položku a uvidíte presne, čo sa zmenilo.">New Slovak and EU laws, draft legislation, regulator announcements and reimbursement-list changes relevant to the distribution of human and veterinary medicines, medical devices and related products. Checked automatically every 4 hours. Open an item to see exactly what changed.</p>
     <div class="update-status" id="updStatus" role="status" aria-live="polite" hidden></div>
   </header>
 
   <dialog class="setup" id="setup" aria-labelledby="setupTitle">
-    <div class="setup-h"><span id="setupTitle">Run a check from this page</span><button type="button" id="setupClose" aria-label="Close">×</button></div>
+    <div class="setup-h"><span id="setupTitle" data-sk="Spustiť kontrolu z tejto stránky">Run a check from this page</span><button type="button" id="setupClose" aria-label="Close" data-sk-aria-label="Zavrieť">×</button></div>
     <div class="setup-b">
+      <div class="l-sk">
+      <p>Kontrola beží na GitHube. Aby ju bolo možné spustiť odtiaľto, tento prehliadač raz potrebuje prístupový token GitHubu:</p>
+      <ol>
+        <li>Otvorte <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub → New fine-grained token</a>.</li>
+        <li>Repository access: <b>Only select repositories</b> → <code>JurajGre-72.github.io</code>.</li>
+        <li>Permissions → Repository → <b>Actions: Read and write</b>. Nič iné netreba.</li>
+        <li>Vygenerujte token, skopírujte ho a vložte sem.</li>
+      </ol>
+      </div>
+      <div class="l-en">
       <p>The check runs on GitHub. To start it from here, this browser needs a GitHub access token once:</p>
       <ol>
         <li>Open <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub → New fine-grained token</a>.</li>
@@ -313,48 +333,68 @@
         <li>Permissions → Repository → <b>Actions: Read and write</b>. Nothing else is needed.</li>
         <li>Generate, copy the token and paste it here.</li>
       </ol>
+      </div>
       <input id="tokenInput" type="password" placeholder="github_pat_…" autocomplete="off" spellcheck="false" aria-label="GitHub token">
       <div class="row">
-        <a class="btn" id="runOnGithub" href="https://github.com/JurajGre-72/JurajGre-72.github.io/actions/workflows/pharma-monitor.yml" target="_blank" rel="noopener">Run it on GitHub instead</a>
-        <button class="btn primary" id="tokenSave" type="button">Save &amp; check now</button>
+        <a class="btn" id="runOnGithub" href="https://github.com/JurajGre-72/JurajGre-72.github.io/actions/workflows/pharma-monitor.yml" target="_blank" rel="noopener" data-sk="Spustiť ju radšej na GitHube">Run it on GitHub instead</a>
+        <button class="btn primary" id="tokenSave" type="button" data-sk="Uložiť a skontrolovať">Save &amp; check now</button>
       </div>
-      <p class="note">The token is kept only in this browser (local storage) and is sent only to api.github.com. It can start the monitor and nothing else. <a href="#" id="tokenForget">Forget the saved token</a></p>
+      <p class="note"><span data-sk="Token zostáva len v tomto prehliadači (local storage) a posiela sa len na api.github.com. Dokáže spustiť monitor a nič iné.">The token is kept only in this browser (local storage) and is sent only to api.github.com. It can start the monitor and nothing else.</span> <a href="#" id="tokenForget" data-sk="Zabudnúť uložený token">Forget the saved token</a></p>
     </div>
   </dialog>
 
-  <section class="stats" aria-label="Summary">
-    <div class="stat new"><div class="k">New · unread</div><div class="v" id="sNew">–</div></div>
-    <div class="stat alert"><div class="k">High priority · last 30 days</div><div class="v" id="sHigh">–</div></div>
-    <div class="stat"><div class="k">Relevant items tracked</div><div class="v" id="sTotal">–</div></div>
-    <div class="stat"><div class="k">Last check</div><div class="v" id="sChecked" style="font-size:17px;padding-top:6px">–</div></div>
+  <section class="stats" aria-label="Summary" data-sk-aria-label="Prehľad">
+    <div class="stat new"><div class="k" data-sk="Nové · neprečítané">New · unread</div><div class="v" id="sNew">–</div></div>
+    <div class="stat alert"><div class="k" data-sk="Vysoká priorita · posledných 30 dní">High priority · last 30 days</div><div class="v" id="sHigh">–</div></div>
+    <div class="stat"><div class="k" data-sk="Sledované položky">Relevant items tracked</div><div class="v" id="sTotal">–</div></div>
+    <div class="stat"><div class="k" data-sk="Posledná kontrola">Last check</div><div class="v" id="sChecked" style="font-size:17px;padding-top:6px">–</div></div>
   </section>
 
   <div class="controls" role="search">
     <div class="search">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-      <input id="q" type="search" placeholder="Search title, tag, law number… (e.g. 362/2011, Tyverb, LP/2026)" autocomplete="off">
+      <input id="q" type="search" placeholder="Search title, tag, law number… (e.g. 362/2011, Tyverb, LP/2026)" data-sk-placeholder="Hľadať v názve, štítku, čísle predpisu… (napr. 362/2011, Tyverb, LP/2026)" aria-label="Search" data-sk-aria-label="Hľadať" autocomplete="off">
     </div>
-    <div class="seg" id="prio" role="group" aria-label="Priority">
-      <button type="button" data-v="all" aria-pressed="true">All</button>
-      <button type="button" data-v="high" aria-pressed="false">High</button>
-      <button type="button" data-v="medium" aria-pressed="false">Medium+</button>
+    <div class="seg" id="prio" role="group" aria-label="Priority" data-sk-aria-label="Priorita">
+      <button type="button" data-v="all" aria-pressed="true" data-sk="Všetko">All</button>
+      <button type="button" data-v="high" aria-pressed="false" data-sk="Vysoká">High</button>
+      <button type="button" data-v="medium" aria-pressed="false" data-sk="Stredná+">Medium+</button>
     </div>
-    <select id="cat" aria-label="Category"><option value="">All categories</option></select>
-    <select id="src" aria-label="Source"><option value="">All sources</option></select>
-    <label class="chk"><input type="checkbox" id="onlyNew"> Only new</label>
+    <select id="cat" aria-label="Category" data-sk-aria-label="Kategória"><option value="" data-sk="Všetky kategórie">All categories</option></select>
+    <select id="src" aria-label="Source" data-sk-aria-label="Zdroj"><option value="" data-sk="Všetky zdroje">All sources</option></select>
+    <label class="chk"><input type="checkbox" id="onlyNew"> <span data-sk="Len nové">Only new</span></label>
   </div>
 
   <main id="out" aria-live="polite"><div class="empty">Loading…</div></main>
-  <div class="more" id="moreWrap" hidden><button class="btn" id="more" type="button">Show more</button></div>
+  <div class="more" id="moreWrap" hidden><button class="btn" id="more" type="button" data-sk="Zobraziť viac">Show more</button></div>
 
-  <section class="sources" aria-label="Monitored sources">
-    <h2>Monitored sources</h2>
+  <section class="sources" aria-label="Monitored sources" data-sk-aria-label="Sledované zdroje">
+    <h2 data-sk="Sledované zdroje">Monitored sources</h2>
     <div id="srcList"></div>
   </section>
 
   <section class="how">
-    <h2>How alerts work</h2>
-    <ul>
+    <h2 data-sk="Ako fungujú upozornenia">How alerts work</h2>
+    <ul class="l-sk">
+      <li>Všetky zdroje sa kontrolujú automaticky <b>každé 4 hodiny</b>, vo dne aj v noci, a po každej kontrole dostanete upozornenie. Pri väčšine zdrojov sa ponechávajú len položky zodpovedajúce pravidlám v <code>pharma-monitor/config.json</code>.</li>
+      <li><b>ŠÚKL, ÚŠKVBL a SOOL:</b> nič sa neodfiltruje (pravidlá určujú len prioritu) – sleduje sa každá zmena na ich weboch: nové a zmenené stránky (s pridaným textom),
+        nové články a dokumenty a oznámenia ŠÚKL o dostupnosti liekov (prerušenie, obnovenie, ukončenie dodávok, prvé uvedenie na trh).</li>
+      <li><b>Správna distribučná prax (SDP):</b> sleduje sa každá zmena textu vyhlášky 129/2012, pokynov EÚ pre SVP/SDP (EudraLex, zväzok 4), pravidiel EÚ o falšovaných liekoch, stránky EMA o SDP, PIC/S a EMVO.</li>
+      <li>Keď sa nájde niečo nové, úloha založí na GitHube issue so štítkom <code>regulatory-update</code> a GitHub vám ho pošle e-mailom. Priame e-maily sa dajú zapnúť cez SMTP secrets (pozri README).</li>
+      <li><b>Aplikácia pre Mac:</b> ten istý prehľad vo vlastnom okne, s tlačidlom <b>Check for App Update</b>, ktoré nainštaluje nové verzie.
+        Najjednoduchšia inštalácia: otvorte <i>Terminál</i> a vložte <code>curl -fsSL https://jurajgre-72.github.io/pharma-monitor/install-mac.sh | bash</code>
+        (bez bezpečnostných otázok). Alebo <a href="https://github.com/JurajGre-72/JurajGre-72.github.io/releases/download/monitor-mac-latest/PHARMACOPOLA-Monitor.dmg">stiahnite .dmg</a>
+        – macOS sa potom spýta na <i>Systémové nastavenia → Súkromie a bezpečnosť → Napriek tomu otvoriť</i>. Potrebuje macOS 11 alebo novší.</li>
+      <li><b>Chcete ho poslať kolegovi?</b> Pošlite mu <a href="download/">jurajgre-72.github.io/pharma-monitor/download/</a> –
+        jednoduchú stránku v slovenčine a angličtine s tlačidlom na stiahnutie a návodom krok za krokom.</li>
+      <li><b>Skontrolovať aktualizácie</b> hneď zobrazí najnovšie výsledky – bez prihlásenia. Ak práve beží kontrola, počká na ňu a potom ukáže, čo našla.
+        Potrebujete kontrolu práve teraz? <a href="#" data-action="extra-check">Spustiť kontrolu navyše</a> (raz treba prihlásenie do GitHubu).</li>
+      <li><b>Zmeny zákonov:</b> pri 19 kľúčových predpisoch (napr. 362/2011, 129/2012 o správnej distribučnej praxi, 363/2011, 39/2007) sa každé nové konsolidované znenie porovná s predchádzajúcim, ustanovenie po ustanovení, so zvýrazneným <del>odstráneným</del> a <ins>pridaným</ins> textom.</li>
+      <li><b>Novely:</b> nové predpisy v Zbierke zákonov sa čítajú celé; zobrazia sa presné novelizačné body kľúčových zákonov, aj vnútri hromadných noviel.</li>
+      <li><b>Zoznam kategorizovaných liekov:</b> každý mesačný zoznam sa porovná s predchádzajúcim mesiacom – pridané, vyradené a precenené lieky podľa kódu ŠÚKL.</li>
+      <li><b>Návrhy predpisov:</b> sledujú sa nové návrhy a každá zmena štádia (pripomienkové konanie, vláda, Národná rada) aj s termínom na pripomienky.</li>
+    </ul>
+    <ul class="l-en">
       <li>All sources are checked automatically <b>every 4 hours</b>, day and night, and you get a notification after every check. For most sources only items matching the rules in <code>pharma-monitor/config.json</code> are kept.</li>
       <li><b>ŠÚKL, ÚŠKVBL and SOOL:</b> nothing is filtered out (the rules only set the priority) – every change on their websites is tracked: new and changed pages (with the added text),
         new articles and documents, and ŠÚKL's supply notices (interruption, resumption, end of supply, first placing on the market).</li>
@@ -367,7 +407,7 @@
       <li><b>Sharing with a colleague?</b> Send them <a id="shareLink" href="download/">jurajgre-72.github.io/pharma-monitor/download/</a> –
         a simple page in Slovak and English with a download button and step-by-step instructions.</li>
       <li><b>Check for updates</b> shows the newest results at once – no sign-in needed. If a check is running at that moment, it waits for it and then shows what it found.
-        Need a check this very minute? <a href="#" id="extraCheck">Start an extra check</a> (needs a one-time GitHub sign-in).</li>
+        Need a check this very minute? <a href="#" id="extraCheck" data-action="extra-check">Start an extra check</a> (needs a one-time GitHub sign-in).</li>
       <li><b>Law changes:</b> for 19 key laws (e.g. 362/2011, 129/2012 on good distribution practice, 363/2011, 39/2007) every new consolidated wording is compared with the previous one, provision by provision, with <del>removed</del> and <ins>added</ins> text highlighted.</li>
       <li><b>Amending acts:</b> new acts in the Collection of Laws are read in full; the exact amendment points for key laws are shown, even inside omnibus acts.</li>
       <li><b>Reimbursement list:</b> each monthly list of categorised medicines is compared with the previous month – added, removed and repriced medicines by ŠÚKL code.</li>
@@ -375,7 +415,7 @@
     </ul>
   </section>
 
-  <footer>Monitoring aid only, not legal advice. Always rely on the official published text. Data: Slov-Lex (MS SR), ŠÚKL, ÚŠKVBL, SOOL, MZ SR, ŠVPS SR, EUR-Lex (Publications Office of the EU), EMA, European Commission, PIC/S, EMVO.</footer>
+  <footer><span data-sk="Len pomôcka na sledovanie, nie právne poradenstvo. Vždy sa riaďte oficiálnym zverejneným textom.">Monitoring aid only, not legal advice. Always rely on the official published text.</span> <span data-sk="Údaje:">Data:</span> Slov-Lex (MS SR), ŠÚKL, ÚŠKVBL, SOOL, MZ SR, ŠVPS SR, EUR-Lex (Publications Office of the EU), EMA, European Commission, PIC/S, EMVO.</footer>
 </div>
 
 <script>
@@ -398,24 +438,50 @@
     store.set('pm-theme', next);
   });
 
+  // ---------- language: English or Slovak (remembered in this browser)
+  const state = { items: [], q: '', prio: 'all', cat: '', src: '', onlyNew: false, limit: 60,
+                  lang: store.get('pm-lang') === 'sk' ? 'sk' : 'en' };
+  const L = (en, sk) => (state.lang === 'sk' ? sk : en);
+  function applyStaticText() {
+    document.documentElement.lang = state.lang;
+    document.querySelectorAll('[data-sk]').forEach((el) => {
+      if (el.dataset.en === undefined) el.dataset.en = el.innerHTML;
+      el.innerHTML = state.lang === 'sk' ? el.dataset.sk : el.dataset.en;
+    });
+    for (const attr of ['title', 'placeholder', 'aria-label']) {
+      document.querySelectorAll(`[data-sk-${attr}]`).forEach((el) => {
+        const key = `en${attr.replace('-', '')}`;  // dataset keys can't contain '-'
+        if (el.dataset[key] === undefined) el.dataset[key] = el.getAttribute(attr) || '';
+        el.setAttribute(attr, state.lang === 'sk' ? el.getAttribute(`data-sk-${attr}`) : el.dataset[key]);
+      });
+    }
+    document.querySelectorAll('#lang button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === state.lang)));
+  }
+  applyStaticText();
+
   const PAGE = 60;
   const RANK = { high: 3, medium: 2, low: 1 };
-  const state = { items: [], q: '', prio: 'all', cat: '', src: '', onlyNew: false, limit: PAGE };
   const lastVisit = store.get('pm-last-visit') || '1970-01-01T00:00:00Z';
   let lastVisitShown = lastVisit;
 
   const fmtDate = (s) => new Date(s).toLocaleDateString('sk-SK', { day: 'numeric', month: 'numeric', year: 'numeric' });
   const fmtDateTime = (s) => new Date(s).toLocaleString('sk-SK', { day: 'numeric', month: 'numeric', hour: '2-digit', minute: '2-digit' });
-  const monthKey = (s) => new Date(s).toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
+  const monthKey = (s) => new Date(s).toLocaleDateString(L('en-GB', 'sk-SK'), { month: 'long', year: 'numeric' });
+  // the Slovak version of an item's own texts, where the monitor wrote one
+  const titleOf = (i) => (state.lang === 'sk' && i.title_sk) || i.title;
+  const catOf = (i) => (state.lang === 'sk' && i.category_sk) || i.category;
+  const tagsOf = (i) => (state.lang === 'sk' && i.tags_sk) || i.tags || [];
+  const explainOf = (i) => (i.explain && i.explain.about ? (state.lang === 'sk' && i.explain.sk) || i.explain : null);
+  const PRIO = { high: ['High', 'Vysoká'], medium: ['Medium', 'Stredná'], low: ['Low', 'Nízka'] };
   const fold = (s) => (s || '').normalize('NFKD').replace(/[̀-ͯ]/g, '').toLowerCase();
   const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const isNew = (i) => i.detected > lastVisitShown;
 
   function relTime(s) {
     const mins = Math.round((Date.now() - new Date(s)) / 60000);
-    if (mins < 60) return `${Math.max(mins, 1)} min ago`;
+    if (mins < 60) return L(`${Math.max(mins, 1)} min ago`, `pred ${Math.max(mins, 1)} min`);
     const h = Math.round(mins / 60);
-    if (h < 48) return `${h} h ago`;
+    if (h < 48) return L(`${h} h ago`, `pred ${h} h`);
     return fmtDate(s);
   }
 
@@ -427,14 +493,16 @@
       if (state.cat && i.category !== state.cat) return false;
       if (state.src && i.source !== state.src) return false;
       if (state.onlyNew && !isNew(i)) return false;
-      const ex = i.explain || {};
-      if (q && !fold([i.title, i.summary, i.category, i.source_name, ex.about, ex.what_changed, ex.impact, ...(i.tags || [])].join(' ')).includes(q)) return false;
+      const ex = i.explain || {}, sk = ex.sk || {};  // both languages are searched, whichever is shown
+      if (q && !fold([i.title, i.title_sk, i.summary, i.category, i.category_sk, i.source_name, ex.about, ex.what_changed, ex.impact,
+                      sk.about, sk.what_changed, sk.impact, ...(i.tags || []), ...(i.tags_sk || [])].join(' ')).includes(q)) return false;
       return true;
     });
 
     const out = $('#out');
     if (!list.length) {
-      out.innerHTML = `<div class="empty">${state.items.length ? 'Nothing matches these filters.' : 'No items yet – the first automatic check has not run.'}</div>`;
+      out.innerHTML = `<div class="empty">${state.items.length ? L('Nothing matches these filters.', 'Týmto filtrom nič nezodpovedá.')
+        : L('No items yet – the first automatic check has not run.', 'Zatiaľ žiadne položky – prvá automatická kontrola ešte neprebehla.')}</div>`;
       $('#moreWrap').hidden = true;
       return;
     }
@@ -447,24 +515,25 @@
         month = m;
       }
       const eff = (i.effective || []).length
-        ? ` · <span title="Effective from">In force: ${i.effective.slice(0, 3).map(fmtDate).join(', ')}</span>` : '';
+        ? ` · <span title="${L('Effective from', 'Účinnosť od')}">${L('In force', 'Účinnosť')}: ${i.effective.slice(0, 3).map(fmtDate).join(', ')}</span>` : '';
+      const ex = explainOf(i), tags = tagsOf(i);
       html += `<article class="item p-${esc(i.priority)}">
         <div class="meta">
-          <span class="pill ${esc(i.priority)}">${esc(i.priority[0].toUpperCase() + i.priority.slice(1))}</span>
-          ${isNew(i) ? '<span class="pill new">NEW</span>' : ''}
-          <span class="pill cat">${esc(i.category)}</span>
+          <span class="pill ${esc(i.priority)}">${esc(L(...(PRIO[i.priority] || [i.priority, i.priority])))}</span>
+          ${isNew(i) ? `<span class="pill new">${L('NEW', 'NOVÉ')}</span>` : ''}
+          <span class="pill cat">${esc(catOf(i))}</span>
           <span>${esc(i.source_name)} · ${fmtDate(i.date)}${eff}</span>
         </div>
-        <h3><a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.title)}</a></h3>
-        ${i.explain && i.explain.about ? `<div class="explain">
-          <p><b>About:</b> ${esc(i.explain.about)}</p>
-          <p><b>What changed:</b> ${esc(i.explain.what_changed)}</p>
-          <p><b>For PHARMACOPOLA:</b> ${esc(i.explain.impact)}</p></div>`
+        <h3><a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(titleOf(i))}</a></h3>
+        ${ex ? `<div class="explain">
+          <p><b>${L('About', 'O čom to je')}:</b> ${esc(ex.about)}</p>
+          <p><b>${L('What changed', 'Čo sa zmenilo')}:</b> ${esc(ex.what_changed)}</p>
+          <p><b>${L('For PHARMACOPOLA', 'Pre PHARMACOPOLA')}:</b> ${esc(ex.impact)}</p></div>`
           : (i.summary ? `<p class="sum">${esc(i.summary)}</p>` : '')}
-        ${i.deadline ? `<p class="sum"><span class="pill deadline">Comments open until ${fmtDate(i.deadline)}</span></p>` : ''}
-        ${(i.tags || []).length ? `<div class="tags">${i.tags.map((t) => `<span class="tag">${esc(t)}</span>`).join('')}</div>` : ''}
-        ${i.pdf ? `<div class="links"><a href="${esc(i.url)}" target="_blank" rel="noopener">Slov-Lex page</a><a href="${esc(i.pdf)}" target="_blank" rel="noopener">Official PDF</a></div>` : ''}
-        ${i.details ? `<button class="more-btn" type="button" data-details="${esc(i.details)}" aria-expanded="false">${DETAIL_LABEL[i.source] || 'Show what changed'} ▾</button><div class="detail" hidden></div>` : ''}
+        ${i.deadline ? `<p class="sum"><span class="pill deadline">${L('Comments open until', 'Pripomienky do')} ${fmtDate(i.deadline)}</span></p>` : ''}
+        ${tags.length ? `<div class="tags">${tags.map((t) => `<span class="tag">${esc(t)}</span>`).join('')}</div>` : ''}
+        ${i.pdf ? `<div class="links"><a href="${esc(i.url)}" target="_blank" rel="noopener">${L('Slov-Lex page', 'Stránka na Slov-Lex')}</a><a href="${esc(i.pdf)}" target="_blank" rel="noopener">${L('Official PDF', 'Oficiálne PDF')}</a></div>` : ''}
+        ${i.details ? `<button class="more-btn" type="button" data-details="${esc(i.details)}" aria-expanded="false">${L(...(DETAIL_LABEL[i.source] || ['Show what changed', 'Zobraziť, čo sa zmenilo']))} ▾</button><div class="detail" hidden></div>` : ''}
       </article>`;
     });
     html += '</div>';
@@ -474,7 +543,9 @@
 
 
   // ---------- "what changed" detail views
-  const DETAIL_LABEL = { lawchanges: 'Show what changed in the law', slovlex: 'Show the amendment text', kategorizacia: 'Show the changed medicines' };
+  const DETAIL_LABEL = { lawchanges: ['Show what changed in the law', 'Zobraziť, čo sa v zákone zmenilo'],
+                         slovlex: ['Show the amendment text', 'Zobraziť text novely'],
+                         kategorizacia: ['Show the changed medicines', 'Zobraziť zmenené lieky'] };
   const detailCache = {};
   const words = (s) => s.split(/\s+/).filter(Boolean).length;
 
@@ -491,17 +562,21 @@
   }
 
   function renderLawDiff(d) {
-    const by = d.amended_by ? (d.amended_by_url ? `<a href="${esc(d.amended_by_url)}" target="_blank" rel="noopener">${esc(d.amended_by)}</a>` : esc(d.amended_by)) : 'an amending act';
-    let h = `<p class="hint">${esc(d.law)} Z. z. – ${esc(d.law_name)}. Wording in force from <b>${fmtDate(d.to)}</b> compared with the wording from ${fmtDate(d.from)}; changed by ${by}.
-      <a href="${esc(d.old_url)}" target="_blank" rel="noopener">Old wording</a> · <a href="${esc(d.new_url)}" target="_blank" rel="noopener">New wording</a></p>
-      <div class="legend"><span><del>removed text</del></span><span><ins>new text</ins></span><span>${d.changes.length} provision(s)</span></div>`;
-    h += d.changes.map((c) => `<div class="chg"><div class="chg-h">${esc(c.loc)} <span class="t ${c.type}">${c.type}</span></div>
+    const by = d.amended_by ? (d.amended_by_url ? `<a href="${esc(d.amended_by_url)}" target="_blank" rel="noopener">${esc(d.amended_by)}</a>` : esc(d.amended_by)) : L('an amending act', 'novela');
+    let h = `<p class="hint">${esc(d.law)} Z. z. – ${esc(d.law_name)}. ${L(`Wording in force from <b>${fmtDate(d.to)}</b> compared with the wording from ${fmtDate(d.from)}; changed by ${by}.`,
+        `Znenie účinné od <b>${fmtDate(d.to)}</b> v porovnaní so znením od ${fmtDate(d.from)}; zmenené predpisom ${by}.`)}
+      <a href="${esc(d.old_url)}" target="_blank" rel="noopener">${L('Old wording', 'Staré znenie')}</a> · <a href="${esc(d.new_url)}" target="_blank" rel="noopener">${L('New wording', 'Nové znenie')}</a></p>
+      <div class="legend"><span><del>${L('removed text', 'odstránený text')}</del></span><span><ins>${L('new text', 'nový text')}</ins></span><span>${L(`${d.changes.length} provision(s)`, `ustanovenia: ${d.changes.length}`)}</span></div>`;
+    const TYPE = { changed: L('changed', 'zmenené'), added: L('added', 'pridané'), removed: L('removed', 'zrušené') };
+    h += d.changes.map((c) => `<div class="chg"><div class="chg-h">${esc(c.loc)} <span class="t ${c.type}">${esc(TYPE[c.type] || c.type)}</span></div>
       <div class="chg-b">${c.type === 'changed' ? diffHtml(c.diff) : c.type === 'added' ? `<ins>${esc(c.text)}</ins>` : `<del>${esc(c.text)}</del>`}</div></div>`).join('');
     return h;
   }
 
   function renderAmendment(d) {
-    return `<p class="hint">Exact amendment points from the published act <a href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.act)} Z. z.</a>. To see the resulting wording side by side, look for the matching “Law change” item.</p>` +
+    const act = `<a href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.act)} Z. z.</a>`;
+    return `<p class="hint">${L(`Exact amendment points from the published act ${act}. To see the resulting wording side by side, look for the matching “Law change” item.`,
+                               `Presné novelizačné body zo zverejneného predpisu ${act}. Výsledné znenie vedľa seba nájdete v zodpovedajúcej položke „Zmena zákona“.`)}</p>` +
       d.sections.map((s) => `<div class="chg-h">${esc(s.law)} Z. z. – ${esc(s.law_name)}</div><pre class="amend">${esc(s.text)}</pre>`).join('');
   }
 
@@ -513,11 +588,11 @@
   }
   function plRows(d, tab, q) {
     const list = d[tab].filter((p) => !q || fold([p.code, p.name, p.substance, p.atc, p.mah, p.pack].join(' ')).includes(q));
-    if (!list.length) return '<p class="hint" style="padding:10px">No matching medicines.</p>';
+    if (!list.length) return `<p class="hint" style="padding:10px">${L('No matching medicines.', 'Žiadne zodpovedajúce lieky.')}</p>`;
     const shown = list.slice(0, 400);
-    let h = '<table class="pl"><thead><tr><th>ŠÚKL code</th><th>Medicine</th>';
-    if (tab === 'changed') h += '<th>What changed</th>';
-    else h += '<th>Max. price</th><th>Reimbursement</th><th>Co-pay</th>';
+    let h = `<table class="pl"><thead><tr><th>${L('ŠÚKL code', 'Kód ŠÚKL')}</th><th>${L('Medicine', 'Liek')}</th>`;
+    if (tab === 'changed') h += `<th>${L('What changed', 'Čo sa zmenilo')}</th>`;
+    else h += `<th>${L('Max. price', 'Max. cena')}</th><th>${L('Reimbursement', 'Úhrada')}</th><th>${L('Co-pay', 'Doplatok')}</th>`;
     h += '</tr></thead><tbody>';
     for (const p of shown) {
       h += `<tr><td class="num">${esc(p.code)}</td><td>${esc(p.name)}<div class="sub">${esc(p.pack)} · ${esc(p.substance)} (${esc(p.atc)}) · ${esc(p.mah)}</div></td>`;
@@ -532,16 +607,18 @@
       h += '</tr>';
     }
     h += '</tbody></table>';
-    if (list.length > shown.length) h += `<p class="hint" style="padding:8px 10px">Showing ${shown.length} of ${list.length} – use the search box to narrow down.</p>`;
+    if (list.length > shown.length) h += `<p class="hint" style="padding:8px 10px">${L(`Showing ${shown.length} of ${list.length} – use the search box to narrow down.`, `Zobrazených ${shown.length} z ${list.length} – zúžte výber vyhľadávaním.`)}</p>`;
     return h;
   }
   function renderPriceList(d, box) {
     const c = d.counts;
-    box.innerHTML = `<p class="hint">List valid from ${fmtDate(d.month.slice(0, 4) + '-' + d.month.slice(4) + '-01')} compared with ${fmtDate(d.previous.slice(0, 4) + '-' + d.previous.slice(4) + '-01')}. Source: Part A of the MZ SR list (cast_A_zoznam_liekov).</p>
-      <div class="tabs"><button type="button" data-tab="changed" aria-pressed="true">Price / reimbursement changes (${c.changed})</button>
-      <button type="button" data-tab="added" aria-pressed="false">Added (${c.added})</button>
-      <button type="button" data-tab="removed" aria-pressed="false">Removed (${c.removed})</button>
-      <input type="search" placeholder="Filter by name, code, substance, ATC…" aria-label="Filter medicines"></div>
+    const from = fmtDate(d.month.slice(0, 4) + '-' + d.month.slice(4) + '-01'), prev = fmtDate(d.previous.slice(0, 4) + '-' + d.previous.slice(4) + '-01');
+    box.innerHTML = `<p class="hint">${L(`List valid from ${from} compared with ${prev}. Source: Part A of the MZ SR list (cast_A_zoznam_liekov).`,
+                                        `Zoznam platný od ${from} v porovnaní so zoznamom od ${prev}. Zdroj: časť A zoznamu MZ SR (cast_A_zoznam_liekov).`)}</p>
+      <div class="tabs"><button type="button" data-tab="changed" aria-pressed="true">${L('Price / reimbursement changes', 'Zmeny cien a úhrad')} (${c.changed})</button>
+      <button type="button" data-tab="added" aria-pressed="false">${L('Added', 'Pridané')} (${c.added})</button>
+      <button type="button" data-tab="removed" aria-pressed="false">${L('Removed', 'Vyradené')} (${c.removed})</button>
+      <input type="search" placeholder="${L('Filter by name, code, substance, ATC…', 'Filtrovať podľa názvu, kódu, látky, ATC…')}" aria-label="${L('Filter medicines', 'Filtrovať lieky')}"></div>
       <div class="tbl-wrap"></div>`;
     let tab = 'changed', q = '';
     const draw = () => { box.querySelector('.tbl-wrap').innerHTML = plRows(d, tab, q); };
@@ -561,17 +638,17 @@
     btn.textContent = btn.textContent.replace(open ? '▴' : '▾', open ? '▾' : '▴');
     box.hidden = open;
     if (open || box.dataset.loaded) return;
-    box.innerHTML = '<p class="hint">Loading…</p>';
+    box.innerHTML = `<p class="hint">${L('Loading…', 'Načítava sa…')}</p>`;
     try {
       const url = btn.dataset.details;
       const d = detailCache[url] || (detailCache[url] = await fetch(url, { cache: 'no-store' }).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }));
       if (d.kind === 'law_diff') box.innerHTML = renderLawDiff(d);
       else if (d.kind === 'amendment') box.innerHTML = renderAmendment(d);
       else if (d.kind === 'price_list') renderPriceList(d, box);
-      else box.innerHTML = '<p class="hint">No details available.</p>';
+      else box.innerHTML = `<p class="hint">${L('No details available.', 'Podrobnosti nie sú k dispozícii.')}</p>`;
       box.dataset.loaded = '1';
     } catch (e) {
-      box.innerHTML = `<p class="hint">Could not load the details (${esc(e.message)}).</p>`;
+      box.innerHTML = `<p class="hint">${L('Could not load the details', 'Podrobnosti sa nepodarilo načítať')} (${esc(e.message)}).</p>`;
     }
   }
   $('#out').addEventListener('click', (e) => {
@@ -579,7 +656,9 @@
     if (b) toggleDetails(b);
   });
 
+  let lastData = null;
   function renderStats(data) {
+    lastData = data;
     const items = data.items;
     const since = new Date(Date.now() - 30 * 864e5).toISOString();
     $('#sNew').textContent = items.filter(isNew).length;
@@ -595,16 +674,18 @@
       values.forEach(([v, label]) => el.insertAdjacentHTML('beforeend', `<option value="${esc(v)}">${esc(label)}</option>`));
       el.value = values.some(([v]) => v === keep) ? keep : '';
     };
-    const cats = [...new Set(items.map((i) => i.category))].sort();
-    fill('#cat', cats.map((c) => [c, c]));
+    const cats = new Map();
+    items.forEach((i) => { if (!cats.has(i.category) || cats.get(i.category) === i.category) cats.set(i.category, catOf(i)); });
+    fill('#cat', [...cats].sort((a, b) => a[1].localeCompare(b[1], state.lang)));
     const srcs = Object.entries(data.sources || {});
     fill('#src', srcs.map(([k, s]) => [k, s.name]));
 
     $('#srcList').innerHTML = srcs.map(([k, s]) => `
       <div class="src-row">
         <span><span class="dot ${s.ok ? '' : 'bad'}"></span>${esc(s.name)}</span>
-        <span class="st">${s.ok ? `OK · checked ${relTime(s.checked)}` : `Error · ${esc(s.error || 'unknown')}${s.last_ok ? ` · last OK ${relTime(s.last_ok)}` : ''}`}</span>
-      </div>`).join('') || '<div class="st">No run yet.</div>';
+        <span class="st">${s.ok ? `OK · ${L('checked', 'skontrolované')} ${relTime(s.checked)}`
+          : `${L('Error', 'Chyba')} · ${esc(s.error || L('unknown', 'neznáma'))}${s.last_ok ? ` · ${L('last OK', 'naposledy OK')} ${relTime(s.last_ok)}` : ''}`}</span>
+      </div>`).join('') || `<div class="st">${L('No run yet.', 'Zatiaľ žiadna kontrola.')}</div>`;
   }
 
   // controls
@@ -619,6 +700,16 @@
   $('#src').addEventListener('change', (e) => { state.src = e.target.value; state.limit = PAGE; render(); });
   $('#onlyNew').addEventListener('change', (e) => { state.onlyNew = e.target.checked; state.limit = PAGE; render(); });
   $('#more').addEventListener('click', () => { state.limit += PAGE; render(); });
+  $('#lang').addEventListener('click', (e) => {
+    const b = e.target.closest('button'); if (!b || b.dataset.v === state.lang) return;
+    state.lang = b.dataset.v;
+    store.set('pm-lang', state.lang);
+    applyStaticText();
+    if (!running) busy(false);
+    if (lastData) renderStats(lastData);
+    showLastCheck();
+    render();
+  });
   $('#markRead').addEventListener('click', () => {
     lastVisitShown = new Date().toISOString();
     store.set('pm-last-visit', lastVisitShown);
@@ -650,7 +741,7 @@
 
   // first visit: don't flag the whole backlog as new
   if (!store.get('pm-last-visit')) lastVisitShown = new Date(Date.now() - 7 * 864e5).toISOString();
-  const firstLoad = loadData().then(showLastCheck).catch((e) => { $('#out').innerHTML = `<div class="empty">Could not load data (${esc(e.message)}).</div>`; });
+  const firstLoad = loadData().then(showLastCheck).catch((e) => { $('#out').innerHTML = `<div class="empty">${L('Could not load data', 'Údaje sa nepodarilo načítať')} (${esc(e.message)}).</div>`; });
 
   // ---------- "Check for updates now": starts the GitHub Actions workflow and follows it
   const REPO = 'JurajGre-72/JurajGre-72.github.io';
@@ -660,6 +751,7 @@
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   const btn = $('#refresh'), btnLabel = $('#refreshLabel'), btnIcon = $('#refreshIcon'), statusBox = $('#updStatus');
   let running = false;
+  busy(false);  // the button label in the chosen language
 
   function setStatus(html, isErr) {
     statusBox.hidden = !html;
@@ -670,7 +762,8 @@
     running = on;
     btn.disabled = on;
     btnIcon.classList.toggle('spin', on);
-    btnLabel.innerHTML = on ? esc(label || 'Checking…') : 'Check for updates<span class="lbl-long"> now</span>';
+    btnLabel.innerHTML = on ? esc(label || L('Checking…', 'Kontroluje sa…'))
+      : L('Check for updates<span class="lbl-long"> now</span>', 'Skontrolovať<span class="lbl-long"> aktualizácie</span>');
   }
   const elapsed = (from) => {
     const s = Math.max(0, Math.round((Date.now() - from) / 1000));
@@ -696,27 +789,27 @@
       const run = await latestRun(store.get('pm-gh-token'));
       if (!run) return;
       const el = $('#sChecked');
-      if (run.status !== 'completed') { el.textContent = 'Checking now…'; el.title = 'A check of all sources is running'; }
-      else { el.textContent = relTime(run.updated_at); el.title = `Last automatic check finished ${fmtDateTime(run.updated_at)}`; }
+      if (run.status !== 'completed') { el.textContent = L('Checking now…', 'Práve sa kontroluje…'); el.title = L('A check of all sources is running', 'Prebieha kontrola všetkých zdrojov'); }
+      else { el.textContent = relTime(run.updated_at); el.title = `${L('Last automatic check finished', 'Posledná automatická kontrola skončila')} ${fmtDateTime(run.updated_at)}`; }
     } catch (e) { /* keep the time from the data file */ }
   }
 
   /** The button: show the newest results; if a check is running, wait for it first. No sign-in. */
   async function refreshNow() {
     if (running) return;
-    if (await newerPageAvailable()) { setStatus('Loading the newest version of this page…'); reloadPage(true); return; }
+    if (await newerPageAvailable()) { setStatus(L('Loading the newest version of this page…', 'Načítava sa najnovšia verzia stránky…')); reloadPage(true); return; }
     const started = Date.now();
     const known = new Set(state.items.map((i) => i.id));
-    busy(true, 'Checking…');
-    setStatus('Getting the newest results…');
+    busy(true, L('Checking…', 'Kontroluje sa…'));
+    setStatus(L('Getting the newest results…', 'Načítavajú sa najnovšie výsledky…'));
     try {
       let run = null;
       try { run = await latestRun(); } catch (e) { run = null; }
       if (run && run.status !== 'completed') {
         while (run.status !== 'completed' && Date.now() - started < 15 * 60000) {
-          busy(true, `Checking… ${elapsed(started)}`);
-          setStatus(`All sources are being checked right now · ${elapsed(started)} ·
-            <a href="${esc(run.html_url)}" target="_blank" rel="noopener">details</a>`);
+          busy(true, `${L('Checking…', 'Kontroluje sa…')} ${elapsed(started)}`);
+          setStatus(`${L('All sources are being checked right now', 'Práve sa kontrolujú všetky zdroje')} · ${elapsed(started)} ·
+            <a href="${esc(run.html_url)}" target="_blank" rel="noopener">${L('details', 'podrobnosti')}</a>`);
           await sleep(8000);
           run = await gh(`/runs/${run.id}`).then((x) => x.json());
         }
@@ -732,8 +825,8 @@
       }
       let data = await loadData();
       for (let i = 0; expect && (!data.updated || data.updated < expect) && i < 18; i++) {
-        busy(true, 'Publishing…');
-        setStatus(`New results found – publishing them… ${elapsed(started)}`);
+        busy(true, L('Publishing…', 'Zverejňuje sa…'));
+        setStatus(`${L('New results found – publishing them…', 'Našli sa nové výsledky – zverejňujú sa…')} ${elapsed(started)}`);
         await sleep(10000);
         data = await loadData();
       }
@@ -741,30 +834,35 @@
       await showLastCheck();
       const fresh = state.items.filter((i) => !known.has(i.id)).length;
       const checked = data.checked || data.updated;
-      const last = run && run.status === 'completed' ? relTime(run.updated_at) : (checked ? relTime(checked) : 'recently');
+      const last = run && run.status === 'completed' ? relTime(run.updated_at) : (checked ? relTime(checked) : L('recently', 'nedávno'));
       const newest = state.items.reduce((m, i) => (i.date > m ? i.date : m), '');
       setStatus(fresh
-        ? `Done. <b>${fresh}</b> new item${fresh === 1 ? '' : 's'} – marked NEW below.`
-        : `Up to date. All sources were checked ${esc(last)}${newest ? ` – nothing new has been published since ${esc(fmtDate(newest))}` : ''}.
-           The next automatic check runs within 4 hours.`);
+        ? L(`Done. <b>${fresh}</b> new item${fresh === 1 ? '' : 's'} – marked NEW below.`, `Hotovo. Nové položky: <b>${fresh}</b> – nižšie sú označené NOVÉ.`)
+        : L(`Up to date. All sources were checked ${esc(last)}${newest ? ` – nothing new has been published since ${esc(fmtDate(newest))}` : ''}.
+           The next automatic check runs within 4 hours.`,
+            `Všetko je aktuálne. Všetky zdroje boli skontrolované ${esc(last)}${newest ? ` – od ${esc(fmtDate(newest))} nebolo zverejnené nič nové` : ''}.
+           Ďalšia automatická kontrola prebehne do 4 hodín.`));
     } catch (e) {
       busy(false);
       try { await loadData(); } catch (err) { /* keep what is shown */ }
-      setStatus(`Could not reach GitHub just now (${esc(e.message)}). The list shows the latest results we have.`, true);
+      setStatus(L(`Could not reach GitHub just now (${esc(e.message)}). The list shows the latest results we have.`,
+                  `GitHub je teraz nedostupný (${esc(e.message)}). Zoznam ukazuje najnovšie výsledky, ktoré máme.`), true);
     }
   }
 
   async function runCheck(token) {
     if (running) return;
     const started = Date.now();
-    busy(true, 'Starting…');
-    setStatus('Starting the check on GitHub…');
+    busy(true, L('Starting…', 'Spúšťa sa…'));
+    setStatus(L('Starting the check on GitHub…', 'Kontrola sa spúšťa na GitHube…'));
     try {
       const r = await gh(`/workflows/${WORKFLOW}/dispatches`, token, { method: 'POST', body: JSON.stringify({ ref: 'main' }) });
       if (r.status === 401 || r.status === 403 || r.status === 404) {
         busy(false);
-        setStatus(`GitHub did not accept the saved token (HTTP ${r.status}). It may have expired or lack <b>Actions: Read and write</b> for this repository.
-          <a href="#" data-action="setup">Enter a new token</a> or <a href="${RUN_PAGE}" target="_blank" rel="noopener">run it on GitHub</a>.`, true);
+        setStatus(L(`GitHub did not accept the saved token (HTTP ${r.status}). It may have expired or lack <b>Actions: Read and write</b> for this repository.
+          <a href="#" data-action="setup">Enter a new token</a> or <a href="${RUN_PAGE}" target="_blank" rel="noopener">run it on GitHub</a>.`,
+          `GitHub neprijal uložený token (HTTP ${r.status}). Možno vypršal alebo nemá pre tento repozitár oprávnenie <b>Actions: Read and write</b>.
+          <a href="#" data-action="setup">Zadajte nový token</a> alebo <a href="${RUN_PAGE}" target="_blank" rel="noopener">ju spustite na GitHube</a>.`), true);
         return;
       }
       if (!r.ok) throw new Error(`GitHub answered ${r.status}`);
@@ -775,31 +873,31 @@
         await sleep(4000);
         const list = await gh(`/workflows/${WORKFLOW}/runs?event=workflow_dispatch&per_page=5`, token).then((x) => x.json());
         run = (list.workflow_runs || []).find((x) => new Date(x.created_at).getTime() >= started - 60000);
-        setStatus(`Waiting for GitHub to start the check… ${elapsed(started)}`);
+        setStatus(`${L('Waiting for GitHub to start the check…', 'Čaká sa, kým GitHub spustí kontrolu…')} ${elapsed(started)}`);
       }
       if (!run) throw new Error('the run did not appear on GitHub');
 
       // follow it until it finishes (all sources usually take 2–5 minutes)
       while (run.status !== 'completed') {
-        busy(true, `Checking… ${elapsed(started)}`);
-        setStatus(`Checking all sources on GitHub (${esc(run.status.replace('_', ' '))}) · ${elapsed(started)} ·
-          <a href="${esc(run.html_url)}" target="_blank" rel="noopener">watch on GitHub</a>`);
+        busy(true, `${L('Checking…', 'Kontroluje sa…')} ${elapsed(started)}`);
+        setStatus(`${L('Checking all sources on GitHub', 'Na GitHube sa kontrolujú všetky zdroje')} (${esc(run.status.replace('_', ' '))}) · ${elapsed(started)} ·
+          <a href="${esc(run.html_url)}" target="_blank" rel="noopener">${L('watch on GitHub', 'sledovať na GitHube')}</a>`);
         await sleep(8000);
         run = await gh(`/runs/${run.id}`, token).then((x) => x.json());
         if (Date.now() - started > 40 * 60000) throw new Error('the check is taking unusually long');
       }
       if (run.conclusion !== 'success') {
         busy(false);
-        setStatus(`The check finished with “${esc(run.conclusion)}”. <a href="${esc(run.html_url)}" target="_blank" rel="noopener">See the details on GitHub</a>.`, true);
+        setStatus(`${L('The check finished with', 'Kontrola skončila s výsledkom')} „${esc(run.conclusion)}“. <a href="${esc(run.html_url)}" target="_blank" rel="noopener">${L('See the details on GitHub', 'Podrobnosti na GitHube')}</a>.`, true);
         return;
       }
 
       // the run saved new data; wait until the published site serves it
       const before = state.updated || '';
-      busy(true, 'Publishing…');
+      busy(true, L('Publishing…', 'Zverejňuje sa…'));
       let data = null;
       for (let i = 0; i < 40; i++) {
-        setStatus(`Check finished – publishing the results… ${elapsed(started)}`);
+        setStatus(`${L('Check finished – publishing the results…', 'Kontrola skončila – výsledky sa zverejňujú…')} ${elapsed(started)}`);
         try { data = await loadData(); } catch (e) { data = null; }
         if (data && data.updated && data.updated > before) break;
         await sleep(10000);
@@ -807,13 +905,15 @@
       busy(false);
       if (data && data.updated > before) {
         const fresh = state.items.filter((i) => new Date(i.detected).getTime() >= started - 120000).length;
-        setStatus(fresh ? `Done. <b>${fresh}</b> new item${fresh === 1 ? '' : 's'} found – marked NEW below.` : 'Done. Nothing new since the last check.');
+        setStatus(fresh ? L(`Done. <b>${fresh}</b> new item${fresh === 1 ? '' : 's'} found – marked NEW below.`, `Hotovo. Nové položky: <b>${fresh}</b> – nižšie sú označené NOVÉ.`)
+          : L('Done. Nothing new since the last check.', 'Hotovo. Od poslednej kontroly nič nové.'));
       } else {
-        setStatus('The check finished, but the website has not refreshed yet. Reload the page in a minute.');
+        setStatus(L('The check finished, but the website has not refreshed yet. Reload the page in a minute.',
+                    'Kontrola skončila, ale web sa ešte neobnovil. O minútu stránku znovu načítajte.'));
       }
     } catch (e) {
       busy(false);
-      setStatus(`Could not complete the check: ${esc(e.message)}. <a href="${RUN_PAGE}" target="_blank" rel="noopener">Open it on GitHub</a>.`, true);
+      setStatus(`${L('Could not complete the check', 'Kontrolu sa nepodarilo dokončiť')}: ${esc(e.message)}. <a href="${RUN_PAGE}" target="_blank" rel="noopener">${L('Open it on GitHub', 'Otvoriť na GitHube')}</a>.`, true);
     }
   }
 
@@ -826,11 +926,11 @@
     const token = store.get('pm-gh-token');
     if (token) runCheck(token); else refreshNow();  // no setup needed; a saved token additionally starts an extra check
   });
-  $('#extraCheck').addEventListener('click', (e) => {
+  document.querySelectorAll('[data-action="extra-check"]').forEach((a) => a.addEventListener('click', (e) => {
     e.preventDefault();
     const token = store.get('pm-gh-token');
     if (token) runCheck(token); else openSetup();
-  });
+  }));
   $('#setupClose').addEventListener('click', () => setup.close());
 
   // ---------- the page keeps itself current: a newly published version is loaded automatically (also in the Mac app)
@@ -872,7 +972,7 @@
   $('#tokenSave').addEventListener('click', () => {
     const token = $('#tokenInput').value.trim();
     if (!/^(github_pat_|ghp_)[A-Za-z0-9_]{20,}$/.test(token)) {
-      $('#tokenInput').setCustomValidity('This does not look like a GitHub token (it starts with github_pat_).');
+      $('#tokenInput').setCustomValidity(L('This does not look like a GitHub token (it starts with github_pat_).', 'Toto nevyzerá ako token GitHubu (začína sa github_pat_).'));
       $('#tokenInput').reportValidity();
       return;
     }
@@ -885,7 +985,7 @@
     e.preventDefault();
     try { localStorage.removeItem('pm-gh-token'); } catch (err) {}
     setup.close();
-    setStatus('The saved token was removed from this browser.');
+    setStatus(L('The saved token was removed from this browser.', 'Uložený token bol z tohto prehliadača odstránený.'));
   });
   statusBox.addEventListener('click', (e) => {
     if (e.target.closest('[data-action="setup"]')) { e.preventDefault(); openSetup(); }
