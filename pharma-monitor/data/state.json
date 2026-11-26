@@ -177,7 +177,8 @@
    "https://www.health.gov.sk/novinky/nemocnica-kralovsky-chlmec/": "2026-11-24T13:56:16Z",
    "https://www.health.gov.sk/novinky/slovensko-ziskalo-vysoke-hodnotenie-v-oblasti-monitorovania-drog/": "2026-11-24T13:56:16Z",
    "https://www.health.gov.sk/novinky/ezapisovanie-prinasa-vysledky-januar-dalsie-ambulancie-stacionare/": "2026-11-25T08:28:40Z",
-   "https://www.health.gov.sk/novinky/test/": "2026-11-25T10:28:15Z"
+   "https://www.health.gov.sk/novinky/test/": "2026-11-25T10:28:15Z",
+   "https://www.health.gov.sk/novinky/sever-slovenska-vlastna-spickova-nemocnica-uroven-stvrta/": "2026-11-26T16:04:45Z"
   },
   "feed": "https://www.health.gov.sk/rss/sk/novinky.xml"
  },
@@ -8541,7 +8542,7 @@
     "tags": []
    },
    "LP/2026/579": {
-    "stage": "SCHVALOVANIE_MINISTER",
+    "stage": "PRED_VYHLASENIM_V_ZBIERKE",
     "rel": 0,
     "tags": []
    },
@@ -10255,7 +10256,9 @@
    "32026M12526": "2026-11-26T13:38:04Z",
    "32026M12626": "2026-11-26T13:38:04Z",
    "32026M12585": "2026-11-26T13:38:04Z",
-   "32026M12637": "2026-11-26T13:54:22Z"
+   "32026M12637": "2026-11-26T13:54:22Z",
+   "32026M12678": "2026-11-26T16:05:07Z",
+   "32026M12666": "2026-11-26T16:05:07Z"
   }
  },
  "kategorizacia": {
