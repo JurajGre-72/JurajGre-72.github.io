@@ -80,6 +80,11 @@ Every item shows three short parts under its title, on the dashboard and in the 
 **Free (default):** `explain.basic()` builds them by rules from what the monitor already knows – no key, no cost.
 They are recomputed at every check, so improving the rules updates the whole list.
 
+**Slovak:** the **EN | SK** switch in the dashboard's top bar shows the page in Slovak, including the explanations and
+the titles, categories and tags the monitor writes itself (`slovak.py`; every item carries `title_sk`, `category_sk`,
+`tags_sk` and `explain.sk`). Text quoted from a source stays as published (ŠÚKL and Slov-Lex in Slovak, EMA in English).
+The choice is remembered in each browser and in the Mac app.
+
 **Optional, better wording with Claude:** if the repository secret `ANTHROPIC_API_KEY` is set, Claude
 (`claude-opus-5-5`, low effort) rewrites them in plain language – new items first, then older ones, at most 40 per check
 (about 1–3 US cents per item, billed by Anthropic separately from a Claude subscription). Without the secret nothing

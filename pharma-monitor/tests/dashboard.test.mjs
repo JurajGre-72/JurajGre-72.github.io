@@ -450,6 +450,48 @@ try {
     await p7.context().close();
   }
 
+  console.log('Slovak / English switch');
+  {
+    const p8 = await newPage();
+    const bi = JSON.parse(JSON.stringify(DATA));
+    Object.assign(bi.items[0], {
+      title_sk: 'Slovenský názov položky', category_sk: 'Kategória po slovensky', tags_sk: ['Štítok SK'],
+      explain: { about: 'English about.', what_changed: 'English change.', impact: 'English impact.', auto: true,
+                 sk: { about: 'Vyhláška ministerstva.', what_changed: 'Pribudol teplotný záznam.', impact: 'Aktualizujte SOP chladového reťazca.' } } });
+    await p8.route(ITEMS_URL, (r) => r.fulfill({ json: bi }));
+    await p8.route('https://api.github.com/**', (r) => r.fulfill({ json: { workflow_runs: [] } }));
+    await p8.goto(URL);
+    await p8.waitForSelector('article.item');
+    const first = p8.locator('article.item').first();
+    check('English by default', (await p8.getAttribute('html', 'lang')) === 'en' && /About:.*English about/s.test(await first.innerText()));
+    const footerEn = await p8.locator('footer').innerHTML();
+    await p8.click('#lang button[data-v="sk"]');
+    const sk = await first.innerText();
+    check('SK: the item title, category and tags are Slovak', sk.includes('Slovenský názov položky') && sk.includes('Kategória po slovensky') && sk.includes('Štítok SK'), sk.slice(0, 160));
+    check('SK: the explanation is Slovak', /O čom to je:.*Vyhláška ministerstva/s.test(sk) && /Čo sa zmenilo:.*teplotný záznam/s.test(sk)
+      && /Pre PHARMACOPOLA:.*chladového reťazca/s.test(sk), sk.slice(0, 200));
+    check('SK: the page itself is Slovak', (await p8.getAttribute('html', 'lang')) === 'sk' && (await p8.locator('h1').innerText()) === 'Regulačný monitor'
+      && (await p8.locator('#refreshLabel').innerText()).startsWith('Skontrolovať')
+      && (await p8.getAttribute('#q', 'placeholder')).startsWith('Hľadať')
+      && (await p8.locator('#cat option').allInnerTexts()).includes('Kategória po slovensky'));
+    check('SK: "How alerts work" is shown in Slovak only', await p8.locator('.how ul.l-sk').isVisible() && !(await p8.locator('.how ul.l-en').isVisible()));
+    check('SK: month headings are Slovak', /november|december|október/i.test(await p8.locator('h2.group-h').first().innerText()));
+    await p8.fill('#q', 'teplotný');
+    await p8.waitForTimeout(250);
+    check('SK: search finds Slovak words', (await p8.locator('article.item').count()) === 1);
+    await p8.fill('#q', '');
+    await p8.waitForTimeout(250);
+    await p8.reload();
+    await p8.waitForSelector('article.item');
+    check('the choice is remembered after reloading', (await p8.getAttribute('html', 'lang')) === 'sk'
+      && (await p8.locator('article.item').first().innerText()).includes('Slovenský názov položky'));
+    await p8.click('#lang button[data-v="en"]');
+    check('EN again: everything back in English', (await p8.locator('h1').innerText()) === 'Regulatory Monitor'
+      && (await p8.locator('footer').innerHTML()) === footerEn && /About:.*English about/s.test(await p8.locator('article.item').first().innerText()));
+    check('errors on the page', p8.errors.length === 0, p8.errors.join(' | '));
+    await p8.context().close();
+  }
+
   console.log('Check times come from status.json (written by every check)');
   {
     const p4 = await newPage();
