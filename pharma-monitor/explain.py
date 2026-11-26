@@ -89,15 +89,15 @@ def explain_one(client, item: dict, here: Path) -> dict | None:
     return data
 
 
-def pick(items: list[dict], new_ids: set[str], limit: int = MAX_PER_RUN) -> list[dict]:
+def pick(items: list[dict], new_ids: set[str], limit: int) -> list[dict]:
     """New items first, then older ones without an explanation, newest first."""
     todo = sorted((i for i in items if "explain" not in i), key=lambda i: i.get("date", ""), reverse=True)
     todo.sort(key=lambda i: i["id"] not in new_ids)  # stable: new items first, each group newest first
     return todo[:limit]
 
 
-def explain_items(items: list[dict], new_ids: set[str], here: Path, client=None) -> int:
-    """Adds item["explain"] in place. Returns how many items were explained."""
+def explain_items(items: list[dict], new_ids: set[str], here: Path, client=None, limit: int = MAX_PER_RUN) -> int:
+    """Adds item["explain"] in place to at most `limit` items. Returns how many items were explained."""
     if client is None:
         if not os.environ.get("ANTHROPIC_API_KEY"):
             print("Explanations: skipped (no ANTHROPIC_API_KEY).")
@@ -109,7 +109,7 @@ def explain_items(items: list[dict], new_ids: set[str], here: Path, client=None)
             return 0
         client = anthropic.Anthropic(max_retries=3)
     done, tokens_in, tokens_out = 0, 0, 0
-    for item in pick(items, new_ids):
+    for item in pick(items, new_ids, limit):
         try:
             result = explain_one(client, item, here)
         except Exception as e:  # one failure must not stop the check; the item is tried again next run

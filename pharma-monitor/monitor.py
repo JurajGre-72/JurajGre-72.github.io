@@ -1305,9 +1305,8 @@ def main() -> int:
     store["items"] = sorted((i for i in store["items"] if parse_iso(i["date"]) >= keep_after),
                             key=lambda i: (i["date"], i["id"]), reverse=True)
     if args.explain_limit > 0:  # plain-language "about / what changed / impact" for new items, then older ones
-        explain.MAX_PER_RUN = args.explain_limit
         try:
-            explain.explain_items(store["items"], {i["id"] for i in new_items}, HERE)
+            explain.explain_items(store["items"], {i["id"] for i in new_items}, HERE, limit=args.explain_limit)
         except Exception as e:  # explanations are extra: they must never cost the check its results or notification
             print(f"  ! explanations failed: {type(e).__name__}: {str(e)[:200]}", file=sys.stderr)
     if normalized(store) != before:  # only record a new version when something besides check times changed

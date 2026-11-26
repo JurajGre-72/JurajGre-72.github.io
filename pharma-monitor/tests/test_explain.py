@@ -71,7 +71,21 @@ class ExplainTest(unittest.TestCase):
         items = [item("a", "2026-11-26")]
         explain.explain_items(items, set(), HERE, client=FakeClient(["refusal"]))
         self.assertEqual(items[0]["explain"], {"declined": True})
-        self.assertEqual(explain.pick(items, set()), [])
+        self.assertEqual(explain.pick(items, set(), 40), [])
+
+    def test_the_limit_option_reaches_the_selection(self):
+        items = [item(str(n), f"2026-11-{n:02d}") for n in range(1, 6)]
+        client = FakeClient([ANSWER] * 5)
+        self.assertEqual(explain.explain_items(items, set(), HERE, client=client, limit=2), 2)
+        self.assertEqual(len(client.calls), 2)
+        with mock.patch.object(explain, "explain_items", return_value=0) as ex, \
+             mock.patch.object(monitor, "save_json"), \
+             mock.patch.object(monitor, "CHANGES_DIR", Path(tempfile.mkdtemp()) / "changes"), \
+             mock.patch.object(monitor, "load_json", side_effect=lambda path, default, real=monitor.load_json:
+                               real(path, default) if path == monitor.CONFIG_FILE else ({} if default is None else default)), \
+             mock.patch.object(sys, "argv", ["monitor.py", "--sources", "nothing", "--explain-limit", "2"]):
+            monitor.main()
+        self.assertEqual(ex.call_args.kwargs["limit"], 2, "--explain-limit must reach explain_items")
 
     def test_without_a_key_nothing_happens(self):
         items = [item("a", "2026-11-26")]
