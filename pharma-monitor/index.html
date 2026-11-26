@@ -7,7 +7,7 @@
 <meta name="description" content="New Slovak laws and regulator announcements relevant to pharmaceutical and veterinary distribution.">
 <meta name="robots" content="noindex">
 <!-- change on every dashboard change: open pages and the Mac app see it and load the new version -->
-<meta name="pm-build" content="2026-11-26.2">
+<meta name="pm-build" content="2026-11-27.1">
 <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/icons/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
@@ -209,6 +209,10 @@
   article h3 a { text-decoration: none; }
   article h3 a:hover { text-decoration: underline; }
   article p.sum { margin: 4px 0 0; color: var(--muted); font-size: 14px; overflow-wrap: anywhere; }
+  article .explain { margin: 8px 0 0; padding: 8px 12px; border-left: 3px solid var(--accent-fill); background: var(--surface-2);
+                     border-radius: 0 8px 8px 0; font-size: 14px; overflow-wrap: anywhere; }
+  article .explain p { margin: 2px 0; color: var(--ink); }
+  article .explain b { color: var(--heading); }
   .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
   .tag { font-size: 12px; border: 1px solid var(--line); border-radius: 6px; padding: 1px 7px; color: var(--muted); }
   .links { margin-top: 8px; font-size: 13px; display: flex; gap: 14px; flex-wrap: wrap; }
@@ -423,7 +427,8 @@
       if (state.cat && i.category !== state.cat) return false;
       if (state.src && i.source !== state.src) return false;
       if (state.onlyNew && !isNew(i)) return false;
-      if (q && !fold([i.title, i.summary, i.category, i.source_name, ...(i.tags || [])].join(' ')).includes(q)) return false;
+      const ex = i.explain || {};
+      if (q && !fold([i.title, i.summary, i.category, i.source_name, ex.about, ex.what_changed, ex.impact, ...(i.tags || [])].join(' ')).includes(q)) return false;
       return true;
     });
 
@@ -451,7 +456,11 @@
           <span>${esc(i.source_name)} · ${fmtDate(i.date)}${eff}</span>
         </div>
         <h3><a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.title)}</a></h3>
-        ${i.summary ? `<p class="sum">${esc(i.summary)}</p>` : ''}
+        ${i.explain && i.explain.about ? `<div class="explain">
+          <p><b>About:</b> ${esc(i.explain.about)}</p>
+          <p><b>What changed:</b> ${esc(i.explain.what_changed)}</p>
+          <p><b>For PHARMACOPOLA:</b> ${esc(i.explain.impact)}</p></div>`
+          : (i.summary ? `<p class="sum">${esc(i.summary)}</p>` : '')}
         ${i.deadline ? `<p class="sum"><span class="pill deadline">Comments open until ${fmtDate(i.deadline)}</span></p>` : ''}
         ${(i.tags || []).length ? `<div class="tags">${i.tags.map((t) => `<span class="tag">${esc(t)}</span>`).join('')}</div>` : ''}
         ${i.pdf ? `<div class="links"><a href="${esc(i.url)}" target="_blank" rel="noopener">Slov-Lex page</a><a href="${esc(i.pdf)}" target="_blank" rel="noopener">Official PDF</a></div>` : ''}

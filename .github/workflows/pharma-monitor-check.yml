@@ -17,10 +17,14 @@ jobs:
         run: python3 -m py_compile pharma-monitor/*.py
       - name: Unit tests (website trackers, no network)
         run: python3 -m unittest discover -s pharma-monitor/tests -p 'test_*.py' -v
+      - name: Install the Claude library
+        run: python3 -m pip install --quiet "anthropic==2.14.0"
       - name: Run all sources on a copy
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}   # if set: explain just 2 items, as a live test
         run: |
           cp -r pharma-monitor "$RUNNER_TEMP/pm"
-          python3 "$RUNNER_TEMP/pm/monitor.py" --notify-out "$RUNNER_TEMP/digest.md"
+          python3 "$RUNNER_TEMP/pm/monitor.py" --notify-out "$RUNNER_TEMP/digest.md" --explain-limit 2
           python3 - "$RUNNER_TEMP/pm/data/items.json" <<'PY'
           import json, sys
           d = json.load(open(sys.argv[1]))
