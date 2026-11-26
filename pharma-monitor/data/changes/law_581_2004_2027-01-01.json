@@ -1,0 +1,212 @@
+{
+ "kind": "law_diff",
+ "law": "581/2004",
+ "law_name": "Act on Health Insurance Companies",
+ "from": "2026-11-01",
+ "to": "2027-01-01",
+ "amended_by": "258/2026 Z. z.",
+ "amended_by_url": "https://static.slov-lex.sk/static/SK/ZZ/2026/258/20270101.html",
+ "old_url": "https://static.slov-lex.sk/static/SK/ZZ/2004/581/20261101.html",
+ "new_url": "https://static.slov-lex.sk/static/SK/ZZ/2004/581/20270101.html",
+ "changes": [
+  {
+   "loc": "§ 6 ods. 1 písm. ah)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "vykonáva povinnosti v súvislosti s kategorizáciou ústavnej zdravotnej starostlivosti, kategorizáciou nemocníc, so zaraďovaním nemocníc do siete kategorizovaných nemocníc, vyhodnocovaním plnenia podmienok nemocníc zaradených do siete kategorizovaných nemocníc, v konaní pri zaraďovaní nemocníc do siete kategorizovaných nemocníc, s uzatváraním zmlúv o poskytovaní zdravotnej starostlivosti a so "
+    ],
+    [
+     "-",
+     "zoznamom."
+    ],
+    [
+     "+",
+     "zoznamom,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 6 ods. 2 písm. o)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "poskytnúť ministerstvu zdravotníctva a Národnému inštitútu pre hodnotu a technológie v zdravotníctve (ďalej len „inštitút“) pseudonymizované informácie na účel prehodnotenia lieku podľa osobitného "
+    ],
+    [
+     "-",
+     "predpisu."
+    ],
+    [
+     "+",
+     "predpisu,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 15 ods. 8 písm. d)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "minimálnu sumu alebo maximálnu sumu výdavkov určenú pre jednotlivé typy zdravotnej starostlivosti v eurách z celkovej sumy výdavkov určenej na zdravotnú starostlivosť v rozpočte verejnej správy jednotlivo pre každú zdravotnú "
+    ],
+    [
+     "+",
+     "poisťovňu; ak sa maximálna suma výdavkov určuje pre lieky, zdravotnícke pomôcky a dietetické potraviny určí sa ako maximálna suma výdavkov určená pre lieky, zdravotnícke pomôcky a dietetické potraviny v rozpočte verejnej správy jednotlivo pre každú zdravotnú "
+    ],
+    [
+     "=",
+     "poisťovňu,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 43a ods. 8",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Ak podnet nemá všetky náležitosti podľa odseku 4 alebo odseku 5 a dohľad nad zdravotnou starostlivosťou z tohto dôvodu nemožno vykonať, úrad bezodkladne vyzve podávateľa podnetu, aby podnet doplnil v určenej lehote, ktorá nemôže byť kratšia ako desať pracovných "
+    ],
+    [
+     "+",
+     "dní; ak ide o podnet na výkon dohľadu podľa osobitného predpisu, lehota na doplnenie podnetu je päť pracovných "
+    ],
+    [
+     "=",
+     "dní. Vo výzve na doplnenie úrad podávateľa podnetu poučí o spôsobe, akým je potrebné podnet doplniť, a o skutočnosti, že ak podnet nedoplní, úrad podnet odmietne."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 43b ods. 8",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Ak v odseku 9 nie je ustanovené inak, úrad je povinný skončiť výkon dohľadu do deviatich mesiacov od začatia výkonu dohľadu. Od vydania poverenia pre prizvanú osobu až do doručenia posudku, stanoviska alebo odborného vyjadrenia prizvanou osobou, lehota podľa prvej vety "
+    ],
+    [
+     "-",
+     "neplynie."
+    ],
+    [
+     "+",
+     "neplynie. Výkon dohľadu podľa osobitného predpisu je úrad povinný skončiť do dvoch mesiacov od začatia výkonu tohto dohľadu."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 43e ods. 1 písm. d)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "podať písomné námietky proti výsledku výkonu dohľadu uvedenému v protokole, a to v lehote, ktorá nemôže byť kratšia ako desať pracovných "
+    ],
+    [
+     "-",
+     "dní; "
+    ],
+    [
+     "+",
+     "dní, a ak ide o výkon dohľadu podľa osobitného predpisu, v lehote päť pracovných dní odo dňa doručenia protokolu dohliadanému subjektu; "
+    ],
+    [
+     "=",
+     "na námietky doručené po určenej lehote sa neprihliada,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 43e ods. 2 písm. f)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "písomne informovať úrad o prijatých opatreniach na odstránenie zistených nedostatkov, ak ich úrad uložil, a to v lehote určenej úradom, ktorá nemôže byť kratšia ako 30 "
+    ],
+    [
+     "+",
+     "dní; ak ide o výkon dohľadu podľa osobitného predpisu, lehota podľa prechádzajúcej vety nesmie byť kratšia ako 15 pracovných "
+    ],
+    [
+     "=",
+     "dní."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 44 ods. 2",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Súčinnosť podľa tohto zákona je tretia osoba povinná bezodplatne poskytnúť osobe oprávnenej na výkon dohľadu v lehote určenej vo výzve na poskytnutie súčinnosti, ktorá nemôže byť kratšia ako sedem pracovných dní odo dňa doručenia výzvy na poskytnutie "
+    ],
+    [
+     "-",
+     "súčinnosti."
+    ],
+    [
+     "+",
+     "súčinnosti. Ak ide o výkon dohľadu podľa osobitného predpisu, lehota podľa prechádzajúcej vety je päť pracovných dní."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 45 ods. 2",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Súčasťou protokolu môžu byť opatrenia na odstránenie zistených nedostatkov alebo povinnosť dohliadaného subjektu prijať opatrenia na odstránenie zistených nedostatkov a ich "
+    ],
+    [
+     "-",
+     "príčin."
+    ],
+    [
+     "+",
+     "príčin. Ak ide o výkon dohľadu podľa osobitného predpisu a úrad uloží zdravotnej poisťovni povinnosť opätovne posúdiť žiadosť, vydaním nového rozhodnutia zdravotnej poisťovne o žiadosti podanej podľa osobitného predpisu sa jej pôvodné rozhodnutie zrušuje"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 46a ods. 6",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Ak nie je lehota na vykonanie úkonu ustanovená týmto zákonom, lehotu určí úrad; lehota nemôže byť kratšia ako päť pracovných "
+    ],
+    [
+     "-",
+     "dní."
+    ],
+    [
+     "+",
+     "dní. Ak ide o výkon dohľadu podľa osobitného predpisu, lehota podľa prechádzajúcej vety nemôže byť kratšia ako tri pracovné dni."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 6 ods. 1 písm. ai)",
+   "type": "added",
+   "text": "vydáva súhlas s výnimočnou úhradou lieku, zdravotníckej pomôcky alebo dietetickej potraviny, rozhodnutie o neudelení súhlasu s výnimočnou úhradou lieku, zdravotníckej pomôcky alebo dietetickej potraviny, súhlas s pokračovaním v úhrade lieku, zdravotníckej pomôcky alebo dietetickej potraviny alebo rozhodnutie o neudelení súhlasu s pokračovaním v úhrade lieku, zdravotníckej pomôcky alebo dietetickej potraviny podľa osobitného predpisu,"
+  },
+  {
+   "loc": "§ 6 ods. 1 písm. aj)",
+   "type": "added",
+   "text": "zverejňuje informácie o výnimočných úhradách lieku, zdravotníckej pomôcky a dietetickej potraviny v rozsahu podľa osobitného predpisu."
+  },
+  {
+   "loc": "§ 6 ods. 2 písm. p)",
+   "type": "added",
+   "text": "poskytnúť ministerstvu zdravotníctva všetky udelené súhlasy a rozhodnutia podľa osobitného predpisu."
+  }
+ ]
+}

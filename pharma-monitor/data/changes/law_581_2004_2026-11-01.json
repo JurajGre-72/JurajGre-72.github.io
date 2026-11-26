@@ -1,0 +1,62 @@
+{
+ "kind": "law_diff",
+ "law": "581/2004",
+ "law_name": "Act on Health Insurance Companies",
+ "from": "2026-07-01",
+ "to": "2026-11-01",
+ "amended_by": "258/2026 Z. z.",
+ "amended_by_url": "https://static.slov-lex.sk/static/SK/ZZ/2026/258/20261101.html",
+ "old_url": "https://static.slov-lex.sk/static/SK/ZZ/2004/581/20260701.html",
+ "new_url": "https://static.slov-lex.sk/static/SK/ZZ/2004/581/20261101.html",
+ "changes": [
+  {
+   "loc": "§ 6 ods. 2 písm. n)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "poskytnúť ministerstvu zdravotníctva na účel rozhodovania o kategorizácii liekov, kategorizácii zdravotníckych pomôcok, kategorizácii špeciálnych zdravotníckych materiálov, kategorizácii dietetických potravín a úradnom určení cien liekov, ktoré nie sú zaradené v zozname kategorizovaných liekov podľa osobitného prepdisu údaje o spotrebe liekov, zdravotníckych pomôcok, špeciálnych zdravotníckych materiálov a dietetických potravín a výške ich úhrad na základe verejného zdravotného poistenia do 30 dní od doručenia žiadosti ministerstva "
+    ],
+    [
+     "-",
+     "zdravotníctva."
+    ],
+    [
+     "+",
+     "zdravotníctva,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 6a ods. 3 písm. g)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "príspevok na činnosť "
+    ],
+    [
+     "-",
+     "Národného "
+    ],
+    [
+     "=",
+     "inštitútu "
+    ],
+    [
+     "-",
+     "pre hodnotu a technológie v zdravotníctve (ďalej len „inštitút“) "
+    ],
+    [
+     "=",
+     "(§ 15a)."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 6 ods. 2 písm. o)",
+   "type": "added",
+   "text": "poskytnúť ministerstvu zdravotníctva a Národnému inštitútu pre hodnotu a technológie v zdravotníctve (ďalej len „inštitút“) pseudonymizované informácie na účel prehodnotenia lieku podľa osobitného predpisu."
+  }
+ ]
+}

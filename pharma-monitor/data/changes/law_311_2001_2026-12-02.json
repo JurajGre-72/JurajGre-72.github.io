@@ -1,0 +1,31 @@
+{
+ "kind": "law_diff",
+ "law": "311/2001",
+ "law_name": "Labour Code",
+ "from": "2026-09-01",
+ "to": "2026-12-02",
+ "amended_by": "262/2026 Z. z.",
+ "amended_by_url": "https://static.slov-lex.sk/static/SK/ZZ/2026/262/20261202.html",
+ "old_url": "https://static.slov-lex.sk/static/SK/ZZ/2001/311/20260901.html",
+ "new_url": "https://static.slov-lex.sk/static/SK/ZZ/2001/311/20261202.html",
+ "changes": [
+  {
+   "loc": "§ 3 ods. 2",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Pracovnoprávne vzťahy zamestnancov, ktorí sú povinní zabezpečiť súlad podľa osobitného predpisu, a zamestnancov pracujúcich v prevádzke, údržbe a rozvoji plynárenskej prepravnej siete, ktorí sú v priamej riadiacej pôsobnosti štatutárneho orgánu prevádzkovateľa plynárenskej prepravnej siete, zamestnancov v doprave, zamestnancov vykonávajúcich zdravotnícke povolanie, pedagogických zamestnancov, profesionálnych náhradných rodičov, "
+    ],
+    [
+     "+",
+     "platformových zamestnancov, "
+    ],
+    [
+     "=",
+     "zamestnancov, ktorí sú divadelnými umelcami alebo hudobnými umelcami, členov posádok lodí plávajúcich pod štátnou vlajkou Slovenskej republiky a zamestnancov súkromných bezpečnostných služieb sa spravujú týmto zákonom, ak osobitný predpis neustanovuje inak."
+    ]
+   ]
+  }
+ ]
+}

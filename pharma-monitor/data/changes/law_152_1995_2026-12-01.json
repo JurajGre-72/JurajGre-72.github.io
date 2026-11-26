@@ -1,0 +1,608 @@
+{
+ "kind": "law_diff",
+ "law": "152/1995",
+ "law_name": "Act on Foodstuffs",
+ "from": "2026-01-01",
+ "to": "2026-12-01",
+ "amended_by": "241/2026 Z. z.",
+ "amended_by_url": "https://static.slov-lex.sk/static/SK/ZZ/2026/241/20261201.html",
+ "old_url": "https://static.slov-lex.sk/static/SK/ZZ/1995/152/20260101.html",
+ "new_url": "https://static.slov-lex.sk/static/SK/ZZ/1995/152/20261201.html",
+ "changes": [
+  {
+   "loc": "§ 2 písm. e)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "predajom na diaľku predaj potravín vrátane výživových doplnkov prostredníctvom prostriedkov komunikácie na "
+    ],
+    [
+     "-",
+     "diaľku."
+    ],
+    [
+     "+",
+     "diaľku,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 23 ods. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Orgány štátnej veterinárnej "
+    ],
+    [
+     "+",
+     "Štátna veterinárna "
+    ],
+    [
+     "=",
+     "a "
+    ],
+    [
+     "-",
+     "potravinovej správy uvedené v § 21 ods. 1 písm. c) "
+    ],
+    [
+     "+",
+     "potravinová správa "
+    ],
+    [
+     "=",
+     "a "
+    ],
+    [
+     "-",
+     "d) "
+    ],
+    [
+     "+",
+     "regionálna veterinárna a potravinová správa "
+    ],
+    [
+     "=",
+     "vykonávajú úradnú kontrolu"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. a)",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "stárenia (zrenia) liehovín,"
+    ],
+    [
+     "+",
+     "výroby, manipulovania a umiestnenia na trh"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. b)",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "výroby, manipulovania a umiestňovania na trh potravín"
+    ],
+    [
+     "+",
+     "stárenia liehovín."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. b) bod 1",
+   "type": "removed",
+   "text": "živočíšneho pôvodu,"
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. b) bod 2",
+   "type": "removed",
+   "text": "rastlinného pôvodu vrátane čerstvého ovocia, čerstvej zeleniny, zemiakov a ostatných poľnohospodárskych produktov v poľnohospodárskej prvovýrobe na základe analýzy rizika vrátane potravín s niektorými zložkami živočíšneho pôvodu, nápojov, cukrárskych výrobkov, zmrzliny a vody v spotrebiteľskom balení,"
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. b) bod 3",
+   "type": "removed",
+   "text": "geneticky modifikovaných,"
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. b) bod 4",
+   "type": "removed",
+   "text": "a poľnohospodárskych produktov predávaných priamo konečnému spotrebiteľovi,"
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. b) bod 5",
+   "type": "removed",
+   "text": "a poľnohospodárskych produktov označených údajmi podľa § 9b."
+  },
+  {
+   "loc": "§ 23 ods. 2",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Orgány "
+    ],
+    [
+     "+",
+     "Úrad verejného zdravotníctva a regionálny úrad "
+    ],
+    [
+     "=",
+     "verejného zdravotníctva vykonávajú úradnú "
+    ],
+    [
+     "-",
+     "kontrolu potravín"
+    ],
+    [
+     "+",
+     "kontrolu"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 23 ods. 2 písm. a)",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "v prevádzkarniach verejného stravovania vrátane výroby cukrárskych výrobkov, zmrzliny "
+    ],
+    [
+     "+",
+     "výroby, manipulovania "
+    ],
+    [
+     "=",
+     "a "
+    ],
+    [
+     "-",
+     "prípravy hotových pokrmov a jedál "
+    ],
+    [
+     "+",
+     "umiestnenia "
+    ],
+    [
+     "=",
+     "na "
+    ],
+    [
+     "-",
+     "predajných miestach,"
+    ],
+    [
+     "+",
+     "trh"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 23 ods. 2 písm. b)",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "vo vzťahu k epidemiologicky rizikovým činnostiam osôb vo výrobe, manipulácii "
+    ],
+    [
+     "+",
+     "výroby, manipulovania "
+    ],
+    [
+     "=",
+     "a "
+    ],
+    [
+     "-",
+     "umiestňovaniu "
+    ],
+    [
+     "+",
+     "umiestnenia "
+    ],
+    [
+     "=",
+     "na "
+    ],
+    [
+     "-",
+     "trh,"
+    ],
+    [
+     "+",
+     "trh v zariadeniach spoločného stravovania a prevádzkarňach s výrobou alebo skladovaním potravín, ktoré sú neoddeliteľnou súčasťou zariadení spoločného stravovania,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 23 ods. 2 písm. c)",
+   "type": "changed",
+   "diff": [
+    [
+     "+",
+     "umiestnenia na trh potravín v priestoroch lekární, priestoroch zariadení pre deti do šiestich rokov veku, priestoroch škôl, školských zariadení, vysokých škôl, zariadeniach sociálnych služieb, zariadeniach sociálnoprávnej ochrany detí a sociálnej kurately, zdravotníckych zariadeniach, maloobchodných prevádzkarňach s väčšinovým predajom drogistického tovaru, maloobchodných prevádzkarňach s väčšinovým predajom "
+    ],
+    [
+     "=",
+     "výživových "
+    ],
+    [
+     "-",
+     "doplnkov, materiálov a predmetov určených na styk s potravinami, počiatočnej dojčenskej výživy, následnej dojčenskej výživy, potravín spracovaných na báze obilnín, detských potravín, potravín na osobitné lekárske účely "
+    ],
+    [
+     "+",
+     "doplnkov "
+    ],
+    [
+     "=",
+     "a potravín "
+    ],
+    [
+     "-",
+     "ako celková náhrada stravy na účely regulácie hmotnosti,"
+    ],
+    [
+     "+",
+     "s pridanými vitamínmi, minerálnymi látkami a niektorými inými látkami a prevádzkarňach s výrobou potravín podľa písmena a) prvého bodu až šiesteho bodu a písmen e) a f) vrátane ich umiestnenia formou predajných automatov v týchto priestoroch, zariadeniach a prevádzkarňach,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 23 ods. 2 písm. d)",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "nových potravín,"
+    ],
+    [
+     "+",
+     "používania pitnej vody pri výrobe potravín v zariadeniach, prevádzkarňach a priestoroch podľa písmena b), pitnej vody v potravinách podľa písmena a) prvého bodu až šiesteho bodu a písmen e), f), k) a m), pitnej vody v potravinách v zariadeniach, prevádzkarňach a priestoroch podľa písmena b) alebo písmena c) a používania pitnej vody pri výrobe potravín podľa písmena a) prvého bodu až šiesteho bodu a písmen e) a f),"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 23 ods. 2 písm. e)",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "z hľadiska používania zdrojov ionizujúceho žiarenia na ožarovanie potravín "
+    ],
+    [
+     "+",
+     "výroby prídavných látok, aróm "
+    ],
+    [
+     "=",
+     "a "
+    ],
+    [
+     "-",
+     "kontroly dodržiavania zákazu pridávania rádioaktívnych "
+    ],
+    [
+     "+",
+     "enzýmov, extrakčných rozpúšťadiel, pridaných vitamínov, minerálnych "
+    ],
+    [
+     "=",
+     "látok "
+    ],
+    [
+     "-",
+     "do potravín,"
+    ],
+    [
+     "+",
+     "a niektorých iných látok,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 23 ods. 2 písm. f)",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "v súvislosti s prídavnými látkami do potravín."
+    ],
+    [
+     "+",
+     "výroby, manipulovania a umiestnenia na trh prídavných látok, aróm a enzýmov určených na predaj konečnému spotrebiteľovi,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 2 písm. f)",
+   "type": "added",
+   "text": "pokrmom kuchynsky upravená potravina v zariadení spoločného stravovania upravená tepelnou úpravou, bez tepelnej úpravy alebo upravená iným spôsobom tak, aby mohla byť podaná konečnému spotrebiteľovi na konzumáciu priamo alebo po ohreve."
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. a) bod 1",
+   "type": "added",
+   "text": "potravín živočíšneho pôvodu, potravín rastlinného pôvodu, nápojov, pekárskeho droždia, jedlých húb a jedlých rias okrem"
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. a) bod 1 bod 1a",
+   "type": "added",
+   "text": "výživových doplnkov, počiatočnej dojčenskej výživy, následnej dojčenskej výživy, potravín spracovaných na báze obilnín, detských potravín, nápojov na báze mlieka a podobných výrobkov určených pre malé deti, potravín na osobitné lekárske účely, celkovej náhrady stravy na účely regulácie hmotnosti a potravín ošetrených ionizujúcim žiarením,"
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. a) bod 1 bod 1b",
+   "type": "added",
+   "text": "prírodnej minerálnej vody, pramenitej vody a pitnej vody v spotrebiteľskom balení vrátane ľadu určeného na ľudskú spotrebu,"
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. a) bod 1 bod 1c",
+   "type": "added",
+   "text": "ich výroby, manipulovania a umiestnenia na trh v zariadeniach spoločného stravovania a prevádzkarňach podľa odseku 2 písm. b),"
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. a) bod 1 bod 1d",
+   "type": "added",
+   "text": "umiestnenia na trh potravín v priestoroch, zariadeniach a prevádzkarňach podľa odseku 2 písm. c),"
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. a) bod 1 bod 1e",
+   "type": "added",
+   "text": "prepravy pokrmov alebo iných potravín zo zariadení, prevádzkarní a priestorov podľa odseku 2 písm. b) alebo písm. c),"
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. a) bod 1 bod 1f",
+   "type": "added",
+   "text": "nebalených potravín a nebalených nápojov umiestnených na trh formou predajných automatov, ak piaty bod neustanovuje inak,"
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. a) bod 2",
+   "type": "added",
+   "text": "produktov poľnohospodárskej prvovýroby určených na ľudskú spotrebu,"
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. a) bod 3",
+   "type": "added",
+   "text": "malých množstiev prvotných produktov,"
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. a) bod 4",
+   "type": "added",
+   "text": "potravín a poľnohospodárskych produktov označených podľa § 9a a 9b okrem výroby, manipulovania a umiestnenia na trh potravín podľa odseku 2 písm. a) prvého bodu až šiesteho bodu a písm. e), f), k) a m) a potravín v zariadeniach, prevádzkarňach a priestoroch podľa odseku 2 písm. b) a c),"
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. a) bod 5",
+   "type": "added",
+   "text": "nebaleného mlieka formou predajných automatov okrem manipulovania s ním a jeho umiestnenia na trh v zariadeniach spoločného stravovania a prevádzkarňach podľa odseku 2 písm. b) a umiestnenia na trh v priestoroch, zariadeniach a prevádzkarňach podľa odseku 2 písm. c),"
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. a) bod 6",
+   "type": "added",
+   "text": "pitnej vody vrátane ľadu určeného na ľudskú spotrebu v potravinách alebo použitej pri výrobe potravín okrem"
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. a) bod 6 bod 6a",
+   "type": "added",
+   "text": "pitnej vody v spotrebiteľskom balení vrátane ľadu určeného na ľudskú spotrebu podľa odseku 2 písm. a) šiesteho bodu,"
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. a) bod 6 bod 6b",
+   "type": "added",
+   "text": "jej výroby, manipulovania a umiestnenia na trh v zariadeniach spoločného stravovania a prevádzkarňach podľa odseku 2 písm. b) a umiestnenia na trh v priestoroch, zariadeniach a prevádzkarňach podľa odseku 2 písm. c),"
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. a) bod 6 bod 6c",
+   "type": "added",
+   "text": "používania pitnej vody pri výrobe potravín v zariadeniach, prevádzkarňach a priestoroch podľa odseku 2 písm. b), pitnej vody v potravinách podľa odseku 2 písm. a) prvého bodu až šiesteho bodu a písm. e), f), k) a m), pitnej vody v potravinách v zariadeniach, prevádzkarňach a priestoroch podľa odseku 2 písm. b) alebo písm. c) a používania pitnej vody pri výrobe potravín podľa odseku 2 písm. a) prvého bodu až šiesteho bodu a písm. e) a f),"
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. a) bod 7",
+   "type": "added",
+   "text": "prídavných látok, aróm, enzýmov, extrakčných rozpúšťadiel, pridaných vitamínov, minerálnych látok a niektorých iných látok v potravinách alebo použitých pri výrobe potravín okrem"
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. a) bod 7 bod 7a",
+   "type": "added",
+   "text": "výroby prídavných látok, aróm a enzýmov, extrakčných rozpúšťadiel, pridaných vitamínov, minerálnych látok a niektorých iných látok,"
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. a) bod 7 bod 7b",
+   "type": "added",
+   "text": "výroby, manipulovania a umiestnenia na trh prídavných látok, aróm a enzýmov určených na predaj konečnému spotrebiteľovi,"
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. a) bod 7 bod 7c",
+   "type": "added",
+   "text": "umiestnenia na trh a manipulovania s prídavnými látkami, arómami, enzýmami, extrakčnými rozpúšťadlami, pridanými vitamínmi, minerálnymi látkami a niektorými inými látkami podľa odseku 2 písm. g),"
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. a) bod 8",
+   "type": "added",
+   "text": "jedlej soli a jedlej soli v potravinách alebo použitej pri výrobe potravín okrem používania, manipulovania a umiestnenia na trh jedlej soli podľa odseku 2 písm. h),"
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. a) bod 9",
+   "type": "added",
+   "text": "geneticky modifikovaných potravín okrem používania, manipulovania a umiestnenia na trh geneticky modifikovaných potravín podľa odseku 2 písm. i),"
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. a) bod 10",
+   "type": "added",
+   "text": "nových potravín a tradičných potravín z tretích krajín okrem používania, manipulovania a umiestnenia na trh nových potravín vrátane tradičných potravín z tretích krajín podľa odseku 2 písm. j),"
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. a) bod 11",
+   "type": "added",
+   "text": "balených potravín a balených nápojov prostredníctvom predajných automatov alebo v maloobchodnej prevádzke s väčšinovým predajom iného tovaru ako potraviny alebo poskytujúcej služby okrem"
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. a) bod 11 bod 11a",
+   "type": "added",
+   "text": "výživových doplnkov, počiatočnej dojčenskej výživy, následnej dojčenskej výživy, potravín spracovaných na báze obilnín, detských potravín, nápojov na báze mlieka a podobných výrobkov určených pre malé deti, potravín na osobitné lekárske účely, celkovej náhrady stravy na účely regulácie hmotnosti a potravín ošetrených ionizujúcim žiarením,"
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. a) bod 11 bod 11b",
+   "type": "added",
+   "text": "prírodnej minerálnej vody, pramenitej vody a pitnej vody v spotrebiteľskom balení vrátane ľadu určeného na ľudskú spotrebu,"
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. a) bod 11 bod 11c",
+   "type": "added",
+   "text": "ich výroby, manipulovania a umiestnenia na trh v zariadeniach spoločného stravovania a prevádzkarňach podľa odseku 2 písm. b),"
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. a) bod 11 bod 11d",
+   "type": "added",
+   "text": "ich umiestnenia na trh v priestoroch, zariadeniach a prevádzkarňach podľa odseku 2 písm. c),"
+  },
+  {
+   "loc": "§ 23 ods. 1 písm. a) bod 11 bod 11e",
+   "type": "added",
+   "text": "prídavných látok, aróm a enzýmov určených na predaj konečnému spotrebiteľovi,"
+  },
+  {
+   "loc": "§ 23 ods. 2 písm. a) bod 1",
+   "type": "added",
+   "text": "výživových doplnkov,"
+  },
+  {
+   "loc": "§ 23 ods. 2 písm. a) bod 2",
+   "type": "added",
+   "text": "počiatočnej dojčenskej výživy, následnej dojčenskej výživy, potravín spracovaných na báze obilnín, detských potravín, nápojov na báze mlieka a podobných výrobkov určených pre malé deti,"
+  },
+  {
+   "loc": "§ 23 ods. 2 písm. a) bod 3",
+   "type": "added",
+   "text": "potravín na osobitné lekárske účely,"
+  },
+  {
+   "loc": "§ 23 ods. 2 písm. a) bod 4",
+   "type": "added",
+   "text": "celkovej náhrady stravy na účely regulácie hmotnosti,"
+  },
+  {
+   "loc": "§ 23 ods. 2 písm. a) bod 5",
+   "type": "added",
+   "text": "potravín ošetrených ionizujúcim žiarením,"
+  },
+  {
+   "loc": "§ 23 ods. 2 písm. a) bod 6",
+   "type": "added",
+   "text": "prírodnej minerálnej vody, pramenitej vody a pitnej vody v spotrebiteľskom balení vrátane ľadu určeného na ľudskú spotrebu,"
+  },
+  {
+   "loc": "§ 23 ods. 2 písm. a) bod 7",
+   "type": "added",
+   "text": "materiálov a predmetov prichádzajúcich pri výrobe potravín do styku s potravinami,"
+  },
+  {
+   "loc": "§ 23 ods. 2 písm. b) bod 1",
+   "type": "added",
+   "text": "pokrmov a iných potravín živočíšneho pôvodu a rastlinného pôvodu,"
+  },
+  {
+   "loc": "§ 23 ods. 2 písm. b) bod 2",
+   "type": "added",
+   "text": "nápojov,"
+  },
+  {
+   "loc": "§ 23 ods. 2 písm. b) bod 3",
+   "type": "added",
+   "text": "pekárskeho droždia,"
+  },
+  {
+   "loc": "§ 23 ods. 2 písm. b) bod 4",
+   "type": "added",
+   "text": "jedlých húb,"
+  },
+  {
+   "loc": "§ 23 ods. 2 písm. b) bod 5",
+   "type": "added",
+   "text": "jedlých rias,"
+  },
+  {
+   "loc": "§ 23 ods. 2 písm. b) bod 6",
+   "type": "added",
+   "text": "ľadu určeného na ľudskú spotrebu,"
+  },
+  {
+   "loc": "§ 23 ods. 2 písm. b) bod 7",
+   "type": "added",
+   "text": "potravín a poľnohospodárskych produktov označených podľa § 9a a 9b,"
+  },
+  {
+   "loc": "§ 23 ods. 2 písm. g)",
+   "type": "added",
+   "text": "umiestnenia na trh a manipulovania s prídavnými látkami, arómami, enzýmami, extrakčnými rozpúšťadlami, pridanými vitamínmi, minerálnymi látkami a niektorými inými látkami, ktoré nie sú zložkou potravín, prídavných látok, aróm, enzýmov, extrakčných rozpúšťadiel, pridaných vitamínov, minerálnych látok a niektorých iných látok v potravinách podľa písmena a) prvého bodu až šiesteho bodu a písmen e), f), k) a m) v potravinách v zariadeniach, prevádzkarňach a priestoroch podľa písmena b) alebo písmena c) alebo použitých pri výrobe potravín v zariadeniach, prevádzkarňach a priestoroch podľa písmena b),"
+  },
+  {
+   "loc": "§ 23 ods. 2 písm. h)",
+   "type": "added",
+   "text": "používania jedlej soli pri výrobe potravín v zariadeniach, prevádzkarňach a priestoroch podľa písmena b), jedlej soli v potravinách podľa písmena a) prvého bodu až šiesteho bodu a písmen e), f), k) a m), jedlej soli v potravinách v zariadeniach, prevádzkarňach a priestoroch podľa písmena b) alebo písmena c), používania jedlej soli pri výrobe potravín podľa písmen a) prvého bodu až šiesteho bodu a jedlej soli určenej na predaj konečnému spotrebiteľovi v zariadeniach, prevádzkarňach a priestoroch podľa písmena b) alebo písmena c),"
+  },
+  {
+   "loc": "§ 23 ods. 2 písm. i)",
+   "type": "added",
+   "text": "používania geneticky modifikovaných potravín pri výrobe potravín v zariadeniach, prevádzkarňach a priestoroch podľa písmena b), geneticky modifikovaných potravín v potravinách podľa písmena a) prvého bodu až šiesteho bodu a písmen e), f), k) a m), geneticky modifikovaných potravín v potravinách v zariadeniach, prevádzkarňach a priestoroch podľa písmena b) alebo písmena c) a používania geneticky modifikovaných potravín pri výrobe potravín podľa písmena a) prvého bodu až šiesteho bodu a písmen e) a f),"
+  },
+  {
+   "loc": "§ 23 ods. 2 písm. j)",
+   "type": "added",
+   "text": "používania nových potravín vrátane tradičných potravín z tretích krajín pri výrobe potravín v zariadeniach, prevádzkarňach a priestoroch podľa písmena b), nových potravín vrátane tradičných potravín z tretích krajín v potravinách podľa písmena a) prvého bodu až šiesteho bodu a písmen e), f), k) a m), nových potravín vrátane tradičných potravín z tretích krajín v potravinách v zariadeniach, prevádzkarňach a priestoroch podľa písmena b) alebo písmena c) a používania nových potravín vrátane tradičných potravín z tretích krajín pri výrobe potravín podľa písmena a) prvého bodu až šiesteho bodu a písmen e) a f),"
+  },
+  {
+   "loc": "§ 23 ods. 2 písm. k)",
+   "type": "added",
+   "text": "prepravy pokrmov alebo iných potravín zo zariadení, prevádzkarní a priestorov podľa písmena b) alebo písmena c),"
+  },
+  {
+   "loc": "§ 23 ods. 2 písm. l)",
+   "type": "added",
+   "text": "používania zdrojov ionizujúceho žiarenia na ošetrenie potravín ionizujúcim žiarením a dodržiavania zákazu pridávania rádioaktívnych látok pri výrobe a spracovaní potravín,"
+  },
+  {
+   "loc": "§ 23 ods. 2 písm. m)",
+   "type": "added",
+   "text": "nebalených potravín a nebalených nápojov umiestnených na trh formou predajných automatov."
+  },
+  {
+   "loc": "§ 31al (nadpis)",
+   "type": "added",
+   "text": "Prechodné ustanovenia k úpravám účinným od 1. decembra 2026"
+  },
+  {
+   "loc": "§ 31al ods. 1",
+   "type": "added",
+   "text": "Úradnú kontrolu, ktorá sa začala a neskončila do 30. novembra 2026, dokončí orgán štátnej správy, ktorý ju začal podľa tohto zákona v znení účinnom do 30. novembra 2026."
+  },
+  {
+   "loc": "§ 31al ods. 2",
+   "type": "added",
+   "text": "Konanie o uložení opatrenia podľa § 19, ktoré sa začalo a právoplatne neskončilo do 30. novembra 2026, dokončí orgán štátnej správy, ktorý ho začal podľa tohto zákona v znení účinnom do 30. novembra 2026."
+  },
+  {
+   "loc": "§ 31al ods. 3",
+   "type": "added",
+   "text": "Úkony podľa § 20a súvisiace s kontrolným nákupom vykonaným do 30. novembra 2026, vykoná orgán štátnej správy, ktorý vykonal kontrolný nákup."
+  },
+  {
+   "loc": "§ 31al ods. 4",
+   "type": "added",
+   "text": "Konanie o uložení pokuty podľa § 28 alebo § 29, ktoré sa začalo a právoplatne neskončilo do 30. novembra 2026, dokončí orgán štátnej správy, ktorý ho začal podľa tohto zákona v znení účinnom do 30. novembra 2026."
+  },
+  {
+   "loc": "§ 31al ods. 5",
+   "type": "added",
+   "text": "Konanie o uložení pokuty za nesplnenie opatrenia uloženého podľa § 19 do 30. novembra 2026 začne orgán štátnej správy, ktorý opatrenie uložil; to platí aj pre opatrenie uložené v konaní dokončenom podľa odseku 2."
+  }
+ ]
+}

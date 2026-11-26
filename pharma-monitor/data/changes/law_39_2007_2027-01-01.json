@@ -1,0 +1,1289 @@
+{
+ "kind": "law_diff",
+ "law": "39/2007",
+ "law_name": "Act on Veterinary Care",
+ "from": "2026-01-01",
+ "to": "2027-01-01",
+ "amended_by": "272/2026 Z. z.",
+ "amended_by_url": "https://static.slov-lex.sk/static/SK/ZZ/2026/272/20270101.html",
+ "old_url": "https://static.slov-lex.sk/static/SK/ZZ/2007/39/20260101.html",
+ "new_url": "https://static.slov-lex.sk/static/SK/ZZ/2007/39/20270101.html",
+ "changes": [
+  {
+   "loc": "§ 5 písm. j)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "je správcom centrálneho registra hospodárskych "
+    ],
+    [
+     "-",
+     "zvierat,"
+    ],
+    [
+     "+",
+     "zvierat; prevádzkovaním centrálneho registra hospodárskych zvierat môže písomne poveriť právnickú osobu,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 6 ods. 2 písm. bf)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "vykonáva úlohy spojené s poskytovaním štátnej pomoci a minimálnej pomoci, ak ju na to poverí ministerstvo podľa osobitných "
+    ],
+    [
+     "-",
+     "predpisov."
+    ],
+    [
+     "+",
+     "predpisov,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 13 ods. 1 písm. k)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "poskytnúť údaje o existencii exemplárov druhov voľne žijúcich živočíchov podľa osobitného predpisu na vyžiadanie orgánu štátnej správy na úseku ochrany ohrozených druhov voľne žijúcich živočíchov a voľne rastúcich rastlín reguláciou obchodu s "
+    ],
+    [
+     "-",
+     "nimi."
+    ],
+    [
+     "+",
+     "nimi,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 13 ods. 4 písm. c)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "viesť evidenciu prijatých, vydaných a zrušených pasov spoločenských zvierat a predložiť ju na požiadanie orgánom veterinárnej "
+    ],
+    [
+     "-",
+     "správy,"
+    ],
+    [
+     "+",
+     "správy, a vrátiť nevyplnené pasy spoločenských zvierat orgánu veterinárnej správy pri zániku poverenia na ich vydávanie alebo z dôvodu podľa osobitného predpisu,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 13 ods. 5",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Súkromný veterinárny lekár, ktorému bolo zrušené poverenie na vydávanie pasov spoločenských zvierat z dôvodu porušenia povinností podľa odseku 4, môže byť opätovne poverený na vydávanie pasov spoločenských zvierat najskôr po uplynutí "
+    ],
+    [
+     "-",
+     "jedného roka "
+    ],
+    [
+     "+",
+     "piatich rokov "
+    ],
+    [
+     "=",
+     "od nadobudnutia právoplatnosti rozhodnutia o zrušení poverenia. Odvolanie proti rozhodnutiu o zrušení poverenia nemá odkladný účinok."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 19 ods. 9",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Vlastník psa je povinný zabezpečiť trvalé označenie psa chovaného na území Slovenskej republiky transpondérom, ktorý spĺňa technické požiadavky podľa osobitného predpisu, pred prvou zmenou vlastníka psa, najneskôr však do 12 týždňov veku a uviesť identifikačné údaje psa a "
+    ],
+    [
+     "+",
+     "číslo transpondéra matky psa a "
+    ],
+    [
+     "=",
+     "údaje o vlastníkovi psa v centrálnom registri spoločenských "
+    ],
+    [
+     "-",
+     "zvierat."
+    ],
+    [
+     "+",
+     "zvierat; číslo transpondéra matky psa sa nevyžaduje, ak ide o zviera podľa § 22 ods. 15."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 37 ods. 2 písm. b) bod 3",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "zabezpečiť na svoje náklady identifikáciu a registráciu spoločenských zvierat podľa osobitného predpisu, ktoré sú predmetom premiestňovania a psov podľa § 19 ods. "
+    ],
+    [
+     "-",
+     "9,"
+    ],
+    [
+     "+",
+     "9 a mačiek podľa § 19 ods. 12,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 37 ods. 2 písm. b) bod 4",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "nahlásiť pri zmene vlastníka psa "
+    ],
+    [
+     "+",
+     "alebo vlastníka mačky "
+    ],
+    [
+     "=",
+     "najneskôr do "
+    ],
+    [
+     "-",
+     "21 "
+    ],
+    [
+     "+",
+     "siedmich "
+    ],
+    [
+     "=",
+     "dní odo dňa zmeny vlastníka psa "
+    ],
+    [
+     "+",
+     "alebo vlastníka mačky "
+    ],
+    [
+     "=",
+     "údaje o novom vlastníkovi psa "
+    ],
+    [
+     "+",
+     "alebo novom vlastníkovi mačky "
+    ],
+    [
+     "=",
+     "do centrálneho registra spoločenských zvierat prostredníctvom súkromného veterinárneho lekára; údaje je povinná nahlásiť osoba, ktorá prevádza vlastníctvo "
+    ],
+    [
+     "-",
+     "psa,"
+    ],
+    [
+     "+",
+     "psa označeného podľa § 19 ods. 9 alebo vlastníctvo mačky označenej podľa § 19 ods. 12,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 37 ods. 2 písm. b) bod 5",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "nahlásiť "
+    ],
+    [
+     "-",
+     "úhyn registrovaného "
+    ],
+    [
+     "+",
+     "pri zmene miesta držby "
+    ],
+    [
+     "=",
+     "psa "
+    ],
+    [
+     "+",
+     "alebo držby mačky najneskôr "
+    ],
+    [
+     "=",
+     "do "
+    ],
+    [
+     "-",
+     "21 "
+    ],
+    [
+     "+",
+     "siedmich "
+    ],
+    [
+     "=",
+     "dní "
+    ],
+    [
+     "+",
+     "odo dňa zmeny miesta držby psa alebo držby mačky údaje o novom mieste držby psa alebo držby mačky "
+    ],
+    [
+     "=",
+     "do centrálneho registra spoločenských zvierat prostredníctvom súkromného veterinárneho "
+    ],
+    [
+     "-",
+     "lekára,"
+    ],
+    [
+     "+",
+     "lekára; údaje je povinný nahlásiť vlastník psa označeného podľa § 19 ods. 9 alebo vlastník mačky označenej podľa § 19 ods. 12,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 37 ods. 2 písm. b) bod 6",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "zabezpečiť vlastnú identifikáciu, a to identifikačným číslom organizácie, ak ide o právnickú osobu "
+    ],
+    [
+     "+",
+     "nahlásiť úhyn registrovaného psa "
+    ],
+    [
+     "=",
+     "alebo "
+    ],
+    [
+     "-",
+     "fyzickú osobu – podnikateľa, a rodným číslom, ak ide o fyzickú osobu,"
+    ],
+    [
+     "+",
+     "registrovanej mačky do 21 dní do centrálneho registra spoločenských zvierat prostredníctvom súkromného veterinárneho lekára,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 37 ods. 2 písm. b) bod 7",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "zaslať hlásenie zmien v chove hospodárskych zvierat do centrálneho registra hospodárskych zvierat,"
+    ],
+    [
+     "+",
+     "zabezpečiť vlastnú identifikáciu, a to identifikačným číslom organizácie, ak ide o právnickú osobu alebo fyzickú osobu – podnikateľa, a rodným číslom, ak ide o fyzickú osobu,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 48 ods. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Orgán veterinárnej správy uloží fyzickej osobe pokutu "
+    ],
+    [
+     "-",
+     "50 "
+    ],
+    [
+     "+",
+     "100 "
+    ],
+    [
+     "=",
+     "eur, ak nezabezpečí na svoje náklady trvalé označenie psa podľa § 19 ods. 9."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 48 ods. 2",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Orgán veterinárnej správy uloží fyzickej osobe pokutu do "
+    ],
+    [
+     "-",
+     "300 "
+    ],
+    [
+     "+",
+     "500 "
+    ],
+    [
+     "=",
+     "eur, ak"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 48 ods. 3",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Orgán veterinárnej správy uloží fyzickej osobe pokutu od "
+    ],
+    [
+     "-",
+     "100 "
+    ],
+    [
+     "+",
+     "300 "
+    ],
+    [
+     "=",
+     "eur do "
+    ],
+    [
+     "-",
+     "400 "
+    ],
+    [
+     "+",
+     "800 "
+    ],
+    [
+     "=",
+     "eur, ak"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 48 ods. 4",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Orgán veterinárnej správy uloží fyzickej osobe pokutu od "
+    ],
+    [
+     "-",
+     "300 "
+    ],
+    [
+     "+",
+     "600 "
+    ],
+    [
+     "=",
+     "eur do "
+    ],
+    [
+     "-",
+     "800 "
+    ],
+    [
+     "+",
+     "1 500 "
+    ],
+    [
+     "=",
+     "eur, ak"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 48 ods. 5",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Orgán veterinárnej správy uloží fyzickej osobe pokutu od "
+    ],
+    [
+     "-",
+     "400 "
+    ],
+    [
+     "+",
+     "800 "
+    ],
+    [
+     "=",
+     "eur do "
+    ],
+    [
+     "-",
+     "1000 "
+    ],
+    [
+     "+",
+     "2 000 "
+    ],
+    [
+     "=",
+     "eur, ak"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 48 ods. 6",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Orgán veterinárnej správy uloží fyzickej osobe pokutu od "
+    ],
+    [
+     "-",
+     "500 "
+    ],
+    [
+     "+",
+     "1 000 "
+    ],
+    [
+     "=",
+     "eur do "
+    ],
+    [
+     "-",
+     "1200 "
+    ],
+    [
+     "+",
+     "3 000 "
+    ],
+    [
+     "=",
+     "eur, ak"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 48 ods. 6 písm. c)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "nestrpí pri dovoze zvierat, produktov živočíšneho pôvodu a živočíšnych vedľajších produktov z tretích krajín umiestnenie zvierat, produktov živočíšneho pôvodu alebo živočíšnych vedľajších produktov pod kontrolu orgánu veterinárnej správy, ak sa zistí držanie zvierat, produktov živočíšneho pôvodu alebo živočíšnych vedľajších produktov, ktoré nezodpovedajú požiadavkám podľa tohto "
+    ],
+    [
+     "-",
+     "zákona."
+    ],
+    [
+     "+",
+     "zákona,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 48 ods. 8",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Orgán veterinárnej správy môže opatrením nariadiť obmedzenie chovu "
+    ],
+    [
+     "-",
+     "zvieraťa "
+    ],
+    [
+     "+",
+     "psa alebo mačky "
+    ],
+    [
+     "=",
+     "alebo držania "
+    ],
+    [
+     "-",
+     "zvieraťa "
+    ],
+    [
+     "+",
+     "psa alebo mačky "
+    ],
+    [
+     "=",
+     "alebo zákaz chovu "
+    ],
+    [
+     "-",
+     "zvieraťa "
+    ],
+    [
+     "+",
+     "psa alebo mačky "
+    ],
+    [
+     "=",
+     "alebo držania "
+    ],
+    [
+     "-",
+     "zvieraťa, "
+    ],
+    [
+     "+",
+     "psa "
+    ],
+    [
+     "=",
+     "alebo "
+    ],
+    [
+     "-",
+     "zakázať činnosť schválenú podľa tohto zákona "
+    ],
+    [
+     "+",
+     "mačky "
+    ],
+    [
+     "=",
+     "až na päť rokov tomu, kto "
+    ],
+    [
+     "-",
+     "opakovane neplní veterinárne požiadavky podľa "
+    ],
+    [
+     "+",
+     "koná v rozpore s "
+    ],
+    [
+     "=",
+     "§ "
+    ],
+    [
+     "-",
+     "3."
+    ],
+    [
+     "+",
+     "22 ods. 20 až 22."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 48 ods. 9",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Na priestupky a ich prejednávanie sa vzťahuje všeobecný predpis o priestupkoch."
+    ],
+    [
+     "+",
+     "Orgán veterinárnej správy môže opatrením nariadiť obmedzenie chovu zvieraťa alebo držania zvieraťa alebo zákaz chovu zvieraťa alebo držania zvieraťa, alebo zakázať činnosť schválenú podľa tohto zákona až na päť rokov tomu, kto opakovane neplní veterinárne požiadavky podľa § 3."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 48 ods. 10",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "V blokovom konaní možno uložiť za priestupok podľa odseku 2 pokutu do 150 eur, za priestupok podľa odseku 3 do 200 eur, za priestupok podľa odseku 4 do 400 eur, za priestupok podľa odseku 5 do 500 eur "
+    ],
+    [
+     "+",
+     "Na priestupky "
+    ],
+    [
+     "=",
+     "a "
+    ],
+    [
+     "-",
+     "za priestupok podľa odseku 6 do 600 eur. V rozkaznom konaní možno uložiť za priestupok podľa odsekov 2 a 3 pokutu do 250 eur a za priestupok podľa odsekov 4 až 6 pokutu do 650 eur."
+    ],
+    [
+     "+",
+     "ich prejednávanie sa vzťahuje všeobecný predpis o priestupkoch."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 48 ods. 11",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Pokuty sú príjmom štátneho rozpočtu, okrem pokuty uloženej "
+    ],
+    [
+     "+",
+     "V blokovom konaní možno uložiť za priestupok "
+    ],
+    [
+     "=",
+     "podľa odseku "
+    ],
+    [
+     "-",
+     "1, ktorá je príjmom rozpočtu obce, v ktorej má vlastník psa, ktorý "
+    ],
+    [
+     "+",
+     "2 "
+    ],
+    [
+     "=",
+     "pokutu "
+    ],
+    [
+     "-",
+     "uhradil, trvalý pobyt."
+    ],
+    [
+     "+",
+     "do 250 eur, za priestupok podľa odseku 3 do 400 eur, za priestupok podľa odseku 4 do 750 eur, za priestupok podľa odseku 5 do 1 500 eur a za priestupok podľa odseku 6 do 2 500 eur. V rozkaznom konaní možno uložiť za priestupok podľa odsekov 2 a 3 pokutu do 800 eur a za priestupok podľa odsekov 4 až 6 pokutu do 2 500 eur."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 50 ods. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Orgán veterinárnej správy uloží fyzickej osobe – podnikateľovi alebo právnickej osobe pokutu od "
+    ],
+    [
+     "-",
+     "400 "
+    ],
+    [
+     "+",
+     "800 "
+    ],
+    [
+     "=",
+     "eur do "
+    ],
+    [
+     "-",
+     "3500 "
+    ],
+    [
+     "+",
+     "5 000 "
+    ],
+    [
+     "=",
+     "eur, ak"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 50 ods. 2",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Orgán veterinárnej správy uloží fyzickej osobe – podnikateľovi alebo právnickej osobe pokutu od "
+    ],
+    [
+     "-",
+     "1 750 "
+    ],
+    [
+     "+",
+     "3 500 "
+    ],
+    [
+     "=",
+     "eur do "
+    ],
+    [
+     "-",
+     "20 "
+    ],
+    [
+     "+",
+     "35 "
+    ],
+    [
+     "=",
+     "000 eur, ak"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 50 ods. 3",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Orgán veterinárnej správy uloží fyzickej osobe – podnikateľovi alebo právnickej osobe pokutu od "
+    ],
+    [
+     "-",
+     "2 500 "
+    ],
+    [
+     "+",
+     "5 000 "
+    ],
+    [
+     "=",
+     "eur do "
+    ],
+    [
+     "-",
+     "40 "
+    ],
+    [
+     "+",
+     "50 "
+    ],
+    [
+     "=",
+     "000 eur, ak"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 50 ods. 4 písm. j)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "uvedie na trh produkty živočíšneho pôvodu, ktoré sú alebo boli vyrobené, spracúvané, balené a skladované alebo sa s nimi manipulovalo v prevádzkarni, ktorá nie je na takúto činnosť schválená, podmienečne schválená alebo "
+    ],
+    [
+     "-",
+     "povolená."
+    ],
+    [
+     "+",
+     "povolená,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 51 ods. 3",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Orgán veterinárnej správy môže opatrením nariadiť obmedzenie chovu "
+    ],
+    [
+     "-",
+     "zvieraťa "
+    ],
+    [
+     "+",
+     "psa alebo mačky "
+    ],
+    [
+     "=",
+     "alebo držania "
+    ],
+    [
+     "-",
+     "zvieraťa "
+    ],
+    [
+     "+",
+     "psa alebo mačky "
+    ],
+    [
+     "=",
+     "alebo zákaz chovu "
+    ],
+    [
+     "-",
+     "zvieraťa "
+    ],
+    [
+     "+",
+     "psa alebo mačky "
+    ],
+    [
+     "=",
+     "alebo držania "
+    ],
+    [
+     "-",
+     "zvieraťa, "
+    ],
+    [
+     "+",
+     "psa "
+    ],
+    [
+     "=",
+     "alebo "
+    ],
+    [
+     "-",
+     "zakázať činnosť schválenú podľa tohto zákona "
+    ],
+    [
+     "+",
+     "mačky "
+    ],
+    [
+     "=",
+     "až na päť rokov tomu, kto "
+    ],
+    [
+     "-",
+     "opakovane neplní veterinárne požiadavky podľa "
+    ],
+    [
+     "+",
+     "koná v rozpore s "
+    ],
+    [
+     "=",
+     "§ "
+    ],
+    [
+     "-",
+     "3."
+    ],
+    [
+     "+",
+     "22 ods. 20 až 22."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 51 ods. 4",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Pri určovaní výšky pokuty sa prihliada najmä na závažnosť, spôsob, čas trvania a možné následky protiprávneho konania. Pri posudzovaní závažnosti protiprávneho konania orgán "
+    ],
+    [
+     "+",
+     "Orgán "
+    ],
+    [
+     "=",
+     "veterinárnej správy "
+    ],
+    [
+     "-",
+     "berie do úvahy jeho povahu, možný vplyv "
+    ],
+    [
+     "+",
+     "môže opatrením nariadiť obmedzenie chovu zvieraťa alebo držania zvieraťa alebo zákaz chovu zvieraťa alebo držania zvieraťa, alebo zakázať činnosť schválenú podľa tohto zákona až "
+    ],
+    [
+     "=",
+     "na "
+    ],
+    [
+     "-",
+     "zdravie zvierat, zdravie ľudí alebo ochranu zvierat, ako aj iné faktory, najmä opakované porušovanie tohto zákona."
+    ],
+    [
+     "+",
+     "päť rokov tomu, kto opakovane neplní veterinárne požiadavky podľa § 3."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 51 ods. 5",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Konanie o uložení "
+    ],
+    [
+     "+",
+     "Pri určovaní výšky "
+    ],
+    [
+     "=",
+     "pokuty "
+    ],
+    [
+     "-",
+     "možno začať do jedného roka odo dňa, keď príslušný "
+    ],
+    [
+     "+",
+     "sa prihliada najmä na závažnosť, spôsob, čas trvania a možné následky protiprávneho konania. Pri posudzovaní závažnosti protiprávneho konania "
+    ],
+    [
+     "=",
+     "orgán veterinárnej správy "
+    ],
+    [
+     "-",
+     "zistil porušenie "
+    ],
+    [
+     "+",
+     "berie do úvahy jeho povahu, možný vplyv na zdravie zvierat, zdravie ľudí "
+    ],
+    [
+     "=",
+     "alebo "
+    ],
+    [
+     "-",
+     "nesplnenie povinností, najneskôr však do troch rokov odo dňa, keď došlo ku konaniu zakladajúcemu právo na uloženie pokuty."
+    ],
+    [
+     "+",
+     "ochranu zvierat, ako aj iné faktory, najmä opakované porušovanie tohto zákona."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 51 ods. 6",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Výnos pokút je príjmom štátneho rozpočtu."
+    ],
+    [
+     "+",
+     "Konanie o uložení pokuty možno začať do jedného roka odo dňa, keď príslušný orgán veterinárnej správy zistil porušenie alebo nesplnenie povinností, najneskôr však do troch rokov odo dňa, keď došlo ku konaniu zakladajúcemu právo na uloženie pokuty."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 53 text písm. g)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "identifikácii a registrácii hospodárskych zvierat a spoločenských zvierat podľa § "
+    ],
+    [
+     "+",
+     "19, náležitostiach žiadosti o poverenie kvalifikovanej osoby podľa § "
+    ],
+    [
+     "=",
+     "19 "
+    ],
+    [
+     "+",
+     "ods. 8, jeho vydávaní a zrušení "
+    ],
+    [
+     "=",
+     "a požiadavky na kvalifikovanú osobu podľa § 19 ods. 8,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 53 text písm. i)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "použití zvieraťa na účely verejného vystúpenia alebo výcviku za účelom verejného vystúpenia a zoznam zvierat na účely verejného "
+    ],
+    [
+     "-",
+     "vystúpenia."
+    ],
+    [
+     "+",
+     "vystúpenia,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 53",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "(1) Všeobecne záväzný právny predpis, ktorý vydá ministerstvo, ustanoví podrobnosti o a) organizácii, spôsobe a formách postgraduálneho vzdelávania veterinárnych lekárov, ktorí vykonávajú štátne veterinárne činnosti, požiadavkách na kvalifikáciu a ďalšie vzdelávanie osôb s odbornou spôsobilosťou a ďalších zamestnancov orgánov veterinárnej správy a štátnych veterinárnych laboratórií, b) ochrane spoločenských zvierat, požiadavkách na odchyt túlavých zvierat a požiadavkách na karanténne stanice a útulky pre zvieratá, c) ochrane voľne žijúcich zvierat a požiadavky na ustajnenie voľne žijúcich zvierat, d) výnimkách pri zbere, preprave a odstraňovaní vedľajších živočíšnych produktov a o použití vedľajších živočíšnych produktov na osobitné kŕmne účely, e) skúškach poľovníkov o hygiene a ochrane zdravia osôb, o vedení evidencie a o požadovaných hláseniach, f) chove nebezpečných živočíchov, g) identifikácii a registrácii hospodárskych zvierat a spoločenských zvierat podľa § "
+    ],
+    [
+     "+",
+     "19, náležitostiach žiadosti o poverenie kvalifikovanej osoby podľa § "
+    ],
+    [
+     "=",
+     "19 "
+    ],
+    [
+     "+",
+     "ods. 8, jeho vydávaní a zrušení "
+    ],
+    [
+     "=",
+     "a požiadavky na kvalifikovanú osobu podľa § 19 ods. 8, h) podmienkach zabíjania zveri z farmového chovu a hovädzieho dobytka chovaného pod šírym nebom strelnou zbraňou s voľným projektilom v mieste držby zvieraťa a na farmárskom bitúnku, i) použití zvieraťa na účely verejného vystúpenia alebo výcviku za účelom verejného vystúpenia a zoznam zvierat na účely verejného "
+    ],
+    [
+     "-",
+     "vystúpenia."
+    ],
+    [
+     "+",
+     "vystúpenia, j) povoľovaní činnosti chovateľskej organizácie podľa § 40b a o jej zrušení, náležitostiach žiadostí o povolenie činnosti chovateľskej organizácie, požiadavkách podľa § 40b ods. 2, vedení evidencie preukazov o pôvode psa alebo mačky, náležitostiach preukazu o pôvode psa alebo mačky a správe o činnosti chovateľskej organizácie, k) ochrane zveri z farmového chovu, podmienkach farmového chovu zveri a podmienkach usmrcovania a porážky zveri z farmového chovu."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 6 ods. 2 písm. bg)",
+   "type": "added",
+   "text": "vydáva a zrušuje rozhodnutie o povolení činnosti chovateľskej organizácie podľa § 40b ods. 2 a 5,"
+  },
+  {
+   "loc": "§ 6 ods. 2 písm. bh)",
+   "type": "added",
+   "text": "kontroluje dodržiavanie povinností chovateľskej organizácie podľa § 40b ods. 4,"
+  },
+  {
+   "loc": "§ 6 ods. 2 písm. bi)",
+   "type": "added",
+   "text": "vedie zoznam chovateľských organizácií a zverejňuje ho na svojom webovom sídle."
+  },
+  {
+   "loc": "§ 13 ods. 1 písm. l)",
+   "type": "added",
+   "text": "zadať do centrálneho registra spoločenských zvierat údaje o identifikovanej mačke a jej vlastníkovi do 24 hodín od identifikácie mačky podľa § 19 ods. 12 alebo od oznámenia zmeny údajov, viesť o týchto údajoch písomnú evidenciu a predložiť ju na požiadanie orgánu veterinárnej správy."
+  },
+  {
+   "loc": "§ 19 ods. 12",
+   "type": "added",
+   "text": "Vlastník mačky, ktorá je predmetom uvádzania na trh podľa § 22 ods. 21, je povinný zabezpečiť trvalé označenie mačky chovanej na území Slovenskej republiky transpondérom, ktorý spĺňa technické požiadavky podľa osobitného predpisu, pred prvou zmenou vlastníka mačky a uviesť identifikačné údaje mačky a údaje o vlastníkovi mačky v centrálnom registri spoločenských zvierat."
+  },
+  {
+   "loc": "§ 22 ods. 20",
+   "type": "added",
+   "text": "Zakazuje sa rozmnožovanie psa alebo mačky na účel uvádzania na trh okrem rozmnožovania psa alebo mačky"
+  },
+  {
+   "loc": "§ 22 ods. 20 písm. a)",
+   "type": "added",
+   "text": "bez preukazu o pôvode psa alebo mačky podľa § 40b ods. 1, ak vlastník psa alebo vlastník mačky uvedie na trh mláďatá psa alebo mláďatá mačky výlučne z jedného vrhu jedenkrát za rok; vrhom sa rozumie potomstvo, ktoré sa narodí jednej suke alebo mačke pri jednom pôrode,"
+  },
+  {
+   "loc": "§ 22 ods. 20 písm. b)",
+   "type": "added",
+   "text": "s preukazom o pôvode psa alebo mačky, ktoré sú zapísané v evidencii podľa § 40b ods. 4 písm. b); preukaz o pôvode psa alebo mačky sa vyžaduje u oboch rodičov."
+  },
+  {
+   "loc": "§ 22 ods. 21",
+   "type": "added",
+   "text": "Vlastník psa alebo vlastník mačky môže uvádzať na trh mláďa psa alebo mláďa mačky z rozmnožovania podľa odseku 20 písm. b), ak je matka mláďaťa registrovaná v centrálnom registri spoločenských zvierat a mláďa psa alebo mláďa mačky pochádzajúce z takého rozmnožovania má preukaz o pôvode psa alebo mačky a je zapísané v evidencii podľa § 40b ods. 4 písm. b); adresa držby psa alebo mačky uvedená v centrálnom registri spoločenských zvierat sa musí zhodovať s adresou držby mláďaťa psa alebo mláďaťa mačky, z ktorej sa uvádza na trh."
+  },
+  {
+   "loc": "§ 22 ods. 22",
+   "type": "added",
+   "text": "Vlastník psa alebo vlastník mačky nesmie vykonávať činnosti súvisiace so sprostredkovaním predaja psa alebo mačky iného vlastníka."
+  },
+  {
+   "loc": "§ 37 ods. 2 písm. b) bod 8",
+   "type": "added",
+   "text": "zaslať hlásenie zmien v chove hospodárskych zvierat do centrálneho registra hospodárskych zvierat,"
+  },
+  {
+   "loc": "§ 40b (nadpis)",
+   "type": "added",
+   "text": "Chovateľská organizácia"
+  },
+  {
+   "loc": "§ 40b ods. 1",
+   "type": "added",
+   "text": "Chovateľská organizácia vydáva preukazy o pôvode psa alebo mačky z chovného zariadenia psov alebo mačiek, ktoré rozmnožuje psy alebo mačky na účel ich uvádzania na trh a vedie evidenciu preukazov o pôvode psa alebo mačky na základe právoplatného rozhodnutia o povolení činnosti chovateľskej organizácie podľa odseku 2."
+  },
+  {
+   "loc": "§ 40b ods. 2",
+   "type": "added",
+   "text": "Štátna veterinárna a potravinová správa rozhodne o povolení činnosti chovateľskej organizácie na základe písomnej žiadosti právnickej osoby na obdobie piatich rokov, ak spĺňa tieto požiadavky:"
+  },
+  {
+   "loc": "§ 40b ods. 2 písm. a)",
+   "type": "added",
+   "text": "má vypracované stanovy a chovateľský poriadok chovateľskej organizácie; stanovy a chovateľský poriadok chovateľskej organizácie sú prílohou žiadosti o povolenie činnosti chovateľskej organizácie,"
+  },
+  {
+   "loc": "§ 40b ods. 2 písm. b)",
+   "type": "added",
+   "text": "je odborne, technicky a personálne vybavená na vydávanie preukazov o pôvode psa alebo mačky a vedenie evidencie preukazov o pôvode psa alebo mačky,"
+  },
+  {
+   "loc": "§ 40b ods. 2 písm. c)",
+   "type": "added",
+   "text": "má zavedený systém overovania identifikácie a preukazovania genealogického pôvodu psov alebo mačiek najmenej do ich štvrtej generácie."
+  },
+  {
+   "loc": "§ 40b ods. 3",
+   "type": "added",
+   "text": "Ak právnická osoba podľa odseku 2 nespĺňa požiadavky podľa odseku 2, štátna veterinárna a potravinová správa zamietne žiadosť o povolenie činnosti chovateľskej organizácie."
+  },
+  {
+   "loc": "§ 40b ods. 4",
+   "type": "added",
+   "text": "Chovateľská organizácia je povinná"
+  },
+  {
+   "loc": "§ 40b ods. 4 písm. a)",
+   "type": "added",
+   "text": "vydávať preukazy o pôvode psa alebo mačky v súlade s právoplatným rozhodnutím o povolení činnosti chovateľskej organizácie podľa odseku 2,"
+  },
+  {
+   "loc": "§ 40b ods. 4 písm. b)",
+   "type": "added",
+   "text": "viesť evidenciu preukazov o pôvode psa alebo mačky,"
+  },
+  {
+   "loc": "§ 40b ods. 4 písm. c)",
+   "type": "added",
+   "text": "zasielať raz ročne štátnej veterinárnej a potravinovej správe správu o činnosti chovateľskej organizácie,"
+  },
+  {
+   "loc": "§ 40b ods. 4 písm. d)",
+   "type": "added",
+   "text": "sprístupňovať štátnej veterinárnej a potravinovej správe údaje z evidencie podľa písmena b),"
+  },
+  {
+   "loc": "§ 40b ods. 4 písm. e)",
+   "type": "added",
+   "text": "oznámiť štátnej veterinárnej a potravinovej správe zmenu údajov chovateľskej organizácie a zmenu stanov alebo chovateľského poriadku chovateľskej organizácie."
+  },
+  {
+   "loc": "§ 40b ods. 5",
+   "type": "added",
+   "text": "Štátna veterinárna a potravinová správa zruší rozhodnutie o povolení činnosti chovateľskej organizácie podľa odseku 2, ak chovateľská organizácia"
+  },
+  {
+   "loc": "§ 40b ods. 5 písm. a)",
+   "type": "added",
+   "text": "prestane spĺňať niektorú z požiadaviek podľa odseku 2,"
+  },
+  {
+   "loc": "§ 40b ods. 5 písm. b)",
+   "type": "added",
+   "text": "opakovane porušuje svoje stanovy alebo tento zákon,"
+  },
+  {
+   "loc": "§ 40b ods. 5 písm. c)",
+   "type": "added",
+   "text": "požiada o zrušenie povolenia činnosti chovateľskej organizácie,"
+  },
+  {
+   "loc": "§ 40b ods. 5 písm. d)",
+   "type": "added",
+   "text": "nepredloží správu o svojej činnosti podľa odseku 4 písm. c),"
+  },
+  {
+   "loc": "§ 40b ods. 5 písm. e)",
+   "type": "added",
+   "text": "neoznámi zmenu svojich údajov alebo zmenu stanov alebo chovateľského poriadku chovateľskej organizácie podľa odseku 4 písm. e)."
+  },
+  {
+   "loc": "§ 48 ods. 6 písm. d)",
+   "type": "added",
+   "text": "rozmnožuje psy alebo mačky na účel uvádzania na trh v rozpore s § 22 ods. 20,"
+  },
+  {
+   "loc": "§ 48 ods. 6 písm. e)",
+   "type": "added",
+   "text": "uvádza na trh psa alebo mačku v rozpore s § 22 ods. 21,"
+  },
+  {
+   "loc": "§ 48 ods. 6 písm. f)",
+   "type": "added",
+   "text": "sprostredkuje predaj psa alebo mačky iného vlastníka v rozpore s § 22 ods. 22."
+  },
+  {
+   "loc": "§ 48 ods. 12",
+   "type": "added",
+   "text": "Pokuty sú príjmom štátneho rozpočtu, okrem pokuty uloženej podľa odseku 1, ktorá je príjmom rozpočtu obce, v ktorej má vlastník psa, ktorý pokutu uhradil, trvalý pobyt."
+  },
+  {
+   "loc": "§ 50 ods. 4 písm. k)",
+   "type": "added",
+   "text": "rozmnožuje psy alebo mačky na účel uvádzania na trh v rozpore s § 22 ods. 20,"
+  },
+  {
+   "loc": "§ 50 ods. 4 písm. l)",
+   "type": "added",
+   "text": "uvádza na trh psa alebo mačku v rozpore s § 22 ods. 21,"
+  },
+  {
+   "loc": "§ 50 ods. 4 písm. m)",
+   "type": "added",
+   "text": "sprostredkuje predaj psa alebo mačky iného vlastníka v rozpore s § 22 ods. 22,"
+  },
+  {
+   "loc": "§ 50 ods. 4 písm. n)",
+   "type": "added",
+   "text": "vydáva preukazy o pôvode psa alebo mačky v rozpore s § 40b."
+  },
+  {
+   "loc": "§ 51 ods. 7",
+   "type": "added",
+   "text": "Výnos pokút je príjmom štátneho rozpočtu."
+  },
+  {
+   "loc": "§ 53 text písm. j)",
+   "type": "added",
+   "text": "povoľovaní činnosti chovateľskej organizácie podľa § 40b a o jej zrušení, náležitostiach žiadostí o povolenie činnosti chovateľskej organizácie, požiadavkách podľa § 40b ods. 2, vedení evidencie preukazov o pôvode psa alebo mačky, náležitostiach preukazu o pôvode psa alebo mačky a správe o činnosti chovateľskej organizácie,"
+  },
+  {
+   "loc": "§ 53 text písm. k)",
+   "type": "added",
+   "text": "ochrane zveri z farmového chovu, podmienkach farmového chovu zveri a podmienkach usmrcovania a porážky zveri z farmového chovu."
+  },
+  {
+   "loc": "§ 54m (nadpis)",
+   "type": "added",
+   "text": "Prechodné ustanovenia k úpravám účinným od 1. januára 2027"
+  },
+  {
+   "loc": "§ 54m ods. 1",
+   "type": "added",
+   "text": "Fyzická osoba, fyzická osoba – podnikateľ alebo právnická osoba, ktorá k 1. januáru 2027 rozmnožuje psy alebo mačky v rozpore s § 22 ods. 20, je povinná ukončiť uvádzanie mláďat psov alebo mláďat mačiek na trh z tohto rozmnožovania do 30. júna 2027."
+  },
+  {
+   "loc": "§ 54m ods. 2",
+   "type": "added",
+   "text": "Právnická osoba podľa § 40b ods. 2 je povinná požiadať o povolenie činnosti chovateľskej organizácie podľa § 40b ods. 2 v znení účinnom od 1. januára 2027 do 31. decembra 2027."
+  },
+  {
+   "loc": "§ 54m ods. 3",
+   "type": "added",
+   "text": "Preukaz pôvodu psa alebo mačky vydaný do 31. decembra 2026 sa považuje za preukaz pôvodu psa alebo mačky vydaný chovateľskou organizáciou podľa tohto zákona v znení účinnom od 1. januára 2027."
+  },
+  {
+   "loc": "§ 54m ods. 4",
+   "type": "added",
+   "text": "Konania o uložení pokuty a konania o inom správnom delikte začaté a právoplatne neskončené do 31. decembra 2026 sa dokončia podľa tohto zákona v znení účinnom do 31. decembra 2026."
+  }
+ ]
+}

@@ -1,0 +1,56 @@
+{
+ "kind": "law_diff",
+ "law": "581/2004",
+ "law_name": "Act on Health Insurance Companies",
+ "from": "2027-01-01",
+ "to": "2027-07-01",
+ "amended_by": "258/2026 Z. z.",
+ "amended_by_url": "https://static.slov-lex.sk/static/SK/ZZ/2026/258/20270701.html",
+ "old_url": "https://static.slov-lex.sk/static/SK/ZZ/2004/581/20270101.html",
+ "new_url": "https://static.slov-lex.sk/static/SK/ZZ/2004/581/20270701.html",
+ "changes": [
+  {
+   "loc": "§ 6 ods. 2 písm. p)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "poskytnúť ministerstvu zdravotníctva všetky udelené súhlasy a rozhodnutia podľa osobitného "
+    ],
+    [
+     "-",
+     "predpisu."
+    ],
+    [
+     "+",
+     "predpisu,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 6 ods. 2 písm. q)",
+   "type": "added",
+   "text": "bezodkladne sprístupniť na žiadosť držiteľa registrácie lieku alebo držiteľa povolenia na veľkodistribúciu liekov"
+  },
+  {
+   "loc": "§ 6 ods. 2 písm. q) bod 1",
+   "type": "added",
+   "text": "číslo súhlasu zdravotnej poisťovne s úhradou lieku zaradeného v zozname kategorizovaných liekov,"
+  },
+  {
+   "loc": "§ 6 ods. 2 písm. q) bod 2",
+   "type": "added",
+   "text": "pseudonymizované identifikačné číslo poistenca, ktorému bol súhlas s úhradou lieku udelený,"
+  },
+  {
+   "loc": "§ 6 ods. 2 písm. q) bod 3",
+   "type": "added",
+   "text": "obdobie, na ktoré bol súhlas s úhradou lieku zaradeného v zozname kategorizovaných liekov udelený,"
+  },
+  {
+   "loc": "§ 6 ods. 2 písm. q) bod 4",
+   "type": "added",
+   "text": "počet balení lieku zaradeného v zozname kategorizovaných liekov, ktorý bol pacientovi schválený."
+  }
+ ]
+}

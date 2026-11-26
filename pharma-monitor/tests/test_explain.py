@@ -1,7 +1,9 @@
 """Plain-language explanations (explain.py) with a fake Claude client – no key, no network, no cost."""
 import json
 import os
+import shutil
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
@@ -78,7 +80,14 @@ class ExplainTest(unittest.TestCase):
         self.assertNotIn("explain", items[0])
 
     def test_a_broken_explanation_step_never_stops_the_check(self):
-        with mock.patch.object(explain, "explain_items", side_effect=RuntimeError("boom")), \
+        # runs main() against an empty temporary data folder: nothing in pharma-monitor/data may be touched
+        tmp = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, tmp, True)
+        with mock.patch.object(monitor, "CHANGES_DIR", tmp / "changes"), \
+             mock.patch.object(monitor, "ITEMS_FILE", tmp / "items.json"), \
+             mock.patch.object(monitor, "STATE_FILE", tmp / "state.json"), \
+             mock.patch.object(monitor, "STATUS_FILE", tmp / "status.json"), \
+             mock.patch.object(explain, "explain_items", side_effect=RuntimeError("boom")), \
              mock.patch.object(monitor, "save_json") as save, \
              mock.patch.object(monitor, "load_json", side_effect=lambda path, default, real=monitor.load_json:
                                real(path, default) if path == monitor.CONFIG_FILE else ({} if default is None else default)), \

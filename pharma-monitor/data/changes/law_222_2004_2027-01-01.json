@@ -1,0 +1,647 @@
+{
+ "kind": "law_diff",
+ "law": "222/2004",
+ "law_name": "VAT Act",
+ "from": "2026-01-01",
+ "to": "2027-01-01",
+ "amended_by": "385/2025 Z. z.",
+ "amended_by_url": "https://static.slov-lex.sk/static/SK/ZZ/2025/385/20270101.html",
+ "old_url": "https://static.slov-lex.sk/static/SK/ZZ/2004/222/20260101.html",
+ "new_url": "https://static.slov-lex.sk/static/SK/ZZ/2004/222/20270101.html",
+ "changes": [
+  {
+   "loc": "§ 69b ods. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Daň uvedenú na faktúre, ktorú dodávateľ v lehote splatnosti podľa § 78 neuhradil alebo uhradil len jej časť (ďalej len „nezaplatená daň“), je povinný uhradiť platiteľ, ktorý ručí za daň podľa § 69 ods. 13 (ďalej len „ručiteľ“), ak § 69c ods. "
+    ],
+    [
+     "-",
+     "2 "
+    ],
+    [
+     "+",
+     "3 "
+    ],
+    [
+     "=",
+     "neustanovuje inak."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 69c ods. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Daň uvedenú na faktúre, ktorú je z dodania tovaru alebo služby povinný platiť dodávateľ podľa § 69 ods. "
+    ],
+    [
+     "-",
+     "1, môže najneskôr pred doručením rozhodnutia podľa § 69b ods. 3 zaplatiť spôsobom podľa osobitného predpisu na číslo účtu správcu dane vedeného pre dodávateľa podľa osobitného predpisu platiteľ (odberateľ), ktorý v čase vzniku daňovej povinnosti vedel alebo na základe dostatočných dôvodov uvedených v § 69 ods. 13 vedieť mal a mohol, že celá daň alebo časť dane z tovaru alebo služby nebude zaplatená."
+    ],
+    [
+     "+",
+     "1,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 69c ods. 2",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Ak vznikla nezaplatená daň "
+    ],
+    [
+     "+",
+     "Daň "
+    ],
+    [
+     "=",
+     "podľa "
+    ],
+    [
+     "-",
+     "§ 69b ods. "
+    ],
+    [
+     "+",
+     "odseku "
+    ],
+    [
+     "=",
+     "1 "
+    ],
+    [
+     "-",
+     "a "
+    ],
+    [
+     "+",
+     "je "
+    ],
+    [
+     "=",
+     "platiteľ (odberateľ) "
+    ],
+    [
+     "-",
+     "zaplatil daň "
+    ],
+    [
+     "+",
+     "povinný zaplatiť spôsobom "
+    ],
+    [
+     "=",
+     "podľa "
+    ],
+    [
+     "-",
+     "odseku 1, postup "
+    ],
+    [
+     "+",
+     "osobitného predpisu na číslo účtu správcu dane vedeného pre dodávateľa "
+    ],
+    [
+     "=",
+     "podľa "
+    ],
+    [
+     "-",
+     "§ 69b sa neuplatní; ak daňový úrad dodávateľa vydal rozhodnutie podľa § 69b ods. 3, toto rozhodnutie sa zaplatením dane zrušuje."
+    ],
+    [
+     "+",
+     "osobitného predpisu."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 69c ods. 3",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Daň zaplatená podľa odseku 1 predstavuje daňový preplatok dodávateľa, ak dodávateľ uhradil "
+    ],
+    [
+     "+",
+     "Ak vznikla nezaplatená "
+    ],
+    [
+     "=",
+     "daň "
+    ],
+    [
+     "-",
+     "v lehote splatnosti "
+    ],
+    [
+     "=",
+     "podľa § "
+    ],
+    [
+     "-",
+     "78; "
+    ],
+    [
+     "+",
+     "69b ods. 1 a "
+    ],
+    [
+     "=",
+     "platiteľ "
+    ],
+    [
+     "-",
+     "(odberateľ), ktorý "
+    ],
+    [
+     "+",
+     "(odberateľ) "
+    ],
+    [
+     "=",
+     "zaplatil daň podľa odseku 1, "
+    ],
+    [
+     "-",
+     "nemôže požiadať o preúčtovanie daňového preplatku "
+    ],
+    [
+     "+",
+     "postup "
+    ],
+    [
+     "=",
+     "podľa "
+    ],
+    [
+     "-",
+     "osobitného predpisu."
+    ],
+    [
+     "+",
+     "§ 69b sa neuplatní; ak daňový úrad dodávateľa vydal rozhodnutie podľa § 69b ods. 3, toto rozhodnutie sa zaplatením dane zrušuje."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 69c ods. 4",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Ak platiteľ (odberateľ) zaplatil daň "
+    ],
+    [
+     "+",
+     "Daň zaplatená "
+    ],
+    [
+     "=",
+     "podľa odseku 1 "
+    ],
+    [
+     "-",
+     "a "
+    ],
+    [
+     "+",
+     "predstavuje daňový preplatok dodávateľa, ak "
+    ],
+    [
+     "=",
+     "dodávateľ "
+    ],
+    [
+     "-",
+     "neuhradil "
+    ],
+    [
+     "+",
+     "uhradil "
+    ],
+    [
+     "=",
+     "daň v lehote splatnosti podľa § "
+    ],
+    [
+     "-",
+     "78 za zdaňovacie obdobie, v ktorom mu vznikla daňová povinnosť z dodania tovaru alebo služby, ktorého sa daň uvedená na faktúre týka, použije sa na túto úhradu daň zaplatená podľa odseku 1. Kladný rozdiel medzi daňou zaplatenou podľa odseku 1 a sumou dane použitej podľa prvej vety predstavuje daňový preplatok dodávateľa; "
+    ],
+    [
+     "+",
+     "78; "
+    ],
+    [
+     "=",
+     "platiteľ (odberateľ), ktorý zaplatil daň podľa odseku 1, nemôže požiadať o preúčtovanie daňového preplatku podľa osobitného predpisu."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 69c ods. 5",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Ak "
+    ],
+    [
+     "-",
+     "daňový úrad "
+    ],
+    [
+     "+",
+     "platiteľ (odberateľ) zaplatil daň podľa odseku 1 a dodávateľ neuhradil daň "
+    ],
+    [
+     "=",
+     "v lehote "
+    ],
+    [
+     "+",
+     "splatnosti podľa § 78 za zdaňovacie obdobie, v ktorom mu vznikla daňová povinnosť z dodania tovaru alebo služby, ktorého sa daň uvedená "
+    ],
+    [
+     "=",
+     "na "
+    ],
+    [
+     "-",
+     "vrátenie "
+    ],
+    [
+     "+",
+     "faktúre týka, použije sa na túto úhradu daň zaplatená podľa odseku 1. Kladný rozdiel medzi daňou zaplatenou podľa odseku 1 a sumou dane použitej podľa prvej vety predstavuje daňový preplatok dodávateľa; platiteľ (odberateľ), ktorý zaplatil daň podľa odseku 1, nemôže požiadať o preúčtovanie "
+    ],
+    [
+     "=",
+     "daňového preplatku podľa "
+    ],
+    [
+     "-",
+     "odseku 3 alebo podľa odseku 4 začne daňovú kontrolu, tento daňový preplatok vráti do desiatich dní od skončenia daňovej kontroly, ak sa daňovou kontrolou nezistil rozdiel vo výške tohto daňového preplatku, inak do desiatich dní od nadobudnutia právoplatnosti rozhodnutia."
+    ],
+    [
+     "+",
+     "osobitného predpisu."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 69c ods. 6",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Daňový "
+    ],
+    [
+     "+",
+     "Ak daňový "
+    ],
+    [
+     "=",
+     "úrad "
+    ],
+    [
+     "-",
+     "vráti daňový preplatok podľa odseku 3 alebo "
+    ],
+    [
+     "+",
+     "v lehote na vrátenie daňového preplatku "
+    ],
+    [
+     "=",
+     "podľa odseku 4 "
+    ],
+    [
+     "-",
+     "na bankový účet oznámený podľa § 6 ods. 1 až 3 "
+    ],
+    [
+     "=",
+     "alebo "
+    ],
+    [
+     "-",
+     "podľa § 85kk spôsobom podľa § 6 ods. "
+    ],
+    [
+     "+",
+     "odseku "
+    ],
+    [
+     "=",
+     "5 "
+    ],
+    [
+     "-",
+     "a ak dodávateľ nesplnil takúto povinnosť, daňový úrad vráti "
+    ],
+    [
+     "+",
+     "začne daňovú kontrolu, tento "
+    ],
+    [
+     "=",
+     "daňový preplatok "
+    ],
+    [
+     "+",
+     "vráti "
+    ],
+    [
+     "=",
+     "do desiatich dní "
+    ],
+    [
+     "-",
+     "odo dňa, keď dodávateľ takúto povinnosť dodatočne splnil; postup podľa osobitného predpisu týmto nie je dotknutý."
+    ],
+    [
+     "+",
+     "od skončenia daňovej kontroly, ak sa daňovou kontrolou nezistil rozdiel vo výške tohto daňového preplatku, inak do desiatich dní od nadobudnutia právoplatnosti rozhodnutia."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 74 ods. 1 písm. c)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "poradové číslo "
+    ],
+    [
+     "-",
+     "faktúry,"
+    ],
+    [
+     "+",
+     "faktúry založené na jednej alebo viacerých sériách, ktoré jednoznačne identifikuje faktúru,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 69c ods. 1 písm. a)",
+   "type": "added",
+   "text": "môže najneskôr pred doručením rozhodnutia podľa § 69b ods. 3 zaplatiť spôsobom podľa odseku 2 platiteľ (odberateľ), ktorý v čase vzniku daňovej povinnosti vedel alebo na základe dostatočných dôvodov uvedených v § 69 ods. 13 vedieť mal a mohol, že celá daň alebo časť dane z tovaru alebo služby nebude zaplatená,"
+  },
+  {
+   "loc": "§ 69c ods. 1 písm. b)",
+   "type": "added",
+   "text": "je povinný zaplatiť spôsobom podľa odseku 2 platiteľ (odberateľ), ak je dôvodná obava, že ju dodávateľ v lehote splatnosti dane podľa § 78 ods. 1 nezaplatí a ak tak určí daňový úrad; daň je splatná v lehote určenej v rozhodnutí, proti ktorému nie je možné podať odvolanie."
+  },
+  {
+   "loc": "§ 69c ods. 7",
+   "type": "added",
+   "text": "Daňový úrad vráti daňový preplatok podľa odseku 4 alebo odseku 5 na bankový účet oznámený podľa § 6 ods. 1 až 3 alebo podľa § 85kk spôsobom podľa § 6 ods. 5 a ak dodávateľ nesplnil takúto povinnosť, daňový úrad vráti daňový preplatok do desiatich dní odo dňa, keď dodávateľ takúto povinnosť dodatočne splnil; postup podľa osobitného predpisu týmto nie je dotknutý."
+  },
+  {
+   "loc": "§ 69c ods. 8",
+   "type": "added",
+   "text": "Ak platiteľ (odberateľ) daň uvedenú v rozhodnutí podľa odseku 1 písm. b) neuhradí v určenej lehote alebo uhradí len jej časť, daňový úrad mu uloží pokutu do výšky dane uvedenej na faktúre."
+  },
+  {
+   "loc": "§ 71 ods. 5",
+   "type": "added",
+   "text": "Každá zdaniteľná osoba, ktorá je povinná vyhotoviť elektronickú faktúru podľa tohto zákona, je povinná zabezpečiť, aby mohla zaslať a prijať elektronickú faktúru doručovacou službou. Každá osoba, ktorej je v tuzemsku dodaný tovar alebo služba, pri ktorej je zdaniteľná osoba povinná vyhotoviť elektronickú faktúru podľa tohto zákona, je povinná zabezpečiť, aby mohla prijať elektronickú faktúru zaslanú doručovacou službou."
+  },
+  {
+   "loc": "§ 72 ods. 12",
+   "type": "added",
+   "text": "Platiteľ, ktorý je zahraničnou osobou z iného členského štátu, vyhotovuje pri dodaní tovaru alebo služby faktúru podľa tohto zákona, len ak je z tohto dodania osobou povinnou platiť daň podľa § 69 ods. 1 v tuzemsku. Povinnosť vyhotoviť faktúru podľa prvej vety sa vzťahuje aj na vyhotovenie faktúry pri prijatí platby pred týmto dodaním tovaru alebo služby."
+  },
+  {
+   "loc": "§ 79 ods. 12",
+   "type": "added",
+   "text": "Lehota na vrátenie nadmerného odpočtu podľa odseku 1, 2 alebo odseku 5 neplynie odo dňa vydania rozhodnutia o uložení predbežného opatrenia podľa osobitného predpisu do dňa, keď bolo rozhodnutie o uložení predbežného opatrenia zrušené alebo do dňa straty účinnosti tohto predbežného opatrenia; to neplatí, ak správca dane vo vzťahu k nadmernému odpočtu za totožné zdaňovacie obdobie postupuje podľa odseku 6."
+  },
+  {
+   "loc": "§ 85o ods. 1",
+   "type": "added",
+   "text": "V období od 1. januára 2027 do 30. júna 2030 sa postupuje podľa § 71 až 76 v znení účinnom do 30. júna 2030, ak odseky 2 až 8 a 15 neustanovujú inak."
+  },
+  {
+   "loc": "§ 85o ods. 2",
+   "type": "added",
+   "text": "Platiteľ podľa § 4, 4b alebo § 4c, ktorý počnúc 1. januárom 2027 dodal osobe podľa odseku 3 tovar s miestom dodania podľa § 13 v tuzemsku alebo ktorý dodal osobe podľa odseku 3 službu s miestom dodania podľa § 15 alebo § 16 v tuzemsku alebo prijal platbu pred týmto dodaním tovaru alebo služby, je povinný vyhotoviť elektronickú faktúru podľa odseku 4; to neplatí, ak je dodanie tovaru alebo služby oslobodené od dane podľa § 28 až 43 a 47 alebo ak platiteľ vyhotovil pri dodaní tovaru alebo služby zjednodušenú faktúru podľa § 74 ods. 3 písm. a) alebo písm. b). Vyhotovenie elektronickej faktúry nepodlieha súhlasu príjemcu plnenia. Zaslanie elektronickej faktúry iným spôsobom než doručovacou službou podlieha súhlasu príjemcu plnenia. Platiteľ nesmie vyhotoviť elektronickú faktúru podľa odseku 4 pri plnení podľa prvej vety, ak je príjemcom plnenia Slovenská informačná služba, Vojenské spravodajstvo alebo ak je plnenie spojené s utajovanou skutočnosťou, vyžaduje si utajovanú skutočnosť alebo plnenie obsahuje utajovanú skutočnosť."
+  },
+  {
+   "loc": "§ 85o ods. 3",
+   "type": "added",
+   "text": "Osobou na účely odseku 2 je"
+  },
+  {
+   "loc": "§ 85o ods. 3 písm. a)",
+   "type": "added",
+   "text": "zdaniteľná osoba, ktorá má v tuzemsku sídlo, miesto podnikania, prevádzkareň, bydlisko alebo sa v tuzemsku obvykle zdržiava,"
+  },
+  {
+   "loc": "§ 85o ods. 3 písm. b)",
+   "type": "added",
+   "text": "nezdaniteľná právnická osoba, ktorá má v tuzemsku sídlo alebo miesto charakterizované dostatočným stupňom stálosti a vhodnou štruktúrou, ak ide o ľudské a technické zdroje potrebné na výkon jej činnosti."
+  },
+  {
+   "loc": "§ 85o ods. 4",
+   "type": "added",
+   "text": "Elektronickou faktúrou je každý doklad alebo oznámenie, ktoré obsahuje náležitosti podľa § 74 ods. 1 a je vyhotovené, zaslané a prijaté"
+  },
+  {
+   "loc": "§ 85o ods. 4 písm. a)",
+   "type": "added",
+   "text": "vo formáte elektronického dokumentu, ktorý umožňuje jeho automatizované a elektronické spracovanie, a"
+  },
+  {
+   "loc": "§ 85o ods. 4 písm. b)",
+   "type": "added",
+   "text": "v dátovej štruktúre v súlade s technickou normou pre elektronickú fakturáciu a so zoznamom jej syntaxí podľa osobitného predpisu.28s)"
+  },
+  {
+   "loc": "§ 85o ods. 5",
+   "type": "added",
+   "text": "Za elektronickú faktúru podľa odseku 4 sa považuje aj každý doklad alebo oznámenie, ktoré mení pôvodnú elektronickú faktúru podľa odseku 4 a osobitne a jednoznačne sa na ňu vzťahuje, a ktoré je vyhotovené, zaslané a prijaté spôsobom podľa odseku 4. Doklad alebo oznámenie podľa prvej vety musí obsahovať poradové číslo pôvodnej elektronickej faktúry a údaje, ktoré sa menia. Ak platiteľ podľa § 4, 4b alebo § 4c pri dodaní tovaru alebo služby podľa odseku 2 vyhotovil a zaslal doručovacou službou elektronickú faktúru podľa odseku 4, aj doklad alebo oznámenie, ktoré túto elektronickú faktúru mení, musí spĺňať rovnaké podmienky a byť zaslané doručovacou službou."
+  },
+  {
+   "loc": "§ 85o ods. 6",
+   "type": "added",
+   "text": "Platiteľ podľa odseku 2 je povinný vyhotoviť elektronickú faktúru do pätnástich dní"
+  },
+  {
+   "loc": "§ 85o ods. 6 písm. a)",
+   "type": "added",
+   "text": "odo dňa dodania tovaru alebo služby podľa odseku 2,"
+  },
+  {
+   "loc": "§ 85o ods. 6 písm. b)",
+   "type": "added",
+   "text": "odo dňa prijatia platby pred dodaním tovaru alebo služby podľa písmena a),"
+  },
+  {
+   "loc": "§ 85o ods. 6 písm. c)",
+   "type": "added",
+   "text": "od konca kalendárneho mesiaca, v ktorom nastala skutočnosť rozhodná pre vykonanie opravy základu dane podľa § 25 ods. 1."
+  },
+  {
+   "loc": "§ 85o ods. 7",
+   "type": "added",
+   "text": "Platiteľ podľa odseku 2 môže za viac samostatných dodaní tovaru alebo služby podľa odseku 6 alebo za viac platieb prijatých pred dodaním tovaru alebo dodaním služby, ktoré sa uskutočnili počas obdobia najviac jedného kalendárneho mesiaca, vyhotoviť súhrnnú elektronickú faktúru; súhrnná elektronická faktúra sa musí vyhotoviť do pätnástich dní odo dňa skončenia kalendárneho mesiaca, za ktorý sa súhrnná elektronická faktúra vyhotovuje."
+  },
+  {
+   "loc": "§ 85o ods. 8",
+   "type": "added",
+   "text": "Lehota podľa odseku 6 alebo odseku 7 sa považuje za dodržanú, ak platiteľ podľa odseku 2 vyhotoví faktúru do pätnástich dní odo dňa dodatočného oznámenia odberateľa, že je osobou, ktorej bol tento platiteľ povinný vyhotoviť faktúru pri dodaní tovaru alebo služby alebo pri prijatí platby pred dodaním podľa odseku 6 alebo odseku 7."
+  },
+  {
+   "loc": "§ 85o ods. 9",
+   "type": "added",
+   "text": "Ak je platiteľ podľa odseku 2 povinný vyhotoviť elektronickú faktúru, ktorú zasiela príjemcovi plnenia doručovacou službou, je v čase jej vyhotovenia alebo najneskôr do piatich dní odo dňa vyhotovenia elektronickej faktúry alebo odo dňa uplynutia lehoty na vyhotovenie elektronickej faktúry, ak elektronickú faktúru vyhotovuje odberateľ v mene a na účet platiteľa podľa odseku 2, povinný oznámiť"
+  },
+  {
+   "loc": "§ 85o ods. 9 písm. a)",
+   "type": "added",
+   "text": "identifikačné číslo pre daň dodávateľa, ktoré mu bolo pridelené,"
+  },
+  {
+   "loc": "§ 85o ods. 9 písm. b)",
+   "type": "added",
+   "text": "identifikačné číslo pre daň odberateľa, ktoré mu bolo pridelené, alebo jeho meno a priezvisko alebo názov, ak mu identifikačné číslo pre daň nebolo pridelené,"
+  },
+  {
+   "loc": "§ 85o ods. 9 písm. c)",
+   "type": "added",
+   "text": "údaje podľa § 74 ods. 1 písm. c) až k), m) a n) a podľa § 68d ods. 4 okrem údajov podľa § 74 ods. 1 písm. h) a i), ak je osobou povinnou platiť daň v tuzemsku príjemca plnenia podľa § 69 ods. 10 až 12; platiteľ, ktorý je povinný vyhotoviť elektronickú faktúru podľa odseku 5, oznámi poradové číslo pôvodnej elektronickej faktúry a údaje, ktoré sa menia."
+  },
+  {
+   "loc": "§ 85o ods. 10",
+   "type": "added",
+   "text": "Osoba podľa odseku 3 písm. a), ktorá je platiteľom podľa § 4, 4b alebo § 4c, a ktorá prijala elektronickú faktúru prostredníctvom doručovacej služby, je povinná do piatich dní odo dňa jej prijatia oznámiť"
+  },
+  {
+   "loc": "§ 85o ods. 10 písm. a)",
+   "type": "added",
+   "text": "identifikačné číslo pre daň dodávateľa, ktoré jej bolo pridelené,"
+  },
+  {
+   "loc": "§ 85o ods. 10 písm. b)",
+   "type": "added",
+   "text": "identifikačné číslo pre daň odberateľa, ktoré jej bolo pridelené,"
+  },
+  {
+   "loc": "§ 85o ods. 10 písm. c)",
+   "type": "added",
+   "text": "údaje podľa § 74 ods. 1 písm. c) až k), m) a n) a podľa § 68d ods. 4 okrem údajov podľa § 74 ods. 1 písm. h) a i), ak je osobou povinnou platiť daň podľa § 69 ods. 10 až 12; platiteľ, ktorý prijal elektronickú faktúru vyhotovenú podľa odseku 5, oznámi poradové číslo pôvodnej elektronickej faktúry a údaje, ktoré sa menia."
+  },
+  {
+   "loc": "§ 85o ods. 11",
+   "type": "added",
+   "text": "Údaje podľa odsekov 9 a 10 sa oznamujú finančnému riaditeľstvu prostredníctvom doručovacej služby; táto povinnosť sa považuje za splnenú odovzdaním elektronickej faktúry doručovacej službe."
+  },
+  {
+   "loc": "§ 85o ods. 12",
+   "type": "added",
+   "text": "Daňový úrad uloží pokutu do výšky 10 000 eur"
+  },
+  {
+   "loc": "§ 85o ods. 12 písm. a)",
+   "type": "added",
+   "text": "platiteľovi podľa odseku 2, ktorý"
+  },
+  {
+   "loc": "§ 85o ods. 12 písm. a) bod 1",
+   "type": "added",
+   "text": "neoznámil údaje podľa odseku 9 alebo oznámil tieto údaje po uplynutí lehoty uvedenej v odseku 9,"
+  },
+  {
+   "loc": "§ 85o ods. 12 písm. a) bod 2",
+   "type": "added",
+   "text": "neoznámil všetky údaje, ktoré bol povinný oznámiť podľa odseku 9 alebo oznámil údaje, ktoré bol povinný oznámiť podľa odseku 9, nesprávne,"
+  },
+  {
+   "loc": "§ 85o ods. 12 písm. b)",
+   "type": "added",
+   "text": "osobe podľa odseku 3 písm. a), ktorá je platiteľom podľa § 4, 4b alebo § 4c, ktorá"
+  },
+  {
+   "loc": "§ 85o ods. 12 písm. b) bod 1",
+   "type": "added",
+   "text": "neoznámila údaje podľa odseku 10 alebo oznámila tieto údaje po uplynutí lehoty uvedenej v odseku 10,"
+  },
+  {
+   "loc": "§ 85o ods. 12 písm. b) bod 2",
+   "type": "added",
+   "text": "neoznámila všetky údaje, ktoré bola povinná oznámiť podľa odseku 10 alebo oznámila údaje, ktoré bola povinná oznámiť podľa odseku 10, nesprávne."
+  },
+  {
+   "loc": "§ 85o ods. 13",
+   "type": "added",
+   "text": "Daňový úrad uloží pokutu do výšky 100 000 eur"
+  },
+  {
+   "loc": "§ 85o ods. 13 písm. a)",
+   "type": "added",
+   "text": "platiteľovi podľa odseku 2, ak sa dopustí konania podľa odseku 12 písm. a) opakovane,"
+  },
+  {
+   "loc": "§ 85o ods. 13 písm. b)",
+   "type": "added",
+   "text": "osobe podľa odseku 3 písm. a), ktorá je platiteľom podľa § 4, 4b alebo § 4c, ak sa dopustí konania podľa odseku 12 písm. b) opakovane."
+  },
+  {
+   "loc": "§ 85o ods. 14",
+   "type": "added",
+   "text": "Daňový úrad prihliadne pri určení výšky pokuty podľa odsekov 12 a 13 na závažnosť a dĺžku trvania protiprávneho stavu; pokutu podľa odsekov 12 a 13 neuloží, ak"
+  },
+  {
+   "loc": "§ 85o ods. 14 písm. a)",
+   "type": "added",
+   "text": "platiteľ podľa odseku 2 opraví nesprávne uvedené údaje, ktoré bol povinný oznámiť podľa odseku 9, a z povahy veci vyplýva, že tieto údaje boli uvedené nesprávne z dôvodu zrejmého omylu,"
+  },
+  {
+   "loc": "§ 85o ods. 14 písm. b)",
+   "type": "added",
+   "text": "osoba podľa odseku 3 písm. a), ktorá je platiteľom podľa § 4, 4b alebo § 4c, opraví nesprávne uvedené údaje, ktoré bola povinná oznámiť podľa odseku 10, a z povahy veci vyplýva, že tieto údaje boli uvedené nesprávne z dôvodu zrejmého omylu,"
+  },
+  {
+   "loc": "§ 85o ods. 14 písm. c)",
+   "type": "added",
+   "text": "platiteľ podľa odseku 2 neoznámil údaje v lehote podľa odseku 9 z dôvodov preukázateľnej technickej poruchy na strane certifikovaného poskytovateľa doručovacej služby a údaje oznámil bezodkladne po odstránení tejto poruchy,"
+  },
+  {
+   "loc": "§ 85o ods. 14 písm. d)",
+   "type": "added",
+   "text": "osoba podľa odseku 3 písm. a), ktorá je platiteľom podľa § 4, 4b alebo § 4c, neoznámila údaje v lehote podľa odseku 10 z dôvodov preukázateľnej technickej poruchy na strane certifikovaného poskytovateľa doručovacej služby a údaje oznámila bezodkladne po odstránení tejto poruchy."
+  },
+  {
+   "loc": "§ 85o ods. 15",
+   "type": "added",
+   "text": "Platiteľ je povinný uchovávať elektronickú faktúru po dobu desiatich rokov od skončenia kalendárneho roka, ktorého sa elektronická faktúra týka."
+  },
+  {
+   "loc": "§ 85o ods. 16",
+   "type": "added",
+   "text": "Ak je platiteľ skupinou, povinnosti podľa odsekov 9 a 10 plní každý člen skupiny v rozsahu ním uskutočnených a prijatých zdaniteľných plnení."
+  },
+  {
+   "loc": "§ 85o ods. 23",
+   "type": "added",
+   "text": "Ak sa v období od 1. januára 2027 do 30. júna 2030 vyhotovuje doklad alebo oznámenie, ktoré mení pôvodnú faktúru vyhotovenú pri dodaní tovaru alebo služby uskutočnenom do 31. decembra 2026 a osobitne a jednoznačne sa na ňu vzťahuje, na jeho vyhotovenie sa vzťahujú rovnaké podmienky podľa § 71 až 76 v znení účinnom do 30. júna 2030 ako na vyhotovenie pôvodnej faktúry, ktorú mení; ak pôvodnou faktúrou je elektronická faktúra podľa odseku 21 vyhotovená platiteľom podľa § 4, 4b alebo § 4c pri dodaní tovaru alebo služby podľa odseku 22, zaslaná a prijatá doručovacou službou, doklad alebo oznámenie, ktoré ju mení, musí spĺňať rovnaké podmienky a byť zaslané doručovacou službou."
+  },
+  {
+   "loc": "§ 86a ods. 1",
+   "type": "added",
+   "text": "Ustanovenia tohto zákona účinné od 1. januára 2027 boli prijaté v súlade s právne záväzným aktom Európskej únie v oblasti technických predpisov."
+  }
+ ]
+}

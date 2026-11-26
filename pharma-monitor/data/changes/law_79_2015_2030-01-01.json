@@ -1,0 +1,18 @@
+{
+ "kind": "law_diff",
+ "law": "79/2015",
+ "law_name": "Waste Act",
+ "from": "2026-01-01",
+ "to": "2030-01-01",
+ "amended_by": "430/2021 Z. z.",
+ "amended_by_url": "https://static.slov-lex.sk/static/SK/ZZ/2021/430/20300101.html",
+ "old_url": "https://static.slov-lex.sk/static/SK/ZZ/2015/79/20260101.html",
+ "new_url": "https://static.slov-lex.sk/static/SK/ZZ/2015/79/20300101.html",
+ "changes": [
+  {
+   "loc": "§ 75d ods. 4 písm. b)",
+   "type": "added",
+   "text": "s obsahom minimálne 30 % recyklovaných plastov z celkového množstva ním uvedených plastových nápojových fliaš na území Slovenskej republiky."
+  }
+ ]
+}

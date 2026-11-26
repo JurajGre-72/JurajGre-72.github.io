@@ -1,0 +1,812 @@
+{
+ "kind": "price_list",
+ "month": "202612",
+ "previous": "202611",
+ "title": "Zoznam kategorizovaných liekov 1.12.2026 – 31.12.2026 – INFORMATÍVNY MATERIÁL",
+ "added": [
+  {
+   "code": "8993E",
+   "atc": "C01EB25",
+   "substance": "Akoramidis",
+   "name": "BEYONTTRA 356 mg filmom obalené tablety",
+   "pack": "tbl flm 120x356 mg (blis. PVC/PCTFE/Al)",
+   "mah": "BAY",
+   "price": "5758.35",
+   "reimb": "5758.35",
+   "copay": "0.00",
+   "po": "KAR",
+   "io": "ind.obm.,ZP"
+  },
+  {
+   "code": "4731C",
+   "atc": "L04AX07",
+   "substance": "Dimetyl-fumarát",
+   "name": "Skilarence 120 mg gastrorezistentné tablety",
+   "pack": "tbl ent 90x120 mg (blis.PVC/PVDC/Al)",
+   "mah": "LTD-1",
+   "price": "210.44",
+   "reimb": "210.44",
+   "copay": "0.00",
+   "po": "DER",
+   "io": "ind.obm.,ZP"
+  },
+  {
+   "code": "4728C",
+   "atc": "L04AX07",
+   "substance": "Dimetyl-fumarát",
+   "name": "Skilarence 30 mg gastrorezistentné tablety",
+   "pack": "tbl ent 42x30 mg (blis.PVC/PVDC/Al)",
+   "mah": "LTD-1",
+   "price": "87.88",
+   "reimb": "87.88",
+   "copay": "0.00",
+   "po": "DER",
+   "io": "ind.obm."
+  },
+  {
+   "code": "1249F",
+   "atc": "A10BD07",
+   "substance": "Metformín a sitagliptín",
+   "name": "Sitagliptin/Metformin Medreg",
+   "pack": "tbl flm 56x50 mg/1000 mg (blis.PVC/Al/OPA/Al)",
+   "mah": "MRG-3",
+   "price": "9.68",
+   "reimb": "8.68",
+   "copay": "1.00",
+   "po": "DIA",
+   "io": "ind.obm."
+  },
+  {
+   "code": "4435F",
+   "atc": "A16AX06",
+   "substance": "Miglustat",
+   "name": "Miglustat Waymade",
+   "pack": "cps dur 84x100 mg (blis.PVC/Aclar/Al)",
+   "mah": "WAM",
+   "price": "2329.09",
+   "reimb": "2329.09",
+   "copay": "0.00",
+   "po": "",
+   "io": "ind.obm.,ZP"
+  },
+  {
+   "code": "3735C",
+   "atc": "A16AX06",
+   "substance": "Miglustat",
+   "name": "Yargesa 100 mg tvrdé kapsuly",
+   "pack": "cps dur 84x1x100 mg (blis.PVC/PCTFE/Al - jednotk.dávka)",
+   "mah": "PLK-NL",
+   "price": "2329.09",
+   "reimb": "2329.09",
+   "copay": "0.00",
+   "po": "",
+   "io": "ind.obm.,ZP"
+  },
+  {
+   "code": "3657F",
+   "atc": "R03DX05",
+   "substance": "Omalizumab",
+   "name": "Omlyclo 300 mg injekčný roztok v naplnenom pere",
+   "pack": "sol inj 1x2 ml/300 mg (pero napl.)",
+   "mah": "CLO-2",
+   "price": "306.45",
+   "reimb": "306.45",
+   "copay": "0.00",
+   "po": "ALG, DER, TRN",
+   "io": "ind.obm.,ZP"
+  },
+  {
+   "code": "2423A",
+   "atc": "N02AA05",
+   "substance": "Oxykodón",
+   "name": "Contiroxil 40 mg tablety s predĺženým uvoľňovaním",
+   "pack": "tbl plg 60x40 mg (blis.PVC/PE/PVDC)",
+   "mah": "SAN-SLO-1",
+   "price": "24.66",
+   "reimb": "24.66",
+   "copay": "0.00",
+   "po": "AGG, GER, NEU, ONK, ORT, PLM, REU",
+   "io": "ind.obm."
+  },
+  {
+   "code": "7349D",
+   "atc": "L01EN02",
+   "substance": "Pemigatinib",
+   "name": "Pemazyre 13,5 mg tablety",
+   "pack": "tbl 14x13,5mg (blis.PVC/Al)",
+   "mah": "ICY-NL",
+   "price": "6763.55",
+   "reimb": "6763.55",
+   "copay": "0.00",
+   "po": "ONK",
+   "io": "ind.obm.,ZP"
+  },
+  {
+   "code": "7345D",
+   "atc": "L01EN02",
+   "substance": "Pemigatinib",
+   "name": "Pemazyre 4,5 mg tablety",
+   "pack": "tbl 14x4,5 mg (blis.PVC/Al)",
+   "mah": "ICY-NL",
+   "price": "6763.55",
+   "reimb": "6763.55",
+   "copay": "0.00",
+   "po": "ONK",
+   "io": "ind.obm.,ZP"
+  },
+  {
+   "code": "7347D",
+   "atc": "L01EN02",
+   "substance": "Pemigatinib",
+   "name": "Pemazyre 9 mg tablety",
+   "pack": "tbl 14x9mg (blis.PVC/Al)",
+   "mah": "ICY-NL",
+   "price": "6763.55",
+   "reimb": "6763.55",
+   "copay": "0.00",
+   "po": "ONK",
+   "io": "ind.obm.,ZP"
+  },
+  {
+   "code": "8587D",
+   "atc": "S01LA04",
+   "substance": "Ranibizumab",
+   "name": "Byooviz 10 mg/ml injekčný roztok",
+   "pack": "sol inj 1x0,23 ml/2,3 mg (liek.inj.skl.+ ihla s filtr.+ihla inj.)",
+   "mah": "SUO-NL",
+   "price": "318.29",
+   "reimb": "297.78",
+   "copay": "20.51",
+   "po": "OPH",
+   "io": "ind.obm.,ZP"
+  },
+  {
+   "code": "3164F",
+   "atc": "S01LA04",
+   "substance": "Ranibizumab",
+   "name": "Byooviz 10 mg/ml injekčný roztok v naplnenej injekčnej striekačke",
+   "pack": "sol inj 1x0,165 ml/1,65 mg (striek.inj.napl.)",
+   "mah": "SUO-NL",
+   "price": "318.29",
+   "reimb": "297.78",
+   "copay": "20.51",
+   "po": "OPH",
+   "io": "ind.obm.,ZP"
+  },
+  {
+   "code": "2947F",
+   "atc": "S01LA04",
+   "substance": "Ranibizumab",
+   "name": "Ranluspec 10 mg/ml injekčný roztok v naplnenej injekčnej striekačke",
+   "pack": "sol inj 1x0,165 ml/1,65 mg (striek.inj.napl COP)",
+   "mah": "LPN-DE-1",
+   "price": "297.78",
+   "reimb": "297.78",
+   "copay": "0.00",
+   "po": "OPH",
+   "io": "ind.obm.,ZP"
+  },
+  {
+   "code": "1236F",
+   "atc": "A10BH01",
+   "substance": "Sitagliptín",
+   "name": "Sitagliptin Medreg",
+   "pack": "tbl flm 28x100 mg (blis.PVC/PE/PVDC/Al)",
+   "mah": "MRG-3",
+   "price": "7.75",
+   "reimb": "7.75",
+   "copay": "0.00",
+   "po": "DIA",
+   "io": "ind.obm."
+  },
+  {
+   "code": "1243F",
+   "atc": "A10BH01",
+   "substance": "Sitagliptín",
+   "name": "Sitagliptin Medreg",
+   "pack": "tbl flm 98x100 mg (blis.PVC/PE/PVDC/Al)",
+   "mah": "MRG-3",
+   "price": "27.12",
+   "reimb": "27.12",
+   "copay": "0.00",
+   "po": "DIA",
+   "io": "ind.obm."
+  },
+  {
+   "code": "3444F",
+   "atc": "H05AA02",
+   "substance": "Teriparatid",
+   "name": "Sondelbay 20 mikrogramov/80 mikrolitrov injekčný roztok v naplnenom pere",
+   "pack": "sol inj 1x2,4 ml/600 µg (pero napl. + 28 ihiel)",
+   "mah": "ACC-ES",
+   "price": "140.02",
+   "reimb": "140.02",
+   "copay": "0.00",
+   "po": "END, KLF, ORT, REU",
+   "io": "ind.obm."
+  }
+ ],
+ "removed": [
+  {
+   "code": "9489B",
+   "atc": "L01FC01",
+   "substance": "Daratumumab",
+   "name": "DARZALEX 20 mg/ml infúzny koncentrát",
+   "pack": "con inf 1x20 ml/400 mg (liek.inj.skl.)",
+   "mah": "JNS",
+   "price": "1512.76",
+   "reimb": "1512.76",
+   "copay": "0.00",
+   "po": "HEM, ONK",
+   "io": "ind.obm.,ZP"
+  },
+  {
+   "code": "5510D",
+   "atc": "V03AC03",
+   "substance": "Deferasirox",
+   "name": "Deferasirox Teva 360 mg filmom obalené tablety",
+   "pack": "tbl flm 30x1x360 mg (blis.Al/PVC/PE/PVDC-jednotliv.dáv.)",
+   "mah": "TEV-SK",
+   "price": "194.29",
+   "reimb": "194.29",
+   "copay": "0.00",
+   "po": "HEM",
+   "io": ""
+  },
+  {
+   "code": "2668E",
+   "atc": "A10BA02",
+   "substance": "Metformín",
+   "name": "Metformin Viatris 1000 mg",
+   "pack": "tbl plg 60x1000 mg (blis.PVC/Al)",
+   "mah": "VIM",
+   "price": "8.24",
+   "reimb": "6.81",
+   "copay": "1.43",
+   "po": "DIA, ENP",
+   "io": "ind.obm."
+  },
+  {
+   "code": "26277",
+   "atc": "A03AX04",
+   "substance": "Pinavérium",
+   "name": "dicetel 100 mg",
+   "pack": "tbl flm 20x100 mg (blis.PVC/Al)",
+   "mah": "VIM-1",
+   "price": "3.10",
+   "reimb": "1.60",
+   "copay": "1.50",
+   "po": "",
+   "io": ""
+  },
+  {
+   "code": "95320",
+   "atc": "G04CA02",
+   "substance": "Tamsulosín",
+   "name": "Tamsulosin HCl Viatris 0,4 mg",
+   "pack": "cps mdd 100x0,4 mg (blis.PVC/PE/PVDC/Al)",
+   "mah": "VIM",
+   "price": "9.41",
+   "reimb": "9.41",
+   "copay": "0.00",
+   "po": "URO",
+   "io": ""
+  },
+  {
+   "code": "3648A",
+   "atc": "N02AX02",
+   "substance": "Tramadol",
+   "name": "Tramadol Viatris 200 mg",
+   "pack": "tbl plg 30x200 mg (blis.Al/PVC/PE/PVDC)",
+   "mah": "VIM",
+   "price": "8.36",
+   "reimb": "7.50",
+   "copay": "0.86",
+   "po": "",
+   "io": ""
+  },
+  {
+   "code": "24546",
+   "atc": "V03A",
+   "substance": "Všetky ostatné liečivá",
+   "name": "Stafal",
+   "pack": "sol der 1x10 ml (fľ.skl.)",
+   "mah": "BHE",
+   "price": "84.30",
+   "reimb": "15.77",
+   "copay": "68.53",
+   "po": "",
+   "io": ""
+  }
+ ],
+ "changed": [
+  {
+   "code": "0702F",
+   "name": "Abirateron MSN 500 mg filmom obalené tablety",
+   "pack": "tbl flm 60x500 mg (blis.PVC/PE/PVDC/Al)",
+   "substance": "Abiraterón",
+   "atc": "L02BX03",
+   "mah": "MXS-2",
+   "changes": {
+    "price": [
+     "281.58",
+     "262.17"
+    ],
+    "copay": [
+     "19.41",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "2092F",
+   "name": "Ahzantive 40 mg/ml, injekčný roztok v naplnenej injekčnej striekačke",
+   "pack": "sol inj 1x0,09 ml/3,6 mg (striek.inj.napl.COP)",
+   "substance": "Aflibercept",
+   "atc": "S01LA05",
+   "mah": "FOY",
+   "changes": {
+    "price": [
+     "455.06",
+     "416.68"
+    ],
+    "copay": [
+     "38.38",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "0547E",
+   "name": "Apixaban STADA 2,5 mg",
+   "pack": "tbl flm 60x2,5 mg (blis.Al/PVC/PE/PVDC)",
+   "substance": "Apixabán",
+   "atc": "B01AF02",
+   "mah": "STD",
+   "changes": {
+    "price": [
+     "18.99",
+     "14.43"
+    ],
+    "copay": [
+     "4.56",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "0549E",
+   "name": "Apixaban STADA 2,5 mg",
+   "pack": "tbl flm 168x2,5 mg (blis.Al/PVC/PE/PVDC)",
+   "substance": "Apixabán",
+   "atc": "B01AF02",
+   "mah": "STD",
+   "changes": {
+    "price": [
+     "53.16",
+     "40.40"
+    ],
+    "copay": [
+     "12.76",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "0563E",
+   "name": "Apixaban STADA 5 mg",
+   "pack": "tbl flm 60x5 mg (blis.Al/PVC/PE/PVDC)",
+   "substance": "Apixabán",
+   "atc": "B01AF02",
+   "mah": "STD",
+   "changes": {
+    "price": [
+     "18.99",
+     "14.43"
+    ],
+    "copay": [
+     "4.56",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "0565E",
+   "name": "Apixaban STADA 5 mg",
+   "pack": "tbl flm 168x5 mg (blis.Al/PVC/PE/PVDC)",
+   "substance": "Apixabán",
+   "atc": "B01AF02",
+   "mah": "STD",
+   "changes": {
+    "price": [
+     "53.16",
+     "40.40"
+    ],
+    "copay": [
+     "12.76",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "8891D",
+   "name": "Apixaban Sandoz 2,5 mg",
+   "pack": "tbl flm 60x2,5 mg (blis.Al/PVC/PVDC)",
+   "substance": "Apixabán",
+   "atc": "B01AF02",
+   "mah": "SAN-SLO-1",
+   "changes": {
+    "price": [
+     "28.07",
+     "14.43"
+    ],
+    "copay": [
+     "13.64",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "8893D",
+   "name": "Apixaban Sandoz 2,5 mg",
+   "pack": "tbl flm 168x2,5 mg (blis.Al/PVC/PVDC)",
+   "substance": "Apixabán",
+   "atc": "B01AF02",
+   "mah": "SAN-SLO-1",
+   "changes": {
+    "price": [
+     "76.88",
+     "40.40"
+    ],
+    "copay": [
+     "36.48",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "8907D",
+   "name": "Apixaban Sandoz 5 mg",
+   "pack": "tbl flm 60x5 mg (blis.Al/PVC/PVDC)",
+   "substance": "Apixabán",
+   "atc": "B01AF02",
+   "mah": "SAN-SLO-1",
+   "changes": {
+    "price": [
+     "28.07",
+     "14.43"
+    ],
+    "copay": [
+     "13.64",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "8909D",
+   "name": "Apixaban Sandoz 5 mg",
+   "pack": "tbl flm 168x5 mg (blis.Al/PVC/PVDC)",
+   "substance": "Apixabán",
+   "atc": "B01AF02",
+   "mah": "SAN-SLO-1",
+   "changes": {
+    "price": [
+     "76.91",
+     "40.40"
+    ],
+    "copay": [
+     "36.51",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "9299D",
+   "name": "Apixaban Viatris 2,5 mg",
+   "pack": "tbl flm 60x2,5 mg (blis.PVC/PVDC/Al)",
+   "substance": "Apixabán",
+   "atc": "B01AF02",
+   "mah": "VIM",
+   "changes": {
+    "price": [
+     "18.99",
+     "14.43"
+    ],
+    "copay": [
+     "4.56",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "9301D",
+   "name": "Apixaban Viatris 2,5 mg",
+   "pack": "tbl flm 168x2,5 mg (blis.PVC/PVDC/Al)",
+   "substance": "Apixabán",
+   "atc": "B01AF02",
+   "mah": "VIM",
+   "changes": {
+    "price": [
+     "53.16",
+     "40.40"
+    ],
+    "copay": [
+     "12.76",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "9318D",
+   "name": "Apixaban Viatris 5 mg",
+   "pack": "tbl flm 60x5 mg (blis.PVC/PVDC/Al)",
+   "substance": "Apixabán",
+   "atc": "B01AF02",
+   "mah": "VIM",
+   "changes": {
+    "price": [
+     "18.99",
+     "14.43"
+    ],
+    "copay": [
+     "4.56",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "9320D",
+   "name": "Apixaban Viatris 5 mg",
+   "pack": "tbl flm 168x5 mg (blis.PVC/PVDC/Al)",
+   "substance": "Apixabán",
+   "atc": "B01AF02",
+   "mah": "VIM",
+   "changes": {
+    "price": [
+     "53.16",
+     "40.40"
+    ],
+    "copay": [
+     "12.76",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "1801F",
+   "name": "Dimethyl Fumarate Olpha 120 mg tvrdé gastrorezistentné kapsuly",
+   "pack": "cps end 14x120 mg (blis.PVC/PE/PVDC/Al)",
+   "substance": "Dimetyl-fumarát",
+   "atc": "L04AX07",
+   "mah": "OLA-2",
+   "changes": {
+    "price": [
+     "43.82",
+     "38.80"
+    ],
+    "copay": [
+     "5.02",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "1802F",
+   "name": "Dimethyl Fumarate Olpha 240 mg tvrdé gastrorezistentné kapsuly",
+   "pack": "cps end 56x240 mg (blis.PVC/PE/PVDC/Al)",
+   "substance": "Dimetyl-fumarát",
+   "atc": "L04AX07",
+   "mah": "OLA-2",
+   "changes": {
+    "price": [
+     "271.76",
+     "247.81"
+    ],
+    "reimb": [
+     "247.83",
+     "247.81"
+    ],
+    "copay": [
+     "23.93",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "0551D",
+   "name": "Dutamon",
+   "pack": "cps mol 90x0,5 mg (blis.PVC/PE/PVDC/Al)",
+   "substance": "Dutasterid",
+   "atc": "G04CB02",
+   "mah": "ARZ",
+   "changes": {
+    "price": [
+     "32.58",
+     "32.42"
+    ],
+    "copay": [
+     "7.56",
+     "7.40"
+    ]
+   }
+  },
+  {
+   "code": "05754",
+   "name": "Binocrit 40 000 IU/1 ml injekčný roztok v naplnenej injekčnej striekačke",
+   "pack": "sol iru 6x1 ml/40000 IU (striek.inj.skl.napln.+ochr.kryt ihly)",
+   "substance": "Erytropoetín",
+   "atc": "B03XA01",
+   "mah": "SAN-A",
+   "changes": {
+    "price": [
+     "1079.25",
+     "1070.64"
+    ],
+    "copay": [
+     "8.61",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "6541B",
+   "name": "Eporatio 10000 IU/1,0 ml injekčný roztok v naplnenej injekčnej striekačke",
+   "pack": "sol inj 6x1,0 ml/10000 IU (striek.skl.napl. s bezpeč.ihlou)",
+   "substance": "Erytropoetín",
+   "atc": "B03XA01",
+   "mah": "RAT",
+   "changes": {
+    "price": [
+     "269.81",
+     "267.66"
+    ],
+    "copay": [
+     "2.15",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "6545B",
+   "name": "Eporatio 20000 IU/1,0 ml injekčný roztok v naplnenej injekčnej striekačke",
+   "pack": "sol inj 6x1,0 ml/20000 IU (striek.skl.napl. s bezpeč.ihlou)",
+   "substance": "Erytropoetín",
+   "atc": "B03XA01",
+   "mah": "RAT",
+   "changes": {
+    "price": [
+     "539.62",
+     "535.32"
+    ],
+    "copay": [
+     "4.30",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "6548B",
+   "name": "Eporatio 30000 IU/1,0 ml injekčný roztok v naplnenej injekčnej striekačke",
+   "pack": "sol inj 6x1,0 ml/30000 IU (striek.skl.napl. s bezpeč.ihlou)",
+   "substance": "Erytropoetín",
+   "atc": "B03XA01",
+   "mah": "RAT",
+   "changes": {
+    "price": [
+     "809.43",
+     "802.98"
+    ],
+    "copay": [
+     "6.45",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "1310F",
+   "name": "Fingolimod Olpha 0,5 mg tvrdé kapsuly",
+   "pack": "cps dur 28x0,5 mg (blis.PVC/PVDC/Al)",
+   "substance": "Fingolimod",
+   "atc": "L04AE01",
+   "mah": "OLA-2",
+   "changes": {
+    "price": [
+     "426.27",
+     "270.61"
+    ],
+    "reimb": [
+     "270.62",
+     "270.61"
+    ],
+    "copay": [
+     "155.65",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "5927E",
+   "name": "Niapelf 100 mg injekčná suspenzia s predĺženým uvoľňovaním",
+   "pack": "sus ijp 1x100 mg (striek.inj.napl.COC + 2 ihly)",
+   "substance": "Paliperidón",
+   "atc": "N05AX13",
+   "mah": "NUH",
+   "changes": {
+    "price": [
+     "112.65",
+     "111.92"
+    ],
+    "copay": [
+     "0.73",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "5928E",
+   "name": "Niapelf 150 mg injekčná suspenzia s predĺženým uvoľňovaním",
+   "pack": "sus ijp 1x150 mg (striek.inj.napl.COC + 2 ihly)",
+   "substance": "Paliperidón",
+   "atc": "N05AX13",
+   "mah": "NUH",
+   "changes": {
+    "price": [
+     "167.52",
+     "166.56"
+    ],
+    "copay": [
+     "0.96",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "5926E",
+   "name": "Niapelf 75 mg injekčná suspenzia s predĺženým uvoľňovaním",
+   "pack": "sus ijp 1x75 mg (striek.inj.napl.COC + 2 ihly)",
+   "substance": "Paliperidón",
+   "atc": "N05AX13",
+   "mah": "NUH",
+   "changes": {
+    "price": [
+     "90.28",
+     "89.79"
+    ],
+    "copay": [
+     "0.49",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "6497D",
+   "name": "Enhertu 100 mg prášok na koncentrát na infúzny roztok",
+   "pack": "plc ifc 1x100 mg (liek.inj.skl.jantár.)",
+   "substance": "Trastuzumab-deruxtekan",
+   "atc": "L01FD04",
+   "mah": "DCH-1",
+   "changes": {
+    "reimb": [
+     "1359.92",
+     "1304.92"
+    ],
+    "copay": [
+     "0.00",
+     "55.00"
+    ]
+   }
+  }
+ ],
+ "fields": {
+  "price": "Max. price €",
+  "reimb": "Reimbursement €",
+  "copay": "Patient co-pay €",
+  "po": "Prescription restriction",
+  "io": "Indication restriction"
+ },
+ "counts": {
+  "added": 17,
+  "removed": 7,
+  "changed": 26
+ }
+}

@@ -1,0 +1,997 @@
+{
+ "kind": "law_diff",
+ "law": "581/2004",
+ "law_name": "Act on Health Insurance Companies",
+ "from": "2026-04-01",
+ "to": "2026-07-01",
+ "amended_by": "344/2025 Z. z.",
+ "amended_by_url": "https://static.slov-lex.sk/static/SK/ZZ/2025/344/20260701.html",
+ "old_url": "https://static.slov-lex.sk/static/SK/ZZ/2004/581/20260401.html",
+ "new_url": "https://static.slov-lex.sk/static/SK/ZZ/2004/581/20260701.html",
+ "changes": [
+  {
+   "loc": "§ 6 ods. 11",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Zdravotná "
+    ],
+    [
+     "+",
+     "Na účely zabezpečenia poradenskej činnosti pre poistencov zdravotná "
+    ],
+    [
+     "=",
+     "poisťovňa "
+    ],
+    [
+     "-",
+     "nesmie podmieňovať prepojenie poskytovateľa zdravotnej starostlivosti na národný zdravotnícky informačný systém akýmikoľvek zmluvnými dojednaniami nesúvisiacimi s týmto prepojím alebo so vzájomným poskytovaním údajov podľa § 7 ods. 20."
+    ],
+    [
+     "+",
+     "môže"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 6 ods. 12",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Na účely zabezpečenia poradenskej činnosti pre poistencov zdravotná "
+    ],
+    [
+     "+",
+     "Zdravotná "
+    ],
+    [
+     "=",
+     "poisťovňa "
+    ],
+    [
+     "-",
+     "môže"
+    ],
+    [
+     "+",
+     "na základe analýz vypracovaných podľa odseku 11 môže poskytovať poistencom relevantné výsledky týchto analýz reflektujúce ich zdravotný stav s odporúčaním absolvovať preventívnu prehliadku, vyšetrenie alebo iné poskytnutie zdravotnej starostlivosti, ktoré si vyžaduje zdravotný stav poistenca."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 6 ods. 12 písm. a)",
+   "type": "removed",
+   "text": "poskytovať pre poistencov"
+  },
+  {
+   "loc": "§ 6 ods. 12 písm. a) bod 1",
+   "type": "removed",
+   "text": "poradenstvo o zdraví,"
+  },
+  {
+   "loc": "§ 6 ods. 12 písm. a) bod 2",
+   "type": "removed",
+   "text": "o životospráve a"
+  },
+  {
+   "loc": "§ 6 ods. 12 písm. a) bod 3",
+   "type": "removed",
+   "text": "o zdravom životnom štýle,"
+  },
+  {
+   "loc": "§ 6 ods. 12 písm. a) bod 4",
+   "type": "removed",
+   "text": "programy zdravia slúžiace na odhaľovanie ochorení a podporu zdravého spôsobu života a zdravia poistencov a motivácie k pozitívnym zmenám pri predchádzaní ochoreniam,"
+  },
+  {
+   "loc": "§ 6 ods. 12 písm. b)",
+   "type": "removed",
+   "text": "vykonávať analýzu efektívnosti programov uvedených v písmene a),"
+  },
+  {
+   "loc": "§ 6 ods. 12 písm. c)",
+   "type": "removed",
+   "text": "analyzovať a spracúvať osobné údaje poistencov v rozsahu podľa § 16 ods. 2."
+  },
+  {
+   "loc": "§ 6 ods. 13",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "Zdravotná "
+    ],
+    [
+     "+",
+     "Na účely poskytovania poradenskej činnosti zdravotná "
+    ],
+    [
+     "=",
+     "poisťovňa "
+    ],
+    [
+     "-",
+     "na základe analýz vypracovaných podľa odseku 12 môže poskytovať "
+    ],
+    [
+     "+",
+     "spracúva "
+    ],
+    [
+     "=",
+     "poistencom "
+    ],
+    [
+     "-",
+     "relevantné výsledky týchto analýz reflektujúce ich zdravotný stav s odporúčaním absolvovať preventívnu prehliadku, vyšetrenie alebo iné poskytnutie zdravotnej starostlivosti, ktoré si vyžaduje zdravotný stav poistenca."
+    ],
+    [
+     "+",
+     "poskytnuté osobné údaje. Na spracovanie osobných údajov, vrátane osobitných kategórií údajov, sa nevyžaduje súhlas poistenca (§ 16 ods. 7)."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 6 ods. 14",
+   "type": "removed",
+   "text": "Na účely poskytovania poradenskej činnosti zdravotná poisťovňa spracúva poistencom poskytnuté osobné údaje. Na spracovanie osobných údajov, vrátane osobitných kategórií údajov, sa nevyžaduje súhlas poistenca (§ 16 ods. 7)."
+  },
+  {
+   "loc": "§ 8 ods. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Zdravotná poisťovňa uhrádza na základe zmlúv uzatvorených podľa § 7 poskytnutú zdravotnú starostlivosť v rozsahu "
+    ],
+    [
+     "-",
+     "ustanovenom osobitným predpisom "
+    ],
+    [
+     "+",
+     "a za podmienok ustanovených v odseku 25, § 8aa ods. 2 a osobitnými predpismi "
+    ],
+    [
+     "=",
+     "podľa dohodnutej ceny [§ 7 ods. 9 písm. c) alebo písm. e)], ak tento zákon neustanovuje inak. Podkladom na úhradu zdravotnej starostlivosti je finančné zúčtovanie podľa § 8aa, ak sa zdravotná poisťovňa s poskytovateľom zdravotnej starostlivosti v zmluve o poskytovaní zdravotnej starostlivosti (§ 7 a 7a) nedohodnú inak."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 8aa ods. 2 písm. g)",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "údaje o predpísaných, vydaných "
+    ],
+    [
+     "+",
+     "identifikačné číslo elektronického zdravotného záznamu pridelené informačným systémom poskytovateľa zdravotnej starostlivosti, ak sa zdravotná dokumentácia vedie v elektronickej zdravotnej knižke "
+    ],
+    [
+     "=",
+     "a "
+    ],
+    [
+     "-",
+     "podaných liekoch, zdravotníckych pomôckach a dietetických potravinách "
+    ],
+    [
+     "=",
+     "v "
+    ],
+    [
+     "-",
+     "rozsahu údajov uvedených v lekárskom predpise "
+    ],
+    [
+     "+",
+     "odseku 5 "
+    ],
+    [
+     "=",
+     "alebo "
+    ],
+    [
+     "-",
+     "lekárskom poukaze alebo v rozsahu preskripčných, medikačných a dispenzačných záznamov,"
+    ],
+    [
+     "+",
+     "§ 86zv nie je ustanovené inak,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 8aa ods. 2 písm. h)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "údaje o "
+    ],
+    [
+     "-",
+     "poistencovi zaradenom na dispenzarizáciu podľa osobitného predpisu na účel uvedený "
+    ],
+    [
+     "+",
+     "predpísaných, vydaných a podaných liekoch, zdravotníckych pomôckach a dietetických potravinách "
+    ],
+    [
+     "=",
+     "v "
+    ],
+    [
+     "-",
+     "§ 6 ods. 1 písm. i),"
+    ],
+    [
+     "+",
+     "rozsahu údajov uvedených v lekárskom predpise alebo lekárskom poukaze alebo v rozsahu preskripčných, medikačných a dispenzačných záznamov,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 8aa ods. 2 písm. i)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "údaje o poistencovi "
+    ],
+    [
+     "-",
+     "čakajúcom "
+    ],
+    [
+     "+",
+     "zaradenom "
+    ],
+    [
+     "=",
+     "na "
+    ],
+    [
+     "-",
+     "poskytnutie plánovanej zdravotnej starostlivosti "
+    ],
+    [
+     "+",
+     "dispenzarizáciu "
+    ],
+    [
+     "=",
+     "podľa osobitného "
+    ],
+    [
+     "-",
+     "predpisu,16aa)"
+    ],
+    [
+     "+",
+     "predpisu na účel uvedený v § 6 ods. 1 písm. i),"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 8aa ods. 2 písm. j)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "údaje o "
+    ],
+    [
+     "-",
+     "poistencovi, ktorému bola poskytnutá zdravotná starostlivosť v predchádzajúcom mesiaci počas doplnkových ordinačných hodín alebo v rámci domácej "
+    ],
+    [
+     "+",
+     "poistencovi čakajúcom na poskytnutie plánovanej zdravotnej "
+    ],
+    [
+     "=",
+     "starostlivosti podľa osobitného "
+    ],
+    [
+     "-",
+     "predpisu,"
+    ],
+    [
+     "+",
+     "predpisu,16aa)"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 8aa ods. 2 písm. k)",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "kód poskytnutej zdravotnej starostlivosti, za ktorú má "
+    ],
+    [
+     "+",
+     "údaje o poistencovi, ktorému bola poskytnutá "
+    ],
+    [
+     "=",
+     "zdravotná "
+    ],
+    [
+     "-",
+     "poisťovňa právo uplatniť svoj nárok na úhradu nákladov "
+    ],
+    [
+     "+",
+     "starostlivosť v predchádzajúcom mesiaci počas doplnkových ordinačných hodín alebo v rámci domácej starostlivosti "
+    ],
+    [
+     "=",
+     "podľa osobitného predpisu,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 8aa ods. 2 písm. l)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "kód "
+    ],
+    [
+     "-",
+     "zdravotného výkonu a cenu zdravotného výkonu,"
+    ],
+    [
+     "+",
+     "poskytnutej zdravotnej starostlivosti, za ktorú má zdravotná poisťovňa právo uplatniť svoj nárok na úhradu nákladov podľa osobitného predpisu,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 8aa ods. 2 písm. m)",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "dátum začiatku alebo dátum ukončenia kapitácie poistenca, ak ide o úhradu formou kapitácie,"
+    ],
+    [
+     "+",
+     "kód zdravotného výkonu a cenu zdravotného výkonu,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 8aa ods. 2 písm. n)",
+   "type": "changed",
+   "diff": [
+    [
+     "-",
+     "identifikačné údaje poistenca v rozsahu podľa písmena a), ktorému bolo poskytnuté očkovanie v rámci lekárenskej starostlivosti."
+    ],
+    [
+     "+",
+     "dátum začiatku alebo dátum ukončenia kapitácie poistenca, ak ide o úhradu formou kapitácie,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 9 ods. 3",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Zdravotná poisťovňa môže vykonávať kontrolnú činnosť aj ako kontrolu na diaľku; kontrolou na diaľku sa rozumie vyhodnocovanie informácií o poskytovateľoch zdravotnej starostlivosti a platiteľoch poistného (ďalej len „kontrolovaný subjekt“) obsiahnutých v informačnom systéme zdravotnej poisťovne alebo tvoriacich dokumentáciu zdravotnej poisťovne podľa § 16. Kontrolou na diaľku sa rozumie aj vyhodnocovanie elektronických zdravotných záznamov v elektronickej zdravotnej knižke revíznym lekárom, revíznym farmaceutom a revíznou sestrou v rozsahu ustanovenom osobitným predpisom alebo vyhodnocovanie elektronických záznamov podľa osobitného predpisu informačným systémom zdravotnej poisťovne a poskytovanie výsledkov kontroly poskytovateľovi zdravotnej starostlivosti. "
+    ],
+    [
+     "+",
+     "Kontrolou na diaľku sa rozumie aj kontrola údajov sprístupnených elektronicky národným centrom v rozsahu podľa osobitného predpisu vrátane zhody identifikačného čísla elektronického zdravotného záznamu v zúčtovacej dávke s identifikačným číslom elektronického zdravotného záznamu v elektronickej zdravotnej knižke, informačným systémom zdravotnej poisťovne. "
+    ],
+    [
+     "=",
+     "Revízny lekár, revízny farmaceut a revízna sestra pristupujú k elektronickým zdravotným záznamom v elektronickej zdravotnej knižke prostredníctvom elektronického preukazu zdravotníckeho pracovníka."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 6 ods. 11 písm. a)",
+   "type": "added",
+   "text": "poskytovať pre poistencov"
+  },
+  {
+   "loc": "§ 6 ods. 11 písm. a) bod 1",
+   "type": "added",
+   "text": "poradenstvo o zdraví,"
+  },
+  {
+   "loc": "§ 6 ods. 11 písm. a) bod 2",
+   "type": "added",
+   "text": "o životospráve a"
+  },
+  {
+   "loc": "§ 6 ods. 11 písm. a) bod 3",
+   "type": "added",
+   "text": "o zdravom životnom štýle,"
+  },
+  {
+   "loc": "§ 6 ods. 11 písm. a) bod 4",
+   "type": "added",
+   "text": "programy zdravia slúžiace na odhaľovanie ochorení a podporu zdravého spôsobu života a zdravia poistencov a motivácie k pozitívnym zmenám pri predchádzaní ochoreniam,"
+  },
+  {
+   "loc": "§ 6 ods. 11 písm. b)",
+   "type": "added",
+   "text": "vykonávať analýzu efektívnosti programov uvedených v písmene a),"
+  },
+  {
+   "loc": "§ 6 ods. 11 písm. c)",
+   "type": "added",
+   "text": "analyzovať a spracúvať osobné údaje poistencov v rozsahu podľa § 16 ods. 2."
+  },
+  {
+   "loc": "§ 8 ods. 25",
+   "type": "added",
+   "text": "Zdravotná poisťovňa neuhradí poskytnutú zdravotnú starostlivosť podľa odsekov 1 a 3, ak zúčtovacia dávka neobsahuje identifikačné číslo elektronického zdravotného záznamu podľa § 8aa ods. 2 písm. g)."
+  },
+  {
+   "loc": "§ 8aa ods. 2 písm. o)",
+   "type": "added",
+   "text": "identifikačné údaje poistenca v rozsahu podľa písmena a), ktorému bolo poskytnuté očkovanie v rámci lekárenskej starostlivosti."
+  },
+  {
+   "loc": "§ 8aa ods. 5",
+   "type": "added",
+   "text": "Zúčtovacia dávka podľa odseku 2 nemusí obsahovať identifikačné číslo elektronického zdravotného záznamu podľa odseku 2 písm. g), ak bola zdravotná starostlivosť poskytnutá"
+  },
+  {
+   "loc": "§ 8aa ods. 5 písm. a)",
+   "type": "added",
+   "text": "ako zlúčený klasifikačný prípad podľa § 67b ods. 3 písm. e),"
+  },
+  {
+   "loc": "§ 8aa ods. 5 písm. b)",
+   "type": "added",
+   "text": "fyzickej osobe, ktorá nie je verejne zdravotne poistená v Slovenskej republike,"
+  },
+  {
+   "loc": "§ 8aa ods. 5 písm. c)",
+   "type": "added",
+   "text": "fyzickej osobe, ktorá má za účelom vykazovania poskytnutej zdravotnej starostlivosti pridelené bezvýznamové identifikačné číslo pridelené úradom,"
+  },
+  {
+   "loc": "§ 8aa ods. 5 písm. d)",
+   "type": "added",
+   "text": "žene, ktorá písomne požiadala o utajenie svojej osoby v súvislosti s pôrodom,"
+  },
+  {
+   "loc": "§ 8aa ods. 5 písm. e)",
+   "type": "added",
+   "text": "poistencovi, ktorý nepodal prihlášku na verejné zdravotné poistenie,"
+  },
+  {
+   "loc": "§ 8aa ods. 5 písm. f)",
+   "type": "added",
+   "text": "fyzickej osobe, ktorá je verejne zdravotne poistená v Slovenskej republike a nie je zapísaná v registri fyzických osôb,"
+  },
+  {
+   "loc": "§ 8aa ods. 5 písm. g)",
+   "type": "added",
+   "text": "v tkanivovom zariadení v tomto odbornom zameraní s touto skratkou podľa číselníka zdravotníckej informatiky:"
+  },
+  {
+   "loc": "§ 8aa ods. 5 písm. g) bod 1",
+   "type": "added",
+   "text": "očná banka, skratka 190,"
+  },
+  {
+   "loc": "§ 8aa ods. 5 písm. g) bod 2",
+   "type": "added",
+   "text": "biobanka, skratka 213,"
+  },
+  {
+   "loc": "§ 8aa ods. 5 písm. g) bod 3",
+   "type": "added",
+   "text": "nemocničná krvná banka, skratka 218,"
+  },
+  {
+   "loc": "§ 8aa ods. 5 písm. g) bod 4",
+   "type": "added",
+   "text": "spracovanie, kryokonzervácia a kontrola kvality transplantátov krvotvorných buniek, skratka 703,"
+  },
+  {
+   "loc": "§ 8aa ods. 5 písm. g) bod 5",
+   "type": "added",
+   "text": "transplantácia kmeňových krvotvorných buniek, skratka 704,"
+  },
+  {
+   "loc": "§ 8aa ods. 5 písm. g) bod 6",
+   "type": "added",
+   "text": "tkanivové zariadenie, skratka 188,"
+  },
+  {
+   "loc": "§ 8aa ods. 5 písm. g) bod 7",
+   "type": "added",
+   "text": "organizácia a techniky v tkanivových zariadeniach, skratka 564,"
+  },
+  {
+   "loc": "§ 8aa ods. 5 písm. h)",
+   "type": "added",
+   "text": "v očnej optike v tomto odbornom zameraní s touto skratkou podľa číselníka zdravotníckej informatiky:"
+  },
+  {
+   "loc": "§ 8aa ods. 5 písm. h) ods. 1",
+   "type": "added",
+   "text": "očný optik, skratka 824"
+  },
+  {
+   "loc": "§ 8aa ods. 5 písm. i)",
+   "type": "added",
+   "text": "vo výdajni audio-protetických pomôcok v tomto odbornom zameraní s touto skratkou podľa číselníka zdravotníckej informatiky:"
+  },
+  {
+   "loc": "§ 8aa ods. 5 písm. i) ods. 1",
+   "type": "added",
+   "text": "výdajňa audio-protetických zdravotníckych pomôcok, skratka 996."
+  },
+  {
+   "loc": "§ 86zv (nadpis)",
+   "type": "added",
+   "text": "Prechodné ustanovenia k úpravám účinným od 1. júla 2026"
+  },
+  {
+   "loc": "§ 86zv ods. 1",
+   "type": "added",
+   "text": "Zúčtovacia dávka nemusí obsahovať identifikačné číslo elektronického zdravotného záznamu podľa § 8aa ods. 2 písm. g), ak zdravotná starostlivosť bola poskytnutá do 30. júna 2026."
+  },
+  {
+   "loc": "§ 86zv ods. 2",
+   "type": "added",
+   "text": "Zúčtovacia dávka nemusí obsahovať identifikačné číslo elektronického zdravotného záznamu podľa § 8aa ods. 2 písm. g) v prípadoch uvedených v prílohe č. 7 bode 1, ak zdravotná starostlivosť bola poskytnutá do 31. decembra 2026 a v prípadoch uvedených v prílohe č. 7 bodoch 2 až 4, ak zdravotná starostlivosť bola poskytnutá do 30. júna 2027."
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "Zúčtovacia dávka nemusí obsahovať identifikačné číslo elektronického zdravotného záznamu, ak poskytovateľ zdravotnej starostlivosti do 31. decembra 2026 poskytol zdravotnú starostlivosť"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "v zariadení špecializovanej ambulancie v tomto odbornom zameraní s touto skratkou podľa číselníka zdravotníckej informatiky:"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "klinická logopédia, skratka 141,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "liečebná pedagogika, skratka 143,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "klinická psychológia, skratka 144,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "psychoterapia, skratka 241,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "psychofyzická príprava na pôrod, skratka 571,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "dentálna hygiena, skratka 931,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "v stacionári v tomto odbornom zameraní zariadenia s touto skratkou podľa číselníka zdravotníckej informatiky:"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "vnútorné lekárstvo, skratka 001,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "pneumológia a ftizeológia, skratka 003,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "neurológia, skratka 004,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "psychiatria, skratka 005,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "pediatria, skratka 007,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "všeobecná starostlivosť o deti a dorast, skratka 008,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "chirurgia, skratka 010,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "otorinolaryngológia, skratka 014,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "oftalmológia, skratka 015,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "dermatovenerológia, skratka 018,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "klinická onkológia, skratka 019,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "všeobecné lekárstvo, skratka 020,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "fyziatria, balneológia a liečebná rehabilitácia, skratka 027,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "hematológia a transfúziológia, skratka 031,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "klinická imunológia a alergológia, skratka 040,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "algeziológia, skratka 046,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "gastroenterológia, skratka 048,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "kardiológia, skratka 049,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "diabetológia, poruchy látkovej premeny a výživy, skratka 050,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "geriatria, skratka 060,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "medicína drogových závislostí, skratka 073,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "pediatrická neurológia, skratka 104,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "detská psychiatria, skratka 105,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "klinická psychológia, skratka 144,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "pediatrická pneumológia a ftizeológia, skratka 156,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "ošetrovateľská starostlivosť, skratka 355,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "psychofyzická príprava na pôrod, skratka 571,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "paliatívna ošetrovateľská starostlivosť, skratka 715,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "ošetrovateľská starostlivosť v zariadení sociálnych služieb, skratka 993,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "ošetrovateľská starostlivosť v zariadení sociálnoprávnej ochrany detí a sociálnej kurately, skratka 994."
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "Zúčtovacia dávka nemusí obsahovať identifikačné číslo elektronického zdravotného záznamu, ak poskytovateľ zdravotnej starostlivosti do 30. júna 2027 poskytol zdravotnú starostlivosť"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "v ústavnom zdravotníckom zariadení v tomto odbornom zameraní s touto skratkou podľa číselníka zdravotníckej informatiky:"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "ústavná ošetrovateľská starostlivosť, skratka 193,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "v agentúrach domácej ošetrovateľskej starostlivosti v tomto odbornom zameraní s touto skratkou podľa číselníka zdravotníckej informatiky:"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "intenzívna starostlivosť v pôrodnej asistencii, skratka 256,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "pôrodná asistencia v rodine a komunite, skratka 257,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "domáca ošetrovateľská starostlivosť, skratka 610,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "domáca hospicová starostlivosť, skratka 630,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "ošetrovateľská starostlivosť v hematológii a transfúziológii, skratka 713,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "v mobilnom hospici v odbornom zameraní domáca hospicová starostlivosť so skratkou 630 podľa číselníka zdravotníckej informatiky,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "v zariadeniach spoločných vyšetrovacích a liečebných zložiek v tomto odbornom zameraní s touto skratkou podľa číselníka zdravotníckej informatiky:"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "rádiológia, skratka 023,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "klinická biochémia, skratka 024,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "fyziatria, balneológia a liečebná rehabilitácia, skratka 027,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "patologická anatómia, skratka 029,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "hematológia a transfúziológia, skratka 031,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "klinická mikrobiológia, skratka 034,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "klinická imunológia a alergológia, skratka 040,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "radiačná onkológia, skratka 043,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "nukleárna medicína, skratka 047,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "lekárska genetika, skratka 062,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "klinická farmakológia, skratka 065,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "funkčná diagnostika, skratka 187,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "referenčné laboratórium, skratka 214,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "laboratórna medicína, skratka 225,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "magnetická rezonancia, skratka 228,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "osteodenzitometria, skratka 232,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "ultrazvuk v gynekológii a pôrodníctve, skratka 247,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "laboratórne a diagnostické metódy v hematológii a transfúziológii, skratka 259,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "laboratórne vyšetrovacie metódy v klinickej cytológii, skratka 261,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "abdominálna ultrasonografia u dospelých, skratka 303,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "laboratórne a diagnostické metódy v klinickej imunológii a alergológii, skratka 346,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "fyzioterapia vybraných ochorení pohybového systému, skratka 378,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "laboratórne vyšetrovacie metódy v hematológii a transfúziológii, skratka 516,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "ultrazvukové vyšetrovacie metódy, skratka 533,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "endoskopické vyšetrovacie metódy, skratka 558,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "počítačová tomografia – CT, skratka 576,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "intervenčná rádiológia, skratka 593,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "intervenčná ultrasonografia v urológii, skratka 594,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "mamodiagnostika v gynekológii, skratka 595,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "endoskopia respiračného systému, skratka 597,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "invazívna katétrová diagnostika a liečba porúch srdcového rytmu, skratka 705,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "fyzioterapia, skratka 844,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "diplomovaný fyzioterapeut, skratka 846,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "v zdravotníckom zariadení ústavnej zdravotnej starostlivosti novorodencovi dočasne identifikovanému rodným číslom matky,"
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "novorodencovi dočasne identifikovanému rodným číslom matky pri prvých troch preventívnych prehliadkach v zdravotníckom zariadení ambulantnej zdravotnej starostlivosti."
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "Zúčtovacia dávka nemusí obsahovať identifikačné číslo elektronického zdravotného záznamu o prepustení osoby z ústavnej zdravotnej starostlivosti, ak bola poskytnutá do 30. júna 2027 a nie je známy dátum prepustenia."
+  },
+  {
+   "loc": "Príloha priloha_c_7_k_zakonu_c_581_2004_z_z",
+   "type": "added",
+   "text": "Zúčtovacia dávka nemusí obsahovať identifikačné číslo elektronického zdravotného záznamu, ak poskytovateľ zdravotnej starostlivosti do 30. júna 2027 poskytol zdravotnú starostlivosť v odbornom zameraní zariadenia s kódom odborného zamerania v číselníku zdravotníckej informatiky, ktorý vznikol po 1. apríli 2026."
+  }
+ ]
+}

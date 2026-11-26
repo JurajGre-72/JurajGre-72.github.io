@@ -1,0 +1,107 @@
+{
+ "kind": "law_diff",
+ "law": "595/2003",
+ "law_name": "Income Tax Act",
+ "from": "2026-01-01",
+ "to": "2026-12-31",
+ "amended_by": "406/2025 Z. z.",
+ "amended_by_url": "https://static.slov-lex.sk/static/SK/ZZ/2025/406/20261231.html",
+ "old_url": "https://static.slov-lex.sk/static/SK/ZZ/2003/595/20260101.html",
+ "new_url": "https://static.slov-lex.sk/static/SK/ZZ/2003/595/20261231.html",
+ "changes": [
+  {
+   "loc": "§ 9 ods. 1 písm. s)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "vo výške poskytnutej pomoci pri splácaní úveru na bývanie formou vrátenia časti zvýšenej splátky úveru na bývanie bankou a pobočkou zahraničnej banky, okrem stavebnej "
+    ],
+    [
+     "-",
+     "sporiteľne."
+    ],
+    [
+     "+",
+     "sporiteľne,"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 11 ods. 4 písm. a)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "manželku (manžela), na ktorú si môže daňovník uplatniť nezdaniteľnú časť základu dane, manželka (manžel) žijúca s daňovníkom v domácnosti, ktorá sa v príslušnom zdaňovacom období starala o vyživované (§ 33 ods. 2) maloleté dieťa podľa osobitného predpisu žijúce s daňovníkom v domácnosti, alebo ktorá v príslušnom zdaňovacom období "
+    ],
+    [
+     "-",
+     "poberala peňažný príspevok "
+    ],
+    [
+     "+",
+     "poskytovala neformálnu starostlivosť fyzickej osobe odkázanej "
+    ],
+    [
+     "=",
+     "na "
+    ],
+    [
+     "-",
+     "opatrovanie "
+    ],
+    [
+     "+",
+     "pomoc inej fyzickej osoby, ak tejto fyzickej osobe nebola neformálna starostlivosť poskytovaná aj iným neformálnym opatrovateľom, "
+    ],
+    [
+     "=",
+     "alebo bola zaradená do evidencie uchádzačov o zamestnanie alebo sa považuje za občana so zdravotným postihnutím, alebo sa považuje za občana s ťažkým zdravotným postihnutím a súčasne"
+    ]
+   ]
+  },
+  {
+   "loc": "§ 11 ods. 4 písm. b)",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "vlastný príjem manželky (manžela) príjem manželky (manžela) znížený o zaplatené poistné a príspevky, ktoré manželka (manžel) v príslušnom zdaňovacom období bola (bol) povinná z tohto príjmu zaplatiť; do vlastného príjmu manželky (manžela) sa nezahŕňa zamestnanecká prémia podľa § 32a, daňový bonus podľa § 33, zvýšenie dôchodku pre bezvládnosť, štátne sociálne "
+    ],
+    [
+     "-",
+     "dávky "
+    ],
+    [
+     "+",
+     "dávky, príjem neformálneho opatrovateľa za poskytovanú neformálnu starostlivosť v časti, v ktorej je oslobodený od dane podľa § 9 ods. 1 písm. t) "
+    ],
+    [
+     "=",
+     "a štipendium poskytované študentovi, ktorý sa sústavne pripravuje na budúce povolanie."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 9 ods. 1 písm. t)",
+   "type": "added",
+   "text": "neformálneho opatrovateľa za poskytovanú neformálnu starostlivosť, ak úhrn týchto príjmov nepresiahne v zdaňovacom období sumu zodpovedajúcu úhrnu častí príspevku na pomoc pri odkázanosti na pomoc inej fyzickej osoby určených na neformálnu starostlivosť, na výplatu ktorých vznikol nárok fyzickým osobám, ktorým neformálny opatrovateľ poskytoval neformálnu starostlivosť v zdaňovacom období a ktoré boli počas poskytovania neformálnej starostlivosti blízkou osobou žijúcou s neformálnym opatrovateľom v domácnosti, a na výplatu ktorých vznikol nárok fyzickej osobe, ktorej neformálny opatrovateľ poskytoval neformálnu starostlivosť v zdaňovacom období a ktorá nebola počas poskytovania neformálnej starostlivosti blízkou osobou žijúcou s neformálnym opatrovateľom v domácnosti, najviac však jednej tejto fyzickej osobe, pričom ak úhrn príjmov za takto vymedzenú poskytovanú neformálnu starostlivosť presiahne sumu zodpovedajúcu uvedenému úhrnu, do základu dane sa zahrnú len príjmy nad túto sumu; výdavky k príjmom zahrnovaným do základu dane sa zistia rovnakým pomerom, ako je pomer príjmov zahrnovaných do základu dane k celkovým príjmom."
+  },
+  {
+   "loc": "§ 9 ods. 6",
+   "type": "added",
+   "text": "Na účely § 9 ods. 1 písm. t) sa zohľadňuje suma zodpovedajúca úhrnu častí príspevku na pomoc pri odkázanosti na pomoc inej fyzickej osoby určených na neformálnu starostlivosť, na výplatu ktorých vznikol nárok najviac dvom fyzickým osobám, ktorým neformálny opatrovateľ poskytoval neformálnu starostlivosť v zdaňovacom období."
+  },
+  {
+   "loc": "§ 52zzzm (nadpis)",
+   "type": "added",
+   "text": "Prechodné ustanovenie k úpravám účinným od 31. decembra 2026"
+  },
+  {
+   "loc": "§ 52zzzm ods. 1",
+   "type": "added",
+   "text": "Ustanovenia § 9 ods. 1 písm. t) a ods. 6 a § 11 ods. 4 v znení účinnom od 31. decembra 2026 sa prvýkrát použijú pri podaní daňového priznania za zdaňovacie obdobie 2027."
+  }
+ ]
+}

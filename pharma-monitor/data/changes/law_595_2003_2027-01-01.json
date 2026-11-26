@@ -1,0 +1,67 @@
+{
+ "kind": "law_diff",
+ "law": "595/2003",
+ "law_name": "Income Tax Act",
+ "from": "2026-12-31",
+ "to": "2027-01-01",
+ "amended_by": "243/2026 Z. z.",
+ "amended_by_url": "https://static.slov-lex.sk/static/SK/ZZ/2026/243/20270101.html",
+ "old_url": "https://static.slov-lex.sk/static/SK/ZZ/2003/595/20261231.html",
+ "new_url": "https://static.slov-lex.sk/static/SK/ZZ/2003/595/20270101.html",
+ "changes": [
+  {
+   "loc": "§ 29 ods. 1",
+   "type": "changed",
+   "diff": [
+    [
+     "=",
+     "Technickým zhodnotením hmotného majetku a nehmotného majetku sa na účely tohto zákona rozumejú výdavky na "
+    ],
+    [
+     "-",
+     "dokončené nadstavby, prístavby, vstavby "
+    ],
+    [
+     "+",
+     "vykonanú zmenu dokončenej stavby "
+    ],
+    [
+     "=",
+     "a stavebné "
+    ],
+    [
+     "-",
+     "úpravy, "
+    ],
+    [
+     "+",
+     "úpravy okrem stavebných úprav, ktoré majú charakter opráv a udržiavania, "
+    ],
+    [
+     "=",
+     "rekonštrukcie a modernizácie prevyšujúce pri jednotlivom hmotnom majetku a nehmotnom majetku 1 700 eur v úhrne za zdaňovacie obdobie. Technickým zhodnotením hmotného majetku sa na účely tohto zákona rozumie aj hodnota verejným subjektom prijatého a poskytovateľom energetickej služby s garantovanou úsporou energie zrealizovaného energetického zhodnotenia majetku na základe zmluvy o energetickej efektívnosti pre verejný sektor."
+    ]
+   ]
+  },
+  {
+   "loc": "§ 26 ods. 15",
+   "type": "added",
+   "text": "Konštrukcia s informačnou plochou, ktorej účelom je verejné šírenie navigačných, kultúrnych, reklamných, športových a iných informácií a je pevne spojená so zemou, sa na účely odpisovania považuje za drobnú stavbu a zaradí sa do odpisovej skupiny 4."
+  },
+  {
+   "loc": "§ 52zzzn (nadpis)",
+   "type": "added",
+   "text": "Prechodné ustanovenia k úpravám účinným od 1. januára 2027"
+  },
+  {
+   "loc": "§ 52zzzn ods. 1",
+   "type": "added",
+   "text": "Na účely uplatnenia daňových odpisov sa budovy a stavby, pri ktorých dochádza po 31. decembri 2026 k zmene vymedzenia charakteru stavby, považujú za budovy a stavby podľa Stavebného zákona účinného od 1. januára 2027; to neplatí na budovy a stavby, na ktoré sa vzťahuje ustanovenie § 52zzze."
+  },
+  {
+   "loc": "§ 52zzzn ods. 2",
+   "type": "added",
+   "text": "Pri zmene metódy odpisovania, pri zmene odpisovej skupiny, pri zmene doby odpisovania, ročnej odpisovej sadzby alebo koeficientu, je daňovník povinný vykonať zmeny aj pri tom majetku, ktorý odpisoval podľa predpisu účinného do 31. decembra 2026, pričom už uplatnené odpisy sa spätne neupravujú."
+  }
+ ]
+}

@@ -1,0 +1,2013 @@
+{
+ "kind": "price_list",
+ "month": "202611",
+ "previous": "202610",
+ "title": "Zoznam kategorizovaných liekov 1.11.2026 – 30.11.2026 – INFORMATÍVNY MATERIÁL",
+ "added": [
+  {
+   "code": "8745E",
+   "atc": "S01LA05",
+   "substance": "Aflibercept",
+   "name": "Afqlir 40 mg/ml, injekčný roztok v injekčnej liekovke",
+   "pack": "sol inj 1x0,240 ml/9,6 mg (liek.inj.skl. + 1 ihla s filtrom)",
+   "mah": "SAN-A",
+   "price": "424.00",
+   "reimb": "416.68",
+   "copay": "7.32",
+   "po": "OPH",
+   "io": "ind.obm.,ZP"
+  },
+  {
+   "code": "8962D",
+   "atc": "B01AF02",
+   "substance": "Apixabán",
+   "name": "Aboxoma 2,5 mg filmom obalené tablety",
+   "pack": "tbl flm 60x2,5 mg (blis.PVC/PVDC/PVC/priehľ.fólia//Al)",
+   "mah": "KRK-2",
+   "price": "14.43",
+   "reimb": "14.43",
+   "copay": "0.00",
+   "po": "ANG, CCH, GER, HEM, INT, KAR, NEU, ONK, ORT, UCH",
+   "io": "ind.obm."
+  },
+  {
+   "code": "8964D",
+   "atc": "B01AF02",
+   "substance": "Apixabán",
+   "name": "Aboxoma 2,5 mg filmom obalené tablety",
+   "pack": "tbl flm 168x2,5 mg (blis.PVC/PVDC/PVC/priehľ.fólia//Al)",
+   "mah": "KRK-2",
+   "price": "40.40",
+   "reimb": "40.40",
+   "copay": "0.00",
+   "po": "ANG, CCH, GER, HEM, INT, KAR, NEU, ONK, ORT, UCH",
+   "io": "ind.obm."
+  },
+  {
+   "code": "8971D",
+   "atc": "B01AF02",
+   "substance": "Apixabán",
+   "name": "Aboxoma 5 mg filmom obalené tablety",
+   "pack": "tbl flm 60x5 mg (blis.PVC/PVDC/PVC/priehľ.fólia//Al)",
+   "mah": "KRK-2",
+   "price": "14.43",
+   "reimb": "14.43",
+   "copay": "0.00",
+   "po": "ANG, CCH, GER, HEM, INT, KAR, NEU, ONK",
+   "io": "ind.obm."
+  },
+  {
+   "code": "8973D",
+   "atc": "B01AF02",
+   "substance": "Apixabán",
+   "name": "Aboxoma 5 mg filmom obalené tablety",
+   "pack": "tbl flm 168x5 mg (blis.PVC/PVDC/PVC/priehľ.fólia//Al)",
+   "mah": "KRK-2",
+   "price": "40.40",
+   "reimb": "40.40",
+   "copay": "0.00",
+   "po": "ANG, CCH, GER, HEM, INT, KAR, NEU, ONK",
+   "io": "ind.obm."
+  },
+  {
+   "code": "5373D",
+   "atc": "B01AF02",
+   "substance": "Apixabán",
+   "name": "Apixaban Accord 2,5 mg filmom obalené tablety",
+   "pack": "tbl flm 60x2,5 mg (blis.PVC/PVDC/Al)",
+   "mah": "ACC-ES",
+   "price": "14.43",
+   "reimb": "14.43",
+   "copay": "0.00",
+   "po": "ANG, CCH, GER, HEM, INT, KAR, NEU, ONK, ORT, UCH",
+   "io": "ind.obm."
+  },
+  {
+   "code": "5404D",
+   "atc": "B01AF02",
+   "substance": "Apixabán",
+   "name": "Apixaban Accord 2,5 mg filmom obalené tablety",
+   "pack": "tbl flm 168x2,5 mg (blis.PVC/PVDC/Al)",
+   "mah": "ACC-ES",
+   "price": "40.40",
+   "reimb": "40.40",
+   "copay": "0.00",
+   "po": "ANG, CCH, GER, HEM, INT, KAR, NEU, ONK, ORT, UCH",
+   "io": "ind.obm."
+  },
+  {
+   "code": "5393D",
+   "atc": "B01AF02",
+   "substance": "Apixabán",
+   "name": "Apixaban Accord 5 mg filmom obalené tablety",
+   "pack": "tbl flm 60x5 mg (blis.PVC/PVDC/Al)",
+   "mah": "ACC-ES",
+   "price": "14.43",
+   "reimb": "14.43",
+   "copay": "0.00",
+   "po": "ANG, CCH, GER, HEM, INT, KAR, NEU, ONK",
+   "io": "ind.obm."
+  },
+  {
+   "code": "5407D",
+   "atc": "B01AF02",
+   "substance": "Apixabán",
+   "name": "Apixaban Accord 5 mg filmom obalené tablety",
+   "pack": "tbl flm 168x5 mg (blis.PVC/PVDC/Al)",
+   "mah": "ACC-ES",
+   "price": "40.40",
+   "reimb": "40.40",
+   "copay": "0.00",
+   "po": "ANG, CCH, GER, HEM, INT, KAR, NEU, ONK",
+   "io": "ind.obm."
+  },
+  {
+   "code": "9904E",
+   "atc": "B01AF02",
+   "substance": "Apixabán",
+   "name": "Apixaban Olpha 2,5 mg",
+   "pack": "tbl flm 60x2,5 mg (blis.PVC/PVDC/Al)",
+   "mah": "OLA-2",
+   "price": "14.43",
+   "reimb": "14.43",
+   "copay": "0.00",
+   "po": "ANG, CCH, GER, HEM, INT, KAR, NEU, ONK, ORT, UCH",
+   "io": "ind.obm."
+  },
+  {
+   "code": "9905E",
+   "atc": "B01AF02",
+   "substance": "Apixabán",
+   "name": "Apixaban Olpha 2,5 mg",
+   "pack": "tbl flm 168x2,5 mg (blis.PVC/PVDC/Al)",
+   "mah": "OLA-2",
+   "price": "40.40",
+   "reimb": "40.40",
+   "copay": "0.00",
+   "po": "ANG, CCH, GER, HEM, INT, KAR, NEU, ONK, ORT, UCH",
+   "io": "ind.obm."
+  },
+  {
+   "code": "9911E",
+   "atc": "B01AF02",
+   "substance": "Apixabán",
+   "name": "Apixaban Olpha 5 mg",
+   "pack": "tbl flm 60x5 mg (blis.PVC/PVDC/Al)",
+   "mah": "OLA-2",
+   "price": "14.43",
+   "reimb": "14.43",
+   "copay": "0.00",
+   "po": "ANG, CCH, GER, HEM, INT, KAR, NEU, ONK",
+   "io": "ind.obm."
+  },
+  {
+   "code": "9912E",
+   "atc": "B01AF02",
+   "substance": "Apixabán",
+   "name": "Apixaban Olpha 5 mg",
+   "pack": "tbl flm 168x5 mg (blis.PVC/PVDC/Al)",
+   "mah": "OLA-2",
+   "price": "40.40",
+   "reimb": "40.40",
+   "copay": "0.00",
+   "po": "ANG, CCH, GER, HEM, INT, KAR, NEU, ONK",
+   "io": "ind.obm."
+  },
+  {
+   "code": "5913D",
+   "atc": "B01AF02",
+   "substance": "Apixabán",
+   "name": "Apixaban Teva 2,5 mg",
+   "pack": "tbl flm 60x1x2,5 mg (blis.PVC/PE/PVDC/Al-jednotliv.dáv.)",
+   "mah": "TEV-SK",
+   "price": "14.43",
+   "reimb": "14.43",
+   "copay": "0.00",
+   "po": "ANG, CCH, GER, HEM, INT, KAR, NEU, ONK, ORT, UCH",
+   "io": "ind.obm."
+  },
+  {
+   "code": "5916D",
+   "atc": "B01AF02",
+   "substance": "Apixabán",
+   "name": "Apixaban Teva 2,5 mg",
+   "pack": "tbl flm 168x1x2,5 mg (blis.PVC/PE/PVDC/Al-jednotliv.dáv.)",
+   "mah": "TEV-SK",
+   "price": "40.40",
+   "reimb": "40.40",
+   "copay": "0.00",
+   "po": "ANG, CCH, GER, HEM, INT, KAR, NEU, ONK, ORT, UCH",
+   "io": "ind.obm."
+  },
+  {
+   "code": "5927D",
+   "atc": "B01AF02",
+   "substance": "Apixabán",
+   "name": "Apixaban Teva 5 mg",
+   "pack": "tbl flm 60x1x5 mg (blis.PVC/PE/PVDC/Al-jednotliv.dáv.)",
+   "mah": "TEV-SK",
+   "price": "14.43",
+   "reimb": "14.43",
+   "copay": "0.00",
+   "po": "ANG, CCH, GER, HEM, INT, KAR, NEU, ONK",
+   "io": "ind.obm."
+  },
+  {
+   "code": "5930D",
+   "atc": "B01AF02",
+   "substance": "Apixabán",
+   "name": "Apixaban Teva 5 mg",
+   "pack": "tbl flm 168x1x5 mg (blis.PVC/PE/PVDC/Al-jednotliv.dáv.)",
+   "mah": "TEV-SK",
+   "price": "40.40",
+   "reimb": "40.40",
+   "copay": "0.00",
+   "po": "ANG, CCH, GER, HEM, INT, KAR, NEU, ONK",
+   "io": "ind.obm."
+  },
+  {
+   "code": "8380E",
+   "atc": "B01AF02",
+   "substance": "Apixabán",
+   "name": "Avoclod 2,5 mg",
+   "pack": "tbl flm 60x2,5 mg (blis.PVC/PVDC//Al)",
+   "mah": "ZNT-1",
+   "price": "14.43",
+   "reimb": "14.43",
+   "copay": "0.00",
+   "po": "ANG, CCH, GER, HEM, INT, KAR, NEU, ONK, ORT, UCH",
+   "io": "ind.obm."
+  },
+  {
+   "code": "8384E",
+   "atc": "B01AF02",
+   "substance": "Apixabán",
+   "name": "Avoclod 2,5 mg",
+   "pack": "tbl flm 168x2,5 mg (blis.PVC/PVDC//Al)",
+   "mah": "ZNT-1",
+   "price": "40.40",
+   "reimb": "40.40",
+   "copay": "0.00",
+   "po": "ANG, CCH, GER, HEM, INT, KAR, NEU, ONK, ORT, UCH",
+   "io": "ind.obm."
+  },
+  {
+   "code": "8392E",
+   "atc": "B01AF02",
+   "substance": "Apixabán",
+   "name": "Avoclod 5 mg",
+   "pack": "tbl flm 60x5 mg (blis.PVC/PVDC//Al)",
+   "mah": "ZNT-1",
+   "price": "14.43",
+   "reimb": "14.43",
+   "copay": "0.00",
+   "po": "ANG, CCH, GER, HEM, INT, KAR, NEU, ONK",
+   "io": "ind.obm."
+  },
+  {
+   "code": "8396E",
+   "atc": "B01AF02",
+   "substance": "Apixabán",
+   "name": "Avoclod 5 mg",
+   "pack": "tbl flm 168x5 mg (blis.PVC/PVDC//Al)",
+   "mah": "ZNT-1",
+   "price": "40.40",
+   "reimb": "40.40",
+   "copay": "0.00",
+   "po": "ANG, CCH, GER, HEM, INT, KAR, NEU, ONK",
+   "io": "ind.obm."
+  },
+  {
+   "code": "8822E",
+   "atc": "B01AF02",
+   "substance": "Apixabán",
+   "name": "PRUBDAQ 2,5 mg",
+   "pack": "tbl flm 200x2,5 mg (blis.Al/PVC/PVDC)",
+   "mah": "BAU-1",
+   "price": "43.79",
+   "reimb": "43.79",
+   "copay": "0.00",
+   "po": "ANG, CCH, GER, HEM, INT, KAR, NEU, ONK, ORT, UCH",
+   "io": "ind.obm."
+  },
+  {
+   "code": "8829E",
+   "atc": "B01AF02",
+   "substance": "Apixabán",
+   "name": "PRUBDAQ 5 mg",
+   "pack": "tbl flm 200x5 mg (blis.Al/PVC/PVDC)",
+   "mah": "BAU-1",
+   "price": "43.79",
+   "reimb": "43.79",
+   "copay": "0.00",
+   "po": "ANG, CCH, GER, HEM, INT, KAR, NEU, ONK",
+   "io": "ind.obm."
+  },
+  {
+   "code": "3653F",
+   "atc": "N03AX23",
+   "substance": "Brivaracetam",
+   "name": "Brivaracetam Accord 100 mg",
+   "pack": "tbl flm 56x100 mg (blis.Al/OPA/Al/PVC)",
+   "mah": "AOK",
+   "price": "36.31",
+   "reimb": "36.31",
+   "copay": "0.00",
+   "po": "NEU",
+   "io": "ind.obm."
+  },
+  {
+   "code": "3638F",
+   "atc": "N03AX23",
+   "substance": "Brivaracetam",
+   "name": "Brivaracetam Accord 25 mg",
+   "pack": "tbl flm 56x25 mg (blis.Al/OPA/Al/PVC)",
+   "mah": "AOK",
+   "price": "36.33",
+   "reimb": "36.33",
+   "copay": "0.00",
+   "po": "NEU",
+   "io": "ind.obm."
+  },
+  {
+   "code": "3643F",
+   "atc": "N03AX23",
+   "substance": "Brivaracetam",
+   "name": "Brivaracetam Accord 50 mg",
+   "pack": "tbl flm 56x50 mg (blis.Al/OPA/Al/PVC)",
+   "mah": "AOK",
+   "price": "35.78",
+   "reimb": "35.78",
+   "copay": "0.00",
+   "po": "NEU",
+   "io": "ind.obm."
+  },
+  {
+   "code": "3648F",
+   "atc": "N03AX23",
+   "substance": "Brivaracetam",
+   "name": "Brivaracetam Accord 75 mg",
+   "pack": "tbl flm 56x75 mg (blis.Al/OPA/Al/PVC)",
+   "mah": "AOK",
+   "price": "37.43",
+   "reimb": "37.43",
+   "copay": "0.00",
+   "po": "NEU",
+   "io": "ind.obm."
+  },
+  {
+   "code": "9120E",
+   "atc": "M05BX04",
+   "substance": "Denosumab",
+   "name": "Obodence 60 mg injekčný roztok v naplnenej injekčnej striekačke",
+   "pack": "sol inj 1x1 ml/60 mg (striek.inj.napl.skl.)",
+   "mah": "SUO-NL",
+   "price": "83.06",
+   "reimb": "81.27",
+   "copay": "1.79",
+   "po": "END, INT, KLF, ORT, REU, URK",
+   "io": "ind.obm."
+  },
+  {
+   "code": "9118E",
+   "atc": "M05BX04",
+   "substance": "Denosumab",
+   "name": "Xbryk 120 mg injekčný roztok",
+   "pack": "sol inj 1x1,7 ml/120 mg (liek.inj.skl.)",
+   "mah": "SUO-NL",
+   "price": "136.12",
+   "reimb": "115.07",
+   "copay": "21.05",
+   "po": "ONK, PLM, URK",
+   "io": "ind.obm."
+  },
+  {
+   "code": "6280E",
+   "atc": "L04AX07",
+   "substance": "Dimetyl-fumarát",
+   "name": "Dimethyl fumarate Accord 120 mg tvrdé gastrorezistentné kapsuly",
+   "pack": "cps end 14x1x120 mg (PVC/PE/PVDC-Al - jednotk.bal.)",
+   "mah": "ACC-ES",
+   "price": "38.80",
+   "reimb": "38.80",
+   "copay": "0.00",
+   "po": "NEU",
+   "io": "ind.obm."
+  },
+  {
+   "code": "6282E",
+   "atc": "L04AX07",
+   "substance": "Dimetyl-fumarát",
+   "name": "Dimethyl fumarate Accord 240 mg tvrdé gastrorezistentné kapsuly",
+   "pack": "cps end 56x1x240 mg (PVC/PE/PVDC-Al - jednotk.bal.)",
+   "mah": "ACC-ES",
+   "price": "247.83",
+   "reimb": "247.83",
+   "copay": "0.00",
+   "po": "NEU",
+   "io": "ind.obm."
+  },
+  {
+   "code": "79108",
+   "atc": "N06AB10",
+   "substance": "Escitalopram",
+   "name": "Elicea 5 mg",
+   "pack": "tbl flm 28x5 mg (blis. OPA/Al/PVC/Al)",
+   "mah": "KRK-2",
+   "price": "2.82",
+   "reimb": "1.09",
+   "copay": "1.73",
+   "po": "NEU, PSY",
+   "io": ""
+  },
+  {
+   "code": "6938D",
+   "atc": "L01EJ02",
+   "substance": "Fedratinib",
+   "name": "Inrebic 100 mg tvrdé kapsuly",
+   "pack": "cps dur 120x100 mg (fľ.HDPE)",
+   "mah": "BMS-IE",
+   "price": "3417.75",
+   "reimb": "3417.75",
+   "copay": "0.00",
+   "po": "HEM, ONK",
+   "io": "ind.obm.,ZP"
+  },
+  {
+   "code": "6706E",
+   "atc": "L01EK04",
+   "substance": "Frukvintinib",
+   "name": "FRUZAQLA 1 mg tvrdé kapsuly",
+   "pack": "cps dur 21x1 mg (fl.HDPE)",
+   "mah": "TAK-IE",
+   "price": "985.49",
+   "reimb": "985.49",
+   "copay": "0.00",
+   "po": "ONK",
+   "io": "ind.obm.,ZP"
+  },
+  {
+   "code": "6707E",
+   "atc": "L01EK04",
+   "substance": "Frukvintinib",
+   "name": "FRUZAQLA 5 mg tvrdé kapsuly",
+   "pack": "cps dur 21x5 mg (fl.HDPE)",
+   "mah": "TAK-IE",
+   "price": "3986.07",
+   "reimb": "3986.07",
+   "copay": "0.00",
+   "po": "ONK",
+   "io": "ind.obm.,ZP"
+  },
+  {
+   "code": "2002F",
+   "atc": "N02BF01",
+   "substance": "Gabapentín",
+   "name": "Gasenlan 300 mg tvrdé kapsuly",
+   "pack": "cps dur 200x300 mg (blis.PVC/PVDC/Al)",
+   "mah": "GLH-2",
+   "price": "23.40",
+   "reimb": "23.40",
+   "copay": "0.00",
+   "po": "AGG, DIA, NEU, PLM",
+   "io": ""
+  },
+  {
+   "code": "2010F",
+   "atc": "N02BF01",
+   "substance": "Gabapentín",
+   "name": "Gasenlan 400 mg tvrdé kapsuly",
+   "pack": "cps dur 200x400 mg (blis.PVC/PVDC/Al)",
+   "mah": "GLH-2",
+   "price": "31.24",
+   "reimb": "31.24",
+   "copay": "0.00",
+   "po": "AGG, DIA, NEU, PLM",
+   "io": ""
+  },
+  {
+   "code": "6799B",
+   "atc": "V08CA09",
+   "substance": "Gadobutrol",
+   "name": "Gadovist 1,0 mmol/ ml",
+   "pack": "sol iru 5x7,5 ml (striek.inj.napl.plast.)",
+   "mah": "BYE-4",
+   "price": "217.56",
+   "reimb": "217.56",
+   "copay": "0.00",
+   "po": "",
+   "io": ""
+  },
+  {
+   "code": "0869F",
+   "atc": "J05AX05",
+   "substance": "Inozínpranobex",
+   "name": "ISOPRINOSINE FORTE 1000 mg tablety",
+   "pack": "tbl 30x1000 mg (blis.PVC/PVDC/Al)",
+   "mah": "EWO-SK-2",
+   "price": "17.27",
+   "reimb": "8.16",
+   "copay": "9.11",
+   "po": "ALG, DER, INF, ONK, TRN",
+   "io": "ind.obm."
+  },
+  {
+   "code": "0870F",
+   "atc": "J05AX05",
+   "substance": "Inozínpranobex",
+   "name": "ISOPRINOSINE FORTE 1000 mg tablety",
+   "pack": "tbl 50x1000 mg (blis.PVC/PVDC/Al)",
+   "mah": "EWO-SK-2",
+   "price": "28.45",
+   "reimb": "13.60",
+   "copay": "14.85",
+   "po": "ALG, DER, INF, ONK, TRN",
+   "io": "ind.obm."
+  },
+  {
+   "code": "3621E",
+   "atc": "M04AC01",
+   "substance": "Kolchicín",
+   "name": "Colcamedin 1 mg tablety",
+   "pack": "tbl 30x1 mg (blis.PVC/PVDC/Al)",
+   "mah": "PML",
+   "price": "23.40",
+   "reimb": "14.37",
+   "copay": "9.03",
+   "po": "",
+   "io": "ind.obm."
+  },
+  {
+   "code": "1148E",
+   "atc": "L02AE02",
+   "substance": "Leuprorelín",
+   "name": "CAMCEVI 42 mg injekčná suspenzia s predĺženým uvoľňovaním",
+   "pack": "sus ijp 1x42 mg (striek.inj.napl. COC)",
+   "mah": "ACC-ES",
+   "price": "268.84",
+   "reimb": "268.84",
+   "copay": "0.00",
+   "po": "ONK, URK, URO",
+   "io": "ind.obm."
+  },
+  {
+   "code": "4306E",
+   "atc": "J07BX05",
+   "substance": "Očkovacie látky proti respiračnému syncyciálnemu vírusu",
+   "name": "Abrysvo prášok a rozpúštadlo na injekčný roztok",
+   "pack": "plv iol 1xdávka+1xsolv. (liek.inj.skl.+striek.inj.napl.skl.+1 ihla)",
+   "mah": "PFI-BE-3",
+   "price": "184.40",
+   "reimb": "184.40",
+   "copay": "0.00",
+   "po": "",
+   "io": "ind.obm."
+  },
+  {
+   "code": "4111B",
+   "atc": "H01AC01",
+   "substance": "Somatropín",
+   "name": "Omnitrope 5 mg/1,5 ml injekčný roztok",
+   "pack": "sol inj 1x1,5 ml (skl.náplň pre pero SurePal 5)",
+   "mah": "SAN",
+   "price": "58.30",
+   "reimb": "58.30",
+   "copay": "0.00",
+   "po": "END, ENP",
+   "io": "ind.obm."
+  },
+  {
+   "code": "2474E",
+   "atc": "L04AK02",
+   "substance": "Teriflunomid",
+   "name": "Teriflunomide Accord 14 mg filmom obalené tablety",
+   "pack": "tbl flm 28x14 mg (blis.Al/Al)",
+   "mah": "ACC-ES",
+   "price": "171.54",
+   "reimb": "171.54",
+   "copay": "0.00",
+   "po": "NEU",
+   "io": "ind.obm."
+  },
+  {
+   "code": "2931F",
+   "atc": "J01XA01",
+   "substance": "Vankomycín",
+   "name": "Vancomycin SaneXcel 1 000 mg",
+   "pack": "plc ifc 10x1 000 mg (liek.inj.skl.)",
+   "mah": "JJB-2",
+   "price": "108.21",
+   "reimb": "96.92",
+   "copay": "11.29",
+   "po": "ALG, TRN",
+   "io": "ind.obm."
+  },
+  {
+   "code": "2930F",
+   "atc": "J01XA01",
+   "substance": "Vankomycín",
+   "name": "Vancomycin SaneXcel 500 mg",
+   "pack": "plc ifc 10x500 mg (liek.inj.skl.)",
+   "mah": "JJB-2",
+   "price": "48.46",
+   "reimb": "48.46",
+   "copay": "0.00",
+   "po": "ALG, TRN",
+   "io": "ind.obm."
+  },
+  {
+   "code": "5229E",
+   "atc": "L01FX32",
+   "substance": "elranatamab",
+   "name": "ELREXFIO 40 mg/ml injekčný roztok",
+   "pack": "sol inj 1x1,1 ml/44 mg (liek.inj.skl.)",
+   "mah": "PFI-BE-3",
+   "price": "1766.01",
+   "reimb": "1766.01",
+   "copay": "0.00",
+   "po": "HEM, ONK",
+   "io": "ind.obm.,ZP"
+  },
+  {
+   "code": "5230E",
+   "atc": "L01FX32",
+   "substance": "elranatamab",
+   "name": "ELREXFIO 40 mg/ml injekčný roztok",
+   "pack": "sol inj 1x1,9 ml/76 mg (liek.inj.skl.)",
+   "mah": "PFI-BE-3",
+   "price": "3043.18",
+   "reimb": "3043.18",
+   "copay": "0.00",
+   "po": "HEM, ONK",
+   "io": "ind.obm.,ZP"
+  }
+ ],
+ "removed": [
+  {
+   "code": "2958E",
+   "atc": "A11CC03",
+   "substance": "Alfakalcidol",
+   "name": "GRANAL",
+   "pack": "cps mol 30x1 µg (fľ.HDPE+HDPE uzáver)",
+   "mah": "CRR-SK",
+   "price": "9.56",
+   "reimb": "8.40",
+   "copay": "1.16",
+   "po": "",
+   "io": "ind.obm."
+  },
+  {
+   "code": "3224E",
+   "atc": "A11CC03",
+   "substance": "Alfakalcidol",
+   "name": "Medirazin 1 mikrogram mäkké kapsuly",
+   "pack": "cps mol 30x1 µg (fľ.HDPE+uzáver HDPE)",
+   "mah": "ZNT-1",
+   "price": "9.56",
+   "reimb": "8.40",
+   "copay": "1.16",
+   "po": "",
+   "io": "ind.obm."
+  },
+  {
+   "code": "3226E",
+   "atc": "A11CC03",
+   "substance": "Alfakalcidol",
+   "name": "Medirazin 1 mikrogram mäkké kapsuly",
+   "pack": "cps mol 90x1 µg (fľ.HDPE+uzáver PP)",
+   "mah": "ZNT-1",
+   "price": "25.39",
+   "reimb": "25.20",
+   "copay": "0.19",
+   "po": "",
+   "io": "ind.obm."
+  },
+  {
+   "code": "49594",
+   "atc": "V03AF",
+   "substance": "Detoxikanciá pri cytostatickej liečbe",
+   "name": "Levofolic 50 mg/ml injekčný alebo infúzny roztok",
+   "pack": "sol ijf 1x1 ml/50 mg (liek.inj.skl.)",
+   "mah": "MED-2",
+   "price": "9.64",
+   "reimb": "9.64",
+   "copay": "0.00",
+   "po": "ONK",
+   "io": ""
+  },
+  {
+   "code": "1384E",
+   "atc": "A10BD07",
+   "substance": "Metformín a sitagliptín",
+   "name": "Lonamo Duo 50 mg/850 mg",
+   "pack": "tbl flm 60x50 mg/850 mg (blis.PVC/PVDC/Al)",
+   "mah": "EGI",
+   "price": "17.03",
+   "reimb": "14.31",
+   "copay": "2.72",
+   "po": "DIA",
+   "io": "ind.obm."
+  },
+  {
+   "code": "5087C",
+   "atc": "L01EF02",
+   "substance": "Ribociklib",
+   "name": "Kisqali 200 mg filmom obalené tablety",
+   "pack": "tbl flm 63x200 mg (blis.PCTFE/PVC)",
+   "mah": "NEH-IE",
+   "price": "1979.44",
+   "reimb": "1979.44",
+   "copay": "0.00",
+   "po": "ONK",
+   "io": "ind.obm.,ZP"
+  }
+ ],
+ "changed": [
+  {
+   "code": "8712D",
+   "name": "Abiraterone G.L. Pharma 500 mg filmom obalené tablety",
+   "pack": "tbl flm 60x500 mg (blis.PVC/PVDC/Al)",
+   "substance": "Abiraterón",
+   "atc": "L02BX03",
+   "mah": "GLH-2",
+   "changes": {
+    "price": [
+     "281.58",
+     "262.17"
+    ],
+    "copay": [
+     "19.41",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "1420E",
+   "name": "Abiraterone Pharmevid 250 mg tablety",
+   "pack": "tbl 120x250 mg (fľ.HDPE)",
+   "substance": "Abiraterón",
+   "atc": "L02BX03",
+   "mah": "PEV",
+   "changes": {
+    "price": [
+     "281.59",
+     "262.17"
+    ],
+    "copay": [
+     "19.42",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "7550E",
+   "name": "Hukyndra 80 mg injekčný roztok v naplnenom pere",
+   "pack": "sol inj 1x0,8 ml/80 mg (pero napl.)",
+   "substance": "Adalimumab",
+   "atc": "L04AB04",
+   "mah": "STD",
+   "changes": {
+    "price": [
+     "206.52",
+     "181.81"
+    ],
+    "copay": [
+     "24.71",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "2734E",
+   "name": "Apixaban Teva Slovakia 2,5 mg",
+   "pack": "tbl flm 60x2,5 mg (blis.PVC/PVDC/Al)",
+   "substance": "Apixabán",
+   "atc": "B01AF02",
+   "mah": "TEV-SK",
+   "changes": {
+    "price": [
+     "18.99",
+     "14.43"
+    ],
+    "copay": [
+     "4.56",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "2737E",
+   "name": "Apixaban Teva Slovakia 2,5 mg",
+   "pack": "tbl flm 168x2,5 mg (blis.PVC/PVDC/Al)",
+   "substance": "Apixabán",
+   "atc": "B01AF02",
+   "mah": "TEV-SK",
+   "changes": {
+    "price": [
+     "53.16",
+     "40.40"
+    ],
+    "copay": [
+     "12.76",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "2744E",
+   "name": "Apixaban Teva Slovakia 5 mg",
+   "pack": "tbl flm 60x5 mg (blis.PVC/PVDC/Al)",
+   "substance": "Apixabán",
+   "atc": "B01AF02",
+   "mah": "TEV-SK",
+   "changes": {
+    "price": [
+     "18.99",
+     "14.43"
+    ],
+    "copay": [
+     "4.56",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "2746E",
+   "name": "Apixaban Teva Slovakia 5 mg",
+   "pack": "tbl flm 168x5 mg (blis.PVC/PVDC/Al)",
+   "substance": "Apixabán",
+   "atc": "B01AF02",
+   "mah": "TEV-SK",
+   "changes": {
+    "price": [
+     "53.16",
+     "40.40"
+    ],
+    "copay": [
+     "12.76",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "8341E",
+   "name": "Embavi 2,5 mg filmom obalené tablety",
+   "pack": "tbl flm 60x2,5 mg (blis.Al-PVC/PVdC)",
+   "substance": "Apixabán",
+   "atc": "B01AF02",
+   "mah": "EGI",
+   "changes": {
+    "price": [
+     "18.99",
+     "14.43"
+    ],
+    "copay": [
+     "4.56",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "8343E",
+   "name": "Embavi 2,5 mg filmom obalené tablety",
+   "pack": "tbl flm 168x2,5 mg (blis.Al-PVC/PVdC)",
+   "substance": "Apixabán",
+   "atc": "B01AF02",
+   "mah": "EGI",
+   "changes": {
+    "price": [
+     "53.16",
+     "40.40"
+    ],
+    "copay": [
+     "12.76",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "8351E",
+   "name": "Embavi 5 mg filmom obalené tablety",
+   "pack": "tbl flm 60x5 mg (blis.Al-PVC/PVdC)",
+   "substance": "Apixabán",
+   "atc": "B01AF02",
+   "mah": "EGI",
+   "changes": {
+    "price": [
+     "18.99",
+     "14.43"
+    ],
+    "copay": [
+     "4.56",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "8353E",
+   "name": "Embavi 5 mg filmom obalené tablety",
+   "pack": "tbl flm 168x5 mg (blis.Al-PVC/PVdC)",
+   "substance": "Apixabán",
+   "atc": "B01AF02",
+   "mah": "EGI",
+   "changes": {
+    "price": [
+     "53.16",
+     "40.40"
+    ],
+    "copay": [
+     "12.76",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "1067F",
+   "name": "Sislaf 2,5 mg",
+   "pack": "tbl flm 60x2,5 mg (blis.PVC/PVDC/Al)",
+   "substance": "Apixabán",
+   "atc": "B01AF02",
+   "mah": "GLM-CZ",
+   "changes": {
+    "price": [
+     "18.99",
+     "14.43"
+    ],
+    "copay": [
+     "4.56",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "1068F",
+   "name": "Sislaf 2,5 mg",
+   "pack": "tbl flm 168x2,5 mg (blis.PVC/PVDC/Al)",
+   "substance": "Apixabán",
+   "atc": "B01AF02",
+   "mah": "GLM-CZ",
+   "changes": {
+    "price": [
+     "53.16",
+     "40.40"
+    ],
+    "copay": [
+     "12.76",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "1079F",
+   "name": "Sislaf 5 mg",
+   "pack": "tbl flm 60x5 mg (blis.PVC/PVDC/Al)",
+   "substance": "Apixabán",
+   "atc": "B01AF02",
+   "mah": "GLM-CZ",
+   "changes": {
+    "price": [
+     "18.99",
+     "14.43"
+    ],
+    "copay": [
+     "4.56",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "1080F",
+   "name": "Sislaf 5 mg",
+   "pack": "tbl flm 168x5 mg (blis.PVC/PVDC/Al)",
+   "substance": "Apixabán",
+   "atc": "B01AF02",
+   "mah": "GLM-CZ",
+   "changes": {
+    "price": [
+     "53.16",
+     "40.40"
+    ],
+    "copay": [
+     "12.76",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "3568E",
+   "name": "Dabahib 110 mg tvrdé kapsuly",
+   "pack": "cps dur 6x10x110 mg (blis.Al/OPA/Al/PVC-perfor.)",
+   "substance": "Dabigatránetexilát",
+   "atc": "B01AE07",
+   "mah": "GLH-2",
+   "changes": {
+    "price": [
+     "18.99",
+     "17.52"
+    ],
+    "copay": [
+     "4.56",
+     "3.09"
+    ]
+   }
+  },
+  {
+   "code": "3570E",
+   "name": "Dabahib 150 mg tvrdé kapsuly",
+   "pack": "cps dur 6x10x150 mg (blis.Al/OPA/Al/PVC-perfor.)",
+   "substance": "Dabigatránetexilát",
+   "atc": "B01AE07",
+   "mah": "GLH-2",
+   "changes": {
+    "price": [
+     "18.99",
+     "17.52"
+    ],
+    "copay": [
+     "4.56",
+     "3.09"
+    ]
+   }
+  },
+  {
+   "code": "3719D",
+   "name": "Deferasirox Accord 360 mg filmom obalené tablety",
+   "pack": "tbl flm 28x1x360 mg (blis.PVC/PE/PVDC/Al - jednotk.bal.)",
+   "substance": "Deferasirox",
+   "atc": "V03AC03",
+   "mah": "ACC-ES",
+   "changes": {
+    "price": [
+     "185.37",
+     "181.44"
+    ],
+    "copay": [
+     "3.93",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "6684E",
+   "name": "Eltrombopag Pharmevid 25 mg",
+   "pack": "tbl flm 28x25 mg (blis.OPA/Al/PVC-Al)",
+   "substance": "Eltrombopag",
+   "atc": "B02BX05",
+   "mah": "PEV",
+   "changes": {
+    "price": [
+     "387.41",
+     "276.87"
+    ],
+    "reimb": [
+     "276.88",
+     "276.87"
+    ],
+    "copay": [
+     "110.53",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "6694E",
+   "name": "Eltrombopag Pharmevid 50 mg",
+   "pack": "tbl flm 28x50 mg (blis.OPA/Al/PVC-Al)",
+   "substance": "Eltrombopag",
+   "atc": "B02BX05",
+   "mah": "PEV",
+   "changes": {
+    "price": [
+     "774.80",
+     "592.66"
+    ],
+    "reimb": [
+     "592.68",
+     "592.66"
+    ],
+    "copay": [
+     "182.12",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "9944E",
+   "name": "Eltrombopag Vipharm 25 mg",
+   "pack": "tbl flm 28x25 mg (blis.PA/Al/PVC/Al)",
+   "substance": "Eltrombopag",
+   "atc": "B02BX05",
+   "mah": "VIH-PL-1",
+   "changes": {
+    "price": [
+     "387.41",
+     "276.88"
+    ],
+    "copay": [
+     "110.53",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "9947E",
+   "name": "Eltrombopag Vipharm 50 mg",
+   "pack": "tbl flm 28x50 mg (blis.PA/Al/PVC/Al)",
+   "substance": "Eltrombopag",
+   "atc": "B02BX05",
+   "mah": "VIH-PL-1",
+   "changes": {
+    "price": [
+     "774.80",
+     "592.68"
+    ],
+    "copay": [
+     "182.12",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "1095E",
+   "name": "Uplizna 100 mg koncentrát na infúzny roztok",
+   "pack": "con inf 3x10 ml/100 mg (liek.inj.skl.)",
+   "substance": "Inebilizumab",
+   "atc": "L04AG10",
+   "mah": "AMG",
+   "changes": {
+    "price": [
+     "50729.70",
+     "50609.18"
+    ],
+    "reimb": [
+     "50729.70",
+     "50609.18"
+    ]
+   }
+  },
+  {
+   "code": "94312",
+   "name": "MST Continus 100 mg",
+   "pack": "tbl mod 60x100 mg (blis.PVC/PVDC/Al)",
+   "substance": "Morfín",
+   "atc": "N02AA01",
+   "mah": "MUP-A-2",
+   "changes": {
+    "price": [
+     "45.10",
+     "49.77"
+    ],
+    "reimb": [
+     "45.10",
+     "45.12"
+    ],
+    "copay": [
+     "0.00",
+     "4.65"
+    ]
+   }
+  },
+  {
+   "code": "94310",
+   "name": "MST Continus 30 mg",
+   "pack": "tbl mod 60x30 mg (blis.Al/PVDC/PVC)",
+   "substance": "Morfín",
+   "atc": "N02AA01",
+   "mah": "MUP-A-2",
+   "changes": {
+    "price": [
+     "15.48",
+     "18.25"
+    ],
+    "copay": [
+     "1.94",
+     "4.71"
+    ]
+   }
+  },
+  {
+   "code": "94311",
+   "name": "MST Continus 60 mg",
+   "pack": "tbl mod 60x60 mg (Al/PVDC/PVC)",
+   "substance": "Morfín",
+   "atc": "N02AA01",
+   "mah": "MUP-A-2",
+   "changes": {
+    "price": [
+     "29.65",
+     "30.31"
+    ],
+    "copay": [
+     "2.58",
+     "3.24"
+    ]
+   }
+  },
+  {
+   "code": "7184E",
+   "name": "Krufton 200 mg tvrdé kapsuly",
+   "pack": "cps dur 112 (4x28)x200 mg (blis.PVC/PE/PVDC//Al)",
+   "substance": "Nilotinib",
+   "atc": "L01EA03",
+   "mah": "EGI",
+   "changes": {
+    "price": [
+     "1163.50",
+     "1146.28"
+    ],
+    "reimb": [
+     "1146.29",
+     "1146.28"
+    ],
+    "copay": [
+     "17.21",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "36424",
+   "name": "M-M-RVAXPRO prášok a disperzné prostredie na injekčnú suspenziu v naplnenej injekčnej striekačke",
+   "pack": "plv sul 10x liek.+10x solv. (skl.liek.+napl.skl.striek.s 2 samost.ihlami)",
+   "substance": "Očkovacia látka proti osýpkam, kombinácie s mumpsom a ružienkou, živá oslabená",
+   "atc": "J07BD52",
+   "mah": "MSD-NL",
+   "changes": {
+    "price": [
+     "181.02",
+     "180.50"
+    ],
+    "reimb": [
+     "181.02",
+     "180.50"
+    ]
+   }
+  },
+  {
+   "code": "0928E",
+   "name": "RIVAMED 15 mg",
+   "pack": "tbl flm 28x15 mg (blis.Al/PVC/PE/PVDC)",
+   "substance": "Rivaroxabán",
+   "atc": "B01AF01",
+   "mah": "CRR-SK",
+   "changes": {
+    "price": [
+     "17.72",
+     "13.46"
+    ],
+    "reimb": [
+     "13.47",
+     "13.46"
+    ],
+    "copay": [
+     "4.25",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "0930E",
+   "name": "RIVAMED 15 mg",
+   "pack": "tbl flm 98x15 mg (blis.Al/PVC/PE/PVDC)",
+   "substance": "Rivaroxabán",
+   "atc": "B01AF01",
+   "mah": "CRR-SK",
+   "changes": {
+    "price": [
+     "62.03",
+     "47.13"
+    ],
+    "reimb": [
+     "47.14",
+     "47.13"
+    ],
+    "copay": [
+     "14.89",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "0934E",
+   "name": "RIVAMED 20 mg",
+   "pack": "tbl flm 28x20 mg (blis.Al/PVC/PE/PVDC)",
+   "substance": "Rivaroxabán",
+   "atc": "B01AF01",
+   "mah": "CRR-SK",
+   "changes": {
+    "price": [
+     "17.72",
+     "13.46"
+    ],
+    "reimb": [
+     "13.47",
+     "13.46"
+    ],
+    "copay": [
+     "4.25",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "0935E",
+   "name": "RIVAMED 20 mg",
+   "pack": "tbl flm 98x20 mg (blis.Al/PVC/PE/PVDC)",
+   "substance": "Rivaroxabán",
+   "atc": "B01AF01",
+   "mah": "CRR-SK",
+   "changes": {
+    "price": [
+     "62.03",
+     "47.13"
+    ],
+    "reimb": [
+     "47.14",
+     "47.13"
+    ],
+    "copay": [
+     "14.89",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "6027D",
+   "name": "Rivaroxaban Accord 15 mg filmom obalené tablety",
+   "pack": "tbl flm 42x15 mg (blis.PVC/Al)",
+   "substance": "Rivaroxabán",
+   "atc": "B01AF01",
+   "mah": "ACC-ES",
+   "changes": {
+    "price": [
+     "26.59",
+     "20.20"
+    ],
+    "copay": [
+     "6.39",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "6031D",
+   "name": "Rivaroxaban Accord 15 mg filmom obalené tablety",
+   "pack": "tbl flm 98x15 mg (blis.PVC/Al)",
+   "substance": "Rivaroxabán",
+   "atc": "B01AF01",
+   "mah": "ACC-ES",
+   "changes": {
+    "price": [
+     "62.03",
+     "47.13"
+    ],
+    "reimb": [
+     "47.14",
+     "47.13"
+    ],
+    "copay": [
+     "14.89",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "6041D",
+   "name": "Rivaroxaban Accord 20 mg filmom obalené tablety",
+   "pack": "tbl flm 28x20 mg (blis.PVC/Al)",
+   "substance": "Rivaroxabán",
+   "atc": "B01AF01",
+   "mah": "ACC-ES",
+   "changes": {
+    "price": [
+     "17.24",
+     "13.46"
+    ],
+    "reimb": [
+     "13.47",
+     "13.46"
+    ],
+    "copay": [
+     "3.77",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "6046D",
+   "name": "Rivaroxaban Accord 20 mg filmom obalené tablety",
+   "pack": "tbl flm 98x20 mg (blis.PVC/Al)",
+   "substance": "Rivaroxabán",
+   "atc": "B01AF01",
+   "mah": "ACC-ES",
+   "changes": {
+    "price": [
+     "62.03",
+     "47.13"
+    ],
+    "reimb": [
+     "47.14",
+     "47.13"
+    ],
+    "copay": [
+     "14.89",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "6460D",
+   "name": "Rivaroxaban G.L. Pharma 15 mg filmom obalené tablety",
+   "pack": "tbl flm 98x15 mg (blis.PVC/PVDC/Al)",
+   "substance": "Rivaroxabán",
+   "atc": "B01AF01",
+   "mah": "GLH-2",
+   "changes": {
+    "price": [
+     "62.03",
+     "47.13"
+    ],
+    "reimb": [
+     "47.14",
+     "47.13"
+    ],
+    "copay": [
+     "14.89",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "6472D",
+   "name": "Rivaroxaban G.L. Pharma 20 mg filmom obalené tablety",
+   "pack": "tbl flm 98x20 mg (blis.PVC/PVDC/Al)",
+   "substance": "Rivaroxabán",
+   "atc": "B01AF01",
+   "mah": "GLH-2",
+   "changes": {
+    "price": [
+     "62.03",
+     "47.13"
+    ],
+    "reimb": [
+     "47.14",
+     "47.13"
+    ],
+    "copay": [
+     "14.89",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "5027E",
+   "name": "Rivaroxaban Medreg 15 mg",
+   "pack": "tbl flm 28x15 mg (blis.PVC/PVDC/Al)",
+   "substance": "Rivaroxabán",
+   "atc": "B01AF01",
+   "mah": "MRG-2",
+   "changes": {
+    "price": [
+     "17.72",
+     "13.46"
+    ],
+    "reimb": [
+     "13.47",
+     "13.46"
+    ],
+    "copay": [
+     "4.25",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "5029E",
+   "name": "Rivaroxaban Medreg 15 mg",
+   "pack": "tbl flm 98x15 mg (blis.PVC/PVDC/Al)",
+   "substance": "Rivaroxabán",
+   "atc": "B01AF01",
+   "mah": "MRG-2",
+   "changes": {
+    "price": [
+     "62.03",
+     "47.13"
+    ],
+    "reimb": [
+     "47.14",
+     "47.13"
+    ],
+    "copay": [
+     "14.89",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "5033E",
+   "name": "Rivaroxaban Medreg 20 mg",
+   "pack": "tbl flm 28x20 mg (blis.PVC/PVDC/Al)",
+   "substance": "Rivaroxabán",
+   "atc": "B01AF01",
+   "mah": "MRG-2",
+   "changes": {
+    "price": [
+     "17.72",
+     "13.46"
+    ],
+    "reimb": [
+     "13.47",
+     "13.46"
+    ],
+    "copay": [
+     "4.25",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "5034E",
+   "name": "Rivaroxaban Medreg 20 mg",
+   "pack": "tbl flm 98x20 mg (blis.PVC/PVDC/Al)",
+   "substance": "Rivaroxabán",
+   "atc": "B01AF01",
+   "mah": "MRG-2",
+   "changes": {
+    "price": [
+     "62.03",
+     "47.13"
+    ],
+    "reimb": [
+     "47.14",
+     "47.13"
+    ],
+    "copay": [
+     "14.89",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "6628C",
+   "name": "Rivaroxabán Sandoz 15 mg",
+   "pack": "tbl flm 28x15 mg (blis.PVC/PVDC/Al s fóliou-priehľad.)",
+   "substance": "Rivaroxabán",
+   "atc": "B01AF01",
+   "mah": "SAN-SLO-1",
+   "changes": {
+    "price": [
+     "18.74",
+     "17.72"
+    ],
+    "copay": [
+     "5.27",
+     "4.25"
+    ]
+   }
+  },
+  {
+   "code": "6630C",
+   "name": "Rivaroxabán Sandoz 15 mg",
+   "pack": "tbl flm 42x15 mg (blis.PVC/PVDC/Al s fóliou-priehľad.)",
+   "substance": "Rivaroxabán",
+   "atc": "B01AF01",
+   "mah": "SAN-SLO-1",
+   "changes": {
+    "price": [
+     "27.83",
+     "26.59"
+    ],
+    "copay": [
+     "7.63",
+     "6.39"
+    ]
+   }
+  },
+  {
+   "code": "6632C",
+   "name": "Rivaroxabán Sandoz 15 mg",
+   "pack": "tbl flm 98x15 mg (blis.PVC/PVDC/Al s fóliou-priehľad.)",
+   "substance": "Rivaroxabán",
+   "atc": "B01AF01",
+   "mah": "SAN-SLO-1",
+   "changes": {
+    "price": [
+     "62.03",
+     "47.13"
+    ],
+    "reimb": [
+     "47.14",
+     "47.13"
+    ],
+    "copay": [
+     "14.89",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "6688C",
+   "name": "Rivaroxabán Sandoz 20 mg",
+   "pack": "tbl flm 28x20 mg (blis.PVC/PVDC/Al s fóliou-priehľad.)",
+   "substance": "Rivaroxabán",
+   "atc": "B01AF01",
+   "mah": "SAN-SLO-1",
+   "changes": {
+    "price": [
+     "17.81",
+     "17.72"
+    ],
+    "copay": [
+     "4.34",
+     "4.25"
+    ]
+   }
+  },
+  {
+   "code": "6692C",
+   "name": "Rivaroxabán Sandoz 20 mg",
+   "pack": "tbl flm 98x20 mg (blis.PVC/PVDC/Al s fóliou-priehľad.)",
+   "substance": "Rivaroxabán",
+   "atc": "B01AF01",
+   "mah": "SAN-SLO-1",
+   "changes": {
+    "price": [
+     "62.03",
+     "47.13"
+    ],
+    "reimb": [
+     "47.14",
+     "47.13"
+    ],
+    "copay": [
+     "14.89",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "6750D",
+   "name": "Rivaxa 15 mg filmom obalené tablety",
+   "pack": "tbl flm 28x15 mg (blis.PVC/PVDC/Al)",
+   "substance": "Rivaroxabán",
+   "atc": "B01AF01",
+   "mah": "GLM-CZ",
+   "changes": {
+    "price": [
+     "17.72",
+     "13.46"
+    ],
+    "reimb": [
+     "13.47",
+     "13.46"
+    ],
+    "copay": [
+     "4.25",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "6752D",
+   "name": "Rivaxa 15 mg filmom obalené tablety",
+   "pack": "tbl flm 42x15 mg (blis.PVC/PVDC/Al)",
+   "substance": "Rivaroxabán",
+   "atc": "B01AF01",
+   "mah": "GLM-CZ",
+   "changes": {
+    "price": [
+     "26.59",
+     "20.20"
+    ],
+    "copay": [
+     "6.39",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "6754D",
+   "name": "Rivaxa 15 mg filmom obalené tablety",
+   "pack": "tbl flm 98x15 mg (blis.PVC/PVDC/Al)",
+   "substance": "Rivaroxabán",
+   "atc": "B01AF01",
+   "mah": "GLM-CZ",
+   "changes": {
+    "price": [
+     "62.03",
+     "47.13"
+    ],
+    "reimb": [
+     "47.14",
+     "47.13"
+    ],
+    "copay": [
+     "14.89",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "6757D",
+   "name": "Rivaxa 20 mg filmom obalené tablety",
+   "pack": "tbl flm 28x20 mg (blis.PVC/PVDC/Al)",
+   "substance": "Rivaroxabán",
+   "atc": "B01AF01",
+   "mah": "GLM-CZ",
+   "changes": {
+    "price": [
+     "17.72",
+     "13.46"
+    ],
+    "reimb": [
+     "13.47",
+     "13.46"
+    ],
+    "copay": [
+     "4.25",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "6760D",
+   "name": "Rivaxa 20 mg filmom obalené tablety",
+   "pack": "tbl flm 98x20 mg (blis.PVC/PVDC/Al)",
+   "substance": "Rivaroxabán",
+   "atc": "B01AF01",
+   "mah": "GLM-CZ",
+   "changes": {
+    "price": [
+     "62.03",
+     "47.13"
+    ],
+    "reimb": [
+     "47.14",
+     "47.13"
+    ],
+    "copay": [
+     "14.89",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "2252E",
+   "name": "Vixargio 15 mg filmom obalené tablety",
+   "pack": "tbl flm 98x15 mg (blis.PVC/PVDC/Al)",
+   "substance": "Rivaroxabán",
+   "atc": "B01AF01",
+   "mah": "VIM",
+   "changes": {
+    "price": [
+     "62.03",
+     "47.13"
+    ],
+    "reimb": [
+     "47.14",
+     "47.13"
+    ],
+    "copay": [
+     "14.89",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "2264E",
+   "name": "Vixargio 20 mg filmom obalené tablety",
+   "pack": "tbl flm 28x20 mg (blis.PVC/PVDC/Al)",
+   "substance": "Rivaroxabán",
+   "atc": "B01AF01",
+   "mah": "VIM",
+   "changes": {
+    "price": [
+     "16.03",
+     "13.46"
+    ],
+    "reimb": [
+     "13.47",
+     "13.46"
+    ],
+    "copay": [
+     "2.56",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "2266E",
+   "name": "Vixargio 20 mg filmom obalené tablety",
+   "pack": "tbl flm 98x20 mg (blis.PVC/PVDC/Al)",
+   "substance": "Rivaroxabán",
+   "atc": "B01AF01",
+   "mah": "VIM",
+   "changes": {
+    "price": [
+     "62.03",
+     "47.13"
+    ],
+    "reimb": [
+     "47.14",
+     "47.13"
+    ],
+    "copay": [
+     "14.89",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "5357E",
+   "name": "XABOPLAX 2,5 mg filmom obalené tablety",
+   "pack": "tbl flm 56x2,5 mg (blis.PVC/PE/PVdC/Al)",
+   "substance": "Rivaroxabán",
+   "atc": "B01AF01",
+   "mah": "SAN-SLO-1",
+   "changes": {
+    "price": [
+     "25.89",
+     "24.84"
+    ],
+    "copay": [
+     "9.43",
+     "8.38"
+    ]
+   }
+  },
+  {
+   "code": "84369",
+   "name": "LAGOSA",
+   "pack": "tbl obd 50x150 mg (blis.PVC/Al)",
+   "substance": "Silymarín",
+   "atc": "A05BA03",
+   "mah": "WGP-1",
+   "changes": {
+    "price": [
+     "8.48",
+     "8.70"
+    ],
+    "copay": [
+     "4.91",
+     "5.13"
+    ]
+   }
+  },
+  {
+   "code": "84370",
+   "name": "LAGOSA",
+   "pack": "tbl obd 100x150 mg (blis.PVC/Al)",
+   "substance": "Silymarín",
+   "atc": "A05BA03",
+   "mah": "WGP-1",
+   "changes": {
+    "price": [
+     "10.89",
+     "11.18"
+    ],
+    "copay": [
+     "3.75",
+     "4.04"
+    ]
+   }
+  },
+  {
+   "code": "03378",
+   "name": "BISEPTOL 100 mg/20 mg",
+   "pack": "tbl 20x120 mg (blis.PVC/Al)",
+   "substance": "Sulfametoxazol a trimetoprim",
+   "atc": "J01EE01",
+   "mah": "AFD",
+   "changes": {
+    "price": [
+     "1.08",
+     "1.30"
+    ],
+    "copay": [
+     "0.60",
+     "0.82"
+    ]
+   }
+  },
+  {
+   "code": "2191B",
+   "name": "BISEPTOL 400 mg/80 mg",
+   "pack": "tbl 28x480 mg (blis.PVC/Al)",
+   "substance": "Sulfametoxazol a trimetoprim",
+   "atc": "J01EE01",
+   "mah": "AFD",
+   "changes": {
+    "price": [
+     "4.25",
+     "5.04"
+    ],
+    "copay": [
+     "1.57",
+     "2.36"
+    ]
+   }
+  },
+  {
+   "code": "9096E",
+   "name": "Uzpruvo 130 mg koncentrát na infúzny roztok",
+   "pack": "con inf 1x26 ml/130 mg (liek.inj.skl.)",
+   "substance": "Ustekinumab",
+   "atc": "L04AC05",
+   "mah": "STD",
+   "changes": {
+    "price": [
+     "823.41",
+     "647.11"
+    ],
+    "copay": [
+     "176.30",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "5242E",
+   "name": "Uzpruvo 45 mg injekčný roztok naplnený v injekčnej striekačke",
+   "pack": "sol inj 1x0,5 ml/45 mg (striek.inj.napl.skl.)",
+   "substance": "Ustekinumab",
+   "atc": "L04AC05",
+   "mah": "STD",
+   "changes": {
+    "price": [
+     "845.62",
+     "719.83"
+    ],
+    "copay": [
+     "125.79",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "5243E",
+   "name": "Uzpruvo 90 mg injekčný roztok naplnený v injekčnej striekačke",
+   "pack": "sol inj 1x1ml/90 mg (striek.inj.napl.skl.)",
+   "substance": "Ustekinumab",
+   "atc": "L04AC05",
+   "mah": "STD",
+   "changes": {
+    "price": [
+     "914.67",
+     "777.67"
+    ],
+    "copay": [
+     "137.00",
+     "0.00"
+    ]
+   }
+  },
+  {
+   "code": "5174E",
+   "name": "Zilbrysq 16,6 mg injekčný roztok v naplnenej injekčnej striekačke",
+   "pack": "sol inj 7x0,416 ml/16,6 mg (striek.inj.napl.skl.)",
+   "substance": "Zilukoplan",
+   "atc": "L04AJ06",
+   "mah": "UCP",
+   "changes": {
+    "price": [
+     "3578.20",
+     "3442.55"
+    ],
+    "reimb": [
+     "3578.20",
+     "3442.55"
+    ]
+   }
+  },
+  {
+   "code": "5176E",
+   "name": "Zilbrysq 23 mg injekčný roztok v naplnenej injekčnej striekačke",
+   "pack": "sol inj 7x0,574 ml/23 mg (striek.inj.napl.skl.)",
+   "substance": "Zilukoplan",
+   "atc": "L04AJ06",
+   "mah": "UCP",
+   "changes": {
+    "price": [
+     "4657.93",
+     "4500.70"
+    ],
+    "reimb": [
+     "4657.93",
+     "4500.70"
+    ]
+   }
+  }
+ ],
+ "fields": {
+  "price": "Max. price €",
+  "reimb": "Reimbursement €",
+  "copay": "Patient co-pay €",
+  "po": "Prescription restriction",
+  "io": "Indication restriction"
+ },
+ "counts": {
+  "added": 49,
+  "removed": 6,
+  "changed": 65
+ }
+}
