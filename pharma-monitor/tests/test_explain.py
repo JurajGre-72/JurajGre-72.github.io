@@ -70,7 +70,8 @@ class ExplainTest(unittest.TestCase):
     def test_a_declined_item_is_not_retried(self):
         items = [item("a", "2026-11-26")]
         explain.explain_items(items, set(), HERE, client=FakeClient(["refusal"]))
-        self.assertEqual(items[0]["explain"], {"declined": True})
+        self.assertTrue(items[0]["explain"]["declined"])
+        self.assertTrue(items[0]["explain"]["about"], "a declined item keeps the free explanation")
         self.assertEqual(explain.pick(items, set(), 40), [])
 
     def test_the_limit_option_reaches_the_selection(self):
@@ -116,6 +117,68 @@ class ExplainTest(unittest.TestCase):
         _, body = monitor.digest([it])
         self.assertIn("**About:** A notice.", body)
         self.assertIn("**For PHARMACOPOLA:** Check stock.", body)
+
+
+
+class FreeExplanationTest(unittest.TestCase):
+    def test_supply_interruption(self):
+        it = {"source": "sukl_web", "category": "Supply / availability", "url": "https://www.sukl.sk/x-24857-prerusenie-2.11.2026",
+              "title": "Novalgin 500 mg (24857) - Prerušenie 2.11.2026",
+              "summary": "Typ oznámenia: Prerušenie · Platnosť od: 2.11.2026 · Predpokladaný termín obnovenia: 29.11.2026 · Kód ŠÚKL: 24857"}
+        e = explain.basic(it)
+        self.assertEqual(e["about"], "ŠÚKL supply notice for Novalgin 500 mg (24857).")
+        self.assertIn("Type: Interruption", e["what_changed"])
+        self.assertIn("Expected resumption: 29.11.2026", e["what_changed"])
+        self.assertIn("check your stock", e["impact"])
+        self.assertTrue(e["auto"])
+
+    def test_law_change(self):
+        it = {"source": "lawchanges", "category": "Law change", "effective": ["2027-01-01"],
+              "title": "39/2007 Z. z. – Act on Veterinary Care: new wording in force from 01.01.2027",
+              "summary": "Changed by 272/2026 Z. z. 79 provision(s) changed: § 5, § 6. Open the item to see the old and new wording."}
+        e = explain.basic(it)
+        self.assertEqual(e["about"], "Slov-Lex published a new consolidated wording of 39/2007 Z. z. (Act on Veterinary Care).")
+        self.assertEqual(e["what_changed"], "Changed by 272/2026 Z. z. 79 provision(s) changed: § 5, § 6. In force from 01.01.2027.")
+        self.assertIn("by 01.01.2027", e["impact"])
+
+    def test_bill_in_parliament(self):
+        it = {"source": "slovlex_lp", "category": "Bill in Parliament (NR SR)",
+              "title": "LP/2026/382 · Zákon: Návrh zákona o omamných látkach",
+              "summary": "Stage: Rokovanie Národnej rady SR (since 14.09.2026) · Submitted by: Ministerstvo zdravotníctva SR"}
+        e = explain.basic(it)
+        self.assertTrue(e["about"].startswith("Draft act in the Slov-Lex legislative process, submitted by Ministerstvo zdravotníctva SR"))
+        self.assertIn("Parliament", e["impact"])
+
+    def test_a_page_with_two_notices_describes_only_the_first(self):
+        it = {"source": "sukl_web", "category": "Supply / availability", "url": "https://x-24857-prerusenie",
+              "title": "Novalgin (24857) - Prerušenie 02.11.2026",
+              "summary": "Typ oznámenia: Prerušenie · Platnosť od: 02.11.2026 · Predpokladaný termín obnovenia: Detail"
+                         " · Typ oznámenia: Obnovenie · Platnosť od: 26.11.2026"}
+        self.assertEqual(explain.basic(it)["what_changed"], "Type: Interruption · Valid from: 02.11.2026")
+
+    def test_a_published_draft_is_law_not_a_draft(self):
+        it = {"source": "slovlex_lp", "category": "Draft law", "title": "LP/2026/625 · Zákon: Návrh zákona",
+              "summary": "Moved from stage “Pripomienkové konanie” to “Vyhlásené v Zbierke zákonov SR”"
+                         " · Stage: Vyhlásené v Zbierke zákonov SR (since 17.11.2026)"}
+        self.assertIn("now law", explain.basic(it)["impact"])
+
+    def test_uskvbl_invoice_page_needs_no_action(self):
+        it = {"source": "uskvbl", "category": "Veterinary (ÚŠKVBL)", "priority": "medium",
+              "title": "Updated page: OBJEDNÁVKY A FAKTÚRY", "summary": "New on the page: faktúry jún 2026"}
+        self.assertIn("no action needed", explain.basic(it)["impact"])
+
+    def test_every_item_gets_one_and_a_rerun_changes_nothing(self):
+        items = [item("a", "2026-11-26"), item("b", "2026-11-25", explain=ANSWER)]
+        self.assertEqual(explain.add_basic(items), 1)
+        self.assertTrue(items[0]["explain"]["auto"])
+        self.assertEqual(items[1]["explain"], ANSWER, "a Claude explanation is never overwritten")
+        self.assertEqual(explain.add_basic(items), 0)
+
+    def test_free_explanations_are_upgraded_by_claude_but_declined_ones_are_not_retried(self):
+        items = [item("a", "2026-11-26"), item("b", "2026-11-25")]
+        explain.add_basic(items)
+        items[1]["explain"]["declined"] = True
+        self.assertEqual([i["id"] for i in explain.pick(items, set(), 40)], ["a"])
 
 
 if __name__ == "__main__":

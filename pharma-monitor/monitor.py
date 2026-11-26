@@ -1304,7 +1304,8 @@ def main() -> int:
     keep_after = started - dt.timedelta(days=rules.keep_days)
     store["items"] = sorted((i for i in store["items"] if parse_iso(i["date"]) >= keep_after),
                             key=lambda i: (i["date"], i["id"]), reverse=True)
-    if args.explain_limit > 0:  # plain-language "about / what changed / impact" for new items, then older ones
+    explain.add_basic(store["items"])  # free "about / what changed / for PHARMACOPOLA" for every item
+    if args.explain_limit > 0:  # with an API key, Claude's explanation replaces the free one (new items first)
         try:
             explain.explain_items(store["items"], {i["id"] for i in new_items}, HERE, limit=args.explain_limit)
         except Exception as e:  # explanations are extra: they must never cost the check its results or notification
