@@ -2,10 +2,9 @@ name: Regulatory monitor
 
 on:
   schedule:
-    # Every 15 minutes from 05:00 to 19:59 UTC (07:00–21:59 Bratislava summer time), hourly at night.
-    # Quiet runs take ~15 s and commit nothing; heavier sources run once an hour (see --heavy hourly).
-    - cron: "2,17,32,47 5-19 * * *"
-    - cron: "2 0-4,20-23 * * *"
+    # Backup only: a Claude scheduled task starts the check every 4 hours (at about :03 past 0, 4, 8, 12, 16, 20 UTC).
+    # GitHub's own schedule is best-effort and often late, so it skips itself if a check ran in the last 3 hours.
+    - cron: "41 */4 * * *"
   workflow_dispatch:
     inputs:
       sources:
@@ -16,6 +15,7 @@ on:
 permissions:
   contents: write
   issues: write
+  actions: read   # the backup schedule looks at when the last check ran
 
 concurrency:
   group: pharma-monitor
@@ -26,9 +26,25 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
+      - name: Skip if a check ran in the last 3 hours (backup schedule only)
+        id: guard
+        if: github.event_name == 'schedule'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          last=$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/pharma-monitor.yml/runs?status=success&per_page=1" \
+                 -q '.workflow_runs[0].run_started_at // empty')
+          if [ -n "$last" ] && [ $(( $(date +%s) - $(date -d "$last" +%s) )) -lt 10800 ]; then
+            echo "A check already ran at $last – skipping this backup run."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - uses: actions/checkout@v4
+        if: steps.guard.outputs.skip != 'true'
 
       - name: Check Slovak sources
+        id: check
+        if: steps.guard.outputs.skip != 'true'
         env:
           # Optional direct e-mail; leave the secrets unset to rely on GitHub issue notifications.
           SMTP_HOST: ${{ secrets.SMTP_HOST }}
@@ -39,12 +55,11 @@ jobs:
           SOURCES: ${{ inputs.sources }}
         run: |
           args=(--notify-out "$RUNNER_TEMP/digest.md")
-          # scheduled runs: heavy sources hourly; a manual run checks everything
-          if [ "${{ github.event_name }}" = "schedule" ]; then args+=(--heavy hourly); fi
           if [ -n "$SOURCES" ]; then args+=(--sources "$SOURCES"); fi
           python3 pharma-monitor/monitor.py "${args[@]}"
 
       - name: Save results
+        if: steps.guard.outputs.skip != 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -57,12 +72,27 @@ jobs:
             git push
           fi
 
-      - name: Open notification issue
+      # One notification per check (GitHub e-mails it; the GitHub mobile app shows it as a push notification):
+      # new items -> a new "regulatory-update" issue; nothing new or a failed check -> a comment on the check-log issue.
+      - name: Notify that the check is done
+        if: always() && steps.guard.outputs.skip != 'true'
         env:
           GH_TOKEN: ${{ github.token }}
+          CHECK_OUTCOME: ${{ steps.check.outcome }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
           digest="$RUNNER_TEMP/digest.md"
-          [ -s "$digest" ] || { echo "Nothing new to report"; exit 0; }
-          gh label create regulatory-update --color C2362B --description "New Slovak regulatory item" 2>/dev/null || true
-          tail -n +2 "$digest" > "$RUNNER_TEMP/body.md"
-          gh issue create --title "$(head -n 1 "$digest")" --body-file "$RUNNER_TEMP/body.md" --label regulatory-update
+          if [ "$CHECK_OUTCOME" = "success" ] && [ -s "$digest" ]; then
+            gh label create regulatory-update --color C2362B --description "New Slovak regulatory item" 2>/dev/null || true
+            tail -n +2 "$digest" > "$RUNNER_TEMP/body.md"
+            gh issue create --title "$(head -n 1 "$digest")" --body-file "$RUNNER_TEMP/body.md" --label regulatory-update
+            exit 0
+          fi
+          python3 pharma-monitor/check_report.py "$CHECK_OUTCOME" "$RUN_URL" > "$RUNNER_TEMP/report.md"
+          gh label create monitor-log --color 00A78F --description "One comment per finished check" 2>/dev/null || true
+          log=$(gh issue list --label monitor-log --state open --limit 1 --json number -q '.[0].number // empty')
+          if [ -z "$log" ]; then
+            log=$(gh issue create --title "Regulatory monitor – check log" --label monitor-log \
+                  --body "Every finished check that found nothing new is reported here (new items get their own issue)." | grep -o '[0-9]*$')
+          fi
+          gh issue comment "$log" --body-file "$RUNNER_TEMP/report.md"

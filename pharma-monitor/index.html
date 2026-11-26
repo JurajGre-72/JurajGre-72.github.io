@@ -7,7 +7,7 @@
 <meta name="description" content="New Slovak laws and regulator announcements relevant to pharmaceutical and veterinary distribution.">
 <meta name="robots" content="noindex">
 <!-- change on every dashboard change: open pages and the Mac app see it and load the new version -->
-<meta name="pm-build" content="2026-11-24.1">
+<meta name="pm-build" content="2026-11-26.1">
 <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/icons/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
@@ -295,7 +295,7 @@
   <header class="top">
     <p class="eyebrow">Regulatory intelligence · Slovensko &amp; EÚ</p>
     <h1>Regulatory Monitor</h1>
-    <p class="sub">New Slovak and EU laws, draft legislation, regulator announcements and reimbursement-list changes relevant to the distribution of human and veterinary medicines, medical devices and related products. Checked automatically every hour. Open an item to see exactly what changed.</p>
+    <p class="sub">New Slovak and EU laws, draft legislation, regulator announcements and reimbursement-list changes relevant to the distribution of human and veterinary medicines, medical devices and related products. Checked automatically every 4 hours. Open an item to see exactly what changed.</p>
     <div class="update-status" id="updStatus" role="status" aria-live="polite" hidden></div>
   </header>
 
@@ -351,7 +351,7 @@
   <section class="how">
     <h2>How alerts work</h2>
     <ul>
-      <li>All sources are checked automatically <b>every hour</b>, day and night. For most sources only items matching the rules in <code>pharma-monitor/config.json</code> are kept.</li>
+      <li>All sources are checked automatically <b>every 4 hours</b>, day and night, and you get a notification after every check. For most sources only items matching the rules in <code>pharma-monitor/config.json</code> are kept.</li>
       <li><b>ŠÚKL, ÚŠKVBL and SOOL:</b> nothing is filtered out (the rules only set the priority) – every change on their websites is tracked: new and changed pages (with the added text),
         new articles and documents, and ŠÚKL's supply notices (interruption, resumption, end of supply, first placing on the market).</li>
       <li>When something new is found, the job opens a GitHub issue labelled <code>regulatory-update</code>; GitHub e-mails it to you. Optional direct e-mail can be switched on with SMTP secrets (see README).</li>
@@ -736,7 +736,7 @@
       setStatus(fresh
         ? `Done. <b>${fresh}</b> new item${fresh === 1 ? '' : 's'} – marked NEW below.`
         : `Up to date. All sources were checked ${esc(last)}${newest ? ` – nothing new has been published since ${esc(fmtDate(newest))}` : ''}.
-           The next automatic check runs within the hour.`);
+           The next automatic check runs within 4 hours.`);
     } catch (e) {
       busy(false);
       try { await loadData(); } catch (err) { /* keep what is shown */ }

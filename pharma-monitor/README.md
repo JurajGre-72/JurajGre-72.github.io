@@ -18,7 +18,7 @@ to a distributor of human and veterinary medicines, medical devices and related 
 | **ŠÚKL – recall feed** (`sukl_recall`) | Medicines withdrawn from the market | Always **high** priority |
 | **ŠÚKL – news feed** (`sukl`) | Supply disruptions (MSC), distribution and pharmacy guidance, DHPC safety letters, medical devices, advertising | Priority depends on section |
 | **MZ SR – news** (`mzsr`, feed `health.gov.sk/rss/sk/novinky.xml` since the November 2026 website move) | Press releases about medicines, reimbursement, prices, insurance | Keyword filtered |
-| **ŠÚKL – whole website** (`sukl_web`) | Every new or changed page of sukl.sk, read from its sitemap every hour – including the supply notices (interruption, resumption, end of supply, first placing on the market) that are not in the news feed | Notice type, dates, ŠÚKL code; for changed pages the added text and how many lines were removed |
+| **ŠÚKL – whole website** (`sukl_web`) | Every new or changed page of sukl.sk, read from its sitemap at every check (every 4 hours) – including the supply notices (interruption, resumption, end of supply, first placing on the market) that are not in the news feed | Notice type, dates, ŠÚKL code; for changed pages the added text and how many lines were removed |
 | **ÚŠKVBL – whole website** (`uskvbl`) | Every changed page, new article and newly uploaded document of the veterinary institute – **every ÚŠKVBL change is at least medium priority and e-mailed** (`notify_all`); the dashboard also lists everything published in the last two years (`keep_days`), filled in once without notifications | Added text and removed lines; document type |
 | **SOOL** (`sool`) | Slovak Medicines Verification Organisation (FMD / verification system): articles, pages and documents, e.g. annual fees and changes for LIS/DIS suppliers | Added text and removed lines; new documents |
 | **ŠVPS SR** (`svps`) | Veterinary medicines, emergency measures, animal disease outbreaks, non-compliant products | Keyword and category filtered |
@@ -31,14 +31,17 @@ are still covered through Slov-Lex eLegislatíva, which tracks them through the 
 
 ## How you get notified
 
-1. `.github/workflows/pharma-monitor.yml` checks all sources **every hour**. GitHub's own schedule (every 15 minutes
-   by day) is best-effort and in practice starts only a few runs a day, so a Claude scheduled task
-   ("PHARMACOPOLA monitor – hourly check", which messages the session "PHARMACOPOLA monitor – hourly starter")
-   starts the workflow once an hour. It can also be started by hand (**Actions → Regulatory monitor → Run workflow**).
+1. `.github/workflows/pharma-monitor.yml` checks all sources **every 4 hours**. A Claude scheduled task
+   ("PHARMACOPOLA monitor – check every 4 hours", which messages the session "PHARMACOPOLA monitor – hourly starter")
+   starts it at about :03 past 0, 4, 8, 12, 16 and 20 UTC. GitHub's own schedule (`41 */4 * * *`) is only a backup:
+   it is best-effort and often late, so it skips itself when a check ran in the last 3 hours. The workflow can also be
+   started by hand (**Actions → Regulatory monitor → Run workflow**).
    Every run writes `data/status.json` (when each source was checked); `data/items.json` changes only when
    something new is found.
-2. When it finds new relevant items it opens a **GitHub issue** labelled `regulatory-update` with a digest
-   (🔴 high / 🟠 medium / ⚪ low). GitHub e-mails new issues to the repository owner. Check that
+2. **Every finished check sends one notification.** New relevant items open a **GitHub issue** labelled
+   `regulatory-update` with a digest (🔴 high / 🟠 medium / ⚪ low); a check with nothing new (or one that failed) adds a
+   short comment to the open issue labelled `monitor-log` ("check log"), written by `check_report.py`. GitHub e-mails
+   both to the repository owner, and the GitHub mobile app shows them as push notifications. Check that
    *Settings → Notifications → Email* is on and that you are "watching" this repository.
 3. **Optional direct e-mail** (for example to a company address or several people): add these repository secrets under
    *Settings → Secrets and variables → Actions*:
@@ -52,7 +55,7 @@ The dashboard shows everything found, with filters, search and "NEW" markers.
 One click, no sign-in. The button loads the newest results straight away (bypassing the website cache). If a check
 of all sources is running at that moment, it waits for it to finish and for the results to be published, then
 shows how many new items were found (marked NEW). Otherwise it says when all sources were last checked – never more
-than about an hour ago. It also says since when nothing new has been published. "Last check" in the header shows the same time.
+than about 4 hours ago. It also says since when nothing new has been published. "Last check" in the header shows the same time.
 
 **Optional – "Start an extra check"** (link in *How it works*) starts a full check immediately, outside the schedule.
 GitHub only allows that with a token, so the first use asks for one:
