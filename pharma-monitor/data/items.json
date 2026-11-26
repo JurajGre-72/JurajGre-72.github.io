@@ -1,6 +1,36 @@
 {
  "items": [
   {
+   "id": "sukl_web:https://www.sukl.sk/novalgin-500-mg-24857-prerusenie-2.11.2026:8f9c34f29e",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Novalgin 500 mg tbl flm 20x500 mg (blis.Al/PVC) (24857) - Prerušenie 2.11.2026",
+   "url": "https://www.sukl.sk/novalgin-500-mg-24857-prerusenie-2.11.2026",
+   "date": "2026-11-26T06:29:11Z",
+   "detected": "2026-11-26T06:29:11Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "Supply interruption"
+   ],
+   "summary": "Added: Predpokladaný termín obnovenia: 29.11.2026 | Removed: 1 line"
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/novalgin-500-mg-24857-obnovenie-26.11.2026-1:00b035c171",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Novalgin 500 mg tbl flm 20x500 mg (blis.Al/PVC) (24857) - Obnovenie 26.11.2026",
+   "url": "https://www.sukl.sk/novalgin-500-mg-24857-obnovenie-26.11.2026-1",
+   "date": "2026-11-26T06:29:10Z",
+   "detected": "2026-11-26T06:29:10Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "Supply resumed"
+   ],
+   "summary": "Added: Predpokladaný termín obnovenia: 29.11.2026 | Removed: 1 line"
+  },
+  {
    "id": "sukl_web:https://www.sukl.sk/suprax-400-mg-dispergovatelne-tablety-02354-prerusenie-27.11.2026:4f71d111f7",
    "source": "sukl_web",
    "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
@@ -5918,94 +5948,94 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-25T21:28:11Z",
+   "checked": "2026-11-26T06:28:30Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-25T21:28:11Z",
+   "checked": "2026-11-26T06:28:30Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-25T21:28:11Z",
+   "checked": "2026-11-26T06:28:30Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-11-25T21:28:11Z",
+   "checked": "2026-11-26T06:28:30Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Všetky zmeny na webe",
    "ok": true,
-   "checked": "2026-11-25T21:28:11Z",
+   "checked": "2026-11-26T06:28:30Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-11-25T21:28:11Z",
+   "checked": "2026-11-26T06:28:30Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-25T21:28:11Z",
+   "checked": "2026-11-26T06:28:30Z",
    "new": 0,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-11-25T21:28:11Z",
+   "checked": "2026-11-26T06:28:30Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-11-25T21:28:11Z",
+   "checked": "2026-11-26T06:28:30Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-25T21:28:11Z",
+   "checked": "2026-11-26T06:28:30Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-25T21:28:11Z",
+   "checked": "2026-11-26T06:28:30Z",
    "new": 0,
    "error": null
   },
   "sukl_web": {
    "name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
    "ok": true,
-   "checked": "2026-11-25T21:28:11Z",
-   "new": 3,
+   "checked": "2026-11-26T06:28:30Z",
+   "new": 2,
    "error": null
   },
   "sool": {
    "name": "SOOL · Slovenská organizácia pre overovanie liekov",
    "ok": true,
-   "checked": "2026-11-25T21:28:11Z",
+   "checked": "2026-11-26T06:28:30Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-11-25T21:28:11Z"
+ "updated": "2026-11-26T06:28:30Z"
 }
