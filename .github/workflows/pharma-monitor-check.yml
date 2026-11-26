@@ -29,6 +29,18 @@ jobs:
               print(f"  {'OK ' if s['ok'] else 'ERR'} {k:14} new={s['new']:<4} {s.get('error') or ''}")
           PY
           if [ -s "$RUNNER_TEMP/digest.md" ]; then echo; echo "Digest that would be sent:"; cat "$RUNNER_TEMP/digest.md"; fi
+      - name: Watched pages are stable (a second read right away must report no change)
+        run: |
+          before=$(python3 -c "import json;print(sum(i['source']=='sdp' for i in json.load(open('$RUNNER_TEMP/pm/data/items.json'))['items']))")
+          python3 "$RUNNER_TEMP/pm/monitor.py" --sources sdp
+          python3 - "$RUNNER_TEMP/pm/data/items.json" "$before" <<'PY'
+          import json, sys
+          items = [i for i in json.load(open(sys.argv[1]))["items"] if i["source"] == "sdp"]
+          noise = items[: len(items) - int(sys.argv[2])] if len(items) > int(sys.argv[2]) else []
+          for i in noise:
+              print(f"::error::{i['title']} changed between two reads seconds apart (changing content): {i['summary'][:300]}")
+          sys.exit(1 if noise else 0)
+          PY
 
   dashboard:
     runs-on: ubuntu-latest

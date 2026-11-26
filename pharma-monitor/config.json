@@ -48,6 +48,7 @@
   ],
   "key_laws": {
     "362/2011": "Act on Medicinal Products and Medical Devices (zákon o liekoch)",
+    "129/2012": "Decree on Good Manufacturing and Good Wholesale Distribution Practice (SDP)",
     "363/2011": "Act on Reimbursement of Medicines (zákon o kategorizácii a úhradách)",
     "39/2007": "Act on Veterinary Care",
     "139/1998": "Act on Narcotic and Psychotropic Substances",
@@ -68,6 +69,7 @@
   },
   "key_law_levels": {
     "362/2011": "high",
+    "129/2012": "high",
     "363/2011": "high",
     "39/2007": "high",
     "139/1998": "high",
@@ -118,5 +120,13 @@
     {"label": "Feed", "level": "low", "pattern": "feed additive|medicated feed"},
     {"label": "VAT / customs", "level": "low", "pattern": "value added tax|\\bVAT\\b|customs"}
   ],
-  "eurlex_min_priority": "medium"
+  "eurlex_min_priority": "medium",
+  "_watch_pages": "Official pages whose text is compared at every check (source 'sdp'); any change is reported with the added and removed text.",
+  "watch_pages": [
+    {"name": "EU – EudraLex Volume 4 (GMP/GDP guidelines)", "url": "https://health.ec.europa.eu/medicinal-products/eudralex/eudralex-volume-4_en", "level": "high"},
+    {"name": "EU – Falsified medicines and safety features (FMD)", "url": "https://health.ec.europa.eu/medicinal-products/falsified-medicines_en", "level": "high"},
+    {"name": "EMA – Good distribution practice", "url": "https://www.ema.europa.eu/en/human-regulatory-overview/post-authorisation/compliance-post-authorisation/good-distribution-practice", "level": "high"},
+    {"name": "PIC/S – News", "url": "https://picscheme.org/en/news", "level": "medium"},
+    {"name": "EMVO – News (European Medicines Verification System)", "url": "https://emvo-medicines.eu/news/", "level": "medium"}
+  ]
 }

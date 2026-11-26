@@ -68,6 +68,7 @@ SOURCES = {
     "kategorizacia": "MZ SR · Zoznam kategorizovaných liekov",
     "uskvbl": "ÚŠKVBL · Všetky zmeny na webe",
     "sool": "SOOL · Slovenská organizácia pre overovanie liekov",
+    "sdp": "SDP / GDP · EÚ, EMA, PIC/S, EMVO",
     "eurlex": "EUR-Lex · Úradný vestník EÚ",
     "ema": "EMA · European Medicines Agency",
     "svps": "ŠVPS SR · Štátna veterinárna a potravinová správa",
@@ -213,6 +214,7 @@ class Rules:
         self.generic = set(cfg.get("generic_labels", []))
         self.notify_min = LEVELS[cfg.get("notify_min_priority", "medium")]
         self.eurlex_min = LEVELS[cfg.get("eurlex_min_priority", "medium")]
+        self.watch_pages = [p for p in cfg.get("watch_pages", []) if p.get("url")]
         self.eu_keywords = [(k["label"], LEVELS[k["level"]], re.compile(k["pattern"], re.I)) for k in cfg.get("eu_keywords", [])]
 
     def match_en(self, text: str) -> tuple[int, list[str]]:
@@ -574,6 +576,40 @@ def check_wordpress(site: str, rules: Rules, state: dict, bootstrap: bool) -> li
                      f"{'Updated page' if route == 'pages' else 'Article'}: {title}", link, when, level, summary,
                      backlog=True, history=True)
         st["history_days"] = rules.keep_days
+    return results
+
+
+def check_watch_pages(rules: Rules, state: dict) -> list[dict]:
+    """Official pages listed in config.json "watch_pages" (good distribution practice, FMD …): every change of their
+    text is reported with what was added and removed. A page seen for the first time is only remembered."""
+    st = state.setdefault("sdp", {}).setdefault("pages", {})
+    results, failed = [], []
+    for page in rules.watch_pages:
+        url, name = page["url"], page.get("name") or page["url"]
+        try:
+            lines = page_text(url)
+        except RuntimeError as e:
+            failed.append(f"{name}: {shorten(str(e), 120)}")
+            continue
+        if len(lines) < 3:
+            failed.append(f"{name}: page has no readable text")
+            continue
+        hashes, old = line_hashes(lines), st.get(url)
+        st[url] = hashes
+        if old is None:
+            continue  # baseline
+        change = describe_change(lines, hashes, old)
+        if change is None:
+            continue
+        _, tags = rules.match(" ".join(lines[:40]), specific_only=True)
+        uid = f"sdp:{url}:{hashlib.sha1(''.join(hashes).encode()).hexdigest()[:10]}"
+        results.append(make_item("sdp", uid, f"Changed: {name}", url, now_utc(), "SDP / GDP",
+                                 LEVELS.get(page.get("level", "medium"), 2), ["Wholesale distribution"] + tags, change))
+        time.sleep(0.3)
+    for f in failed:
+        print(f"  ! {f}", file=sys.stderr)
+    if failed and len(failed) == len(rules.watch_pages):
+        raise RuntimeError("no watched page could be read: " + "; ".join(failed))
     return results
 
 
@@ -1215,6 +1251,8 @@ def main() -> int:
                 found = check_mzsr(rules, state)
             elif key in ("uskvbl", "sool"):
                 found = check_wordpress(key, rules, state, bootstrap)
+            elif key == "sdp":
+                found = check_watch_pages(rules, state)
             elif key == "sukl_web":
                 found = check_sukl_web(rules, state, bootstrap, {i["url"] for i in store["items"]},
                                        {notice_key(i["summary"]) for i in store["items"] if i.get("source") == "sukl_web"} - {None})
