@@ -210,6 +210,48 @@ class PriorityTest(unittest.TestCase):
         self.assertEqual(monitor.item_level("sool", "Výročná správa za rok 2025", "", RULES), monitor.LEVELS["low"])
 
 
+class WatchPagesTest(unittest.TestCase):
+    PAGES = [{"name": "EU – EudraLex Volume 4", "url": "https://eu/vol4", "level": "high"},
+             {"name": "PIC/S – News", "url": "https://pics/news", "level": "medium"}]
+
+    def run_check(self, state, texts):
+        rules = monitor.Rules(monitor.load_json(monitor.CONFIG_FILE, None))
+        rules.watch_pages = self.PAGES
+
+        def page_text(url):
+            if isinstance(texts[url], Exception):
+                raise texts[url]
+            return texts[url]
+        with mock.patch.object(monitor, "page_text", side_effect=page_text), mock.patch.object(monitor.time, "sleep"):
+            return monitor.check_watch_pages(rules, state)
+
+    def test_first_read_is_baseline_then_changes_are_reported(self):
+        state = {}
+        v1 = ["EudraLex Volume 4", "Part I – Basic requirements", "Guidelines on GDP 2013/C 343/01"]
+        v2 = v1[:2] + ["Guidelines on GDP 2026/C 100/01 (revised)"]
+        texts = {"https://eu/vol4": v1, "https://pics/news": ["PIC/S news", "item one", "item two"]}
+        self.assertEqual(self.run_check(state, texts), [], "first read only remembers the pages")
+        self.assertEqual(self.run_check(state, texts), [], "no change, nothing to report")
+        texts["https://eu/vol4"] = v2
+        items = self.run_check(state, texts)
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0]["title"], "Changed: EU – EudraLex Volume 4")
+        self.assertEqual(items[0]["priority"], "high")
+        self.assertIn("Guidelines on GDP 2026/C 100/01 (revised)", items[0]["summary"])
+
+    def test_one_unreadable_page_does_not_stop_the_others(self):
+        state = {}
+        texts = {"https://eu/vol4": RuntimeError("timeout"), "https://pics/news": ["PIC/S news", "item one", "item two"]}
+        self.run_check(state, texts)
+        self.assertIn("https://pics/news", state["sdp"]["pages"])
+        texts["https://pics/news"] = ["PIC/S news", "item zero", "item one", "item two"]
+        self.assertEqual(len(self.run_check(state, texts)), 1)
+
+    def test_all_pages_unreadable_is_an_error(self):
+        with self.assertRaises(RuntimeError):
+            self.run_check({}, {"https://eu/vol4": RuntimeError("x"), "https://pics/news": RuntimeError("y")})
+
+
 class DescribeChangeTest(unittest.TestCase):
     def test_unchanged_text_is_none(self):
         lines = ["a line", "another line"]

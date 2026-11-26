@@ -74,7 +74,7 @@ def label(pid: str) -> str:
     out = []
     for part in pid.split("."):
         kind, _, val = part.partition("-")
-        annex = re.match(r"priloha_c_(\w+?)_k_", part)
+        annex = re.search(r"priloha_c_(\w+?)_k_", part)  # "priloha_c_1_k_…" or "priloha-priloha_c_1_k_…"
         if annex:
             out.append(f"Príloha č. {annex.group(1)}")
         elif part == "prilohy" or part.startswith("op-"):
@@ -124,7 +124,7 @@ def compare(old_html: str, new_html: str, limit: int = 400) -> list[dict]:
 def summarize(changes: list[dict], n: int = 6) -> str:
     locs = []
     for c in changes:
-        top = re.match(r"(§ \S+|Čl\. \S+|Príloha \S+)", c["loc"])
+        top = re.match(r"(§ \S+|Čl\. \S+|Príloha č\. \S+|Príloha \S+)", c["loc"])  # "Príloha č. 1", not "Príloha č."
         key = top.group(1) if top else c["loc"]
         if key not in locs:
             locs.append(key)
