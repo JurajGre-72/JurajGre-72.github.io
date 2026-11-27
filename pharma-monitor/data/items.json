@@ -1,6 +1,167 @@
 {
  "items": [
   {
+   "id": "sdp:https://emvo-medicines.eu/news/:829c6a0292",
+   "source": "sdp",
+   "source_name": "SDP / GDP · EÚ, EMA, PIC/S, EMVO",
+   "title": "Changed: EMVO – News (European Medicines Verification System)",
+   "url": "https://emvo-medicines.eu/news/",
+   "date": "2026-11-27T12:05:31Z",
+   "detected": "2026-11-27T12:05:31Z",
+   "category": "SDP / GDP",
+   "priority": "medium",
+   "tags": [
+    "Wholesale distribution"
+   ],
+   "summary": "Added: 12/08/2026: Q&A EU HUB Public Certificate and Endpoint renewal and Schema transition | Removed: 1 line",
+   "explain": {
+    "about": "Official good-distribution-practice (SDP/GDP) reference page: EMVO – News (European Medicines Verification System).",
+    "what_changed": "Added: 12/08/2026: Q&A EU HUB Public Certificate and Endpoint renewal and Schema transition | Removed: 1 line",
+    "impact": "Check whether your SDP procedures (SOPs, training, quality system) need updating.",
+    "auto": true,
+    "sk": {
+     "about": "Oficiálna referenčná stránka správnej distribučnej praxe (SDP/GDP): EMVO – News (European Medicines Verification System).",
+     "what_changed": "Pridané: 12/08/2026: Q&A EU HUB Public Certificate and Endpoint renewal and Schema transition | Odstránené riadky: 1",
+     "impact": "Skontrolujte, či treba aktualizovať vaše postupy SDP (SOP, školenia, systém kvality)."
+    }
+   },
+   "title_sk": "Zmena: EMVO – News (European Medicines Verification System)",
+   "category_sk": "SDP / GDP",
+   "tags_sk": [
+    "Veľkodistribúcia"
+   ]
+  },
+  {
+   "id": "sdp:https://health.ec.europa.eu/medicinal-products/falsified-medicines_en:f8daf6cc46",
+   "source": "sdp",
+   "source_name": "SDP / GDP · EÚ, EMA, PIC/S, EMVO",
+   "title": "Changed: EU – Falsified medicines and safety features (FMD)",
+   "url": "https://health.ec.europa.eu/medicinal-products/falsified-medicines_en",
+   "date": "2026-11-27T12:05:24Z",
+   "detected": "2026-11-27T12:05:24Z",
+   "category": "SDP / GDP",
+   "priority": "high",
+   "tags": [
+    "Wholesale distribution"
+   ],
+   "summary": "Added: Documents: Key documents",
+   "explain": {
+    "about": "Official good-distribution-practice (SDP/GDP) reference page: EU – Falsified medicines and safety features (FMD).",
+    "what_changed": "Added: Documents: Key documents",
+    "impact": "Check whether your SDP procedures (SOPs, training, quality system) need updating.",
+    "auto": true,
+    "sk": {
+     "about": "Oficiálna referenčná stránka správnej distribučnej praxe (SDP/GDP): EU – Falsified medicines and safety features (FMD).",
+     "what_changed": "Pridané: Documents: Key documents",
+     "impact": "Skontrolujte, či treba aktualizovať vaše postupy SDP (SOP, školenia, systém kvality)."
+    }
+   },
+   "title_sk": "Zmena: EU – Falsified medicines and safety features (FMD)",
+   "category_sk": "SDP / GDP",
+   "tags_sk": [
+    "Veľkodistribúcia"
+   ]
+  },
+  {
+   "id": "sdp:https://health.ec.europa.eu/medicinal-products/eudralex/eudralex-volume-4_en:35f7bb7a5e",
+   "source": "sdp",
+   "source_name": "SDP / GDP · EÚ, EMA, PIC/S, EMVO",
+   "title": "Changed: EU – EudraLex Volume 4 (GMP/GDP guidelines)",
+   "url": "https://health.ec.europa.eu/medicinal-products/eudralex/eudralex-volume-4_en",
+   "date": "2026-11-27T12:05:23Z",
+   "detected": "2026-11-27T12:05:23Z",
+   "category": "SDP / GDP",
+   "priority": "high",
+   "tags": [
+    "Wholesale distribution",
+    "Veterinary care"
+   ],
+   "summary": "Added: Documents: Key documents",
+   "explain": {
+    "about": "Official good-distribution-practice (SDP/GDP) reference page: EU – EudraLex Volume 4 (GMP/GDP guidelines).",
+    "what_changed": "Added: Documents: Key documents",
+    "impact": "Check whether your SDP procedures (SOPs, training, quality system) need updating.",
+    "auto": true,
+    "sk": {
+     "about": "Oficiálna referenčná stránka správnej distribučnej praxe (SDP/GDP): EU – EudraLex Volume 4 (GMP/GDP guidelines).",
+     "what_changed": "Pridané: Documents: Key documents",
+     "impact": "Skontrolujte, či treba aktualizovať vaše postupy SDP (SOP, školenia, systém kvality)."
+    }
+   },
+   "title_sk": "Zmena: EU – EudraLex Volume 4 (GMP/GDP guidelines)",
+   "category_sk": "SDP / GDP",
+   "tags_sk": [
+    "Veľkodistribúcia",
+    "Veterinárna starostlivosť"
+   ]
+  },
+  {
+   "id": "https://www.ema.europa.eu/en/news/meeting-highlights-pharmacovigilance-risk-assessment-committee-prac-23-26-november-2026",
+   "source": "ema",
+   "source_name": "EMA · European Medicines Agency",
+   "title": "Meeting highlights from the Pharmacovigilance Risk Assessment Committee (PRAC) 23-26 November 2026",
+   "url": "https://www.ema.europa.eu/en/news/meeting-highlights-pharmacovigilance-risk-assessment-committee-prac-23-26-november-2026",
+   "date": "2026-11-27T11:00:00Z",
+   "detected": "2026-11-27T12:05:37Z",
+   "category": "EU agency (EMA)",
+   "priority": "medium",
+   "tags": [
+    "Medicines",
+    "Medicines (general)",
+    "Drug safety"
+   ],
+   "summary": "At its monthly meeting, EMA’s safety committee (PRAC) carried out its broad range of responsibilities to manage the safety of medicines, including the assessment of safety…, Agenda Agenda of PRAC meeting 23-26 November 2026Draft Reference number:EMA/PRAC/251552/2026…, PRAC statistics: December 2026 Monthly figures…",
+   "explain": {
+    "about": "European Medicines Agency (EMA) news: Meeting highlights from the Pharmacovigilance Risk Assessment Committee (PRAC) 23-26 November 2026",
+    "what_changed": "At its monthly meeting, EMA’s safety committee (PRAC) carried out its broad range of responsibilities to manage the safety of medicines, including the assessment of safety…, Agenda Agenda of PRAC meeting 23-26 November 2026Draft Reference number:EMA/PRAC/251552/2026…, PRAC statistics: December 2026 Monthly figures…",
+    "impact": "For information; no action is expected.",
+    "auto": true,
+    "sk": {
+     "about": "Novinka Európskej agentúry pre lieky (EMA): Meeting highlights from the Pharmacovigilance Risk Assessment Committee (PRAC) 23-26 November 2026",
+     "what_changed": "At its monthly meeting, EMA’s safety committee (PRAC) carried out its broad range of responsibilities to manage the safety of medicines, including the assessment of safety…, Agenda Agenda of PRAC meeting 23-26 November 2026Draft Reference number:EMA/PRAC/251552/2026…, PRAC statistics: December 2026 Monthly figures…",
+     "impact": "Na informáciu; nepredpokladá sa žiadna akcia."
+    }
+   },
+   "title_sk": "Meeting highlights from the Pharmacovigilance Risk Assessment Committee (PRAC) 23-26 November 2026",
+   "category_sk": "Agentúra EÚ (EMA)",
+   "tags_sk": [
+    "Lieky",
+    "Lieky (všeobecne)",
+    "Bezpečnosť liekov"
+   ]
+  },
+  {
+   "id": "https://www.ema.europa.eu/en/news/use-glp-1-medicines-shifts-towards-obesity-treatment-europe-new-study-shows",
+   "source": "ema",
+   "source_name": "EMA · European Medicines Agency",
+   "title": "Use of GLP-1 medicines shifts towards obesity treatment in Europe, new study shows",
+   "url": "https://www.ema.europa.eu/en/news/use-glp-1-medicines-shifts-towards-obesity-treatment-europe-new-study-shows",
+   "date": "2026-11-27T10:33:00Z",
+   "detected": "2026-11-27T12:05:37Z",
+   "category": "EU agency (EMA)",
+   "priority": "low",
+   "tags": [
+    "Medicines (general)"
+   ],
+   "summary": "A large European real-world evidence study has shown that the use of GLP-1 medicines has changed substantially over the past decade. Originally authorised for type 2 diabetes,…",
+   "explain": {
+    "about": "European Medicines Agency (EMA) news: Use of GLP-1 medicines shifts towards obesity treatment in Europe, new study shows",
+    "what_changed": "A large European real-world evidence study has shown that the use of GLP-1 medicines has changed substantially over the past decade. Originally authorised for type 2 diabetes,…",
+    "impact": "For information; no action is expected.",
+    "auto": true,
+    "sk": {
+     "about": "Novinka Európskej agentúry pre lieky (EMA): Use of GLP-1 medicines shifts towards obesity treatment in Europe, new study shows",
+     "what_changed": "A large European real-world evidence study has shown that the use of GLP-1 medicines has changed substantially over the past decade. Originally authorised for type 2 diabetes,…",
+     "impact": "Na informáciu; nepredpokladá sa žiadna akcia."
+    }
+   },
+   "title_sk": "Use of GLP-1 medicines shifts towards obesity treatment in Europe, new study shows",
+   "category_sk": "Agentúra EÚ (EMA)",
+   "tags_sk": [
+    "Lieky (všeobecne)"
+   ]
+  },
+  {
    "id": "slovlex:295/2026",
    "source": "slovlex",
    "source_name": "Slov-Lex · Zbierka zákonov SR",
@@ -26257,101 +26418,101 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-27T00:04:00Z",
-   "new": 3,
+   "checked": "2026-11-27T12:04:29Z",
+   "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-27T00:04:00Z",
+   "checked": "2026-11-27T12:04:29Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-27T00:04:00Z",
+   "checked": "2026-11-27T12:04:29Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-11-27T00:04:00Z",
-   "new": 1,
+   "checked": "2026-11-27T12:04:29Z",
+   "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Všetky zmeny na webe",
    "ok": true,
-   "checked": "2026-11-27T00:04:00Z",
+   "checked": "2026-11-27T12:04:29Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-11-27T00:04:00Z",
+   "checked": "2026-11-27T12:04:29Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-27T00:04:00Z",
+   "checked": "2026-11-27T12:04:29Z",
    "new": 0,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-11-27T00:04:00Z",
+   "checked": "2026-11-27T12:04:29Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-11-27T00:04:00Z",
+   "checked": "2026-11-27T12:04:29Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-27T00:04:00Z",
-   "new": 0,
+   "checked": "2026-11-27T12:04:29Z",
+   "new": 2,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-27T00:04:00Z",
+   "checked": "2026-11-27T12:04:29Z",
    "new": 0,
    "error": null
   },
   "sukl_web": {
    "name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
    "ok": true,
-   "checked": "2026-11-27T00:04:00Z",
+   "checked": "2026-11-27T12:04:29Z",
    "new": 0,
    "error": null
   },
   "sool": {
    "name": "SOOL · Slovenská organizácia pre overovanie liekov",
    "ok": true,
-   "checked": "2026-11-27T00:04:00Z",
+   "checked": "2026-11-27T12:04:29Z",
    "new": 0,
    "error": null
   },
   "sdp": {
    "name": "SDP / GDP · EÚ, EMA, PIC/S, EMVO",
    "ok": true,
-   "checked": "2026-11-27T00:04:00Z",
-   "new": 0,
+   "checked": "2026-11-27T12:04:29Z",
+   "new": 3,
    "error": null
   }
  },
- "updated": "2026-11-27T00:04:00Z"
+ "updated": "2026-11-27T12:04:29Z"
 }

@@ -5971,12 +5971,12 @@
     "tags": []
    },
    "LP/2026/530": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 0,
     "tags": []
    },
    "LP/2026/529": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 0,
     "tags": []
    },
@@ -6498,7 +6498,7 @@
     "tags": []
    },
    "LPEU/2026/654": {
-    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "stage": "MPK",
     "rel": 0,
     "tags": []
    },
@@ -6561,7 +6561,7 @@
     "stage_name": "Vyhodnotenie pripomienkového konania"
    },
    "LP/2026/500": {
-    "stage": "PRED_VYHLASENIM_V_ZBIERKE",
+    "stage": "VYHLASENE_V_ZBIERKE",
     "rel": 0,
     "tags": []
    },
@@ -8102,7 +8102,7 @@
     "tags": []
    },
    "LP/2026/536": {
-    "stage": "ROKOVANIE_VLADA",
+    "stage": "PROCES_UKONCENY",
     "rel": 0,
     "tags": []
    },
@@ -8380,7 +8380,7 @@
     "tags": []
    },
    "LP/2026/542": {
-    "stage": "SPRACOVANIE_PREDKLADATEL",
+    "stage": "ROKOVANIE_VLADA",
     "rel": 0,
     "tags": []
    },
@@ -9085,7 +9085,7 @@
     "tags": []
    },
    "LP/2026/627": {
-    "stage": "VYHODNOTENIE_MPK",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 0,
     "tags": []
    },
@@ -9514,6 +9514,16 @@
    },
    "LP/2026/655": {
     "stage": "ROKOVANIE_VLADA",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/656": {
+    "stage": "MPK",
+    "rel": 0,
+    "tags": []
+   },
+   "LPEU/2026/808": {
+    "stage": "SCHVALENIE_GESTORA",
     "rel": 0,
     "tags": []
    }
@@ -11216,7 +11226,9 @@
    "https://www.ema.europa.eu/en/news/meeting-highlights-pharmacovigilance-risk-assessment-committee-prac-26-29-october-2026": "2026-10-30T11:23:27Z",
    "https://www.ema.europa.eu/en/news/meeting-highlights-committee-veterinary-medicinal-products-cvmp-3-5-november-2026": "2026-11-06T14:21:03Z",
    "https://www.ema.europa.eu/en/news/meeting-highlights-committee-medicinal-products-human-use-chmp-9-12-november-2026": "2026-11-13T11:19:22Z",
-   "https://www.ema.europa.eu/en/news/eu-recommendations-2026-2027-seasonal-flu-vaccine-composition": "2026-11-17T14:10:25Z"
+   "https://www.ema.europa.eu/en/news/eu-recommendations-2026-2027-seasonal-flu-vaccine-composition": "2026-11-17T14:10:25Z",
+   "https://www.ema.europa.eu/en/news/meeting-highlights-pharmacovigilance-risk-assessment-committee-prac-23-26-november-2026": "2026-11-27T12:05:37Z",
+   "https://www.ema.europa.eu/en/news/use-glp-1-medicines-shifts-towards-obesity-treatment-europe-new-study-shows": "2026-11-27T12:05:37Z"
   }
  },
  "svps": {
@@ -18365,6 +18377,7 @@
     "6464116f1f",
     "2941c5ce61",
     "687c82861c",
+    "a42d6723ec",
     "c5497bca58",
     "e8140a8f85",
     "0855684c14",
@@ -18454,6 +18467,7 @@
     "6464116f1f",
     "2941c5ce61",
     "687c82861c",
+    "a42d6723ec",
     "c5497bca58",
     "e8140a8f85",
     "0855684c14",
@@ -18634,7 +18648,7 @@
     "46d96444fd",
     "6f5cb9f68c",
     "d08ce798e4",
-    "5e3780aa20",
+    "4f7a6bd75f",
     "cde32c4894",
     "f74622a48b",
     "c90054b733",
