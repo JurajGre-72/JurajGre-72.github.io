@@ -6168,7 +6168,7 @@
     "tags": []
    },
    "LP/2026/479": {
-    "stage": "ROKOVANIE_POV",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 0,
     "tags": []
    },
@@ -6706,7 +6706,7 @@
     ]
    },
    "LP/2026/494": {
-    "stage": "ROKOVANIE_POV",
+    "stage": "SPRACOVANIE_PREDKLADATEL",
     "rel": 0,
     "tags": []
    },
@@ -9425,32 +9425,32 @@
     "tags": []
    },
    "LPEU/2026/800": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/799": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/798": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/803": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/802": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/801": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -9460,12 +9460,12 @@
     "tags": []
    },
    "LPEU/2026/804": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
    "LPEU/2026/805": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": [
      "Animal diseases"
@@ -9482,7 +9482,7 @@
     "tags": []
    },
    "LPEU/2026/806": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 0,
     "tags": []
    },
@@ -9505,12 +9505,12 @@
     "tags": []
    },
    "LPEU/2026/807": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
     "rel": 3,
     "tags": [
      "Medicines"
     ],
-    "stage_name": "Schválenie gestora"
+    "stage_name": "Zápis predbežného stanoviska k návrhu aktu EÚ"
    },
    "LP/2026/655": {
     "stage": "ROKOVANIE_VLADA",
@@ -9523,7 +9523,12 @@
     "tags": []
    },
    "LPEU/2026/808": {
-    "stage": "SCHVALENIE_GESTORA",
+    "stage": "ZAPIS_PREDBEZNEHO_STANOVISKA",
+    "rel": 0,
+    "tags": []
+   },
+   "LP/2026/657": {
+    "stage": "MPK",
     "rel": 0,
     "tags": []
    }
@@ -11228,7 +11233,8 @@
    "https://www.ema.europa.eu/en/news/meeting-highlights-committee-medicinal-products-human-use-chmp-9-12-november-2026": "2026-11-13T11:19:22Z",
    "https://www.ema.europa.eu/en/news/eu-recommendations-2026-2027-seasonal-flu-vaccine-composition": "2026-11-17T14:10:25Z",
    "https://www.ema.europa.eu/en/news/meeting-highlights-pharmacovigilance-risk-assessment-committee-prac-23-26-november-2026": "2026-11-27T12:05:37Z",
-   "https://www.ema.europa.eu/en/news/use-glp-1-medicines-shifts-towards-obesity-treatment-europe-new-study-shows": "2026-11-27T12:05:37Z"
+   "https://www.ema.europa.eu/en/news/use-glp-1-medicines-shifts-towards-obesity-treatment-europe-new-study-shows": "2026-11-27T12:05:37Z",
+   "https://www.ema.europa.eu/en/news/executive-director-speech-european-media-workshop-vaccines": "2026-11-27T16:05:41Z"
   }
  },
  "svps": {
