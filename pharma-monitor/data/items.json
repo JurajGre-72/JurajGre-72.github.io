@@ -127,6 +127,194 @@
    ]
   },
   {
+   "id": "sukl_web:https://www.sukl.sk/vaxneuvance-injekcna-suspenzia-v-naplnenej-injekcnej-striekacke-9370d-prve-uvedenie-26.11.2026:6eee0931c5",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Vaxneuvance injekčná suspenzia v naplnenej injekčnej striekačke sus inj 1x0,5 ml (striek.inj.napl.skl.) (9370D) - Prvé uvedenie 26.11.2026",
+   "url": "https://www.sukl.sk/vaxneuvance-injekcna-suspenzia-v-naplnenej-injekcnej-striekacke-9370d-prve-uvedenie-26.11.2026",
+   "date": "2026-11-27T12:00:00Z",
+   "detected": "2026-11-27T20:05:04Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "First placed on the market"
+   ],
+   "summary": "Typ oznámenia: Prvé uvedenie · Platnosť od: 26.11.2026 · Dátum hlásenia: 27.11.2026 15:00 · Poznámka: test - upravujeme dátum účinnosti, aby sa zhodoval s dátumom dovozu. · Kód ŠÚKL: 9370D",
+   "explain": {
+    "about": "ŠÚKL supply notice for Vaxneuvance injekčná suspenzia v naplnenej injekčnej striekačke sus inj 1x0,5 ml (striek.inj.napl.skl.) (9370D).",
+    "what_changed": "Type: First placed on the market · Valid from: 26.11.2026 · Reported: 27.11.2026 15:00 · Note: test - upravujeme dátum účinnosti, aby sa zhodoval s dátumom dovozu. · ŠÚKL code: 9370D",
+    "impact": "New product on the Slovak market: consider adding it to your range.",
+    "auto": true,
+    "sk": {
+     "about": "Oznámenie ŠÚKL o dostupnosti lieku Vaxneuvance injekčná suspenzia v naplnenej injekčnej striekačke sus inj 1x0,5 ml (striek.inj.napl.skl.) (9370D).",
+     "what_changed": "Typ oznámenia: Prvé uvedenie · Platnosť od: 26.11.2026 · Dátum hlásenia: 27.11.2026 15:00 · Poznámka: test - upravujeme dátum účinnosti, aby sa zhodoval s dátumom dovozu. · Kód ŠÚKL: 9370D",
+     "impact": "Nový liek na slovenskom trhu: zvážte jeho zaradenie do sortimentu."
+    }
+   },
+   "title_sk": "Vaxneuvance injekčná suspenzia v naplnenej injekčnej striekačke sus inj 1x0,5 ml (striek.inj.napl.skl.) (9370D) - Prvé uvedenie 26.11.2026",
+   "category_sk": "Dostupnosť liekov",
+   "tags_sk": [
+    "Prvé uvedenie na trh"
+   ]
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/sanval-10-mg-14610-prerusenie-1.12.2026:0d00511de8",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "SANVAL 10 mg tbl flm 20x10 mg (blis.Al/PVC) (14610) - Prerušenie 1.12.2026",
+   "url": "https://www.sukl.sk/sanval-10-mg-14610-prerusenie-1.12.2026",
+   "date": "2026-11-27T12:00:00Z",
+   "detected": "2026-11-27T20:05:07Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "Supply interruption"
+   ],
+   "summary": "Typ oznámenia: Prerušenie · Platnosť od: 1.12.2026 · Dátum hlásenia: 27.11.2026 14:32 · Predpokladaný termín obnovenia: 2.10.2027 · Poznámka: TEST · Kód ŠÚKL: 14610",
+   "explain": {
+    "about": "ŠÚKL supply notice for SANVAL 10 mg tbl flm 20x10 mg (blis.Al/PVC) (14610).",
+    "what_changed": "Type: Interruption · Valid from: 1.12.2026 · Reported: 27.11.2026 14:32 · Expected resumption: 2.10.2027 · Note: TEST · ŠÚKL code: 14610",
+    "impact": "Supply of this product is interrupted: check your stock, tell affected customers and plan an alternative.",
+    "auto": true,
+    "sk": {
+     "about": "Oznámenie ŠÚKL o dostupnosti lieku SANVAL 10 mg tbl flm 20x10 mg (blis.Al/PVC) (14610).",
+     "what_changed": "Typ oznámenia: Prerušenie · Platnosť od: 1.12.2026 · Dátum hlásenia: 27.11.2026 14:32 · Predpokladaný termín obnovenia: 2.10.2027 · Poznámka: TEST · Kód ŠÚKL: 14610",
+     "impact": "Dodávky lieku sú prerušené: skontrolujte zásoby, informujte dotknutých odberateľov a pripravte náhradu."
+    }
+   },
+   "title_sk": "SANVAL 10 mg tbl flm 20x10 mg (blis.Al/PVC) (14610) - Prerušenie 1.12.2026",
+   "category_sk": "Dostupnosť liekov",
+   "tags_sk": [
+    "Prerušenie dodávok"
+   ]
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/pomalidomide-sandoz-4-mg-7847e-prerusenie-27.11.2026:468a0416a3",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Pomalidomide Sandoz 4 mg cps dur 21x4 mg (blis.OPA/Al/PVC/Al) (7847E) - Prerušenie 27.11.2026",
+   "url": "https://www.sukl.sk/pomalidomide-sandoz-4-mg-7847e-prerusenie-27.11.2026",
+   "date": "2026-11-27T12:00:00Z",
+   "detected": "2026-11-27T20:05:06Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "Supply interruption"
+   ],
+   "summary": "Typ oznámenia: Prerušenie · Platnosť od: 27.11.2026 · Dátum hlásenia: 27.11.2026 14:05 · Predpokladaný termín obnovenia: 30.11.2028 · Poznámka: TEST · Kód ŠÚKL: 7847E",
+   "explain": {
+    "about": "ŠÚKL supply notice for Pomalidomide Sandoz 4 mg cps dur 21x4 mg (blis.OPA/Al/PVC/Al) (7847E).",
+    "what_changed": "Type: Interruption · Valid from: 27.11.2026 · Reported: 27.11.2026 14:05 · Expected resumption: 30.11.2028 · Note: TEST · ŠÚKL code: 7847E",
+    "impact": "Supply of this product is interrupted: check your stock, tell affected customers and plan an alternative.",
+    "auto": true,
+    "sk": {
+     "about": "Oznámenie ŠÚKL o dostupnosti lieku Pomalidomide Sandoz 4 mg cps dur 21x4 mg (blis.OPA/Al/PVC/Al) (7847E).",
+     "what_changed": "Typ oznámenia: Prerušenie · Platnosť od: 27.11.2026 · Dátum hlásenia: 27.11.2026 14:05 · Predpokladaný termín obnovenia: 30.11.2028 · Poznámka: TEST · Kód ŠÚKL: 7847E",
+     "impact": "Dodávky lieku sú prerušené: skontrolujte zásoby, informujte dotknutých odberateľov a pripravte náhradu."
+    }
+   },
+   "title_sk": "Pomalidomide Sandoz 4 mg cps dur 21x4 mg (blis.OPA/Al/PVC/Al) (7847E) - Prerušenie 27.11.2026",
+   "category_sk": "Dostupnosť liekov",
+   "tags_sk": [
+    "Prerušenie dodávok"
+   ]
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/pneumovax-23-1011d-zrusenie-30.11.2026:3e9e7b7a7b",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Pneumovax 23 sol iru 10x0,5 ml (striek.inj.skl.napl.+2 ihly) (1011D) - Zrušenie 30.11.2026",
+   "url": "https://www.sukl.sk/pneumovax-23-1011d-zrusenie-30.11.2026",
+   "date": "2026-11-27T12:00:00Z",
+   "detected": "2026-11-27T20:05:05Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "Supply ended"
+   ],
+   "summary": "Typ oznámenia: Zrušenie · Platnosť od: 30.11.2026 · Dátum hlásenia: 27.11.2026 14:25 · Poznámka: test - počet zostávajúcich balení 67 · Kód ŠÚKL: 1011D",
+   "explain": {
+    "about": "ŠÚKL supply notice for Pneumovax 23 sol iru 10x0,5 ml (striek.inj.skl.napl.+2 ihly) (1011D).",
+    "what_changed": "Type: End of supply · Valid from: 30.11.2026 · Reported: 27.11.2026 14:25 · Note: test - počet zostávajúcich balení 67 · ŠÚKL code: 1011D",
+    "impact": "Supply ends: plan a replacement and run down the remaining stock.",
+    "auto": true,
+    "sk": {
+     "about": "Oznámenie ŠÚKL o dostupnosti lieku Pneumovax 23 sol iru 10x0,5 ml (striek.inj.skl.napl.+2 ihly) (1011D).",
+     "what_changed": "Typ oznámenia: Zrušenie · Platnosť od: 30.11.2026 · Dátum hlásenia: 27.11.2026 14:25 · Poznámka: test - počet zostávajúcich balení 67 · Kód ŠÚKL: 1011D",
+     "impact": "Dodávky končia: pripravte náhradu a dopredajte zostávajúce zásoby."
+    }
+   },
+   "title_sk": "Pneumovax 23 sol iru 10x0,5 ml (striek.inj.skl.napl.+2 ihly) (1011D) - Zrušenie 30.11.2026",
+   "category_sk": "Dostupnosť liekov",
+   "tags_sk": [
+    "Ukončenie dodávok"
+   ]
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/jubbonti-60-mg-injekcny-roztok-naplneny-v-injekcnej-striekacke-6452e-prve-uvedenie-25.11.2026:40dc98fc7d",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Jubbonti 60 mg injekčný roztok naplnený v injekčnej striekačke sol inj 1x1 ml/60 mg (striek.inj.napl.skl.) (6452E) - Prvé uvedenie 25.11.2026",
+   "url": "https://www.sukl.sk/jubbonti-60-mg-injekcny-roztok-naplneny-v-injekcnej-striekacke-6452e-prve-uvedenie-25.11.2026",
+   "date": "2026-11-27T12:00:00Z",
+   "detected": "2026-11-27T20:05:08Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "First placed on the market"
+   ],
+   "summary": "Typ oznámenia: Prvé uvedenie · Platnosť od: 25.11.2026 · Dátum hlásenia: 27.11.2026 14:13 · Poznámka: TEST Prvé uvedenie. · Kód ŠÚKL: 6452E",
+   "explain": {
+    "about": "ŠÚKL supply notice for Jubbonti 60 mg injekčný roztok naplnený v injekčnej striekačke sol inj 1x1 ml/60 mg (striek.inj.napl.skl.) (6452E).",
+    "what_changed": "Type: First placed on the market · Valid from: 25.11.2026 · Reported: 27.11.2026 14:13 · Note: TEST First placed on the market. · ŠÚKL code: 6452E",
+    "impact": "New product on the Slovak market: consider adding it to your range.",
+    "auto": true,
+    "sk": {
+     "about": "Oznámenie ŠÚKL o dostupnosti lieku Jubbonti 60 mg injekčný roztok naplnený v injekčnej striekačke sol inj 1x1 ml/60 mg (striek.inj.napl.skl.) (6452E).",
+     "what_changed": "Typ oznámenia: Prvé uvedenie · Platnosť od: 25.11.2026 · Dátum hlásenia: 27.11.2026 14:13 · Poznámka: TEST Prvé uvedenie. · Kód ŠÚKL: 6452E",
+     "impact": "Nový liek na slovenskom trhu: zvážte jeho zaradenie do sortimentu."
+    }
+   },
+   "title_sk": "Jubbonti 60 mg injekčný roztok naplnený v injekčnej striekačke sol inj 1x1 ml/60 mg (striek.inj.napl.skl.) (6452E) - Prvé uvedenie 25.11.2026",
+   "category_sk": "Dostupnosť liekov",
+   "tags_sk": [
+    "Prvé uvedenie na trh"
+   ]
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/astmasan-10-mg-filmom-obalene-tablety-82220-zrusenie-2.5.2027:845eea5499",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "ASTMASAN 10 mg filmom obalené tablety tbl flm 28x10 mg (blis.OPA/Al/PVC/Al) (82220) - Zrušenie 2.5.2027",
+   "url": "https://www.sukl.sk/astmasan-10-mg-filmom-obalene-tablety-82220-zrusenie-2.5.2027",
+   "date": "2026-11-27T12:00:00Z",
+   "detected": "2026-11-27T20:05:06Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "Supply ended",
+    "Waste & packaging"
+   ],
+   "summary": "Typ oznámenia: Zrušenie · Platnosť od: 2.5.2027 · Dátum hlásenia: 27.11.2026 14:30 · Poznámka: TEST · Kód ŠÚKL: 82220",
+   "explain": {
+    "about": "ŠÚKL supply notice for ASTMASAN 10 mg filmom obalené tablety tbl flm 28x10 mg (blis.OPA/Al/PVC/Al) (82220).",
+    "what_changed": "Type: End of supply · Valid from: 2.5.2027 · Reported: 27.11.2026 14:30 · Note: TEST · ŠÚKL code: 82220",
+    "impact": "Supply ends: plan a replacement and run down the remaining stock.",
+    "auto": true,
+    "sk": {
+     "about": "Oznámenie ŠÚKL o dostupnosti lieku ASTMASAN 10 mg filmom obalené tablety tbl flm 28x10 mg (blis.OPA/Al/PVC/Al) (82220).",
+     "what_changed": "Typ oznámenia: Zrušenie · Platnosť od: 2.5.2027 · Dátum hlásenia: 27.11.2026 14:30 · Poznámka: TEST · Kód ŠÚKL: 82220",
+     "impact": "Dodávky končia: pripravte náhradu a dopredajte zostávajúce zásoby."
+    }
+   },
+   "title_sk": "ASTMASAN 10 mg filmom obalené tablety tbl flm 28x10 mg (blis.OPA/Al/PVC/Al) (82220) - Zrušenie 2.5.2027",
+   "category_sk": "Dostupnosť liekov",
+   "tags_sk": [
+    "Ukončenie dodávok",
+    "Odpady a obaly"
+   ]
+  },
+  {
    "id": "https://www.ema.europa.eu/en/news/meeting-highlights-pharmacovigilance-risk-assessment-committee-prac-23-26-november-2026",
    "source": "ema",
    "source_name": "EMA · European Medicines Agency",
@@ -812,6 +1000,37 @@
    "category_sk": "Dostupnosť liekov",
    "tags_sk": [
     "Prerušenie dodávok"
+   ]
+  },
+  {
+   "id": "sukl_web:https://www.sukl.sk/amlodipine-teva-5-mg-2296f-prve-uvedenie-31.10.2026:00c6ea3acc",
+   "source": "sukl_web",
+   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
+   "title": "Amlodipine Teva 5 mg tbl 30x5 mg (blis.PVC/PVDC/Al) (2296F) - Prvé uvedenie 31.10.2026",
+   "url": "https://www.sukl.sk/amlodipine-teva-5-mg-2296f-prve-uvedenie-31.10.2026",
+   "date": "2026-11-26T12:00:00Z",
+   "detected": "2026-11-27T20:05:04Z",
+   "category": "Supply / availability",
+   "priority": "medium",
+   "tags": [
+    "First placed on the market"
+   ],
+   "summary": "Typ oznámenia: Prvé uvedenie · Platnosť od: 31.10.2026 · Dátum hlásenia: 26.11.2026 19:34 · Poznámka: Uvedenie na trh · Kód ŠÚKL: 2296F",
+   "explain": {
+    "about": "ŠÚKL supply notice for Amlodipine Teva 5 mg tbl 30x5 mg (blis.PVC/PVDC/Al) (2296F).",
+    "what_changed": "Type: First placed on the market · Valid from: 31.10.2026 · Reported: 26.11.2026 19:34 · Note: Uvedenie na trh · ŠÚKL code: 2296F",
+    "impact": "New product on the Slovak market: consider adding it to your range.",
+    "auto": true,
+    "sk": {
+     "about": "Oznámenie ŠÚKL o dostupnosti lieku Amlodipine Teva 5 mg tbl 30x5 mg (blis.PVC/PVDC/Al) (2296F).",
+     "what_changed": "Typ oznámenia: Prvé uvedenie · Platnosť od: 31.10.2026 · Dátum hlásenia: 26.11.2026 19:34 · Poznámka: Uvedenie na trh · Kód ŠÚKL: 2296F",
+     "impact": "Nový liek na slovenskom trhu: zvážte jeho zaradenie do sortimentu."
+    }
+   },
+   "title_sk": "Amlodipine Teva 5 mg tbl 30x5 mg (blis.PVC/PVDC/Al) (2296F) - Prvé uvedenie 31.10.2026",
+   "category_sk": "Dostupnosť liekov",
+   "tags_sk": [
+    "Prvé uvedenie na trh"
    ]
   },
   {
@@ -26482,101 +26701,101 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-27T16:04:41Z",
+   "checked": "2026-11-27T20:04:30Z",
    "new": 0,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-27T16:04:41Z",
+   "checked": "2026-11-27T20:04:30Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-27T16:04:41Z",
+   "checked": "2026-11-27T20:04:30Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-11-27T16:04:41Z",
+   "checked": "2026-11-27T20:04:30Z",
    "new": 0,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Všetky zmeny na webe",
    "ok": true,
-   "checked": "2026-11-27T16:04:41Z",
+   "checked": "2026-11-27T20:04:30Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-11-27T16:04:41Z",
+   "checked": "2026-11-27T20:04:30Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-27T16:04:41Z",
-   "new": 1,
+   "checked": "2026-11-27T20:04:30Z",
+   "new": 0,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-11-27T16:04:41Z",
+   "checked": "2026-11-27T20:04:30Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-11-27T16:04:41Z",
+   "checked": "2026-11-27T20:04:30Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-27T16:04:41Z",
-   "new": 1,
+   "checked": "2026-11-27T20:04:30Z",
+   "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-27T16:04:41Z",
+   "checked": "2026-11-27T20:04:30Z",
    "new": 0,
    "error": null
   },
   "sukl_web": {
    "name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
    "ok": true,
-   "checked": "2026-11-27T16:04:41Z",
-   "new": 0,
+   "checked": "2026-11-27T20:04:30Z",
+   "new": 7,
    "error": null
   },
   "sool": {
    "name": "SOOL · Slovenská organizácia pre overovanie liekov",
    "ok": true,
-   "checked": "2026-11-27T16:04:41Z",
+   "checked": "2026-11-27T20:04:30Z",
    "new": 0,
    "error": null
   },
   "sdp": {
    "name": "SDP / GDP · EÚ, EMA, PIC/S, EMVO",
    "ok": true,
-   "checked": "2026-11-27T16:04:41Z",
+   "checked": "2026-11-27T20:04:30Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-11-27T16:04:41Z"
+ "updated": "2026-11-27T20:04:30Z"
 }
