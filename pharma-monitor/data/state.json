@@ -178,7 +178,8 @@
    "https://www.health.gov.sk/novinky/slovensko-ziskalo-vysoke-hodnotenie-v-oblasti-monitorovania-drog/": "2026-11-24T13:56:16Z",
    "https://www.health.gov.sk/novinky/ezapisovanie-prinasa-vysledky-januar-dalsie-ambulancie-stacionare/": "2026-11-25T08:28:40Z",
    "https://www.health.gov.sk/novinky/test/": "2026-11-25T10:28:15Z",
-   "https://www.health.gov.sk/novinky/sever-slovenska-vlastna-spickova-nemocnica-uroven-stvrta/": "2026-11-26T16:04:45Z"
+   "https://www.health.gov.sk/novinky/sever-slovenska-vlastna-spickova-nemocnica-uroven-stvrta/": "2026-11-26T16:04:45Z",
+   "https://www.health.gov.sk/novinky/prechod-na-elektronicku-fakturaciu-sa-tyka-aj-poskytovatelov-zdravotnej-starostl/": "2026-11-27T00:04:50Z"
   },
   "feed": "https://www.health.gov.sk/rss/sk/novinky.xml"
  },
@@ -5721,7 +5722,14 @@
    "285/2026": "2026-11-23T00:34:50Z",
    "286/2026": "2026-11-23T00:34:52Z",
    "287/2026": "2026-11-25T00:08:00Z",
-   "288/2026": "2026-11-25T00:08:02Z"
+   "288/2026": "2026-11-25T00:08:02Z",
+   "289/2026": "2026-11-27T00:04:02Z",
+   "290/2026": "2026-11-27T00:04:04Z",
+   "291/2026": "2026-11-27T00:04:07Z",
+   "292/2026": "2026-11-27T00:04:09Z",
+   "293/2026": "2026-11-27T00:04:11Z",
+   "294/2026": "2026-11-27T00:04:14Z",
+   "295/2026": "2026-11-27T00:04:16Z"
   }
  },
  "slovlex_lp": {
@@ -8814,7 +8822,7 @@
     "tags": []
    },
    "LP/2026/604": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -8824,7 +8832,7 @@
     "tags": []
    },
    "LP/2026/606": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -9062,7 +9070,7 @@
     "tags": []
    },
    "LP/2026/620": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -9077,7 +9085,7 @@
     "tags": []
    },
    "LP/2026/627": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -9194,7 +9202,7 @@
     "tags": []
    },
    "LP/2026/636": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -9295,7 +9303,7 @@
     "stage_name": "Pripomienkové konanie"
    },
    "LP/2026/642": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },

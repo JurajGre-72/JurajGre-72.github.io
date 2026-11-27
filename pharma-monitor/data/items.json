@@ -1,6 +1,118 @@
 {
  "items": [
   {
+   "id": "slovlex:295/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "295/2026 Z. z. – Vyhláška Ministerstva zdravotníctva Slovenskej republiky, ktorou sa mení a dopĺňa vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 209/2014 Z. z., ktorou sa ustanovuje rozsah odbornej prípravy, rozsah požadovaných vedomostí pre skúšky odbornej spôsobilosti, podrobnosti o zriaďovaní a činnosti komisií na preskúšanie odbornej spôsobilosti, podrobnosti o skúške pred komisiou na preskúšanie odbornej spôsobilosti, obsah osvedčenia o odbornej spôsobilosti a rozsah aktualizačnej odbornej prípravy v znení vyhlášky č. 222/2018 Z. z.",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/295/",
+   "date": "2026-11-27T08:00:00Z",
+   "detected": "2026-11-27T00:04:18Z",
+   "category": "Legislation",
+   "priority": "medium",
+   "tags": [
+    "Ministry of Health"
+   ],
+   "summary": "Effective from: 01.12.2026",
+   "doc_type": "Vyhláška",
+   "effective": [
+    "2026-12-01"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/295/ZZ_2026_295.pdf",
+   "explain": {
+    "about": "New act in the Collection of Laws (Zbierka zákonov): 295/2026 Z. z. – Vyhláška Ministerstva zdravotníctva Slovenskej republiky, ktorou sa mení a dopĺňa vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 209/2014 Z. z., ktorou sa ustanovuje…",
+    "what_changed": "In force from 01.12.2026.",
+    "impact": "New legislation: check whether it concerns your business.",
+    "auto": true,
+    "sk": {
+     "about": "Nový predpis v Zbierke zákonov: 295/2026 Z. z. – Vyhláška Ministerstva zdravotníctva Slovenskej republiky, ktorou sa mení a dopĺňa vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 209/2014 Z. z., ktorou sa ustanovuje…",
+     "what_changed": "Účinné od 01.12.2026.",
+     "impact": "Nový predpis: skontrolujte, či sa týka vašej činnosti."
+    }
+   },
+   "title_sk": "295/2026 Z. z. – Vyhláška Ministerstva zdravotníctva Slovenskej republiky, ktorou sa mení a dopĺňa vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 209/2014 Z. z., ktorou sa ustanovuje rozsah odbornej prípravy, rozsah požadovaných vedomostí pre skúšky odbornej spôsobilosti, podrobnosti o zriaďovaní a činnosti komisií na preskúšanie odbornej spôsobilosti, podrobnosti o skúške pred komisiou na preskúšanie odbornej spôsobilosti, obsah osvedčenia o odbornej spôsobilosti a rozsah aktualizačnej odbornej prípravy v znení vyhlášky č. 222/2018 Z. z.",
+   "category_sk": "Legislatíva",
+   "tags_sk": [
+    "Ministerstvo zdravotníctva"
+   ]
+  },
+  {
+   "id": "slovlex:294/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "294/2026 Z. z. – Vyhláška Ministerstva zdravotníctva Slovenskej republiky, ktorou sa mení a dopĺňa vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 422/2011 Z. z. o podrobnostiach farmako-ekonomického rozboru lieku v znení vyhlášky č. 177/2021 Z. z.",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/294/",
+   "date": "2026-11-27T08:00:00Z",
+   "detected": "2026-11-27T00:04:16Z",
+   "category": "Legislation",
+   "priority": "high",
+   "tags": [
+    "Medicines",
+    "Ministry of Health"
+   ],
+   "summary": "Effective from: 01.12.2026 · 54 mentions of medicines / medical devices in the text",
+   "doc_type": "Vyhláška",
+   "effective": [
+    "2026-12-01"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/294/ZZ_2026_294.pdf",
+   "explain": {
+    "about": "New act in the Collection of Laws (Zbierka zákonov): 294/2026 Z. z. – Vyhláška Ministerstva zdravotníctva Slovenskej republiky, ktorou sa mení a dopĺňa vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 422/2011 Z. z. o podrobnostiach…",
+    "what_changed": "54 mentions of medicines / medical devices in the text In force from 01.12.2026.",
+    "impact": "New legislation: check whether it concerns your business.",
+    "auto": true,
+    "sk": {
+     "about": "Nový predpis v Zbierke zákonov: 294/2026 Z. z. – Vyhláška Ministerstva zdravotníctva Slovenskej republiky, ktorou sa mení a dopĺňa vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 422/2011 Z. z. o podrobnostiach…",
+     "what_changed": "54 mentions of medicines / medical devices in the text Účinné od 01.12.2026.",
+     "impact": "Nový predpis: skontrolujte, či sa týka vašej činnosti."
+    }
+   },
+   "title_sk": "294/2026 Z. z. – Vyhláška Ministerstva zdravotníctva Slovenskej republiky, ktorou sa mení a dopĺňa vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 422/2011 Z. z. o podrobnostiach farmako-ekonomického rozboru lieku v znení vyhlášky č. 177/2021 Z. z.",
+   "category_sk": "Legislatíva",
+   "tags_sk": [
+    "Lieky",
+    "Ministerstvo zdravotníctva"
+   ]
+  },
+  {
+   "id": "slovlex:293/2026",
+   "source": "slovlex",
+   "source_name": "Slov-Lex · Zbierka zákonov SR",
+   "title": "293/2026 Z. z. – Vyhláška Ministerstva zdravotníctva Slovenskej republiky, ktorou sa mení a dopĺňa vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 298/2022 Z. z., ktorou sa ustanovujú podrobnosti výpočtu príslušného násobku hrubého domáceho produktu pre stanovenie prahovej hodnoty posudzovaného lieku",
+   "url": "https://static.slov-lex.sk/static/SK/ZZ/2026/293/",
+   "date": "2026-11-27T08:00:00Z",
+   "detected": "2026-11-27T00:04:14Z",
+   "category": "Legislation",
+   "priority": "high",
+   "tags": [
+    "Medicines",
+    "Ministry of Health"
+   ],
+   "summary": "Effective from: 01.12.2026 · 18 mentions of medicines / medical devices in the text",
+   "doc_type": "Vyhláška",
+   "effective": [
+    "2026-12-01"
+   ],
+   "pdf": "https://static.slov-lex.sk/static/pdf/SK/ZZ/2026/293/ZZ_2026_293.pdf",
+   "explain": {
+    "about": "New act in the Collection of Laws (Zbierka zákonov): 293/2026 Z. z. – Vyhláška Ministerstva zdravotníctva Slovenskej republiky, ktorou sa mení a dopĺňa vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 298/2022 Z. z., ktorou sa ustanovujú…",
+    "what_changed": "18 mentions of medicines / medical devices in the text In force from 01.12.2026.",
+    "impact": "New legislation: check whether it concerns your business.",
+    "auto": true,
+    "sk": {
+     "about": "Nový predpis v Zbierke zákonov: 293/2026 Z. z. – Vyhláška Ministerstva zdravotníctva Slovenskej republiky, ktorou sa mení a dopĺňa vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 298/2022 Z. z., ktorou sa ustanovujú…",
+     "what_changed": "18 mentions of medicines / medical devices in the text Účinné od 01.12.2026.",
+     "impact": "Nový predpis: skontrolujte, či sa týka vašej činnosti."
+    }
+   },
+   "title_sk": "293/2026 Z. z. – Vyhláška Ministerstva zdravotníctva Slovenskej republiky, ktorou sa mení a dopĺňa vyhláška Ministerstva zdravotníctva Slovenskej republiky č. 298/2022 Z. z., ktorou sa ustanovujú podrobnosti výpočtu príslušného násobku hrubého domáceho produktu pre stanovenie prahovej hodnoty posudzovaného lieku",
+   "category_sk": "Legislatíva",
+   "tags_sk": [
+    "Lieky",
+    "Ministerstvo zdravotníctva"
+   ]
+  },
+  {
    "id": "https://svps.sk/?p=17358",
    "source": "svps",
    "source_name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
@@ -283,37 +395,6 @@
    "category_sk": "Dostupnosť liekov",
    "tags_sk": [
     "Prerušenie dodávok"
-   ]
-  },
-  {
-   "id": "sukl_web:https://www.sukl.sk/isoprinosine-500-mg-tablety-88174-obnovenie-21.12.2026:0d601039b3",
-   "source": "sukl_web",
-   "source_name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
-   "title": "Isoprinosine 500 mg tablety tbl 50x500 mg (blis. PVC/PVDC/Al) (88174) - Obnovenie 21.12.2026",
-   "url": "https://www.sukl.sk/isoprinosine-500-mg-tablety-88174-obnovenie-21.12.2026",
-   "date": "2026-11-26T12:00:00Z",
-   "detected": "2026-11-26T20:04:35Z",
-   "category": "Supply / availability",
-   "priority": "medium",
-   "tags": [
-    "Supply resumed"
-   ],
-   "summary": "Typ oznámenia: Obnovenie · Platnosť od: 21.12.2026 · Dátum hlásenia: 26.11.2026 09:43 · Kód ŠÚKL: 88174 · Predpokladaný termín obnovenia: Detail · Typ oznámenia: Zrušenie · Platnosť od: 1.1.2027 · Dátum hlásenia: 26.11.2026 13:27 · Predpokladaný termín obnovenia: Detail hlásenia Zrušenie 1.1.2027 · Typ oznámenia:…",
-   "explain": {
-    "about": "ŠÚKL supply notice for Isoprinosine 500 mg tablety tbl 50x500 mg (blis. PVC/PVDC/Al) (88174).",
-    "what_changed": "Type: Resumption · Valid from: 21.12.2026 · Reported: 26.11.2026 09:43 · ŠÚKL code: 88174",
-    "impact": "Supply resumes: the product can be ordered again from the date given.",
-    "auto": true,
-    "sk": {
-     "about": "Oznámenie ŠÚKL o dostupnosti lieku Isoprinosine 500 mg tablety tbl 50x500 mg (blis. PVC/PVDC/Al) (88174).",
-     "what_changed": "Typ oznámenia: Obnovenie · Platnosť od: 21.12.2026 · Dátum hlásenia: 26.11.2026 09:43 · Kód ŠÚKL: 88174",
-     "impact": "Dodávky sa obnovujú: liek bude možné znovu objednať od uvedeného dátumu."
-    }
-   },
-   "title_sk": "Isoprinosine 500 mg tablety tbl 50x500 mg (blis. PVC/PVDC/Al) (88174) - Obnovenie 21.12.2026",
-   "category_sk": "Dostupnosť liekov",
-   "tags_sk": [
-    "Obnovenie dodávok"
    ]
   },
   {
@@ -830,6 +911,37 @@
    "category_sk": "Dostupnosť liekov",
    "tags_sk": [
     "Obnovenie dodávok"
+   ]
+  },
+  {
+   "id": "https://www.health.gov.sk/novinky/prechod-na-elektronicku-fakturaciu-sa-tyka-aj-poskytovatelov-zdravotnej-starostl/",
+   "source": "mzsr",
+   "source_name": "Ministerstvo zdravotníctva SR",
+   "title": "Prechod na elektronickú fakturáciu sa týka aj poskytovateľov zdravotnej starostlivosti",
+   "url": "https://www.health.gov.sk/novinky/prechod-na-elektronicku-fakturaciu-sa-tyka-aj-poskytovatelov-zdravotnej-starostl/",
+   "date": "2026-11-25T23:00:00Z",
+   "detected": "2026-11-27T00:04:50Z",
+   "category": "Ministry of Health",
+   "priority": "low",
+   "tags": [
+    "E-invoicing"
+   ],
+   "summary": "Od 1. januára 2027 sa na Slovensku zavádza eFaktúra. Pripojíme sa tak k 21 európskym krajinám, ktoré už tento systém využívajú a v ktorých sa osvedčil ako stabilné, bezpečné a efektívne riešenie pre státisíce firiem.Nové pravidlá sa týkajú aj poskytovateľov zdravotnej starostlivosti – ambulancií, nemocníc a ďalších…",
+   "explain": {
+    "about": "News from the Ministry of Health (MZ SR): Prechod na elektronickú fakturáciu sa týka aj poskytovateľov zdravotnej starostlivosti",
+    "what_changed": "Od 1. januára 2027 sa na Slovensku zavádza eFaktúra. Pripojíme sa tak k 21 európskym krajinám, ktoré už tento systém využívajú a v ktorých sa osvedčil ako stabilné, bezpečné a efektívne riešenie pre státisíce firiem.Nové pravidlá sa týkajú aj poskytovateľov zdravotnej starostlivosti – ambulancií, nemocníc a ďalších…",
+    "impact": "For information; no action is expected.",
+    "auto": true,
+    "sk": {
+     "about": "Novinka Ministerstva zdravotníctva SR: Prechod na elektronickú fakturáciu sa týka aj poskytovateľov zdravotnej starostlivosti",
+     "what_changed": "Od 1. januára 2027 sa na Slovensku zavádza eFaktúra. Pripojíme sa tak k 21 európskym krajinám, ktoré už tento systém využívajú a v ktorých sa osvedčil ako stabilné, bezpečné a efektívne riešenie pre státisíce firiem.Nové pravidlá sa týkajú aj poskytovateľov zdravotnej starostlivosti – ambulancií, nemocníc a ďalších…",
+     "impact": "Na informáciu; nepredpokladá sa žiadna akcia."
+    }
+   },
+   "title_sk": "Prechod na elektronickú fakturáciu sa týka aj poskytovateľov zdravotnej starostlivosti",
+   "category_sk": "Ministerstvo zdravotníctva",
+   "tags_sk": [
+    "Elektronická fakturácia"
    ]
   },
   {
@@ -26145,101 +26257,101 @@
   "slovlex": {
    "name": "Slov-Lex · Zbierka zákonov SR",
    "ok": true,
-   "checked": "2026-11-26T20:04:02Z",
-   "new": 0,
+   "checked": "2026-11-27T00:04:00Z",
+   "new": 3,
    "error": null
   },
   "sukl": {
    "name": "ŠÚKL · Aktuality",
    "ok": true,
-   "checked": "2026-11-26T20:04:02Z",
+   "checked": "2026-11-27T00:04:00Z",
    "new": 0,
    "error": null
   },
   "sukl_recall": {
    "name": "ŠÚKL · Stiahnutia liekov z trhu",
    "ok": true,
-   "checked": "2026-11-26T20:04:02Z",
+   "checked": "2026-11-27T00:04:00Z",
    "new": 0,
    "error": null
   },
   "mzsr": {
    "name": "Ministerstvo zdravotníctva SR",
    "ok": true,
-   "checked": "2026-11-26T20:04:02Z",
-   "new": 0,
+   "checked": "2026-11-27T00:04:00Z",
+   "new": 1,
    "error": null
   },
   "uskvbl": {
    "name": "ÚŠKVBL · Všetky zmeny na webe",
    "ok": true,
-   "checked": "2026-11-26T20:04:02Z",
+   "checked": "2026-11-27T00:04:00Z",
    "new": 0,
    "error": null
   },
   "lawchanges": {
    "name": "Slov-Lex · Znenia kľúčových zákonov",
    "ok": true,
-   "checked": "2026-11-26T20:04:02Z",
+   "checked": "2026-11-27T00:04:00Z",
    "new": 0,
    "error": null
   },
   "slovlex_lp": {
    "name": "Slov-Lex · Návrhy predpisov (legislatívny proces)",
    "ok": true,
-   "checked": "2026-11-26T20:04:02Z",
+   "checked": "2026-11-27T00:04:00Z",
    "new": 0,
    "error": null
   },
   "eurlex": {
    "name": "EUR-Lex · Úradný vestník EÚ",
    "ok": true,
-   "checked": "2026-11-26T20:04:02Z",
+   "checked": "2026-11-27T00:04:00Z",
    "new": 0,
    "error": null
   },
   "kategorizacia": {
    "name": "MZ SR · Zoznam kategorizovaných liekov",
    "ok": true,
-   "checked": "2026-11-26T20:04:02Z",
+   "checked": "2026-11-27T00:04:00Z",
    "new": 0,
    "error": null
   },
   "ema": {
    "name": "EMA · European Medicines Agency",
    "ok": true,
-   "checked": "2026-11-26T20:04:02Z",
+   "checked": "2026-11-27T00:04:00Z",
    "new": 0,
    "error": null
   },
   "svps": {
    "name": "ŠVPS SR · Štátna veterinárna a potravinová správa",
    "ok": true,
-   "checked": "2026-11-26T20:04:02Z",
-   "new": 1,
+   "checked": "2026-11-27T00:04:00Z",
+   "new": 0,
    "error": null
   },
   "sukl_web": {
    "name": "ŠÚKL · Všetky zmeny na webe (dostupnosť liekov, stránky)",
    "ok": true,
-   "checked": "2026-11-26T20:04:02Z",
-   "new": 16,
+   "checked": "2026-11-27T00:04:00Z",
+   "new": 0,
    "error": null
   },
   "sool": {
    "name": "SOOL · Slovenská organizácia pre overovanie liekov",
    "ok": true,
-   "checked": "2026-11-26T20:04:02Z",
+   "checked": "2026-11-27T00:04:00Z",
    "new": 0,
    "error": null
   },
   "sdp": {
    "name": "SDP / GDP · EÚ, EMA, PIC/S, EMVO",
    "ok": true,
-   "checked": "2026-11-26T20:04:02Z",
+   "checked": "2026-11-27T00:04:00Z",
    "new": 0,
    "error": null
   }
  },
- "updated": "2026-11-26T20:04:02Z"
+ "updated": "2026-11-27T00:04:00Z"
 }
