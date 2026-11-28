@@ -8842,7 +8842,7 @@
     "tags": []
    },
    "LP/2026/607": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -8876,7 +8876,7 @@
     "stage_name": "Proces ukončený"
    },
    "LP/2026/608": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -9207,7 +9207,7 @@
     "tags": []
    },
    "LP/2026/635": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
@@ -9275,7 +9275,7 @@
     "tags": []
    },
    "LP/2026/641": {
-    "stage": "MPK",
+    "stage": "VYHODNOTENIE_MPK",
     "rel": 0,
     "tags": []
    },
